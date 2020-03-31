@@ -1,3 +1,4 @@
-# Progetto di Ingegneria del SW
+# Progetto-G20
+Prenotazione cinema
 
-Inserire qui una breve descrizione del progetto
+Realizzazione di un sistema per la prenotazione dei biglietti di un cinema.
