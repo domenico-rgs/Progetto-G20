@@ -24,9 +24,9 @@ public class Cinema<E> {
 	/* Nell'eventualità che venga creato più di un cinema, questa variabile
 	 * statica verrà usata per assegnare automaticamente un id diverso ad ogni 
 	 * istanza di cinema (Da valutarne l'effetiva utilità di un id).
-	 * (nel caso si voglia creare più di un cinema [e perchè mai??] , non va bene usare
-	 * il singleton per il bookingManager)
+	 * (nel caso si voglia creare più di un cinema [e perchè mai??] ,
 	 */
+	
 	private static int idGeneral = 0;
 	
 	// attributi
@@ -46,8 +46,7 @@ public class Cinema<E> {
 		this.cinemaName = name;
 		this.idCinema = idGeneral;
 		
-		//Ne esite solo uno (pattern Singleton)
-		bookingManager = BookingManager.getInstance();
+		bookingManager = new BookingManager();
 		
 		theaterList = new HashMap<String, Theater>();
 		movieList = new HashMap<String, Movie>();

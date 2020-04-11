@@ -11,20 +11,10 @@ public class BookingManager {
 	private HashMap<Integer, Booking> bookingList; 
 	
 	
-	/* Uso del Singleton pattern per evitare l'instaziamento di piu instanze
-	 */
-	private BookingManager() {
+	public BookingManager() {
 		bookingList = new HashMap<Integer, Booking>();
 	}
 	
-	public static BookingManager getInstance() {
-		
-		if(instance == null) {
-			instance = new BookingManager();
-		}
-		return instance;
-	}
-	//////// FINE SINGLETON /////////////
 	
 	// ricerca di un booking nella mappa tramite id (che si dovrà conoscere)
 	public Booking getBooking(int id) {
@@ -33,9 +23,10 @@ public class BookingManager {
 	
 	/* Per informazioni su come usare LocalDate, guardare il commento sulla
 	 * classe Booking
+	 * metodo da implementare
 	 */
 	public Booking getBooking(LocalDate date) {
-		return null; //verificare come usare un for each in un hashmap
+		return null; 
 	}
 	
 	public boolean removeBooking(int id) {
