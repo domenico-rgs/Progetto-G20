@@ -17,7 +17,7 @@ import it.unipv.po.model.operator.Manager;
 import it.unipv.po.model.operator.Operator;
 import it.unipv.po.model.operator.TypeOperator;
 
-
+//cinema
 
 public class Cinema<E> {
 	
