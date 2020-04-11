@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.11692307692307692" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="327.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.controllers.SaleControll">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <Button fx:id="openAddButton" layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#openAddSalaList" text="Aggiungi " />
+            <ChoiceBox fx:id="theaterList" layoutX="448.0" layoutY="5.0" onAction="#updateInformation" prefHeight="25.0" prefWidth="85.0" />
+            <Label layoutX="376.0" layoutY="8.0" text="Lista sale: ">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="updateButton" layoutX="92.0" layoutY="5.0" mnemonicParsing="false" onAction="#updateTheaterList" text="Aggiorna" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <Label fx:id="capienzaLabel" layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="79.0" text="Capienza: ND" />
+            <Label fx:id="openLabel" layoutX="359.0" layoutY="5.0" text="Orario Ingresso: ND" />
+            <Label fx:id="closeLabel" layoutX="479.0" layoutY="5.0" text="Orario chiusura: ND" />
+            <Label fx:id="freeSeatsLabel" layoutX="122.0" layoutY="5.0" text="Posti Liberi: ND" />
+            <Label fx:id="salaName" layoutX="285.0" layoutY="5.0" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>

@@ -1,0 +1,13 @@
+i moduli in .application e .view sono i moduli che contengono le
+classi usate per javaFX
+Se vuoi avviare il programma tramite il main nella classe Main.java di .application
+dovrai installare i moduli di JavaFx (ed importarli nel progetto)
+e aggiungere la seguente stringa
+nel 'run configuration' nella voce arguments, in VM arguments:
+(ti consiglio fortemente di usare Java JE 12)
+
+--module-path "C:\Users\killer\eclipse\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
+
+E necessario installare esternamente javaFX, ed indicare in 'propriopercorso' la sorgente della 
+cartella sopra specificata, che verrrà creata al momento dell'installazione di javaFX
+dal sito ufficiale.
