@@ -1,0 +1,8 @@
+1. Scompattate lo zip in un percorso a piacimento, del quale copierete l'indirizzo (*)
+2. In eclipse   windows>Preferens>Java>BuildPath>UserLibrary>New, ed aggiungete le 
+	lib contenunte nella cartella lib dello zip scaricato in (*)
+3. Importate le librerie nel vostro progetto.
+4. Nel Main.java nel package application, menù a tendina del Run button>Run Configuration
+	arguments>Vm arguments e aggiungete questra stringa:
+    --module-path "C:\ProprioPercorso\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
+5. Buon Divertimento

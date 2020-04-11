@@ -6,7 +6,7 @@ e aggiungere la seguente stringa
 nel 'run configuration' nella voce arguments, in VM arguments:
 (ti consiglio fortemente di usare Java JE 12)
 
---module-path "C:\Users\killer\eclipse\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
+--module-path "C:\ProprioPercorso\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
 
 E necessario installare esternamente javaFX, ed indicare in 'propriopercorso' la sorgente della 
 cartella sopra specificata, che verrrà creata al momento dell'installazione di javaFX
