@@ -50,5 +50,10 @@ public class MovieShowing {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "MovieShowing:\n[timestamp=" + timestamp + "\n movie=" + movie + "]";
+	}
+
 
 }

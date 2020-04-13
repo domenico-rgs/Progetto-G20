@@ -6,5 +6,8 @@ public class Manager extends Cashier {
 		super();
 		super.setType(TypeOperator.MANAGER);
 	}
-
+	
+	public String toString() {
+		return super.toString();
+	}
 }

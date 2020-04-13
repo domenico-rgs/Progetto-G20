@@ -55,4 +55,9 @@ public class Booking implements Bookable {
 	public String getDateBooking() {
 		return date.toString();
 	}
+
+	@Override
+	public String toString() {
+		return "Booking:\n[idBooking=" + idBooking + "\n ticketList=" + ticketList + "\n date=" + date + "]";
+	}
 }

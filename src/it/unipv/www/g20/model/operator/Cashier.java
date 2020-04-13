@@ -6,4 +6,8 @@ public class Cashier extends Operator {
 		super();
 		super.setType(TypeOperator.CASHIER);
 	}
+	
+	public String toString() {
+		return super.toString();
+	}
 }

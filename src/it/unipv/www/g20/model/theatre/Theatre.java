@@ -93,4 +93,25 @@ public class Theatre implements Organizable{
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Theatre:\n[name=" + name + "\n showingList=" + showingList + "\n seatList=" + seatList + "]";
+	}
+
+	public List<MovieShowing> getShowingList() {
+		return showingList;
+	}
+
+	public ArrayList<Seat> getSeatList() {
+		return seatList;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getColumn() {
+		return column;
+	}
+
 }

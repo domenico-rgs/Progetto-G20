@@ -140,5 +140,27 @@ public class Cinema implements Manageable{
 		return address;
 	}
 
+	@Override
+	public String toString() {
+		return "Cinema:\n[name=" + name + "\n address=" + address + "\n theaterList=" + theaterList + "\n movieList="
+				+ movieList + "\n bookingList=" + bookingList + "\n operatorList=" + operatorList + "]";
+	}
+
+	public HashMap<String, Theatre> getTheaterList() {
+		return theaterList;
+	}
+
+	public HashMap<String, Movie> getMovieList() {
+		return movieList;
+	}
+
+	public HashMap<String, Booking> getBookingList() {
+		return bookingList;
+	}
+
+	public HashMap<Integer, Operator> getOperatorList() {
+		return operatorList;
+	}
+
 
 }

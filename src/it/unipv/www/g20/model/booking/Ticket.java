@@ -25,4 +25,10 @@ public class Ticket {
 		this.info = info;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Ticket:\n[id=" + id + "\n info=" + info + "]";
+	}
+
 }

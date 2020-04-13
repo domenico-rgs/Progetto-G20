@@ -61,5 +61,10 @@ public abstract class Operator implements Identifiable{
 		this.type = type;
 	}
 
+	@Override
+	public String toString() {
+		return "Operator:\n[id=" + id + "\n password=" + password + "\n type=" + type + "\n logged=" + logged + "]";
+	}
+
 
 }

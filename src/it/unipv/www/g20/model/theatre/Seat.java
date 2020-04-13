@@ -21,4 +21,9 @@ public class Seat {
 		return id;
 	}
 
+	@Override
+	public String toString() {
+		return "Seat:\n[id=" + id + "\n available=" + available + "]";
+	}
+
 }
