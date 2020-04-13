@@ -67,7 +67,7 @@ public class Theatre implements Organizable{
 	private void createSeats(int capienza) {
 		for(int i=0; i<row; i++) {
 			for(int j=0; j<column; j++) {
-				seatList.add(new Seat(" "));
+				seatList.add(new Seat(Character.toString(65+i)+j));
 			}
 		}
 	}
