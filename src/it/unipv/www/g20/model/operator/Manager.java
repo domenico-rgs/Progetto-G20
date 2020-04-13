@@ -1,3 +1,4 @@
+/**This class identifies a manager of the cinema.*/
 package it.unipv.www.g20.model.operator;
 
 public class Manager extends Cashier {

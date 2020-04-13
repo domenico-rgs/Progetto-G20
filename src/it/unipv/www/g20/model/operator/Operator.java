@@ -1,3 +1,4 @@
+/**This is a generic operator of the cinema (manager or cashier)*/
 package it.unipv.www.g20.model.operator;
 
 public abstract class Operator implements Identifiable{
@@ -15,7 +16,11 @@ public abstract class Operator implements Identifiable{
 		generatorIdOperator++;
 		logged=false;
 	}
-
+	
+	/**It permits to modify password when the operator accesses for the first time.
+	 * @param vecchiaPw old password to substitute
+	 * @param nuovaPw new password to insert
+	 * @return true if the password is modified. */
 	public boolean isFirstLogin(String vecchiaPw, String nuovaPw) {
 		if(!changedDefaultPassword) {
 			setPassword(vecchiaPw, nuovaPw);
@@ -48,7 +53,8 @@ public abstract class Operator implements Identifiable{
 			logged=true;
 		return logged;
 	}
-
+	
+	/**It permits to log out, modifying the variable "logged". */
 	public void logout() {
 		logged=false;
 	}
@@ -63,7 +69,7 @@ public abstract class Operator implements Identifiable{
 
 	@Override
 	public String toString() {
-		return "Operator:\n[id=" + id + "\n password=" + password + "\n type=" + type + "\n logged=" + logged + "]";
+		return "Operator:\n[id=" + id + "\n type=" + type + "\n logged=" + logged + "]";
 	}
 
 

@@ -1,3 +1,4 @@
+/** This class represents a booking made for a client. It can include the purchase of more tickets.*/
 package it.unipv.www.g20.model.booking;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Booking implements Bookable {
 		this.date = date;
 		ticketList = new ArrayList<>();
 	}
-
+	
 	@Override
 	public Ticket createTicket(String info) {
 		final Ticket ticket = new Ticket(idBooking+generateIdTicket, info);
@@ -38,7 +39,8 @@ public class Booking implements Bookable {
 	public Ticket getTicket(int idTicket) {
 		return ticketList.get(idTicket);
 	}
-
+	
+	@Override
 	public int searchTicket(String id) throws NotFoundException {
 		for(int i=0; i<ticketList.size(); i++) {
 			if(ticketList.get(i).getId().equalsIgnoreCase(id))

@@ -1,3 +1,4 @@
+/**This class identifies a cinema.*/
 package it.unipv.www.g20.model.cinema;
 
 import java.util.Calendar;
@@ -99,7 +100,9 @@ public class Cinema implements Manageable{
 		bookingList.remove(id);
 		return true;
 	}
-
+	/**It permits to add a Cinema Cashier or a Cinema Manager.
+	 * @param type It refers to the type of operator: cashier or manager
+	 * @return true if an operator is added. */
 	public Operator addOperator(TypeOperator type) {
 
 		Operator tmp = null;
@@ -116,8 +119,10 @@ public class Cinema implements Manageable{
 		return tmp;
 
 	}
-
-
+	
+	/**It permits to delete a cashier or a manager.
+	 * @param id operator's id
+	 * @return true if the operator is deleted.*/
 	public boolean deleteOperator(int id) {
 
 		if(!(operatorList.containsKey(id))) 

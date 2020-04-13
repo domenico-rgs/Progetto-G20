@@ -1,3 +1,4 @@
+/** This class identifies a bought ticket to show a movie.*/
 package it.unipv.www.g20.model.booking;
 
 

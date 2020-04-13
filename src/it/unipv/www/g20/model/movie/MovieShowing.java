@@ -1,3 +1,4 @@
+/**This class is referred to a movie projection in the cinema.*/
 package it.unipv.www.g20.model.movie;
 
 import java.util.Calendar;

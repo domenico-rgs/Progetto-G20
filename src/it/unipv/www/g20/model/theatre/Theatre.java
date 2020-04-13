@@ -83,7 +83,7 @@ public class Theatre implements Organizable{
 			}
 		}
 	}
-
+	
 	public int searchSeat(String id) throws NotFoundException {
 		for(int i=0; i<seatList.size(); i++) {
 			if(seatList.get(i).getId().equalsIgnoreCase(id))
