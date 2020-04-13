@@ -5,13 +5,12 @@ import it.unipv.www.g20.model.exception.NotFoundException;
 
 public interface Bookable {
 	/**It permits to create a ticket.
-	 * @param id ticket's id
 	 * @param info ticket's information 
 	 * @return ticket*/
 	public Ticket createTicket(String info);
 	
 	/**It permits to delete a ticket.
-	 * @param id ticket's id
+	 * @param idTicket ticket's id
 	 * @return true if ticket is deleted*/
 	public boolean deleteTicket(String idTicket);
 	

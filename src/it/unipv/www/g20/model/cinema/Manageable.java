@@ -10,7 +10,8 @@ public interface Manageable {
 
 	/**It permits to add a theatre.
 	 * @param name theatre's name
-	 * @param capienza theatre's capacity
+	 * @param row number of rows of seats
+	 * @param column number of seat columns
 	 * @return true if theatre is added.*/
 	public boolean addTheatre(String name, int row, int column);
 	
