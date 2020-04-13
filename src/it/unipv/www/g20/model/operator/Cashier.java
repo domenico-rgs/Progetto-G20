@@ -1,3 +1,4 @@
+/**This class is referred to a cinema cashier. */
 package it.unipv.www.g20.model.operator;
 
 public class Cashier extends Operator {

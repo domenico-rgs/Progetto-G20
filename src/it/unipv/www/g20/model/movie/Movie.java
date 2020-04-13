@@ -1,3 +1,4 @@
+/**This class is referred to a movie.*/
 package it.unipv.www.g20.model.movie;
 
 public class Movie {

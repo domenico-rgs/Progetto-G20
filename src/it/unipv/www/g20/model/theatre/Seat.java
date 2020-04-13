@@ -1,3 +1,4 @@
+/**This class is referred to a seat in a cinema theatre. */
 package it.unipv.www.g20.model.theatre;
 
 public class Seat {
