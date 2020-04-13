@@ -14,13 +14,13 @@ import it.unipv.www.g20.model.theatre.Theatre;
 
 
 public class Cinema implements Manageable{
-	private String name;
-	private String address;
+	private final String name;
+	private final String address;
 
-	private HashMap<String, Theatre>theaterList;
-	private HashMap<String, Movie> movieList;
-	private HashMap<String, Booking> bookingList;
-	private HashMap<Integer, Operator> operatorList;
+	private final HashMap<String, Theatre>theaterList;
+	private final HashMap<String, Movie> movieList;
+	private final HashMap<String, Booking> bookingList;
+	private final HashMap<Integer, Operator> operatorList;
 
 
 
@@ -79,7 +79,7 @@ public class Cinema implements Manageable{
 	public boolean addBooking(Calendar date) {
 
 		//lo creo per ricavarne l'id generato automaticamente
-		Booking tmp = new Booking(date);
+		final Booking tmp = new Booking(date);
 
 		bookingList.put(tmp.getIdBooking(), tmp);
 		return true;

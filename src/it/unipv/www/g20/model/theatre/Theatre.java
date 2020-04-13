@@ -10,8 +10,8 @@ import it.unipv.www.g20.model.movie.MovieShowing;
 
 public class Theatre implements Organizable{
 	private String name;
-	private List<MovieShowing> showingList;
-	private ArrayList<Seat> seatList;
+	private final List<MovieShowing> showingList;
+	private final ArrayList<Seat> seatList;
 	private int row;
 	private int column;
 
@@ -44,10 +44,10 @@ public class Theatre implements Organizable{
 	@Override
 	public boolean deleteMovieShowing(MovieShowing showing) {
 		try {
-			int pos = searchMovieShowing(showing);
+			final int pos = searchMovieShowing(showing);
 			showingList.remove(pos);
 			return true;
-		}catch(NotFoundException e) {
+		}catch(final NotFoundException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
@@ -56,7 +56,7 @@ public class Theatre implements Organizable{
 	@Override
 	public void printShowingList() {
 		String s = "Showing List: \n";
-		for (MovieShowing element : showingList) {
+		for (final MovieShowing element : showingList) {
 			s+= element.toString() +" \n";
 		}
 		System.out.println(s);

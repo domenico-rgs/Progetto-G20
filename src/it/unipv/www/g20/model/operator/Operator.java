@@ -1,7 +1,7 @@
 package it.unipv.www.g20.model.operator;
 
 public abstract class Operator implements Identifiable{
-	private int id;
+	private final int id;
 	private static int generatorIdOperator = 0;
 	private String password;
 	private boolean changedDefaultPassword;

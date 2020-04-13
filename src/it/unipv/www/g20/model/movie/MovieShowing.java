@@ -3,8 +3,8 @@ package it.unipv.www.g20.model.movie;
 import java.util.Calendar;
 
 public class MovieShowing {
-	private Calendar timestamp;
-	private Movie movie;
+	private final Calendar timestamp;
+	private final Movie movie;
 
 	public MovieShowing(Movie movie, Calendar data) {
 		timestamp=data;
@@ -23,8 +23,8 @@ public class MovieShowing {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((movie == null) ? 0 : movie.hashCode());
-		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
+		result = (prime * result) + ((movie == null) ? 0 : movie.hashCode());
+		result = (prime * result) + ((timestamp == null) ? 0 : timestamp.hashCode());
 		return result;
 	}
 
@@ -36,7 +36,7 @@ public class MovieShowing {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MovieShowing other = (MovieShowing) obj;
+		final MovieShowing other = (MovieShowing) obj;
 		if (movie == null) {
 			if (other.movie != null)
 				return false;

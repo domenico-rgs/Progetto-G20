@@ -8,8 +8,8 @@ import it.unipv.www.g20.model.exception.NotFoundException;
 public class Booking implements Bookable {
 	private static int generateIdTicket = 0;
 	private String idBooking;
-	private ArrayList<Ticket> ticketList;
-	private Calendar date;
+	private final ArrayList<Ticket> ticketList;
+	private final Calendar date;
 
 	public Booking(Calendar date) {
 		this.date = date;
@@ -18,7 +18,7 @@ public class Booking implements Bookable {
 
 	@Override
 	public Ticket createTicket(String id, String info) {
-		Ticket ticket = new Ticket(idBooking+generateIdTicket, info);
+		final Ticket ticket = new Ticket(idBooking+generateIdTicket, info);
 		ticketList.add(ticket);
 		return ticket;
 	}
@@ -38,10 +38,10 @@ public class Booking implements Bookable {
 	@Override
 	public boolean deleteTicket(String idTicket) {
 		try {
-			int pos = searchTicket(idTicket);
+			final int pos = searchTicket(idTicket);
 			ticketList.remove(pos);
 			return true;
-		}catch(NotFoundException e) {
+		}catch(final NotFoundException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}

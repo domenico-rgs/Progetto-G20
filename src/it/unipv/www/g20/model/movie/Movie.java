@@ -89,7 +89,7 @@ public class Movie {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = (prime * result) + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
 
@@ -101,7 +101,7 @@ public class Movie {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Movie other = (Movie) obj;
+		final Movie other = (Movie) obj;
 		if (title == null) {
 			if (other.title != null)
 				return false;

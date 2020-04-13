@@ -1,7 +1,7 @@
 package it.unipv.www.g20.model.theatre;
 
 public class Seat {
-	private String id;
+	private final String id;
 	private boolean available;
 
 	public Seat(String seatId) {

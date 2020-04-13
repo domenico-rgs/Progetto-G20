@@ -2,7 +2,7 @@ package it.unipv.www.g20.model.booking;
 
 
 public class Ticket {
-	private String id;
+	private final String id;
 	private String info;
 
 	public Ticket(String id, String info) {
