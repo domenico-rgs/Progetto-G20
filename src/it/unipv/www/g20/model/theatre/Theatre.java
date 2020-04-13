@@ -15,10 +15,13 @@ public class Theatre implements Organizable{
 	private int row;
 	private int column;
 
-	public Theatre(String theaterName, int capacity) {
+	public Theatre(String theaterName, int row, int column) {
 		setName(theaterName);
+		this.row=row;
+		this.column=column;
 		showingList = new ArrayList<>();
 		seatList = new ArrayList<>();
+		createSeats();
 	}
 
 	@Override
@@ -62,9 +65,18 @@ public class Theatre implements Organizable{
 		System.out.println(s);
 
 	}
+	
+	
+	public void printAvailableSeats() {
+		String s = "Available seats: \n";
+		for (final Seat element : seatList) {
+			if(element.isAvailable())
+				s+= element.toString() +" \n";
+		}
+		System.out.println(s);
+	}
 
-	@SuppressWarnings("unused")
-	private void createSeats(int capienza) {
+	private void createSeats() {
 		for(int i=0; i<row; i++) {
 			for(int j=0; j<column; j++) {
 				seatList.add(new Seat(Character.toString(65+i)+j));
@@ -78,6 +90,16 @@ public class Theatre implements Organizable{
 				return i;
 		}
 		throw new NotFoundException("Seat not found!");
+	}
+	
+	public boolean setSeat(String id) {
+		try {
+			Seat seat = seatList.get(searchSeat(id));
+			seat.setAvalaible(false);
+			return true;
+		} catch (NotFoundException e) {
+			return false;
+		}
 	}
 
 	public int getCapacity() {
@@ -96,14 +118,6 @@ public class Theatre implements Organizable{
 	@Override
 	public String toString() {
 		return "Theatre:\n[name=" + name + "\n showingList=" + showingList + "\n seatList=" + seatList + "]";
-	}
-
-	public List<MovieShowing> getShowingList() {
-		return showingList;
-	}
-
-	public ArrayList<Seat> getSeatList() {
-		return seatList;
 	}
 
 	public int getRow() {

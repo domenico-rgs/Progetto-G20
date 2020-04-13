@@ -2,6 +2,7 @@ package it.unipv.www.g20.model.booking;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.UUID;
 
 import it.unipv.www.g20.model.exception.NotFoundException;
 
@@ -12,15 +13,26 @@ public class Booking implements Bookable {
 	private final Calendar date;
 
 	public Booking(Calendar date) {
+		idBooking = UUID.randomUUID().toString();
 		this.date = date;
 		ticketList = new ArrayList<>();
 	}
 
 	@Override
-	public Ticket createTicket(String id, String info) {
+	public Ticket createTicket(String info) {
 		final Ticket ticket = new Ticket(idBooking+generateIdTicket, info);
 		ticketList.add(ticket);
+		generateIdTicket++;
 		return ticket;
+	}
+	
+	public boolean createTicket(String info, int numero) {
+		for(int i=0; i<numero; i++) {
+			final Ticket ticket = new Ticket(idBooking+generateIdTicket, info);
+			ticketList.add(ticket);
+			generateIdTicket++;
+		}
+		return true;
 	}
 
 	public Ticket getTicket(int idTicket) {
@@ -55,9 +67,17 @@ public class Booking implements Bookable {
 	public String getDateBooking() {
 		return date.toString();
 	}
+	
+	public String printTicket() {
+		String s="";
+		for(int i=0; i<ticketList.size(); i++) {
+			s+=ticketList.get(i).toString();
+		}
+		return s+"\n";
+	}
 
 	@Override
 	public String toString() {
-		return "Booking:\n[idBooking=" + idBooking + "\n ticketList=" + ticketList + "\n date=" + date + "]";
+		return "Booking:\n[idBooking=" + idBooking + "\n Ticket=" + printTicket() + "\n date=" + date + "]";
 	}
 }
