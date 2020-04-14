@@ -11,8 +11,8 @@ import it.unipv.www.g20.model.operator.Operator;
 import it.unipv.www.g20.model.operator.TypeOperator;
 import it.unipv.www.g20.model.theatre.Theatre;
 
-public class TextGUI {
-	public TextGUI(Cinema cinema) {
+public class Text {
+	public Text(Cinema cinema) {
 		GUIText(cinema);
 	}
 

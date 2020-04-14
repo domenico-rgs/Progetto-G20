@@ -2,7 +2,7 @@ package it.unipv.www.g20.model.test;
 
 import it.unipv.www.g20.model.cinema.Cinema;
 import it.unipv.www.g20.model.operator.TypeOperator;
-import it.unipv.www.g20.view.text.TextGUI;
+import it.unipv.www.g20.view.text.Text;
 
 public class Tester {
 
@@ -11,7 +11,7 @@ public class Tester {
 		Cinema cinema1 = new Cinema("Cinema Lupo", "Via Roma 10");
 		cinema1.addTheatre("Sala1", 10, 20);
 		System.out.println("id nuovo operatore: "+cinema1.addOperator(TypeOperator.CASHIER).getId()+"\n");
-		TextGUI gui = new TextGUI(cinema1);
+		Text gui = new Text(cinema1);
 	}
 
 }
