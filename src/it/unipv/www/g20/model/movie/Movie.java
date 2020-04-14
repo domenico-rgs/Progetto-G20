@@ -1,6 +1,8 @@
-/**This class is referred to a movie.*/
 package it.unipv.www.g20.model.movie;
 
+/**
+ * This class is referred to a movie.
+ */
 public class Movie {
 	private String title;
 	private int duration;
@@ -19,12 +21,10 @@ public class Movie {
 	@Override
 	public String toString() {
 		String s = "MOVIE INFORMATION";
-
 		s += " Title: " +title + "\n";
 		s += " Duration: " +duration+ " minutes\n";
 		s += " Category: " +category.toString().toLowerCase()+ "\n";
 		s += " Price: €" +price+ " \n";
-
 		return s;
 	}
 

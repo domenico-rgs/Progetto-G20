@@ -1,6 +1,9 @@
-/**This class is referred to a seat in a cinema theatre. */
 package it.unipv.www.g20.model.theatre;
 
+/**
+ * This class is referred to a seat in a cinema theatre. 
+ * @see Theatre
+ */
 public class Seat {
 	private final String id;
 	private boolean available;
@@ -24,7 +27,7 @@ public class Seat {
 
 	@Override
 	public String toString() {
-		return "Seat:\n[id=" + id + "\n available=" + available + "]";
+		return "Seat: " + id + ", " + available + "\n";
 	}
 
 }

@@ -3,5 +3,6 @@ it.unipv.www.g20.model.cinema
 it.unipv.www.g20.model.exception
 it.unipv.www.g20.model.movie
 it.unipv.www.g20.model.operator
+it.unipv.www.g20.model.test
 it.unipv.www.g20.model.theatre
 it.unipv.www.g20.view.text

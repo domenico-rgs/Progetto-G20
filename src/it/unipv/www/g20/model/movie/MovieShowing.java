@@ -1,8 +1,10 @@
-/**This class is referred to a movie projection in the cinema.*/
 package it.unipv.www.g20.model.movie;
 
 import java.util.Calendar;
 
+/**
+ * This class is referred to a movie projection in the cinema.
+ */
 public class MovieShowing {
 	private final Calendar timestamp;
 	private final Movie movie;
@@ -53,7 +55,7 @@ public class MovieShowing {
 
 	@Override
 	public String toString() {
-		return "MovieShowing:\n[timestamp=" + timestamp + "\n movie=" + movie + "]";
+		return "Movie showing: " + timestamp + "\n" + movie + "\n";
 	}
 
 

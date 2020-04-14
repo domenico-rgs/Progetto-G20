@@ -8,6 +8,9 @@ import it.unipv.www.g20.model.exception.NotFoundException;
 import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
 
+/**
+ * The theatre of a Cinema, allows you to manage its projections and seats
+ */
 public class Theatre implements Organizable{
 	private String name;
 	private final List<MovieShowing> showingList;
@@ -66,7 +69,9 @@ public class Theatre implements Organizable{
 
 	}
 	
-	
+	/**
+	 * Print a list of all seats not reserved in the room
+	 */
 	public void printAvailableSeats() {
 		String s = "Available seats: \n";
 		for (final Seat element : seatList) {
@@ -76,6 +81,11 @@ public class Theatre implements Organizable{
 		System.out.println(s);
 	}
 
+	/*
+	 * Create the seats in the room by associating them with an id 
+	 * consisting of a letter that identifies the row 
+	 * and a number that identifies the column
+	 */
 	private void createSeats() {
 		for(int i=0; i<row; i++) {
 			for(int j=0; j<column; j++) {
@@ -84,6 +94,12 @@ public class Theatre implements Organizable{
 		}
 	}
 	
+	/**
+	 * Look for a seat given his id among all those in the theatre
+	 * @param id seat's id
+	 * @return index of the seat in the list
+	 * @throws NotFoundException
+	 */
 	public int searchSeat(String id) throws NotFoundException {
 		for(int i=0; i<seatList.size(); i++) {
 			if(seatList.get(i).getId().equalsIgnoreCase(id))
@@ -92,6 +108,11 @@ public class Theatre implements Organizable{
 		throw new NotFoundException("Seat not found!");
 	}
 	
+	/**
+	 * Given the id of a seat it allows to set it as reserved
+	 * @param id seat's id
+	 * @return true if it was booked false otherwise 
+	 */
 	public boolean setSeat(String id) {
 		try {
 			Seat seat = seatList.get(searchSeat(id));
@@ -117,7 +138,7 @@ public class Theatre implements Organizable{
 
 	@Override
 	public String toString() {
-		return "Theatre:\n[name=" + name + "\n showingList=" + showingList + "\n seatList=" + seatList + "]";
+		return "Theatre: " + name + "\n";
 	}
 
 	public int getRow() {

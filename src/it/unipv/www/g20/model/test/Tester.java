@@ -1,5 +1,6 @@
-package it.unipv.www.g20.model.cinema;
+package it.unipv.www.g20.model.test;
 
+import it.unipv.www.g20.model.cinema.Cinema;
 import it.unipv.www.g20.model.operator.TypeOperator;
 import it.unipv.www.g20.view.text.TextGUI;
 

@@ -1,13 +1,16 @@
-/**This class identifies a manager of the cinema.*/
 package it.unipv.www.g20.model.operator;
 
-public class Manager extends Cashier {
+/**
+ * This class identifies a manager of the cinema.
+ * @see Operator
+ */
+public class Manager extends Operator {
 
 	public Manager() {
-		super();
 		super.setType(TypeOperator.MANAGER);
 	}
-	
+
+	@Override
 	public String toString() {
 		return super.toString();
 	}

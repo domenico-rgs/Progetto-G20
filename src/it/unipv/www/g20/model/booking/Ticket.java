@@ -1,10 +1,12 @@
-/** This class identifies a bought ticket to show a movie.*/
 package it.unipv.www.g20.model.booking;
 
-
+/** 
+ * This class identifies a bought ticket to show a movie.
+ * @see Booking
+ */
 public class Ticket {
-	private final String id;
-	private String info;
+	private final String id; //the id is composed of a part that identifies the booking and another that identifies the ticket in the series
+	private String info; //probably to be modified, in theory it should contain information on the film, theater, screening time and price
 
 	public Ticket(String id, String info) {
 		this.id=id;
@@ -29,7 +31,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket:\n[id=" + id + "\n info=" + info + "]";
+		return "Ticket: " + id + ", info=" + info + "\n";
 	}
 
 }

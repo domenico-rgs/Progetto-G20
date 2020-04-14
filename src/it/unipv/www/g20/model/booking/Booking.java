@@ -1,4 +1,3 @@
-/** This class represents a booking made for a client. It can include the purchase of more tickets.*/
 package it.unipv.www.g20.model.booking;
 
 import java.util.ArrayList;
@@ -7,6 +6,9 @@ import java.util.UUID;
 
 import it.unipv.www.g20.model.exception.NotFoundException;
 
+/** 
+ * This class represents a booking made for a client. It can include the purchase of more tickets.
+ * */
 public class Booking implements Bookable {
 	private static int generateIdTicket = 0;
 	private String idBooking;
@@ -14,7 +16,7 @@ public class Booking implements Bookable {
 	private final Calendar date;
 
 	public Booking(Calendar date) {
-		idBooking = UUID.randomUUID().toString();
+		idBooking = UUID.randomUUID().toString(); //troppo lungo, soluzione temporanea per avere un'id univoco
 		this.date = date;
 		ticketList = new ArrayList<>();
 	}
@@ -27,17 +29,17 @@ public class Booking implements Bookable {
 		return ticket;
 	}
 	
-	public boolean createTicket(String info, int numero) {
-		for(int i=0; i<numero; i++) {
+	/**
+	 * Overload of the createTicket method to create a certain num of identical tickets
+	 *
+	 */
+	public boolean createTicket(String info, int num) {
+		for(int i=0; i<num; i++) {
 			final Ticket ticket = new Ticket(idBooking+generateIdTicket, info);
 			ticketList.add(ticket);
 			generateIdTicket++;
 		}
 		return true;
-	}
-
-	public Ticket getTicket(int idTicket) {
-		return ticketList.get(idTicket);
 	}
 	
 	@Override
@@ -70,6 +72,10 @@ public class Booking implements Bookable {
 		return date.toString();
 	}
 	
+	/**
+	 * Print all tickets contained in the booking
+	 * @return a string with all the information of each ticket
+	 */
 	public String printTicket() {
 		String s="";
 		for(int i=0; i<ticketList.size(); i++) {
@@ -80,6 +86,6 @@ public class Booking implements Bookable {
 
 	@Override
 	public String toString() {
-		return "Booking:\n[idBooking=" + idBooking + "\n Ticket=" + printTicket() + "\n date=" + date + "]";
+		return "Booking:" + idBooking + ", date:" + date + "\n";
 	}
 }

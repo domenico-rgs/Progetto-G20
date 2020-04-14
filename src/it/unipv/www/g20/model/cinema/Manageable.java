@@ -5,6 +5,8 @@ import java.util.Calendar;
 
 import it.unipv.www.g20.model.booking.Booking;
 import it.unipv.www.g20.model.movie.TypeCategory;
+import it.unipv.www.g20.model.operator.Operator;
+import it.unipv.www.g20.model.operator.TypeOperator;
 
 public interface Manageable {
 
@@ -42,4 +44,20 @@ public interface Manageable {
 	 * @param nome booking's name
 	 * @return true if booking is deleted */
 	public boolean deleteBooking(String nome);
+	
+	/**
+	 * It permits to add a Cinema Cashier or a Cinema Manager.
+	 * 
+	 * @param type It refers to the type of operator: cashier or manager
+	 * @return true if an operator is added.
+	 */
+	public Operator addOperator(TypeOperator type);
+	
+	/**
+	 * It permits to delete a cashier or a manager.
+	 * 
+	 * @param id operator's id
+	 * @return true if the operator is deleted.
+	 */
+	public boolean deleteOperator(int id);
 }

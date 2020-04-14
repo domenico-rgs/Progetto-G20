@@ -13,18 +13,17 @@ import it.unipv.www.g20.model.operator.Operator;
 import it.unipv.www.g20.model.operator.TypeOperator;
 import it.unipv.www.g20.model.theatre.Theatre;
 
-
-public class Cinema implements Manageable{
+/**
+ * Facade controller for managing reservations in a cinema
+ */
+public class Cinema implements Manageable {
 	private final String name;
 	private final String address;
 
-	private final HashMap<String, Theatre>theatreList;
+	private final HashMap<String, Theatre> theatreList;
 	private final HashMap<String, Movie> movieList;
 	private final HashMap<String, Booking> bookingList;
 	private final HashMap<Integer, Operator> operatorList;
-
-
-
 
 	public Cinema(String name, String address) {
 		this.address = address;
@@ -36,13 +35,9 @@ public class Cinema implements Manageable{
 		bookingList = new HashMap<String, Booking>();
 	}
 
-	/* Ritorna vero se inserisce correttamente il teatro
-	 * altrimeti ritorna falso poich� gia esistente
-	 * il medesimo ragionemanto vale anche per le classi sottostanti
-	 */
 	@Override
 	public boolean addTheatre(String name, int row, int column) {
-		if (theatreList.containsKey(name)) 
+		if (theatreList.containsKey(name))
 			return false;
 
 		theatreList.put(name, new Theatre(name, row, column));
@@ -52,7 +47,7 @@ public class Cinema implements Manageable{
 	@Override
 	public boolean deleteTheatre(String name) {
 
-		if(!(theatreList.containsKey(name))) 
+		if (!(theatreList.containsKey(name)))
 			return false;
 
 		theatreList.remove(name);
@@ -62,7 +57,7 @@ public class Cinema implements Manageable{
 	@Override
 	public boolean addMovie(String title, int duration, TypeCategory category, Double ticketPrice) {
 
-		if(movieList.containsKey(title)) 
+		if (movieList.containsKey(title))
 			return false;
 
 		movieList.put(title, new Movie(title, duration, category, ticketPrice));
@@ -73,7 +68,7 @@ public class Cinema implements Manageable{
 	@Override
 	public boolean deleteMovie(String title) {
 
-		if(!(movieList.containsKey(title))) 
+		if (!(movieList.containsKey(title)))
 			return false;
 
 		movieList.remove(title);
@@ -83,68 +78,77 @@ public class Cinema implements Manageable{
 	@Override
 	public Booking addBooking(Calendar date) {
 
-		//lo creo per ricavarne l'id generato automaticamente
+		// lo creo per ricavarne l'id generato automaticamente
 		final Booking tmp = new Booking(date);
 
 		bookingList.put(tmp.getIdBooking(), tmp);
 		return tmp;
 	}
 
-
 	@Override
 	public boolean deleteBooking(String id) {
 
-		if (!(bookingList.containsKey(id))) 
+		if (!(bookingList.containsKey(id)))
 			return false;
 
 		bookingList.remove(id);
 		return true;
 	}
-	/**It permits to add a Cinema Cashier or a Cinema Manager.
-	 * @param type It refers to the type of operator: cashier or manager
-	 * @return true if an operator is added. */
+
+	@Override
 	public Operator addOperator(TypeOperator type) {
 
 		Operator tmp = null;
 
-		switch(type) {
+		switch (type) {
 		case CASHIER:
 			tmp = new Cashier();
 			break;
 		case MANAGER:
 			tmp = new Manager();
+			break;
+		default:
+			return null;
 		}
 
 		operatorList.put(tmp.getId(), tmp);
 		return tmp;
 
 	}
-	
-	/**It permits to delete a cashier or a manager.
-	 * @param id operator's id
-	 * @return true if the operator is deleted.*/
+
+	@Override
 	public boolean deleteOperator(int id) {
 
-		if(!(operatorList.containsKey(id))) 
+		if (!(operatorList.containsKey(id)))
 			return false;
 
 		operatorList.remove(id);
 		return true;
 
 	}
-	
+
+	/**
+	 * Search for the operator in the list of all operators added to the cinema
+	 * @param id operator's id
+	 * @return the operator otherwise null if the operator is not present in the list
+	 */
 	public Operator searchOperator(int id) {
-		if(!(operatorList.containsKey(id))) 
+		if (!(operatorList.containsKey(id)))
 			return null;
 
-		return operatorList.get(id);	
+		return operatorList.get(id);
 	}
-	
+
+	/**
+	 * Search the cinema hall in the list of all theaters added to the cinema
+	 * @param name
+	 * @return
+	 */
 	public Theatre searchTheatre(String name) {
-		if(!(theatreList.containsKey(name))) 
+		if (!(theatreList.containsKey(name)))
 			return null;
 
-		return theatreList.get(name);	
+		return theatreList.get(name);
 	}
 
 	public String getName() {
@@ -157,8 +161,7 @@ public class Cinema implements Manageable{
 
 	@Override
 	public String toString() {
-		return "Cinema:\n[name=" + name + "\n address=" + address + "\n theaterList=" + theatreList + "\n movieList="
-				+ movieList + "\n bookingList=" + bookingList + "\n operatorList=" + operatorList + "]";
+		return "Cinema: " + name + ", address=" + address +"\n";
 	}
 
 }
