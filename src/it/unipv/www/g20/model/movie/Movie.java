@@ -15,7 +15,7 @@ public class Movie {
 		setDuration(duration);
 		setCategory(type);
 		setPrice(ticketPrice);
-		plot = "";
+		this.plot = "";
 	}
 
 	@Override

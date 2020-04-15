@@ -6,7 +6,7 @@ package it.unipv.www.g20.model.booking;
  */
 public class Ticket {
 	private final String id; //the id is composed of a part that identifies the booking and another that identifies the ticket in the series
-	private String info; //probably to be modified, in theory it should contain information on the film, theater, screening time and price
+	private String info; //probably to be modified, in theory it should contain information about the film, theater, screening time and price
 
 	public Ticket(String id, String info) {
 		this.id=id;

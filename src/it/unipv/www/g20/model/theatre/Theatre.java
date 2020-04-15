@@ -13,7 +13,7 @@ import it.unipv.www.g20.model.movie.MovieShowing;
  */
 public class Theatre implements Organizable{
 	private String name;
-	private final List<MovieShowing> showingList;
+	private final List<MovieShowing> showingList; //perche non  usare un hashMap?
 	private final ArrayList<Seat> seatList;
 	private int row;
 	private int column;

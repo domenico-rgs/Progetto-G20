@@ -78,7 +78,6 @@ public class Cinema implements Manageable {
 	@Override
 	public Booking addBooking(Calendar date) {
 
-		// lo creo per ricavarne l'id generato automaticamente
 		final Booking tmp = new Booking(date);
 
 		bookingList.put(tmp.getIdBooking(), tmp);
@@ -98,7 +97,7 @@ public class Cinema implements Manageable {
 	@Override
 	public Operator addOperator(TypeOperator type) {
 
-		Operator tmp = null;
+		Operator tmp;
 
 		switch (type) {
 		case CASHIER:

@@ -12,13 +12,13 @@ import it.unipv.www.g20.model.exception.NotFoundException;
 public class Booking implements Bookable {
 	private static int generateIdTicket = 0;
 	private String idBooking;
-	private final ArrayList<Ticket> ticketList;
+	private final ArrayList<Ticket> ticketList;  //perche non usare un hasMap come in cinema?
 	private final Calendar date;
 
 	public Booking(Calendar date) {
 		idBooking = UUID.randomUUID().toString(); //troppo lungo, soluzione temporanea per avere un'id univoco
 		this.date = date;
-		ticketList = new ArrayList<>();
+		ticketList = new ArrayList<>();  
 	}
 	
 	@Override
