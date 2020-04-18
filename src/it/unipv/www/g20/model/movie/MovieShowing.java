@@ -23,6 +23,11 @@ public class MovieShowing {
 		createSeats(row, col);
 	}
 
+	/**
+	 * Book a new seat given his id, if available
+	 * @param seat seat id to reserve
+	 * @throws NotAvailableException
+	 */
 	public void bookSeat(String seat) throws NotAvailableException {
 		if (!(seatsList.get(seat).isAvailable()))
 			throw new NotAvailableException("Sedile già prenotato");
@@ -30,6 +35,10 @@ public class MovieShowing {
 		seatsList.get(seat).setAvailability(false);
 	}
 
+	/**
+	 * Delete a reservation and set a seat available
+	 * @param seat seat id to be made available
+	 */
 	public void deleteReservation(String seat) {
 		seatsList.get(seat).setAvailability(true);
 	}
@@ -82,6 +91,10 @@ public class MovieShowing {
 		return result;
 	}
 
+	/**
+	 * Give a string with all available seats
+	 * @return a String with the entire list of available seats
+	 */
 	public String printAvailableSeats() {
 		final StringBuilder string = new StringBuilder();
 		for (final String s : seatsList.keySet())

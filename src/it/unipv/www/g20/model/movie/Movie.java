@@ -1,12 +1,12 @@
 package it.unipv.www.g20.model.movie;
 
 /**
- * This class is referred to a movie.
+ * This class is referred to a movie
+ * @see MovieShowing
  */
-
 public class Movie {
 	private String title;
-	private int duration;
+	private int duration; //in minutes
 	private TypeCategory category;
 	private String plot;
 

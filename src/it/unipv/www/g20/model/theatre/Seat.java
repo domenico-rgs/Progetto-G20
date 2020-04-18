@@ -1,8 +1,7 @@
 package it.unipv.www.g20.model.theatre;
 
 /**
- * This class is referred to a seat in a cinema theatre.
- *
+ * This class is referred to a seat in a cinema theatre
  * @see Theatre
  */
 public class Seat {
@@ -47,6 +46,10 @@ public class Seat {
 		return available;
 	}
 
+	/**
+	 * allows you to set a seat available or unavailable
+	 * @param availability availability (true or false)
+	 */
 	public void setAvailability(boolean availability) {
 		available = availability;
 	}

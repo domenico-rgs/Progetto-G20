@@ -8,7 +8,7 @@ import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
 
 /**
- * The theatre of a Cinema, allows you to manage its projections and seats
+ * The theatre of a Cinema, allows you to manage its projections
  */
 public class Theatre implements Organizable {
 	private String name;
@@ -28,6 +28,7 @@ public class Theatre implements Organizable {
 		if (movieShowingList.containsKey(date))
 			throw new SearchException("È già presente una proiezione nella data specificata");
 
+		//!!! occorre controllare che due date non si sovrappongano
 		movieShowingList.put(date, new MovieShowing(movie, date, price, row, col));
 	}
 
@@ -56,6 +57,9 @@ public class Theatre implements Organizable {
 		return true;
 	}
 
+	/**
+	 * @return the capacity of the theatre
+	 */
 	public int getCapacity() {
 		return row * col;
 	}
@@ -72,6 +76,13 @@ public class Theatre implements Organizable {
 		return row;
 	}
 
+	/**
+	 * Returns, if any, the specified movie show scheduled in the theatre given the projection date 
+	 * (only a projection in a specific room is possible on a specific date)
+	 * @param d the date of the projection
+	 * @return the MovieShowing if exists
+	 * @throws SearchException
+	 */
 	public MovieShowing getShow(Date d) throws SearchException {
 		if (!(movieShowingList.containsKey(d)))
 			throw new SearchException("Non è presente alcuna proiezione nella data specificata");

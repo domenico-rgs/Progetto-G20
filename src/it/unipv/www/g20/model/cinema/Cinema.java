@@ -20,10 +20,11 @@ import it.unipv.www.g20.model.theatre.Theatre;
 /**
  * Facade controller for managing reservations in a cinema
  */
+//aggiungere metodo per prenotazione cumulativa + metodo per stampare il palinsesto
 public class Cinema implements Manageable {
 	private final String name;
 
-	private final TreeMap<String, Theatre> theatreList;
+	private final TreeMap<String, Theatre> theatreList; //uso le tree map poichè potrebbe servirmi ordinare sia i teatri che i film in qualche modo sulla base dei loro nomi
 	private final TreeMap<String, Movie> movieList;
 	private final HashMap<String, Operator> operatorList;
 	private final HashMap<String, Ticket> ticketList;
@@ -76,7 +77,7 @@ public class Cinema implements Manageable {
 	public void addTicket(String theatreName, String date, String seatCode)
 			throws ParseException, NotAvailableException, SearchException {
 		final Theatre t = theatreList.get(theatreName);
-		final String ticketCode = UUID.randomUUID().toString();
+		final String ticketCode = UUID.randomUUID().toString(); //potremmo pensare di sostituirlo con qualcosa di più corto e semplice da ricordare
 		t.getShow(getDate(date)).bookSeat(seatCode);
 		ticketList.put(ticketCode, new Ticket(ticketCode, t, t.getShow(getDate(date))));
 	}
@@ -135,6 +136,9 @@ public class Cinema implements Manageable {
 		return name;
 	}
 
+	/**
+	 * @return a String with the entire details of all ticket saved
+	 */
 	public String printTicketList() {
 		final StringBuilder string = new StringBuilder();
 		for (final String s : ticketList.keySet())
@@ -148,11 +152,17 @@ public class Cinema implements Manageable {
 		return "Cinema: " + name;
 	}
 
+	/*
+	 * Check if the operator has the necessary grants to do some action in the cinema like add movieShowing
+	 */
 	private void checkPermission(Operator op) throws NotPermittedException {
 		if (!op.getType().equals(TypeOperator.MANAGER))
 			throw new NotPermittedException("Non hai i permessi necessari!");
 	}
 
+	/*
+	 * Used to get a Date given a String in the form dd/MM/yyyy HH:mm
+	 */
 	private Date getDate(String date) throws ParseException {
 		final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		return format.parse(date);

@@ -42,9 +42,29 @@ public interface Manageable {
 	public boolean addTheatre(String TheatreName, int lines, int lineSeats, Operator op)
 			throws NotPermittedException, SearchException;
 
+	/**
+	 * Create and save a new ticket
+	 * @param theatreName name of the theatre where the film will be shown
+	 * @param date date of the movieShowing
+	 * @param seatCode code of the seat booked (if available)
+	 * @throws ParseException
+	 * @throws NotAvailableException
+	 * @throws SearchException
+	 */
 	public void addTicket(String theatreName, String date, String seatCode)
 			throws ParseException, NotAvailableException, SearchException;
 
+	/**
+	 * Create a new MovieShowing
+	 * @param movieTitle title of the movie
+	 * @param theatreName where the movie will be projected
+	 * @param date date of the projection
+	 * @param price standard price of the projection
+	 * @param op to check if the operator has the permission to do this action
+	 * @throws NotPermittedException
+	 * @throws ParseException
+	 * @throws SearchException
+	 */
 	public void createMovieShowing(String movieTitle, String theatreName, String date, Double price, Operator op)
 			throws NotPermittedException, ParseException, SearchException;
 
@@ -78,5 +98,10 @@ public interface Manageable {
 	 */
 	public boolean deleteTheatre(String TheatreName, Operator op) throws NotPermittedException, SearchException;
 
+	/**
+	 * Detele a saved ticket
+	 * @param code ticket's code
+	 * @throws SearchException
+	 */
 	public void deleteTicket(String code) throws SearchException;
 }
