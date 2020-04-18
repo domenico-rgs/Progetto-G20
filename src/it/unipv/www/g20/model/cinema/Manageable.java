@@ -1,63 +1,82 @@
-/** this interface organizes all activities of the Cinema*/
 package it.unipv.www.g20.model.cinema;
 
-import java.util.Calendar;
+import java.text.ParseException;
 
-import it.unipv.www.g20.model.booking.Booking;
-import it.unipv.www.g20.model.movie.TypeCategory;
+import it.unipv.www.g20.model.exception.NotAvailableException;
+import it.unipv.www.g20.model.exception.NotPermittedException;
+import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.operator.Operator;
 import it.unipv.www.g20.model.operator.TypeOperator;
 
+/** This interface organizes all activities of the Cinema */
 public interface Manageable {
 
-	/**It permits to add a theatre.
-	 * @param name theatre's name
-	 * @param row number of rows of seats
-	 * @param column number of seat columns
-	 * @return true if theatre is added.*/
-	public boolean addTheatre(String name, int row, int column);
-	
-	/**It permits to delete a theatre.
-	 * @param nome theatre's name
-	 * @return true if theatre is deleted */
-	public boolean deleteTheatre(String nome);
-	
-	/**It permits to add a movie.
+	/**
+	 * It permits to add a movie.
+	 *
 	 * @param title movie's title
-	 * @param duration movie's duration
-	 * @param category movie's category
-	 * @param ticketPrice ticket's price for this movie
-	 * @return true if movie is added */
-	public boolean addMovie(String title, int duration, TypeCategory category, Double ticketPrice);
-	
-	/**It permits to delete a movie 
-	 * @param title movie's title
-	 * @return true if movie is deleted.*/
-	public boolean deleteMovie(String title);
+	 * @return true if movie is added
+	 * @throws NotPermittedException
+	 * @throws SearchException
+	 */
+	public boolean addMovie(String title, Operator op) throws NotPermittedException, SearchException;
 
-	/**It permits to add a booking.
-	 * @param date booking's date
-	 * @return true if booking is added. */
-	public Booking addBooking(Calendar date);
-	
-	/**It permits to delete a booking.
-	 * @param nome booking's name
-	 * @return true if booking is deleted */
-	public boolean deleteBooking(String nome);
-	
 	/**
 	 * It permits to add a Cinema Cashier or a Cinema Manager.
-	 * 
-	 * @param type It refers to the type of operator: cashier or manager
-	 * @return true if an operator is added.
+	 *
+	 * @param nickname identifiear of the operator
+	 * @throws NotPermittedException
 	 */
-	public Operator addOperator(TypeOperator type);
-	
+	public void addOperator(String nickname, TypeOperator type, Operator op) throws NotPermittedException;
+
+	/**
+	 * It permits to add a theatre.
+	 *
+	 * @param TheatreName theatre's name
+	 * @param lines       number of rows of seats
+	 * @param lineSeats   number of seat columns
+	 * @return true if theatre is added.
+	 * @throws NotPermittedException
+	 * @throws SearchException
+	 */
+	public boolean addTheatre(String TheatreName, int lines, int lineSeats, Operator op)
+			throws NotPermittedException, SearchException;
+
+	public void addTicket(String theatreName, String date, String seatCode)
+			throws ParseException, NotAvailableException, SearchException;
+
+	public void createMovieShowing(String movieTitle, String theatreName, String date, Double price, Operator op)
+			throws NotPermittedException, ParseException, SearchException;
+
+	/**
+	 * It permits to delete a movie
+	 *
+	 * @param title movie's title
+	 * @return true if movie is deleted.
+	 * @throws NotPermittedException
+	 * @throws SearchException
+	 */
+	public boolean deleteMovie(String title, Operator op) throws NotPermittedException, SearchException;
+
 	/**
 	 * It permits to delete a cashier or a manager.
-	 * 
-	 * @param id operator's id
+	 *
+	 * @param nickname operator's id
 	 * @return true if the operator is deleted.
+	 * @throws NotPermittedException
+	 * @throws SearchException
 	 */
-	public boolean deleteOperator(int id);
+	public boolean deleteOperator(String nickname, Operator op) throws NotPermittedException, SearchException;
+
+	/**
+	 * It permits to delete a theatre.
+	 *
+	 * @param TheatreName theatre's name
+	 * @return true if theatre is deleted
+	 * @throws NotPermittedException
+	 * @throws SearchException
+	 */
+	public boolean deleteTheatre(String TheatreName, Operator op) throws NotPermittedException, SearchException;
+
+	public void deleteTicket(String code) throws SearchException;
 }

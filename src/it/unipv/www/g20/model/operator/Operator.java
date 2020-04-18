@@ -2,73 +2,53 @@ package it.unipv.www.g20.model.operator;
 
 /**
  * This is a generic operator of the cinema (manager or cashier)
- * */
-public abstract class Operator implements Identifiable{
-	private final int id;
-	private static int generatorIdOperator = 0;
-	private String password;
-	private boolean changedDefaultPassword;
+ */
+public abstract class Operator {
+	private String nickname;
 	protected TypeOperator type;
-	public boolean logged;
 
-	public Operator() {
-		password = "default";
-		changedDefaultPassword = false;
-		id = generatorIdOperator;
-		generatorIdOperator++;
-		logged=false;
-		type=null;
-	}
-
-	/**
-	 * It permits to modify password when the operator accesses for the first time.
-	 * @param vecchiaPw old password to substitute
-	 * @param nuovaPw new password to insert
-	 * @return true if the password is modified.
-	 */
-	public boolean isFirstLogin(String vecchiaPw, String nuovaPw) {
-		if(!changedDefaultPassword) {
-			setPassword(vecchiaPw, nuovaPw);
-			changedDefaultPassword=true;
-		}
-		return false;
+	public Operator(String nickname) {
+		setNickname(nickname);
 	}
 
 	@Override
-	public boolean setPassword(String oldPassword, String newPassword) {
-		if(password.equals(oldPassword)) {
-			password=newPassword;
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}else {
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		final Operator other = (Operator) obj;
+		if (nickname == null) {
+			if (other.nickname != null)
+				return false;
+		} else if (!nickname.equals(other.nickname))
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
+	}
+
+	public String getNickname() {
+		return nickname;
 	}
 
 	public TypeOperator getType() {
 		return type;
 	}
 
-	public int getId() {
-		return id;
-	}
-
 	@Override
-	public boolean login(String password) {
-		if(this.password.equals(password))
-			logged=true;
-		return logged;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((nickname == null) ? 0 : nickname.hashCode());
+		result = (prime * result) + ((type == null) ? 0 : type.hashCode());
+		return result;
 	}
 
-	@Override
-	public void logout() {
-		logged=false;
-	}
-
-	/**
-	 * @return true if the operator is logged into the system, false otherwise
-	 */
-	public boolean isLogged() {
-		return logged;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public void setType(TypeOperator type) {
@@ -77,8 +57,6 @@ public abstract class Operator implements Identifiable{
 
 	@Override
 	public String toString() {
-		return "Operator: " + id + ", type=" + type + ", logged=" + logged + "\n";
+		return "Operator: " + nickname + ", type=" + type;
 	}
-
-
 }

@@ -1,12 +1,16 @@
-/**This class identifies a cinema.*/
 package it.unipv.www.g20.model.cinema;
 
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.UUID;
 
-import it.unipv.www.g20.model.booking.Booking;
+import it.unipv.www.g20.model.exception.NotAvailableException;
+import it.unipv.www.g20.model.exception.NotPermittedException;
+import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.movie.Movie;
-import it.unipv.www.g20.model.movie.TypeCategory;
 import it.unipv.www.g20.model.operator.Cashier;
 import it.unipv.www.g20.model.operator.Manager;
 import it.unipv.www.g20.model.operator.Operator;
@@ -18,149 +22,139 @@ import it.unipv.www.g20.model.theatre.Theatre;
  */
 public class Cinema implements Manageable {
 	private final String name;
-	private final String address;
 
-	private final HashMap<String, Theatre> theatreList;
-	private final HashMap<String, Movie> movieList;
-	private final HashMap<String, Booking> bookingList;
-	private final HashMap<Integer, Operator> operatorList;
+	private final TreeMap<String, Theatre> theatreList;
+	private final TreeMap<String, Movie> movieList;
+	private final HashMap<String, Operator> operatorList;
+	private final HashMap<String, Ticket> ticketList;
 
-	public Cinema(String name, String address) {
-		this.address = address;
+	public Cinema(String name) {
 		this.name = name;
 
-		theatreList = new HashMap<String, Theatre>();
-		movieList = new HashMap<String, Movie>();
-		operatorList = new HashMap<Integer, Operator>();
-		bookingList = new HashMap<String, Booking>();
+		theatreList = new TreeMap<>();
+		movieList = new TreeMap<>();
+		operatorList = new HashMap<>();
+		ticketList = new HashMap<>();
 	}
 
 	@Override
-	public boolean addTheatre(String name, int row, int column) {
+	public boolean addMovie(String title, Operator op) throws NotPermittedException, SearchException {
+		checkPermission(op);
+
+		if (movieList.containsKey(title))
+			throw new SearchException("Esiste già un film con il titolo specificato");
+
+		movieList.put(title, new Movie(title));
+		return true;
+
+	}
+
+	@Override
+	public void addOperator(String nickname, TypeOperator type, Operator op) throws NotPermittedException {
+		checkPermission(op);
+
+		if (type.equals(TypeOperator.CASHIER)) {
+			operatorList.put(nickname, new Cashier(nickname));
+		} else {
+			operatorList.put(nickname, new Manager(nickname));
+		}
+	}
+
+	@Override
+	public boolean addTheatre(String name, int row, int column, Operator op)
+			throws NotPermittedException, SearchException {
+		checkPermission(op);
+
 		if (theatreList.containsKey(name))
-			return false;
+			throw new SearchException("Esiste già un teatro con il nome specificato");
 
 		theatreList.put(name, new Theatre(name, row, column));
 		return true;
 	}
 
 	@Override
-	public boolean deleteTheatre(String name) {
-
-		if (!(theatreList.containsKey(name)))
-			return false;
-
-		theatreList.remove(name);
-		return true;
+	public void addTicket(String theatreName, String date, String seatCode)
+			throws ParseException, NotAvailableException, SearchException {
+		final Theatre t = theatreList.get(theatreName);
+		final String ticketCode = UUID.randomUUID().toString();
+		t.getShow(getDate(date)).bookSeat(seatCode);
+		ticketList.put(ticketCode, new Ticket(ticketCode, t, t.getShow(getDate(date))));
 	}
 
 	@Override
-	public boolean addMovie(String title, int duration, TypeCategory category, Double ticketPrice) {
+	public void createMovieShowing(String movieTitle, String theatreName, String date, Double price, Operator op)
+			throws NotPermittedException, ParseException, SearchException {
+		checkPermission(op);
 
-		if (movieList.containsKey(title))
-			return false;
-
-		movieList.put(title, new Movie(title, duration, category, ticketPrice));
-		return true;
-
+		theatreList.get(theatreName).addMovieShowing(movieList.get(movieTitle), getDate(date), price);
 	}
 
 	@Override
-	public boolean deleteMovie(String title) {
+	public boolean deleteMovie(String title, Operator op) throws NotPermittedException, SearchException {
+		checkPermission(op);
 
 		if (!(movieList.containsKey(title)))
-			return false;
+			throw new SearchException("Il film indicato non è stato trovato");
 
 		movieList.remove(title);
 		return true;
 	}
 
 	@Override
-	public Booking addBooking(Calendar date) {
-
-		final Booking tmp = new Booking(date);
-
-		bookingList.put(tmp.getIdBooking(), tmp);
-		return tmp;
-	}
-
-	@Override
-	public boolean deleteBooking(String id) {
-
-		if (!(bookingList.containsKey(id)))
-			return false;
-
-		bookingList.remove(id);
-		return true;
-	}
-
-	@Override
-	public Operator addOperator(TypeOperator type) {
-
-		Operator tmp;
-
-		switch (type) {
-		case CASHIER:
-			tmp = new Cashier();
-			break;
-		case MANAGER:
-			tmp = new Manager();
-			break;
-		default:
-			return null;
-		}
-
-		operatorList.put(tmp.getId(), tmp);
-		return tmp;
-
-	}
-
-	@Override
-	public boolean deleteOperator(int id) {
+	public boolean deleteOperator(String id, Operator op) throws NotPermittedException, SearchException {
+		checkPermission(op);
 
 		if (!(operatorList.containsKey(id)))
-			return false;
+			throw new SearchException("L'operatore indicato non è stato trovato");
 
 		operatorList.remove(id);
 		return true;
 
 	}
 
-	/**
-	 * Search for the operator in the list of all operators added to the cinema
-	 * @param id operator's id
-	 * @return the operator otherwise null if the operator is not present in the list
-	 */
-	public Operator searchOperator(int id) {
-		if (!(operatorList.containsKey(id)))
-			return null;
+	@Override
+	public boolean deleteTheatre(String name, Operator op) throws NotPermittedException, SearchException {
+		checkPermission(op);
 
-		return operatorList.get(id);
+		if (!(theatreList.containsKey(name)))
+			throw new SearchException("Il teatro specificato non è presente in questo cinema");
+
+		theatreList.remove(name);
+		return true;
 	}
 
-	/**
-	 * Search the cinema hall in the list of all theaters added to the cinema
-	 * @param name
-	 * @return
-	 */
-	public Theatre searchTheatre(String name) {
-		if (!(theatreList.containsKey(name)))
-			return null;
+	@Override
+	public void deleteTicket(String code) throws SearchException {
+		if (!(ticketList.containsKey(code)))
+			throw new SearchException("Il ticket indicato non è stato trovato");
 
-		return theatreList.get(name);
+		ticketList.remove(code);
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public String getAddress() {
-		return address;
+	public String printTicketList() {
+		final StringBuilder string = new StringBuilder();
+		for (final String s : ticketList.keySet())
+			string.append(ticketList.get(s).toString() + "\n\n");
+
+		return string.toString();
 	}
 
 	@Override
 	public String toString() {
-		return "Cinema: " + name + ", address=" + address +"\n";
+		return "Cinema: " + name;
 	}
 
+	private void checkPermission(Operator op) throws NotPermittedException {
+		if (!op.getType().equals(TypeOperator.MANAGER))
+			throw new NotPermittedException("Non hai i permessi necessari!");
+	}
+
+	private Date getDate(String date) throws ParseException {
+		final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		return format.parse(date);
+	}
 }

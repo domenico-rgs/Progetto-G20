@@ -1,135 +1,90 @@
 package it.unipv.www.g20.model.theatre;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.Date;
+import java.util.HashMap;
 
-import it.unipv.www.g20.model.exception.NotFoundException;
+import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
 
 /**
  * The theatre of a Cinema, allows you to manage its projections and seats
  */
-public class Theatre implements Organizable{
+public class Theatre implements Organizable {
 	private String name;
-	private final List<MovieShowing> showingList; //perche non  usare un hashMap?
-	private final ArrayList<Seat> seatList;
-	private int row;
-	private int column;
+	private final HashMap<Date, MovieShowing> movieShowingList;
+	private final int row;
+	private final int col;
 
 	public Theatre(String theaterName, int row, int column) {
+		movieShowingList = new HashMap<>();
 		setName(theaterName);
-		this.row=row;
-		this.column=column;
-		showingList = new ArrayList<>();
-		seatList = new ArrayList<>();
-		createSeats();
+		this.row = row;
+		col = column;
 	}
 
 	@Override
-	public boolean addMovieShowing(Movie movie, Calendar date) {
-		for(int i = 0; i<showingList.size(); i++) {
-			showingList.get(i).getTimestamp();
-			if((date.before(showingList.get(i).getTimestamp()))&&(date.after(Calendar.MINUTE+movie.getDuration())))
-				showingList.add(new MovieShowing(movie, date));
-		}
-		return false;
-	}
+	public void addMovieShowing(Movie movie, Date date, Double price) throws SearchException {
+		if (movieShowingList.containsKey(date))
+			throw new SearchException("È già presente una proiezione nella data specificata");
 
-
-	@Override
-	public int searchMovieShowing(MovieShowing showing) throws NotFoundException {
-		for(int i=0; i<showingList.size(); i++) {
-			if(showingList.get(i).equals(showing))
-				return i;
-		}
-		throw new NotFoundException("Movie Showing not found!");
+		movieShowingList.put(date, new MovieShowing(movie, date, price, row, col));
 	}
 
 	@Override
-	public boolean deleteMovieShowing(MovieShowing showing) {
-		try {
-			final int pos = searchMovieShowing(showing);
-			showingList.remove(pos);
+	public void deleteMovieShowing(Date date) throws SearchException {
+		if (!(movieShowingList.containsKey(date)))
+			throw new SearchException("Non è presente alcuna proiezione nella data specificata");
+
+		movieShowingList.remove(date);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}catch(final NotFoundException e) {
-			System.out.println(e.getMessage());
+		if (obj == null)
 			return false;
-		}
-	}
-
-	@Override
-	public void printShowingList() {
-		String s = "Showing List: \n";
-		for (final MovieShowing element : showingList) {
-			s+= element.toString() +" \n";
-		}
-		System.out.println(s);
-
-	}
-	
-	/**
-	 * Print a list of all seats not reserved in the room
-	 */
-	public void printAvailableSeats() {
-		String s = "Available seats: \n";
-		for (final Seat element : seatList) {
-			if(element.isAvailable())
-				s+= element.toString() +" \n";
-		}
-		System.out.println(s);
-	}
-
-	/*
-	 * Create the seats in the room by associating them with an id 
-	 * consisting of a letter that identifies the row 
-	 * and a number that identifies the column
-	 */
-	private void createSeats() {
-		for(int i=0; i<row; i++) {
-			for(int j=0; j<column; j++) {
-				seatList.add(new Seat(Character.toString(65+i)+j));
-			}
-		}
-	}
-	
-	/**
-	 * Look for a seat given his id among all those in the theatre
-	 * @param id seat's id
-	 * @return index of the seat in the list
-	 * @throws NotFoundException
-	 */
-	public int searchSeat(String id) throws NotFoundException {
-		for(int i=0; i<seatList.size(); i++) {
-			if(seatList.get(i).getId().equalsIgnoreCase(id))
-				return i;
-		}
-		throw new NotFoundException("Seat not found!");
-	}
-	
-	/**
-	 * Given the id of a seat it allows to set it as reserved
-	 * @param id seat's id
-	 * @return true if it was booked false otherwise 
-	 */
-	public boolean setSeat(String id) {
-		try {
-			Seat seat = seatList.get(searchSeat(id));
-			seat.setAvalaible(false);
-			return true;
-		} catch (NotFoundException e) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
+		final Theatre other = (Theatre) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 	public int getCapacity() {
-		return row*column;
+		return row * col;
 	}
 
+	public int getColumn() {
+		return col;
+	}
 
 	public String getName() {
 		return name;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public MovieShowing getShow(Date d) throws SearchException {
+		if (!(movieShowingList.containsKey(d)))
+			throw new SearchException("Non è presente alcuna proiezione nella data specificata");
+
+		return movieShowingList.get(d);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
 
 	public void setName(String name) {
@@ -138,15 +93,6 @@ public class Theatre implements Organizable{
 
 	@Override
 	public String toString() {
-		return "Theatre: " + name + "\n";
+		return "Theatre: " + name;
 	}
-
-	public int getRow() {
-		return row;
-	}
-
-	public int getColumn() {
-		return column;
-	}
-
 }

@@ -3,95 +3,22 @@ package it.unipv.www.g20.model.movie;
 /**
  * This class is referred to a movie.
  */
+
 public class Movie {
 	private String title;
 	private int duration;
 	private TypeCategory category;
 	private String plot;
-	private double price;
+
+	public Movie(String title) {
+		setTitle(title);
+	}
 
 	public Movie(String title, int duration, TypeCategory type, double ticketPrice) {
-		this.title= title;
+		setTitle(title);
 		setDuration(duration);
 		setCategory(type);
-		setPrice(ticketPrice);
-		this.plot = "";
-	}
-
-	@Override
-	public String toString() {
-		String s = "MOVIE INFORMATION";
-		s += " Title: " +title + "\n";
-		s += " Duration: " +duration+ " minutes\n";
-		s += " Category: " +category.toString().toLowerCase()+ "\n";
-		s += " Price: €" +price+ " \n";
-		return s;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-
-
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-
-
-
-	public void setCategory(TypeCategory category) {
-		this.category = category;
-	}
-
-
-
-	public void setPlot(String plot) {
-		this.plot = plot;
-	}
-
-
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-
-
-	public String getTitle() {
-		return title;
-	}
-
-
-
-	public int getDuration() {
-		return duration;
-	}
-
-
-
-	public TypeCategory getCategory() {
-		return category;
-	}
-
-
-
-	public String getPlot() {
-		return plot;
-	}
-
-
-
-	public double getPrice() {
-		return price;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = (prime * result) + ((title == null) ? 0 : title.hashCode());
-		return result;
+		setPlot("");
 	}
 
 	@Override
@@ -109,5 +36,54 @@ public class Movie {
 		} else if (!title.equals(other.title))
 			return false;
 		return true;
+	}
+
+	public TypeCategory getCategory() {
+		return category;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public String getPlot() {
+		return plot;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	public void setCategory(TypeCategory category) {
+		this.category = category;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public void setPlot(String plot) {
+		this.plot = plot;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@Override
+	public String toString() {
+		String s = "MOVIE INFORMATION";
+		s += " Title: " + title + "\n";
+		s += " Duration: " + duration + " minutes\n";
+		s += " Category: " + category.toString().toLowerCase() + "\n";
+		return s;
 	}
 }
