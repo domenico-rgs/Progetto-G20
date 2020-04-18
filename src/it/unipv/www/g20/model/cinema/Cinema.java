@@ -20,7 +20,7 @@ import it.unipv.www.g20.model.theatre.Theatre;
 /**
  * Facade controller for managing reservations in a cinema
  */
-//aggiungere metodo per prenotazione cumulativa + metodo per stampare il palinsesto
+//aggiungere metodo per prenotazione cumulativa
 public class Cinema implements Manageable {
 	private final String name;
 
@@ -158,6 +158,19 @@ public class Cinema implements Manageable {
 	private void checkPermission(Operator op) throws NotPermittedException {
 		if (!op.getType().equals(TypeOperator.MANAGER))
 			throw new NotPermittedException("Non hai i permessi necessari!");
+	}
+	
+	/**
+	 * Create a string with all the recorded programming
+	 * @return the string with all the recorded programming
+	 */
+	public String printProgramming() {
+		String string="PROGRAMMAZIONE "+this.getName().toUpperCase()+"\n";
+		for(String s : theatreList.keySet()) {
+			string+="Sala: "+theatreList.get(s).getName()+"\n";
+			string+=theatreList.get(s).printMovieShowing();
+		}
+		return string;	
 	}
 
 	/*

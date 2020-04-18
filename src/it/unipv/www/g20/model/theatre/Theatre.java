@@ -22,6 +22,18 @@ public class Theatre implements Organizable {
 		this.row = row;
 		col = column;
 	}
+	
+	/**
+	 * Prints all the projections programmed in the theatre
+	 * @return a string with the list of projections
+	 */
+	@SuppressWarnings("deprecation")
+	public String printMovieShowing() {
+		String s="";
+		for(Date d : movieShowingList.keySet())
+			s+=d.toLocaleString()+" - "+movieShowingList.get(d).getMovie().getTitle()+"\n";
+		return s;
+	}
 
 	@Override
 	public void addMovieShowing(Movie movie, Date date, Double price) throws SearchException {

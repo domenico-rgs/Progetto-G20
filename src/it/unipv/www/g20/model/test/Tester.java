@@ -31,6 +31,7 @@ public class Tester {
 		} catch (NotPermittedException | SearchException | ParseException | NotAvailableException e) {
 			System.out.println(e.getMessage());
 		}finally {
+			System.out.println(cinema.printProgramming());
 			System.out.println(cinema.printTicketList());
 		}
 
