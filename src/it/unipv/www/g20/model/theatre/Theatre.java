@@ -10,7 +10,7 @@ import it.unipv.www.g20.model.movie.MovieShowing;
 /**
  * The theatre of a Cinema, allows you to manage its projections
  */
-public class Theatre implements Organizable {
+public class Theatre {
 	private String name;
 	private final HashMap<Date, MovieShowing> movieShowingList;
 	private final int row;
@@ -22,20 +22,7 @@ public class Theatre implements Organizable {
 		this.row = row;
 		col = column;
 	}
-	
-	/**
-	 * Prints all the projections programmed in the theatre
-	 * @return a string with the list of projections
-	 */
-	@SuppressWarnings("deprecation")
-	public String printMovieShowing() {
-		String s="";
-		for(Date d : movieShowingList.keySet())
-			s+=d.toLocaleString()+" - "+movieShowingList.get(d).getMovie().getTitle()+"\n";
-		return s;
-	}
 
-	@Override
 	public void addMovieShowing(Movie movie, Date date, Double price) throws SearchException {
 		if (movieShowingList.containsKey(date))
 			throw new SearchException("È già presente una proiezione nella data specificata");
@@ -44,7 +31,6 @@ public class Theatre implements Organizable {
 		movieShowingList.put(date, new MovieShowing(movie, date, price, row, col));
 	}
 
-	@Override
 	public void deleteMovieShowing(Date date) throws SearchException {
 		if (!(movieShowingList.containsKey(date)))
 			throw new SearchException("Non è presente alcuna proiezione nella data specificata");
@@ -89,7 +75,7 @@ public class Theatre implements Organizable {
 	}
 
 	/**
-	 * Returns, if any, the specified movie show scheduled in the theatre given the projection date 
+	 * Returns, if any, the specified movie show scheduled in the theatre given the projection date
 	 * (only a projection in a specific room is possible on a specific date)
 	 * @param d the date of the projection
 	 * @return the MovieShowing if exists
@@ -108,6 +94,18 @@ public class Theatre implements Organizable {
 		int result = 1;
 		result = (prime * result) + ((name == null) ? 0 : name.hashCode());
 		return result;
+	}
+
+	/**
+	 * Prints all the projections programmed in the theatre
+	 * @return a string with the list of projections
+	 */
+	@SuppressWarnings("deprecation")
+	public String printMovieShowing() {
+		String s="";
+		for(final Date d : movieShowingList.keySet())
+			s+=d.toLocaleString()+" - "+movieShowingList.get(d).getMovie().getTitle()+"\n";
+		return s;
 	}
 
 	public void setName(String name) {

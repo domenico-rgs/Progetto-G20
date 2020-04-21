@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"it.unipv.www.g20.model.cinema"},{"l":"it.unipv.www.g20.model.exception"},{"l":"it.unipv.www.g20.model.movie"},{"l":"it.unipv.www.g20.model.operator"},{"l":"it.unipv.www.g20.model.test"},{"l":"it.unipv.www.g20.model.theatre"}]
