@@ -54,7 +54,7 @@ public class Ticket {
 		return "Id: " + code + "\nDate: " + getDate() + "\nTheatre: " + theatre + " - Film: " + idMovie + "\nPrice: € "
 				+ price;
 	}
-	
+
 	/*
 	 * Used to get a Date given a String in the form dd/MM/yyyy HH:mm
 	 */

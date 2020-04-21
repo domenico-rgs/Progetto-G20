@@ -1,7 +1,7 @@
 package it.unipv.www.g20.model.exception;
 
 /**
- * Exception to use when doing a search in a data structure 
+ * Exception to use when doing a search in a data structure
  * and the result is already present or not present
  */
 @SuppressWarnings("serial")
