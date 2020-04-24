@@ -11,6 +11,14 @@ public class AdminTextUI {
 	private String inputString;
 	private final Cinema cinema;
 	
+	///////////////////////////////////////
+	/* INTEFACCIA ANCORA NON FUNZIONANTE !!!!!!
+	 * SI ASPETTA CHE VENGA COMPLETATO IL CODICE PER POTERLA 
+	 * COMPLETARE !!!!!!!!!
+	 * 
+	 */
+	///////////////////////////////////////
+	
 	
 	public AdminTextUI (Cinema c) {
 		
