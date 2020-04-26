@@ -3,8 +3,6 @@ package it.unipv.www.g20.model.theatre;
 import java.util.HashMap;
 import java.util.Set;
 
-import it.unipv.www.g20.model.exception.SearchException;
-
 /**
  * The theatre of a Cinema, allows you to manage its projections
  */

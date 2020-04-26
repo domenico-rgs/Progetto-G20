@@ -9,7 +9,9 @@ import java.util.UUID;
 import it.unipv.www.g20.model.exception.NotAvailableException;
 import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.movie.Movie;
+import it.unipv.www.g20.model.theatre.Seat;
 import it.unipv.www.g20.model.theatre.Theatre;
+import it.unipv.www.g20.model.ticket.TicketLedger;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -64,9 +66,23 @@ public class Cinema {
 		theatreList.remove(name);
 		return true;
 	}
+	
+	public Theatre searchTheatre(String name) {
+		return theatreList.get(name);
+	}
+	
+	public Movie searchMovie(String title) {
+		return movieCatalog.get(title);
+	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public boolean deleteBooking(String code) {
+		if(TicketLedger.getTicketLedger().removeTicketSale(code)!=null)
+			return true;
+		return false;
 	}
 
 	@Override

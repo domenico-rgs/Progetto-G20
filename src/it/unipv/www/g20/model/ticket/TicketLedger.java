@@ -10,16 +10,16 @@ public class TicketLedger {
 		ticketList=new HashMap<>();
 	}
 
-	protected Ticket addTicketSale(Ticket ticket) {
+	public Ticket addTicketSale(Ticket ticket) {
 		return ticketList.putIfAbsent(ticket.getCode(), ticket);
 	}
 
-	protected Ticket removeTicketSale(String code) {
+	public Ticket removeTicketSale(String code) {
 		return ticketList.remove(code);
 	}
 
 	// Metodo della classe impiegato per accedere al singleton
-	public static TicketLedger getMioSingolo() {
+	public static TicketLedger getTicketLedger() {
 		if (istanza == null) {
 			istanza = new TicketLedger();
 		}
