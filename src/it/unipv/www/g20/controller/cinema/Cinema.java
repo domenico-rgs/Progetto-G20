@@ -24,11 +24,11 @@ public class Cinema {
 		movieCatalog=new HashMap<>();
 	}
 
-	public boolean addMovie(String title) {
+	public boolean addMovie(String title, int duration) {
 
 		if (movieCatalog.containsKey(title))
 			return false;
-		movieCatalog.put(title, new Movie(title));
+		movieCatalog.put(title, new Movie(title, duration));
 		return true;
 
 	}

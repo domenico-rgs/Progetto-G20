@@ -16,16 +16,10 @@ public class Movie {
 	private String plot;
 	private HashMap<String, MovieShowing> showingList;
 
-	public Movie(String title) {
-		showingList = new HashMap<>();
-		setTitle(title);
-	}
-
-	public Movie(String title, int duration, TypeCategory type, double ticketPrice) {
+	public Movie(String title, int duration) {
 		showingList = new HashMap<>();
 		setTitle(title);
 		setDuration(duration);
-		setCategory(type);
 		setPlot("");
 	}
 
