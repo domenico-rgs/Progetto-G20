@@ -1,71 +1,62 @@
-drop SCHEMA IF EXISTS Gestione_Cinema;
-create SCHEMA Gestione_Cinema;
-use Gestione_Cinema;
+drop SCHEMA IF EXISTS cinemaManagement;
+create SCHEMA cinemaManagement;
+use cinemaManagement;
 
-drop TABLE IF EXISTS amministratore;
-drop TABLE IF EXISTS cinema;
-drop TABLE IF EXISTS sala;
-drop TABLE IF EXISTS posto;
-drop TABLE IF EXISTS postoOccupato;
+drop TABLE IF EXISTS theatre;
+drop TABLE IF EXISTS seat;
+drop TABLE IF EXISTS occupiedSeat;
 DROP TABLE IF EXISTS ticket;
-DROP TABLE IF EXISTS proiezione;
-DROP TABLE IF EXISTS film;
+DROP TABLE IF EXISTS movieShowing;
+DROP TABLE IF EXISTS movie;
 
 
-CREATE TABLE cinema
-        ( id INT PRIMARY KEY,
-          nome CHAR(10) NOT NULL);
+CREATE TABLE movieShowing
+        (dateMovieShowing TIMESTAMP,
+         theatre CHAR(10),
+         price DECIMAL(4,2) NOT NULL,
+	 movie CHAR(10) REFERENCES movie(title),
 
-CREATE TABLE proiezione
-        (dataProiezione TIMESTAMP,
-         nomeSala CHAR(10),
-         idCinema INT,
-         prezzo_base DECIMAL(4,2) NOT NULL,
-	 film CHAR(10) REFERENCES film(titolo),
+	 PRIMARY KEY (dateMovieShowing, theatre),
+	 FOREIGN KEY (theatre) REFERENCES theatre(name),
+	 FOREIGN KEY (title) REFERENCES movie(title));
 
-	 PRIMARY KEY (dataProiezione,nomeSala,idCinema));
+CREATE TABLE theatre
+        ( name CHAR(10) PRIMARY KEY,
+          nRow SMALLINT,
+	  nCol SMALLINT);
 
-CREATE TABLE sala
-        ( nome CHAR(10) PRIMARY KEY,
-          idCinema INT,
-          n_righe SMALLINT,
-	  n_colonne SMALLINT,
-
-          FOREIGN KEY (idCinema) REFERENCES cinema(id));
-
-CREATE TABLE posto
-        ( num CHAR(4),
-          sala CHAR(10),
-	  idCinema INT,
+CREATE TABLE seat
+        ( position CHAR(4),
+          theatre CHAR(10),
          
-	  PRIMARY KEY (num,sala,idCinema),
-	  FOREIGN KEY (sala) REFERENCES sala(nome),
-          FOREIGN KEY (idCinema) REFERENCES cinema(id));
+	  PRIMARY KEY (position,theatre),
+	  FOREIGN KEY (theatre) REFERENCES theatre(name));
 
-CREATE TABLE postoOccupato
-        ( posto CHAR(4),
-          dataProiezione TIMESTAMP,
-	  nomeSala CHAR(10),
-          idCinema INT,
+CREATE TABLE occupiedSeat
+        ( position CHAR(4),
+          dateMovieShowing TIMESTAMP,
+          theatre CHAR(10),
 
-	  PRIMARY KEY (posto,dataProiezione,nomeSala,idCinema),
-	  FOREIGN KEY (dataProiezione, nomeSala, idCinema) REFERENCES proiezione(dataProiezione, nomeSala, idCinema));
+	  PRIMARY KEY (position, dateMovieShowing),
+	  FOREIGN KEY (position) REFERENCES seat(seat),
+	  FOREIGN KEY (theatre) REFERENCES theatre(name),
+	  FOREIGN KEY (dateMovieShowing) REFERENCES movieShowing(dateMovieShowing));
 
 CREATE TABLE ticket
-        (codice CHAR(4) PRIMARY KEY,
-         prezzo_finale DECIMAL (4,2) NOT NULL,
-         posto_occupato CHAR(4) NOT NULL,
-         proiezione INTEGER,
-	   dataProiezione TIMESTAMP,
-	 nomeSala CHAR(10),
-         idCinema INT,
+        (code CHAR(4) PRIMARY KEY,
+         finalPrice DECIMAL (4,2) NOT NULL,
+         occupiedSeat CHAR(4) NOT NULL,
+	 dateMovieShowing TIMESTAMP,
+	 theatre CHAR(10),
 
-         FOREIGN KEY (dataProiezione, nomeSala, idCinema) REFERENCES proiezione(dataProiezione, nomeSala, idCinema));
+         FOREIGN KEY (dateMovieShowing) REFERENCES occupiedSeat(dateMovieShowing),
+	 FOREIGN KEY (theatre) REFERENCES theatre(name),
+         FOREIGN KEY (occupiedSeat) REFERENCES occupiedSeat(position));
 
-CREATE TABLE film
-        (titolo CHAR(10) PRIMARY KEY,
-         durata SMALLINT NOT NULL,
+CREATE TABLE movie
+        (title CHAR(10) PRIMARY KEY,
+         duration SMALLINT NOT NULL,
          genere CHAR(10) ,
-         descrizione VARCHAR(1000)
-	 pathCover VARCHAR(100));
+         description VARCHAR(1000)
+	 pathMovieCover VARCHAR(100));
 

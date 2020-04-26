@@ -8,9 +8,8 @@ import it.unipv.www.g20.model.ticket.TicketLedger;
 /**
  * Facade controller for managing reservations in a cinema
  */
-//aggiungere metodo per prenotazione cumulativa
 public class Cinema {
-	private final String name;
+	private String name;
 	private HashMap <String,Theatre> theatreList;
 	private HashMap <String, Movie> movieCatalog;
 
@@ -77,5 +76,4 @@ public class Cinema {
 	public String toString() {
 		return "Cinema: " + name;
 	}
-	
 }
