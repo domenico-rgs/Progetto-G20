@@ -37,7 +37,7 @@ public class Cinema {
 
 	}
 
-	public boolean addTheatre(String name, int row, int col)
+	public boolean createTheatre(String name, int row, int col)
 			throws SearchException {
 
 		if (theatreList.containsKey(name))
@@ -47,26 +47,12 @@ public class Cinema {
 		return true;
 	}
 
-	public void addTicket(String theatreName, String date, String seatCode)
-			throws ParseException, NotAvailableException, SearchException {
-		final Theatre t = theatreList.get(theatreName);
-		final String ticketCode = UUID.randomUUID().toString(); //potremmo pensare di sostituirlo con qualcosa di più corto e semplice da ricordare
-		t.getShow(getDate(date)).bookSeat(seatCode);
-		ticketList.put(ticketCode, new Ticket(ticketCode, t, t.getShow(getDate(date))));
-	}
-
-	public void createMovieShowing(String movieTitle, String theatreName, String date, Double price)
-			throws ParseException, SearchException {
-
-		theatreList.get(theatreName).addMovieShowing(movieList.get(movieTitle), getDate(date), price);
-	}
-
 	public boolean deleteMovie(String title) throws  SearchException {
 
-		if (!(movieList.containsKey(title)))
+		if (!(movieCatalog.containsKey(title)))
 			throw new SearchException("Il film indicato non è stato trovato");
 
-		movieList.remove(title);
+		movieCatalog.remove(title);
 		return true;
 	}
 
@@ -79,51 +65,13 @@ public class Cinema {
 		return true;
 	}
 
-	public void deleteTicket(String code) throws SearchException {
-		if (!(ticketList.containsKey(code)))
-			throw new SearchException("Il ticket indicato non è stato trovato");
-
-		ticketList.remove(code);
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	/**
-	 * Create a string with all the recorded programming
-	 * @return the string with all the recorded programming
-	 */
-	public String printProgramming() {
-		String string="PROGRAMMAZIONE "+getName().toUpperCase()+"\n";
-		for(final String s : theatreList.keySet()) {
-			string+="Sala: "+theatreList.get(s).getName()+"\n";
-			string+=theatreList.get(s).printMovieShowing();
-		}
-		return string;
-	}
-
-	/**
-	 * @return a String with the entire details of all ticket saved
-	 */
-	public String printTicketList() {
-		final StringBuilder string = new StringBuilder();
-		for (final String s : ticketList.keySet())
-			string.append(ticketList.get(s).toString() + "\n\n");
-
-		return string.toString();
 	}
 
 	@Override
 	public String toString() {
 		return "Cinema: " + name;
 	}
-
-	/*
-	 * Used to get a Date given a String in the form dd/MM/yyyy HH:mm
-	 */
-	private Date getDate(String date) throws ParseException {
-		final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		return format.parse(date);
-	}
+	
 }
