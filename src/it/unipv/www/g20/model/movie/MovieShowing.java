@@ -27,9 +27,24 @@ public class MovieShowing {
 		availability=new HashMap<>();
 	}
 
-	/*
-	 * Create the seats in the room by associating them with an id consisting of a
-	 * letter that identifies the row and a number that identifies the column
-	 */
+	public static String getId() {
+		return id;
+	}
+
+	public static int getIntId() {
+		return intId;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public Theatre getTheatre() {
+		return theatre;
+	}
+
+	public double getPrice() {
+		return price;
+	}
 
 }

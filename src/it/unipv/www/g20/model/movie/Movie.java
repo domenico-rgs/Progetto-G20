@@ -1,5 +1,10 @@
 package it.unipv.www.g20.model.movie;
 
+import java.util.Date;
+import java.util.HashMap;
+
+import it.unipv.www.g20.model.theatre.Theatre;
+
 /**
  * This class is referred to a movie
  * @see MovieShowing
@@ -9,16 +14,56 @@ public class Movie {
 	private int duration; //in minutes
 	private TypeCategory category;
 	private String plot;
+	private HashMap<String, MovieShowing> showingList;
 
 	public Movie(String title) {
+		showingList = new HashMap<>();
 		setTitle(title);
 	}
 
 	public Movie(String title, int duration, TypeCategory type, double ticketPrice) {
+		showingList = new HashMap<>();
 		setTitle(title);
 		setDuration(duration);
 		setCategory(type);
 		setPlot("");
+	}
+	
+	public MovieShowing addMovieShowing(Date date, Theatre theatre, Double price) {
+		MovieShowing tmp = new MovieShowing(date, theatre, price);
+		return showingList.put(tmp.getId(), tmp);
+	}
+	
+	public MovieShowing deleteMovieShowing(String id) {
+		return showingList.remove(id);
+	}
+	
+	/**
+	 * Prints all the projections programmed in the theatre
+	 * @return a string with the list of projections
+	 */
+	public String printMovieShowing() {
+		String s="";
+		for(String key : showingList.keySet())
+			s+=showingList.get(key).toString()+"\n";
+		return s;
+	}
+	
+	public MovieShowing searchShowing(String id) {
+		return showingList.get(id);
+	}
+	
+	private boolean overlappingControl() {
+		return false;
+		//TO-DO
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
 	}
 
 	@Override
@@ -29,7 +74,7 @@ public class Movie {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Movie other = (Movie) obj;
+		Movie other = (Movie) obj;
 		if (title == null) {
 			if (other.title != null)
 				return false;
@@ -54,14 +99,6 @@ public class Movie {
 		return title;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = (prime * result) + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
-
 	public void setCategory(TypeCategory category) {
 		this.category = category;
 	}
@@ -84,6 +121,7 @@ public class Movie {
 		s += " Title: " + title + "\n";
 		s += " Duration: " + duration + " minutes\n";
 		s += " Category: " + category.toString().toLowerCase() + "\n";
+		s += " Plot: \n" + plot + "\n"; //fare qualcosa per mandare a capo
 		return s;
 	}
 }

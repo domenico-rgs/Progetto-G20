@@ -2,6 +2,7 @@ package it.unipv.www.g20.model.cinema;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import it.unipv.www.g20.model.movie.MovieShowing;
 import it.unipv.www.g20.model.theatre.Theatre;
@@ -10,18 +11,30 @@ import it.unipv.www.g20.model.theatre.Theatre;
  * This class identifies a bought ticket to show a movie.
  */
 public class Ticket {
-	private final String code;
-	private final String idMovie;
-	private final double price;
-	private final Date date;
-	private final String theatre;
+	private String code;
+	private String movie;
+	private String seat;
+	private MovieShowing showing;
 
-	public Ticket(String code, Theatre theatre, MovieShowing projection) {
-		this.code = code;
-		idMovie = projection.getMovie().getTitle();
-		price = projection.getStandardPrice();
-		date = projection.getDate();
-		this.theatre = theatre.getName();
+	public Ticket(String movie, String seat, MovieShowing showing) {
+		this.code = UUID.randomUUID().toString();
+		this.movie=movie;
+		this.showing=showing;
+		this.seat=seat;
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket id: " + code + "\nDate: " + showing.getDate() + "\nTheatre: " + showing.getTheatre().getTheatreName() + " - Movie: " + movie + "\nPrice: € "
+				+ showing.getPrice();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		return result;
 	}
 
 	@Override
@@ -32,7 +45,7 @@ public class Ticket {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Ticket other = (Ticket) obj;
+		Ticket other = (Ticket) obj;
 		if (code == null) {
 			if (other.code != null)
 				return false;
@@ -41,26 +54,19 @@ public class Ticket {
 		return true;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = (prime * result) + ((code == null) ? 0 : code.hashCode());
-		return result;
+	public String getCode() {
+		return code;
 	}
 
-	@Override
-	public String toString() {
-		return "Id: " + code + "\nDate: " + getDate() + "\nTheatre: " + theatre + " - Film: " + idMovie + "\nPrice: € "
-				+ price;
+	public String getMovie() {
+		return movie;
 	}
 
-	/*
-	 * Used to get a Date given a String in the form dd/MM/yyyy HH:mm
-	 */
-	private String getDate() {
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy ' - ' HH:mm");
-		return simpleDateFormat.format(date).toString();
+	public String getSeat() {
+		return seat;
 	}
 
+	public MovieShowing getShowing() {
+		return showing;
+	}
 }

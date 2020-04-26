@@ -11,15 +11,10 @@ DROP TABLE IF EXISTS ticket;
 DROP TABLE IF EXISTS proiezione;
 DROP TABLE IF EXISTS film;
 
-CREATE TABLE amministratore
-        ( cf CHAR(11) primary key);
 
 CREATE TABLE cinema
         ( id INT PRIMARY KEY,
-          nome CHAR(10) NOT NULL,
-          cf_amministratore CHAR(11),
-
-          FOREIGN KEY (cf_amministratore) REFERENCES amministratore(cf));
+          nome CHAR(10) NOT NULL);
 
 CREATE TABLE proiezione
         (dataProiezione TIMESTAMP,
@@ -71,5 +66,6 @@ CREATE TABLE film
         (titolo CHAR(10) PRIMARY KEY,
          durata SMALLINT NOT NULL,
          genere CHAR(10) ,
-         descrizione VARCHAR(1000));
+         descrizione VARCHAR(1000)
+	 pathCover VARCHAR(100));
 
