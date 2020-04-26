@@ -2,7 +2,10 @@ package it.unipv.www.g20.controller.cinema;
 
 import java.util.HashMap;
 import it.unipv.www.g20.model.movie.Movie;
+import it.unipv.www.g20.model.movie.MovieShowing;
+import it.unipv.www.g20.model.theatre.Seat;
 import it.unipv.www.g20.model.theatre.Theatre;
+import it.unipv.www.g20.model.ticket.Ticket;
 import it.unipv.www.g20.model.ticket.TicketLedger;
 
 /**
@@ -78,4 +81,13 @@ public class Cinema {
 		return "Cinema: " + name;
 	}
 	
+	public boolean bookSeat(Movie movie, String idShowing) {
+		
+	}
+	
+	private boolean buyTicket(Movie movie,Seat seat, MovieShowing movieShowing) {
+		if(TicketLedger.getTicketLedger().addTicketSale(new Ticket(movie.getTitle(), seat.getId(), movieShowing))!=null)
+			return false;
+		return true;
+	}
 }
