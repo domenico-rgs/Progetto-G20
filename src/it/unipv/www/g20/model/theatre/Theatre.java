@@ -3,7 +3,6 @@ package it.unipv.www.g20.model.theatre;
 import java.util.HashMap;
 import java.util.Set;
 
-import it.unipv.www.g20.model.exception.SearchException;
 
 /**
  * The theatre of a Cinema, allows you to manage its projections
@@ -38,9 +37,6 @@ public class Theatre {
 		return true;
 	}
 
-	/**
-	 * @return the capacity of the theatre
-	 */
 	public String getName() {
 		return theatreName;
 	}
@@ -49,13 +45,6 @@ public class Theatre {
 		return seatsList.get(position);
 	}
 
-	/**
-	 * Returns, if any, the specified movie show scheduled in the theatre given the projection date
-	 * (only a projection in a specific room is possible on a specific date)
-	 * @param d the date of the projection
-	 * @return the MovieShowing if exists
-	 * @throws SearchException
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,10 +53,6 @@ public class Theatre {
 		return result;
 	}
 
-	/**
-	 * Prints all the projections programmed in the theatre
-	 * @return a string with the list of projections
-	 */
 	public void setTheatreName(String name) {
 		theatreName = name;
 	}
