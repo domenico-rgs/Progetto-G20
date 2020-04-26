@@ -1,43 +1,17 @@
 package it.unipv.www.g20.model.theatre;
 
-import java.util.Date;
 import java.util.HashMap;
-
-import it.unipv.www.g20.model.exception.SearchException;
-import it.unipv.www.g20.model.movie.Movie;
-import it.unipv.www.g20.model.movie.MovieShowing;
-
 /**
  * The theatre of a Cinema, allows you to manage its projections
  */
 public class Theatre {
-	private String name;
-	private final HashMap<Date, MovieShowing> movieShowingList;
-	private final int row;
-	private final int col;
-
+	private String theatreName;
+	private HashMap<String, Seat> seatsList;
+	
 	public Theatre(String theaterName, int row, int column) {
-		movieShowingList = new HashMap<>();
-		setName(theaterName);
-		this.row = row;
-		col = column;
+		seatsList = new HashMap<>();
+		setTheatreName(theaterName);
 	}
-
-	public void addMovieShowing(Movie movie, Date date, Double price) throws SearchException {
-		if (movieShowingList.containsKey(date))
-			throw new SearchException("È già presente una proiezione nella data specificata");
-
-		//!!! occorre controllare che due date non si sovrappongano
-		movieShowingList.put(date, new MovieShowing(movie, date, price, row, col));
-	}
-
-	public void deleteMovieShowing(Date date) throws SearchException {
-		if (!(movieShowingList.containsKey(date)))
-			throw new SearchException("Non è presente alcuna proiezione nella data specificata");
-
-		movieShowingList.remove(date);
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -47,10 +21,10 @@ public class Theatre {
 		if (getClass() != obj.getClass())
 			return false;
 		final Theatre other = (Theatre) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (theatreName == null) {
+			if (other.theatreName != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!theatreName.equals(other.theatreName))
 			return false;
 		return true;
 	}
@@ -58,21 +32,11 @@ public class Theatre {
 	/**
 	 * @return the capacity of the theatre
 	 */
-	public int getCapacity() {
-		return row * col;
-	}
-
-	public int getColumn() {
-		return col;
-	}
 
 	public String getName() {
-		return name;
+		return theatreName;
 	}
 
-	public int getRow() {
-		return row;
-	}
 
 	/**
 	 * Returns, if any, the specified movie show scheduled in the theatre given the projection date
@@ -81,18 +45,13 @@ public class Theatre {
 	 * @return the MovieShowing if exists
 	 * @throws SearchException
 	 */
-	public MovieShowing getShow(Date d) throws SearchException {
-		if (!(movieShowingList.containsKey(d)))
-			throw new SearchException("Non è presente alcuna proiezione nella data specificata");
-
-		return movieShowingList.get(d);
-	}
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((name == null) ? 0 : name.hashCode());
+		result = (prime * result) + ((theatreName == null) ? 0 : theatreName.hashCode());
 		return result;
 	}
 
@@ -100,20 +59,31 @@ public class Theatre {
 	 * Prints all the projections programmed in the theatre
 	 * @return a string with the list of projections
 	 */
-	@SuppressWarnings("deprecation")
-	public String printMovieShowing() {
-		String s="";
-		for(final Date d : movieShowingList.keySet())
-			s+=d.toLocaleString()+" - "+movieShowingList.get(d).getMovie().getTitle()+"\n";
-		return s;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setTheatreName(String name) {
+		this.theatreName = name;
 	}
 
 	@Override
 	public String toString() {
-		return "Theatre: " + name;
+		return "Theatre: " + theatreName;
 	}
+	
+	@SuppressWarnings("unused")
+	private void createSeats(int row, int col) {
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				seatsList.put(Character.toString(65 + i) + j, new Seat(Character.toString(65 + i) + j));
+			}
+		}
+	}
+	public HashMap<String, Seat> getSeatsList() {
+		return seatsList;
+	}
+	public void setSeatsList(HashMap<String, Seat> seatsList) {
+		this.seatsList = seatsList;
+	}
+	public String getTheatreName() {
+		return theatreName;
+	}
+	
 }

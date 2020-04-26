@@ -6,10 +6,8 @@ package it.unipv.www.g20.model.theatre;
  */
 public class Seat {
 	private final String id;
-	private boolean available;
 
 	public Seat(String seatId) {
-		available = true;
 		id = seatId;
 	}
 
@@ -41,23 +39,14 @@ public class Seat {
 		result = (prime * result) + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
-	public boolean isAvailable() {
-		return available;
-	}
-
 	/**
 	 * allows you to set a seat available or unavailable
 	 * @param availability availability (true or false)
 	 */
-	public void setAvailability(boolean availability) {
-		available = availability;
-	}
 
 	@Override
 	public String toString() {
-		final String s = available == true ? "available" : "not available";
-		return "Seat: " + id + ", " + s;
+		return "Seat: " + id;
 	}
 
 }
