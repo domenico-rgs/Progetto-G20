@@ -1,8 +1,8 @@
-package it.unipv.www.g20.model.test;
+package it.unipv.www.g20.model.tester;
 
 import java.text.ParseException;
 
-import it.unipv.www.g20.model.cinema.Cinema;
+import it.unipv.www.g20.controller.cinema.Cinema;
 import it.unipv.www.g20.model.exception.SearchException;
 
 public class Tester {

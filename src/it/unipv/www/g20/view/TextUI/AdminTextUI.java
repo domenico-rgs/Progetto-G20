@@ -1,8 +1,8 @@
-package it.unipv.www.g20.model.TextUI;
+package it.unipv.www.g20.view.TextUI;
 
 import java.util.Scanner;
 
-import it.unipv.www.g20.model.cinema.Cinema;
+import it.unipv.www.g20.controller.cinema.Cinema;
 
 public class AdminTextUI {
 

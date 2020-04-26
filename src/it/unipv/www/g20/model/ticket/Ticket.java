@@ -1,4 +1,4 @@
-package it.unipv.www.g20.model.cinema;
+package it.unipv.www.g20.model.ticket;
 
 import java.util.UUID;
 

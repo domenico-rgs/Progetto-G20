@@ -1,10 +1,9 @@
-package it.unipv.www.g20.model.cinema;
+package it.unipv.www.g20.controller.cinema;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.TreeMap;
 import java.util.UUID;
 
 import it.unipv.www.g20.model.exception.NotAvailableException;
@@ -20,12 +19,12 @@ public class Cinema {
 	private final String name;
 	private HashMap <String,Theatre> theatreList;
 	private HashMap <String, Movie> movieCatalog;
-	
-	
+
+
 	public Cinema(String name) {
 		this.name = name;
-		this.theatreList=new HashMap<>();
-		this.movieCatalog=new HashMap<>();
+		theatreList=new HashMap<>();
+		movieCatalog=new HashMap<>();
 	}
 
 	public boolean addMovie(String title) throws SearchException {

@@ -1,4 +1,4 @@
-package it.unipv.www.g20.model.cinema;
+package it.unipv.www.g20.model.ticket;
 
 import java.util.HashMap;
 
@@ -11,7 +11,7 @@ public class TicketLedger {
 	}
 
 	protected Ticket addTicketSale(Ticket ticket) {
-		return ticketList.put(ticket.getCode(), ticket);
+		return ticketList.putIfAbsent(ticket.getCode(), ticket);
 	}
 
 	protected Ticket removeTicketSale(String code) {

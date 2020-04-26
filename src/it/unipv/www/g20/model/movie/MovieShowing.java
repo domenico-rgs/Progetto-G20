@@ -34,6 +34,22 @@ public class MovieShowing {
 		}
 	}
 
+	public String printSeats() {
+		String string="";
+		for(Seat s : availability.keySet()) {
+			string+=s.toString()+availability.get(s);
+		}
+		return string;
+	}
+
+	public boolean searchAvailability(Seat seat) {
+		return availability.get(seat);
+	}
+
+	public boolean changeAvailability(Seat seat, boolean value) {
+		return !availability.replace(seat, value);
+	}
+
 	public static String getId() {
 		return id;
 	}
@@ -53,5 +69,4 @@ public class MovieShowing {
 	public double getPrice() {
 		return price;
 	}
-
 }

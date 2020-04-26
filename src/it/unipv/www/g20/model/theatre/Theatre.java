@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import it.unipv.www.g20.model.exception.SearchException;
+
 /**
  * The theatre of a Cinema, allows you to manage its projections
  */
@@ -40,11 +41,13 @@ public class Theatre {
 	/**
 	 * @return the capacity of the theatre
 	 */
-
 	public String getName() {
 		return theatreName;
 	}
 
+	public Seat searchSeat(String position) {
+		return seatsList.get(position);
+	}
 
 	/**
 	 * Returns, if any, the specified movie show scheduled in the theatre given the projection date
@@ -87,7 +90,7 @@ public class Theatre {
 	public String getTheatreName() {
 		return theatreName;
 	}
-	
+
 	public int getCapacity() {
 		return row*col;
 	}
