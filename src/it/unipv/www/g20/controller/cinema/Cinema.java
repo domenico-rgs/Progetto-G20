@@ -81,10 +81,11 @@ public class Cinema {
 	}
 	
 	public boolean bookSeat(Movie movie, String idShowing) {
-		
+		MovieShowing ms=movie.searchShowing(idShowing);
+		ms.changeAvailability(String, boolean);
 	}
 	
-	private boolean buyTicket(Movie movie,Seat seat, MovieShowing movieShowing) {
+	public boolean buyTicket(Movie movie,Seat seat, MovieShowing movieShowing) {
 		if(TicketLedger.getTicketLedger().addTicketSale(new Ticket(movie.getTitle(), seat.getId(), movieShowing))!=null)
 			return false;
 		return true;
