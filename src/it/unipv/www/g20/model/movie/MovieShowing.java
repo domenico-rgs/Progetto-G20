@@ -42,12 +42,12 @@ public class MovieShowing {
 		return string;
 	}
 
-	public boolean searchAvailability(Seat seat) {
-		return availability.get(seat);
+	public boolean searchAvailability(String seat) {
+		return availability.get(theatre.searchSeat(seat));
 	}
 
-	public boolean changeAvailability(Seat seat, boolean value) {
-		return !availability.replace(seat, value);
+	public boolean changeAvailability(String seat, boolean value) {
+		return !availability.replace(theatre.searchSeat(seat), value);
 	}
 
 	public static String getId() {

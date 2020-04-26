@@ -1,6 +1,7 @@
 package it.unipv.www.g20.controller.cinema;
 
 import java.util.HashMap;
+
 import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
 import it.unipv.www.g20.model.theatre.Seat;
@@ -56,11 +57,11 @@ public class Cinema {
 		theatreList.remove(name);
 		return true;
 	}
-	
+
 	public Theatre searchTheatre(String name) {
 		return theatreList.get(name);
 	}
-	
+
 	public Movie searchMovie(String title) {
 		return movieCatalog.get(title);
 	}
@@ -68,7 +69,7 @@ public class Cinema {
 	public String getName() {
 		return name;
 	}
-	
+
 	public boolean deleteBooking(String code) {
 		if(TicketLedger.getTicketLedger().removeTicketSale(code)!=null)
 			return true;
@@ -79,12 +80,14 @@ public class Cinema {
 	public String toString() {
 		return "Cinema: " + name;
 	}
-	
-	public boolean bookSeat(Movie movie, String idShowing) {
+
+	public boolean bookSeat(Movie movie, String seat, String idShowing) {
 		MovieShowing ms=movie.searchShowing(idShowing);
-		ms.changeAvailability(String, boolean);
+		if(ms.searchAvailability(seat))
+			return ms.changeAvailability(seat, false);
+		return false;
 	}
-	
+
 	public boolean buyTicket(Movie movie,Seat seat, MovieShowing movieShowing) {
 		if(TicketLedger.getTicketLedger().addTicketSale(new Ticket(movie.getTitle(), seat.getId(), movieShowing))!=null)
 			return false;
