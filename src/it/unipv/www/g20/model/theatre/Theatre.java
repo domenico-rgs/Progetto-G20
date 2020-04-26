@@ -10,10 +10,14 @@ import it.unipv.www.g20.model.exception.SearchException;
 public class Theatre {
 	private String theatreName;
 	private HashMap<String, Seat> seatsList;
+	private int row;
+	private int col;
 
-	public Theatre(String theaterName, int row, int column) {
+	public Theatre(String theatreName, int row, int col) {
 		seatsList = new HashMap<>();
-		setTheatreName(theaterName);
+		setTheatreName(theatreName);
+		this.col=col;
+		this.row=row;
 	}
 
 	@Override
@@ -82,6 +86,10 @@ public class Theatre {
 	}
 	public String getTheatreName() {
 		return theatreName;
+	}
+	
+	public int getCapacity() {
+		return row*col;
 	}
 
 }

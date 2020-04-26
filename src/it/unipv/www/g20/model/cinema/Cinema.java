@@ -18,36 +18,33 @@ import it.unipv.www.g20.model.theatre.Theatre;
 //aggiungere metodo per prenotazione cumulativa
 public class Cinema {
 	private final String name;
-
-	private final TreeMap<String, Theatre> theatreList; //uso le tree map poichè potrebbe servirmi ordinare sia i teatri che i film in qualche modo sulla base dei loro nomi
-	private final TreeMap<String, Movie> movieList;
-	private final HashMap<String, Ticket> ticketList;
-
+	private HashMap <String,Theatre> theatreList;
+	private HashMap <String, Movie> movieCatalog;
+	
+	
 	public Cinema(String name) {
 		this.name = name;
-
-		theatreList = new TreeMap<>();
-		movieList = new TreeMap<>();
-		ticketList = new HashMap<>();
+		this.theatreList=new HashMap<>();
+		this.movieCatalog=new HashMap<>();
 	}
 
 	public boolean addMovie(String title) throws SearchException {
 
-		if (movieList.containsKey(title))
+		if (movieCatalog.containsKey(title))
 			throw new SearchException("Esiste già un film con il titolo specificato");
 
-		movieList.put(title, new Movie(title));
+		movieCatalog.put(title, new Movie(title));
 		return true;
 
 	}
 
-	public boolean addTheatre(String name, int row, int column)
+	public boolean addTheatre(String name, int row, int col)
 			throws SearchException {
 
 		if (theatreList.containsKey(name))
 			throw new SearchException("Esiste già un teatro con il nome specificato");
 
-		theatreList.put(name, new Theatre(name, row, column));
+		theatreList.put(name, new Theatre(name, row, col));
 		return true;
 	}
 
