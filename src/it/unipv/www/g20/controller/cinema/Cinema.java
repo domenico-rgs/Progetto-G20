@@ -1,15 +1,7 @@
 package it.unipv.www.g20.controller.cinema;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.UUID;
-
-import it.unipv.www.g20.model.exception.NotAvailableException;
-import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.movie.Movie;
-import it.unipv.www.g20.model.theatre.Seat;
 import it.unipv.www.g20.model.theatre.Theatre;
 import it.unipv.www.g20.model.ticket.TicketLedger;
 
@@ -29,40 +21,36 @@ public class Cinema {
 		movieCatalog=new HashMap<>();
 	}
 
-	public boolean addMovie(String title) throws SearchException {
+	public boolean addMovie(String title) {
 
 		if (movieCatalog.containsKey(title))
-			throw new SearchException("Esiste già un film con il titolo specificato");
-
+			return false;
 		movieCatalog.put(title, new Movie(title));
 		return true;
 
 	}
 
-	public boolean createTheatre(String name, int row, int col)
-			throws SearchException {
-
+	public boolean createTheatre(String name, int row, int col){
 		if (theatreList.containsKey(name))
-			throw new SearchException("Esiste già un teatro con il nome specificato");
+			return false;
 
 		theatreList.put(name, new Theatre(name, row, col));
 		return true;
 	}
 
-	public boolean deleteMovie(String title) throws  SearchException {
+	public boolean deleteMovie(String title){
 
 		if (!(movieCatalog.containsKey(title)))
-			throw new SearchException("Il film indicato non è stato trovato");
+			return false;
 
 		movieCatalog.remove(title);
 		return true;
 	}
 
-	public boolean deleteTheatre(String name) throws SearchException {
+	public boolean deleteTheatre(String name){
 
 		if (!(theatreList.containsKey(name)))
-			throw new SearchException("Il teatro specificato non è presente in questo cinema");
-
+			return false;
 		theatreList.remove(name);
 		return true;
 	}
