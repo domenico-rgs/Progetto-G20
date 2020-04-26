@@ -5,7 +5,7 @@ package it.unipv.www.g20.model.theatre;
  * @see Theatre
  */
 public class Seat {
-	private final String id;
+	private String id;
 
 	public Seat(String seatId) {
 		id = seatId;

@@ -1,11 +1,8 @@
 package it.unipv.www.g20.model.cinema;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
 
 import it.unipv.www.g20.model.movie.MovieShowing;
-import it.unipv.www.g20.model.theatre.Theatre;
 
 /**
  * This class identifies a bought ticket to show a movie.
@@ -17,7 +14,7 @@ public class Ticket {
 	private MovieShowing showing;
 
 	public Ticket(String movie, String seat, MovieShowing showing) {
-		this.code = UUID.randomUUID().toString();
+		code = UUID.randomUUID().toString();
 		this.movie=movie;
 		this.showing=showing;
 		this.seat=seat;
@@ -33,7 +30,7 @@ public class Ticket {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = (prime * result) + ((code == null) ? 0 : code.hashCode());
 		return result;
 	}
 

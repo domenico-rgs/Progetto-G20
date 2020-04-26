@@ -1,17 +1,21 @@
 package it.unipv.www.g20.model.theatre;
 
 import java.util.HashMap;
+import java.util.Set;
+
+import it.unipv.www.g20.model.exception.SearchException;
 /**
  * The theatre of a Cinema, allows you to manage its projections
  */
 public class Theatre {
 	private String theatreName;
 	private HashMap<String, Seat> seatsList;
-	
+
 	public Theatre(String theaterName, int row, int column) {
 		seatsList = new HashMap<>();
 		setTheatreName(theaterName);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -45,8 +49,6 @@ public class Theatre {
 	 * @return the MovieShowing if exists
 	 * @throws SearchException
 	 */
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,24 +62,20 @@ public class Theatre {
 	 * @return a string with the list of projections
 	 */
 	public void setTheatreName(String name) {
-		this.theatreName = name;
+		theatreName = name;
 	}
 
 	@Override
 	public String toString() {
 		return "Theatre: " + theatreName;
 	}
-	
-	@SuppressWarnings("unused")
-	private void createSeats(int row, int col) {
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < col; j++) {
-				seatsList.put(Character.toString(65 + i) + j, new Seat(Character.toString(65 + i) + j));
-			}
-		}
-	}
+
 	public HashMap<String, Seat> getSeatsList() {
 		return seatsList;
+	}
+
+	public Set<String> getKeySeats(){
+		return seatsList.keySet();
 	}
 	public void setSeatsList(HashMap<String, Seat> seatsList) {
 		this.seatsList = seatsList;
@@ -85,5 +83,5 @@ public class Theatre {
 	public String getTheatreName() {
 		return theatreName;
 	}
-	
+
 }

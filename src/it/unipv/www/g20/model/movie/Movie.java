@@ -28,16 +28,16 @@ public class Movie {
 		setCategory(type);
 		setPlot("");
 	}
-	
+
 	public MovieShowing addMovieShowing(Date date, Theatre theatre, Double price) {
 		MovieShowing tmp = new MovieShowing(date, theatre, price);
-		return showingList.put(tmp.getId(), tmp);
+		return showingList.put(MovieShowing.getId(), tmp);
 	}
-	
+
 	public MovieShowing deleteMovieShowing(String id) {
 		return showingList.remove(id);
 	}
-	
+
 	/**
 	 * Prints all the projections programmed in the theatre
 	 * @return a string with the list of projections
@@ -48,21 +48,16 @@ public class Movie {
 			s+=showingList.get(key).toString()+"\n";
 		return s;
 	}
-	
+
 	public MovieShowing searchShowing(String id) {
 		return showingList.get(id);
-	}
-	
-	private boolean overlappingControl() {
-		return false;
-		//TO-DO
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = (prime * result) + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
 

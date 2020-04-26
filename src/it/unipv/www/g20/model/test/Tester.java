@@ -1,9 +1,7 @@
 package it.unipv.www.g20.model.test;
 
 import java.text.ParseException;
-import java.util.Date;
 
-import it.unipv.www.g20.model.TextUI.AdminTextUI;
 import it.unipv.www.g20.model.cinema.Cinema;
 import it.unipv.www.g20.model.exception.SearchException;
 
@@ -16,15 +14,15 @@ public class Tester {
 		/* test metodi senza interfaccia grafica */
 		try {
 			cin1.addTheatre("sala1", 4, 4);
-			//cin1.addTheatre("sala1", 4, 4);	// test ok nell'usare lo stesso nome 
-			
+			//cin1.addTheatre("sala1", 4, 4);	// test ok nell'usare lo stesso nome
+
 		} catch (SearchException e) {
 			e.printStackTrace();
 		}
 		try {
 			cin1.addMovie("MrRobot");
 			cin1.addMovie("JamesBond");
-			
+
 			//cin1.addMovie("MrRobot");			//test ok nell'aggiungere stesso nome di film
 		} catch (SearchException e) {
 			e.printStackTrace();
@@ -40,14 +38,14 @@ public class Tester {
 			//cin1.createMovieShowing("MrRobot2", "sala1", "24/04/2020 20:33", 8.90); 	//condizione in cui controlla l-esistenza di un film
 			//cin1.createMovieShowing("MrRobot", "sala2", "24/04/2020 20:30", 8.90);  	//condizione in cui si controlla l'esistenza della sala
 		} catch (ParseException | SearchException e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		System.out.println(cin1.printProgramming()); 
-		
-		
-		
+
+		System.out.println(cin1.printProgramming());
+
+
+
 	}
 
 }
