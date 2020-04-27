@@ -18,6 +18,10 @@ public class TicketLedger {
 		return ticketList.remove(code);
 	}
 
+	public Ticket searchTicket(String id) {
+		return ticketList.get(id);
+	}
+
 	// Metodo della classe impiegato per accedere al singleton
 	public static TicketLedger getTicketLedger() {
 		if (istanza == null) {

@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
-import it.unipv.www.g20.model.theatre.Seat;
 import it.unipv.www.g20.model.theatre.Theatre;
 import it.unipv.www.g20.model.ticket.Ticket;
 import it.unipv.www.g20.model.ticket.TicketLedger;
@@ -81,22 +80,22 @@ public class Cinema {
 		return "Cinema: " + name;
 	}
 
-	public boolean bookSeat(Movie movie, String seat, String idShowing) {
+	public Ticket bookSeat(Movie movie, String seat, String idShowing) {
 		MovieShowing ms=movie.searchShowing(idShowing);
 		if(ms.searchAvailability(seat)) {
 			ms.changeAvailability(seat, false);
-			buyTicket(movie,seat, ms);
-			return true;
+			return buyTicket(movie,seat, ms);
 		}
-		return false;
+		return null;
 	}
 
-	private boolean buyTicket(Movie movie,String seat, MovieShowing movieShowing) {
-		if(TicketLedger.getTicketLedger().addTicketSale(new Ticket(movie.getTitle(), seat, movieShowing))!=null)
-			return false;
-		return true;
+	private Ticket buyTicket(Movie movie,String seat, MovieShowing movieShowing) {
+		Ticket tmp = new Ticket(movie.getTitle(), seat, movieShowing);
+		if(TicketLedger.getTicketLedger().addTicketSale(tmp)!=null)
+			return null;
+		return tmp;
 	}
-	
+
 	public String printMovie() {
 		String s="";
 		for(String key : movieCatalog.keySet())

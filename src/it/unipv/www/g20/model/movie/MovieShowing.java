@@ -10,7 +10,7 @@ import it.unipv.www.g20.model.theatre.Theatre;
  * This class is referred to a movie projection in the cinema.
  */
 public class MovieShowing {
-	private static String id;
+	private String id;
 	private static int intId=0;
 	private Date date;
 	private Theatre theatre;
@@ -36,8 +36,9 @@ public class MovieShowing {
 
 	public String printSeats() {
 		String string="";
+		string+="There are "+theatre.getRow()+" lines of "+theatre.getCol()+" seats\n";
 		for(Seat s : availability.keySet()) {
-			string+=s.toString()+availability.get(s);
+			string+=s.toString()+" - "+availability.get(s)+"\n";
 		}
 		return string;
 	}
@@ -70,15 +71,11 @@ public class MovieShowing {
 		return price;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public String toString() {
-		String s = "MOVIESHOWING INFORMATION:\n";
-		s+="ID: "+getId()+"\n";
-		s+="Date: "+date+"\n";
-		s+="Theatre: "+theatre+"\n";
-		s+="Price: "+price+"\n";
-		return s;
+		return getId() + " - " + date.toLocaleString() + " - " + theatre.getName() + " - €" + price;
 	}
-	
-	
+
+
 }

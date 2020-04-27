@@ -17,6 +17,19 @@ public class Theatre {
 		setTheatreName(theatreName);
 		this.col=col;
 		this.row=row;
+		createSeats(row,col);
+	}
+
+	/*
+	 * Create the seats in the room by associating them with an id consisting of a
+	 * letter that identifies the row and a number that identifies the column
+	 */
+	private void createSeats(int row, int col) {
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				seatsList.put(Character.toString(65 + i) + j, new Seat(Character.toString(65 + i) + j));
+			}
+		}
 	}
 
 	@Override
@@ -78,5 +91,15 @@ public class Theatre {
 	public int getCapacity() {
 		return row*col;
 	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
+
 
 }

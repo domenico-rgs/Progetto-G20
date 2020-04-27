@@ -107,11 +107,10 @@ public class Movie {
 
 	@Override
 	public String toString() {
-		String s = "MOVIE INFORMATION";
-		s += " Title: " + title + "\n";
+		String s = "Title: " + title + "\n";
 		s += " Duration: " + duration + " minutes\n";
-		s += " Category: " + category.toString().toLowerCase() + "\n";
-		s += " Plot: \n" + plot + "\n"; //fare qualcosa per mandare a capo
+		//s += " Category: " + category.toString().toLowerCase() + "\n";
+		//s += " Plot: \n" + plot + "\n"; //fare qualcosa per mandare a capo
 		return s;
 	}
 }
