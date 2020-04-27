@@ -3,6 +3,7 @@ package it.unipv.www.g20.model.tester;
 import java.util.Date;
 
 import it.unipv.www.g20.controller.cinema.Cinema;
+import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
 import it.unipv.www.g20.model.ticket.Ticket;
@@ -11,6 +12,7 @@ public class Tester {
 
 	@SuppressWarnings({ "deprecation", "resource" })
 	public static void main(String[] args) {
+		try {
 		Cinema cin1 = new Cinema("Uci");
 
 		cin1.addMovie("Harry Potter and the order of fenix", 120);
@@ -47,5 +49,8 @@ public class Tester {
 		System.out.println(cin1.deleteTheatre("theatre3"));
 
 		System.out.println(cin1.printMovie());
+		} catch(SearchException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

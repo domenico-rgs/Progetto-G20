@@ -3,6 +3,7 @@ package it.unipv.www.g20.model.movie;
 import java.util.Date;
 import java.util.HashMap;
 
+import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.theatre.Seat;
 import it.unipv.www.g20.model.theatre.Theatre;
 
@@ -43,11 +44,13 @@ public class MovieShowing {
 		return string;
 	}
 
-	public boolean searchAvailability(String seat) {
+	public boolean searchAvailability(String seat) throws SearchException {
+		if(availability.get(theatre.searchSeat(seat))==null)
+			throw new SearchException("Seat's not found");
 		return availability.get(theatre.searchSeat(seat));
 	}
 
-	public boolean changeAvailability(String seat, boolean value) {
+	public boolean changeAvailability(String seat, boolean value) throws SearchException {
 		return !availability.replace(theatre.searchSeat(seat), value);
 	}
 

@@ -3,6 +3,7 @@ package it.unipv.www.g20.model.movie;
 import java.util.Date;
 import java.util.HashMap;
 
+import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.theatre.Theatre;
 
 /**
@@ -28,7 +29,9 @@ public class Movie {
 		return showingList.put(tmp.getId(), tmp);
 	}
 
-	public MovieShowing deleteMovieShowing(String id) {
+	public MovieShowing deleteMovieShowing(String id) throws SearchException{
+		if (!(showingList.containsKey(id)))
+			throw new SearchException(id+"'s not found.");
 		return showingList.remove(id);
 	}
 
@@ -44,7 +47,9 @@ public class Movie {
 		return s;
 	}
 
-	public MovieShowing searchShowing(String id) {
+	public MovieShowing searchShowing(String id) throws SearchException{
+		if(showingList.get(id)==null)
+			throw new SearchException("Movieshowing's not found");
 		return showingList.get(id);
 	}
 

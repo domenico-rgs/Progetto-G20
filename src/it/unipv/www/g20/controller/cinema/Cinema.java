@@ -2,6 +2,7 @@ package it.unipv.www.g20.controller.cinema;
 
 import java.util.HashMap;
 
+import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
 import it.unipv.www.g20.model.theatre.Theatre;
@@ -23,45 +24,49 @@ public class Cinema {
 		movieCatalog=new HashMap<>();
 	}
 
-	public boolean addMovie(String title, int duration) {
+	public boolean addMovie(String title, int duration) throws SearchException{
 
 		if (movieCatalog.containsKey(title))
-			return false;
+			throw new SearchException(title+" already exists.");
 		movieCatalog.put(title, new Movie(title, duration));
 		return true;
 
 	}
 
-	public boolean createTheatre(String name, int row, int col){
+	public boolean createTheatre(String name, int row, int col) throws SearchException{
 		if (theatreList.containsKey(name))
-			return false;
+			throw new SearchException(name+" already exists.");
 
 		theatreList.put(name, new Theatre(name, row, col));
 		return true;
 	}
 
-	public boolean deleteMovie(String title){
+	public boolean deleteMovie(String title) throws SearchException{
 
 		if (!(movieCatalog.containsKey(title)))
-			return false;
+			throw new SearchException(title+"'s not found.");
 
 		movieCatalog.remove(title);
 		return true;
 	}
 
-	public boolean deleteTheatre(String name){
+	public boolean deleteTheatre(String name) throws SearchException{
 
 		if (!(theatreList.containsKey(name)))
-			return false;
+			throw new SearchException(name+"'s not found.");
 		theatreList.remove(name);
 		return true;
 	}
 
-	public Theatre searchTheatre(String name) {
+	public Theatre searchTheatre(String name) throws SearchException{
+		if(theatreList.get(name)==null)
+			throw new SearchException(name+"'s not found");
 		return theatreList.get(name);
 	}
 
-	public Movie searchMovie(String title) {
+	public Movie searchMovie(String title) throws SearchException{
+		if(movieCatalog.get(title)==null)
+			throw new SearchException(title+"'s not found");
 		return movieCatalog.get(title);
 	}
 
@@ -69,10 +74,10 @@ public class Cinema {
 		return name;
 	}
 
-	public boolean deleteBooking(String code) {
+	public boolean deleteBooking(String code) throws SearchException {
 		if(TicketLedger.getTicketLedger().removeTicketSale(code)!=null)
 			return true;
-		return false;
+		throw new SearchException(code+"'s not found");
 	}
 
 	@Override
@@ -80,7 +85,7 @@ public class Cinema {
 		return "Cinema: " + name;
 	}
 
-	public Ticket bookSeat(Movie movie, String seat, String idShowing) {
+	public Ticket bookSeat(Movie movie, String seat, String idShowing) throws SearchException {
 		MovieShowing ms=movie.searchShowing(idShowing);
 		if(ms.searchAvailability(seat)) {
 			ms.changeAvailability(seat, false);
@@ -89,7 +94,7 @@ public class Cinema {
 		return null;
 	}
 
-	private Ticket buyTicket(Movie movie,String seat, MovieShowing movieShowing) {
+	private Ticket buyTicket(Movie movie,String seat, MovieShowing movieShowing) throws SearchException {
 		Ticket tmp = new Ticket(movie.getTitle(), seat, movieShowing);
 		if(TicketLedger.getTicketLedger().addTicketSale(tmp)!=null)
 			return null;

@@ -3,6 +3,8 @@ package it.unipv.www.g20.model.theatre;
 import java.util.HashMap;
 import java.util.Set;
 
+import it.unipv.www.g20.model.exception.SearchException;
+
 /**
  * The theatre of a Cinema, allows you to manage its projections
  */
@@ -53,7 +55,9 @@ public class Theatre {
 		return theatreName;
 	}
 
-	public Seat searchSeat(String position) {
+	public Seat searchSeat(String position) throws SearchException{
+		if(seatsList.get(position)==null)
+			throw new SearchException("Seat's not found");
 		return seatsList.get(position);
 	}
 
