@@ -77,7 +77,7 @@ public class Cinema {
 	public boolean deleteBooking(String code) throws SearchException {
 		if(TicketLedger.getTicketLedger().removeTicketSale(code)!=null)
 			return true;
-		throw new SearchException(code+"'s not found");
+		return false;
 	}
 
 	@Override

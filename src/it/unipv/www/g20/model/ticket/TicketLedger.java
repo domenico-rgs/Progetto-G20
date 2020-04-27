@@ -6,7 +6,7 @@ import it.unipv.www.g20.model.exception.SearchException;
 
 public class TicketLedger {
 	private HashMap<String, Ticket> ticketList;
-	private static TicketLedger istanza = null;
+	private static TicketLedger istance = null;
 
 	private TicketLedger() {
 		ticketList=new HashMap<>();
@@ -24,15 +24,17 @@ public class TicketLedger {
 		return ticketList.remove(code);
 	}
 
-	public Ticket searchTicket(String id) {
+	public Ticket searchTicket(String id) throws SearchException{
+		if (!(ticketList.containsKey(id)))
+			throw new SearchException(id+"'s not exists.");
 		return ticketList.get(id);
 	}
 
 	// Metodo della classe impiegato per accedere al singleton
 	public static TicketLedger getTicketLedger() {
-		if (istanza == null) {
-			istanza = new TicketLedger();
+		if (istance == null) {
+			istance = new TicketLedger();
 		}
-		return istanza;
+		return istance;
 	}
 }

@@ -10,7 +10,7 @@ import it.unipv.www.g20.model.ticket.Ticket;
 
 public class Tester {
 
-	@SuppressWarnings({ "deprecation", "resource" })
+	@SuppressWarnings({ "deprecation"})
 	public static void main(String[] args) {
 		try {
 		Cinema cin1 = new Cinema("Uci");
@@ -26,7 +26,7 @@ public class Tester {
 		cin1.createTheatre("theatre4", 15, 5);
 
 		cin1.searchMovie("The big short").addMovieShowing(new Date(120, 3, 27, 18,00), cin1.searchTheatre("theatre1"), 4.6);
-		cin1.searchMovie("The big short").addMovieShowing(new Date(120, 4, 01, 21,35),cin1.searchTheatre("theatre1"), 4.6);
+		cin1.searchMovie("The big short").addMovieShowing(new Date(120, 4, 01, 21,35),cin1.searchTheatre("theatre2"), 4.6);
 		cin1.searchMovie("The big short").addMovieShowing(new Date(120, 4, 05,19,00), cin1.searchTheatre("theatre4"), 5.8);
 		cin1.searchMovie("The great Gatsby").addMovieShowing(new Date(120,9,10,17,30), cin1.searchTheatre("theatre3"), 6.6);
 

@@ -24,7 +24,8 @@ public class Movie {
 		setPlot("");
 	}
 
-	public MovieShowing addMovieShowing(Date date, Theatre theatre, Double price) {
+	public MovieShowing addMovieShowing(Date date, Theatre theatre, Double price){
+		//da aggiungere il controllo sull'ora e la relativa eccezione
 		MovieShowing tmp = new MovieShowing(date, theatre, price);
 		return showingList.put(tmp.getId(), tmp);
 	}
