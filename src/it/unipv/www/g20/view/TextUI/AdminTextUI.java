@@ -266,7 +266,8 @@ public class AdminTextUI {
 			System.out.println("Scegli un opzione\n"
 					+ "1 - Aggiungi Film\n"
 					+ "2 - Rimuovi Film\n"
-					+ "3 - Modifica Film");
+					+ "3 - Modifica Film\n"
+					+ "4 - Mostra lista Film");
 
 
 			inputString = scanner.nextLine();
@@ -300,6 +301,12 @@ public class AdminTextUI {
 					
 				case 3:
 					System.out.println("Funzione non disponibile");
+					break;
+					
+				case 4:
+					System.out.println(cinema.printMovie());
+					System.out.println("Premi invio per continuare");
+					scanner.nextLine();
 					break;
 					
 				default:
