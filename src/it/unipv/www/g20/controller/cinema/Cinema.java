@@ -97,14 +97,21 @@ public class Cinema {
 	private Ticket buyTicket(Movie movie,String seat, MovieShowing movieShowing) throws SearchException {
 		Ticket tmp = new Ticket(movie.getTitle(), seat, movieShowing);
 		if(TicketLedger.getTicketLedger().addTicketSale(tmp)!=null)
-			return null;
-		return tmp;
+			return tmp;
+		return null;
 	}
 
 	public String printMovie() {
 		String s="";
 		for(String key : movieCatalog.keySet())
 			s+=movieCatalog.get(key).toString()+"\n";
+		return s;
+	}
+
+	public String printTheatres() {
+		String s="";
+		for(String key : theatreList.keySet())
+			s+=theatreList.get(key).toString()+"\n";
 		return s;
 	}
 }
