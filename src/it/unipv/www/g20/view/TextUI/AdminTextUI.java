@@ -3,11 +3,9 @@ package it.unipv.www.g20.view.TextUI;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-
 import it.unipv.www.g20.controller.cinema.Cinema;
 import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.movie.Movie;
-import java.util.Date;
 
 public class AdminTextUI {
 
@@ -46,7 +44,7 @@ public class AdminTextUI {
 			System.out.println("Scegli un opzione\n"
 					+ "1 - Gestisci Tiket \n"
 					+ "2 - Gestisci Sale\n"
-					+ "3 - Gestigli Film");
+					+ "3 - Gestisli Film");
 
 
 			inputString = scanner.nextLine();
@@ -121,23 +119,23 @@ public class AdminTextUI {
 					System.out.println("Inserisci titolo film, numero sedia ed id della"
 							+ "proiezione, separati da carattere di tabulazione");
 					stringList = scanner.nextLine().split("\t");
-					String id = cinema.bookSeat(cinema.searchMovie(stringList[0]), 
+					String id = cinema.bookSeat(cinema.searchMovie(stringList[0]),
 							stringList[1], stringList[2]).getCode();
 					System.out.println("Aggiunto con successo con id: " + id);
 					break;
-					
+
 				case 2:
 					System.out.println("Inserisci codice biglietto da rimuovere");
 					inputString = scanner.nextLine();
 					cinema.deleteBooking(inputString);
 					System.out.println("Rimosso con successo");
 					break;
-					
+
 				case 3:
 					/*DOVE LA MIA FUNZIONE IN CINEMA ???*/
 					System.out.println("Funzione ancora non disponibile");
 					break;
-					
+
 				default:
 					System.out.println("Scelta non disponibile");
 					continue;
@@ -198,18 +196,18 @@ public class AdminTextUI {
 							Integer.parseInt(stringList[2]));
 					System.out.println("Aggiunto con successo con nome " + stringList[0]);
 					break;
-					
+
 				case 2:
 					System.out.println("Inserire nome sala da eliminare");
 					inputString = scanner.nextLine();
 					cinema.deleteTheatre(inputString);
 					System.out.println("Eliminato con successo " + inputString);
 					break;
-					
+
 				case 3:
 					System.out.println("Funzione non disponibile");
 					break;
-					
+
 				case 4:
 					System.out.println("Inserire nome del film, nome della sala, data e prezzo "
 							+ " della proiezione, separati da carattere di tabulazione");
@@ -217,11 +215,11 @@ public class AdminTextUI {
 					Movie movie = cinema.searchMovie(stringList[0]);
 					SimpleDateFormat format = new SimpleDateFormat("dd-mmm-yyyy");
 					String id = movie.addMovieShowing(
-							format.parse(stringList[2]), cinema.searchTheatre(stringList[1]), 
+							format.parse(stringList[2]), cinema.searchTheatre(stringList[1]),
 							Double.parseDouble(stringList[3])).getId();
 					System.out.println("Aggiunto con successo con codice " + id);
 					break;
-					
+
 				case 5:
 					System.out.println("Inserire nome del film ed id della "
 							+ "proiezione da rimuovere, separati da carattere di tabulazione");
@@ -229,11 +227,11 @@ public class AdminTextUI {
 					cinema.searchMovie(stringList[0]).deleteMovieShowing(stringList[1]);
 					System.out.println("Rimosso con successo");
 					break;
-					
+
 				case 6:
 					System.out.println("Funzione non disponibile");
 					break;
-					
+
 				default:
 					System.out.println("Scelta non disponibile");
 					continue;
@@ -291,24 +289,24 @@ public class AdminTextUI {
 					cinema.addMovie(stringList[0], Integer.parseInt(stringList[1]));
 					System.out.println("Aggiunto con successo con nome " + stringList[0]);
 					break;
-					
+
 				case 2:
 					System.out.println("Inserire nome del fiml da eliminare");
 					inputString = scanner.nextLine();
 					cinema.deleteMovie(inputString);
 					System.out.println("Rimosso con successo");
 					break;
-					
+
 				case 3:
 					System.out.println("Funzione non disponibile");
 					break;
-					
+
 				case 4:
 					System.out.println(cinema.printMovie());
 					System.out.println("Premi invio per continuare");
 					scanner.nextLine();
 					break;
-					
+
 				default:
 					System.out.println("Scelta non disponibile");
 					continue;
