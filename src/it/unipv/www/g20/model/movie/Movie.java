@@ -1,6 +1,7 @@
 package it.unipv.www.g20.model.movie;
 
 import java.util.Date;
+
 import java.util.HashMap;
 
 import it.unipv.www.g20.model.exception.SearchException;
