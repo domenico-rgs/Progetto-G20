@@ -69,4 +69,16 @@ public class MovieShowing {
 	public double getPrice() {
 		return price;
 	}
+
+	@Override
+	public String toString() {
+		String s = "MOVIESHOWING INFORMATION:\n";
+		s+="ID: "+getId()+"\n";
+		s+="Date: "+date+"\n";
+		s+="Theatre: "+theatre+"\n";
+		s+="Price: "+price+"\n";
+		return s;
+	}
+	
+	
 }

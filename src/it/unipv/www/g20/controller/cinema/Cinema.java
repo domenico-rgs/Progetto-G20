@@ -93,4 +93,11 @@ public class Cinema {
 			return false;
 		return true;
 	}
+	
+	public String printMovie() {
+		String s="";
+		for(String key : movieCatalog.keySet())
+			s+=movieCatalog.get(key).toString()+"\n";
+		return s;
+	}
 }
