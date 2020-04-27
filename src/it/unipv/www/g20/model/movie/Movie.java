@@ -25,7 +25,7 @@ public class Movie {
 
 	public MovieShowing addMovieShowing(Date date, Theatre theatre, Double price) {
 		MovieShowing tmp = new MovieShowing(date, theatre, price);
-		return showingList.put(MovieShowing.getId(), tmp);
+		return showingList.put(tmp.getId(), tmp);
 	}
 
 	public MovieShowing deleteMovieShowing(String id) {
@@ -38,8 +38,9 @@ public class Movie {
 	 */
 	public String printMovieShowing() {
 		String s="";
-		for(String key : showingList.keySet())
+		for(String key : showingList.keySet()) {
 			s+=showingList.get(key).toString()+"\n";
+		}
 		return s;
 	}
 

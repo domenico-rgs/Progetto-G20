@@ -19,12 +19,12 @@ public class MovieShowing {
 
 	public MovieShowing(Date date, Theatre theatre, double price) {
 		availability=new HashMap<>();
-		genAvailabilityList();
 		intId++;
 		id="P"+intId;
 		this.date=date;
 		this.theatre=theatre;
 		this.price=price;
+		genAvailabilityList();
 	}
 
 	private void genAvailabilityList() {
@@ -50,7 +50,7 @@ public class MovieShowing {
 		return !availability.replace(theatre.searchSeat(seat), value);
 	}
 
-	public static String getId() {
+	public String getId() {
 		return id;
 	}
 
