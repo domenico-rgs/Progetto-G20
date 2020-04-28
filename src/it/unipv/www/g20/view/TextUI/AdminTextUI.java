@@ -29,7 +29,7 @@ public class AdminTextUI {
 	//metodo di avvio, unico chiamabile al di fuori
 	public void start() {
 		System.out.println(cinema.getName().toUpperCase());
-		System.out.println("Scrivi \"e\" per uscire, \"b\" per tornare indietro\n");
+		System.out.println("enter \"e\" to exit, \"b\" to back\n");
 
 		/*
 		 * ciclo che attende di accettare comandi, in caso di input sbagliati
@@ -38,22 +38,22 @@ public class AdminTextUI {
 		 * ritornando un messaggio di uscita
 		 */
 		while (true) {
-			System.out.println("Menu Principale\n**************");
+			System.out.println("Main Menù\n**************");
 
-			System.out.println("Scegli un opzione:\n"
-					+ "1 - Gestisci Ticket \n"
-					+ "2 - Gestisci Sale\n"
-					+ "3 - Gestisci Film");
+			System.out.println("Take a choice:\n"
+					+ "1 - Manage Ticket \n"
+					+ "2 - Manage Theatre\n"
+					+ "3 - Manage Movie");
 
-			System.out.print("Scelta: ");
+			System.out.print("Input: ");
 			inputString = scanner.nextLine();
 
 			if (inputString.equalsIgnoreCase("e")) {
-				System.out.println("Chiusura app...");
+				System.out.println("Closing app...");
 				System.exit(0);
 			}
 			if (inputString.equalsIgnoreCase("b")) {
-				System.out.println("Sei gia al menù principale");
+				System.out.println("You are already on the main menu");
 				continue;
 			}
 
@@ -74,11 +74,11 @@ public class AdminTextUI {
 					manageFilm();
 					break;
 				default:
-					System.out.println("Scelta non disponibile");
+					System.out.println("Unavailable input");
 				}
 			}
 			catch (NumberFormatException e) {
-				System.out.println("Scelta non valida");
+				System.out.println("Invalid input");
 			}
 		}
 	}
@@ -88,19 +88,19 @@ public class AdminTextUI {
 	 */
 	private void manageTicket() {
 		
-		System.out.println("\nMenu di gestione dei biglietti\n*******************");
+		System.out.println("\nTicket management Menu\n*******************");
 		
 		while (true) {
-			System.out.println("\nScegli un opzione\n"
-					+ "1 - Acquisto Ticket\n"
-					+ "2 - Cancella Ticket\n"
-					+ "3 - Modifica Ticket");
+			System.out.println("\nTake a choice\n"
+					+ "1 - Buy Ticket\n"
+					+ "2 - Delete Ticket\n"
+					+ "3 - Change Ticket");
 
-			System.out.print("Scelta: ");
+			System.out.print("Input: ");
 			inputString = scanner.nextLine();
 
 			if (inputString.contentEquals("e")) {
-				System.out.println("Chiusura app...");
+				System.out.println("Closing app...");
 				System.exit(0);
 			}
 			if (inputString.contentEquals("b"))
@@ -111,37 +111,37 @@ public class AdminTextUI {
 				switch (Integer.parseInt(inputString)) {
 				
 				case 1:
-					System.out.println("\nFilm disponibili: \n"+cinema.printMovie());
-					System.out.print("Inserisci film: ");
+					System.out.println("\nAvailable Moviei: \n"+cinema.printMovie());
+					System.out.print("Insert Movie: ");
 					String film = scanner.nextLine();
-					System.out.println("Proiezioni disponibili:\n"+ cinema.searchMovie(film).printMovieShowing());
-					System.out.print("Inserisci id proiezione: ");
+					System.out.println("Available showing:\n"+ cinema.searchMovie(film).printMovieShowing());
+					System.out.print("Insert showing: ");
 					String showing = scanner.nextLine();
 					System.out.println(cinema.searchMovie(film).searchShowing(showing).printSeats());
-					System.out.print("Inserisci id sedile: ");
+					System.out.print("Insert seat: ");
 					String sedile = scanner.nextLine();
 					System.out.println("\n"+cinema.bookSeat(cinema.searchMovie(film),sedile, showing));
 					break;
 					
 				case 2:
-					System.out.print("Inserisci il codice del biglietto da rimuovere: ");
+					System.out.print("Insert ticket code to remove: ");
 					inputString = scanner.nextLine();
 					if(cinema.deleteBooking(inputString));
-					System.out.println("Rimosso con successo");
+					System.out.println("Succesfully removed");
 					break;
 					
 				case 3:
-					System.out.println("Inserisci il codice del biglietto da modificare: ");
+					System.out.println("Insert ticket code to change: ");
 					inputString = scanner.nextLine();
 					Ticket ticket = TicketLedger.getTicketLedger().searchTicket(inputString);
 					changeTicket(ticket);
 					break;
 					
 				default:
-					System.out.println("Scelta non valida");
+					System.out.println("Unavaliable input");
 				}
 			}catch (NumberFormatException e) {
-				System.out.println("Input non valido");
+				System.out.println("Invalid input");
 				continue;
 			}catch (SearchException e) {
 				System.out.println(e.getMessage());
@@ -157,25 +157,25 @@ public class AdminTextUI {
 
 	@SuppressWarnings("deprecation")
 	private void manageTheater() {
-		System.out.println("\nMenu di gestione delle sale\n*******************");
+		System.out.println("\nTheatre management menu\n*******************");
 
 		while (true) {
-			System.out.println("\nScegli un opzione\n"
-					+ "1 - Aggiungi Sala\n"
-					+ "2 - Rimuovi Sala\n"
-					+ "3 - Modifica configurazione Sala\n"
-					+ "4 - Mostra sale disponibili\n"
-					+ "5 - Mostra proiezioni\n"
-					+ "6 - Aggiungi proiezione\n"
-					+ "7 - Rimuovi proiezione\n"
-					+ "8 - Modifica proiezione");
+			System.out.println("\nTake a choice\n"
+					+ "1 - Add theatre\n"
+					+ "2 - Remove theatre\n"
+					+ "3 - Change theatre\n"
+					+ "4 - Show available theatre\n"
+					+ "5 - Show available showing\n"
+					+ "6 - Add showing\n"
+					+ "7 - Remove showing\n"
+					+ "8 - Change showing");
 
 
-			System.out.print("Scelta: ");
+			System.out.print("Input: ");
 			inputString = scanner.nextLine();
 
 			if (inputString.contentEquals("e")) {
-				System.out.println("Chiusura app...");
+				System.out.println("Closing app...");
 				System.exit(0);
 			}
 			if (inputString.contentEquals("b"))
@@ -186,22 +186,22 @@ public class AdminTextUI {
 				switch (Integer.parseInt(inputString)) {
 				
 				case 1:
-					System.out.print("Inserisci nome: ");
+					System.out.print("Name: ");
 					String nomeSala = scanner.nextLine();
-					System.out.print("Inserisci riga e colonna separati da una virgola: ");
+					System.out.print("Row and column, separeted by a comma: ");
 					stringList = scanner.nextLine().split(",");
 					if(cinema.createTheatre(nomeSala, Integer.parseInt(stringList[0]), Integer.parseInt(stringList[1])))
-						System.out.println("Aggiunto con successo con nome " + nomeSala);
+						System.out.println("Succesfully added with name " + nomeSala);
 					break;
 					
 				case 2:
-					System.out.println("Inserire nome della sala da eliminare");
+					System.out.println("Theatre's name to remove");
 					cinema.deleteTheatre(scanner.nextLine()); //in caso di problemi ritorna eccezione con messaggio
-					System.out.println("Eliminata con successo ");
+					System.out.println("Succesfully removed ");
 					break;
 					
 				case 3:
-					System.out.println("Inserisci nome sala da modificare: ");
+					System.out.println("Theatre's name to change: ");
 					inputString = scanner.nextLine();
 					Theatre theatre = cinema.searchTheatre(inputString);
 					this.changeTheatre(theatre);
@@ -212,7 +212,7 @@ public class AdminTextUI {
 					break;
 					
 				case 5:
-					System.out.println("Funzione non ancora disponibile");
+					System.out.println("Unavailable option");
 					break;
 					
 				case 6:
@@ -234,30 +234,29 @@ public class AdminTextUI {
 					break;
 					
 				case 7:
-					System.out.print("Inserisci film: ");
+					System.out.print("Movie: ");
 					film = scanner.nextLine();
-					System.out.print("Inserisci l'id della proiezione: ");
+					System.out.print("Showing's ID: ");
 					String proiezione = scanner.nextLine();
 					//niente if, ritorna la searchException
 					cinema.searchMovie(film).deleteMovieShowing(proiezione);
-					System.out.println("Rimosso con successo");
+					System.out.println("Succesfully removed");
 					break;
 					
 				case 8:
-					System.out.println("Inserisci titolo del film per cui si vorrebbe\n"
-							+ "cambiare la proiezione: ");
+					System.out.println("Film name to change showing: ");
 					Movie movie = cinema.searchMovie(scanner.nextLine());
 					movie.printMovieShowing();
-					System.out.println("Inserisci id della proiezione che si vuole cambiare: ");
+					System.out.println("Showing'g ID to change: ");
 					MovieShowing showing = movie.searchShowing(scanner.nextLine());
 					this.changeShowing(showing);
 					break;
 					
 				default:
-					System.out.println("Scelta non valida");
+					System.out.println("Unavailable input");
 				}
 			}catch (NumberFormatException e) {
-				System.out.println("Input non valido");
+				System.out.println("Invalid input");
 				continue;
 			}catch (SearchException e) {
 				System.out.println(e.getMessage());
@@ -271,21 +270,21 @@ public class AdminTextUI {
 
 
 	private void manageFilm() {
-		System.out.println("Menu di gestione dei film\n************");
+		System.out.println("Movie management menu\n************");
 
 		while (true) {
-			System.out.println("\nScegli un opzione\n"
-					+ "1 - Aggiungi Film\n"
-					+ "2 - Rimuovi Film\n"
-					+ "3 - Modifica Film\n"
-					+ "4 - Mostra lista Film");
+			System.out.println("\nTake a choice\n"
+					+ "1 - Add movie\n"
+					+ "2 - Remove movie\n"
+					+ "3 - Change movie\n"
+					+ "4 - Show available movie");
 
 
-			System.out.print("Scelta: ");
+			System.out.print("Input: ");
 			inputString = scanner.nextLine();
 
 			if (inputString.contentEquals("e")) {
-				System.out.println("Chiusura app...");
+				System.out.println("Closing app...");
 				System.exit(0);
 			}if (inputString.contentEquals("b"))
 				break;
@@ -295,38 +294,38 @@ public class AdminTextUI {
 				switch (Integer.parseInt(inputString)) {
 				
 				case 1:
-					System.out.print("Inserisci titolo: ");
+					System.out.print("Name: ");
 					String titolo = scanner.nextLine();
-					System.out.print("Inserisci durata: ");
+					System.out.print("Duration: ");
 					String durata = scanner.nextLine();
 					//ritorna eccezione, niente if
 					cinema.addMovie(titolo, Integer.parseInt(durata));
-					System.out.println(titolo + " aggiunto con successo");
+					System.out.println(titolo + " succesfully added");
 					break;
 					
 				case 2:
-					System.out.println("Inserire titolo del film da eliminare");
+					System.out.println("Movie name to remove: ");
 					cinema.deleteMovie(scanner.nextLine());
-					System.out.println("Rimosso con successo");
+					System.out.println("Succesfully removed");
 					break;
 					
 				case 3:
-					System.out.println("Inserisci titolo del film che si vuole modficare: ");
+					System.out.println("Movie name to remove: ");
 					Movie movie = cinema.searchMovie(scanner.nextLine());
 					this.changeMovie(movie);
 					break;
 					
 				case 4:
 					System.out.println(cinema.printMovie());
-					System.out.print("Premi invio per continuare");
+					System.out.print("Enter to continue");
 					scanner.nextLine();
 					break;
 					
 				default:
-					System.out.println("Scelta non valida");
+					System.out.println("Unavailable input");
 				}
 			}catch (NumberFormatException e) {
-				System.out.println("Input non valido");
+				System.out.println("Invalid input");
 				continue;
 			}catch (SearchException e) {
 				System.out.println(e.getMessage());
@@ -341,22 +340,22 @@ public class AdminTextUI {
 	//metodi che scaturiscono dai secondi menu
 	private void changeTicket(Ticket ticket) {
 		
-		System.out.println("\nMenu di Modifica dei biglietti\n*******************");
+		System.out.println("\nEdit ticket menu\n*******************");
 		
 		/* MANCANO i setter nel ticket, li devo aggiungere?
 		 * è necessario modificare un biglietto?
 		 */
 		while (true) {
-			System.out.println("\nScegli un opzione\n"
+			System.out.println("\nTake a choice\n"
 					+ "1 - vuoto\n"
 					+ "2 - vuoto\n"
 					+ "3 - vuoto");
 
-			System.out.print("Scelta: ");
+			System.out.print("Input: ");
 			inputString = scanner.nextLine();
 
 			if (inputString.contentEquals("e")) {
-				System.out.println("Chiusura app...");
+				System.out.println("Closing app...");
 				System.exit(0);
 			}
 			if (inputString.contentEquals("b"))
@@ -376,10 +375,10 @@ public class AdminTextUI {
 					break;
 					
 				default:
-					System.out.println("Scelta non valida");
+					System.out.println("Unavailable input");
 				}
 			}catch (NumberFormatException e) {
-				System.out.println("Input non valido");
+				System.out.println("Invalid input");
 				continue;
 			}
 		}
@@ -388,7 +387,7 @@ public class AdminTextUI {
 	
 	private void changeTheatre(Theatre sala) {
 		
-		System.out.println("\nMenu di modifica della sala\n*******************");
+		System.out.println("\nEdit theatre menu\n*******************");
 		
 		/* il setter in theatre non va bene, un utente vorrebbe cambiare
 		 * solo righe e colonne, poi è compito della classe sala implementare un 
@@ -396,16 +395,16 @@ public class AdminTextUI {
 		 */
 		
 		while (true) {
-			System.out.println("\nScegli un opzione\n"
-					+ "1 - Cambia righe\n"
-					+ "2 - Cambia colonne\n"
-					+ "3 - Cambia totale");
+			System.out.println("\nTake a choice\n"
+					+ "1 - Change row\n"
+					+ "2 - Change column\n"
+					+ "3 - Total change");
 
-			System.out.print("Scelta: ");
+			System.out.print("Input: ");
 			inputString = scanner.nextLine();
 
 			if (inputString.contentEquals("e")) {
-				System.out.println("Chiusura app...");
+				System.out.println("Closing app...");
 				System.exit(0);
 			}
 			if (inputString.contentEquals("b"))
@@ -425,10 +424,10 @@ public class AdminTextUI {
 					break;
 					
 				default:
-					System.out.println("Scelta non valida");
+					System.out.println("Unavailable input");
 				}
 			}catch (NumberFormatException e) {
-				System.out.println("Input non valido");
+				System.out.println("Invalid input");
 				continue;
 			}
 		}
@@ -437,19 +436,19 @@ public class AdminTextUI {
 	
 	private void changeShowing(MovieShowing showing) {
 		
-		System.out.println("\nMenu di modifica della proiezione\n*******************");
+		System.out.println("\nEdit showing menu\n*******************");
 		
 		/* come per ticket, mancano i setter
 		 */
 		
 		while (true) {
-			System.out.println("\nScegli un opzione\n");
+			System.out.println("\nTake a choice\n");
 
-			System.out.print("Scelta: ");
+			System.out.print("Input: ");
 			inputString = scanner.nextLine();
 
 			if (inputString.contentEquals("e")) {
-				System.out.println("Chiusura app...");
+				System.out.println("Closing app...");
 				System.exit(0);
 			}
 			if (inputString.contentEquals("b"))
@@ -469,10 +468,10 @@ public class AdminTextUI {
 					break;
 					
 				default:
-					System.out.println("Scelta non valida");
+					System.out.println("Invalid input");
 				}
 			}catch (NumberFormatException e) {
-				System.out.println("Input non valido");
+				System.out.println("Invalid input");
 				continue;
 			}
 		}
@@ -480,16 +479,16 @@ public class AdminTextUI {
 	}
 	private void changeMovie(Movie movie) {
 		
-		System.out.println("\nMenu di modifica del film\n*****************");
+		System.out.println("\nEdit movie menu\n*****************");
 		
 		/* come per film, mancano i setter
 		 */
 		
 		while (true) {
-			System.out.println("\nScegli un opzione\n"
-					+ "1 - Modifica titolo\n"
-					+ "2 - Modifica plot\n"
-					+ "3 - Modifica durata\n");
+			System.out.println("\nTake a choice\n"
+					+ "1 - Change name\n"
+					+ "2 - Change plot\n"
+					+ "3 - Change duration\n");
 
 			System.out.print("Scelta: ");
 			inputString = scanner.nextLine();
@@ -506,26 +505,26 @@ public class AdminTextUI {
 				switch (Integer.parseInt(inputString)) {
 				
 				case 1:
-					System.out.println("Inserisci nuovo titolo: ");
+					System.out.println("New name: ");
 					movie.setTitle(scanner.nextLine());
 					break;
 					
 				case 2:
-					System.out.println("Inserisci nuovo plot: ");
+					System.out.println("New plot: ");
 					movie.setPlot(scanner.nextLine());
 					break;
 					
 				case 3:
-					System.out.println("Inserisci nuova durata: ");
+					System.out.println("New duration: ");
 					inputString = scanner.nextLine();
 					movie.setDuration(Integer.parseInt(inputString));
 					break;
 					
 				default:
-					System.out.println("Scelta non valida");
+					System.out.println("Invalid input");
 				}
 			}catch (NumberFormatException e) {
-				System.out.println("Input non valido");
+				System.out.println("Invalid input");
 				continue;
 			}
 		}
