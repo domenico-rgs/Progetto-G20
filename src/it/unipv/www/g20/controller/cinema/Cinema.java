@@ -114,4 +114,5 @@ public class Cinema {
 			s+=theatreList.get(key).toString()+"\n";
 		return s;
 	}
+	
 }
