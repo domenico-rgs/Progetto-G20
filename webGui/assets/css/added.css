@@ -8,6 +8,14 @@
   max-height: 100%;
 }
 
+#three {
+  background-color: rgb(230, 230, 230);
+}
+
+#footer {
+  background-color: rgb(156, 0, 0);
+}
+
 #three .inner h1 {
   color: black;
   font-size: 150%;
@@ -68,11 +76,21 @@
   position: fixed;
   top: -60px;
   width: 100%;
+  padding: 0 3% 0 3%;
   transition: top 0.3s;
   z-index: 10;
 }
 
 #navbar a {
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+}
+
+#navbar a:first-child {
   float: left;
   display: block;
   color: white;

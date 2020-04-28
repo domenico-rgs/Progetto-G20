@@ -1,0 +1,87 @@
+#header  {
+  background-color: black;
+}
+
+#three {
+  background-image: url(../../images/banner.jpg);
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+@media screen and (min-width :981px) {
+
+  #three:before {
+    content: '';
+    background: rgba(75, 75, 93, 0.85);
+    position: absolute;
+    width: 100%;
+    height: auto;  /*aggiusto dopo, o forse no;*/
+    top: 0;
+    left: 0;
+  }
+
+}
+
+
+@media screen and (max-width: 980px) {
+
+  #three {
+    background-image: none;
+  }
+
+}
+
+body {
+  background-color: rgb(230, 230, 230, 0.85);
+}
+
+.login {
+  position: relative;
+  align-items: center;
+  margin: auto;
+  height: 40%;
+  width: 40%;
+  background-color: white;
+  padding: 5%;
+  border-radius: 10px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+.login h1 {
+  text-align: center;
+}
+
+.login .formContainer{
+  padding: 5%;
+  margin: 10% 0 10% 0;
+  background-color:  rgb(230, 230, 230);
+  border-radius: 100px;
+}
+
+.formContainer img {
+  height: 30px;
+  width: 30px;
+  float: left;
+}
+
+.formContainer input {
+  width: 80%;
+  height: 30px;
+  padding: 0 10px 0 15px;
+  background-color: rgb(230, 230, 230);
+  color: black;
+  border: none;
+}
+
+.login button {
+  margin: auto;
+  height: 50px;
+  width: 100%;
+  border: none;
+  background-color: rgb(156, 0, 0);
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+}
