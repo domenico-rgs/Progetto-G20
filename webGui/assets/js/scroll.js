@@ -1,27 +1,24 @@
-async function addImageToDOM() {
+async function addMovieToDOM() {
+ const itemDiv = document.createElement('div');
+  itemDiv.className = 'item';
   const imageDiv = document.createElement('div');
-  imageDiv.className = 'one-fourth';
+  imageDiv.className = 'img';
+  const nameDiv = document.createElement('div');
+  nameDiv.className = 'name';
 
   const imgElement = document.createElement('img');
-  imgElement.src = generateImageLinks();
+  imgElement.src = 'images/unavaliable.png';
+  const titleElement = document.createTextNode("Test Title");
 
-  imageDiv.append(imgElement);
-  document.querySelector('.container').append(imageDiv);
+itemDiv.appendChild(imageDiv).appendChild(imgElement);
+itemDiv.appendChild(nameDiv).appendChild(titleElement);
+
+  document.querySelector('.filmMenu').append(itemDiv);
 }
-
-function generateImageLinks() {
-  return `https://placekitten.com/${generateSize(200)}/${generateSize(200)}`;
-}
-
-function generateSize(min) {
-  var randomNumber = Math.ceil(Math.random() * 100);
-  return randomNumber + min;
-}
-
 
 function fetchRandomImages(number) {
   for (var i = 0; i < number; i++) {
-    addImageToDOM();
+    addMovieToDOM();
   }
 }
 
