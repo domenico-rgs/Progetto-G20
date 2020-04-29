@@ -56,12 +56,16 @@
 				<!-- elenco dei film, 10 di prova -->
 				<div class="filmMenu">
 
-					<div class="item">
+					<!-- si potrebbe pensare di mettere in ogni div item
+					un attributo "ref" dove indichiamo un nome, uguale al nome
+					del file a cui dovrà puntare, in modo tale da legarlo
+					ad un solo script js che farà tutto automaticamente -->
+					<div class="item" onclick="location.href='movie/movieTest.html';">
 						<div class="img">
-							<img src="images/unavaliable.png" alt="unavaliable">
+							<img src="movie/cover/joker.jpg" alt="joker">
 						</div>
 						<div class="name">
-							<p>Test title</p>
+							<p>Joker</p>
 						</div>
 					</div>
 					<div class="item">
