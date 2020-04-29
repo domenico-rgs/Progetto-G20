@@ -12,6 +12,24 @@
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 20010;
   visibility: hidden;
+  animation: none;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.3
+  }
+  60% {
+    opacity: 0.6
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 #loginTransparent {
