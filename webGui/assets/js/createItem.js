@@ -22,10 +22,27 @@ function fetchRandomImages(number) {
   }
 }
 
-fetchRandomImages(100);
+fetchRandomImages(20);
 
-window.addEventListener('scroll', function() {
-  if(window.scrollY + window.innerHeight + 100 >= document.documentElement.scrollHeight) {
-    fetchRandomImages(5);
+var oldScroll = 1800;
+var element = 20
+
+window.onscroll = function() {
+
+  //automatic navbar
+  if (document.body.scrollTop > 380 || document.documentElement.scrollTop > 380)
+  {
+    document.getElementById("navbar").style.top = "0";
   }
-})
+  else
+  {
+    document.getElementById("navbar").style.top = "-60px";
+  }
+
+  //create automatic scroll item
+  if(element < 100 &&(document.body.scrollTop > oldScroll || document.documentElement.scrollTop > oldScroll)) {
+    oldScroll += 300;
+    fetchRandomImages(5);
+    element += 5;
+  }
+};
