@@ -1,83 +1,83 @@
-#header  {
-  background-color: #333;
+.login {
+  position: fixed;
+  top: 10%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 80%;
+  width: 400px;
+  background-color: white;
+  padding: 5%;
+  border-radius: 10px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 20010;
+  visibility: hidden;
 }
 
-#three {
-  background-image: url(../../images/banner.jpg);
-  background-size: cover;
-  background-position: bottom;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+#loginTransparent {
+  position: fixed;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(130, 131, 127, 0.6);
+  z-index: 20000;
+  visibility: hidden;
 }
 
-@media screen and (min-width :981px) {
 
-  #three:before {
-    content: '';
-    background: rgba(75, 75, 93, 0.85);
-    position: absolute;
-    width: 100%;
-    height: auto;  /*aggiusto dopo, o forse no;*/
-    top: 0;
-    left: 0;
-  }
-
+.login h1 {
+  text-align: center;
+  font-size: 1.5em;
 }
 
 
 @media screen and (max-width: 980px) {
 
-  #three {
-    background-image: none;
+  .login {
+    height: 50%;
   }
 
+  .login h1 {
+    font-size: 1.3em;
+    font-weight: normal;
+  }
 }
 
-body {
-  background-color: rgb(230, 230, 230, 0.85);
-}
-
-.login {
-  position: relative;
-  align-items: center;
-  margin: auto;
-  height: 40%;
-  width: 40%;
-  background-color: white;
-  padding: 5%;
-  border-radius: 10px;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19)
-}
-
-.login h1 {
-  text-align: center;
+.login #exit {
+  float: right;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
 }
 
 .login .formContainer{
+  height: 15%;
   padding: 5%;
   margin: 10% 0 10% 0;
   background-color:  rgb(230, 230, 230);
   border-radius: 100px;
 }
 
-.formContainer img {
-  height: 30px;
-  width: 30px;
+.login .formContainer img {
+  height: 100%;
+  width: 10%;
   float: left;
+  vertical-align: center;
 }
 
-.formContainer input {
+.login .formContainer input {
   width: 80%;
-  height: 30px;
-  padding: 0 10px 0 15px;
+  height: 95%;
+  padding: 0 5% 0 7%;
   background-color: rgb(230, 230, 230);
   color: black;
   border: none;
+  vertical-align: center;
 }
 
 .login button {
   margin: auto;
-  height: 50px;
+  height: 15%;
   width: 100%;
   border: none;
   background-color: rgb(156, 0, 0);
