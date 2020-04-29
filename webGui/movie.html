@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<link rel="icon" href="images/favicon.png" type="image/png" />
+		<title>Cinema G20</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/added.css">
+		<link rel="stylesheet" href="assets/css/login.css">
+		<link rel="stylesheet" href="assets/css/scroll.css">
+		<link rel="stylesheet" href="assets/css/search.css">
+	</head>
+
+	<body>
+
+		<!-- Header -->
+		<header id="header">
+			<div class="inner">
+				<a href="index.html" class="logo"><strong>Cinema G20</strong> </a>
+				<nav id="nav">
+					<a href="index.html">Home</a>
+					<a href="#">Movie Catalog</a>
+					<a href="help.html">Help</a>
+					<a href="#footer">About</a>
+					<a href="#" onClick="loginAppear(); return false;">Login</a>
+				</nav>
+				<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+			</div>
+		</header>
+
+		<!-- navbar a discesa -->
+		<div id="navbar">
+			<a href="index.html">Home</a>
+			<a href="#">Movie Catalog</a>
+			<a href="#footer">About</a>
+			<a href="help.html">Help</a>
+			<a href="#" onClick="loginAppear();return false;">Login</a>
+		</div>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<header>
+					<h1>Movie Catalog</h1>
+
+				</header>
+
+			</div>
+		</section>
+
+
+		<!-- Three -->
+		<section id="three" class="wrapper align-center">
+		
+			<div class="inner">
+				<!-- Infinite scroll -->
+				<div class="container"></div>
+
+			</div>
+		</section>
+
+
+		<!-- pagina di login  che appare al click del pulsante -->
+		<div id="loginTransparent">
+
+			<div id="login" class="login">
+				<img id="exit" src="images/icon/exit.png" alt="icon" onClick="loginHidden(); return false;">
+				<h1>User Login</h1>
+				<div class="formContainer">
+					<img src="images/icon/username.png" alt="icon">
+					<input type="user" name="" value="username">
+				</div>
+				<div class="formContainer">
+					<img src="images/icon/password.png" alt="icon">
+					<input type="pass" name="" value="password">
+				</div>
+				<button type="button" name="button">LOGIN</button>
+			</div>
+
+		</div>
+
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+
+				<h3>About us</h3>
+				<div class="map">
+					<iframe src="https://www.google.com/maps/d/embed?mid=1sHNNvSHpBqGONd7N3zVXRE681ok15XBa" width="640" height="480"></iframe></div>
+			</div>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="assets/js/scroll.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script type="text/javascript" src="assets/js/index.js"></script>
+
+
+	</body>
+
+</html>
