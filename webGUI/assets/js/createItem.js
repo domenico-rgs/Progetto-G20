@@ -22,10 +22,10 @@ function fetchRandomImages(number) {
   }
 }
 
-fetchRandomImages(20);
+fetchRandomImages(80);
 
 var oldScroll = 1800;
-var element = 20
+var element = 20;
 
 window.onscroll = function() {
 

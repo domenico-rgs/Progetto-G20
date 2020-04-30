@@ -18,7 +18,6 @@
 			<div class="inner">
 				<nav id="nav">
 					<a href="#">Home</a>
-					<a href="catalog.html">Catalog</a>
 					<a href="faq.html">FAQ</a>
 					<a href="#footer">About</a>
 					<a href="#" onClick="loginAppear(); return false;">Login</a>
@@ -33,7 +32,7 @@
 			<div class="inner">
 				<header>
 					<h1>Cinema G20</h1>
-					<h2>the best site in Italy to buy tickets ... maybe!</h2>
+					<h2>The best site in Italy to buy tickets ... maybe!</h2>
 
 				</header>
 
@@ -44,101 +43,22 @@
 		<!-- Three -->
 		<section id="three" class="wrapper align-center">
 			<div class="inner">
-				<h1>Titles of the moment</h1>
-
-				<!-- elenco dei film, 10 di prova -->
+				<h1>Movie Catalog</h1>
+					
+				<!-- search bar -->
+				<div class="searchBar">
+				<input type="search" placeholder="Search Movie">
+				<img src="assets/images/icon/search.png" alt="">
+				</div>
+				
+				<!-- Infinite scroll of movie -->
 				<div class="filmMenu">
 
-					<!-- si potrebbe pensare di mettere in ogni div item
-					un attributo "ref" dove indichiamo un nome, uguale al nome
-					del file a cui dovrà puntare, in modo tale da legarlo
-					ad un solo script js che farà tutto automaticamente
-
-					probabilmente si cancellera, creato in automatico con javascript-->
-					<div class="item" onclick="location.href='movieInf.html';">
-						<div class="img">
-							<img src="movie/cover/joker.jpg" alt="joker">
-						</div>
-						<div class="name">
-							<p>Joker</p>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="img">
-							<img src="assets/images/unavaliable.png" alt="unavaliable">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-
 				</div>
+
+				<!------->
+
+
 
 			</div>
 		</section>
@@ -169,6 +89,7 @@
 		<script src="assets/js/main.js"></script>
 
 		<!-- nostri script -->
+		<script src="assets/js/createItem.js"></script>
 		<script src="assets/js/navbar.js"></script>
 		<script src="assets/js/login.js"></script>
 
