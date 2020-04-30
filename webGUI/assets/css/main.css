@@ -281,7 +281,7 @@
 			}
 
 		}
-		
+
 /* Section/Article */
 
 	section.special, article.special {
@@ -448,39 +448,22 @@
 	#header {
 		color: #fff;
 		cursor: default;
-		height: 3.25em;
+		height: 3.85em;
 		left: 0;
-		line-height: 3.25em;
-		position: absolute;
+		line-height: 3.85em;
+		position: fixed;
 		text-align: right;
-		top: 2em;
+		top: 0;
 		width: 100%;
 		z-index: 10001;
 	}
 
 		#header .inner {
-			margin: 0 auto;
+			margin-right: 4em;
 			position: relative;
+			float: right;
 		}
 
-		#header .logo {
-			color: #ffffff;
-			display: inline-block;
-			font-weight: 400;
-			height: inherit;
-			left: 0;
-			line-height: inherit;
-			margin: 0;
-			padding: 0;
-			position: absolute;
-			top: 0;
-			font-size: 1em;
-		}
-
-			#header .logo strong {
-				color: #ffffff;
-				font-weight: 600;
-			}
 
 		#header a {
 			-moz-transition: color 0.2s ease-in-out;
@@ -496,10 +479,6 @@
 
 			#header a:hover {
 				color: #ffffff;
-			}
-
-			#header a:last-child {
-				padding-right: 0;
 			}
 
 			#header a.navPanelToggle {
@@ -657,7 +636,7 @@
 /* Banner */
 
 	#banner {
-		padding: 8em 0 9em 0;
+		padding: 4em 0 6em 0 !important;  /* da sistemare col senno di poi */
 		background-image: url(../../assets/images/banner.jpg);
 		background-size: cover;
 		background-position: bottom;
@@ -680,7 +659,7 @@
 		#banner .inner {
 			border-top: 2px solid rgba(255, 255, 255, 0.2);
 			position: relative;
-			z-index: 10005;
+			z-index: 100;
 			padding-top: 8em;
 		}
 
