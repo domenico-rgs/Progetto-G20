@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <title>Generic - Projection by TEMPLATED</title>
+    <title>Film information</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -16,15 +16,25 @@
     <!-- Header -->
     <header id="header">
       <div class="inner">
-        <a href="index.html" class="logo"><strong>Progetto-G20</strong></a>
         <nav id="nav">
-          <a href="index.html">Home</a>
-          <a href="#">Movie</a>
-          <a href="#footer">About</a>
+         <a href="#">Home</a>
+		<a href="catalog.html">Catalog</a>
+		<a href="faq.html">FAQ</a>
+		<a href="#footer">About</a>
+		<a href="#" onClick="loginAppear(); return false;">Login</a>
         </nav>
         <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
       </div>
     </header>
+    
+    <!-- navbar a discesa -->
+		<div id="navbar">
+			<a href="#" onClick="loginAppear(); return false;">Login</a>
+			<a href="#footer">About</a>
+			<a href="faq.html">FAQ</a>
+			<a href="catalog.html">Catalog</a>
+			<a href="#">Home</a>
+		</div>
 
     <!-- Three -->
     <section id="three" class="wrapper">
@@ -58,7 +68,7 @@
     <div id="showingTransparent">
 
       <div id="showing" class="showing">
-        <img id="exit" src="images/icon/exit.png" onClick="showingHidden(); return false;">
+        <img id="exit" src="assets/images/icon/exit.png" onClick="showingHidden(); return false;">
 
 
       </div>
