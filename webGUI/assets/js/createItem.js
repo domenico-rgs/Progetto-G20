@@ -22,22 +22,12 @@ function fetchRandomImages(number) {
   }
 }
 
-fetchRandomImages(80);
+fetchRandomImages(10);
 
 var oldScroll = 1800;
 var element = 20;
 
 window.onscroll = function() {
-
-  //automatic navbar
-  if (document.body.scrollTop > 380 || document.documentElement.scrollTop > 380)
-  {
-    document.getElementById("navbar").style.top = "0";
-  }
-  else
-  {
-    document.getElementById("navbar").style.top = "-60px";
-  }
 
   //create automatic scroll item
   if(element < 100 &&(document.body.scrollTop > oldScroll || document.documentElement.scrollTop > oldScroll)) {

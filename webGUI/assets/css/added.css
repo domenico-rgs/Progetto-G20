@@ -14,10 +14,6 @@
   padding-top: 5%;
 }
 
-#footer {
-  background-color: rgb(156, 0, 0);
-}
-
 #three .inner h1 {
   color: #373d51;
   font-size: 150%;
@@ -39,10 +35,10 @@
   border: none;
   vertical-align: middle;
   font-size: 20px;
-  color: white;
+  color: #333;
   width: 80%;
   height: 90%;
-  background: linear-gradient(to right, white, white) 0px calc(100% - 5px)/calc(100% - 10px) 2px no-repeat;
+  background: linear-gradient(to right, #333, #333) 0px calc(100% - 5px)/calc(100% - 10px) 2px no-repeat;
 }
 
 input[type="search"], select {
@@ -51,7 +47,7 @@ input[type="search"], select {
 
 .searchBar img {
   vertical-align: middle;
-  width: auto;
+  height: 90%;
   display: inline-block;
 }
 
@@ -113,7 +109,7 @@ input[type="search"], select {
 
 #header {
   background-color: rgb(51,51,51, 0);
-  transition: top 0.3s;
+  transition: background-color 0.5s ease-in-out;
   z-index: 1000;
 }
 

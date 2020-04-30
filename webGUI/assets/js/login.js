@@ -1,15 +1,24 @@
 //scritti da noi
+var frame = document.getElementById('loginFrame');
+var transp = document.getElementById('loginTransparent');
+
+
 function loginAppear() {
 
-
-  document.getElementById('loginFrame').style.animation = "300ms fadeIn";
-  document.getElementById('loginFrame').style.animationFillMode = "forwards";
+  frame.style.visibility = "visible";
+  document.getElementById('loginFrame').style.opacity = 1;
+  document.getElementById('loginFrame').style.top = "5%";
   document.getElementById('loginTransparent').style.visibility = "visible";
+
 }
 
 function loginHidden() {
-
+  document.getElementById('loginFrame').style.visibility = "hidden";
+  frame.style.opacity = 0;
+  frame.style.top = "-5%";
+  transp.style.visibility = "hidden";
 }
+
 
 // scaricati
 $(document).ready(function() {

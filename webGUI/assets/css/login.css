@@ -1,6 +1,5 @@
 .login {
     position: fixed;
-    top: 5%;
     left: 0;
     right: 0;
     margin: auto;
@@ -10,51 +9,18 @@
     border-radius: 15px;
     background: white;
     box-shadow: 0 1px 5px 0 rgba(0,0,0,0.26);
-    visibility: visible;
-    animation: none;
-    animation-fill-mode: forwards;
 }
 
-/* my script */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    top: 0;
-  }
-  30% {
-    opacity: 0.3;
-    top: 1%;
-  }
-  60% {
-    opacity: 0.6;
-    top: 3%;
-  }
-  100% {
-    visibility: visible;
-    opacity: 1;
-    top: 5%;
-  }
+#loginFrame {
+  position: absolute;
+  border: none;
+  visibility: hidden;
+  top: -5%;
+  opacity: 0;
+  transition: opacity 1.5s, top 1s;
 }
 
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    top: 10%;
-  }
-  30% {
-    opacity: 0.6;
-    top: 6%;
-  }
-  60% {
-    opacity: 0.3;
-    top: 3%;
-  }
-  100% {
-    visibility: hidden;
-    opacity: 0;
-    top: 0%;
-  }
-}
+
 
 #loginTransparent {
   position: fixed;
@@ -64,9 +30,6 @@
   z-index: 20000;
   background-color: rgb(130, 131, 127, 0.6);
   visibility: hidden;
-}
-#loginTransparent:hover {
-  cursor: pointer;
 }
 
 .login #exit {
@@ -81,7 +44,6 @@
 	position: relative;
 	width: 30px;
 	height: 30px;
-	border-radius: 50%;
 	float: right;
 	cursor: pointer;
 }
@@ -100,7 +62,8 @@
 	display: block;
 	text-align: center;
 	margin: -15px 0;
-	font-size: 15px;
+	font-size: 25px;
+  font-family: "Arial";
 }
 
 .login form {
@@ -158,6 +121,7 @@
   top: 10px;
   font-size: 16px;
   color: #999;
+  font-family: "Arial";
   font-weight: 300;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
@@ -218,15 +182,15 @@
 button[type="submit"] {
 	position: relative;
 	float: right;
-	font-family: inherit;
+	font-family: "Arial";
 	font-weight: 100;
 	font-size: 15px;
 	border: 0;
 	margin: -3px 0px;
 	padding: 5px 15px;
-	border-radius: 3px;
+	border-radius: 50px;
 	cursor: pointer;
-	background: rgb(3, 169, 245);
+	background: rgb(6, 86, 122);
 	color: #fff;
 	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 }
@@ -251,6 +215,7 @@ button[type="submit"]:focus {
 	display: block;
 	text-decoration: none;
 	font-size: 12px;
+  font-family: "Arial";
 	color: inherit;
 }
 
