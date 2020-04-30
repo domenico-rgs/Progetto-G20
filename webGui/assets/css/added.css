@@ -18,7 +18,7 @@
 }
 
 #three .inner h1 {
-  color: black;
+  color: #373d51;
   font-size: 150%;
 }
 
@@ -97,6 +97,7 @@ input[type="search"], select {
   top: 5px;
   width: 80%;
   height: 20%;
+  color: #373d51;
 }
 
 .filmMenu p {

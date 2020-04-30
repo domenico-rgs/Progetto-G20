@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/added.css">
     <link rel="stylesheet" href="assets/css/movie.css">
+    <link rel="stylesheet" href="assets/css/showing.css">
   </head>
 
   <body class="subpage">
@@ -46,11 +47,24 @@
           <h6><strong>Prezzo: </strong> 0.00€</h6>
         </div>
 
-        <button type="button" name="button">BUY</button>
+        <button type="button" onClick="showingAppear(); return false;">Show Available</button>
 
 
       </div>
     </section>
+
+
+    <!-- catalog showing form -->
+    <div id="showingTransparent">
+
+      <div id="showing" class="showing">
+        <img id="exit" src="images/icon/exit.png" onClick="showingHidden(); return false;">
+
+
+      </div>
+
+    </div>
+
 
     <!-- Footer -->
     <footer id="footer">
@@ -70,6 +84,7 @@
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/showing.js"></script>
 
   </body>
 
