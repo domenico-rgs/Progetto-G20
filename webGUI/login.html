@@ -1,55 +1,39 @@
-<link rel="stylesheet" href="assets/css/login.css">
-
+</head>
+<link rel="stylesheet" type="text/css" href="assets/css/login.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 <div id="login" class="login">
-
-  <img src="assets/images/icon/exit.png" alt="" onClick="loginHidden(); return false;">
-
-  <img src="assets/images/icon/user.png" alt="">
-  <span>User Login</span>
-
-  <form action="" id="login-form">
-
-    <div id="u" class="form-group">
-      <input id="username" spellcheck=false class="form-control" name="username" type="text" size="18" alt="login" required="">
-      <span class="form-highlight"></span>
-      <span class="form-bar"></span>
-      <label for="username" class="float-label">Email</label>
-      <erroru>
-        Username is required
-        <i>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M0 0h24v24h-24z" fill="none" />
-            <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-          </svg>
-        </i>
-      </erroru>
-    </div>
-
-    <div id="p" class="form-group">
-      <input id="password" class="form-control" spellcheck=false name="password" type="password" size="18" alt="login" required="">
-      <span class="form-highlight"></span>
-      <span class="form-bar"></span>
-      <label for="password" class="float-label">Password</label>
-      <errorp>
-        Password is required
-        <i>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M0 0h24v24h-24z" fill="none" />
-            <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-          </svg>
-        </i>
-      </errorp>
-    </div>
-
-    <div class="form-group">
-      <button id="submit" type="submit" ripple>Sign in</button>
-    </div>
-
-  </form>
-
-  <footer><a href="#0">Create an account</a></footer>
-</div>
-
-<script src="assets/js/login.js">
-
-</script>
+		<div class="img">
+		</div>
+		<div class="login-content">
+			<form action="index.html">
+				<img src="assets/images/icon/avatar.svg">
+				<h2 class="title">Sign in</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Username</h5>
+           		   		<input type="text" class="input">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" class="input">
+            	   </div>
+            	</div>
+            	<a href="#">Forgot Password?</a>
+            	<input type="submit" class="btn" value="Login">
+            	<input type="submit" class="btn" value="Create account">
+            </form>
+        </div>
+<script type="text/javascript" src="assets/js/login.js"></script>
+</body>
