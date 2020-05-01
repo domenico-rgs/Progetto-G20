@@ -3,9 +3,9 @@
     left: 0;
     right: 0;
     margin: auto;
-    padding: 10px;
-    width: 420px;
-    height: 520px;
+    padding: 2%;
+    width: 500px;
+    height: auto;
     border-radius: 15px;
     background: white;
     box-shadow: 0 1px 5px 0 rgba(0,0,0,0.26);
@@ -30,6 +30,7 @@
   z-index: 20000;
   background-color: rgb(130, 131, 127, 0.6);
   visibility: hidden;
+  overflow-y: scroll;
 }
 
 *{
@@ -62,8 +63,9 @@
 }
 
 .login-content{
-    	font-family: 'Poppins', sans-serif;
+  font-family: 'Arial', sans-serif;
 	display: flex;
+
 	justify-content: flex-start;
 	align-items: center;
 	text-align: center;
@@ -74,7 +76,8 @@
 }
 
 form{
-	width: 400px;
+	width: 350px;
+  margin: auto;
 }
 
 .login-content img{
@@ -84,8 +87,7 @@ form{
 .login-content h2{
 	margin: 15px 0;
 	color: #333;
-	text-transform: uppercase;
-	font-size: 2.9rem;
+	font-size: 2.3rem;
 }
 
 .login-content .input-div{
@@ -172,7 +174,7 @@ form{
 	padding: 0.5rem 0.7rem;
 	font-size: 1.2rem;
 	color: #555;
-	font-family: 'poppins', sans-serif;
+	font-family: 'Arial', sans-serif;
 }
 
 .input-div.pass{
@@ -213,6 +215,19 @@ a:hover{
 	background-position: right;
 }
 
+.buttons {
+  display: inline;
+  height: auto;
+}
+
+input[type="submit"] {
+  margin: 15px auto;
+  width: 80%;
+}
+
+input[type="submit"]:hover {
+  transform: scale(1.1);
+}
 
 @media screen and (max-width: 1050px){
 	.container{

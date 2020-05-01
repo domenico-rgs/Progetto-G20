@@ -8,6 +8,7 @@ function loginAppear() {
   document.getElementById('loginFrame').style.opacity = 1;
   document.getElementById('loginFrame').style.top = "5%";
   document.getElementById('loginTransparent').style.visibility = "visible";
+  document.getElementsByTagName('body')[0].style.overflow = "hidden";
 
 }
 
