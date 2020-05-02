@@ -2,8 +2,8 @@
 <html>
 
   <head>
-   <meta charset="UTF-8">
-  <link rel="icon" href="assets/images/favicon.png" type="image/png" />
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png" />
     <title>Cinema G20 - Film information</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,28 +15,28 @@
   </head>
 
   <body>
-   <!-- Header with navbar-->
-		<header id="header">
-			<div class="inner">
-				<nav id="nav">
-					<a href="index.html">Home</a>
-					<a href="#">FAQ</a>
-					<a href="#footer">About</a>
-					<a href="#" onClick="loginAppear(); return false;">Login</a>
-				</nav>
-				<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-			</div>
-		</header>
-		
-    <!-- Banner -->
-	<section id="banner">
-     	 <div class="inner">
-       	 <header>
-          	<h1>Film information</h1>
-        	</header>
+    <!-- Header with navbar-->
+    <header id="header">
+      <div class="inner">
+        <nav id="nav">
+          <a href="index.html">Home</a>
+          <a href="#">FAQ</a>
+          <a href="#footer">About</a>
+          <a href="#" onClick="loginAppear(); return false;">Login</a>
+        </nav>
+        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+      </div>
+    </header>
 
-     	 </div>
-    	</section>
+    <!-- Banner -->
+    <section id="banner">
+      <div class="inner">
+        <header>
+          <h1>Film information</h1>
+        </header>
+
+      </div>
+    </section>
 
     <!-- Three -->
     <section id="three" class="wrapper">
@@ -61,21 +61,17 @@
 
         <button type="button" onClick="showingAppear(); return false;">Available shows</button>
 
+        <!-- catalog showing form -->
+        <div class="catalogList">
+          <p class="prova">testo di prova, verrà sostituito da una tabella con la lista delle proiezioni per questo film</p>
+        </div>
+
 
       </div>
     </section>
 
 
-    <!-- catalog showing form -->
-    <div id="showingTransparent">
 
-      <div id="showing" class="showing">
-        <img id="exit" src="assets/images/icon/exit.png" onClick="showingHidden(); return false;">
-
-
-      </div>
-
-    </div>
 
 
     <!-- Footer -->
@@ -96,10 +92,13 @@
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-    
+
     <script src="assets/js/login.js"></script>
     <script src="assets/js/navbar.js"></script>
     <script src="assets/js/showing.js"></script>
+
+    <!-- sto provando questo script -->
+    <script src="assets/js/catalog.js"></script>
 
   </body>
 
