@@ -2,6 +2,7 @@
   display: inline;
 }
 
+
 .imgMovie img {
   width: 25%;
   height: 50%;
@@ -40,7 +41,7 @@
 }
 
 button {
-  display: inherit;
+  position: relative;
   float: right;
   margin: auto;
   border: none;
@@ -63,9 +64,8 @@ button {
   }
 
   button {
-    position: absolute;
-    margin-bottom: 50px;
     height: 40px;
     width: 150px;
+    top: -50px;
   }
 }

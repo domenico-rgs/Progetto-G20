@@ -12,6 +12,7 @@
 #three {
   background-color: rgb(230, 230, 230);
   padding-top: 5%;
+  height: auto;
 }
 
 #three .inner h1 {
@@ -20,6 +21,8 @@
 }
 
 .searchBar {
+  position: relative;
+  text-align: center;
   width: 80%;
   height: 50px;
   margin: auto;
@@ -30,6 +33,7 @@
 }
 
 .searchBar input {
+  outline: none;
   background-color: transparent;
   display: inline-block;
   border: none;
@@ -38,12 +42,19 @@
   color: #333;
   width: 80%;
   height: 90%;
-  background: linear-gradient(to right, #333, #333) 0px calc(100% - 5px)/calc(100% - 10px) 2px no-repeat;
+  border-bottom: 2px solid black;
+  /*background: linear-gradient(to right, #333, #333) 0px calc(100% - 5px)/calc(100% - 10px) 2px no-repeat;*/
 }
 
-input[type="search"], select {
-  outline: none;
+.searchBar > label {
+  position: absolute;
+  font-size: 20px;
+  transform-origin: top left;
+  transform: translate(0, 16px) scale(1);
+  transition: all .1s ease-in-out;
 }
+
+
 
 .searchBar img {
   vertical-align: middle;
