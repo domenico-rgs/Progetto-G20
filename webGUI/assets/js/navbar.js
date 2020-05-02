@@ -27,3 +27,8 @@ function navOnLoad() {
     element.style.backgroundColor = rgb + 1 + ')';
   }
 };
+
+//per i tasti di pagination
+$('a').click(function() {
+  $(this).addClass('active').siblings().removeClass('active');
+});

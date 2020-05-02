@@ -8,6 +8,15 @@
 .accordion {
   /*se vuoi ridurre o spostare gli elementi dall'attuale posizione
   lavora qua dentro, e casomai aiutati con lo strumento di sviluppo di chrome o altro */
+  text-align: left;
+}
+
+.accordion-item {
+  border-bottom:  1px solid #7288a2;
+}
+
+.accordion-item:hover {
+  border-bottom:  1px solid #ff5353;
 }
 
 
@@ -20,6 +29,7 @@ h3 {
 .accordion a {
   position: relative;
   flex-direction: column;
+  text-align: left;
   width: 100%;
   padding: 1rem 3rem 1rem 1rem;
   color: #7288a2;
