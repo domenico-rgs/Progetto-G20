@@ -23,16 +23,3 @@ function fetchRandomImages(number) {
 }
 
 fetchRandomImages(10);
-
-var oldScroll = 1800;
-var element = 20;
-
-window.onscroll = function() {
-
-  //create automatic scroll item
-  if(element < 100 &&(document.body.scrollTop > oldScroll || document.documentElement.scrollTop > oldScroll)) {
-    oldScroll += 300;
-    fetchRandomImages(5);
-    element += 5;
-  }
-};
