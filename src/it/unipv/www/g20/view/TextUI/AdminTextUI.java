@@ -85,6 +85,7 @@ public class AdminTextUI {
 
 	/*
 	 * metodi generali che scaturiscono dal primo menu
+	 * [mancano le opzioni quando cerco di modificare il biglietto]
 	 */
 	private void manageTicket() {
 		
@@ -154,7 +155,12 @@ public class AdminTextUI {
 			}
 		}
 	}
-
+	/*
+	 * [quando cerco di modificare la sala non posso modificare nulla (posti...) perchè si ripresenta sempre lo stesso menù]
+	 * [non posso visualizzare nessuna proiezione]
+	 * [se cerco di aggiungere una proiezione mi ritorna sempre null senza capire l'errore]
+	 * [manca tutto il menù opzioni quando cerco di modificare una proiezione]
+	 */
 	@SuppressWarnings("deprecation")
 	private void manageTheater() {
 		System.out.println("\nTheatre management menu\n*******************");
@@ -268,7 +274,9 @@ public class AdminTextUI {
 		}
 	}
 
-
+/*
+ * [quando cerchi di modificare un film non succede nulla]
+ */
 	private void manageFilm() {
 		System.out.println("Movie management menu\n************");
 
