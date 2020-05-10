@@ -11,7 +11,9 @@
 }
 
 /* primo sottom menu */
+
 .sideMenu {
+  position: relative;
   float: left;
   overflow-y: auto;
   height: auto;
@@ -26,6 +28,7 @@
   text-decoration: none;
   font-size: 1.2em;
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .sideMenu a.active {
@@ -38,23 +41,96 @@
 background-color: rgb(161, 161, 161);
 }
 
-/*secondo sotto menu */
+/*contenuto di amministrazione */
 .contentAdmin {
+  position: relative;
   padding-left: 5%;
+  overflow: auto;
   float: left;
-  overflow-y: auto;
   height: auto;
   width: 80%;
 }
 
-/* gestione elementi di gestisci sale */
-.theatre .theatreList {
-  float: left;
-  width: auto;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  color: white;
-  background-color:  rgb(37, 85, 135)
+.contentAdmin *:not(div) {
+  margin: 10px;
+}
 
+.contentAdmin input {
+  width: 35%;
+  border-radius: 50px;
+  border: none;
+  padding: 5px 10px;
+  color: black;
+}
+
+.contentAdmin input:focus {
+  outline: none;
+}
+
+.contentAdmin textarea {
+  width: 70%;
+  resize: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: none;
+  color: black;
+}
+
+.contentAdmin textarea:focus {
+  outline: none;
+}
+
+.contentAdmin button {
+  border-radius: 50px;
+  color: white;
+  background-color: rgb(30,63,97);
+  padding:10px;
+  border: none;
+  cursor: pointer;
+}
+
+.contentAdmin button:focus {
+  outline: none;
+}
+
+.contentAdmin button:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.contentAdmin #searchList {
+  width: 25%;
+  padding: 5px 10px;
+}
+
+.contentAdmin .change, .add {
+  border-bottom: 1px solid rgb(30,63,97);
+  overflow: visible;
+}
+
+.contentAdmin p {
+  text-align: left;
+  color: rgb(30,63,97);
+}
+
+
+/* menu di sotto gestione selezionati da bottone*/
+.theatre{
+  overflow: hidden;
+  height: 0;
+}
+
+.movie {
+  overflow: hidden;
+  height: 0;
+}
+
+.ticket {
+  overflow: hidden;
+  height: 0;
+}
+
+.showing {
+  overflow: hidden;
+  height: 0;
 }

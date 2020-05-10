@@ -45,10 +45,10 @@
 
         <!-- Primo sidemenu a sinistra -->
         <div class="sideMenu">
-          <a href="#">Gestisci Sale</a>
-          <a href="#">Gestisci Film</a>
-          <a href="#">Gestisci Biglietti</a>
-          <a href="#">Gestisci Proiezioni</a>
+          <a value="theatre">Gestisci Sale</a>
+          <a value="movie">Gestisci Film</a>
+          <a value="ticket">Gestisci Biglietti</a>
+          <a value="showing">Gestisci Proiezioni</a>
         </div>
 
         <!-- FINE SOTTO MENU ------------>
@@ -56,32 +56,94 @@
         <!-- div che si mostrano in relaizione al bottone premuto ------>
         <div class="contentAdmin">
 
+          <!-- gestione delle sale -->
           <div class="theatre">
 
-            <select class="theatreList">
-              <option value="-1">Sale disponibili</option>
-              <option value="0">Prova 1</option>
-              <option value="1">Prova 2</option>
-            </select>
+            <div class="change">
+              <p>Modifica o rimuovi sale:</p>
 
+              <div class="searchDiv">
+                <input id="searchList" list="theatreList" placeholder="Cerca sala">
+                <datalist id="theatreList">
+                  <option value="Sale Disponibili">
+                  <option value="prova 1">
+                  <option value="prova 2">
+                </datalist>
 
+                <button>Rimuovi</button>
+                <button>Modifica</button>
+              </div>
+
+              <input placeholder="Nome">
+              <input placeholder="righe-colonne ex: 5-7">
+              <textarea rows="8" cols="80" placeholder="configuration"></textarea>
+            </div>
+
+            <div class="add">
+              <p>Aggiungi una sala:</p>
+
+              <input placeholder="Nome">
+              <input placeholder="righe-colonne ex: 5-7">
+              <button>Aggiungi</button>
+            </div>
           </div>
 
+
+          <!--Gestione dei film -->
           <div class="movie">
 
+            <div class="change">
+              <p>Modifica o rimuovi film:</p>
+
+              <div class="searchDiv">
+                <input id="searchList" list="filmList" placeholder="Cerca film">
+                <datalist id="filmList">
+                  <option value="Sale Disponibili">
+                  <option value="prova 1">
+                  <option value="prova 2">
+                </datalist>
+
+                <button>Rimuovi</button>
+                <button>Modifica</button>
+              </div>
+
+              <input placeholder="Nome">
+              <input placeholder="Durata">
+              <input placeholder="Prezzo">
+              <input placeholder="Pegi18">
+              <textarea rows="8" cols="80" placeholder="Descrizione"></textarea>
+            </div>
+
+            <div class="add">
+              <p>Aggiungi un film:</p>
+
+              <input placeholder="Nome">
+              <input placeholder="Durata">
+              <input placeholder="Prezzo">
+              <input placeholder="Pegi18">
+              <textarea rows="8" cols="80" placeholder="Descrizione"></textarea>
+              <button>Aggiungi</button>
+            </div>
           </div>
 
+
+          <!--Gestione dei biglietti -->
           <div class="ticket">
-
+            <p>da completare</p>
           </div>
 
+
+          <!--Gestione delle proiezioni -->
           <div class="showing">
-
+            <p>da completare</p>
           </div>
-
-
 
         </div>
+
+
+
+
+      </div>
 
 
       </div>

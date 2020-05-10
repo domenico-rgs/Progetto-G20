@@ -30,26 +30,3 @@ function navOnLoad() {
     element.style.backgroundColor = rgb + 1 + ')';
   }
 };
-
-//per i tasti di pagination numerati
-$('.pagination a').click(function() {
-  $(this).addClass('active').siblings().removeClass('active');
-});
-
-//effeto di paginazione nei tasti della navabar
-function navPagination() {
-
-  var path = window.location.pathname;
-  var page = path.split("/").pop();
-
-  switch (page) {
-    case "index":
-
-      break;
-    case "faq":
-
-    break;
-    default:
-
-  }
-}
