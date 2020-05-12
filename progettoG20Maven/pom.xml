@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>it.unipv.www.g20</groupId>
-  <artifactId>progettoG20Maven</artifactId>
+  <artifactId>progettoG20</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>progettoG20Maven</name>
   
