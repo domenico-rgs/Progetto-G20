@@ -82,9 +82,6 @@ public class Theatre {
 		return seatsList;
 	}
 
-	public Set<String> getKeySeats(){
-		return seatsList.keySet();
-	}
 	public void setSeatsList(HashMap<String, Seat> seatsList) {
 		this.seatsList = seatsList;
 	}

@@ -38,7 +38,7 @@ public class AdminTextUI {
 		 * ritornando un messaggio di uscita
 		 */
 		while (true) {
-			System.out.println("Main Menù\n**************");
+			System.out.println("Main Menï¿½\n**************");
 
 			System.out.println("Take a choice:\n"
 					+ "1 - Manage Ticket \n"
@@ -118,7 +118,7 @@ public class AdminTextUI {
 					System.out.println("Available showing:\n"+ cinema.searchMovie(film).printMovieShowing());
 					System.out.print("Insert showing: ");
 					String showing = scanner.nextLine();
-					System.out.println(cinema.searchMovie(film).searchShowing(showing).printSeats());
+					System.out.println(cinema.searchMovie(film).searchShowing(showing).getAvailability().printSeats());
 					System.out.print("Insert seat: ");
 					String sedile = scanner.nextLine();
 					System.out.println("\n"+cinema.bookSeat(cinema.searchMovie(film),sedile, showing));
@@ -156,10 +156,10 @@ public class AdminTextUI {
 		}
 	}
 	/*
-	 * [quando cerco di modificare la sala non posso modificare nulla (posti...) perchè si ripresenta sempre lo stesso menù]
+	 * [quando cerco di modificare la sala non posso modificare nulla (posti...) perchï¿½ si ripresenta sempre lo stesso menï¿½]
 	 * [non posso visualizzare nessuna proiezione]
 	 * [se cerco di aggiungere una proiezione mi ritorna sempre null senza capire l'errore]
-	 * [manca tutto il menù opzioni quando cerco di modificare una proiezione]
+	 * [manca tutto il menï¿½ opzioni quando cerco di modificare una proiezione]
 	 */
 	@SuppressWarnings("deprecation")
 	private void manageTheater() {
@@ -223,7 +223,7 @@ public class AdminTextUI {
 					
 				case 6:
 					//MANNAGGIA A DATE MODULO DI MERDAAAA
-					//è pure deprecato, ma quanto siamo arcaici
+					//ï¿½ pure deprecato, ma quanto siamo arcaici
 					System.out.println("ATTENZIONE: FUNZIONE NON ANCORA FUNZIONANTE"); 
 					System.out.print("Inserisci film: ");
 					String film = scanner.nextLine();
@@ -351,7 +351,7 @@ public class AdminTextUI {
 		System.out.println("\nEdit ticket menu\n*******************");
 		
 		/* MANCANO i setter nel ticket, li devo aggiungere?
-		 * è necessario modificare un biglietto?
+		 * ï¿½ necessario modificare un biglietto?
 		 */
 		while (true) {
 			System.out.println("\nTake a choice\n"
@@ -398,7 +398,7 @@ public class AdminTextUI {
 		System.out.println("\nEdit theatre menu\n*******************");
 		
 		/* il setter in theatre non va bene, un utente vorrebbe cambiare
-		 * solo righe e colonne, poi è compito della classe sala implementare un 
+		 * solo righe e colonne, poi ï¿½ compito della classe sala implementare un 
 		 * algoritmo che ricrea la seatList
 		 */
 		

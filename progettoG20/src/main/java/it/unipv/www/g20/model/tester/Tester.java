@@ -1,14 +1,6 @@
 package it.unipv.www.g20.model.tester;
 
-import java.sql.DriverManager;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 import java.util.Date;
-
-import com.sun.jdi.connect.spi.Connection;
 
 import it.unipv.www.g20.controller.cinema.Cinema;
 import it.unipv.www.g20.model.exception.SearchException;
@@ -43,7 +35,7 @@ public class Tester {
 			Movie m = cin1.searchMovie("The big short");
 			System.out.println(m.printMovieShowing());
 			MovieShowing ms= m.searchShowing("P1");
-			System.out.println(ms.printSeats());
+			System.out.println(ms.getAvailability().printSeats());
 			Ticket t = cin1.bookSeat(m, "A1", "P1");
 			System.out.println(t);
 

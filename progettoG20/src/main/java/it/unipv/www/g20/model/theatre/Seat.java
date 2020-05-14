@@ -5,11 +5,23 @@ package it.unipv.www.g20.model.theatre;
  * @see Theatre
  */
 public class Seat {
-	private String id;
+	private String position;
 
 	public Seat(String seatId) {
-		id = seatId;
+		position = seatId;
 	}
+
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		return result;
+	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -19,34 +31,24 @@ public class Seat {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Seat other = (Seat) obj;
-		if (id == null) {
-			if (other.id != null)
+		Seat other = (Seat) obj;
+		if (position == null) {
+			if (other.position != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!position.equals(other.position))
 			return false;
 		return true;
 	}
 
-	public String getId() {
-		return id;
-	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = (prime * result) + ((id == null) ? 0 : id.hashCode());
-		return result;
+
+	public String getPosition() {
+		return position;
 	}
-	/**
-	 * allows you to set a seat available or unavailable
-	 * @param availability availability (true or false)
-	 */
 
 	@Override
 	public String toString() {
-		return "Seat: " + id;
+		return "Seat: " + position;
 	}
 
 }

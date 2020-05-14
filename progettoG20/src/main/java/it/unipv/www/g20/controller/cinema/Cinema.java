@@ -87,8 +87,8 @@ public class Cinema {
 
 	public Ticket bookSeat(Movie movie, String seat, String idShowing) throws SearchException {
 		MovieShowing ms=movie.searchShowing(idShowing);
-		if(ms.searchAvailability(seat)) {
-			ms.changeAvailability(seat, false);
+		if(ms.getAvailability().searchAvailability(seat)) {
+			ms.getAvailability().changeAvailability(seat, false);
 			return buyTicket(movie,seat, ms);
 		}
 		return null;
