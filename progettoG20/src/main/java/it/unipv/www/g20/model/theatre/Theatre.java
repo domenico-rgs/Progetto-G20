@@ -33,7 +33,7 @@ public class Theatre {
 		int i=0;
 		while((s = seats.readLine())!= null){
 			String[] tmp = s.split(" ");
-			for(int j = 0; j<tmp.length; j++)
+			for(int j = 0; j<tmp.length; j++) {
 				switch (tmp[j]) {
 				case "X":
 					seatsList.put(Character.toString(65 + i) + j, new Seat(Character.toString(65 + i) + j));
@@ -48,7 +48,19 @@ public class Theatre {
 					throw new SeatException("Unrecognized seat type, recheck the file");
 				}
 			i++;
+			}
 		}
+	}
+	
+	@SuppressWarnings("resource")
+	public String printConfiguration() throws IOException {
+		BufferedReader seats = new BufferedReader(new FileReader(filePath));
+		String s;
+		StringBuilder string = new StringBuilder();
+		while((s = seats.readLine())!= null){
+			string.append(s+"\n");
+		}
+		return string.toString();
 	}
 
 	public String getName() {

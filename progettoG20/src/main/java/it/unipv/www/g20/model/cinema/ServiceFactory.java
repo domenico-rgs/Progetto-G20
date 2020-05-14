@@ -1,7 +1,7 @@
 package it.unipv.www.g20.model.cinema;
 
 import it.unipv.www.g20.model.payment.PaymentAdapter;
-import it.unipv.www.g20.model.payment.PaymentSimulatorAdapter;
+import it.unipv.www.g20.model.payment.SimPaymentAdapter;
 
 public class ServiceFactory {
 	private static ServiceFactory istance = null;
@@ -13,7 +13,7 @@ public class ServiceFactory {
 
 	public PaymentAdapter getPaymentAdapter() {
 		if (paymentSimulator == null)
-			paymentSimulator = new PaymentSimulatorAdapter();
+			paymentSimulator = new SimPaymentAdapter();
 		return paymentSimulator;
 	}
 

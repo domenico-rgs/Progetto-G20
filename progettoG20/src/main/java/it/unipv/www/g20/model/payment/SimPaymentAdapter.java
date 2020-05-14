@@ -1,6 +1,6 @@
 package it.unipv.www.g20.model.payment;
 
-public class PaymentSimulatorAdapter implements PaymentAdapter{
+public class SimPaymentAdapter implements PaymentAdapter{
 
 	@Override
 	public boolean pay(double money, String code, String pin, String cvc) {
