@@ -1,0 +1,13 @@
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/controller/cinema/Cinema.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/ticket/Ticket.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/movie/Movie.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/exception/SearchException.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/theatre/Seat.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/theatre/Theatre.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/movie/TypeCategory.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/movie/MovieShowing.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/view/TextUI/AdminTextUI.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/tester/TesterUI.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/test/App.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/tester/Tester.java
+/home/domenico/Desktop/GitHub/Progetto-G20/progettoG20/src/main/java/it/unipv/www/g20/model/ticket/TicketLedger.java

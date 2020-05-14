@@ -1,0 +1,13 @@
+it/unipv/www/g20/model/theatre/Seat.class
+it/unipv/www/g20/model/movie/MovieShowing.class
+it/unipv/www/g20/view/TextUI/AdminTextUI.class
+it/unipv/www/g20/controller/cinema/Cinema.class
+it/unipv/www/g20/model/movie/Movie.class
+it/unipv/www/g20/test/App.class
+it/unipv/www/g20/model/exception/SearchException.class
+it/unipv/www/g20/model/tester/Tester.class
+it/unipv/www/g20/model/theatre/Theatre.class
+it/unipv/www/g20/model/movie/TypeCategory.class
+it/unipv/www/g20/model/ticket/TicketLedger.class
+it/unipv/www/g20/model/ticket/Ticket.class
+it/unipv/www/g20/model/tester/TesterUI.class
