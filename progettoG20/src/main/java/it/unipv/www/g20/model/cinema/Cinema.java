@@ -1,8 +1,10 @@
 package it.unipv.www.g20.model.cinema;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import it.unipv.www.g20.model.exception.SearchException;
+import it.unipv.www.g20.model.exception.SeatException;
 import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
 import it.unipv.www.g20.model.theatre.Theatre;
@@ -33,11 +35,11 @@ public class Cinema {
 
 	}
 
-	public boolean createTheatre(String name, int row, int col) throws SearchException{
+	public boolean createTheatre(String name, String file) throws SearchException, IOException, SeatException{
 		if (theatreList.containsKey(name))
 			throw new SearchException(name+" already exists.");
 
-		theatreList.put(name, new Theatre(name, row, col));
+		theatreList.put(name, new Theatre(name, file));
 		return true;
 	}
 

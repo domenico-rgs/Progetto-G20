@@ -47,6 +47,6 @@ public class MovieShowing {
 	@SuppressWarnings("deprecation")
 	@Override
 	public String toString() {
-		return getId() + " - " + date.toLocaleString() + " - " + theatre.getName();
+		return getId() + " - " + date.toLocaleString() + " - " + theatre.getTheatreName();
 	}
 }

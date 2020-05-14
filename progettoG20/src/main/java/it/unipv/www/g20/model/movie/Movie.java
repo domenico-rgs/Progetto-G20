@@ -25,9 +25,22 @@ public class Movie {
 	}
 
 	public MovieShowing addMovieShowing(Date date, Theatre theatre, Double price){
-		//da aggiungere il controllo sull'ora e la relativa eccezione
-		MovieShowing tmp = new MovieShowing(date, theatre, price);
-		return showingList.put(tmp.getId(), tmp);
+		if(!overlappingControl(date)) {
+			MovieShowing tmp = new MovieShowing(date, theatre, price);
+			return showingList.put(tmp.getId(), tmp);
+		}
+		return null;
+	}
+	
+	private boolean overlappingControl(Date date) {
+		for(String s : showingList.keySet()) {
+			MovieShowing show = showingList.get(s);
+			long t= show.getDate().getTime();
+			Date after=new Date(t + duration);
+			if(date.compareTo(show.getDate())>=0 && date.compareTo(after)<=0)
+				return true;
+		}
+		return false;
 	}
 
 	public MovieShowing deleteMovieShowing(String id) throws SearchException{
@@ -114,8 +127,8 @@ public class Movie {
 	public String toString() {
 		String s = "Title: " + title + "\n";
 		s += " Duration: " + duration + " minutes\n";
-		//s += " Category: " + category.toString().toLowerCase() + "\n";
-		//s += " Plot: \n" + plot + "\n"; //fare qualcosa per mandare a capo
+		s += " Category: " + (category == null ? "not set":category.toString().toLowerCase())+ "\n";
+		s += " Plot: \n" + plot + "\n";
 		return s;
 	}
 }
