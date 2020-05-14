@@ -20,8 +20,8 @@ public class Cinema {
 
 	public Cinema(String name) {
 		this.name = name;
-		theatreList=new HashMap<String, Theatre>();
-		movieCatalog=new HashMap<String, Movie>();
+		theatreList=new HashMap<>();
+		movieCatalog=new HashMap<>();
 	}
 
 	public boolean addMovie(String title, int duration) throws SearchException{
@@ -114,5 +114,5 @@ public class Cinema {
 			s+=theatreList.get(key).toString()+"\n";
 		return s;
 	}
-	
+
 }

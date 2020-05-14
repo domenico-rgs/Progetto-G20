@@ -18,7 +18,7 @@ public class Movie {
 	private HashMap<String, MovieShowing> showingList;
 
 	public Movie(String title, int duration) {
-		showingList = new HashMap<String, MovieShowing>();
+		showingList = new HashMap<>();
 		setTitle(title);
 		setDuration(duration);
 		setPlot("");
@@ -42,9 +42,8 @@ public class Movie {
 	 */
 	public String printMovieShowing() {
 		String s="";
-		for(String key : showingList.keySet()) {
+		for(String key : showingList.keySet())
 			s+=showingList.get(key).toString()+"\n";
-		}
 		return s;
 	}
 

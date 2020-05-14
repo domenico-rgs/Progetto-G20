@@ -88,9 +88,9 @@ public class AdminTextUI {
 	 * [mancano le opzioni quando cerco di modificare il biglietto]
 	 */
 	private void manageTicket() {
-		
+
 		System.out.println("\nTicket management Menu\n*******************");
-		
+
 		while (true) {
 			System.out.println("\nTake a choice\n"
 					+ "1 - Buy Ticket\n"
@@ -110,7 +110,7 @@ public class AdminTextUI {
 			try {
 
 				switch (Integer.parseInt(inputString)) {
-				
+
 				case 1:
 					System.out.println("\nAvailable Moviei: \n"+cinema.printMovie());
 					System.out.print("Insert Movie: ");
@@ -123,21 +123,21 @@ public class AdminTextUI {
 					String sedile = scanner.nextLine();
 					System.out.println("\n"+cinema.bookSeat(cinema.searchMovie(film),sedile, showing));
 					break;
-					
+
 				case 2:
 					System.out.print("Insert ticket code to remove: ");
 					inputString = scanner.nextLine();
 					if(cinema.deleteBooking(inputString));
 					System.out.println("Succesfully removed");
 					break;
-					
+
 				case 3:
 					System.out.println("Insert ticket code to change: ");
 					inputString = scanner.nextLine();
 					Ticket ticket = TicketLedger.getTicketLedger().searchTicket(inputString);
 					changeTicket(ticket);
 					break;
-					
+
 				default:
 					System.out.println("Unavaliable input");
 				}
@@ -187,10 +187,10 @@ public class AdminTextUI {
 			if (inputString.contentEquals("b"))
 				break;
 
-			
+
 			try {
 				switch (Integer.parseInt(inputString)) {
-				
+
 				case 1:
 					System.out.print("Name: ");
 					String nomeSala = scanner.nextLine();
@@ -199,32 +199,32 @@ public class AdminTextUI {
 					if(cinema.createTheatre(nomeSala, Integer.parseInt(stringList[0]), Integer.parseInt(stringList[1])))
 						System.out.println("Succesfully added with name " + nomeSala);
 					break;
-					
+
 				case 2:
 					System.out.println("Theatre's name to remove");
 					cinema.deleteTheatre(scanner.nextLine()); //in caso di problemi ritorna eccezione con messaggio
 					System.out.println("Succesfully removed ");
 					break;
-					
+
 				case 3:
 					System.out.println("Theatre's name to change: ");
 					inputString = scanner.nextLine();
 					Theatre theatre = cinema.searchTheatre(inputString);
-					this.changeTheatre(theatre);
+					changeTheatre(theatre);
 					break;
-					
+
 				case 4:
 					System.out.println(cinema.printTheatres());
 					break;
-					
+
 				case 5:
 					System.out.println("Unavailable option");
 					break;
-					
+
 				case 6:
 					//MANNAGGIA A DATE MODULO DI MERDAAAA
 					//� pure deprecato, ma quanto siamo arcaici
-					System.out.println("ATTENZIONE: FUNZIONE NON ANCORA FUNZIONANTE"); 
+					System.out.println("ATTENZIONE: FUNZIONE NON ANCORA FUNZIONANTE");
 					System.out.print("Inserisci film: ");
 					String film = scanner.nextLine();
 					System.out.print("Inserisci il nome della sala: ");
@@ -238,7 +238,7 @@ public class AdminTextUI {
 							cinema.searchTheatre(sala),Double.parseDouble(prezzo));
 					System.out.println("Aggiunto con successo con codice: "+mS.getId());
 					break;
-					
+
 				case 7:
 					System.out.print("Movie: ");
 					film = scanner.nextLine();
@@ -248,16 +248,16 @@ public class AdminTextUI {
 					cinema.searchMovie(film).deleteMovieShowing(proiezione);
 					System.out.println("Succesfully removed");
 					break;
-					
+
 				case 8:
 					System.out.println("Film name to change showing: ");
 					Movie movie = cinema.searchMovie(scanner.nextLine());
 					movie.printMovieShowing();
 					System.out.println("Showing'g ID to change: ");
 					MovieShowing showing = movie.searchShowing(scanner.nextLine());
-					this.changeShowing(showing);
+					changeShowing(showing);
 					break;
-					
+
 				default:
 					System.out.println("Unavailable input");
 				}
@@ -274,9 +274,9 @@ public class AdminTextUI {
 		}
 	}
 
-/*
- * [quando cerchi di modificare un film non succede nulla]
- */
+	/*
+	 * [quando cerchi di modificare un film non succede nulla]
+	 */
 	private void manageFilm() {
 		System.out.println("Movie management menu\n************");
 
@@ -297,10 +297,10 @@ public class AdminTextUI {
 			}if (inputString.contentEquals("b"))
 				break;
 
-			
+
 			try {
 				switch (Integer.parseInt(inputString)) {
-				
+
 				case 1:
 					System.out.print("Name: ");
 					String titolo = scanner.nextLine();
@@ -310,25 +310,25 @@ public class AdminTextUI {
 					cinema.addMovie(titolo, Integer.parseInt(durata));
 					System.out.println(titolo + " succesfully added");
 					break;
-					
+
 				case 2:
 					System.out.println("Movie name to remove: ");
 					cinema.deleteMovie(scanner.nextLine());
 					System.out.println("Succesfully removed");
 					break;
-					
+
 				case 3:
 					System.out.println("Movie name to remove: ");
 					Movie movie = cinema.searchMovie(scanner.nextLine());
-					this.changeMovie(movie);
+					changeMovie(movie);
 					break;
-					
+
 				case 4:
 					System.out.println(cinema.printMovie());
 					System.out.print("Enter to continue");
 					scanner.nextLine();
 					break;
-					
+
 				default:
 					System.out.println("Unavailable input");
 				}
@@ -344,12 +344,12 @@ public class AdminTextUI {
 			}
 		}
 	}
-	
+
 	//metodi che scaturiscono dai secondi menu
 	private void changeTicket(Ticket ticket) {
-		
+
 		System.out.println("\nEdit ticket menu\n*******************");
-		
+
 		/* MANCANO i setter nel ticket, li devo aggiungere?
 		 * � necessario modificare un biglietto?
 		 */
@@ -372,16 +372,16 @@ public class AdminTextUI {
 			try {
 
 				switch (Integer.parseInt(inputString)) {
-				
+
 				case 1:
 					break;
-					
+
 				case 2:
 					break;
-					
+
 				case 3:
 					break;
-					
+
 				default:
 					System.out.println("Unavailable input");
 				}
@@ -390,18 +390,18 @@ public class AdminTextUI {
 				continue;
 			}
 		}
-		
+
 	}
-	
+
 	private void changeTheatre(Theatre sala) {
-		
+
 		System.out.println("\nEdit theatre menu\n*******************");
-		
+
 		/* il setter in theatre non va bene, un utente vorrebbe cambiare
-		 * solo righe e colonne, poi � compito della classe sala implementare un 
+		 * solo righe e colonne, poi � compito della classe sala implementare un
 		 * algoritmo che ricrea la seatList
 		 */
-		
+
 		while (true) {
 			System.out.println("\nTake a choice\n"
 					+ "1 - Change row\n"
@@ -421,16 +421,16 @@ public class AdminTextUI {
 			try {
 
 				switch (Integer.parseInt(inputString)) {
-				
+
 				case 1:
 					break;
-					
+
 				case 2:
 					break;
-					
+
 				case 3:
 					break;
-					
+
 				default:
 					System.out.println("Unavailable input");
 				}
@@ -439,16 +439,16 @@ public class AdminTextUI {
 				continue;
 			}
 		}
-		
+
 	}
-	
+
 	private void changeShowing(MovieShowing showing) {
-		
+
 		System.out.println("\nEdit showing menu\n*******************");
-		
+
 		/* come per ticket, mancano i setter
 		 */
-		
+
 		while (true) {
 			System.out.println("\nTake a choice\n");
 
@@ -465,16 +465,16 @@ public class AdminTextUI {
 			try {
 
 				switch (Integer.parseInt(inputString)) {
-				
+
 				case 1:
 					break;
-					
+
 				case 2:
 					break;
-					
+
 				case 3:
 					break;
-					
+
 				default:
 					System.out.println("Invalid input");
 				}
@@ -483,15 +483,15 @@ public class AdminTextUI {
 				continue;
 			}
 		}
-		
+
 	}
 	private void changeMovie(Movie movie) {
-		
+
 		System.out.println("\nEdit movie menu\n*****************");
-		
+
 		/* come per film, mancano i setter
 		 */
-		
+
 		while (true) {
 			System.out.println("\nTake a choice\n"
 					+ "1 - Change name\n"
@@ -511,23 +511,23 @@ public class AdminTextUI {
 			try {
 
 				switch (Integer.parseInt(inputString)) {
-				
+
 				case 1:
 					System.out.println("New name: ");
 					movie.setTitle(scanner.nextLine());
 					break;
-					
+
 				case 2:
 					System.out.println("New plot: ");
 					movie.setPlot(scanner.nextLine());
 					break;
-					
+
 				case 3:
 					System.out.println("New duration: ");
 					inputString = scanner.nextLine();
 					movie.setDuration(Integer.parseInt(inputString));
 					break;
-					
+
 				default:
 					System.out.println("Invalid input");
 				}
@@ -536,6 +536,6 @@ public class AdminTextUI {
 				continue;
 			}
 		}
-		
+
 	}
 }

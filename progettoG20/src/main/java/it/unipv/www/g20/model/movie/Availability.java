@@ -13,31 +13,28 @@ public class Availability {
 		genAvailabilityList(list);
 
 	}
-	
+
 	private void genAvailabilityList(HashMap<String, Seat> list) {
 		HashMap<String,Seat> seats = list;
-		for(String s : list.keySet()) {
+		for(String s : list.keySet())
 			availability.put(seats.get(s), true);
-		}
 	}
 
 	public String printSeats() {
 		String string="";
-		for(Seat s : availability.keySet()) {
+		for(Seat s : availability.keySet())
 			string+=s.toString()+" - "+availability.get(s)+"\n";
-		}
 		return string;
 	}
 
 	public boolean searchAvailability(String seat) throws SearchException {
 		return availability.get(findSeat(seat));
-		}
-	
+	}
+
 	private Seat findSeat(String seat) throws SearchException {
-		for(Seat s : availability.keySet()) {
+		for(Seat s : availability.keySet())
 			if(s.getPosition().equalsIgnoreCase(seat))
 				return s;
-		}
 		throw new SearchException("Seat's not found");
 	}
 

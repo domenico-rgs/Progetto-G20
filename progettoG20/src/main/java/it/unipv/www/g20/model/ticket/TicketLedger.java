@@ -9,7 +9,7 @@ public class TicketLedger {
 	private static TicketLedger istance = null;
 
 	private TicketLedger() {
-		ticketList=new HashMap<String, Ticket>();
+		ticketList=new HashMap<>();
 	}
 
 	public Ticket addTicketSale(Ticket ticket) throws SearchException{
@@ -31,9 +31,8 @@ public class TicketLedger {
 	}
 
 	public static TicketLedger getTicketLedger() {
-		if (istance == null) {
+		if (istance == null)
 			istance = new TicketLedger();
-		}
 		return istance;
 	}
 }

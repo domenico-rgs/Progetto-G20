@@ -16,7 +16,7 @@ public class Theatre {
 	private String filePath;
 
 	public Theatre(String theatreName, String filePath) throws IOException, SeatException {
-		seatsList = new HashMap<String, Seat>();
+		seatsList = new HashMap<>();
 		setTheatreName(theatreName);
 		this.filePath=filePath;
 		createSeats(filePath);
@@ -33,7 +33,7 @@ public class Theatre {
 		int i=0;
 		while((s = seats.readLine())!= null){
 			String[] tmp = s.split(" ");
-			for(int j = 0; j<tmp.length; j++) {
+			for(int j = 0; j<tmp.length; j++)
 				switch (tmp[j]) {
 				case "X":
 					seatsList.put(Character.toString(65 + i) + j, new Seat(Character.toString(65 + i) + j));
@@ -47,7 +47,6 @@ public class Theatre {
 				default:
 					throw new SeatException("Unrecognized seat type, recheck the file");
 				}
-			}
 			i++;
 		}
 	}
@@ -69,11 +68,11 @@ public class Theatre {
 	public HashMap<String, Seat> getSeatsList() {
 		return seatsList;
 	}
-	
+
 	public String getTheatreName() {
 		return theatreName;
 	}
-	
+
 	public int getCapacity() {
 		return seatsList.size();
 	}
@@ -82,8 +81,8 @@ public class Theatre {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((filePath == null) ? 0 : filePath.hashCode());
-		result = prime * result + ((theatreName == null) ? 0 : theatreName.hashCode());
+		result = (prime * result) + ((filePath == null) ? 0 : filePath.hashCode());
+		result = (prime * result) + ((theatreName == null) ? 0 : theatreName.hashCode());
 		return result;
 	}
 

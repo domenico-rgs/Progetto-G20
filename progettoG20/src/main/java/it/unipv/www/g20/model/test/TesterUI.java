@@ -1,4 +1,4 @@
-package it.unipv.www.g20.model.tester;
+package it.unipv.www.g20.model.test;
 
 import java.util.Date;
 

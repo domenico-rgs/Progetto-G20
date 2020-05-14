@@ -1,4 +1,4 @@
-package it.unipv.www.g20.model.tester;
+package it.unipv.www.g20.model.test;
 
 import java.util.Date;
 
@@ -52,23 +52,23 @@ public class Tester {
 		} catch(SearchException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		/* da qui in giu test jetty */
 		/*
 		DriverManager.registerDriver((Driver) Class.forName("com.mysql.cy.jdbc.Driver").newInstance());
-		
+
 		String url = "jdbc:mysql://localhosy:3306?user=root&password=root";
-		
+
 		try(Connection conn = DriverManager.getConnection(url);
 				Statement stat = conn.createStatement();
 				ResultSet rs = stat.executeQuery("SELECT 1") {
 			while(rs.next()){
 				syso("result = " +rs.getInt(1))
-			}	
+			}
 		}
-		
-		altro test 
-		*/
+
+		altro test
+		 */
 		/* fine test jetty */
 	}
 }

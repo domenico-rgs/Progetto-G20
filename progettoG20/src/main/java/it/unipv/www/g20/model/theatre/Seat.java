@@ -11,13 +11,13 @@ public class Seat {
 		position = seatId;
 	}
 
-	
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		result = (prime * result) + ((position == null) ? 0 : position.hashCode());
 		return result;
 	}
 
