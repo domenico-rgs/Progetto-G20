@@ -30,7 +30,6 @@ public class TicketLedger {
 		return ticketList.get(id);
 	}
 
-	// Metodo della classe impiegato per accedere al singleton
 	public static TicketLedger getTicketLedger() {
 		if (istance == null) {
 			istance = new TicketLedger();

@@ -1,4 +1,4 @@
-package it.unipv.www.g20.controller.cinema;
+package it.unipv.www.g20.model.cinema;
 
 import java.util.HashMap;
 
@@ -94,8 +94,8 @@ public class Cinema {
 		return null;
 	}
 
-	private Ticket buyTicket(Movie movie,String seat, MovieShowing movieShowing) throws SearchException {
-		Ticket tmp = new Ticket(movie.getTitle(), seat, movieShowing);
+	private Ticket buyTicket(Movie movie, String seat, MovieShowing movieShowing) throws SearchException {
+		Ticket tmp = new Ticket(movie.getTitle(), seat, movieShowing.toString(), money);
 		if(TicketLedger.getTicketLedger().addTicketSale(tmp)!=null)
 			return tmp;
 		return null;

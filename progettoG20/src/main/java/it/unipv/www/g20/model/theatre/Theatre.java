@@ -55,11 +55,6 @@ public class Theatre {
 		return theatreName;
 	}
 
-	public Seat searchSeat(String position) throws SearchException{
-		if(seatsList.get(position)==null)
-			throw new SearchException("Seat's not found");
-		return seatsList.get(position);
-	}
 
 	@Override
 	public int hashCode() {

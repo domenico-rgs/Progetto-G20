@@ -3,7 +3,7 @@ package it.unipv.www.g20.view.TextUI;
 import java.util.Date;
 import java.util.Scanner;
 
-import it.unipv.www.g20.controller.cinema.Cinema;
+import it.unipv.www.g20.model.cinema.Cinema;
 import it.unipv.www.g20.model.exception.SearchException;
 import it.unipv.www.g20.model.movie.Movie;
 import it.unipv.www.g20.model.movie.MovieShowing;
