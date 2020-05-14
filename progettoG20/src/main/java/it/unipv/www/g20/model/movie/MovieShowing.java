@@ -28,10 +28,6 @@ public class MovieShowing {
 		return id;
 	}
 
-	public static int getIntId() {
-		return intId;
-	}
-
 	public Date getDate() {
 		return date;
 	}
@@ -53,6 +49,4 @@ public class MovieShowing {
 	public String toString() {
 		return getId() + " - " + date.toLocaleString() + " - " + theatre.getName();
 	}
-
-
 }
