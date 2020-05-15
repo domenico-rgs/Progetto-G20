@@ -112,7 +112,7 @@ public class AdminTextUI {
 				switch (Integer.parseInt(inputString)) {
 
 				case 1:
-					System.out.println("\nAvailable Moviei: \n"+cinema.printMovie());
+					System.out.println("\nAvailable Moviei: \n"+cinema.printMovies());
 					System.out.print("Insert Movie: ");
 					String film = scanner.nextLine();
 					System.out.println("Available showing:\n"+ cinema.searchMovie(film).printMovieShowing());
@@ -324,7 +324,7 @@ public class AdminTextUI {
 					break;
 
 				case 4:
-					System.out.println(cinema.printMovie());
+					System.out.println(cinema.printMovies());
 					System.out.print("Enter to continue");
 					scanner.nextLine();
 					break;

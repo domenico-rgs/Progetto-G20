@@ -30,13 +30,13 @@ public class Tester {
 			cin1.searchMovie("The big short").addMovieShowing(new Date(120, 4, 05,19,00), cin1.searchTheatre("theatre4"), 5.8);
 			cin1.searchMovie("The great Gatsby").addMovieShowing(new Date(120,9,10,17,30), cin1.searchTheatre("theatre3"), 6.6);
 
-			System.out.println(cin1.printMovie());
+			System.out.println(cin1.printMovies());
 
 			Movie m = cin1.searchMovie("The big short");
 			System.out.println(m.printMovieShowing());
 			MovieShowing ms= m.searchShowing("P1");
 			System.out.println(ms.getAvailability().printSeats());
-			Ticket t = cin1.bookSeat(m, "A1", "P1");
+			Ticket t = cin1.bookSeat(m, "A1", "P1",320,"code","pin","cvc");
 			System.out.println(t);
 
 			System.out.println("\n");
@@ -48,7 +48,7 @@ public class Tester {
 			System.out.println(cin1.deleteMovie("The big short"));
 			System.out.println(cin1.deleteTheatre("theatre3"));
 
-			System.out.println(cin1.printMovie());
+			System.out.println(cin1.printMovies());
 		} catch(SearchException e) {
 			System.out.println(e.getMessage());
 		}
