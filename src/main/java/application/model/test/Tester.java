@@ -1,6 +1,7 @@
 package application.model.test;
 
 import java.util.Date;
+import java.util.Scanner;
 
 import application.model.cinema.Cinema;
 import application.model.exception.SearchException;
@@ -20,10 +21,10 @@ public class Tester {
 			cin1.addMovie("The great Gatsby", 115);
 			cin1.addMovie("The place", 200);
 
-			cin1.createTheatre("theatre1", "theatre1.txt");
-			cin1.createTheatre("theatre2", "theatre2.txt");
-			cin1.createTheatre("theatre3", "theatre3.txt");
-			cin1.createTheatre("theatre4", "theatre4.txt");
+			cin1.createTheatre("theatre1", "theatre1");
+			cin1.createTheatre("theatre2", "theatre2");
+			cin1.createTheatre("theatre3", "theatre3");
+			cin1.createTheatre("theatre4", "theatre4");
 
 			cin1.searchMovie("The big short").addMovieShowing(new Date(120, 3, 27, 18,00), cin1.searchTheatre("theatre1"), 4.6);
 			cin1.searchMovie("The big short").addMovieShowing(new Date(120, 4, 01, 21,35),cin1.searchTheatre("theatre2"), 4.6);
@@ -40,10 +41,10 @@ public class Tester {
 			System.out.println(t);
 
 			System.out.println("\n");
-			//Scanner input = new Scanner(System.in);
-			//System.out.println("Inserisci codice biglietto da eliminare: ");
-			//String s = input.nextLine();
-			//System.out.println(cin1.deleteBooking((s)));
+			Scanner input = new Scanner(System.in);
+			System.out.println("Inserisci codice biglietto da eliminare: ");
+			String s = input.nextLine();
+			System.out.println(cin1.deleteBooking((s)));
 
 			System.out.println(cin1.deleteMovie("The big short"));
 			System.out.println(cin1.deleteTheatre("theatre3"));

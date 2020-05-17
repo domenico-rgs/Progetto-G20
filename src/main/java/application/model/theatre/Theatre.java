@@ -32,8 +32,8 @@ public class Theatre {
 		String s;
 		int i=0;
 		while((s = seats.readLine())!= null){
-			String[] tmp = s.split(" ");
-			for(int j = 0; j<tmp.length; j++) {
+			String[] tmp = s.split("\\s+");
+			for(int j = 0; j<tmp.length-1; j++) {
 				switch (tmp[j]) {
 				case "X":
 					seatsList.put(Character.toString(65 + i) + j, new Seat(Character.toString(65 + i) + j));

@@ -112,7 +112,7 @@ public class AdminTextUI {
 				switch (Integer.parseInt(inputString)) {
 
 				case 1:
-					System.out.println("\nAvailable Moviei: \n"+cinema.printMovies());
+					System.out.println("\nAvailable Movie: \n"+cinema.printMovies());
 					System.out.print("Insert Movie: ");
 					String film = scanner.nextLine();
 					System.out.println("Available showing:\n"+ cinema.searchMovie(film).printMovieShowing());
@@ -121,7 +121,7 @@ public class AdminTextUI {
 					System.out.println(cinema.searchMovie(film).searchShowing(showing).getAvailability().printSeats());
 					System.out.print("Insert seat: ");
 					String sedile = scanner.nextLine();
-					System.out.println("\n"+cinema.bookSeat(cinema.searchMovie(film),sedile, showing));
+					System.out.println("\n"+cinema.bookSeat(cinema.searchMovie(film),sedile, showing, 320, "aaa","bbb","ccc"));
 					break;
 
 				case 2:
@@ -196,7 +196,7 @@ public class AdminTextUI {
 					String nomeSala = scanner.nextLine();
 					System.out.print("Row and column, separeted by a comma: ");
 					stringList = scanner.nextLine().split(",");
-					if(cinema.createTheatre(nomeSala, Integer.parseInt(stringList[0]), Integer.parseInt(stringList[1])))
+					if(cinema.createTheatre(nomeSala, "/home/andrea/theatre.txt"));
 						System.out.println("Succesfully added with name " + nomeSala);
 					break;
 
