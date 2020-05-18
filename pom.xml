@@ -1,74 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <groupId>it.unipv.www.g20</groupId>
-  <artifactId>progettoG20</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>progettoG20Maven</name>
-  
-  <packaging>war</packaging>    
+<groupId>it.unipv.progettoG20</groupId>
+<artifactId>ProgettoG20</artifactId>
+<version>1.0-SNAPSHOT</version>
 
-  <dependencies>
-  
+ <dependencies>
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.2.Final</version>
+        </dependency>
+  	 <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.15</version>
+        </dependency>
+	 <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
   	<dependency>
-	    <groupId>javax.servlet</groupId>
-	    <artifactId>javax.servlet-api</artifactId>
-	    <version>4.0.1</version>
-	    <scope>provided</scope>
-	</dependency>
-	
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>9.4.17.v20190418</version>
+   	 </dependency>
 	<dependency>
 	    <groupId>org.eclipse.jetty</groupId>
 	    <artifactId>jetty-servlet</artifactId>
 	    <version>9.4.28.v20200408</version>
 	</dependency>
-  	
-  	<dependency>
-	    <groupId>javax.servlet.jsp</groupId>
-	    <artifactId>javax.servlet.jsp-api</artifactId>
-	    <version>2.3.3</version>
-	    <scope>provided</scope>
-	</dependency>
-  	
-  	<dependency>
-	  <groupId>com.google.code.gson</groupId>
-	  <artifactId>gson</artifactId>
-	  <version>2.8.6</version>
-	  <scope>compile</scope>
-	</dependency>
-	
-	
-	<dependency>
-	  <groupId>mysql</groupId>
-	  <artifactId>mysql-connector-java</artifactId>
-	  <version>6.0.6</version>
-	  <scope>runtime</scope>
-	</dependency>
-	
-	<dependency>
-	    <groupId>junit</groupId>
-	    <artifactId>junit</artifactId>
-	    <version>4.12</version>
-	    <scope>test</scope>
-	</dependency>
-	
-	<dependency>
-	    <groupId>org.slf4j</groupId>
-	    <artifactId>slf4j-api</artifactId>
-	    <version>1.7.30</version>
-	    <scope>compile</scope>
-	</dependency>
-	
-	<dependency>
-	    <groupId>org.apache.maven.plugins</groupId>
-	    <artifactId>maven-compiler-plugin</artifactId>
-	    <version>3.8.1</version>
-	</dependency>
-	
-  </dependencies>
+	 <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-io</artifactId>
+        <version>9.4.28.v20200408</version>
+    	</dependency>
+    	<dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-util</artifactId>
+        <version>9.4.28.v20200408</version>
+    	</dependency>
+ </dependencies>
+  
+ <packaging>war</packaging>
+
   
  <build>
-  	<plugins>
+ 	<resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+  <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
@@ -78,21 +68,14 @@
                 <target>1.8</target>
             </configuration>
         </plugin>
-        
-        
         <plugin>
-			  <groupId>org.eclipse.jetty</groupId>
-			  <artifactId>jetty-maven-plugin</artifactId>
-			  <version>9.4.28.v20200408</version>
-			  <configuration>
-			  		<scanIntervalSeconds>5</scanIntervalSeconds>
-			  </configuration>
-		</plugin>
+		<groupId>org.eclipse.jetty</groupId>
+		<artifactId>jetty-maven-plugin</artifactId>
+		<version>9.4.28.v20200408</version>
+		<configuration>
+			<scanIntervalSeconds>5</scanIntervalSeconds>
+		</configuration>
+	</plugin>
     </plugins>
-  </build> 
- 
-  <properties>
-  
-  </properties>
-  
+</build>   
 </project>
