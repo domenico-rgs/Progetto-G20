@@ -77,7 +77,9 @@
   vertical-align: middle;
   height: 90%;
   display: inline-block;
+  cursor: pointer;
 }
+
 
 /* non mi piace sinceramente
 .searchBar:hover {
@@ -137,6 +139,25 @@
 .filmMenu p {
   text-align: center;
   font-size: 150%
+}
+
+#showFilm{
+  border-radius: 50px;
+  color: white;
+  background-color: rgb(30,63,97);
+  padding:10px;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+}
+
+#showFilm:hover {
+  transform: scale(1.2);
+  transition: 0.3s;
+}
+
+#showFilm:focus {
+  outline: none;
 }
 
 /* elementi di paginazione numerica */

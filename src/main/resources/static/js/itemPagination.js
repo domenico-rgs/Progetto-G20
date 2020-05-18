@@ -9,7 +9,7 @@ async function addMovieToDOM() {
   nameDiv.className = 'name';
 
   const imgElement = document.createElement('img');
-  imgElement.src = '../images/unavaliable.png';
+  imgElement.src = '../static/images/unavaliable.png';
   const titleElement = document.createTextNode("Test Title " + itemIndex);
 
 itemDiv.appendChild(imageDiv).appendChild(imgElement);

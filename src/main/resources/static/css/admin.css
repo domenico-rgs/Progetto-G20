@@ -67,6 +67,7 @@ background-color: rgb(161, 161, 161);
   outline: none;
 }
 
+
 .contentAdmin textarea {
   width: 70%;
   resize: none;
@@ -78,6 +79,14 @@ background-color: rgb(161, 161, 161);
 
 .contentAdmin textarea:focus {
   outline: none;
+}
+
+.contentAdmin .leggenda h5 {
+  font-size: 120%;
+}
+
+.contentAdmin .leggenda h6{
+  font-size: 110%;
 }
 
 .contentAdmin button {
