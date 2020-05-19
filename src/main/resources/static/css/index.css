@@ -148,7 +148,7 @@
   padding:10px;
   border: none;
   cursor: pointer;
-  width: 10%;
+  width: 100px;
 }
 
 #showFilm:hover {
@@ -195,26 +195,56 @@ background-color: rgb(161, 161, 161);
   border-top: 1px solid  rgb(30,63,97);
 }
 
+#login {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
 
+#login #topImg{
+  height: 200px;
+  background-image: url(../images/footBanner.png);
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+
+}
+
+#topImg:before {
+  content: '';
+  background: rgba(75, 75, 93, 0.7);
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  top: 0;
+  left: 0;
+}
+
+.loginContent {
+  width: 100%;
+  height: auto;
+  background-color: rgb(230, 230, 230);
+  padding: 50px 0;
+}
 
 
 /* stile della navbar a trasparenza */
-
-
 #header {
   background-color: rgb(51,51,51, 0);
   transition: background-color 0.5s ease-in-out;
   z-index: 1000;
 }
 
+#header .inner {
+  width: 100%;
+}
 
-#navbar a {
-  float: right;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  text-decoration: none;
+#nav div{
+  float: left;
+}
+
+#nav  img {
+  vertical-align: text-bottom;
 }
 
 #nav a:hover {
@@ -225,4 +255,35 @@ background-color: rgb(161, 161, 161);
 #nav a.active {
   background-color: #ddd;
   color: black;
+}
+
+/* footer added elements */
+#footer .inf {
+  display: inline-block;
+}
+
+#footer .inf div {
+  padding: 10px 0;
+}
+
+#footer div p{
+  display: inline;
+  color: white;
+  font-size: 130%;
+  padding: 0 10px;
+}
+
+#footer div img{
+  display: inline;
+  vertical-align: middle;
+}
+
+#footer .social {
+  display: inline;
+  float: right;
+}
+
+#footer .social img {
+  padding: 10px;
+  cursor: pointer;
 }
