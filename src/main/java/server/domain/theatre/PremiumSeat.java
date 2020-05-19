@@ -1,8 +1,13 @@
 package server.domain.theatre;
 
-public class PremiumSeat extends Seat{
-	private static double addition = 20; //aggiunta in percentuale
+import javax.persistence.*;
 
+@Entity
+@DiscriminatorValue("PremiumSeat")
+public class PremiumSeat extends Seat{
+	@Column(name="addition")
+	private static double addition = 20; //aggiunta in percentuale
+	
 	public PremiumSeat(String position) {
 		super(position);
 	}

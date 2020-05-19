@@ -3,6 +3,8 @@ package server.domain.movie;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.persistence.*;
+
 import server.domain.exception.SearchException;
 import server.domain.theatre.Theatre;
 
@@ -10,12 +12,22 @@ import server.domain.theatre.Theatre;
  * This class is referred to a movie
  * @see MovieShowing
  */
+@Entity
+@Table(name="movie")
 public class Movie {
+	@Id
+	@Column(name="title")
 	private String title;
+	@Column(name="duration")
 	private int duration; //in minutes
+	@Column(name="category")
 	private TypeCategory category;
+	@Column(name="plot")
 	private String plot;
+	
 	private HashMap<String, MovieShowing> showingList;
+	
+	public Movie() {}
 
 	public Movie(String title, int duration) {
 		showingList = new HashMap<>();

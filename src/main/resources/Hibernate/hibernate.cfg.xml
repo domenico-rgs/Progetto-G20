@@ -13,7 +13,10 @@
         <property name="hibernate.show_sql">false</property>
 
         <mapping class="server.domain.ticket.Ticket"/>
-     
+        <mapping class="server.domain.theatre.Theatre"/>
+        <mapping class="server.domain.theatre.Seat"/>
+        <mapping class="server.domain.movie.Movie"/>
+        <mapping class="server.domain.movie.MovieShowing"/>
 
     </session-factory>
 </hibernate-configuration>

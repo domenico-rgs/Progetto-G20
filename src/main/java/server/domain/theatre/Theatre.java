@@ -5,15 +5,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.persistence.*;
+
 import server.domain.exception.SeatException;
 
 /**
  * The theatre of a Cinema, allows you to manage its projections
  */
+@Entity
+@Table(name = "theatre")
 public class Theatre {
+	@Id
+	@Column(name="theatreName")
 	private String theatreName;
 	private HashMap<String, Seat> seatsList;
+	@Column(name="filePath")
 	private String filePath;
+	
+	public Theatre() {}
 
 	public Theatre(String theatreName, String filePath) throws IOException, SeatException {
 		seatsList = new HashMap<>();

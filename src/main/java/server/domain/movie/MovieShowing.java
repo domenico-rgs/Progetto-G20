@@ -2,18 +2,31 @@ package server.domain.movie;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
 import server.domain.theatre.Theatre;
 
 /**
  * This class is referred to a movie projection in the cinema.
  */
+@Entity
+@Table(name="movieShowing")
 public class MovieShowing {
+	@Id
+	@Column(name="id")
 	private String id;
+	@Transient
 	private static int intId=0;
+	@Column(name="dateMovieShowing")
 	private Date date;
+    @OneToOne(mappedBy = "availability",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Availability availability;
+    @OneToOne(mappedBy = "theatre",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Theatre theatre;
+	@Column(name="price")
 	private double price;
+	
+	public MovieShowing() {}
 
 	public MovieShowing(Date date, Theatre theatre, double price) {
 		intId++;

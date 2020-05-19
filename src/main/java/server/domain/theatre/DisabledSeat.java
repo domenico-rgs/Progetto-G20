@@ -1,6 +1,11 @@
 package server.domain.theatre;
 
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("DisabledSeat")
 public class DisabledSeat extends Seat {
+	@Column(name="addition")
 	private static double addition = 50; //riduzione in percentuale
 
 	public DisabledSeat(String position) {
