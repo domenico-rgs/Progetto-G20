@@ -68,7 +68,7 @@ button:hover {
 }
 
   /* per ora è la p, dopo sara una div con la tabellla */
-.catalogList .prova {
+.catalogList .showingTable {
   opacity: 0;
   max-height: 0;
   border-bottom: 1px solid #e5e5e5;
@@ -77,11 +77,64 @@ button:hover {
   transition: all 0.2s ease 0.15s;
 }
 
-.catalogList .prova.active {
+.catalogList .showingTable.active {
   opacity: 1;
   max-height: 100%;
   transition: all 0.35s ease 0.15s;
 }
+
+
+
+/* tabella delle proiezioni */
+
+.showingTable {
+  padding-bottom: 30px;
+}
+
+.showingTable table {
+  width: 100%;
+}
+.showingTable th, td {
+  width: 30%;
+  color: black;
+}
+.showingTable th:last-child, td:last-child{
+  width: 10%;
+}
+
+.showingTable th {
+  font-size: 120%;
+}
+
+.showingTable td {
+  padding: 0 10px;
+  text-align: left;
+  align-items: center;
+  vertical-align: middle;
+  font-size: normal;
+}
+
+.showingTable table, th, td {
+  border: 1px solid rgb(185, 185, 185);
+}
+
+.showingTable tr:nth-child(even) {
+  background-color: #eee;
+}
+.showingTable tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+
+.showingTable td button {
+  border-radius: 5px;
+  width: 80%;
+  height: 40px;
+  margin: 5px 10%;
+  background-color: rgb(199, 69, 69);
+}
+
+
 
 @media screen and (max-width: 980px) {
   .description h5 {

@@ -4,12 +4,11 @@
   <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../static/images/favicon.png" type="image/png" />
-    <title>Cinema G20 - Film information</title>
+    <title>Nome del film</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../static/css/main.css" />
     <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/login.css">
     <link rel="stylesheet" href="../static/css/movie.css">
     <link rel="stylesheet" href="../static/css/showing.css">
   </head>
@@ -20,27 +19,18 @@
       <div class="inner">
         <nav id="nav">
           <a href="index.html">Home</a>
-          <a href="#">FAQ</a>
+          <a href="catalog.htm">Catalog</a>
+          <a href="index.html#faq">FAQ</a>
           <a href="#footer">About</a>
-          <a href="#" onClick="loginAppear(); return false;">Login</a>
+          <a href="index.html#login">Login</a>
         </nav>
-        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
       </div>
     </header>
 
-    <!-- Banner -->
-    <section id="banner">
-      <div class="inner">
-        <header>
-          <h1>Film information</h1>
-        </header>
-
-      </div>
-    </section>
 
     <!-- Three -->
     <section id="three" class="wrapper">
-      <div class="inner">
+      <div id="movieInf" class="inner">
 
         <div class="imgMovie">
           <img src="../static/images/cover/joker.jpg" alt="">
@@ -61,14 +51,37 @@
 
         <button type="button" onClick="showingAppear(); return false;">Available shows</button>
 
-        <!-- catalog showing form -->
+        <!-- showing table -->
         <div class="catalogList">
-          <p class="prova">testo di prova, verrà sostituito da una tabella con la lista delle proiezioni per questo film</p>
-        </div>
 
+          <div class="showingTable">
+            <table>
+              <tr>
+                <th> <strong>Data e orario</strong></th>
+                <th> <strong>Sala proiezione</strong> </th>
+                <th> <strong>Prezzo</strong></th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>22-Maggio-2090 16:00 PM</td>
+                <td>Nome inventato</td>
+                <td>120€</td>
+                <td> <button>Acquista</button> </td>
+              </tr>
+              <tr>
+                <td>23-Maggio-2090 16:00 PM</td>
+                <td>Nome inventato</td>
+                <td>120€</td>
+                <td> <button>Acquista</button> </td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
 
       </div>
     </section>
+
 
 
 
@@ -78,13 +91,27 @@
     <footer id="footer">
       <div class="inner">
 
+        <div class="inf">
+          <h3><strong>CONTACT US</strong></h3>
+          <div id="position">
+            <img src="../static/images/icon/position.png" alt="">
+            <p>Via Adolfo Ferrara 5, Pavia, Italy</p>
+          </div>
+          <div id="email">
+            <img src="../static/images/icon/email.png" alt="">
+            <p>progrettog20@gmail.com</p>
+          </div>
+        </div>
 
-        <h3>About us</h3>
-        <div class="map">
-          <iframe src="https://www.google.com/maps/d/embed?mid=1sHNNvSHpBqGONd7N3zVXRE681ok15XBa" width="640" height="480"></iframe></div>
-      </div>
+        <div class="social">
+          <img src="../static/images/icon/facebook.png" alt="">
+          <img src="../static/images/icon/twitter.png" alt="">
+          <img src="../static/images/icon/googleplus.png" alt="">
+        </div>
+
       </div>
     </footer>
+
 
 
     <!-- Scripts -->
@@ -94,7 +121,6 @@
     <script src="../static/js/main.js"></script>
 
     <script src="../static/js/login.js"></script>
-    <script src="../static/js/navbar.js"></script>
     <script src="../static/js/showing.js"></script>
 
     <!-- sto provando questo script -->
