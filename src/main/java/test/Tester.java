@@ -21,10 +21,10 @@ public class Tester {
 			cin1.addMovie("The great Gatsby", 115);
 			cin1.addMovie("The place", 200);
 
-			cin1.createTheatre("theatre1", "src/test/configTheatre/theatre1");
-			cin1.createTheatre("theatre2", "src/test/configTheatre/theatre2");
-			cin1.createTheatre("theatre3", "src/test/configTheatre/theatre3");
-			cin1.createTheatre("theatre4", "src/test/configTheatre/theatre4");
+			cin1.createTheatre("theatre1", "fileTest/configTheatre/theatre1");
+			cin1.createTheatre("theatre2", "fileTest/configTheatre/theatre2");
+			cin1.createTheatre("theatre3", "fileTest/configTheatre/theatre3");
+			cin1.createTheatre("theatre4", "fileTest/configTheatre/theatre4");
 
 			cin1.searchMovie("The big short").addMovieShowing(new Date(120, 3, 27, 18,00), cin1.searchTheatre("theatre1"), 4.6);
 			cin1.searchMovie("The big short").addMovieShowing(new Date(120, 4, 01, 21,35),cin1.searchTheatre("theatre2"), 4.6);

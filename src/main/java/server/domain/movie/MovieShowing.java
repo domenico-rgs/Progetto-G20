@@ -19,9 +19,9 @@ public class MovieShowing {
 	private static int intId=0;
 	@Column(name="dateMovieShowing")
 	private Date date;
-    @OneToOne(mappedBy = "availability",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Transient //da correggere
 	private Availability availability;
-    @OneToOne(mappedBy = "theatre",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Transient
 	private Theatre theatre;
 	@Column(name="price")
 	private double price;

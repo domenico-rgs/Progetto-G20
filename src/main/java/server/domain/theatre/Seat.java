@@ -17,8 +17,8 @@ public class Seat {
 	public Seat(String seatId) {
 		position = seatId;
 	}
-
-
+	
+	public Seat() {}
 
 	@Override
 	public int hashCode() {
