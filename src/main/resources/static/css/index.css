@@ -104,6 +104,7 @@ body {
   background-repeat: no-repeat;
   text-align: center;
   position: relative;
+  transition: background-image 2s;
 }
 
   #banner:before {

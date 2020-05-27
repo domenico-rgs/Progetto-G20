@@ -6,14 +6,19 @@
 
 #three .inner {
   margin-left: 0 !important;
-  margin-right: 0 !important;
+  margin-right: -20px !important;
   overflow: auto;
+  min-height: 300px;
+}
+
+#three #innerAdmin {
+  padding-top: 50px;
 }
 
 /* primo sottom menu */
 
 .sideMenu {
-  position: relative;
+  position: fixed;
   float: left;
   overflow-y: auto;
   height: auto;
@@ -46,9 +51,9 @@ background-color: rgb(161, 161, 161);
   position: relative;
   padding-left: 5%;
   overflow: auto;
-  float: left;
+  float: right;
   height: auto;
-  width: 80%;
+  width: 70%;
 }
 
 .contentAdmin *:not(div) {

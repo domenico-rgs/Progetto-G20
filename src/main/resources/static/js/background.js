@@ -25,4 +25,4 @@ function changeImage(){
 };
 
 
-setInterval("changeImage()",3000);
+setInterval("changeImage()",10000);
