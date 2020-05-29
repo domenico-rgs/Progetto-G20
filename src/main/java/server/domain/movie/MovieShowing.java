@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import server.domain.exception.SeatException;
 import server.domain.theatre.Theatre;
 
 /**
@@ -21,10 +22,9 @@ public class MovieShowing {
 	private Date date;
 	@Transient //da correggere
 	private Availability availability;
-	@Transient
-	private Theatre theatre;
 	@Column(name="price")
 	private double price;
+	private String theatreName;
 	
 	public MovieShowing() {}
 
@@ -32,9 +32,17 @@ public class MovieShowing {
 		intId++;
 		id="P"+intId;
 		this.date=date;
-		this.theatre=theatre;
 		this.price=price;
 		availability = new Availability(theatre.getSeatsList());
+		theatreName=theatre.getTheatreName();
+	}
+	
+	protected boolean searchAvailability(String seat) throws SeatException {
+		return availability.searchAvailability(seat);
+	}
+	
+	protected boolean changeAvailability(String initSeat, String finalSeat, boolean value) throws SeatException {
+		return availability.changeAvailability(initSeat, finalSeat, value);
 	}
 
 	public String getId() {
@@ -45,21 +53,9 @@ public class MovieShowing {
 		return date;
 	}
 
-	public Theatre getTheatre() {
-		return theatre;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public Availability getAvailability() {
-		return availability;
-	}
-
 	@SuppressWarnings("deprecation")
 	@Override
 	public String toString() {
-		return getId() + " - " + date.toLocaleString() + " - " + theatre.getTheatreName();
+		return id + " - " + date.toLocaleString() + ", theatre: " + theatreName;
 	}
 }

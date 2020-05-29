@@ -4,10 +4,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 import server.domain.cinema.Cinema;
+import server.domain.cinema.Movie;
+import server.domain.cinema.Ticket;
 import server.domain.exception.SearchException;
-import server.domain.movie.Movie;
 import server.domain.movie.MovieShowing;
-import server.domain.ticket.Ticket;
 
 public class Tester {
 

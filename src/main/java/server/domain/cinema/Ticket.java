@@ -1,4 +1,4 @@
-package server.domain.ticket;
+package server.domain.cinema;
 
 import java.util.UUID;
 
@@ -66,20 +66,6 @@ public class Ticket {
 	public String getCode() {
 		return code;
 	}
-
-	public String getMovie() {
-		return movie;
-	}
-
-	public String getSeat() {
-		return seat;
-	}
-
-	public String getShowing() {
-		return showing;
-	}
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
+	
+	
 }

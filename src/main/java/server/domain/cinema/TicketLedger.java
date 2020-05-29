@@ -1,4 +1,4 @@
-package server.domain.ticket;
+package server.domain.cinema;
 
 import java.util.HashMap;
 

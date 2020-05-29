@@ -26,7 +26,7 @@ public class Theatre {
 
 	public Theatre(String theatreName, String filePath) throws IOException, SeatException {
 		seatsList = new HashMap<>();
-		setTheatreName(theatreName);
+		this.theatreName=theatreName;
 		this.filePath=filePath;
 		createSeats(filePath);
 	}
@@ -72,15 +72,6 @@ public class Theatre {
 		return string.toString();
 	}
 
-	public String getName() {
-		return theatreName;
-	}
-
-
-	public void setTheatreName(String name) {
-		theatreName = name;
-	}
-
 	@Override
 	public String toString() {
 		return "Theatre: " + theatreName;
@@ -92,10 +83,6 @@ public class Theatre {
 
 	public String getTheatreName() {
 		return theatreName;
-	}
-
-	public int getCapacity() {
-		return seatsList.size();
 	}
 
 	@Override
@@ -127,13 +114,5 @@ public class Theatre {
 		} else if (!theatreName.equals(other.theatreName))
 			return false;
 		return true;
-	}
-
-	public String getFilePath() {
-		return filePath;
-	}
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
 	}
 }

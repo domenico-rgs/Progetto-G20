@@ -9,7 +9,6 @@ public class SimPaymentAdapter implements PaymentAdapter{
 		Random random = new Random();
 		if(random.nextInt(1000)==0)
 			return false;
-		// TODO Auto-generated method stub
 		return true;
 	}
 

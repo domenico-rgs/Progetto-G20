@@ -2,7 +2,7 @@ package server.services.DB;
 
 import org.hibernate.SessionFactory;
 
-import server.domain.movie.Movie;
+import server.domain.cinema.Movie;
 import server.domain.movie.MovieShowing;
 
 public class DBConnection {

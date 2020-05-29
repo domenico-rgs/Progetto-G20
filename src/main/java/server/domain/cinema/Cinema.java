@@ -6,12 +6,9 @@ import java.util.HashMap;
 import server.domain.exception.PaymentException;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
-import server.domain.movie.Movie;
 import server.domain.movie.MovieShowing;
 import server.domain.payment.SimPaymentAdapter;
 import server.domain.theatre.Theatre;
-import server.domain.ticket.Ticket;
-import server.domain.ticket.TicketLedger;
 import server.services.DB.DBConnection;
 
 /**

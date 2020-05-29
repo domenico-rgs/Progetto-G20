@@ -6,7 +6,7 @@ import javax.persistence.*;
 @DiscriminatorValue("PremiumSeat")
 public class PremiumSeat extends Seat{
 	@Column(name="addition")
-	private static double addition = 20; //aggiunta in percentuale
+	private static double addition = 1.2; //aggiunta in percentuale
 	
 	public PremiumSeat(String position) {
 		super(position);
@@ -14,10 +14,6 @@ public class PremiumSeat extends Seat{
 
 	public static double getAddition() {
 		return addition;
-	}
-
-	public static void setAddition(double addition) {
-		PremiumSeat.addition = addition;
 	}
 
 	@Override

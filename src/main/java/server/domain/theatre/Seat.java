@@ -46,9 +46,7 @@ public class Seat {
 			return false;
 		return true;
 	}
-
-
-
+	
 	public String getPosition() {
 		return position;
 	}

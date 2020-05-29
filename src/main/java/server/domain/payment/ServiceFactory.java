@@ -1,7 +1,4 @@
-package server.domain.cinema;
-
-import server.domain.payment.PaymentAdapter;
-import server.domain.payment.SimPaymentAdapter;
+package server.domain.payment;
 
 public class ServiceFactory {
 	private static ServiceFactory istance = null;

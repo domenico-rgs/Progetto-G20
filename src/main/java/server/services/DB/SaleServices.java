@@ -6,9 +6,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
-import server.domain.movie.Movie;
+import server.domain.cinema.Movie;
+import server.domain.cinema.Ticket;
 import server.domain.movie.MovieShowing;
-import server.domain.ticket.Ticket;
 
 public class SaleServices {
 	private SessionFactory sessionFactory;
