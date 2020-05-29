@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import server.domain.exception.SearchException;
+import server.domain.exception.SeatException;
 import server.domain.theatre.Theatre;
 
 public class Scheduling {
@@ -14,14 +15,11 @@ public class Scheduling {
 	}
 	
 	public MovieShowing createMovieShowing(Date date, Theatre theatre, Double price){
-		if(!overlappingControl(date)) {
-			MovieShowing tmp = new MovieShowing(date, theatre, price);
-			return showingList.put(tmp.getId(), tmp);
-		}
-		return null;
+		MovieShowing tmp = new MovieShowing(date, theatre, price);
+		return showingList.put(tmp.getId(), tmp);
 	}
 	
-	private boolean overlappingControl(Date date) {
+	/*private boolean overlappingControl(Date date) {
 		for(String s : showingList.keySet()) {
 			MovieShowing show = showingList.get(s);
 			long t= show.getDate().getTime();
@@ -30,17 +28,29 @@ public class Scheduling {
 				return true;
 		}
 		return false;
+	}*/
+	
+	public boolean changeAvailability(String showing, String initSeat, String finalSeat, boolean value) throws SeatException{
+		return showingList.get(showing).changeAvailability(initSeat, finalSeat, value);
+	}
+	
+	public boolean searchAvailability(String showing, String seat) throws SeatException {
+		return showingList.get(showing).searchAvailability(seat);
+
 	}
 
-	public MovieShowing deleteMovieShowing(String id) throws SearchException{
-		if (!(showingList.containsKey(id)))
-			throw new SearchException(id+"'s not found.");
-		return showingList.remove(id);
+	public boolean deleteMovieShowing(String id) throws SearchException{
+		if(searchShowing(id)!=null) {
+			showingList.remove(id);
+			return true;
+		}else
+			return false;
 	}
 
 	public MovieShowing searchShowing(String id) throws SearchException{
-		if(showingList.get(id)==null)
-			throw new SearchException("Movieshowing's not found");
-		return showingList.get(id);
+		if (!(showingList.containsKey(id)))
+			throw new SearchException(id+"'s not found.");
+		else
+			return showingList.get(id);
 	}
 }
