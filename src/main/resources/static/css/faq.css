@@ -4,6 +4,15 @@
   box-sizing: inherit;
 }
 
+.faqContent #text {
+  text-align: center;
+}
+
+.faqContent #text p{
+  color: black;
+	font-size: 140%;
+}
+
 /* contenitore delle nostre faq */
 .accordion {
   /*se vuoi ridurre o spostare gli elementi dall'attuale posizione

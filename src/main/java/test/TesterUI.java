@@ -21,10 +21,10 @@ public class TesterUI {
 			cin1.addMovie("The place", 200);
 
 			try {
-		cin1.createTheatre("theatre1", "src/test/configTheatre/theatre1");
-			cin1.createTheatre("theatre2", "src/test/configTheatre/theatre2");
-			cin1.createTheatre("theatre3", "src/test/configTheatre/theatre3");
-			cin1.createTheatre("theatre4", "src/test/configTheatre/theatre4");
+				cin1.createTheatre("theatre1", "fileTest/configTheatre/theatre1");
+				cin1.createTheatre("theatre2", "fileTest/configTheatre/theatre2");
+				cin1.createTheatre("theatre3", "fileTest/configTheatre/theatre3");
+				cin1.createTheatre("theatre4", "fileTest/configTheatre/theatre4");
 
 			} catch (IOException | SeatException e) {
 				// TODO Auto-generated catch block

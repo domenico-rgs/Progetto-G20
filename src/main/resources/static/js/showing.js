@@ -4,10 +4,10 @@ $('button').on('click', function()
 {
   if(open) {
   open = false;
-  $('.prova').addClass('active');
+  $('.showingTable').addClass('active');
 }
   else {
   open = true;
-  $('.prova').removeClass('active');
+  $('.showingTable').removeClass('active');
   }
 });

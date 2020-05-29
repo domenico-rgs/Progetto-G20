@@ -4,8 +4,7 @@ window.onscroll = function()
 };
 
 window.onload = function() {
-  navOnLoad()
-  navPagination();
+  navOnLoad();
 };
 
 var rgb = 'rgb(' + 30 + ',' + 63 + ',' + 97 + ',';
@@ -26,7 +25,7 @@ else {
 
 function navOnLoad() {
 
-  if (document.documentElement.scrollTop >300) {
-    element.style.backgroundColor = rgb + 1 + ')';
+  if (document.documentElement.scrollTop < 300) {
+    element.style.backgroundColor = rgb + 0 + ')';
   }
 };

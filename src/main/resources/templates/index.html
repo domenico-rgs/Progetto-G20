@@ -6,9 +6,13 @@
 		<title>Cinema G20</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../static/css/main.css" />
 		<link rel="stylesheet" href="../static/css/index.css">
+		<link rel="stylesheet" href="../static/css/main.css">
 		<link rel="stylesheet" href="../static/css/login.css">
+		<link rel="stylesheet" href="../static/css/faq.css">
+
+		<!-- external refers -->
+		<link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
 	</head>
 
 	<body>
@@ -17,12 +21,16 @@
 		<header id="header">
 			<div class="inner">
 				<nav id="nav">
+					<div>
+						<img src="../static/images/icon/barIcon.png" alt="">
+						<a>G20</a>
+					</div>
 					<a href="#">Home</a>
+					<a href="catalog.html">Catalog</a>
 					<a href="faq.html">FAQ</a>
-					<a href="#footer">About</a>
-					<a href="#" onClick="loginAppear(); return false;">Login</a>
+					<a href="#footer">Contact</a>
+					<a href="#login">Login</a>
 				</nav>
-				<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 			</div>
 		</header>
 
@@ -43,20 +51,59 @@
 		<!-- Three -->
 		<section id="three" class="wrapper align-center">
 			<div class="inner">
-				<h1>Movie Catalog</h1>
+				<h1>Titoli del momento</h1>
 
-				<!-- search bar -->
-				<div id="searchBar" class="searchBar">
-					<input id="search" type="search" placeholder="Search Movie">
-					<img src="../static/images/icon/search.png" alt="">
-				</div>
-
-				<!-- Movie catalog -->
+				<!-- Main Movie (5 elemtents)-->
 				<div class="filmMenu">
 
+					<div class="item">
+						<div class="img">
+							<img src='../static/images/unavaliable.png' alt="">
+						</div>
+						<div class="name">
+							<p>Test title</p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div class="img">
+							<img src='../static/images/unavaliable.png' alt="">
+						</div>
+						<div class="name">
+							<p>Test title</p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div class="img">
+							<img src='../static/images/unavaliable.png' alt="">
+						</div>
+						<div class="name">
+							<p>Test title</p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div class="img">
+							<img src='../static/images/unavaliable.png' alt="">
+						</div>
+						<div class="name">
+							<p>Test title</p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div class="img">
+							<img src='../static/images/unavaliable.png' alt="">
+						</div>
+						<div class="name">
+							<p>Test title</p>
+						</div>
+					</div>
+
 				</div>
 
-				<button id="showFilm">Mostra altro</button>
+				<button id="showFilm" onclick="catalog.html">Mostra di più</button>
 
 
 				<div class="quotes">
@@ -72,20 +119,142 @@
 		</section>
 
 
-		<!-- pagina di login  che appare al click del pulsante -->
+		<!-- pagina di login  che appare al click del pulsante
+				non credo rimarrà a lungo -->
 		<div id="loginTransparent">
-			<iframe id="loginFrame" src="login.html" width="100%" height="100%"></iframe>
+			<!-- iframe id="loginFrame" src="login.html" width="100%" height="100%"></iframe -->
 
+		</div>
+
+		<!-- login -->
+		<div id="login">
+			<div id="topImg">
+			</div>
+
+			<div class="loginContent">
+				<div id="text">
+					<p>Vuoi accederea ad un mondo di film? fantastico!
+						Accedi o, se non lo hai ancora fatto, registrati! cosa aspetti?!</p>
+				</div>
+
+				<div id="content">
+					<div class="loginImg">
+						<img src="../static/images/icon/loginImg.png" alt="">
+					</div>
+
+					<div class="loginImg">
+						<img src="../static/images/icon/minion.png" alt="">
+					</div>
+
+					<div class="login-content">
+						<form action="index.html">
+
+							<div class="input-div one">
+								<div class="i">
+									<i class="fas fa-user"></i>
+								</div>
+								<div class="div">
+									<h5>Username</h5>
+									<input type="text" class="input">
+								</div>
+							</div>
+							<div class="input-div pass">
+								<div class="i">
+									<i class="fas fa-lock"></i>
+								</div>
+								<div class="div">
+									<h5>Password</h5>
+									<input type="password" class="input">
+								</div>
+							</div>
+							<a href="#">Forgot Password?</a>
+
+							<div class="buttons">
+								<input type="submit" class="btn" value="Login">
+								<input type="submit" class="btn" value="Create account">
+							</div>
+
+						</form>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+		<div id="faq">
+			<div id="topImg">
+			</div>
+
+			<div class="faqContent">
+				<div id="text">
+					<p>Hai dei dubbi?</p>
+				</div>
+
+				<div id="content">
+
+					<div class="accordion">
+						<div class="accordion-item">
+							<a>What can JavaScript Do?</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<a>How JavaScript Can Modify HTML and CSS Values?</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<a>What Is SVG?</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<a>Is FAQ Section Matters In Website?</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<a>How To Create a Light FAQ Element?</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+			</div>
 		</div>
 
 		<!-- Footer -->
 		<footer id="footer">
 			<div class="inner">
 
-				<h3>About us</h3>
-				<div class="map">
-					<iframe src="https://www.google.com/maps/d/embed?mid=1sHNNvSHpBqGONd7N3zVXRE681ok15XBa" width="640" height="480"></iframe></div>
-			</div>
+				<div class="inf">
+					<h3><strong>CONTACT US</strong></h3>
+					<div id="position">
+						<img src="../static/images/icon/position.png" alt="">
+						<p>Via Adolfo Ferrara 5, Pavia, Italy</p>
+					</div>
+					<div id="email">
+						<img src="../static/images/icon/email.png" alt="">
+						<p>progrettog20@gmail.com</p>
+					</div>
+				</div>
+
+				<div class="social">
+					<img src="../static/images/icon/facebook.png" alt="">
+					<img src="../static/images/icon/twitter.png" alt="">
+					<img src="../static/images/icon/googleplus.png" alt="">
+				</div>
+
 			</div>
 		</footer>
 
@@ -96,10 +265,12 @@
 		<script src="../static/js/main.js"></script>
 
 		<!-- nostri script -->
-		<script src="../static/js/itemPagination.js"></script>
 		<script src="../static/js/navbar.js"></script>
 		<script src="../static/js/login.js"></script>
-		<script src="../static/js/search.js"></script>
+		<script src="../static/js/faq.js"></script>
+
+		</script>
+		<!-- <script src="../static/js/background.js"></script> -->
 
 	</body>
 
