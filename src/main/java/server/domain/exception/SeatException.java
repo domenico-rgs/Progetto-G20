@@ -3,7 +3,7 @@ package server.domain.exception;
 @SuppressWarnings("serial")
 public class SeatException extends Exception{
 	public SeatException() {
-		super();
+		super("Something went wrong with the seat");
 	}
 
 	public SeatException(String msg) {
