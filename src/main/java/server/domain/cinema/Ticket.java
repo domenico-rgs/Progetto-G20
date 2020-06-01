@@ -2,24 +2,24 @@ package server.domain.cinema;
 
 import java.util.UUID;
 
-import javax.persistence.*;
+//import javax.persistence.*;   //commentato perchè inutilizzato
 
 /**
  * This class identifies a bought ticket to show a movie.
  */
-@Entity
-@Table(name="ticket")
+//@Entity
+//@Table(name="ticket")
 public class Ticket {
-	@Id
-	@Column(name="ticketCode", updatable = false)
+	//@Id
+	//@Column(name="ticketCode", updatable = false)
 	private String code;
-	@Column(name="movie")
+	//@Column(name="movie")
 	private String movie;
-	@Column(name="occupiedSeat")
+	//@Column(name="occupiedSeat")
 	private String seat;
-	@Column(name="showing")
+	//@Column(name="showing")
 	private String showing;
-	@Column(name="totalPrice", updatable = false)
+	//@Column(name="totalPrice", updatable = false)
 	private double totalPrice;
 
 	public Ticket() {}
@@ -34,7 +34,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket id: " + code + "\nDate: " + showing + "- Seat: " + seat +"\nMovie: " + movie + "\nPrice: â‚¬ "
+		return "Ticket id: " + code + "\nDate: " + showing + "- Seat: " + seat +"\nMovie: " + movie + "\nPrice: € "
 				+ totalPrice;
 	}
 

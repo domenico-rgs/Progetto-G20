@@ -3,6 +3,8 @@ package server.domain.cinema;
 import java.util.Date;
 import java.util.HashMap;
 
+//import javax.persistence.*;    //inutilizzato
+
 import server.domain.exception.SearchException;
 import server.domain.movie.MovieShowing;
 import server.domain.movie.TypeCategory;
