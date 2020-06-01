@@ -1,6 +1,7 @@
 package server.domain.cinema;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -113,6 +114,7 @@ public class Cinema {
 	}
 	
 	public boolean pay(double money, String seat, String movieShowing) {
+		return false;
 		//TO-DO
 	}
 

@@ -1,15 +1,21 @@
 <!DOCTYPE HTML>
+@//dichiarazione variabili
+@args {
+	List<String> title
+	List <String> fiveMovieImg
+} 
+
 <html>
 
 	<head>
-		<link rel="icon" href="../static/images/favicon.png" type="image/png" />
+		<link rel="icon" href="../statics/images/favicon.png" type="image/png" />
 		<title>Cinema G20</title>
-		<meta charset="utf-8" />
+		<meta charset="utf-16" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../static/css/index.css">
-		<link rel="stylesheet" href="../static/css/main.css">
-		<link rel="stylesheet" href="../static/css/login.css">
-		<link rel="stylesheet" href="../static/css/faq.css">
+		<link rel="stylesheet" href="../statics/css/index.css">
+		<link rel="stylesheet" href="../statics/css/main.css">
+		<link rel="stylesheet" href="../statics/css/login.css">
+		<link rel="stylesheet" href="../statics/css/faq.css">
 
 		<!-- external refers -->
 		<link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
@@ -22,12 +28,12 @@
 			<div class="inner">
 				<nav id="nav">
 					<div>
-						<img src="../static/images/icon/barIcon.png" alt="">
+						<img src="../statics/images/icon/barIcon.png" alt="">
 						<a>G20</a>
 					</div>
 					<a href="#">Home</a>
-					<a href="catalog.html">Catalog</a>
-					<a href="faq.html">FAQ</a>
+					<a href="/catalog">Catalog</a>
+					<a href="#faq">FAQ</a>
 					<a href="#footer">Contact</a>
 					<a href="#login">Login</a>
 				</nav>
@@ -40,7 +46,7 @@
 			<div class="inner">
 				<header>
 					<h1>Cinema G20</h1>
-					<h2><i>The best site in Italy to buy tickets ... maybe!</i></h2>
+					<h2><i>The best site in Italy to buy tickets . maybe!</i></h2>
 
 				</header>
 
@@ -55,51 +61,30 @@
 
 				<!-- Main Movie (5 elemtents)-->
 				<div class="filmMenu">
+				
+					
+					
+						<div class="item">
+							<div class="img">
+								<img src='' alt="">
+							</div>
+							<div class="name">
+								<p>@title.get(0)</p>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="img">
+								<img src='' alt="">
+							</div>
+							<div class="name">
+								<p>@title.get(1)</p>
+							</div>
+						</div>
+						
+						
+					
 
-					<div class="item">
-						<div class="img">
-							<img src='../static/images/unavaliable.png' alt="">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="img">
-							<img src='../static/images/unavaliable.png' alt="">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="img">
-							<img src='../static/images/unavaliable.png' alt="">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="img">
-							<img src='../static/images/unavaliable.png' alt="">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="img">
-							<img src='../static/images/unavaliable.png' alt="">
-						</div>
-						<div class="name">
-							<p>Test title</p>
-						</div>
-					</div>
 
 				</div>
 
@@ -139,11 +124,11 @@
 
 				<div id="content">
 					<div class="loginImg">
-						<img src="../static/images/icon/loginImg.png" alt="">
+						<img src="../statics/images/icon/loginImg.png" alt="">
 					</div>
 
 					<div class="loginImg">
-						<img src="../static/images/icon/minion.png" alt="">
+						<img src="../statics/images/icon/minion.png" alt="">
 					</div>
 
 					<div class="login-content">
@@ -240,37 +225,37 @@
 				<div class="inf">
 					<h3><strong>CONTACT US</strong></h3>
 					<div id="position">
-						<img src="../static/images/icon/position.png" alt="">
+						<img src="../statics/images/icon/position.png" alt="">
 						<p>Via Adolfo Ferrara 5, Pavia, Italy</p>
 					</div>
 					<div id="email">
-						<img src="../static/images/icon/email.png" alt="">
-						<p>progrettog20@gmail.com</p>
+						<img src="../statics/images/icon/email.png" alt="">
+						<p>progrettog20@@gmailcom</p>
 					</div>
 				</div>
 
 				<div class="social">
-					<img src="../static/images/icon/facebook.png" alt="">
-					<img src="../static/images/icon/twitter.png" alt="">
-					<img src="../static/images/icon/googleplus.png" alt="">
+					<img src="../statics/images/icon/facebook.png" alt="">
+					<img src="../statics/images/icon/twitter.png" alt="">
+					<img src="../statics/images/icon/googleplus.png" alt="">
 				</div>
 
 			</div>
 		</footer>
 
 		<!-- Scripts -->
-		<script src="../static/js/jquery.min.js"></script>
-		<script src="../static/js/skel.min.js"></script>
-		<script src="../static/js/util.js"></script>
-		<script src="../static/js/main.js"></script>
+		<script src="../statics/js/jquery.min.js"></script>
+		<script src="../statics/js/skel.min.js"></script>
+		<script src="../statics/js/util.js"></script>
+		<script src="../statics/js/main.js"></script>
 
 		<!-- nostri script -->
-		<script src="../static/js/navbar.js"></script>
-		<script src="../static/js/login.js"></script>
-		<script src="../static/js/faq.js"></script>
+		<script src="../statics/js/navbar.js"></script>
+		<script src="../statics/js/login.js"></script>
+		<script src="../statics/js/faq.js"></script>
 
 		</script>
-		<!-- <script src="../static/js/background.js"></script> -->
+		<!-- <script src="../statics/js/background.js"></script> -->
 
 	</body>
 

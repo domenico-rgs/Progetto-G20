@@ -1,0 +1,153 @@
+.imgMovie {
+  display: inline;
+}
+
+
+.imgMovie img {
+  width: 25%;
+  height: 50%;
+  object-fit: cover;
+}
+
+.description {
+  word-wrap: break-word;
+  max-width: 65%;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5%;
+}
+
+.description h5 {
+  color: #373d51;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 0 1em 0;
+  font-size: 3.5em;
+}
+
+.description p {
+  color: #555;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 1em 0;
+  font-size: 1.3em;
+}
+
+.description h6 {
+  color: #373d51;
+  font-weight: 400;
+  font-size: 1.3em;
+  margin: 0;
+}
+
+button {
+  position: relative;
+  float: right;
+  margin: auto;
+  border: none;
+  color: white;
+  background-color: rgb(30, 63, 97);
+  height: 50px;
+  width: 250px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+
+/*catalog list */
+.catalogList {
+  position: relative;
+  top: 100px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(30, 63, 97);
+}
+
+  /* per ora è la p, dopo sara una div con la tabellla */
+.catalogList .showingTable {
+  opacity: 0;
+  max-height: 0;
+  border-bottom: 1px solid #e5e5e5;
+  overflow: hidden;
+  clear: both;
+  transition: all 0.2s ease 0.15s;
+}
+
+.catalogList .showingTable.active {
+  opacity: 1;
+  max-height: 100%;
+  transition: all 0.35s ease 0.15s;
+}
+
+
+
+/* tabella delle proiezioni */
+
+.showingTable {
+  padding-bottom: 30px;
+}
+
+.showingTable table {
+  width: 100%;
+}
+.showingTable th, td {
+  width: 30%;
+  color: black;
+}
+.showingTable th:last-child, td:last-child{
+  width: 10%;
+}
+
+.showingTable th {
+  font-size: 120%;
+}
+
+.showingTable td {
+  padding: 0 10px;
+  text-align: left;
+  align-items: center;
+  vertical-align: middle;
+  font-size: normal;
+}
+
+.showingTable table, th, td {
+  border: 1px solid rgb(185, 185, 185);
+}
+
+.showingTable tr:nth-child(even) {
+  background-color: #eee;
+}
+.showingTable tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+
+.showingTable td button {
+  border-radius: 5px;
+  width: 80%;
+  height: 40px;
+  margin: 5px 10%;
+  background-color: rgb(199, 69, 69);
+}
+
+
+
+@media screen and (max-width: 980px) {
+  .description h5 {
+    font-size: 2.5em;
+  }
+
+  .description p {
+    font-size: 1.1em;
+  }
+
+  button {
+    height: 40px;
+    width: 150px;
+    top: -50px;
+  }
+}

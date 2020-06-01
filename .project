@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Progetto G20</name>
-	<comment>Project Progetto G20 created by Buildship.</comment>
+	<name>server</name>
+	<comment>Project Pizza-Now created by Buildship.</comment>
 	<projects>
 	</projects>
 	<buildSpec>

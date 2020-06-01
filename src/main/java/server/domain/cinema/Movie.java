@@ -3,8 +3,6 @@ package server.domain.cinema;
 import java.util.Date;
 import java.util.HashMap;
 
-import javax.persistence.*;
-
 import server.domain.exception.SearchException;
 import server.domain.movie.MovieShowing;
 import server.domain.movie.TypeCategory;
@@ -14,17 +12,17 @@ import server.domain.theatre.Theatre;
  * This class is referred to a movie
  * @see MovieShowing
  */
-@Entity
-@Table(name="movie")
+//@Entity
+//@Table(name="movie")
 public class Movie {
-	@Id
-	@Column(name="title")
+	//@Id
+	//@Column(name="title")
 	private String title;
-	@Column(name="duration")
+	//@Column(name="duration")
 	private int duration; //in minutes
-	@Column(name="category")
+	//@Column(name="category")
 	private TypeCategory category;
-	@Column(name="plot")
+	//@Column(name="plot")
 	private String plot;
 	private String pathCover;
 		

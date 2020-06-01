@@ -1,6 +1,8 @@
 package server;
 
 import java.util.HashMap;
+
+
 import java.util.Map;
 
 import javax.servlet.Servlet;
@@ -23,7 +25,6 @@ public class ApplicationServer {
     }
 
     public void start() throws Exception {
-    	initTemplateEngine();
         server = new Server(port);
         ServletContextHandler handler = new ServletContextHandler();
         handler.addServlet(new ServletHolder(servlet), "/*");
@@ -44,9 +45,4 @@ public class ApplicationServer {
         handler.addServlet(holderPwd, "/statics/*");
     }
     
-    private void initTemplateEngine() {
-        Map<String, Object> conf = new HashMap<>();
-        conf.put("home.template", "templates");
-        Rythm.init(conf);
-    }
 }
