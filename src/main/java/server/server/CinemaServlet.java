@@ -1,4 +1,4 @@
-package G20.server;
+package server.server;
 
 import java.io.IOException;
 import java.util.ArrayList;

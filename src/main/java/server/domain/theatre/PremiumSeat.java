@@ -1,11 +1,11 @@
 package server.domain.theatre;
 
-import javax.persistence.*;
+//import javax.persistence.*; //importazione non richiesta
 
-@Entity
-@DiscriminatorValue("PremiumSeat")
+//@Entity
+//@DiscriminatorValue("PremiumSeat")
 public class PremiumSeat extends Seat{
-	@Column(name="addition")
+	//@Column(name="addition")
 	private static double addition = 1.2; //aggiunta in percentuale
 	
 	public PremiumSeat(String position) {

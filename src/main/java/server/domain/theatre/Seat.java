@@ -1,17 +1,17 @@
 package server.domain.theatre;
 
-import javax.persistence.*;
+//import javax.persistence.*;			//importazione non richiesta
 
 /**
  * This class is referred to a seat in a cinema theatre
  * @see Theatre
  */
-@Entity(name="seat")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="typeOfSeat", discriminatorType = DiscriminatorType.INTEGER)
+//@Entity(name="seat")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name="typeOfSeat", discriminatorType = DiscriminatorType.INTEGER)
 public class Seat {
-	@Id
-	@Column(name="pos")
+	//@Id
+	//@Column(name="pos")
 	private String position;
 
 	public Seat(String seatId) {
