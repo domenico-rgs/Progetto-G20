@@ -8,7 +8,7 @@ import server.domain.cinema.Cinema;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
-
+//TEST
 
 /* CLASSE TEST DA RISCRIVERE */
 
