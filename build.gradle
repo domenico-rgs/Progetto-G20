@@ -11,6 +11,7 @@ dependencies {
     implementation 'org.eclipse.jetty:jetty-server:9.4.28.v20200408'
     implementation 'org.eclipse.jetty:jetty-servlet:9.4.28.v20200408'
     implementation 'org.rythmengine:rythm-engine:1.3.0'
+    implementation 'org.hibernate:hibernate-gradle-plugin:6.0.0.Alpha5'
     
     testImplementation 'junit:junit:4.12'
 }
