@@ -59,7 +59,7 @@ public class CinemaServlet extends HttpServlet {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			resp.getWriter().write(Rythm.render("404 Error"));
+			resp.getWriter().write(Rythm.render("404.html"));
 		}
 		
 	
@@ -70,7 +70,7 @@ public class CinemaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 
-		String reqHandler = this.parsePath(req.getPathInfo());
+		String reqHandler = this.parsePath(req.getRequestURI());
 		IHandler classHandler;
 		
 		try {
@@ -81,7 +81,7 @@ public class CinemaServlet extends HttpServlet {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			resp.getWriter().write(Rythm.render("404 Error"));
+			resp.getWriter().write(Rythm.render("404.html"));
 		}
 		
 	}

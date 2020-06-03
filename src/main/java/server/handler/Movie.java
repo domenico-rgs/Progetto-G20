@@ -31,8 +31,7 @@ public class Movie implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		if (req.getParameter("title") != null)
-			this.selectedMovie = req.getParameter("title");
+		this.selectedMovie = req.getParameter("title");
 		
 		//metodi di caricamento della pagina del film
 		
@@ -40,9 +39,6 @@ public class Movie implements IHandler {
 		Map<String, Object > params = new HashMap<>();
 		this.getMovieInf(params);
 		
-		
-		
-		//params.puts vai valori
 		
 		resp.getWriter().write(Rythm.render("movieInformation.html", params));
 		
@@ -73,9 +69,6 @@ public class Movie implements IHandler {
 		params.put("duration", "prova");
 		params.put("genere", "prova");
 		params.put("price", "prova");
-		
-		
-		
 		
 	}
 	
