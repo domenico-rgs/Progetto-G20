@@ -2,6 +2,7 @@ package server;
 
 import java.io.IOException;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 import org.rythmengine.RythmEngine;
 
-import server.server.handler.*;
+import server.handler.*;
 
 public class CinemaServlet extends HttpServlet {
 	
@@ -47,14 +48,17 @@ public class CinemaServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String classHandler = this.parsePath(req.getPathInfo());
+		String reqHandler = this.parsePath(req.getPathInfo());
+		IHandler classHandler;
 		
 		try {
-			Class.forName("server.server.handler." + classHandler).getMethod("doGet",
-					HttpServletRequest.class, HttpServletResponse.class).invoke(null,
-							req, resp);
+			classHandler = (IHandler)Class.forName("server.handler." + reqHandler).
+					getMethod("getInstance").invoke(null);
+			
+			classHandler.doGet(req, resp);
 		}
-		catch (Exception classNotFoundException) {
+		catch (Exception e) {
+			e.printStackTrace();
 			resp.getWriter().write(Rythm.render("404 Error"));
 		}
 		
@@ -66,12 +70,14 @@ public class CinemaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 
-		String classHandler = this.parsePath(req.getPathInfo());
+		String reqHandler = this.parsePath(req.getPathInfo());
+		IHandler classHandler;
 		
 		try {
-			Class.forName("server.server.handler." + classHandler).getMethod("doPost",
-					HttpServletRequest.class, HttpServletResponse.class).invoke(null,
-							req, resp);
+			classHandler = (IHandler)Class.forName("server.handler." + reqHandler).
+					getMethod("getInstance").invoke(null);
+			
+			classHandler.doPost(req, resp);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -80,12 +86,23 @@ public class CinemaServlet extends HttpServlet {
 		
 	}
 	
+	
+	/*
+	 * Valuta il get richiesto e ne fa uno split se richiesti altri argomenti,
+	 * dopo di che verra richiamato l'handler corretto in riferimento 
+	 * al primo argomento, che chiama la classe corretta
+	 */
 	private String parsePath(String path) {
+
 		
-		if (path.contentEquals("/")) return "Index";
-		if (path.contentEquals("/favicon.ico")) return "Index";
+		if (path.contentEquals("/") || path.contentEquals("/favicon.ico") ||
+				path.contentEquals("/home")) {
+			path = "Index";
+			return path;
+		}
 		
 		path = path.substring(1);
+		
 		path = path.substring(0,1).toUpperCase() + path.substring(1);
 		
 		return path;

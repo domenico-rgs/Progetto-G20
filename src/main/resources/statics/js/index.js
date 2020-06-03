@@ -2,13 +2,12 @@
 
 $('.item').on('click', function() {
     var ajax = $.ajax({
-        type: 'POST',
-        url: '/movieInformation',
-        data: { title: $(this).find('p').text(),
-                saveMovie: "true"},
+        type: 'GET',
+        url: '/movie',
+        data: { title: $(this).find('p').text()},
         success: function(html)
         {
-          window.location.href = "/movieInformation"
+          window.location.href = "/movie"
         }
     });
     // Process success/failure here via ajax variable (http://api.jquery.com/jquery.ajax/)
