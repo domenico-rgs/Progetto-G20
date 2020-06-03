@@ -7,132 +7,133 @@ String year
 String duration
 String genere
 String price
-}
+List<String> idShowList
+
+  }
 
 
-<html>
+  <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-    <title>Nome del film</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../statics/css/main.css" />
-    <link rel="stylesheet" href="../statics/css/index.css">
-    <link rel="stylesheet" href="../statics/css/movie.css">
-    <link rel="stylesheet" href="../statics/css/showing.css">
-  </head>
+    <head>
+      <meta charset="UTF-8">
+      <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+      <title>Nome del film</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../statics/css/main.css" />
+      <link rel="stylesheet" href="../statics/css/index.css">
+      <link rel="stylesheet" href="../statics/css/movie.css">
+      <link rel="stylesheet" href="../statics/css/showing.css">
+    </head>
 
-  <body>
-    <!-- Header with navbar-->
-    <header id="header">
-      <div class="inner">
-        <nav id="nav">
-          <a href="/index">Home</a>
-          <a href="/catalog">Catalog</a>
-          <a href="/index#faq">FAQ</a>
-          <a href="#footer">About</a>
-          <a href="/index#login">Login</a>
-        </nav>
-      </div>
-    </header>
-
-
-    <!-- Three -->
-    <section id="three" class="wrapper">
-      <div id="movieInf" class="inner">
-
-        <div class="imgMovie">
-          <img src="../statics/images/cover/joker.jpg" alt="">
-
+    <body>
+      <!-- Header with navbar-->
+      <header id="header">
+        <div class="inner">
+          <nav id="nav">
+            <a href="/index">Home</a>
+            <a href="/catalog">Catalog</a>
+            <a href="/index#faq">FAQ</a>
+            <a href="#footer">About</a>
+            <a href="/index#login">Login</a>
+          </nav>
         </div>
-        <div class="description">
-          <h5><strong>@title</strong></h5>
-          <p>@description</p>
-          <h6><strong>Anno: </strong> @year</h6>
-          <h6><strong>Durata: </strong> @duration</h6>
-          <h6><strong>Genere: </strong> @genere</h6>
-          <h6><strong>Prezzo: </strong> @price</h6>
-        </div>
+      </header>
 
-        <button type="button" onClick="showingAppear(); return false;">Available shows</button>
 
-        <!-- showing table -->
-        <div class="catalogList">
+      <!-- Three -->
+      <section id="three" class="wrapper">
+        <div id="movieInf" class="inner">
 
-          <div class="showingTable">
-            <table>
-              <tr>
-                <th> <strong>Data e orario</strong></th>
-                <th> <strong>Sala proiezione</strong> </th>
-                <th> <strong>Prezzo</strong></th>
-                <th></th>
-              </tr>
-              <tr>
-                <td>22-Maggio-2090 16:00 PM</td>
-                <td>Nome inventato</td>
-                <td>120€</td>
-                <td> <button>Acquista</button> </td>
-              </tr>
-              <tr>
-                <td>23-Maggio-2090 16:00 PM</td>
-                <td>Nome inventato</td>
-                <td>120€</td>
-                <td> <button>Acquista</button> </td>
-              </tr>
-            </table>
+          <div class="imgMovie">
+            <img src="../statics/images/cover/joker.jpg" alt="">
 
           </div>
-        </div>
-
-      </div>
-    </section>
-
-
-
-
-
-
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="inner">
-
-        <div class="inf">
-          <h3><strong>CONTACT US</strong></h3>
-          <div id="position">
-            <img src="../statics/images/icon/position.png" alt="">
-            <p>Via Adolfo Ferrara 5, Pavia, Italy</p>
+          <div class="description">
+            <h5><strong>@title</strong></h5>
+            <p>@description</p>
+            <h6><strong>Anno: </strong> @year</h6>
+            <h6><strong>Durata: </strong> @duration</h6>
+            <h6><strong>Genere: </strong> @genere</h6>
+            <h6><strong>Prezzo: </strong> @price</h6>
           </div>
-          <div id="email">
-            <img src="../statics/images/icon/email.png" alt="">
-            <p>progrettog20@@gmail.com</p>
+
+          <button type="button" onClick="showingAppear(); return false;">Available shows</button>
+
+          <!-- showing table -->
+          <div class="catalogList">
+
+            <div class="showingTable">
+              <table>
+                <tr>
+                  <th> <strong>Data e orario</strong></th>
+                  <th> <strong>Sala proiezione</strong> </th>
+                  <th> <strong>Prezzo</strong></th>
+                  <th></th>
+                </tr>
+
+                @for (String id: idShowList) {
+
+                <tr>
+                  <td>22-Maggio-2090 16:00 PM</td>
+                  <td>@id</td>
+                  <td>120€</td>
+                  <td> <button>Acquista</button> </td>
+                </tr>
+                }
+
+              </table>
+
+            </div>
           </div>
+
         </div>
+      </section>
 
-        <div class="social">
-          <img src="../statics/images/icon/facebook.png" alt="">
-          <img src="../statics/images/icon/twitter.png" alt="">
-          <img src="../statics/images/icon/googleplus.png" alt="">
+
+
+
+
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+
+          <div class="inf">
+            <h3><strong>CONTACT US</strong></h3>
+            <div id="position">
+              <img src="../statics/images/icon/position.png" alt="">
+              <p>Via Adolfo Ferrara 5, Pavia, Italy</p>
+            </div>
+            <div id="email">
+              <img src="../statics/images/icon/email.png" alt="">
+              <p>progrettog20@@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="social">
+            <img src="../statics/images/icon/facebook.png" alt="">
+            <img src="../statics/images/icon/twitter.png" alt="">
+            <img src="../statics/images/icon/googleplus.png" alt="">
+          </div>
+
         </div>
-
-      </div>
-    </footer>
+      </footer>
 
 
 
-    <!-- Scripts -->
-    <script src="../statics/js/jquery.min.js"></script>
-    <script src="../statics/js/skel.min.js"></script>
-    <script src="../statics/js/util.js"></script>
-    <script src="../statics/js/main.js"></script>
+      <!-- Scripts -->
+      <script src="../statics/js/jquery.min.js"></script>
+      <script src="../statics/js/skel.min.js"></script>
+      <script src="../statics/js/util.js"></script>
+      <script src="../statics/js/main.js"></script>
 
-    <script src="../statics/js/login.js"></script>
-    <script src="../statics/js/showing.js"></script>
+      <script src="../statics/js/login.js"></script>
+      <script src="../statics/js/showing.js"></script>
 
-    <!-- sto provando questo script -->
-    <script src="../statics/js/catalog.js"></script>
+      <!-- sto provando questo script -->
+      <script src="../statics/js/catalog.js"></script>
 
-  </body>
+    </body>
 
-</html>
+  </html>

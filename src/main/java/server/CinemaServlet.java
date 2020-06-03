@@ -37,12 +37,10 @@ public class CinemaServlet extends HttpServlet {
 		
 		//inizializzazione delle variabili
 		conf = new HashMap<>();
-        conf.put("home.template", "templates");
-        templates = new HashMap<>();  
+        conf.put("home.template", "templates"); 
         Rythm.init(conf);
 
 	}
-	
 	
 	
 	@Override

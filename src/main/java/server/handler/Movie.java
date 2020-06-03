@@ -1,7 +1,9 @@
 package server.handler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -38,6 +40,7 @@ public class Movie implements IHandler {
 		
 		Map<String, Object > params = new HashMap<>();
 		this.getMovieInf(params);
+		this.getAvaliableShow(params);
 		
 		
 		resp.getWriter().write(Rythm.render("movieInformation.html", params));
@@ -69,6 +72,23 @@ public class Movie implements IHandler {
 		params.put("duration", "prova");
 		params.put("genere", "prova");
 		params.put("price", "prova");
+		
+		return;
+		
+	}
+	
+	private void getAvaliableShow(Map<String, Object> params) {
+		
+		List<String> idShowList = new ArrayList<>();
+		
+		idShowList.add("show1");
+		idShowList.add("ishow");
+		idShowList.add("sfdadf");
+		
+		params.put("idShowList", idShowList);
+		
+		return;
+		
 		
 	}
 	
