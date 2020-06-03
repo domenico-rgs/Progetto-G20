@@ -1,6 +1,7 @@
 package server;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 import org.rythmengine.RythmEngine;
 
+import server.server.handler.*;
+
 public class CinemaServlet extends HttpServlet {
 	
-	List<String> title = new ArrayList<>();
-	List<String> images = new ArrayList<>();
 	
 	/* variabili usate nella gestione del servlet
 	 * 
@@ -25,58 +26,36 @@ public class CinemaServlet extends HttpServlet {
 	 * templates: mappa dei template renderizzati (da gestire le eccezioni)
 	 * engine: motore di renderizzazione
 	 */
+	//Cinema c = new Cinema();
 	Map<String, Object> conf;
 	Map<String, String> templates;
 	RythmEngine engine;
+	String templateResp;
 	
 	public CinemaServlet() {
 		
 		//inizializzazione delle variabili
 		conf = new HashMap<>();
         conf.put("home.template", "templates");
-        templates = new HashMap<>();
-        engine = new RythmEngine(conf);
-        
-        this.prova(); //prova
-        this.initialize();
-        
-    	
-		//funzioni di test
-		
+        templates = new HashMap<>();  
+        Rythm.init(conf);
+
 	}
 	
-	private void prova() {
-		title.add("1title");
-		title.add("2title");
-		title.add("3title");
-		title.add("4title");
-		title.add("5title");
-		images.add("unavaliable.png");
-		conf.put("title", title);
-		conf.put("fiveMovieImg", images);
-	}
-	
-	private void initialize() {
-		String index = engine.render("index.html", title, images);
-		templates.put("index", index);
-	}
 	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		switch (req.getPathInfo()) {
-			
-		case "/":
-			resp.getWriter().write(engine.substitute(templates.get("index")));
-			break;
-			
-		case "/catalog":
-			resp.getWriter().write(engine.render("catalog.html"));
-			break;
-		default:
-			break;
+		String classHandler = this.parsePath(req.getPathInfo());
 		
+		try {
+			Class.forName("server.server.handler." + classHandler).getMethod("doGet",
+					HttpServletRequest.class, HttpServletResponse.class).invoke(null,
+							req, resp);
+		}
+		catch (Exception classNotFoundException) {
+			resp.getWriter().write(Rythm.render("404 Error"));
 		}
 		
 	
@@ -86,26 +65,31 @@ public class CinemaServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		switch (req.getParameter("butt")) {
+
+		String classHandler = this.parsePath(req.getPathInfo());
 		
-		case "Login" :
-			String name = req.getParameter("username");
-			String pass = req.getParameter("password");
-			System.out.println(name);
-			System.out.println(pass);
-			resp.sendRedirect("/catalog");
-			break;
-		
-		case "Create account":
-			System.out.println("prova creazione account");
-			resp.sendRedirect("/");
-			break;
-		
-		default:
-			System.out.println(req.getPathInfo());
-			resp.sendRedirect("/");
-			break;
+		try {
+			Class.forName("server.server.handler." + classHandler).getMethod("doPost",
+					HttpServletRequest.class, HttpServletResponse.class).invoke(null,
+							req, resp);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			resp.getWriter().write(Rythm.render("404 Error"));
 		}
 		
 	}
+	
+	private String parsePath(String path) {
+		
+		if (path.contentEquals("/")) return "Index";
+		if (path.contentEquals("/favicon.ico")) return "Index";
+		
+		path = path.substring(1);
+		path = path.substring(0,1).toUpperCase() + path.substring(1);
+		
+		return path;
+		
+	}
+
 }

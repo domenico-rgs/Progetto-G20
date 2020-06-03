@@ -160,6 +160,9 @@ body {
   padding-top: 50px !important;
 }
 
+form #itemForm {
+  width: 100% !important;
+}
 
 .filmMenu img {
   max-width: 100%;

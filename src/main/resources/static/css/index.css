@@ -219,6 +219,11 @@ body {
   transition: 0.7s;
 } */
 
+form #itemForm {
+  width: inherit !important;
+  height: auto;
+}
+
 .filmMenu {
   max-width: 100%;
   height: auto;
