@@ -1,18 +1,21 @@
 package server.handler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.rythmengine.Rythm;
+
 public class Catalog implements IHandler {
 	
 	private static Catalog instance = null;
-	
-	private String selectedMovie;
+
 	
 	 private Catalog() {
 	 }
@@ -29,8 +32,19 @@ public class Catalog implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		Map<String, Object > params = new HashMap<>();
-		this.getListMovie(params); 
+		if((req.getParameter("search").equals("all"))) {
+			Map<String, Object > params = new HashMap<>();
+			this.getListMovie(params); 
+			
+			resp.getWriter().write(Rythm.render("catalog.html", params));
+			
+		}
+		
+		else {
+			System.out.println(req.getParameter("search"));
+		}
+		
+		
 
 	}
 
@@ -42,7 +56,14 @@ public class Catalog implements IHandler {
 	
 	private void getListMovie(Map<String, Object> params) {
 		
+		List<String> titoli = new ArrayList<>();
+		titoli.add("titolo1");
+		titoli.add("titoli2");
+		titoli.add("titoli3");
 		
+		params.put("movieList", titoli);
+		
+		return;
 	}
 
 }

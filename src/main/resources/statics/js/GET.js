@@ -12,3 +12,30 @@ $('.item').on('click', function() {
     });
     // Process success/failure here via ajax variable (http://api.jquery.com/jquery.ajax/)
 });
+
+
+$('img.searchImg').on('click', function() {
+    title = $('#search').val()
+    var ajax = $.ajax({
+        type: 'GET',
+        success: function(html)
+        {
+          window.location.href = "/catalog?search=" + title
+        }
+    });
+    // Process success/failure here via ajax variable (http://api.jquery.com/jquery.ajax/)
+});
+
+$('#search').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+      title = $(this).val()
+      var ajax = $.ajax({
+          type: 'GET',
+          success: function(html)
+          {
+            window.location.href = "/catalog?search=" + title
+          }
+      });
+    }
+});

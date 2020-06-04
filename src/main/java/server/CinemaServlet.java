@@ -100,7 +100,6 @@ public class CinemaServlet extends HttpServlet {
 		}
 		
 		path = path.substring(1);
-		
 		path = path.substring(0,1).toUpperCase() + path.substring(1);
 		
 		return path;

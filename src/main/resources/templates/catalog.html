@@ -43,14 +43,14 @@ List<String> movieList
 
           <!-- search bar -->
           <div id="searchBar" class="searchBar">
-            <input id="search" type="search" placeholder="Search Movie">
-            <img src="../statics/images/icon/search.png" alt="">
+            <input id="search" type="search" placeholder="Search Movie" />
+            <img class="searchImg" src="../statics/images/icon/search.png" alt="" />
           </div>
 
           <!-- Movie catalog -->
           <div class="filmMenu">
 
-            @for (String titleName: titleMovieList) {
+            @for (String titleName: movieList) {
 
             <div class="item">
               <div class="img">
