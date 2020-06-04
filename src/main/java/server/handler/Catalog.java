@@ -32,11 +32,10 @@ public class Catalog implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		if((req.getParameter("search").equals("all"))) {
-			Map<String, Object > params = new HashMap<>();
-			this.getListMovie(params); 
+		if(req.getParameter("search") == null ||
+				req.getParameter("search").equals("all")) {
 			
-			resp.getWriter().write(Rythm.render("catalog.html", params));
+			resp.getWriter().write(Rythm.render("catalog.html"));
 			
 		}
 		

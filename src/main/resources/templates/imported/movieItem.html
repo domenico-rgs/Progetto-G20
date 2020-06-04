@@ -1,0 +1,18 @@
+@args {
+List<String> movieList
+  }
+
+  <!-- é uno stampo per un render della lista
+    dei film nel catalogo tramite server -->
+
+  @for (String titleName: titleMovieList) {
+
+  <div class="item">
+    <div class="img">
+      <img src='' alt="">
+    </div>
+    <div class="name">
+      <p>@titleName</p>
+    </div>
+  </div>
+  }

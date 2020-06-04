@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+
 @//dichiarazione variabili
 @args {
 List<String> titleMovieList
@@ -47,9 +48,7 @@ List<String> titleMovieList
 					<header>
 						<h1>Cinema G20</h1>
 						<h2><i>The best site in Italy to buy tickets . maybe!</i></h2>
-
 					</header>
-
 				</div>
 			</section>
 
@@ -60,8 +59,6 @@ List<String> titleMovieList
 					<h1>Titoli del momento</h1>
 
 					<!-- Main Movie (5 elemtents)-->
-
-
 					<div class="filmMenu">
 
 						@for (String titleName: titleMovieList) {
@@ -78,11 +75,7 @@ List<String> titleMovieList
 
 					</div>
 
-
-
-
 					<button id="showFilm" onclick="catalog.html">Mostra di più</button>
-
 
 					<div class="quotes">
 						<h1>Citazione preferita di domenico</h1>
@@ -91,153 +84,23 @@ List<String> titleMovieList
 							Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 
 					</div>
-
-
-
 				</div>
 			</section>
 
 
-			<!-- pagina di login  che appare al click del pulsante
-				non credo rimarrà a lungo -->
-			<div id="loginTransparent">
-				<!-- iframe id="loginFrame" src="login.html" width="100%" height="100%"></iframe -->
-
-			</div>
-
 			<!-- login -->
 			<div id="login">
-				<div id="topImg">
-				</div>
-
-				<div class="loginContent">
-					<div id="text">
-						<p>Vuoi accederea ad un mondo di film? fantastico!
-							Accedi o, se non lo hai ancora fatto, registrati! cosa aspetti?!</p>
-					</div>
-
-					<div id="content">
-						<div class="loginImg">
-							<img src="../statics/images/icon/loginImg.png" alt="">
-						</div>
-
-						<div class="loginImg">
-							<img src="../statics/images/icon/minion.png" alt="">
-						</div>
-
-						<div class="login-content">
-
-							<form action=/index method="post">
-								<div class="input-div one">
-									<div class="i">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="div">
-										<h5>Username</h5>
-										<input type="text" name="username" class="input">
-									</div>
-								</div>
-								<div class="input-div pass">
-									<div class="i">
-										<i class="fas fa-lock"></i>
-									</div>
-									<div class="div">
-										<h5>Password</h5>
-										<input type="password" name="password" class="input">
-									</div>
-								</div>
-								<a href="#">Forgot Password?</a>
-
-								<div class="buttons">
-
-									<input type="submit" name="button" class="btn" value="Login">
-									<input type="submit" name="button" class="btn" value="CreateAccount">
-
-
-								</div>
-							</form>
-
-						</div>
-
-
-					</div>
-				</div>
+				@imported.login()
 			</div>
 
+			<!-- faq -->
 			<div id="faq">
-				<div id="topImg">
-				</div>
-
-				<div class="faqContent">
-					<div id="text">
-						<p>Hai dei dubbi?</p>
-					</div>
-
-					<div id="content">
-
-						<div class="accordion">
-							<div class="accordion-item">
-								<a>What can JavaScript Do?</a>
-								<div class="content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-								</div>
-							</div>
-							<div class="accordion-item">
-								<a>How JavaScript Can Modify HTML and CSS Values?</a>
-								<div class="content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-								</div>
-							</div>
-							<div class="accordion-item">
-								<a>What Is SVG?</a>
-								<div class="content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-								</div>
-							</div>
-							<div class="accordion-item">
-								<a>Is FAQ Section Matters In Website?</a>
-								<div class="content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-								</div>
-							</div>
-							<div class="accordion-item">
-								<a>How To Create a Light FAQ Element?</a>
-								<div class="content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-
-
-				</div>
+				@imported.faq()
 			</div>
 
 			<!-- Footer -->
 			<footer id="footer">
-				<div class="inner">
-
-					<div class="inf">
-						<h3><strong>CONTACT US</strong></h3>
-						<div id="position">
-							<img src="../statics/images/icon/position.png" alt="">
-							<p>Via Adolfo Ferrara 5, Pavia, Italy</p>
-						</div>
-						<div id="email">
-							<img src="../statics/images/icon/email.png" alt="">
-							<p>progrettog20@@gmailcom</p>
-						</div>
-					</div>
-
-					<div class="social">
-						<img src="../statics/images/icon/facebook.png" alt="">
-						<img src="../statics/images/icon/twitter.png" alt="">
-						<img src="../statics/images/icon/googleplus.png" alt="">
-					</div>
-
-				</div>
+				@imported.footer() @//invoca template per facilitare il riuso
 			</footer>
 
 			<!-- Scripts -->
@@ -252,7 +115,6 @@ List<String> titleMovieList
 			<script src="../statics/js/faq.js"></script>
 			<script src="../statics/js/GET.js"></script>
 
-			</script>
 			<!-- <script src="../statics/js/background.js"></script> -->
 
 		</body>
