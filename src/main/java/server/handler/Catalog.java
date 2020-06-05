@@ -32,6 +32,11 @@ public class Catalog implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		/* verifica i parametri passategli nella ricerca
+		 * e nel caso sia inserito qualche cosa, fa una ricerca per 
+		 * nome tramite l'applicazione, che ritornerà una lista 
+		 * di titoli (o altro, da verificare con la base di dati)
+		 */
 		if(req.getParameter("search") == null ||
 				req.getParameter("search").equals("all")) {
 			
@@ -43,17 +48,16 @@ public class Catalog implements IHandler {
 		else {
 			System.out.println(req.getParameter("search"));
 		}
-		
-		
 
 	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// non necessario probabilmente
 
 	}
 	
+	/* testing */
 	private void getListMovie(Map<String, Object> params) {
 		
 		List<String> titoli = new ArrayList<>();

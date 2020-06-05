@@ -51,6 +51,16 @@ $('#showFilm').on('click', function() {
   })
 });
 
+$('#indexRefer').on('click', function() {
+    var ajax = $.ajax({
+       type: "GET",
+       success : function(response)
+       {
+             window.location.href = "/catalog?search=all"
+       }
+  })
+});
+
 $(document).on('click','#loginBtn', function() {
     var user = $('#user').val()
     var pass = $('#pass').val()
@@ -68,7 +78,7 @@ $(document).on('click','#loginBtn', function() {
             $('#wrong').css("visibility", "visible");
           }
           else {
-            
+
           }
         }
     });
@@ -77,7 +87,7 @@ $(document).on('click','#loginBtn', function() {
 
 $(document).on('click','#newBtn', function() {
   var ajax = $.ajax({
-      type: 'POST',
+      type: 'GET',
       success: function(response)
       {
         window.location.href = "/createAccount"

@@ -19,3 +19,19 @@ $('.sideMenu a').click(function() {
 
   changeView();
 });
+
+
+
+$('#sideButton').click(function()
+{
+  $('.sideMenu').animate({
+    "left": "0px"
+  }, 500);
+});
+
+$('#closeButton').click(function()
+{
+  $('.sideMenu').animate({
+    "left": "-200px"
+  }, 500);
+});

@@ -45,7 +45,9 @@ public class Index implements IHandler {
 			throws ServletException, IOException {
 
 		
-		//metodi da applicazione per prendere i film
+		/* Si occupera di prendere 5 titoli a caso e metterli in una lista
+		 * da passare all'engine
+		 */
 		
 		resp.getWriter().write(Rythm.render("index.html", titoli));
 		
@@ -56,6 +58,9 @@ public class Index implements IHandler {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		
+		/* prende usern e pass, valuta la loro correttezza, 
+		 * ed in caso positivo ritorna la pagina dell'utente
+		 */
 		
 		
 		String username = req.getParameter("username");
@@ -67,9 +72,10 @@ public class Index implements IHandler {
 		//poi rendirizza alla pagina corretta
 			
 		resp.getWriter().write("FALSE");
-
-			
 		
+		//ritorna la pagina personale dell'utente
+		//resp.getWriter().write(Rythm.render("indexUser.html", titoli));
+
 
 	}
 

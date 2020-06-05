@@ -36,8 +36,14 @@ public class MovieItem implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		/* usato per il ritorno dei film tramite AJAX, ritornato di volta in volta
+		*	5 o 10 film, spostando il contatore e stampandoli nell'app
+		*/
+		
 		List<String> stampa = new ArrayList<>();
+		
 		//metodi per la creazione della lista dei film da app
+		
 		for (int i=0; i<5; i++) {
 			stampa.add(movies.get(position));
 			position++;

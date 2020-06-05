@@ -9,21 +9,32 @@
     <link rel="stylesheet" href="../statics/css/main.css" />
     <link rel="stylesheet" href="../statics/css/index.css">
     <link rel="stylesheet" href="../statics/css/admin.css">
-    <link href="../statics/css/stile.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="../statics/css/style.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="../statics/css/style0.css" rel="stylesheet" type="text/css" media="screen">
-
-    <script type="text/javascript" src="../statics/js/jquery-1.11.1.min.js"></script>
 
 
   </head>
 
   <body>
 
+    <!-- menu laterale a comparsa -->
+    <div class="sideMenu">
+      <div class="menu">
+        <ul>
+          <li><a value="theatre">Gestisci Sale</a></li>
+          <li><a value="movie">Gestisci Film</a></li>
+          <li><a value="ticket">Gestisci Biglietti</a></li>
+          <li><a value="showing">Gestisci Proiezioni</a></li>
+          <li><a href="#">altro</a></li>
+          <button id="closeButton" type="button">Cliccami</button>
+        </ul>
+      </div>
+    </div>
+
+
     <!-- Header with navbar-->
     <header id="header">
       <div class="inner">
         <nav id="nav">
+          <button id="sideButton" type="button">Cliccami</button>
           <a href="#">Home</a>
           <a href="faq.html">FAQ</a>
           <a href="#footer">About</a>
@@ -33,36 +44,7 @@
       </div>
     </header>
 
-    <!-- codice per menu2 -->
-    <div id="container2">
-    	<header>
-        	<div class="menu2">
-            	<div class="closeButton"><a class="icon-close"></a></div>
-            		<ul>
-                    		<li><a value="theatre">Gestisci Sale</a></li>
-                        <li><a value="movie">Gestisci Film</a></li>
-                        <li><a value="ticket">Gestisci Biglietti</a></li>
-                        <li><a value="showing">Gestisci Proiezioni</a></li>
-                        <li><a href="#">altro</a></li>
-                </ul>
-            </div>
-            <div id="menu2Button"><a class="icon-menu2"></a></div>
-      </header>
-    </div>
 
-    <script>
-    	$('#menu2Button').click(function()
-    {
-    	   $('.menu2').
-                animate({"left":"0px"}, 1000);
-           });
-
-           $('.closeButton').click(function()
-    {
-    	   $('.menu2').animate({"left":"-200px"}, 1000);
-    });
-
-    </script>
 
 
     <!-- Three -->

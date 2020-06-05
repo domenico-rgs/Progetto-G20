@@ -1,70 +1,68 @@
 <!DOCTYPE HTML>
 @//dichiarazione variabili
 @args {
-	List<String> title
-	List <String> fiveMovieImg
-} 
+List<String> title
+	String username
+	}
 
-<html>
+	<html>
 
-	<head>
-		<link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-		<title>Cinema G20</title>
-		<meta charset="utf-16" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../statics/css/index.css">
-		<link rel="stylesheet" href="../statics/css/main.css">
-		<link rel="stylesheet" href="../statics/css/login.css">
-		<link rel="stylesheet" href="../statics/css/faq.css">
+		<head>
+			<link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+			<title>Cinema G20</title>
+			<meta charset="utf-16" />
+			<meta name="viewport" content="width=device-width, initial-scale=1" />
+			<link rel="stylesheet" href="../statics/css/index.css">
+			<link rel="stylesheet" href="../statics/css/main.css">
+			<link rel="stylesheet" href="../statics/css/login.css">
+			<link rel="stylesheet" href="../statics/css/faq.css">
 
-		<!-- external refers -->
-		<link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
-	</head>
+			<!-- external refers -->
+			<link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+		</head>
 
-	<body>
+		<body>
 
-		<!-- Header with navbar-->
-		<header id="header">
-			<div class="inner">
-				<nav id="nav">
-					<div>
-						<img src="../statics/images/icon/barIcon.png" alt="">
-						<a>G20</a>
-					</div>
-					<a href="#">Home</a>
-					<a href="/catalog">Catalog</a>
-					<a href="#faq">FAQ</a>
-					<a href="#footer">Contact</a>
-					<a href="#login">Login</a>
-				</nav>
-			</div>
-		</header>
-
-
-		<!-- Banner con immagine di sfondo -->
-		<section id="banner">
-			<div class="inner">
-				<header>
-					<h1>Cinema G20</h1>
-					<h2><i>The best site in Italy to buy tickets . maybe!</i></h2>
-
-				</header>
-
-			</div>
-		</section>
+			<!-- Header with navbar-->
+			<header id="header">
+				<div class="inner">
+					<nav id="nav">
+						<div>
+							<img src="../statics/images/icon/barIcon.png" alt="">
+							<a>Ciao @username</a>
+						</div>
+						<a href="#">Home</a>
+						<a href="/catalog">Catalog</a>
+						<a href="#footer">Contact</a>
+						<a href="/Gestione">Gestione</a>
+					</nav>
+				</div>
+			</header>
 
 
-		<!-- Three -->
-		<section id="three" class="wrapper align-center">
-			<div class="inner">
-				<h1>Titoli del momento</h1>
+			<!-- Banner con immagine di sfondo -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>Cinema G20</h1>
+						<h2><i>The best site in Italy to buy tickets . maybe!</i></h2>
 
-				<!-- Main Movie (5 elemtents)-->
-				<div class="filmMenu">
-				
-					
-					@for (String titleName: title) {
-					
+					</header>
+
+				</div>
+			</section>
+
+
+			<!-- Three -->
+			<section id="three" class="wrapper align-center">
+				<div class="inner">
+					<h1>Titoli del momento</h1>
+
+					<!-- Main Movie (5 elemtents)-->
+					<div class="filmMenu">
+
+						@for (String titleName: title) {
+
 						<div class="item">
 							<div class="img">
 								<img src='' alt="">
@@ -73,181 +71,45 @@
 								<p>@titleName</p>
 							</div>
 						</div>
-						
-					}
 
+						}
 
-				</div>
-
-				<button id="showFilm" onclick="catalog.html">Mostra di più</button>
-
-
-				<div class="quotes">
-					<h1>Citazione preferita di domenico</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi consequatur.
-						Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-				</div>
-
-
-
-			</div>
-		</section>
-
-
-		<!-- pagina di login  che appare al click del pulsante
-				non credo rimarrà a lungo -->
-		<div id="loginTransparent">
-			<!-- iframe id="loginFrame" src="login.html" width="100%" height="100%"></iframe -->
-
-		</div>
-
-		<!-- login -->
-		<div id="login">
-			<div id="topImg">
-			</div>
-
-			<div class="loginContent">
-				<div id="text">
-					<p>Vuoi accederea ad un mondo di film? fantastico!
-						Accedi o, se non lo hai ancora fatto, registrati! cosa aspetti?!</p>
-				</div>
-
-				<div id="content">
-					<div class="loginImg">
-						<img src="../statics/images/icon/loginImg.png" alt="">
 					</div>
 
-					<div class="loginImg">
-						<img src="../statics/images/icon/minion.png" alt="">
-					</div>
-
-					<div class="login-content">
-						<form action="index.html">
-
-							<div class="input-div one">
-								<div class="i">
-									<i class="fas fa-user"></i>
-								</div>
-								<div class="div">
-									<h5>Username</h5>
-									<input type="text" class="input">
-								</div>
-							</div>
-							<div class="input-div pass">
-								<div class="i">
-									<i class="fas fa-lock"></i>
-								</div>
-								<div class="div">
-									<h5>Password</h5>
-									<input type="password" class="input">
-								</div>
-							</div>
-							<a href="#">Forgot Password?</a>
-
-							<div class="buttons">
-								<input type="submit" class="btn" value="Login">
-								<input type="submit" class="btn" value="Create account">
-							</div>
-
-						</form>
-					</div>
+					<button id="showFilm" class="showFilm" onclick="catalog.html">Mostra di più</button>
 
 
-				</div>
-			</div>
-		</div>
-
-		<div id="faq">
-			<div id="topImg">
-			</div>
-
-			<div class="faqContent">
-				<div id="text">
-					<p>Hai dei dubbi?</p>
-				</div>
-
-				<div id="content">
-
-					<div class="accordion">
-						<div class="accordion-item">
-							<a>What can JavaScript Do?</a>
-							<div class="content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<a>How JavaScript Can Modify HTML and CSS Values?</a>
-							<div class="content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<a>What Is SVG?</a>
-							<div class="content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<a>Is FAQ Section Matters In Website?</a>
-							<div class="content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<a>How To Create a Light FAQ Element?</a>
-							<div class="content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-							</div>
-						</div>
+					<div class="quotes">
+						<h1>Citazione preferita di domenico</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi
+							consequatur.
+							Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 
 					</div>
 
 				</div>
+			</section>
 
 
-			</div>
-		</div>
+			<!-- Footer -->
+			<footer id="footer">
+				@imported.footer()
+			</footer>
 
-		<!-- Footer -->
-		<footer id="footer">
-			<div class="inner">
+			<!-- Scripts -->
+			<script src="../statics/js/jquery.min.js"></script>
+			<script src="../statics/js/skel.min.js"></script>
+			<script src="../statics/js/util.js"></script>
+			<script src="../statics/js/main.js"></script>
 
-				<div class="inf">
-					<h3><strong>CONTACT US</strong></h3>
-					<div id="position">
-						<img src="../statics/images/icon/position.png" alt="">
-						<p>Via Adolfo Ferrara 5, Pavia, Italy</p>
-					</div>
-					<div id="email">
-						<img src="../statics/images/icon/email.png" alt="">
-						<p>progrettog20@@gmailcom</p>
-					</div>
-				</div>
+			<!-- nostri script -->
+			<script src="../statics/js/navbar.js"></script>
+			<script src="../statics/js/login.js"></script>
+			<script src="../statics/js/faq.js"></script>
 
-				<div class="social">
-					<img src="../statics/images/icon/facebook.png" alt="">
-					<img src="../statics/images/icon/twitter.png" alt="">
-					<img src="../statics/images/icon/googleplus.png" alt="">
-				</div>
+			</script>
+			<!-- <script src="../statics/js/background.js"></script> -->
 
-			</div>
-		</footer>
+		</body>
 
-		<!-- Scripts -->
-		<script src="../statics/js/jquery.min.js"></script>
-		<script src="../statics/js/skel.min.js"></script>
-		<script src="../statics/js/util.js"></script>
-		<script src="../statics/js/main.js"></script>
-
-		<!-- nostri script -->
-		<script src="../statics/js/navbar.js"></script>
-		<script src="../statics/js/login.js"></script>
-		<script src="../statics/js/faq.js"></script>
-
-		</script>
-		<!-- <script src="../statics/js/background.js"></script> -->
-
-	</body>
-
-</html>
+	</html>

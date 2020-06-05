@@ -18,32 +18,41 @@
 /* primo sottom menu */
 
 .sideMenu {
+  top: 60px;
   position: fixed;
-  float: left;
-  overflow-y: auto;
-  height: auto;
-  width: 20%;
-  border-right: 1px solid rgb(30,63,97);
+  z-index: 100000;
+  width: 200px;
+  left: -200px;
+  background-color: grey;
+  opacity: 0.8;
+  height: 100%;
+  overflow-y: hidden;
 }
 
-.sideMenu a {
+.sideMenu li {
+  padding: 10px 0;
+  width: 100%;
   display: block;
-  color: rgb(30,63,97);
-  padding: 20px;
+  text-align: center;
+}
+
+.sideMenu li a{
+  /* modifiche al testo */
   text-decoration: none;
-  font-size: 1.2em;
-  transition: background-color 0.3s;
+}
+
+.sideMenu li:hover {
+  background-color: white;
   cursor: pointer;
 }
 
-.sideMenu a.active {
-  background-color: rgb(30,63,97);
-  color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+/* non toccarli */
+.sideMenu li.active {
+  background-color: white;
 }
 
 .sideMenu a:hover:not(.active) {
-background-color: rgb(161, 161, 161);
+
 }
 
 /*contenuto di amministrazione */

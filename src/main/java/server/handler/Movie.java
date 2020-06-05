@@ -33,6 +33,10 @@ public class Movie implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		/* verrà salvato il titolo del fiml da cercare, da passarre 
+		 * all'applicazione che lo cercherà nella base di dati, e ne ritornerà
+		 * le informazioni, da renderizzare nell'html
+		 */
 		this.selectedMovie = req.getParameter("title");
 		
 		//metodi di caricamento della pagina del film
@@ -49,7 +53,7 @@ public class Movie implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// non server probabilmente
 		
 	}
 	
