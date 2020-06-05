@@ -21,6 +21,7 @@
 }
 
 #shopCart .shopItem {
+  margin: 5px 0;
   width: 90%;
   border-bottom: 1px solid grey;
 }
