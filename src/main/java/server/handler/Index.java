@@ -57,28 +57,18 @@ public class Index implements IHandler {
 			throws ServletException, IOException {
 		
 		
-		//metodi di raccolta dei dati di login
-		switch (req.getParameter("button")) {
 		
-		case "Login" :
-			String username = req.getParameter("username");
-			String password = req.getParameter("password");
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
 			
-			System.out.println(username + password);
+		System.out.println(username + password);
 			
-			//fai qualcosa per la verifica
-			//poi rendirizza alla pagina corretta
+		//fai qualcosa per la verifica
+		//poi rendirizza alla pagina corretta
 			
-			resp.sendRedirect("/index");
-			break;
+		resp.getWriter().write("FALSE");
+
 			
-		case "CreateAccount":
-			
-			//reindirizza all'html di creazione
-			resp.sendRedirect("/index");
-			break;
-		
-		}
 		
 
 	}
