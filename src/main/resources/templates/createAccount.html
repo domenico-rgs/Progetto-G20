@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+    <title>Cinema G20</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../statics/css/main.css" />
+    <link rel="stylesheet" href="../statics/css/index.css">
+    <link rel="stylesheet" href="../statics/css/newAccount.css">
+    <link rel="stylesheet" href="../statics/css/login.css">
+
+
+  </head>
+
+  <body>
+
+    <!-- Header with navbar-->
+    <header id="header">
+      <div class="inner">
+        <nav id="nav">
+          <a href="#">Home</a>
+          <a href="faq.html">FAQ</a>
+          <a href="#footer">About</a>
+          <a href="#" onClick="loginAppear(); return false;">Login</a>
+        </nav>
+        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+      </div>
+    </header>
+
+
+
+
+    <!-- Three -->
+    <section id="three" class="wrapper align-center">
+      <div class="inner">
+
+        <div class="loginImg">
+          <img src="../statics/images/icon/popcorn.png" alt="">
+        </div>
+
+        <div class="loginImg">
+          <img src="../statics/images/icon/ticketLogin.png" alt="">
+        </div>
+
+        <div class="loginContent">
+
+          <div id="content">
+
+            <div class="login-content">
+
+              <form action="/createAccount" method="post">
+                <div class="input-div one">
+                  <div class="i">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="div">
+                    <h5>Email</h5>
+                    <input id="user" type="text" name="email" class="input">
+                  </div>
+                </div>
+                <div class="input-div one">
+                  <div class="i">
+                    <i class="fas fa-lock"></i>
+                  </div>
+                  <div class="div">
+                    <h5>Username</h5>
+                    <input id="pass" type="password" name="username" class="input">
+                  </div>
+                </div>
+                <div class="input-div one">
+                  <div class="i">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="div">
+                    <h5>Password</h5>
+                    <input id="user" type="text" name="password" class="input">
+                  </div>
+                </div>
+                <div class="input-div one">
+                  <div class="i">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="div">
+                    <h5>Conferma password</h5>
+                    <input id="user" type="text" name="confirmPass" class="input">
+                  </div>
+                </div>
+
+                <div class="buttons">
+
+                  <input id="newBtn" type="button" name="" class="btn" value="Crea Account">
+
+
+                </div>
+                <p id="wrong">Username o password non corretti!!</p>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer id="footerEmpty">
+      <div class="inner">
+
+
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../statics/js/jquery.min.js"></script>
+    <script src="../statics/js/skel.min.js"></script>
+    <script src="../statics/js/util.js"></script>
+    <script src="../statics/js/main.js"></script>
+    <script src="../statics/js/login.js"></script>
+
+    <!-- nostri script -->
+  </body>
+
+</html>

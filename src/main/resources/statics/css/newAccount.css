@@ -1,0 +1,25 @@
+.inner .loginContent {
+  background-color: white;
+  margin: 30px auto;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.inner .loginImg img {
+	width: 100%;
+	height: 100%;
+}
+
+.inner .loginImg{
+  width: 256px;
+  height: 256px;
+}
+
+.inner .loginImg:first-of-type{
+  float: left !important;
+}
+
+
+.inner .loginImg:nth-of-type(2){
+  float: right !important;
+}

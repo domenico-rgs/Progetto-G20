@@ -5,6 +5,7 @@
 
 #three #shopInner {
   padding-top: 50px;
+  min-height: 400px;
 }
 
 .inner #shopCart {
