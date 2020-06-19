@@ -194,7 +194,7 @@ form #itemForm {
   color: #333;
   width: 80%;
   height: 90%;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #263238;
   /*background: linear-gradient(to right, #333, #333) 0px calc(100% - 5px)/calc(100% - 10px) 2px no-repeat;*/
 }
 
