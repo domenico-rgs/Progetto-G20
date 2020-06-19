@@ -1,7 +1,30 @@
 var backItem;
 var selectedItem;
 
+window.onload = function() {
+  changeView();
+};
+
+window.onresize = function() {
+  changeView();
+};
+
 function changeView() {
+
+
+  if ($(window).width() > 600){
+    $('.sideMenu').animate({
+      "left": "0px"
+    }, 500);
+  }
+
+  if ($(window).width() < 600){
+    $('.sideMenu').animate({
+      "left": "-200px"
+    }, 500);
+  }
+
+
 
   if (backItem != undefined) {
       $(backItem).css("height", "0");
