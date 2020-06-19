@@ -7,7 +7,7 @@ package server.domain.theatre;
 public class PremiumSeat extends Seat{
 	//@Column(name="addition")
 	private static double addition = 1.2; //aggiunta in percentuale
-	
+
 	public PremiumSeat(String position) {
 		super(position);
 	}

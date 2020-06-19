@@ -15,7 +15,7 @@ public class DisabledSeat extends Seat {
 	public static double getAddition() {
 		return addition;
 	}
-	
+
 	@Override
 	public String toString() {
 		return super.toString() + ", type: Disabled";

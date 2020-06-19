@@ -21,7 +21,7 @@ public class Theatre {
 	private HashMap<String, Seat> seatsList;
 	//@Column(name="filePath")
 	private String filePath;
-	
+
 	public Theatre() {}
 
 	public Theatre(String theatreName, String filePath) throws IOException, SeatException {
@@ -56,19 +56,18 @@ public class Theatre {
 				default:
 					throw new SeatException("Unrecognized seat type, recheck the file");
 				}
-			i++;
+				i++;
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("resource")
 	public String printConfiguration() throws IOException {
 		BufferedReader seats = new BufferedReader(new FileReader(filePath));
 		String s;
 		StringBuilder string = new StringBuilder();
-		while((s = seats.readLine())!= null){
+		while((s = seats.readLine())!= null)
 			string.append(s+"\n");
-		}
 		return string.toString();
 	}
 

@@ -1,7 +1,6 @@
 package server.domain.cinema;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,7 +23,7 @@ public class Cinema {
 	private HashMap <String, Movie> movieCatalog;
 	private HashMap <Movie, Scheduling> scheduler;
 	private SimPaymentAdapter payment;
-    private DBConnection db;
+	private DBConnection db;
 
 
 	public Cinema() {
@@ -32,9 +31,9 @@ public class Cinema {
 		movieCatalog=new HashMap<>();
 		scheduler = new HashMap<>();
 		payment= new SimPaymentAdapter();
-        db = new DBConnection();
+		db = new DBConnection();
 	}
-	
+
 	public boolean createTheatre(String name, String file) throws SearchException, IOException, SeatException {
 		if (theatreList.containsKey(name))
 			throw new SearchException(name+" already exists.");
@@ -43,7 +42,7 @@ public class Cinema {
 			return true;
 		}
 	}
-	
+
 	//OCCORRE CONTROLLARE CHE NON SIA USATO
 	public boolean deleteTheatre(String name) throws SearchException{
 		if (!(theatreList.containsKey(name)))
@@ -53,11 +52,11 @@ public class Cinema {
 			return true;
 		}
 	}
-	
+
 	public String printTheatreConfig(String thName) throws IOException {
 		return theatreList.get(thName).printConfiguration();
 	}
-	
+
 	public Theatre searchTheatre(String thName) throws SearchException{
 		if(!(theatreList.containsKey(thName)))
 			throw new SearchException(thName+"'s not found");
@@ -76,7 +75,7 @@ public class Cinema {
 		}
 
 	}
-	
+
 	//OCCORRE CONTROLLARE CHE NON SIA USATO
 	public boolean deleteMovie(String title) throws SearchException{
 		if (!(movieCatalog.containsKey(title)))
@@ -93,12 +92,12 @@ public class Cinema {
 		else
 			return movieCatalog.get(title);
 	}
-	
+
 	public void createMovieShowing(String movie, Date date, String theatre, double price) {
 		//PROBABILMENTE OCCORRE AGGIUNGERE QUALCOSA PER CONTROLLARE CHE LE DATE NON SI ACCAVALLINO
 		scheduler.get(movieCatalog.get(movie)).createMovieShowing(date, theatreList.get(theatre), price);
 	}
-	
+
 	//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
 	public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
 		scheduler.get(movieCatalog.get(movie)).deleteMovieShowing(idShowing);
@@ -108,11 +107,11 @@ public class Cinema {
 	public boolean bookSeat(String movie, String initSeat, String finalSeat, String movieShowing) throws SeatException{
 		return scheduler.get(movieCatalog.get(movie)).changeAvailability(movieShowing, initSeat, finalSeat, false);
 	}
-	
+
 	public boolean bookSeat(String movie, String seat, String movieShowing) throws SeatException{
 		return scheduler.get(movieCatalog.get(movie)).changeAvailability(movieShowing, seat, seat, false);
 	}
-	
+
 	public boolean pay(double money, String seat, String movieShowing) {
 		return false;
 		//TO-DO
@@ -129,25 +128,24 @@ public class Cinema {
 		}
 		return t;
 	}
-	
+
 	public double totalPrice(MovieShowing movieShowing, String discount, String...seat) {
 		double price = movieShowing.getPrice();
 		//TO-DO
 		return price;
 	}
-	
+
 	//Se lancia l'eccezione ne cancella solo una parte
 	public boolean deleteBooking(String... code) throws SearchException{
-		for(String c : code) {
+		for(String c : code)
 			TicketLedger.getTicketLedger().removeTicketSale(c);
-		}				
 		return true;
 	}
-	
+
 	/* Test DB Ticket
 	public void addAuctionDB(Movie movie, String seat, MovieShowing movieShowing, double price) {
 	        db.addTicket(movie, seat, movieShowing, price);
 	}
-	*/
+	 */
 
 }

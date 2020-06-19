@@ -3,7 +3,7 @@ package server.domain.discount;
 public class CodeStrategy implements TicketPricingStrategy{
 	private String code;
 	private double percent;
-	
+
 	public CodeStrategy(String code, double percent) {
 		this.code=code;
 		this.percent=percent;

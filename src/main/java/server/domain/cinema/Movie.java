@@ -1,14 +1,7 @@
 package server.domain.cinema;
 
-import java.util.Date;
-import java.util.HashMap;
-
-//import javax.persistence.*;    //inutilizzato
-
-import server.domain.exception.SearchException;
 import server.domain.movie.MovieShowing;
 import server.domain.movie.TypeCategory;
-import server.domain.theatre.Theatre;
 
 /**
  * This class is referred to a movie
@@ -27,7 +20,7 @@ public class Movie {
 	//@Column(name="plot")
 	private String plot;
 	private String pathCover;
-		
+
 	public Movie() {}
 
 	public Movie(String title, int duration, String plot, String pathCover, TypeCategory category) {
@@ -37,7 +30,7 @@ public class Movie {
 		this.plot=plot;
 		this.pathCover=pathCover;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -75,6 +68,6 @@ public class Movie {
 			return false;
 		return true;
 	}
-	
-	
+
+
 }

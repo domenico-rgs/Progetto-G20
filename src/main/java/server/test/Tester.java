@@ -1,13 +1,9 @@
 package server.test;
 
-import java.util.Date;
 import java.util.Scanner;
 
 import server.domain.cinema.Cinema;
-import server.domain.cinema.Movie;
-import server.domain.cinema.Ticket;
 import server.domain.exception.SearchException;
-import server.domain.movie.MovieShowing;
 
 public class Tester {
 
@@ -21,7 +17,7 @@ public class Tester {
 			cin1.addMovie("The big short", 95);
 			cin1.addMovie("The great Gatsby", 115);
 			cin1.addMovie("The place", 200);
-			*/ // manca il metodo addMovie non puo eseguirsi il test
+			 */ // manca il metodo addMovie non puo eseguirsi il test
 
 			cin1.createTheatre("theatre1", "fileTest/configTheatre/theatre1");
 			cin1.createTheatre("theatre2", "fileTest/configTheatre/theatre2");
@@ -33,8 +29,8 @@ public class Tester {
 			cin1.searchMovie("The big short").addMovieShowing(new Date(120, 4, 01, 21,35),cin1.searchTheatre("theatre2"), 4.6);
 			cin1.searchMovie("The big short").addMovieShowing(new Date(120, 4, 05,19,00), cin1.searchTheatre("theatre4"), 5.8);
 			cin1.searchMovie("The great Gatsby").addMovieShowing(new Date(120,9,10,17,30), cin1.searchTheatre("theatre3"), 6.6);
-			*/		//niente metodo per fare il test
-			
+			 */		//niente metodo per fare il test
+
 			//System.out.println(cin1.printMovies());
 
 			/*
@@ -44,8 +40,8 @@ public class Tester {
 			System.out.println(ms.getAvailability().printSeats());
 			Ticket t = cin1.bookSeat(m, "A1", "P1",320,"code","pin","cvc");
 			System.out.println(t);
-			*/
-			
+			 */
+
 			System.out.println("\n");
 			Scanner input = new Scanner(System.in);
 			System.out.println("Inserisci codice biglietto da eliminare: ");

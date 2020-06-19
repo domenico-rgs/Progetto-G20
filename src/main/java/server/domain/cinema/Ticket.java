@@ -23,7 +23,7 @@ public class Ticket {
 	private double totalPrice;
 
 	public Ticket() {}
-	
+
 	public Ticket(String movie, String seat, String showing, double totalPrice) {
 		code = UUID.randomUUID().toString();
 		this.movie=movie;
@@ -66,6 +66,6 @@ public class Ticket {
 	public String getCode() {
 		return code;
 	}
-	
-	
+
+
 }

@@ -25,7 +25,7 @@ public class MovieShowing {
 	//@Column(name="price")
 	private double price;
 	private String theatreName;
-	
+
 	public MovieShowing() {}
 
 	public MovieShowing(Date date, Theatre theatre, double price) {
@@ -36,11 +36,11 @@ public class MovieShowing {
 		availability = new Availability(theatre.getSeatsList());
 		theatreName=theatre.getTheatreName();
 	}
-	
+
 	protected boolean searchAvailability(String seat) throws SeatException {
 		return availability.searchAvailability(seat);
 	}
-	
+
 	protected boolean changeAvailability(String initSeat, String finalSeat, boolean value) throws SeatException {
 		return availability.changeAvailability(initSeat, finalSeat, value);
 	}
@@ -87,6 +87,6 @@ public class MovieShowing {
 			return false;
 		return true;
 	}
-	
-	
+
+
 }

@@ -15,11 +15,6 @@ List<String> titleMovieList
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<link rel="stylesheet" href="../statics/css/index.css">
 			<link rel="stylesheet" href="../statics/css/main.css">
-			<link rel="stylesheet" href="../statics/css/login.css">
-			<link rel="stylesheet" href="../statics/css/faq.css">
-
-			<!-- external refers -->
-			<link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
 		</head>
 
 		<body>
@@ -28,15 +23,11 @@ List<String> titleMovieList
 			<header id="header">
 				<div class="inner">
 					<nav id="nav">
-						<div>
-							<img src="../statics/images/icon/barIcon.png" alt="">
-							<a>G20</a>
-						</div>
 						<a href="#">Home</a>
-						<a href="/catalog?search=all">Catalog</a>
-						<a href="#faq">FAQ</a>
-						<a href="#footer">Contact</a>
-						<a href="#login">Login</a>
+						<a href="/catalog?search=all">Movie catalog</a>
+						<a href="/delete">Delete reservation</a>
+						<a href="/faq">FAQ</a>
+						<a href="#footer">Contact us</a>
 					</nav>
 				</div>
 			</header>
@@ -47,7 +38,7 @@ List<String> titleMovieList
 				<div class="inner">
 					<header>
 						<h1>Cinema G20</h1>
-						<h2><i>The best site in Italy to buy tickets . maybe!</i></h2>
+						<h2><i>The best site in Italy to buy tickets. Maybe!</i></h2>
 					</header>
 				</div>
 			</section>
@@ -56,7 +47,7 @@ List<String> titleMovieList
 			<!-- Three -->
 			<section id="three" class="wrapper align-center">
 				<div class="inner">
-					<h1>Titoli del momento</h1>
+					<h1>Latest Movies</h1>
 
 					<!-- Main Movie (5 elemtents)-->
 					<div class="filmMenu">
@@ -75,28 +66,14 @@ List<String> titleMovieList
 
 					</div>
 
-					<button id="indexRefer" class="showFilm" onclick="/catalog">Mostra di più</button>
+					<button id="indexRefer" class="showFilm" onclick="/catalog">Show entire catalog</button>
 
 					<div class="quotes">
-						<h1>Citazione preferita di domenico</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi
-							consequatur.
-							Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
+						<center><h1>Citazione a caso</h1></center>
 					</div>
 				</div>
 			</section>
 
-
-			<!-- login -->
-			<div id="login">
-				@imported.login()
-			</div>
-
-			<!-- faq -->
-			<div id="faq">
-				@imported.faq()
-			</div>
 
 			<!-- Footer -->
 			<footer id="footer">
@@ -111,8 +88,6 @@ List<String> titleMovieList
 
 			<!-- nostri script -->
 			<script src="../statics/js/navbar.js"></script>
-			<script src="../statics/js/login.js"></script>
-			<script src="../statics/js/faq.js"></script>
 			<script src="../statics/js/GET.js"></script>
 
 			<!-- <script src="../statics/js/background.js"></script> -->

@@ -17,7 +17,7 @@ public class Seat {
 	public Seat(String seatId) {
 		position = seatId;
 	}
-	
+
 	public Seat() {}
 
 	@Override
@@ -46,7 +46,7 @@ public class Seat {
 			return false;
 		return true;
 	}
-	
+
 	public String getPosition() {
 		return position;
 	}
