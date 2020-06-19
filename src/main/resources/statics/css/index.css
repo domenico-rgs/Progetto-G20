@@ -1,6 +1,8 @@
 /* CSS PREDEFINITI DEL LAYOUT PRINCIPALE, IDENDICO IN OGNI PAGINA */
 @charset "UTF-8";
 @import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600";
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
 
 
@@ -96,7 +98,8 @@ body {
 /* BANNER */
 
 #banner {
-  padding: 4em 0 6em 0 !important;  /* da sistemare col senno di poi */
+  padding: 4em 0 6em 0 !important;  
+  font-family: 'Sriracha', cursive;
   background-image: url(../images/banner.jpg);
   background-size: cover;
   background-position: bottom;
@@ -274,26 +277,30 @@ form #itemForm {
 }
 
 .showFilm{
-  border-radius: 50px;
-  color: white;
-  background-color: rgb(30,63,97);
-  padding:10px;
-  border: none;
-  cursor: pointer;
-  width: 100px;
+  display: block;
+	width: 50%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right,   #1E3F61, #275687, #1E3F61);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 0 auto;
+	cursor: pointer;
+	transition: .5s;
 }
 
-.showFilm:hover {
-  transform: scale(1.2);
-  transition: 0.3s;
-}
-
-.showFilm:focus {
-  outline: none;
+.showFilm:hover{
+	background-position: right;
 }
 
 /* div delle citazioni */
 .quotes {
+	font-family: 'Dancing Script', cursive;
   margin-top: 20px;
   padding: 20px 10px 0 10px;
   text-align: left;
@@ -447,4 +454,20 @@ form #itemForm {
   width: 100%;
   height: 100px;
   background-color: rgb(30,63,97);
+}
+
+.mappa-responsive {
+position: relative;
+padding-bottom: 56.25%;
+padding-top: 35px;
+height: 0;
+overflow: hidden;
+}
+
+.mappa-responsive iframe {
+position: absolute;
+top:0;
+left: 0;
+width: 100%;
+height: 100%;
 }

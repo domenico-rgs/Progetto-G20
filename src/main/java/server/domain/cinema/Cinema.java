@@ -1,6 +1,10 @@
 package server.domain.cinema;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,18 +24,26 @@ import server.services.DB.DBConnection;
  */
 public class Cinema {
 	private HashMap <String,Theatre> theatreList;
+	private ArrayList<String> citations;
 	private HashMap <String, Movie> movieCatalog;
 	private HashMap <Movie, Scheduling> scheduler;
 	private SimPaymentAdapter payment;
 	private DBConnection db;
+	private static Cinema istance = null;
 
-
-	public Cinema() {
+	private Cinema() {
 		theatreList=new HashMap<>();
 		movieCatalog=new HashMap<>();
+		citations = new ArrayList<>();
 		scheduler = new HashMap<>();
 		payment= new SimPaymentAdapter();
-		db = new DBConnection();
+		//db = new DBConnection();
+		try {
+			populateCitations();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public boolean createTheatre(String name, String file) throws SearchException, IOException, SeatException {
@@ -129,6 +141,11 @@ public class Cinema {
 		return t;
 	}
 
+	//Temporaneo?
+	public HashMap<String, Movie> getMovieCatalog() {
+		return movieCatalog;
+	}
+
 	public double totalPrice(MovieShowing movieShowing, String discount, String...seat) {
 		double price = movieShowing.getPrice();
 		//TO-DO
@@ -147,5 +164,24 @@ public class Cinema {
 	        db.addTicket(movie, seat, movieShowing, price);
 	}
 	 */
+	
+	private void populateCitations() throws IOException {
+		BufferedReader inFile = new BufferedReader(new FileReader("src/main/resources/statics/citazioni.txt"));
+		String riga;
+		while((riga=inFile.readLine())!=null) {
+			citations.add(riga);
+		}
+		inFile.close();
+	}
+	
+	public String getCitation() {
+		int random = (int)(Math.random()*citations.size());
+		return citations.get(random);
+	}
 
+	public static Cinema getCinema() {
+		if (istance == null)
+			istance = new Cinema();
+		return istance;
+	}
 }

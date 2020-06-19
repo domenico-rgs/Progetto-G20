@@ -1,13 +1,13 @@
-.loginContent #text {
+.deleteContent #text {
 	text-align: center;
 }
 
-.loginContent #text p {
+.deleteContent #text p {
 	color: black;
 	font-size: 140%;
 }
 
-.loginContent #content {
+.deleteContent #content {
 	position: relative;
 }
 
@@ -31,30 +31,13 @@
 	height: 100%;
 }
 
-.wave{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	height: 100%;
-	z-index: -1;
-}
-
-.container{
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap :7rem;
-    padding: 0 2rem;
-}
-
 .img{
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 }
 
-.login-content{
+.delete-content{
   font-family: 'Arial', sans-serif;
 	left: 100px;
 
@@ -72,17 +55,11 @@ form{
   margin: auto;
 }
 
-.loginContent img{
+.deleteContent img{
     height: 100px;
 }
 
-.login.content h2{
-	margin: 15px 0;
-	color: #333;
-	font-size: 2.3rem;
-}
-
-.login-content .input-div{
+.delete-content .input-div{
 	position: relative;
     display: grid;
     grid-template-columns: 7% 93%;
@@ -91,7 +68,7 @@ form{
     border-bottom: 2px solid #d9d9d9;
 }
 
-.login-content .input-div.one{
+.delete-content .input-div.one{
 	margin-top: 0;
 }
 
@@ -193,7 +170,7 @@ a:hover{
 	border-radius: 25px;
 	outline: none;
 	border: none;
-	background-image: linear-gradient(to right,  #cf1313, #e64343,  #cf1313);
+	background-image: linear-gradient(to right,  #cf1313, #e80707,  #cf1313);
 	background-size: 200%;
 	font-size: 1.2rem;
 	color: #fff;
@@ -232,7 +209,7 @@ input[type="submit"]:hover {
 		width: 290px;
 	}
 
-	.login-content h2{
+	.delete-content h2{
         font-size: 2.4rem;
         margin: 8px 0;
 	}
@@ -251,11 +228,7 @@ input[type="submit"]:hover {
 		display: none;
 	}
 
-	.wave{
-		display: none;
-	}
-
-	.login-content{
+	.delete-content{
 		justify-content: center;
 	}
 }

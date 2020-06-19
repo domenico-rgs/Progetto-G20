@@ -35,6 +35,24 @@ public class Movie {
 		return title;
 	}
 
+	public String getPathCover() {
+		return pathCover;
+	}
+	
+	
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public TypeCategory getCategory() {
+		return category;
+	}
+
+	public String getPlot() {
+		return plot;
+	}
+
 	@Override
 	public String toString() {
 		String s = "Title: " + title + "\n";

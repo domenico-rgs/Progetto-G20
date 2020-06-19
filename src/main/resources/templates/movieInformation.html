@@ -1,23 +1,13 @@
 <!DOCTYPE HTML>
 @args {
-String imgUrl
-String title
-String description
-String year
-String duration
-String genere
-String price
-List<String> idShowList
-
-  }
-
-
+server.domain.cinema.Movie movie
+}
   <html>
 
     <head>
       <meta charset="UTF-8">
       <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-      <title>Nome del film</title>
+      <title>Cinema G20 - @movie.getTitle()</title>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="../statics/css/main.css" />
@@ -28,17 +18,18 @@ List<String> idShowList
 
     <body>
       <!-- Header with navbar-->
-      <header id="header">
-        <div class="inner">
-          <nav id="nav">
-            <a href="/index">Home</a>
-            <a href="/catalog">Catalog</a>
-            <a href="/index#faq">FAQ</a>
-            <a href="#footer">About</a>
-            <a href="/index#login">Login</a>
-          </nav>
-        </div>
-      </header>
+    <header id="header">
+      <div class="inner">
+        <nav id="nav">
+          <a href="/">Home</a>
+          <a href="/catalog">Movie catalog</a>
+		  <a href="/delete">Delete reservation</a>
+          <a href="/faq">FAQ</a>
+          <a href="/#footer">Contact us</a>
+        </nav>
+        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+      </div>
+    </header>
 
 
       <!-- Three -->
@@ -46,19 +37,18 @@ List<String> idShowList
         <div id="movieInf" class="inner">
 
           <div class="imgMovie">
-            <img src="../statics/images/cover/joker.jpg" alt="">
+            <img src="@(movie.getPathCover())" alt="">
 
           </div>
           <div class="description">
-            <h5><strong>@title</strong></h5>
-            <p>@description</p>
-            <h6><strong>Anno: </strong> @year</h6>
-            <h6><strong>Durata: </strong> @duration</h6>
-            <h6><strong>Genere: </strong> @genere</h6>
-            <h6><strong>Prezzo: </strong> @price</h6>
+            <h5><strong>@movie.getTitle()</strong></h5>
+            <p>@movie.getPlot()</p>
+            <h6><strong>Durata: </strong> @movie.getDuration()</h6>
+            <h6><strong>Genere: </strong> @movie.getCategory().toString().toLowerCase()</h6>
+
           </div>
 
-          <button type="button" onClick="showingAppear(); return false;">Available shows</button>
+		<button type="button" onClick="showingAppear(); return false;">Available shows</button>
 
           <!-- showing table -->
           <div class="catalogList">
@@ -72,15 +62,14 @@ List<String> idShowList
                   <th></th>
                 </tr>
 
-                @for (String id: idShowList) {
 
                 <tr>
                   <td>22-Maggio-2090 16:00 PM</td>
-                  <td>@id</td>
+                  <td></td>
                   <td>120€</td>
                   <td> <button>Acquista</button> </td>
                 </tr>
-                }
+               
 
               </table>
 

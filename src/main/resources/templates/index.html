@@ -2,7 +2,8 @@
 
 @//dichiarazione variabili
 @args {
-List<String> titleMovieList
+List<server.domain.cinema.Movie> movieList
+String citation;
 	}
 
 	<html>
@@ -52,24 +53,25 @@ List<String> titleMovieList
 					<!-- Main Movie (5 elemtents)-->
 					<div class="filmMenu">
 
-						@for (String titleName: titleMovieList) {
+						@for (server.domain.cinema.Movie movie: movieList) {
 
 						<div class="item">
 							<div class="img">
-								<img src='' alt="">
+								<img src='@(movie.getPathCover())' alt="">
 							</div>
 							<div class="name">
-								<p>@titleName</p>
+								<p>@(movie.getTitle())</p>
 							</div>
 						</div>
 						}
 
 					</div>
 
-					<button id="indexRefer" class="showFilm" onclick="/catalog">Show entire catalog</button>
+					<button id="indexRefer" class="showFilm" onclick="/catalog">show entire catalog</button>
 
 					<div class="quotes">
-						<center><h1>Citazione a caso</h1></center>
+						<img src='../statics/images/icon/quote.png' alt="">
+						<center><h1>@citation</h1></center>
 					</div>
 				</div>
 			</section>
