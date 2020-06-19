@@ -410,7 +410,7 @@ form #itemForm {
 #footer .inner {
   position: relative;
   z-index: 100;
-  overflow: visible;
+  height: 600px;
 }
 
 
@@ -459,7 +459,7 @@ float: right;
 #footer .mappa {
   display: inline-block;
   float: left;
-width: 30%;
+width: 40%;
 height: 400px;
 position: relative;
 overflow: hidden;
