@@ -8,16 +8,16 @@ window.onload = function() {
 };
 
 var rgb = 'rgb(' + 30 + ',' + 63 + ',' + 97 + ',';
-var element = document.getElementById("header");
+var navbar = document.getElementById("header");
 
 // rende transparente la barra una volta entrato nel centro
 function scrollFunction() {
 
 if (document.documentElement.scrollTop >100) {
-  element.style.backgroundColor = rgb + 1 + ')';
+  navbar.style.backgroundColor = rgb + 1 + ')';
 }
 else {
-  element.style.backgroundColor = rgb + 0 + ')';
+  navbar.style.backgroundColor = rgb + 0 + ')';
 }
 };
 
@@ -26,6 +26,6 @@ else {
 function navOnLoad() {
 
   if (document.documentElement.scrollTop < 100) {
-    element.style.backgroundColor = rgb + 0 + ')';
+    navbar.style.backgroundColor = rgb + 0 + ')';
   }
 };
