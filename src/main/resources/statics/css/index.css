@@ -98,7 +98,7 @@ body {
 /* BANNER */
 
 #banner {
-  padding: 4em 0 6em 0 !important;  
+  padding: 4em 0 6em 0 !important;
   font-family: 'Sriracha', cursive;
   background-image: url(../images/banner.jpg);
   background-size: cover;
@@ -410,6 +410,7 @@ form #itemForm {
 #footer .inner {
   position: relative;
   z-index: 100;
+  overflow: visible;
 }
 
 
@@ -420,9 +421,6 @@ form #itemForm {
     margin-bottom: 2em !important;
   }
 
-#footer .inf {
-  display: inline-block;
-}
 
 #footer .inf div {
   padding: 10px 0;
@@ -435,14 +433,16 @@ form #itemForm {
   padding: 0 10px;
 }
 
-#footer div img{
+#footer .social img{
   display: inline;
   vertical-align: middle;
 }
 
-#footer .social {
-  display: inline;
-  float: right;
+#footer .informationAbout {
+width: 40%;
+display: inline-block;
+vertical-align: baseline;
+float: right;
 }
 
 #footer .social img {
@@ -456,15 +456,16 @@ form #itemForm {
   background-color: rgb(30,63,97);
 }
 
-.mappa-responsive {
+#footer .mappa {
+  display: inline-block;
+  float: left;
+width: 30%;
+height: 400px;
 position: relative;
-padding-bottom: 56.25%;
-padding-top: 35px;
-height: 0;
 overflow: hidden;
 }
 
-.mappa-responsive iframe {
+#footer .mappa iframe {
 position: absolute;
 top:0;
 left: 0;
