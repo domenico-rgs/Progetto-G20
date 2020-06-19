@@ -11,6 +11,7 @@ List<server.domain.cinema.Movie> movieList
 		<head>
 			<link rel="icon" href="../statics/images/favicon.png" type="image/png" />
 			<title>Cinema G20</title>
+			<audio id="audio" src="../statics/easteregg.mp3"></audio>
 			<meta charset="utf-16" />
 			<meta http-equiv="cache-control" content="no-cache">
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,7 +39,7 @@ List<server.domain.cinema.Movie> movieList
 			<section id="banner">
 				<div class="inner">
 					<header>
-						<h1>Cinema G20</h1>
+						<h1 onclick="playAudio()">Cinema G20</h1>
 						<h2><i>The best site in Italy to buy tickets. Maybe!</i></h2>
 					</header>
 				</div>
@@ -91,6 +92,16 @@ List<server.domain.cinema.Movie> movieList
 			<script src="../statics/js/main.js"></script>
 
 			<!-- nostri script -->
+			<script>
+				function playAudio() {
+				var myAudio = document.getElementById('audio');
+				if (!myAudio.paused) {
+					myAudio.pause();
+				} else {
+					myAudio.play();
+					}
+				}
+			</script>
 			<script src="../statics/js/navbar.js"></script>
 			<script src="../statics/js/GET.js"></script>
 
