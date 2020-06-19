@@ -107,7 +107,7 @@ body {
   background-repeat: no-repeat;
   text-align: center;
   position: relative;
-  transition: background-image 2s;
+  transition: background-image 4s;
 }
 
   #banner:before {

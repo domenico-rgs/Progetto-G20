@@ -1,11 +1,11 @@
 // automatic way to change background img on index.HTML
 //every 5 o 10 seconds
 
-var imgList = ["../static/images/background/back0.jpg",
-                "../static/images/background/back1.jpg",
-                "../static/images/background/back2.jpg",
-                "../static/images/background/back3.jpg",
-                "../static/images/background/back4.jpg"];
+var imgList = ["../statics/images/background/back0.jpg",
+                "../statics/images/background/back1.jpg",
+                "../statics/images/background/back2.jpg",
+                "../statics/images/background/back3.jpg",
+                "../statics/images/background/back4.jpg"];
 
 var currentImage;
 var index = 1;

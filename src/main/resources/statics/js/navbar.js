@@ -13,7 +13,7 @@ var element = document.getElementById("header");
 // rende transparente la barra una volta entrato nel centro
 function scrollFunction() {
 
-if (document.documentElement.scrollTop >300) {
+if (document.documentElement.scrollTop >100) {
   element.style.backgroundColor = rgb + 1 + ')';
 }
 else {
@@ -25,7 +25,7 @@ else {
 
 function navOnLoad() {
 
-  if (document.documentElement.scrollTop < 300) {
+  if (document.documentElement.scrollTop < 100) {
     element.style.backgroundColor = rgb + 0 + ')';
   }
 };
