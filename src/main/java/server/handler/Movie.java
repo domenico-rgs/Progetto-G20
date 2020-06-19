@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +19,6 @@ import server.domain.exception.SearchException;
 public class Movie implements IHandler {
 
 	private static Movie instance = null;
-
-	private String selectedMovie;
 
 	private Movie() {
 	}
@@ -40,12 +39,17 @@ public class Movie implements IHandler {
 		 * all'applicazione che lo cercherà nella base di dati, e ne ritornerà
 		 * le informazioni, da renderizzare nell'html
 		 */
-		this.selectedMovie = req.getParameter("title");
+		
+		
+		
 		//metodi di caricamento della pagina del film
 
 		try {
-			server.domain.cinema.Movie movie = Cinema.getCinema().searchMovie(req.getParameter("title"));
+			server.domain.cinema.Movie movie = 
+					Cinema.getCinema().searchMovie(req.getParameter("title"));
+			
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie));
+			
 		} catch (SearchException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
