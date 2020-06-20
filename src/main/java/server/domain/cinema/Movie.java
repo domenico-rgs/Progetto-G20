@@ -37,8 +37,8 @@ public class Movie {
 	public String getPathCover() {
 		return pathCover;
 	}
-	
-	
+
+
 
 	public int getDuration() {
 		return duration;

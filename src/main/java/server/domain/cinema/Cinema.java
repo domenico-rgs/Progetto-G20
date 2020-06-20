@@ -1,10 +1,8 @@
 package server.domain.cinema;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -103,7 +101,7 @@ public class Cinema {
 		else
 			return movieCatalog.get(title);
 	}
-	
+
 	public HashMap<String, MovieShowing> getSchedule(Movie movie) throws SearchException{
 		return scheduler.get(movie).getShowingList();
 	}
@@ -167,16 +165,15 @@ public class Cinema {
 	        db.addTicket(movie, seat, movieShowing, price);
 	}
 	 */
-	
+
 	private void populateCitations() throws IOException {
 		BufferedReader inFile = new BufferedReader(new FileReader("src/main/resources/statics/citazioni.txt"));
 		String riga;
-		while((riga=inFile.readLine())!=null) {
+		while((riga=inFile.readLine())!=null)
 			citations.add(riga);
-		}
 		inFile.close();
 	}
-	
+
 	public String getCitation() {
 		int random = (int)(Math.random()*citations.size());
 		return citations.get(random);

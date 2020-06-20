@@ -52,7 +52,7 @@ public class MovieShowing {
 	public Date getDate() {
 		return date;
 	}
-	
+
 
 	public String getTheatreName() {
 		return theatreName;

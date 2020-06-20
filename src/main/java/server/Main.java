@@ -11,7 +11,7 @@ public class Main {
 
 
 		ApplicationServer server = new ApplicationServer(8080, new CinemaServlet());
-		
+
 		//Test
 		try {
 			Cinema.getCinema().createMovie("Armageddon", 120, "Bruce Willis", "../statics/images/cover/armageddon.jpg", TypeCategory.ACTION);
@@ -27,7 +27,7 @@ public class Main {
 			Cinema.getCinema().createTheatre("theatre2", "fileTest/configTheatre/theatre2");
 			Cinema.getCinema().createTheatre("theatre3", "fileTest/configTheatre/theatre3");
 			Cinema.getCinema().createTheatre("theatre4", "fileTest/configTheatre/theatre4");
-			
+
 			Cinema.getCinema().createMovieShowing("Ritorno al futuro", new Date(120, 7, 27, 18,00), "theatre1", 4.6);
 			Cinema.getCinema().createMovieShowing("Ritorno al futuro", new Date(120, 7, 28, 20,00), "theatre3", 6.6);
 			Cinema.getCinema().createMovieShowing("Ritorno al futuro", new Date(120, 7, 29, 21,00), "theatre2", 5.6);

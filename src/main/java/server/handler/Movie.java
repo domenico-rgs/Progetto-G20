@@ -37,16 +37,15 @@ public class Movie implements IHandler {
 		 * le informazioni, da renderizzare nell'html
 		 */
 		try {
-			server.domain.cinema.Movie movie = 
+			server.domain.cinema.Movie movie =
 					Cinema.getCinema().searchMovie(req.getParameter("title"));
-			
+
 			ArrayList<MovieShowing> showings = new ArrayList<>();
 			HashMap<String, MovieShowing> map = Cinema.getCinema().getSchedule(movie);
-			for(String s : map.keySet()) {
+			for(String s : map.keySet())
 				showings.add(map.get(s));
-			}
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
-			
+
 		} catch (SearchException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
