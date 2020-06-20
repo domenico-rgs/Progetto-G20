@@ -1,4 +1,7 @@
 <!DOCTYPE HTML>
+@args {
+String result
+}
 <html>
 
  <head>
@@ -50,7 +53,7 @@
         </div>
 
         <div class="loginImg">
-          <img src="../statics/images/icon/ticketLogin.png" alt="">
+          <img src="../statics/images/icon/ticket.png" alt="">
         </div>
 
         <div class="loginContent">
@@ -58,21 +61,21 @@
           <div id="content">
 
             <div class="login-content">
-
-              <form action="/createAccount" method="post">
+				<p>@result<p>
+              <form action="/delete" method="post">
                 <div class="input-div one">
                   <div class="i">
                     <i class="fas fa-user"></i>
                   </div>
                   <div class="div">
                     <h5>Ticket code</h5>
-                    <input id="code" type="text" name="ticket code" class="input">
+                    <input id="code" type="text" name="ticketCode" class="input">
                   </div>
                 </div>
 
                 <div class="buttons">
 
-                  <input id="newBtn" type="button" name="" class="btn" value="Delete Reservation">
+                  <button id="newBtn" type="submit" name="" class="btn">Delete Reservation</button>
 
                 </div>
               </form>

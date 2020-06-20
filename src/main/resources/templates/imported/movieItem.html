@@ -1,15 +1,15 @@
 @args {
-List<String> movieList
+List<server.domain.cinema.Movie> movieList
   }
 
-  @for (String titleName: movieList) {
+  @for (server.domain.cinema.Movie title: movieList) {
 
   <div class="item">
     <div class="img">
-      <img src='' alt="">
+      <img src='@(movie.getPathCover())' alt="">
     </div>
     <div class="name">
-      <p>@titleName</p>
+      <p>@title.getTitle()</p>
     </div>
   </div>
   }

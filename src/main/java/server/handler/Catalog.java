@@ -2,8 +2,8 @@ package server.handler;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-public class Catalog implements IHandler {
+import server.domain.cinema.Cinema;
+import server.domain.exception.SearchException;
 
+public class Catalog implements IHandler {
+	ArrayList <server.domain.cinema.Movie> movieList = new ArrayList<>(); //testing
 	private static Catalog instance = null;
 
 
 	private Catalog() {
+		getMovieList();
 	}
 
 
@@ -30,40 +34,27 @@ public class Catalog implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		/* verifica i parametri passategli nella ricerca
-		 * e nel caso sia inserito qualche cosa, fa una ricerca per
-		 * nome tramite l'applicazione, che ritornerà una lista
-		 * di titoli (o altro, da verificare con la base di dati)
-		 */
-		if(req.getParameter("search") == null ||
-				req.getParameter("search").equals("all")) {
-
-			MovieItem.getInstance().resetPosition();
-			resp.getWriter().write(Rythm.render("catalog.html"));
-
-		} else
-			System.out.println(req.getParameter("search"));
+		resp.getWriter().write(Rythm.render("catalog.html", movieList));
+		
 
 	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// non necessario probabilmente
-
+		if(req.getParameter("search") == null ||
+				req.getParameter("search").equals("all")) {
+			
+			resp.getWriter().write(Rythm.render("catalog.html", movieList));
+		} 
+	}
+	
+	private void getMovieList() {
+		HashMap<String, server.domain.cinema.Movie> cinemaMovie = Cinema.getCinema().getMovieCatalog();
+		
+		for(String m : cinemaMovie.keySet()) {
+			movieList.add(cinemaMovie.get(m));
+		}
 	}
 
-	/* testing */
-	private void getListMovie(Map<String, Object> params) {
-
-		List<String> titoli = new ArrayList<>();
-		titoli.add("titolo1");
-		titoli.add("titoli2");
-		titoli.add("titoli3");
-
-		params.put("movieList", titoli);
-
-		return;
-	}
 
 }
