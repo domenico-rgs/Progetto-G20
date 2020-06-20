@@ -1,7 +1,6 @@
 package server.domain.cinema;
 
-import server.domain.movie.MovieShowing;
-import server.domain.movie.TypeCategory;
+import server.domain.showing.MovieShowing;
 
 /**
  * This class is referred to a movie

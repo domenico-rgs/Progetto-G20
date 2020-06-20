@@ -17,7 +17,6 @@ public class Administrator implements IHandler {
 
 
 	public static Administrator getInstance() {
-
 		if (instance == null)
 			instance = new Administrator();
 
@@ -36,8 +35,6 @@ public class Administrator implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

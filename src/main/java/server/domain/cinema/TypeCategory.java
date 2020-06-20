@@ -1,4 +1,4 @@
-package server.domain.movie;
+package server.domain.cinema;
 
 /**
  * This enumeration lists several movie categories.

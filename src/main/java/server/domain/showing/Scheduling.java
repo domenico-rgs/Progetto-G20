@@ -1,4 +1,4 @@
-package server.domain.movie;
+package server.domain.showing;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -52,5 +52,9 @@ public class Scheduling {
 			throw new SearchException(id+"'s not found.");
 		else
 			return showingList.get(id);
+	}
+
+	public HashMap<String, MovieShowing> getShowingList() {
+		return showingList;
 	}
 }

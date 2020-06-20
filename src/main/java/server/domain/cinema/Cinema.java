@@ -12,10 +12,9 @@ import java.util.List;
 
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
-import server.domain.movie.MovieShowing;
-import server.domain.movie.Scheduling;
-import server.domain.movie.TypeCategory;
 import server.domain.payment.SimPaymentAdapter;
+import server.domain.showing.MovieShowing;
+import server.domain.showing.Scheduling;
 import server.domain.theatre.Theatre;
 import server.services.DB.DBConnection;
 
@@ -103,6 +102,10 @@ public class Cinema {
 			throw new SearchException(title+"'s not found");
 		else
 			return movieCatalog.get(title);
+	}
+	
+	public HashMap<String, MovieShowing> getSchedule(Movie movie) throws SearchException{
+		return scheduler.get(movie).getShowingList();
 	}
 
 	public void createMovieShowing(String movie, Date date, String theatre, double price) {

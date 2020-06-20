@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 @args {
 server.domain.cinema.Movie movie
+ArrayList<server.domain.showing.MovieShowing> showings
 }
 <html>
 
@@ -62,14 +63,16 @@ server.domain.cinema.Movie movie
                 <th></th>
               </tr>
 
+			
+			@for (server.domain.showing.MovieShowing show: showings) {
 
               <tr>
-                <td>22-Maggio-2090 16:00 PM</td>
-                <td></td>
-                <td>120€</td>
+                <td>@show.getDate().toString()</td>
+                <td>@show.getTheatreName()</td>
+                <td>@show.getPrice()</td>
                 <td> <button>Acquista</button> </td>
               </tr>
-
+			}
 
             </table>
 
@@ -78,11 +81,6 @@ server.domain.cinema.Movie movie
 
       </div>
     </section>
-
-
-
-
-
 
     <!-- Footer -->
     <footer id="footer">

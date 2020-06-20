@@ -3,7 +3,7 @@ package server.services.DB;
 import org.hibernate.SessionFactory;
 
 import server.domain.cinema.Movie;
-import server.domain.movie.MovieShowing;
+import server.domain.showing.MovieShowing;
 
 public class DBConnection {
 	private SessionFactory sessionFactory;

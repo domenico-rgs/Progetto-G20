@@ -19,14 +19,11 @@ public class Index implements IHandler {
 
 	private Index() {
 		//Per test
-		//String title, int duration, String plot, String pathCover, TypeCategory category
-
 		getMovieList();
 	}
 
 
 	public static Index getInstance() {
-
 		if (instance == null)
 			instance = new Index();
 
@@ -37,7 +34,7 @@ public class Index implements IHandler {
 		HashMap<String, server.domain.cinema.Movie> cinemaMovie = Cinema.getCinema().getMovieCatalog();
 		int i =0;
 		for(String m : cinemaMovie.keySet()) {
-			if(i>5)
+			if(i>=5)
 				break;
 			movieList.add(cinemaMovie.get(m));
 			i++;
@@ -48,21 +45,11 @@ public class Index implements IHandler {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-
-		/* Si occupera di prendere 5 titoli a caso e metterli in una lista
-		 * da passare all'engine
-		 */
-
 		resp.getWriter().write(Rythm.render("index.html", movieList, Cinema.getCinema().getCitation()));
-
-
 	}
 
 	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
 
 }

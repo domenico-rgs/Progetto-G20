@@ -1,11 +1,8 @@
 package server.handler;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +12,7 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 import server.domain.exception.SearchException;
+import server.domain.showing.MovieShowing;
 
 public class Movie implements IHandler {
 
@@ -25,7 +23,6 @@ public class Movie implements IHandler {
 
 
 	public static Movie getInstance() {
-
 		if (instance == null)
 			instance = new Movie();
 
@@ -39,16 +36,16 @@ public class Movie implements IHandler {
 		 * all'applicazione che lo cercherà nella base di dati, e ne ritornerà
 		 * le informazioni, da renderizzare nell'html
 		 */
-		
-		
-		
-		//metodi di caricamento della pagina del film
-
 		try {
 			server.domain.cinema.Movie movie = 
 					Cinema.getCinema().searchMovie(req.getParameter("title"));
 			
-			resp.getWriter().write(Rythm.render("movieInformation.html", movie));
+			ArrayList<MovieShowing> showings = new ArrayList<>();
+			HashMap<String, MovieShowing> map = Cinema.getCinema().getSchedule(movie);
+			for(String s : map.keySet()) {
+				showings.add(map.get(s));
+			}
+			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
 			
 		} catch (SearchException e) {
 			// TODO Auto-generated catch block
@@ -60,26 +57,7 @@ public class Movie implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// non serve probabilmente
-
 	}
-
-/*
-	private void getAvaliableShow(Map<String, Object> params) {
-
-		List<String> idShowList = new ArrayList<>();
-
-		idShowList.add("show1");
-		idShowList.add("ishow");
-		idShowList.add("sfdadf");
-
-		params.put("idShowList", idShowList);
-
-		return;
-
-
-	}
-	*/
 
 }
 

@@ -8,7 +8,7 @@ import org.hibernate.query.Query;
 
 import server.domain.cinema.Movie;
 import server.domain.cinema.Ticket;
-import server.domain.movie.MovieShowing;
+import server.domain.showing.MovieShowing;
 
 public class SaleServices {
 	private SessionFactory sessionFactory;

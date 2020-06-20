@@ -1,4 +1,4 @@
-package server.domain.movie;
+package server.domain.showing;
 
 import java.util.HashMap;
 

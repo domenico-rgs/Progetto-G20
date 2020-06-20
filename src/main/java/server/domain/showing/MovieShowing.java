@@ -1,4 +1,4 @@
-package server.domain.movie;
+package server.domain.showing;
 
 import java.util.Date;
 
@@ -51,6 +51,11 @@ public class MovieShowing {
 
 	public Date getDate() {
 		return date;
+	}
+	
+
+	public String getTheatreName() {
+		return theatreName;
 	}
 
 	public double getPrice() {
