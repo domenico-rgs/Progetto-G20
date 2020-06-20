@@ -1,0 +1,35 @@
+/* composizione delle sedie della sala */
+
+.inner {
+
+}
+
+.inner .seatList {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  margin: 20px auto 50px auto;
+  justify-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-gap: 20px;
+
+}
+
+.seatList .seat {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+.seatList #free {
+  background-image: url(../images/icon/chair.png);
+}
+.seatList #not {
+  background-image: url(../images/icon/chairNot.png);
+}
