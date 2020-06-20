@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.domain.exception.SearchException;
 
 public class Catalog implements IHandler {
 	ArrayList <server.domain.cinema.Movie> movieList = new ArrayList<>(); //testing
@@ -39,9 +40,9 @@ public class Catalog implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(req.getParameter("search") == null ||
-				req.getParameter("search").equals("all"))
-			resp.getWriter().write(Rythm.render("catalog.html", movieList));
+				resp.sendRedirect("/movie?title="+req.getParameter("search")); //non va
+				//lo rimando direttamente su movieInformation perchè in catalog c'è lo script dello scroll che da problemi
+				//AGGIUNGERE COSA SUCCEDE SE NON TROVO IL FILM
 	}
 
 	private void getMovieList() {

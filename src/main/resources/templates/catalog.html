@@ -47,10 +47,12 @@ ArrayList<server.domain.cinema.Movie> movieList
       <div id="innerCatalog" class="inner">
 
         <!-- search bar -->
+		<form method="post" action="/catalog">
         <div id="searchBar" class="searchBar">
-          <input id="search" type="search" placeholder="Search" />
-          <img class="searchImg" src="../statics/images/icon/search.png" alt="" />
+          <input id="search" placeholder="Search" />
+          <button type="submit"><img class="searchImg" src="../statics/images/icon/search.png" alt="" /></button>
         </div>
+		</form>
 
         <!-- Movie catalog -->
         <div class="filmMenu">
@@ -78,6 +80,8 @@ ArrayList<server.domain.cinema.Movie> movieList
     <!-- nostri script -->
     <script src="../statics/js/search.js"></script>
 	<script src="../statics/js/navbar.js"></script>
+	<script src="../statics/js/GET.js"></script>
+
     <script>async function addMovieToDOM(title, image) {
  const itemDiv = document.createElement('div');
   itemDiv.className = 'item';
@@ -85,6 +89,8 @@ ArrayList<server.domain.cinema.Movie> movieList
   imageDiv.className = 'img';
   const nameDiv = document.createElement('div');
   nameDiv.className = 'name';
+   const titleParag = document.createElement('p');
+
 
   const imgElement = document.createElement('img');
   imgElement.src = image;
@@ -92,7 +98,7 @@ ArrayList<server.domain.cinema.Movie> movieList
 
 
 itemDiv.appendChild(imageDiv).appendChild(imgElement);
-itemDiv.appendChild(nameDiv).appendChild(titleElement);
+itemDiv.appendChild(nameDiv).appendChild(titleParag).appendChild(titleElement);
 
   document.querySelector('.filmMenu').append(itemDiv);
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 @args {
-String result
+boolean result
+String resultValue
 }
 <html>
 
@@ -62,7 +63,11 @@ String result
           <div id="content">
 
             <div class="login-content">
-				<p>@result<p>
+				@if(result){
+				<p style="color:green;">@resultValue<p>
+				}else{
+				<p style="color:red;">@resultValue<p>
+				}
               <form action="/delete" method="post">
                 <div class="input-div one">
                   <div class="i">
