@@ -1,16 +1,13 @@
 var backItem;
 var selectedItem;
 
-window.onload = function() {
-  changeView();
-};
+$(window).on('load', sideMenuSwitch() );
+//ho levato window rezise per motivi di performance
+// e perche non funzionava....cercare un'implementazione migliore
 
-window.onresize = function() {
-  changeView();
-};
+// comparsa e scomparsa menu laterale
 
-function changeView() {
-
+function sideMenuSwitch() {
 
   if ($(window).width() > 600){
     $('.sideMenu').animate({
@@ -24,7 +21,8 @@ function changeView() {
     }, 500);
   }
 
-
+}
+function changeView() {
 
   if (backItem != undefined) {
       $(backItem).css("height", "0");
@@ -34,7 +32,7 @@ function changeView() {
 
 }
 
-$('.sideMenu a').click(function() {
+$('.sideMenu li').click(function() {
   $(this).addClass('active').siblings().removeClass('active');
 
   backItem = selectedItem;
