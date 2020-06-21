@@ -16,7 +16,11 @@ $(document).on('click','.item', function() {
 $('#showFilm').on('click', function() {
     var ajax = $.ajax({
        type: "GET",
-       url: "/movieItem",
+       url: "/movieList",
+       data: {
+         startPoint: 0,
+         finalPoint: 5
+       },
        success : function(response)
        {
            $('.filmMenu').append(response);

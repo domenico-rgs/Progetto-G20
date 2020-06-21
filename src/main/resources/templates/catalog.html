@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 @args {
-ArrayList<server.domain.cinema.Movie> movieList
 }
 
 <html>
@@ -23,23 +22,23 @@ ArrayList<server.domain.cinema.Movie> movieList
         <nav id="nav">
           <a href="/">Home</a>
           <a href="/catalog">Movie Catalog</a>
-		  <a href="/delete">Delete Reservation</a>
+          <a href="/delete">Delete Reservation</a>
           <a href="/faq">FAQ</a>
           <a href="#footer">Contact us</a>
         </nav>
         <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
       </div>
     </header>
-	
-	<!-- Banner con immagine di sfondo -->
-			<section id="banner">
-				<div class="inner">
-					<header>
-						<h1>Movie Catalog</h1>
-						<h2>Choose the movie you'd like to watch</h2>
-					</header>
-				</div>
-			</section>
+
+    <!-- Banner con immagine di sfondo -->
+    <section id="banner">
+      <div class="inner">
+        <header>
+          <h1>Movie Catalog</h1>
+          <h2>Choose the movie you'd like to watch</h2>
+        </header>
+      </div>
+    </section>
 
 
     <!-- Three -->
@@ -47,12 +46,12 @@ ArrayList<server.domain.cinema.Movie> movieList
       <div id="innerCatalog" class="inner">
 
         <!-- search bar -->
-		<form method="post" action="/catalog">
-        <div id="searchBar" class="searchBar">
-          <input id="search" placeholder="Search" />
-          <button type="submit"><img class="searchImg" src="../statics/images/icon/search.png" alt="" /></button>
-        </div>
-		</form>
+        <form method="post" action="/catalog">
+          <div id="searchBar" class="searchBar">
+            <input id="search" placeholder="Search" />
+            <button type="submit"><img class="searchImg" src="../statics/images/icon/search.png" alt="" /></button>
+          </div>
+        </form>
 
         <!-- Movie catalog -->
         <div class="filmMenu">
@@ -79,46 +78,52 @@ ArrayList<server.domain.cinema.Movie> movieList
 
     <!-- nostri script -->
     <script src="../statics/js/search.js"></script>
-	<script src="../statics/js/navbar.js"></script>
-	<script src="../statics/js/GET.js"></script>
+    <script src="../statics/js/navbar.js"></script>
+    <script src="../statics/js/GET.js"></script>
 
-    <script>async function addMovieToDOM(title, image) {
- const itemDiv = document.createElement('div');
-  itemDiv.className = 'item';
-  const imageDiv = document.createElement('div');
-  imageDiv.className = 'img';
-  const nameDiv = document.createElement('div');
-  nameDiv.className = 'name';
-   const titleParag = document.createElement('p');
-
-
-  const imgElement = document.createElement('img');
-  imgElement.src = image;
-  const titleElement = document.createTextNode(title);
+    <script>
+      async function addMovieToDOM(title, image)
+      {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item';
+        const imageDiv = document.createElement('div');
+        imageDiv.className = 'img';
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'name';
+        const titleParag = document.createElement('p');
 
 
-itemDiv.appendChild(imageDiv).appendChild(imgElement);
-itemDiv.appendChild(nameDiv).appendChild(titleParag).appendChild(titleElement);
-
-  document.querySelector('.filmMenu').append(itemDiv);
-}
+        const imgElement = document.createElement('img');
+        imgElement.src = image;
+        const titleElement = document.createTextNode(title);
 
 
-function fetchRandomImages() {
-  @for(int i = 0; i < movieList.size(); i++) {
-	var title = '@movieList.get(i).getTitle()';
-	var image = '@movieList.get(i).getPathCover()';
-    addMovieToDOM(title, image);
-  }
-}
+        itemDiv.appendChild(imageDiv).appendChild(imgElement);
+        itemDiv.appendChild(nameDiv).appendChild(titleParag).appendChild(titleElement);
 
-fetchRandomImages();
-window.addEventListener('scroll', function() {
-  if(window.scrollY + window.innerHeight + 100 >= document.documentElement.scrollHeight) {
-    fetchRandomImages();
-  }
-})
-</script>
+        document.querySelector('.filmMenu').append(itemDiv);
+      }
+
+
+      function fetchRandomImages()
+      {
+        @for(int i = 0; i < movieList.size(); i++)
+        {
+          var title = '@movieList.get(i).getTitle()';
+          var image = '@movieList.get(i).getPathCover()';
+          addMovieToDOM(title, image);
+        }
+      }
+
+      fetchRandomImages();
+      window.addEventListener('scroll', function()
+      {
+        if (window.scrollY + window.innerHeight + 100 >= document.documentElement.scrollHeight)
+        {
+          fetchRandomImages();
+        }
+      })
+    </script>
 
   </body>
 

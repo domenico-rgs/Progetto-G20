@@ -21,14 +21,21 @@ function sideMenuSwitch() {
     }, 500);
   }
 
+  selectedItem = '#introduzione';
+
+  changeView();
+
 }
+
 function changeView() {
 
   if (backItem != undefined) {
       $(backItem).css("height", "0");
+      $(backItem).css("border-bottom", "none");
   }
 
   $(selectedItem).css("height", "auto");
+  $(selectedItem).css("border-bottom", "1px solid rgb(30,63,97)");
 
 }
 
@@ -36,7 +43,7 @@ $('.sideMenu li').click(function() {
   $(this).addClass('active').siblings().removeClass('active');
 
   backItem = selectedItem;
-  selectedItem = '.' + $(this).attr("value");
+  selectedItem = '#' + $(this).attr("value");
 
   changeView();
 });
@@ -53,6 +60,6 @@ $('#sideButton').click(function()
 $('#closeButton').click(function()
 {
   $('.sideMenu').animate({
-    "left": "-200px"
+    "left": "-15%"
   }, 500);
 });

@@ -4,27 +4,31 @@
   background-color: rgb(30,63,97);
 }
 
-#three .inner {
-  margin-left: 0 !important;
-  margin-right: -20px !important;
-  overflow: auto;
-  min-height: 300px;
-  padding-bottom: 0!important;
+#three{
+  padding: 4em 0;
+  overflow-y: scroll;
+  min-height: 100%;
+  max-height: 100%;
+  background-color: white;
 }
 
-/* blocca lo scrolling */
-body {
-  overflow: hidden;
+#three::-webkit-scrollbar {
+  display: none;
+}
+
+.contentAdmin::-webkit-scrollbar {
+  display: none;
 }
 
 /* Side Admin Menu */
 
 .sideMenu {
-  top: 61px;
+  top:  3.85em;
   position: fixed;
   z-index: 100000;
-  width: 200px;
-  left: -200px;
+  width: 15%;
+  min-width: 150px;
+  left: -15%;
   background-color: #1E3F61;
   opacity: 0.8;
   min-height: 100%;
@@ -34,10 +38,6 @@ body {
 
 /* nascondo la scrollbar */
 .sideMenu::-webkit-scrollbar {
-  display: none;
-}
-
-.contentAdmin::-webkit-scrollbar {
   display: none;
 }
 
@@ -64,13 +64,13 @@ body {
 
 /*contenuto di amministrazione */
 .contentAdmin {
-  top: 110px;
+  top: 1em;
   position: relative;
-  padding-left: 5%;
   overflow: scroll;
-  float: right;
+  left: 15%;
+  margin: 0 5%;
   height: auto;
-  width: 70%;
+  width: 75%;
 }
 
 .contentAdmin *:not(div) {
@@ -78,24 +78,45 @@ body {
 }
 
 .contentAdmin input {
+  background-color: #e6e6e6;
   width: 35%;
   border-radius: 50px;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 15px;
   color: black;
+}
+
+.contentAdmin select {
+  background-color: #e6e6e6;
+  width: 35%;
+  border-radius: 50px;
+  border: none;
+  padding: 5px 15px;
+  color: black;
+  cursor: pointer;
 }
 
 .contentAdmin input:focus {
   outline: none;
 }
 
+.contentAdmin select:focus {
+  outline: none;
+  border: none;
+}
+
+.contentAdmin select option {
+}
+
 
 .contentAdmin textarea {
-  width: 70%;
+  width: 80%;
+  background-color: #e6e6e6;
   resize: none;
+  border: none;
   border-radius: 10px;
   padding: 5px 10px;
-  border: none;
+  margin: 10px 10%;
   color: black;
 }
 
@@ -134,33 +155,25 @@ body {
   padding: 5px 10px;
 }
 
-.contentAdmin .change, .add {
-  border-bottom: 1px solid rgb(30,63,97);
-}
-
 .contentAdmin p {
   text-align: left;
   color: rgb(30,63,97);
 }
 
+#introduzione h1 {
+  font-size: 150%;
+}
+#introduzione p{
+  text-align: center;
+}
+#introduzione img {
+  height: 256px;
+  width: 256px;
+}
+
 
 /* menu di sotto gestione selezionati da bottone*/
-.theatre{
-  overflow: hidden;
-  height: 0;
-}
-
-.movie {
-  overflow: hidden;
-  height: 0;
-}
-
-.ticket {
-  overflow: hidden;
-  height: 0;
-}
-
-.showing {
+.contentAdmin .admin {
   overflow: hidden;
   height: 0;
 }
