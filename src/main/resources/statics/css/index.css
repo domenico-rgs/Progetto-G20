@@ -127,18 +127,22 @@ body {
     padding-top: 8em;
   }
 
-  #banner h1 {
+  #banner .inner h1 {
+    position: relative;
     font-size: 3.5em;
     font-weight: 400;
     color: #fff;
     line-height: 1em;
     margin: 0 0 1em 0;
     padding: 0;
+    left: -1000px;
   }
 
 #banner .inner h2 {
+  position: relative;
   color: white;
   font-size: 120%;
+  right: -1000px;
 }
 
 
