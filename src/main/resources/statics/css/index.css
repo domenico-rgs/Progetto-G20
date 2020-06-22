@@ -219,15 +219,14 @@ form #itemForm {
   cursor: pointer;
 }
 
+#innerCatalog #errorMess {
+  font-size: 120%;
+  color: black;
+}
 
-/* non mi piace sinceramente
-.searchBar:hover {
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19)
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-  transition: 0.7s;
-} */
+#innerCatalog {
+  margin-top: 3em;
+}
 
 .filmMenu {
   max-width: 100%;

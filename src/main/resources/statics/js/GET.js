@@ -14,13 +14,13 @@ $(document).on('click','.item', function() {
 $('#searchMovie').on('keypress', function(e) {
   if (e.which == 13) {
     title = $(this).val()
-    window.location.href = "/movie?title=" + title
+    window.location.href = "/catalog?search=" + title
   }
 });
 
 $('#searchImg').on('click', function(e) {
   title = $('#searchMovie').val()
-  window.location.href = "/movie?title=" + title
+  window.location.href = "/catalog?search=" + title
 });
 
 //////////////////////////////////////////////////
