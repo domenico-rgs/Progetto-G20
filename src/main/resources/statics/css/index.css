@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
+/* CSS FOR INDEX AND CATALOG, NAV, HEADER, BANNER, FOOTER */
 
 
 @media screen and (max-width: 980px) {
@@ -146,7 +147,7 @@ body {
 }
 
 
-/* THREE */
+/* THREE GENERAL*/
 
 #three {
   background-color: rgb(230, 230, 230);
@@ -167,10 +168,25 @@ form #itemForm {
   width: 100% !important;
 }
 
-.filmMenu img {
-  max-width: 100%;
-  max-height: 100%;
+/* Effetti bottoni */
+button {
+  outline: none;
+	border: none;
+  background-image: linear-gradient(to right,   #1E3F61, #275687, #1E3F61);
+	background-size: 200%;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
+  transition: .5s;
 }
+
+button:hover {
+background-position: right;
+}
+
+
+
+/* CATALOG */
 
 .searchBar {
   padding-top: 1%;
@@ -219,15 +235,18 @@ form #itemForm {
   cursor: pointer;
 }
 
+#errorMess {
+  font-size: 120%;
+  color: black;
+  text-align: center;
+  margin-top: 2em;
+}
 
-/* non mi piace sinceramente
-.searchBar:hover {
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19)
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-  transition: 0.7s;
-} */
+#innerCatalog {
+  margin-top: 3em;
+}
+
+/* FILM MENU ITEM */
 
 .filmMenu {
   max-width: 100%;
@@ -266,6 +285,11 @@ form #itemForm {
   height: 85%;
 }
 
+.filmMenu img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .filmMenu .name {
   position: relative;
   margin: 5px auto;
@@ -282,6 +306,8 @@ form #itemForm {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* INDEX BUTTON */
 
 .showFilm{
   display: block;
@@ -305,7 +331,7 @@ form #itemForm {
 	background-position: right;
 }
 
-/* div delle citazioni */
+/* DIV QUOTES */
 .quotes {
 	font-family: 'Dancing Script', cursive;
   margin-top: 20px;
@@ -349,46 +375,6 @@ form #itemForm {
 }
 
 
-/* FAQ */
-#faq {
-  position: relative;
-  width: 100%;
-  height: auto;
-}
-
-#faq #topImg{
-  height: 200px;
-  background-image: url(../images/footBanner.png);
-  background-size: cover;
-  background-position: bottom;
-  background-attachment: fixed;
-
-}
-
-#topImg:before {
-  content: '';
-  background: rgba(75, 75, 93, 0.7);
-  position: absolute;
-  width: 100%;
-  height: 200px;
-  top: 0;
-  left: 0;
-}
-
-.faqContent {
-  width: 100%;
-  height: auto;
-  background-color: rgb(230, 230, 230);
-  padding: 50px 0;
-}
-
-.faqContent #content {
-  padding: 0 10%;
-}
-
-
-
-
 /* FOOTER */
 
 #footer {
@@ -422,11 +408,11 @@ form #itemForm {
 
 
 
-  #footer h3 {
-    z-index: 1000;
-    color: #FFF;
-    margin-bottom: 2em !important;
-  }
+#footer h3 {
+  z-index: 1000;
+  color: #FFF;
+  margin-bottom: 2em !important;
+}
 
 
 #footer .inf div {

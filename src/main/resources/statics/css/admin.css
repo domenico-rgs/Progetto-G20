@@ -134,20 +134,10 @@
 
 .contentAdmin button {
   border-radius: 50px;
+  width: 100px;
   color: white;
   background-color: rgb(30,63,97);
   padding:10px;
-  border: none;
-  cursor: pointer;
-}
-
-.contentAdmin button:focus {
-  outline: none;
-}
-
-.contentAdmin button:hover {
-  transform: scale(1.1);
-  transition: 0.3s;
 }
 
 .contentAdmin #searchList {

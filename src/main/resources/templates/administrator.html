@@ -41,7 +41,7 @@ List<String> categoryList
         <header id="header">
           <div class="inner">
             <nav id="nav">
-              <a href="/home">Exit</a>
+              <a href="/home">Go to Home</a>
               <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
           </div>
         </header>
@@ -105,7 +105,7 @@ List<String> categoryList
 
             <!--Gestione dei film -->
             <div class="admin" id="editMovie">
-              <p>Edit or remove Movie</p>
+              <p>Edit or remove Movie:</p>
 
               <div class="searchDiv">
                 <input id="searchList" list="filmList" placeholder="Search Film">
@@ -121,9 +121,7 @@ List<String> categoryList
 
               <input id='title' placeholder="Title">
               <input id='duration' placeholder="Duration">
-              <input id='plot' placeholder="Plot">
-              <input placeholder="Pegi18">
-              <textarea rows="8" cols="80" placeholder="Descrizione"></textarea>
+              <textarea id='plot' rows="8" cols="80" maxlength="640" placeholder="Description (max 640 chars)"></textarea>
 
               <p class="message"></p>
             </div>
@@ -133,7 +131,6 @@ List<String> categoryList
 
               <input id='title' placeholder="Title">
               <input id='duration' placeholder="Duration (minutes)">
-              <input id='plot' placeholder="Plot">
               <input id='cover' placeholder="Cover Name (jpg file)">
               <select id='category'>
                 <option value="" disabled selected>Category</option>
@@ -141,7 +138,7 @@ List<String> categoryList
                 <option>@category</option>
                 }
               </select>
-              <textarea rows="8" cols="80" placeholder="Description (non disponibile al momento)"></textarea>
+              <textarea id="plot" maxlength="640" rows="8" cols="80" placeholder="Description (max 640 chars)"></textarea>
               <button id='add'>Add Movie</button>
               <p class="message"></p>
             </div>
@@ -217,10 +214,6 @@ List<String> categoryList
 
         <!-- Scripts -->
         <script src="../statics/js/jquery.min.js"></script>
-        <script src="../statics/js/skel.min.js"></script>
-        <script src="../statics/js/util.js"></script>
-        <script src="../statics/js/main.js"></script>
-
         <!-- nostri script -->
         <script src="../statics/js/admin.js"></script>
         <script src="../statics/js/adminPOST.js"></script>

@@ -4,15 +4,32 @@
   box-sizing: inherit;
 }
 .container {
-  margin: 0 auto;
+  display: inline-block;
+  margin-top: 2em;
   padding: 4rem;
-  width: 48rem;
+  width: 50%;
 }
-h3 {
+
+.faqImg{
+  width: 256px;
+  float: right;
+  margin-right: 10%;
+  margin-top: 8em;
+  overflow: visible;
+}
+
+.faqImg img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+h1 {
+  position: relative;
+  text-align: center;
   font-size: 1.75rem;
+  margin-bottom: 2em;
   color: #373d51;
-  padding: 1.3rem;
-  margin: 0;
+  top: 4em;
 }
 .accordion a {
   position: relative;
