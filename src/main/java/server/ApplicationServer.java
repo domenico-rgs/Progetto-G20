@@ -26,7 +26,7 @@ public class ApplicationServer {
 		server.setHandler(handler);
 		server.start();
 	}
-
+ 
 	public void stop() throws Exception {
 		server.stop();
 	}
