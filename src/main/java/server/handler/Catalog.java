@@ -46,7 +46,7 @@ public class Catalog implements IHandler {
 			List<server.domain.cinema.Movie> movieList = this.searchMovieForString(req.getParameter("search"));
 			
 			if (movieList.size() == 0) {
-				String messagge = req.getParameter("search") + "does not exist";
+				String messagge = req.getParameter("search") + " does not exist";
 				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,messagge));
 			}
 			
