@@ -17,6 +17,7 @@ import server.domain.showing.MovieShowing;
 public class Movie implements IHandler {
 
 	private static Movie instance = null;
+	private final String coverPath = "../statics/images/cover/";
 
 	private Movie() {
 	}
@@ -32,23 +33,23 @@ public class Movie implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		/* verrà salvato il titolo del fiml da cercare, da passarre
-		 * all'applicazione che lo cercherà nella base di dati, e ne ritornerà
-		 * le informazioni, da renderizzare nell'html
-		 */
+		
 		try {
 			server.domain.cinema.Movie movie =
 					Cinema.getCinema().searchMovie(req.getParameter("title"));
 
+			//spiegatemelo per favoreeeeeeee
 			ArrayList<MovieShowing> showings = new ArrayList<>();
 			HashMap<String, MovieShowing> map = Cinema.getCinema().getSchedule(movie);
 			for(String s : map.keySet())
 				showings.add(map.get(s));
+			
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
 
-		} catch (SearchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} 
+		//se non trova il film
+		catch (SearchException e) {
+			resp.getWriter().write(Rythm.render("404.html"));
 		}
 
 

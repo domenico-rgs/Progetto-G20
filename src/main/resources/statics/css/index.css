@@ -235,9 +235,11 @@ background-position: right;
   cursor: pointer;
 }
 
-#innerCatalog #errorMess {
+#errorMess {
   font-size: 120%;
   color: black;
+  text-align: center;
+  margin-top: 2em;
 }
 
 #innerCatalog {

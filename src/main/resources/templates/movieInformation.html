@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 @args {
 server.domain.cinema.Movie movie
-ArrayList<server.domain.showing.MovieShowing> showings
+List<server.domain.showing.MovieShowing> showings
   }
   <html>
 
@@ -63,7 +63,6 @@ ArrayList<server.domain.showing.MovieShowing> showings
                   <th></th>
                 </tr>
 
-
                 @for (server.domain.showing.MovieShowing show: showings) {
 
                 <tr>
@@ -75,6 +74,10 @@ ArrayList<server.domain.showing.MovieShowing> showings
                 }
 
               </table>
+
+              @if(showings.size() == 0) {
+              <p id="errorMess">Nothing show avaliable</p>
+              }
 
             </div>
           </div>
