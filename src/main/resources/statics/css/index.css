@@ -268,16 +268,19 @@ form #itemForm {
 
 .filmMenu .name {
   position: relative;
-  margin: auto;
+  margin: 5px auto;
   top: 5px;
   width: 80%;
-  height: 20%;
+  height: 15%;
   color: #373d51;
 }
 
 .filmMenu p {
   text-align: center;
-  font-size: 130%
+  font-size: 110%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .showFilm{
