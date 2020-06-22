@@ -13,17 +13,23 @@ $(document).on('click','.item', function() {
     // Process success/failure here via ajax variable (http://api.jquery.com/jquery.ajax/)
 });
 
+var startPoint = 0
+var finalPoint = 5
+
+// mostra piu film al click del pulsante
 $('#showFilm').on('click', function() {
     var ajax = $.ajax({
        type: "GET",
        url: "/movieList",
        data: {
-         startPoint: 0,
-         finalPoint: 5
+         startPoint: startPoint,
+         finalPoint: finalPoint
        },
        success : function(response)
        {
            $('.filmMenu').append(response);
+           startPoint += 5
+           finalPoint += 5
        }
   })
 });

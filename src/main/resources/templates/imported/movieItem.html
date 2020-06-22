@@ -2,14 +2,14 @@
 List<server.domain.cinema.Movie> movieList
   }
 
-  @for (server.domain.cinema.Movie title: movieList) {
+  @for (server.domain.cinema.Movie movie: movieList) {
 
   <div class="item">
     <div class="img">
-      <img src='@(movie.getPathCover())' alt="">
+      <img src='@movie.getPathCover()' alt="">
     </div>
     <div class="name">
-      <p>@title.getTitle()</p>
+      <p>@movie.getTitle()</p>
     </div>
   </div>
   }

@@ -57,6 +57,8 @@
         <div class="filmMenu">
         </div>
 
+        <button id='showFilm' type="button">Show More</button>
+
       </div>
 
       </div>
@@ -80,50 +82,6 @@
     <script src="../statics/js/search.js"></script>
     <script src="../statics/js/navbar.js"></script>
     <script src="../statics/js/GET.js"></script>
-
-    <script>
-      async function addMovieToDOM(title, image)
-      {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'item';
-        const imageDiv = document.createElement('div');
-        imageDiv.className = 'img';
-        const nameDiv = document.createElement('div');
-        nameDiv.className = 'name';
-        const titleParag = document.createElement('p');
-
-
-        const imgElement = document.createElement('img');
-        imgElement.src = image;
-        const titleElement = document.createTextNode(title);
-
-
-        itemDiv.appendChild(imageDiv).appendChild(imgElement);
-        itemDiv.appendChild(nameDiv).appendChild(titleParag).appendChild(titleElement);
-
-        document.querySelector('.filmMenu').append(itemDiv);
-      }
-
-
-      function fetchRandomImages()
-      {
-        @for(int i = 0; i < movieList.size(); i++)
-        {
-          var title = '@movieList.get(i).getTitle()';
-          var image = '@movieList.get(i).getPathCover()';
-          addMovieToDOM(title, image);
-        }
-      }
-
-      fetchRandomImages();
-      window.addEventListener('scroll', function()
-      {
-        if (window.scrollY + window.innerHeight + 100 >= document.documentElement.scrollHeight)
-        {
-          fetchRandomImages();
-        }
-      })
-    </script>
 
   </body>
 

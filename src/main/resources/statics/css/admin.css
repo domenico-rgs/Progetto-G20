@@ -160,6 +160,10 @@
   color: rgb(30,63,97);
 }
 
+.contentAdmin p.message{
+  text-align: center;
+}
+
 #introduzione h1 {
   font-size: 150%;
 }

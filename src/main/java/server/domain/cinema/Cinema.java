@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
@@ -165,6 +167,22 @@ public class Cinema {
 	        db.addTicket(movie, seat, movieShowing, price);
 	}
 	 */
+	
+	//metodi sperimentali per app web
+	public List<String> getAllCategory() {
+		List<String> categoryList = Stream.of(TypeCategory.values())
+                .map(TypeCategory::name)
+                .collect(Collectors.toList());
+		
+		return categoryList;
+	}
+	
+	public List<String> getTitleMovieList() {
+		List<String> titleList = new ArrayList<>();
+		titleList.addAll(Cinema.getCinema().getMovieCatalog().keySet());
+		
+		return titleList;
+	}
 
 	private void populateCitations() throws IOException {
 		BufferedReader inFile = new BufferedReader(new FileReader("src/main/resources/statics/citazioni.txt"));

@@ -39,6 +39,8 @@ public class Catalog implements IHandler {
 		if (req.getParameter("search").contentEquals("all")) {
 			resp.getWriter().write(Rythm.render("catalog.html"));
 		}
+		
+		MovieList.getInstance().updateMovieList();
 
 
 	}
