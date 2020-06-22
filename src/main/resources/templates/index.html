@@ -2,9 +2,9 @@
 
 @//dichiarazione variabili
 @args {
-	List<server.domain.cinema.Movie> movieList
+List<server.domain.cinema.Movie> movieList
 	String citation;
-}
+	}
 
 	<html>
 
@@ -25,7 +25,7 @@
 			<header id="header">
 				<div class="inner">
 					<nav id="nav">
-						<a href="#">Home</a>
+						<a href="/home">Home</a>
 						<a href="/catalog?search=all">Movie catalog</a>
 						<a href="/delete">Delete reservation</a>
 						<a href="/faq">FAQ</a>
@@ -68,34 +68,31 @@
 
 					</div>
 
-					<button id="indexRefer" class="showFilm" onclick="/catalog">show entire catalog</button>
+					<button id="goToCatalog" class="showFilm">show entire catalog</button>
 
+					<!-- Citazione -->
 					<div class="quotes">
 						<img src='../statics/images/icon/quote.png' alt="">
 						<center>
 							<h1>@citation</h1>
 						</center>
 					</div>
+
 				</div>
 			</section>
 
 
 			<!-- Footer -->
 			<footer id="footer">
-				@imported.footer() @//invoca template per facilitare il riuso
+				@imported.footer()
 			</footer>
 
 			<!-- Scripts -->
 			<script src="../statics/js/jquery.min.js"></script>
-			<script src="../statics/js/skel.min.js"></script>
-			<script src="../statics/js/util.js"></script>
-			<script src="../statics/js/main.js"></script>
 
 			<!-- nostri script -->
-			<script src="../statics/js/navbar.js"></script>
+			<script src="../statics/js/index.js"></script>
 			<script src="../statics/js/GET.js"></script>
-
-			<script src="../statics/js/background.js"></script>
 
 		</body>
 

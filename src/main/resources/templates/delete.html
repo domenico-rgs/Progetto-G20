@@ -5,28 +5,28 @@ String resultValue
 }
 <html>
 
- <head>
-			<link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-			<title>Cinema G20 - Delete Reservation</title>
-			<meta charset="utf-16" />
-			<meta http-equiv="cache-control" content="no-cache">
-			<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<link rel="stylesheet" href="../statics/css/index.css">
-			<link rel="stylesheet" href="../statics/css/main.css">
-			<link rel="stylesheet" href="../statics/css/newAccount.css">
-			<link rel="stylesheet" href="../statics/css/login.css">
+  <head>
+    <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+    <title>Cinema G20 - Delete Reservation</title>
+    <meta charset="utf-16" />
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../statics/css/index.css">
+    <link rel="stylesheet" href="../statics/css/main.css">
+    <link rel="stylesheet" href="../statics/css/newAccount.css">
+    <link rel="stylesheet" href="../statics/css/login.css">
 
-		</head>
+  </head>
 
   <body>
 
-    	<!-- Header with navbar-->
+    <!-- Header with navbar-->
     <header id="header">
       <div class="inner">
         <nav id="nav">
           <a href="/">Home</a>
-          <a href="/catalog">Movie catalog</a>
-		  <a href="#">Delete reservation</a>
+          <a href="/catalog?search=all">Movie catalog</a>
+          <a href="#">Delete reservation</a>
           <a href="/faq">FAQ</a>
           <a href="#footer">Contact us</a>
         </nav>
@@ -35,14 +35,14 @@ String resultValue
     </header>
 
 
-			<!-- Banner con immagine di sfondo -->
-			<section id="banner">
-				<div class="inner">
-					<header>
-						<h1>Delete Reservation</h1>
-					</header>
-				</div>
-			</section>
+    <!-- Banner con immagine di sfondo -->
+    <section id="banner">
+      <div class="inner">
+        <header>
+          <h1>Delete Reservation</h1>
+        </header>
+      </div>
+    </section>
 
 
     <!-- Three -->
@@ -63,11 +63,13 @@ String resultValue
           <div id="content">
 
             <div class="login-content">
-				@if(result){
-				<p style="color:green;">@resultValue<p>
-				}else{
-				<p style="color:red;">@resultValue<p>
-				}
+              @if(result){
+              <p style="color:green;">@resultValue
+              <p>
+                }else{
+              <p style="color:red;">@resultValue
+              <p>
+                }
               <form action="/delete" method="post">
                 <div class="input-div one">
                   <div class="i">
@@ -96,9 +98,9 @@ String resultValue
 
 
     <!-- Footer -->
-		<footer id="footer">
-			@imported.footer()
-		</footer>
+    <footer id="footer">
+      @imported.footer()
+    </footer>
 
     <!-- Scripts -->
     <script src="../statics/js/jquery.min.js"></script>
@@ -106,8 +108,9 @@ String resultValue
     <script src="../statics/js/util.js"></script>
     <script src="../statics/js/main.js"></script>
     <script src="../statics/js/login.js"></script>
-	<script src="../statics/js/navbar.js"></script>
-	<script src="../statics/js/login.js"></script>
+    <script src="../statics/js/navbar.js"></script>
+    <script src="../statics/js/login.js"></script>
+    <script src="../statics/js/animation.js"></script>
 
   </body>
 
