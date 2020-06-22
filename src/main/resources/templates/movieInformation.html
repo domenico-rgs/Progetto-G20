@@ -2,105 +2,91 @@
 @args {
 server.domain.cinema.Movie movie
 ArrayList<server.domain.showing.MovieShowing> showings
-}
-<html>
+  }
+  <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-    <title>Cinema G20 - @movie.getTitle()</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../statics/css/main.css" />
-    <link rel="stylesheet" href="../statics/css/index.css">
-    <link rel="stylesheet" href="../statics/css/movie.css">
-    <link rel="stylesheet" href="../statics/css/showing.css">
-  </head>
+    <head>
+      <meta charset="UTF-8">
+      <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+      <title>Cinema G20 - @movie.getTitle()</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../statics/css/main.css" />
+      <link rel="stylesheet" href="../statics/css/index.css">
+      <link rel="stylesheet" href="../statics/css/movieInf.css">
 
-  <body>
-    <!-- Header with navbar-->
-    <header id="header">
-      <div class="inner">
-        <nav id="nav">
-          <a href="/">Home</a>
-          <a href="/catalog">Movie catalog</a>
-          <a href="/delete">Delete reservation</a>
-          <a href="/faq">FAQ</a>
-          <a href="/#footer">Contact us</a>
-        </nav>
-        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-      </div>
-    </header>
+    </head>
 
-
-    <!-- Three -->
-    <section id="three" class="wrapper">
-      <div id="movieInf" class="inner">
-
-        <div class="imgMovie">
-          <img src="@(movie.getPathCover())" alt="">
-
+    <body>
+      <!-- Header with navbar-->
+      <header id="header">
+        <div class="inner">
+          <nav id="nav">
+            <a href="/">Home</a>
+            <a href="/catalog?search=all">Movie catalog</a>
+            <a href="/delete">Delete reservation</a>
+            <a href="/faq">FAQ</a>
+            <a href="/home#footer">Contact us</a>
+          </nav>
+          <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
         </div>
-        <div class="description">
-          <h5><strong>@movie.getTitle()</strong></h5>
-          <p>@movie.getPlot()</p>
-          <h6><strong>Durata: </strong> @movie.getDuration()</h6>
-          <h6><strong>Genere: </strong> @movie.getCategory().toString().toLowerCase()</h6>
+      </header>
 
-        </div>
 
-        <button id="showsButton" type="button" onClick="showingAppear(); return false;">Available shows</button>
+      <!-- Three -->
+      <section id="three" class="wrapper">
+        <div id="movieInf" class="inner">
 
-        <!-- showing table -->
-        <div class="catalogList">
+          <div class="imgMovie">
+            <img src="@movie.getPathCover()" alt="">
+          </div>
 
-          <div class="showingTable">
-            <table>
-              <tr>
-                <th> <strong>Data e orario</strong></th>
-                <th> <strong>Sala proiezione</strong> </th>
-                <th> <strong>Prezzo</strong></th>
-                <th></th>
-              </tr>
-
-			
-			@for (server.domain.showing.MovieShowing show: showings) {
-
-              <tr>
-                <td>@show.getDate().toString()</td>
-                <td>@show.getTheatreName()</td>
-                <td>@show.getPrice()</td>
-                <td> <button id="buy">Acquista</button> </td>
-              </tr>
-			}
-
-            </table>
+          <div class="description">
+            <h5><strong>@movie.getTitle()</strong></h5>
+            <p>@movie.getPlot()</p>
+            <h6><strong>Durata: </strong> @movie.getDuration()</h6>
+            <h6><strong>Genere: </strong> @movie.getCategory().toString().toLowerCase()</h6>
 
           </div>
+
+          <button id="showsButton" type="button" onClick="showingAppear(); return false;">Available shows</button>
+
+          <!-- showing table -->
+          <div class="catalogList">
+
+            <div class="showingTable">
+              <table>
+                <tr>
+                  <th> <strong>Data e orario</strong></th>
+                  <th> <strong>Sala proiezione</strong> </th>
+                  <th> <strong>Prezzo</strong></th>
+                  <th></th>
+                </tr>
+
+
+                @for (server.domain.showing.MovieShowing show: showings) {
+
+                <tr>
+                  <td>@show.getDate().toString()</td>
+                  <td>@show.getTheatreName()</td>
+                  <td>@show.getPrice()</td>
+                  <td> <button id="buy">BUY</button> </td>
+                </tr>
+                }
+
+              </table>
+
+            </div>
+          </div>
+
         </div>
-
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="footer">
-      @imported.footer()
-    </footer>
+      </section>
 
 
+      <!-- Scripts -->
+      <script src="../statics/js/jquery.min.js"></script>
+      <script src="../statics/js/showing.js"></script>
 
-    <!-- Scripts -->
-    <script src="../statics/js/jquery.min.js"></script>
-    <script src="../statics/js/skel.min.js"></script>
-    <script src="../statics/js/util.js"></script>
-    <script src="../statics/js/main.js"></script>
+    </body>
 
-    <script src="../statics/js/login.js"></script>
-    <script src="../statics/js/showing.js"></script>
-
-    <!-- sto provando questo script -->
-    <script src="../statics/js/catalog.js"></script>
-
-  </body>
-
-</html>
+  </html>

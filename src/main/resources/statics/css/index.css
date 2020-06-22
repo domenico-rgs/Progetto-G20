@@ -168,6 +168,23 @@ form #itemForm {
   width: 100% !important;
 }
 
+/* Effetti bottoni */
+button {
+  outline: none;
+	border: none;
+  background-image: linear-gradient(to right,   #1E3F61, #275687, #1E3F61);
+	background-size: 200%;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
+  transition: .5s;
+}
+
+button:hover {
+background-position: right;
+}
+
+
 
 /* CATALOG */
 
