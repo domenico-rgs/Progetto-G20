@@ -1,3 +1,5 @@
+// don't use JQuery
+
 window.onscroll = function()
 {
   scrollFunction()
@@ -21,8 +23,7 @@ else {
 }
 };
 
-// se la pagina si avvia in un posto differente dalla testa, rende la barra opaca
-
+// se la pagina si avvia in testa, rende la pagina transparente
 function navOnLoad() {
 
   if (document.documentElement.scrollTop < 100) {

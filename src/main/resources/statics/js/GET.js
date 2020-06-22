@@ -1,4 +1,4 @@
-//metodo post al click in ogni elemento
+//metodo get al click di un film
 var title
 
 $(document).on('click','.item', function() {
@@ -10,9 +10,10 @@ $(document).on('click','.item', function() {
           window.location.href = "/movie?title=" + title
         }
     });
-    // Process success/failure here via ajax variable (http://api.jquery.com/jquery.ajax/)
 });
 
+
+//script del catalogo (in futuro lo rendo scrollabile)
 var startPoint = 0
 var finalPoint = 5
 
@@ -32,4 +33,10 @@ $('#showFilm').on('click', function() {
            finalPoint += 5
        }
   })
+});
+
+// metodo get nella pagina index.html
+
+$('#goToCatalog').on('click', function() {
+    window.location.replace("/catalog?search=all");
 });
