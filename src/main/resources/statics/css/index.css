@@ -135,14 +135,14 @@ body {
     line-height: 1em;
     margin: 0 0 1em 0;
     padding: 0;
-    left: -1000px;
+    left: -2000px;
   }
 
 #banner .inner h2 {
   position: relative;
   color: white;
   font-size: 120%;
-  right: -1000px;
+  right: -2000px;
 }
 
 
@@ -159,10 +159,6 @@ body {
   font-size: 150%;
 }
 
-#three #innerCatalog {
-  padding-top: 50px !important;
-}
-
 #three #movieInf {
   padding-top: 50px !important;
 }
@@ -177,11 +173,16 @@ form #itemForm {
 }
 
 .searchBar {
+  padding-top: 1%;
   position: relative;
   text-align: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
   width: 80%;
-  height: 50px;
+  height: 3.5em;
   margin: auto;
+  margin-bottom: 3em;
 }
 
 .catalog {
@@ -193,12 +194,11 @@ form #itemForm {
   background-color: transparent;
   display: inline-block;
   border: none;
-  vertical-align: middle;
   font-size: 20px;
   color: #333;
   width: 80%;
-  height: 90%;
-  border-bottom: 2px solid #263238;
+  height: 80%;
+  border-bottom: 1px solid #263238;
   /*background: linear-gradient(to right, #333, #333) 0px calc(100% - 5px)/calc(100% - 10px) 2px no-repeat;*/
 }
 
@@ -214,7 +214,7 @@ form #itemForm {
 
 .searchBar img {
   vertical-align: middle;
-  height: 90%;
+  height: 60%;
   display: inline-block;
   cursor: pointer;
 }

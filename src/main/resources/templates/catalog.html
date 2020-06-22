@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../statics/css/main.css" />
     <link rel="stylesheet" href="../statics/css/index.css">
-    <link rel="stylesheet" href="../statics/css/catalog.css">
   </head>
 
   <body>
@@ -35,19 +34,17 @@
     <section id="three" class="wrapper align-center">
       <div id="innerCatalog" class="inner">
 
+        <h1>All title are here. Search that you like!</h1>
+
         <!-- search bar -->
-        <form method="post" action="/catalog">
-          <div id="searchBar" class="searchBar">
-            <input id="search" placeholder="Search" />
-            <button type="submit"><img class="searchImg" src="../statics/images/icon/search.png" alt="" /></button>
-          </div>
-        </form>
+        <div class="searchBar">
+          <input id="searchMovie" autocomplete="off" placeholder="Search" />
+          <img id="searchImg" src="../statics/images/icon/search.png" alt="" />
+        </div>
 
         <!-- Movie catalog -->
         <div class="filmMenu">
         </div>
-
-        <button id='showFilm' type="button">Show More</button>
 
       </div>
 
@@ -66,8 +63,8 @@
     <script src="../statics/js/jquery.min.js"></script>
 
     <!-- nostri script -->
-    <script src="../statics/js/search.js"></script>
     <script src="../statics/js/GET.js"></script>
+    <script src="../statics/js/catalog.js"></script>
 
   </body>
 
