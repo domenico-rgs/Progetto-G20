@@ -17,6 +17,26 @@ $('#addMovie #add').on('click', function() {
   })
 });
 
+
+$('#editMovie #editM').on('click', function() {
+    var ajax = $.ajax({
+       type: "POST",
+       url: "/administrator",
+       data: {
+         requestPost: "editM",
+         title: $('#editMovie #title').val(),
+         duration: $('#editMovie #duration').val(),
+         plot: $('#editMovie #plot').val(),
+         cover: $('#editMovie #cover').val(),
+         category: $('#editMovie #category').find(":selected").text()
+       },
+       success : function(response)
+       {
+         $('#editMovie .message').text(response)
+       }
+  })
+});
+
 $('#editMovie #searchList').on('change', function() {
   var ajax = $.ajax({
      type: "POST",
