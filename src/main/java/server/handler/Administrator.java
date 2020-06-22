@@ -96,6 +96,7 @@ public class Administrator implements IHandler {
 			Cinema.getCinema().searchMovie(title).setPathCover(cover);
 			Cinema.getCinema().searchMovie(title).setPlot(plot);
 			Cinema.getCinema().searchMovie(title).setTitle(title);
+			//test
 		}
 		catch (SearchException e1) {
 			System.out.println(e1);
