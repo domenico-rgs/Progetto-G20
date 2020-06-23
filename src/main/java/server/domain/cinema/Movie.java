@@ -58,8 +58,6 @@ public class Movie {
 		return pathCover;
 	}
 
-
-
 	public int getDuration() {
 		return duration;
 	}
@@ -105,6 +103,4 @@ public class Movie {
 			return false;
 		return true;
 	}
-
-
 }

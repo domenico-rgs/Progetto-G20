@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import server.domain.exception.SearchException;
 
+//Temporanea, potrebbe essere rimossa aggiungendo la persistenza
 public class TicketLedger {
 	private HashMap<String, Ticket> ticketList;
 	private static TicketLedger istance = null;

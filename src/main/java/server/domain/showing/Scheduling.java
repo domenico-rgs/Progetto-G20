@@ -1,22 +1,26 @@
 package server.domain.showing;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.theatre.Theatre;
 
 public class Scheduling {
-	private HashMap<String, MovieShowing> showingList;
+	private List<MovieShowing> showingList;
 
 	public Scheduling() {
-		showingList = new HashMap<>();
+		showingList = new ArrayList<>();
 	}
 
 	public MovieShowing createMovieShowing(Date date, Theatre theatre, Double price){
 		MovieShowing tmp = new MovieShowing(date, theatre, price);
-		return showingList.put(tmp.getId(), tmp);
+		if(showingList.add(tmp))
+			return tmp;
+		else
+			return null;
 	}
 
 	/*private boolean overlappingControl(Date date) {
@@ -30,31 +34,34 @@ public class Scheduling {
 		return false;
 	}*/
 
-	public boolean changeAvailability(String showing, String initSeat, String finalSeat, boolean value) throws SeatException{
-		return showingList.get(showing).changeAvailability(initSeat, finalSeat, value);
+	public void changeAvailability(String showing, String[] seats, boolean value) throws SeatException, SearchException{
+		showingList.get(searchShowing(showing)).changeAvailability(seats, value);
 	}
 
-	public boolean searchAvailability(String showing, String seat) throws SeatException {
-		return showingList.get(showing).searchAvailability(seat);
+	public boolean searchAvailability(String showing, String seat) throws SeatException, SearchException {
+		return showingList.get(searchShowing(showing)).searchAvailability(seat);
 
 	}
 
-	public boolean deleteMovieShowing(String id) throws SearchException{
-		if(searchShowing(id)!=null) {
-			showingList.remove(id);
+	public boolean deleteMovieShowing(String id){
+		try {
+			int showing = searchShowing(id);
+			showingList.remove(showing);
 			return true;
-		}else
+		} catch (SearchException e) {
 			return false;
+		}
+
 	}
 
-	public MovieShowing searchShowing(String id) throws SearchException{
-		if (!(showingList.containsKey(id)))
-			throw new SearchException(id+"'s not found.");
-		else
-			return showingList.get(id);
+	public int searchShowing(String id) throws SearchException{
+		for(int i=0; i<showingList.size(); i++)
+			if(showingList.get(i).getId().equalsIgnoreCase(id))
+				return i;
+		throw new SearchException(id+"'s not found.");
 	}
 
-	public HashMap<String, MovieShowing> getShowingList() {
+	public List<MovieShowing> getShowingList() {
 		return showingList;
 	}
 }

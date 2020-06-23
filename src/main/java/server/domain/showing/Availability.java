@@ -31,43 +31,19 @@ public class Availability {
 		throw new SeatException("Seat's not found");
 	}
 
-	protected boolean changeAvailability(String initSeat, String finalSeat, boolean value) throws SeatException{
-		if(!value)
-			return occupySeat(initSeat, finalSeat);
+	protected void changeAvailability(String[] seats, boolean value) throws SeatException{
+		for(String s : seats)
+			if(!value)
+				occupySeat(s);
+			else
+				availability.replace(findSeat(s), false);
+	}
+
+	private void occupySeat(String seat) throws SeatException {
+		Seat s = findSeat(seat);
+		if(availability.get(s)!=true)
+			throw new SeatException("Seat are alredy booked");
 		else
-			return freeSeat(initSeat, finalSeat);
-	}
-
-	private boolean freeSeat(String initSeat, String finalSeat) throws SeatException {
-		Seat[] seat = new Seat[finalSeat.charAt(1)-initSeat.charAt(1)];
-		int j=0;
-		for(int i=initSeat.charAt(1); i<(finalSeat.charAt(1)); i++) {
-			seat[j]=findSeat(Character.toString(initSeat.charAt(0))+i);
-			j++;
-		}
-
-		for(int i=0; i<seat.length; i++)
-			availability.replace(seat[i], false);
-
-		return true;
-	}
-
-	private boolean occupySeat(String initSeat, String finalSeat) throws SeatException {
-		if(initSeat.charAt(0)!=finalSeat.charAt(0))
-			throw new SeatException("You can only book seats in the same line");
-
-		Seat[] seat = new Seat[finalSeat.charAt(1)-initSeat.charAt(1)];
-		int j=0;
-		for(int i=initSeat.charAt(1); i<(finalSeat.charAt(1)); i++) {
-			seat[j]=findSeat(Character.toString(initSeat.charAt(0))+i);
-			if(availability.get(seat[j])!=true)
-				throw new SeatException("Some seats are alredy booked");
-			j++;
-		}
-
-
-		for(int i=0; i<seat.length; i++)
-			availability.replace(seat[i], true);
-		return true;
+			availability.replace(s, true);
 	}
 }

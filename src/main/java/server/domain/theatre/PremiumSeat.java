@@ -6,13 +6,13 @@ package server.domain.theatre;
 //@DiscriminatorValue("PremiumSeat")
 public class PremiumSeat extends Seat{
 	//@Column(name="addition")
-	private static double addition = 1.2; //aggiunta in percentuale
+	private final double addition = 1.2; //aggiunta in percentuale
 
 	public PremiumSeat(String position) {
 		super(position);
 	}
 
-	public static double getAddition() {
+	public double getAddition() {
 		return addition;
 	}
 

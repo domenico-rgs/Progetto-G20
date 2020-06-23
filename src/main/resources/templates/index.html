@@ -3,7 +3,7 @@
 @//dichiarazione variabili
 @args {
 List<server.domain.cinema.Movie> movieList
-	String citation;
+List<String> quote;
 	}
 
 	<html>
@@ -75,7 +75,8 @@ List<server.domain.cinema.Movie> movieList
 					<div class="quotes">
 						<img src='../statics/images/icon/quote.png' alt="">
 						<center>
-							<h1>@citation</h1>
+							<h1>@quote.get(0)</h1>
+							<p align="right">@quote.get(1)</p>
 						</center>
 					</div>
 

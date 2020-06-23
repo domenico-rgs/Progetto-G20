@@ -20,6 +20,15 @@ public class Seat {
 
 	public Seat() {}
 
+	public String getPosition() {
+		return position;
+	}
+
+	@Override
+	public String toString() {
+		return "Seat: " + position;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -27,8 +36,6 @@ public class Seat {
 		result = (prime * result) + ((position == null) ? 0 : position.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -45,15 +52,6 @@ public class Seat {
 		} else if (!position.equals(other.position))
 			return false;
 		return true;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	@Override
-	public String toString() {
-		return "Seat: " + position;
 	}
 
 }

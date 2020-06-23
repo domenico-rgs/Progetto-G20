@@ -35,40 +35,33 @@ public class Theatre {
 	 * Create the seats in the room by associating them with an id consisting of a
 	 * letter that identifies the row and a number that identifies the column
 	 */
-	@SuppressWarnings("resource")
 	private void createSeats(String file) throws IOException, SeatException {
 		BufferedReader seats = new BufferedReader(new FileReader(file));
 		String s;
-		int i=0;
+		int rowNum=0;
 		while((s = seats.readLine())!= null){
 			String[] tmp = s.split("\\s+");
-			for(int j = 0; j<tmp.length-1; j++) {
-				switch (tmp[j]) {
-				case "X":
-					seatsList.put(Character.toString(65 + i) + j, new Seat(Character.toString(65 + i) + j));
-					break;
-				case "P":
-					seatsList.put(Character.toString(65 + i) + j, new PremiumSeat(Character.toString(65 + i) + j));
-					break;
-				case "D":
-					seatsList.put(Character.toString(65 + i) + j, new DisabledSeat(Character.toString(65 + i) + j));
-					break;
-				default:
-					throw new SeatException("Unrecognized seat type, recheck the file");
-				}
-				i++;
-			}
+			addSeats(tmp, rowNum++);
 		}
+		seats.close();
 	}
 
-	@SuppressWarnings("resource")
+	private void addSeats(String[] row, int rowNum) throws SeatException {
+		for(int j = 0; j<row.length-1; j++)
+			if(row[j].equalsIgnoreCase("X"))
+				seatsList.put(Character.toString(65 + rowNum) + j, new Seat(Character.toString(65 + rowNum) + j));
+			else if (row[j].equalsIgnoreCase("P"))
+				seatsList.put(Character.toString(65 + rowNum) + j, new PremiumSeat(Character.toString(65 + rowNum) + j));
+			else if (row[j].equalsIgnoreCase("D"))
+				seatsList.put(Character.toString(65 + rowNum) + j, new DisabledSeat(Character.toString(65 + rowNum) + j));
+			else
+				throw new SeatException("Unrecognized seat type, recheck the file");
+	}
+
+	//Serve ?? Se si, da costruire e aggiungere chiamata da cinema
 	public String printConfiguration() throws IOException {
-		BufferedReader seats = new BufferedReader(new FileReader(filePath));
-		String s;
-		StringBuilder string = new StringBuilder();
-		while((s = seats.readLine())!= null)
-			string.append(s+"\n");
-		return string.toString();
+		//TO-DO
+		return filePath;
 	}
 
 	@Override

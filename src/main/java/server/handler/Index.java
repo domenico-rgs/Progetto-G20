@@ -1,7 +1,6 @@
 package server.handler;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +33,8 @@ public class Index implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		String quote = Cinema.getCinema().getCitation();
+
+		List<String> quote = Cinema.getCinema().getQuotes();
 		int intexCatalog = 5;  //quanti elementi visualizzare in prima pagina
 
 		resp.getWriter().write(Rythm.render("index.html", this.getIndexMovie(intexCatalog),
@@ -45,30 +44,29 @@ public class Index implements IHandler {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
-	
-	
-	
+
+
+
 	private List<server.domain.cinema.Movie> getIndexMovie(int n) {
-		
+
 		List<String> title = Cinema.getCinema().getTitleMovieList();
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
-		
+
 		//per evitare errori di sforamento
 		if (n > title.size())
 			n = title.size();
-		
-		for (int i = 0; i<n; i++) {
+
+		for (int i = 0; i<n; i++)
 			try {
-				
+
 				movieList.add(Cinema.getCinema().searchMovie(title.get(i)));
 			}
-			catch (SearchException e) {
-				continue;
-			}
+		catch (SearchException e) {
+			continue;
 		}
-		
+
 		return movieList;
-		
+
 	}
 
 }

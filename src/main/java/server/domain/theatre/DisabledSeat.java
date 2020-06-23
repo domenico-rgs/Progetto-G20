@@ -6,13 +6,13 @@ package server.domain.theatre;
 //@DiscriminatorValue("DisabledSeat")
 public class DisabledSeat extends Seat {
 	//@Column(name="addition")
-	private static double addition = 0.5; //riduzione in percentuale
+	private final double addition = 0.5; //riduzione in percentuale
 
 	public DisabledSeat(String position) {
 		super(position);
 	}
 
-	public static double getAddition() {
+	public double getAddition() {
 		return addition;
 	}
 

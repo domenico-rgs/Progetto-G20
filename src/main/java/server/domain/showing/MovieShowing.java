@@ -41,8 +41,8 @@ public class MovieShowing {
 		return availability.searchAvailability(seat);
 	}
 
-	protected boolean changeAvailability(String initSeat, String finalSeat, boolean value) throws SeatException {
-		return availability.changeAvailability(initSeat, finalSeat, value);
+	protected void changeAvailability(String[] seats, boolean value) throws SeatException {
+		availability.changeAvailability(seats, value);
 	}
 
 	public String getId() {

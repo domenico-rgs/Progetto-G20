@@ -1,8 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,20 +32,14 @@ public class Movie implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
-		try {
-			server.domain.cinema.Movie movie =
-					Cinema.getCinema().searchMovie(req.getParameter("title"));
 
-			//spiegatemelo per favoreeeeeeee
-			ArrayList<MovieShowing> showings = new ArrayList<>();
-			HashMap<String, MovieShowing> map = Cinema.getCinema().getSchedule(movie);
-			for(String s : map.keySet())
-				showings.add(map.get(s));
-			
+		try {
+			server.domain.cinema.Movie movie = Cinema.getCinema().searchMovie(req.getParameter("title"));
+			List<MovieShowing> showings = Cinema.getCinema().getSchedule(movie);
+
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
 
-		} 
+		}
 		//se non trova il film
 		catch (SearchException e) {
 			resp.getWriter().write(Rythm.render("404.html"));

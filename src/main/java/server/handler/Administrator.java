@@ -1,9 +1,6 @@
 package server.handler;
 
-import server.domain.cinema.*;
-
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +14,8 @@ import server.domain.exception.SearchException;
 
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
-	
-	private HashMap<String, Object> params = new HashMap<>();
-
 
 	private Administrator() {
-		//aggiungo tutti i parametri utili
-		//params.put("categoryList", null);   //tolta
 	}
 
 
@@ -36,67 +28,60 @@ public class Administrator implements IHandler {
 
 
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
-		params.put("categoryList", Cinema.getCinema().getAllCategory());
-		params.put("titleMovieList", Cinema.getCinema().getTitleMovieList());
-
-		resp.getWriter().write(Rythm.render("administrator.html", params));
-
-
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.getWriter().write(Rythm.render("administrator.html", TypeCategory.values(), Cinema.getCinema().getTitleMovieList()));
 	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+
 		String message = "";
-		
+
 		switch (req.getParameter("requestPost")) {
-		
+
 		case "addMovie":
 			message = this.addMovie(req);
 			break;
-			
+
 		case "getMovieInf":
 			message = this.getMovieInf(req);
 			break;
-			
+
 		case "removeMovie":
 			message = this.removeMovie(req);
 			break;
-			
+
 		case "editM":
 			message = this.editMovie(req);
 		}
-		
-		
+
+
 		resp.getWriter().write(message);
-		
-	
+
+
 	}
-	
-	
+
+
 	/*
-	 * Tutti i metodi di amministrazione, richiamati dal post 
+	 * Tutti i metodi di amministrazione, richiamati dal post
 	 */
-	
-	
+
+
 	private String editMovie(HttpServletRequest req) {
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
 		String cover = "../statics/images/cover/" + req.getParameter("cover") + ".jpg";
-		
-		
+
+
 		try {
 			int duration = Integer.valueOf(req.getParameter("duration"));
-			
+
 			//Cinema.getCinema().searchMovie(title).setCategory(TypeCategory.valueOf(req.getParameter("category")));
 			Cinema.getCinema().searchMovie(title).setDuration(duration);
 			Cinema.getCinema().searchMovie(title).setPathCover(cover);
 			Cinema.getCinema().searchMovie(title).setPlot(plot);
 			Cinema.getCinema().searchMovie(title).setTitle(title);
-			
+
 		}
 		catch (SearchException e1) {
 			System.out.println(e1);
@@ -106,55 +91,55 @@ public class Administrator implements IHandler {
 			System.out.println(e1);
 			return "Incorrect or missing data";
 		}
-		
+
 		return title + " succefully added. Reload to see changes";
 	}
-	
+
 	private String removeMovie(HttpServletRequest req) {
-		
+
 		String title = req.getParameter("title");
-		
+
 		try {
 			Cinema.getCinema().deleteMovie(title);
 		}
 		catch (SearchException e) {
 			return title + " not found. Reload to see changes";
 		}
-		
+
 		return title + " succefully removed. Reload to see changes";
 	}
 
 
 	private String getMovieInf(HttpServletRequest req) {
-		
+
 		String title = req.getParameter("title");
 		server.domain.cinema.Movie movie;
-		
+
 		try {
 			movie = Cinema.getCinema().searchMovie(title);
 		}
 		catch (SearchException e) {
 			return "Error@" + title + " not found. Reload to see changes";
 		}
-		
+
 		String inf = movie.getTitle() + "@" + String.valueOf(movie.getDuration()) +
 				"@" + movie.getPlot();
-		
+
 		return inf;
 	}
 
 
 	private String addMovie(HttpServletRequest req) {
-		
+
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
 		String cover = "../statics/images/cover/" + req.getParameter("cover") + ".jpg";
-		
-		
+
+
 		try {
 			int duration = Integer.valueOf(req.getParameter("duration"));
-			
-			Cinema.getCinema().createMovie(title, duration, plot, cover, 
+
+			Cinema.getCinema().createMovie(title, duration, plot, cover,
 					TypeCategory.valueOf(req.getParameter("category")));
 		}
 		catch (SearchException e) {
@@ -165,11 +150,11 @@ public class Administrator implements IHandler {
 			System.out.println(e);
 			return "Incorrect or missing data";
 		}
-		
+
 		return title + " succefully added. Reload to see changes";
-		
-		
-		
+
+
+
 	}
 
 }
