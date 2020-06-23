@@ -45,9 +45,9 @@
 
 .loader {
   margin: 0 auto 1em auto;
-  border: 10px solid #f3f3f3;
+  border: 10px solid white;
   border-radius: 50%;
-  border-top: 10px solid #3498db;
+  border-top: 10px solid rgb(30,63,97);
   width: 3em;
   height: 3em;
   -webkit-animation: spin 1s linear infinite; /* Safari */
