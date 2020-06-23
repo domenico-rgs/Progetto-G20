@@ -349,6 +349,29 @@ h6 {
 		margin-top: -0.6em;
 	}
 
+  /* Elementi generali */
+  button {
+    outline: none;
+  	border: none;
+    background-image: linear-gradient(to right,   #1E3F61, #275687, #1E3F61);
+  	background-size: 200%;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    transition: .5s;
+  }
+
+  button:hover {
+  background-position: right;
+  }
+
+  #errorMess {
+    font-size: 120%;
+    color: black;
+    text-align: center;
+    margin-top: 2em;
+  }
+
 
 /* Header */
 
@@ -554,8 +577,8 @@ h6 {
 			#navPanel .close:hover {
 				color: inherit;
 			}
-			
-			
+
+
 		#nav div{
 			float: left;
 		}
@@ -573,7 +596,7 @@ h6 {
 			background-color: #ddd;
 			color: black;
 		}
-		
+
 /* THREE GENERAL*/
 
 #three {
@@ -825,7 +848,7 @@ form #itemForm {
 	color: #FFF;
 	margin-bottom: 2em !important;
 }
-		
+
 #footer .inf div {
   padding: 10px 0;
 }

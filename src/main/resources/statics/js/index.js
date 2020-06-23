@@ -63,14 +63,13 @@ function changeImage(){
 setInterval("changeImage()",5000);
 
 
-// ANIMAZIONI
+// ESTEREGG
 
-function animation (){
-  $('#banner .inner h1').animate({
-    "left": "0px"
-  }, 700);
-
-  $('#banner .inner h2').animate({
-    "right": "0px"
-  }, 700);
+function playAudio() {
+  var myAudio = document.getElementById('audio');
+  if (!myAudio.paused) {
+    myAudio.pause();
+  } else {
+    myAudio.play();
+  }
 }

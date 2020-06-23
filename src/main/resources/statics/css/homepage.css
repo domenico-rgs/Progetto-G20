@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-/* CSS FOR INDEX AND CATALOG, NAV, HEADER, BANNER, FOOTER */
+/* CSS FOR HOMEPAGE */
 
 /* DA RIVEDERE DOPO
 @media screen and (max-width: 980px) {
@@ -72,21 +72,6 @@ body {
   right: -2000px;
 }
 
-/* Effetti bottoni */
-button {
-  outline: none;
-	border: none;
-  background-image: linear-gradient(to right,   #1E3F61, #275687, #1E3F61);
-	background-size: 200%;
-  border-radius: 25px;
-  color: #fff;
-  cursor: pointer;
-  transition: .5s;
-}
-
-button:hover {
-background-position: right;
-}
 
 /* INDEX BUTTON */
 
@@ -94,23 +79,13 @@ background-position: right;
   display: block;
 	width: 50%;
 	height: 50px;
-	border-radius: 25px;
-	outline: none;
-	border: none;
 	background-image: linear-gradient(to right,   #1E3F61, #275687, #1E3F61);
-	background-size: 200%;
 	font-size: 1.2rem;
-	color: #fff;
 	font-family: 'Poppins', sans-serif;
 	text-transform: uppercase;
 	margin: 0 auto;
-	cursor: pointer;
-	transition: .5s;
 }
 
-.showFilm:hover{
-	background-position: right;
-}
 
 /* DIV QUOTES */
 .quotes {

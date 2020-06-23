@@ -47,12 +47,6 @@
   cursor: pointer;
 }
 
-#errorMess {
-  font-size: 120%;
-  color: black;
-  text-align: center;
-  margin-top: 2em;
-}
 
 #innerCatalog {
   margin-top: 3em;
