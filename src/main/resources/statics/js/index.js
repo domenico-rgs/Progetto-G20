@@ -63,7 +63,6 @@ function changeImage(){
 setInterval("changeImage()",5000);
 
 
-
 // ANIMAZIONI
 
 function animation (){

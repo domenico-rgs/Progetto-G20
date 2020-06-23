@@ -36,7 +36,7 @@ public class Index implements IHandler {
 			throws ServletException, IOException {
 		
 		String quote = Cinema.getCinema().getCitation();
-		int intexCatalog = 6;  //quanti elementi visualizzare in prima pagina
+		int intexCatalog = 5;  //quanti elementi visualizzare in prima pagina
 
 		resp.getWriter().write(Rythm.render("index.html", this.getIndexMovie(intexCatalog),
 				quote));
