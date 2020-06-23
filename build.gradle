@@ -15,6 +15,10 @@ dependencies {
     implementation 'org.hibernate:hibernate-core:5.4.18.Final'
     
     testImplementation 'junit:junit:4.13'
+    
+    //this is for mysql java connector
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+    runtime "mysql:mysql-connector-java:8.0.15"
 }
 
 application {

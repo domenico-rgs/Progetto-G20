@@ -1,23 +1,26 @@
 package server.domain.cinema;
 
+import javax.persistence.*;
+
 import server.domain.showing.MovieShowing;
 
 /**
  * This class is referred to a movie
  * @see MovieShowing
  */
-//@Entity
-//@Table(name="movie")
+@Entity
+@Table(name="movie")
 public class Movie {
-	//@Id
-	//@Column(name="title")
+	@Id
+	@Column(name="title")
 	private String title;
-	//@Column(name="duration")
+	@Column(name="duration")
 	private int duration; //in minutes
-	//@Column(name="category")
+	@Enumerated(EnumType.STRING)
 	private TypeCategory category;
-	//@Column(name="plot")
+	@Column(name="plot")
 	private String plot;
+	@Column(name="cover")
 	private String pathCover;
 
 	public Movie() {}

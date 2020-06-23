@@ -2,7 +2,8 @@ package server.domain.showing;
 
 import java.util.Date;
 
-//import javax.persistence.*;    // importazione non richiesta
+
+import javax.persistence.*;
 
 import server.domain.exception.SeatException;
 import server.domain.theatre.Theatre;
@@ -10,20 +11,21 @@ import server.domain.theatre.Theatre;
 /**
  * This class is referred to a movie projection in the cinema.
  */
-//@Entity
-//@Table(name="movieShowing")
+@Entity
+@Table(name="movieShowing")
 public class MovieShowing {
-	//@Id
-	//@Column(name="id")
+	@Id
+	@Column(name="id")
 	private String id;
-	//@Transient
+	@Transient
 	private static int intId=0;
-	//@Column(name="dateMovieShowing")
+	@Column(name="dateMovieShowing")
 	private Date date;
-	//@Transient //da correggere
+	@Transient //da correggere ?
 	private Availability availability;
-	//@Column(name="price")
+	@Column(name="price")
 	private double price;
+	@Column(name="theatre")
 	private String theatreName;
 
 	public MovieShowing() {}

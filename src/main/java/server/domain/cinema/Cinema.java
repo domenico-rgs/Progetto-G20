@@ -12,7 +12,7 @@ import server.domain.payment.SimPaymentAdapter;
 import server.domain.showing.MovieShowing;
 import server.domain.showing.Scheduling;
 import server.domain.theatre.Theatre;
-//import server.services.DB.DBConnection;
+import server.services.DB.DBConnection;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -25,7 +25,7 @@ public class Cinema {
 	private SimPaymentAdapter payment;
 	private Quotes quotes = new Quotes();
 
-	//private DBConnection db;
+	private DBConnection db;
 	private static Cinema istance = null;
 
 	private Cinema() {
