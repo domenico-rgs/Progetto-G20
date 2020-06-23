@@ -62,14 +62,12 @@ body {
     line-height: 1em;
     margin: 0 0 1em 0;
     padding: 0;
-    left: -2000px;
   }
 
 #banner .inner h2 {
   position: relative;
   color: white;
   font-size: 120%;
-  right: -2000px;
 }
 
 

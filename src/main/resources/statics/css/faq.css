@@ -3,6 +3,11 @@
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
+
+body {
+  background-color: white !important;
+}
+
 .container {
   display: inline-block;
   margin-top: 2em;
