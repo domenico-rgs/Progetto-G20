@@ -1,3 +1,6 @@
+var loadMess = $('#loadMess #mess')
+var loader = $('#loadMess .loader')
+
 $(window).on('load', function() {
   var ajax = $.ajax({
      type: "GET",
@@ -8,6 +11,9 @@ $(window).on('load', function() {
      },
      success : function(response)
      {
+        loadMess.remove()
+        loader.remove()
+
          $('.filmMenu').append(response);
          startPoint += 5
          finalPoint += 5
@@ -24,6 +30,9 @@ var scrollAdd = $(window).height / 3
 $(window).on('scroll', function() {
   if ($(window).scrollTop() > scrollPoint) {
     scrollPoint += scrollAdd
+    $('#loadMess').append(loader)
+    $('#loadMess').append(loadMess)
+
     var ajax = $.ajax({
        type: "GET",
        url: "/movieList",
@@ -33,6 +42,9 @@ $(window).on('scroll', function() {
        },
        success : function(response)
        {
+          loadMess.remove()
+          loader.remove()
+
            $('.filmMenu').append(response);
            startPoint += 5
            finalPoint += 5
@@ -40,3 +52,11 @@ $(window).on('scroll', function() {
   })
 }
 });
+
+// label animation
+$('.searchBar input').on('focus', function () {
+  $('.searchBar label').addClass('active');
+}).on('blur', function () {
+  $('.searchBar label').removeClass('active');
+  $('.searchBar input').val("");
+})

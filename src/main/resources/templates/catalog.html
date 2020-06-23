@@ -37,12 +37,19 @@
 
         <!-- search bar -->
         <div class="searchBar">
-          <input id="searchMovie" autocomplete="off" placeholder="Search" />
+          <label>Search</label>
+          <input id="searchMovie" name="searchMovie" autocomplete="off" />
           <img id="searchImg" src="../statics/images/icon/search.png" alt="" />
         </div>
 
         <!-- Movie catalog -->
         <div class="filmMenu">
+        </div>
+
+
+        <div id='loadMess'>
+          <div class="loader"></div>
+          <h1 id='mess'>Loading...</h1>
         </div>
 
       </div>
