@@ -1,9 +1,26 @@
+$('#addTheatre #add').on('click', function() {
+    var ajax = $.ajax({
+       type: "POST",
+       url: "/administrator",
+       data: {
+         requestPost: "AddTheatre",
+         name: $('#addTheatre #movie').val(),
+         configuration: $('#addTheatre #configuration').val(),
+         },
+       success : function(response)
+       {
+         $('#addTheatre.message').text(response)
+       }
+  })
+});
+
+
 $('#addShowing #add').on('click', function() {
     var ajax = $.ajax({
        type: "POST",
        url: "/administrator",
        data: {
-         requestPost: "addShowing",
+         requestPost: "AddShowing",
          movie: $('#addShowing #movie').find(":selected").text(),
          theatre: $('#addShowing #theatre').find(":selected").text(),
          date: $('#addShowing #date').val(),
@@ -17,32 +34,12 @@ $('#addShowing #add').on('click', function() {
   })
 });
 
-$('#addMovie #add').on('click', function() {
-    var ajax = $.ajax({
-       type: "POST",
-       url: "/administrator",
-       data: {
-         requestPost: "AddMovie",
-         title: $('#addMovie #title').val(),
-         duration: $('#addMovie #duration').val(),
-         plot: $('#addMovie #plot').val(),
-         cover: $('#addMovie #cover').val(),
-         category: $('#addMovie #category').find(":selected").text()
-       },
-       success : function(response)
-       {
-         $('#addMovie .message').text(response)
-       }
-  })
-});
-
-
 $('#editShowing #editS').on('click', function() {
     var ajax = $.ajax({
        type: "POST",
        url: "/administrator",
        data: {
-         requestPost: "addShowing",
+         requestPost: "AddShowing",
          movie: $('#addShowing #movie').find(":selected").text(),
          theatre: $('#addShowing #theatre').find(":selected").text(),
          date: $('#addShowing #date').val(),
@@ -70,6 +67,59 @@ $('#editShowing .searchDiv #remove').on('click', function() {
        }
   })
 });
+
+
+$('#searchShowing').on('keypress', function(e) {
+  if (e.which == 13) {
+    var ajax = $.ajax({
+       type: "POST",
+       url: "/administrator",
+       data: {
+         requestPost: "GetShowingInf",
+         id: $('#editShowing #searchList').val(),
+       },
+       success : function(response)
+       {
+         // per ora cosi, sicuramente c'è di meglio (invio parametri splittando la stringa)
+         // 0: theatre
+         // 1: price
+
+         var params = response.split("@")
+
+         if (params[0] == "Error") {
+           $('#editShowing .message').text(params[1])
+         }
+
+         else {
+           $('#editShowing #theatre').val(params[0])
+           $('#editShowing #price').val(params[1])
+         }
+
+
+  }
+});
+
+$('#addMovie #add').on('click', function() {
+    var ajax = $.ajax({
+       type: "POST",
+       url: "/administrator",
+       data: {
+         requestPost: "AddMovie",
+         title: $('#addMovie #title').val(),
+         duration: $('#addMovie #duration').val(),
+         plot: $('#addMovie #plot').val(),
+         cover: $('#addMovie #cover').val(),
+         category: $('#addMovie #category').find(":selected").text()
+       },
+       success : function(response)
+       {
+         $('#addMovie .message').text(response)
+       }
+  })
+});
+
+
+
 
 
 $('#editMovie #editM').on('click', function() {
