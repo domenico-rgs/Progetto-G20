@@ -21,7 +21,7 @@ $('#addShowing #add').on('click', function() {
        url: "/administrator",
        data: {
          requestPost: "AddShowing",
-         movie: $('#addShowing #').find(":selected").text(),
+         movie: $('#addShowing #movie').find(":selected").text(),
          theatre: $('#addShowing #theatre').find(":selected").text(),
          date: $('#addShowing #date').val(),
          hour: $('#addShowing #hour').val(),
@@ -29,7 +29,7 @@ $('#addShowing #add').on('click', function() {
        },
        success : function(response)
        {
-         $('#addShowing.message').text(response)
+         $('#addShowing .message').text(response)
        }
   })
 });
