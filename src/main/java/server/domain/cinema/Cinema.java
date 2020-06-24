@@ -102,6 +102,11 @@ public class Cinema {
 	public List<MovieShowing> getSchedule(Movie movie) throws SearchException{
 		return scheduler.get(movie).getShowingList();
 	}
+	
+	public MovieShowing getShowing(String movie, String id) throws SearchException{
+		return scheduler.get(searchMovie(movie)).searchShowing(id);
+	}
+
 
 	synchronized public void createMovieShowing(String movie, Date date, String theatre, double price) {
 		//PROBABILMENTE OCCORRE AGGIUNGERE QUALCOSA PER CONTROLLARE CHE LE DATE NON SI ACCAVALLINO

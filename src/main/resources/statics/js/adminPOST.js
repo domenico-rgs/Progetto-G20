@@ -4,12 +4,12 @@ $('#addTheatre #add').on('click', function() {
        url: "/administrator",
        data: {
          requestPost: "AddTheatre",
-         name: $('#addTheatre #movie').val(),
-         configuration: $('#addTheatre #configuration').val(),
+         name: $('#addTheatre #name').val(),
+         config: $('#addTheatre #config').val(),
          },
        success : function(response)
        {
-         $('#addTheatre.message').text(response)
+         $('#addTheatre .message').text(response)
        }
   })
 });
@@ -21,7 +21,7 @@ $('#addShowing #add').on('click', function() {
        url: "/administrator",
        data: {
          requestPost: "AddShowing",
-         movie: $('#addShowing #movie').find(":selected").text(),
+         movie: $('#addShowing #').find(":selected").text(),
          theatre: $('#addShowing #theatre').find(":selected").text(),
          date: $('#addShowing #date').val(),
          hour: $('#addShowing #hour').val(),
@@ -39,27 +39,11 @@ $('#editShowing #editS').on('click', function() {
        type: "POST",
        url: "/administrator",
        data: {
-         requestPost: "AddShowing",
-         movie: $('#addShowing #movie').find(":selected").text(),
-         theatre: $('#addShowing #theatre').find(":selected").text(),
-         date: $('#addShowing #date').val(),
-         hour: $('#addShowing #hour').val(),
-         price: $('#addShowing #price').val()
-       },
-       success : function(response)
-       {
-         $('#editShowing .message').text(response)
-       }
-  })
-});
-
-$('#editShowing .searchDiv #remove').on('click', function() {
-    var ajax = $.ajax({
-       type: "POST",
-       url: "/administrator",
-       data: {
-         requestPost: "RemoveShowing",
-         title: $('#editShowing #id').val()
+         requestPost: "EditShowing",
+         movie: $('#editShowing #movie').find(":selected").text(),
+         theatre: $('#editShowing #theatre').val(),
+         id: $('#editShowing #id').val(),
+         price: $('#editShowing #price').val()
        },
        success : function(response)
        {
@@ -69,14 +53,15 @@ $('#editShowing .searchDiv #remove').on('click', function() {
 });
 
 
-$('#searchShowing').on('keypress', function(e) {
+$('#editShowing id').on('keypress', function(e) {
   if (e.which == 13) {
     var ajax = $.ajax({
        type: "POST",
        url: "/administrator",
        data: {
          requestPost: "GetShowingInf",
-         id: $('#editShowing #searchList').val(),
+         movie: $('#editShowing #movie').find(":selected").text(),
+         id: $('#editShowing #id').val()
        },
        success : function(response)
        {
@@ -129,7 +114,6 @@ $('#editMovie #editM').on('click', function() {
        data: {
          requestPost: "EditMovie",
          title: $('#editMovie #title').val(),
-         duration: $('#editMovie #duration').val(),
          plot: $('#editMovie #plot').val(),
          cover: $('#editMovie #cover').val(),
          category: $('#editMovie #category').find(":selected").text()
@@ -169,19 +153,4 @@ $('#editMovie #searchList').on('change', function() {
 
      }
 })
-});
-
-$('#editMovie .searchDiv #remove').on('click', function() {
-    var ajax = $.ajax({
-       type: "POST",
-       url: "/administrator",
-       data: {
-         requestPost: "RemoveMovie",
-         title: $('#editMovie #title').val()
-       },
-       success : function(response)
-       {
-         $('#editMovie .message').text(response)
-       }
-  })
 });
