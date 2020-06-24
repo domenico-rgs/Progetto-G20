@@ -1,8 +1,11 @@
 package server.domain.theatre;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 
@@ -26,10 +29,10 @@ public class Theatre {
 
 	public Theatre() {}
 
-	public Theatre(String theatreName, String filePath) throws IOException, SeatException {
+	public Theatre(String theatreName, String config) throws IOException, SeatException {
 		seatsList = new HashMap<>();
 		this.theatreName=theatreName;
-		this.filePath=filePath;
+		filePath = createConfigFile(config);
 		createSeats(filePath);
 	}
 
@@ -59,11 +62,13 @@ public class Theatre {
 			else
 				throw new SeatException("Unrecognized seat type, recheck the file");
 	}
-
-	//Serve ?? Se si, da costruire e aggiungere chiamata da cinema
-	public String printConfiguration() throws IOException {
-		//TO-DO
-		return filePath;
+	
+	private String createConfigFile(String config) throws FileNotFoundException {
+		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
+		
+		out.println(config);
+		out.close();
+		return "src/main/resources/theatreConf/" + theatreName+".txt";
 	}
 
 	@Override

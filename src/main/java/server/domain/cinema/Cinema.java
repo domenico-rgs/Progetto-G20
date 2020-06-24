@@ -36,11 +36,11 @@ public class Cinema {
 		//db = new DBConnection();
 	}
 
-	synchronized public boolean createTheatre(String name, String file) throws SearchException, IOException, SeatException {
+	synchronized public boolean createTheatre(String name, String config) throws SearchException, IOException, SeatException {
 		if (theatreList.containsKey(name))
 			throw new SearchException(name+" already exists.");
 		else {
-			Theatre t = new Theatre(name, file);
+			Theatre t = new Theatre(name, config);
 			theatreList.put(name, t);
 			//db.addTheatre(t);
 			return true;
