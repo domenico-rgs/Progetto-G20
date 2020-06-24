@@ -5,7 +5,17 @@
 }
 
 .inner .seatList {
+  border: 1px solid black;
+  max-width: 90%;
   display: inline-block;
+  padding: 2%;
+  margin-bottom: 2%;
+}
+
+.inner .seatRow {
+  margin: 5% 0;
+  width: auto;
+  height: auto;
 }
 
 .seatList .seat {
@@ -13,10 +23,7 @@
   width: 40px;
   height: 40px;
   cursor: pointer;
-  background-color: #ffffff;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
+  background-color: white;
 }
 
 .seatList #free {
