@@ -1,3 +1,20 @@
+$('#addTheatre #add').on('click', function() {
+    var ajax = $.ajax({
+       type: "POST",
+       url: "/administrator",
+       data: {
+         requestPost: "AddTheatre",
+         name: $('#addTheatre #movie').val(),
+         configuration: $('#addTheatre #configuration').val(),
+         },
+       success : function(response)
+       {
+         $('#addTheatre.message').text(response)
+       }
+  })
+});
+
+
 $('#addShowing #add').on('click', function() {
     var ajax = $.ajax({
        type: "POST",
