@@ -16,9 +16,11 @@ dependencies {
     
     testImplementation 'junit:junit:4.13'
     
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.3'
+    
     //this is for mysql java connector
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
-    runtime "mysql:mysql-connector-java:8.0.15"
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
+    runtime "mysql:mysql-connector-java:8.0.20"
 }
 
 application {

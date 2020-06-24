@@ -1,24 +1,36 @@
 package server.services.DB;
 
+import java.util.ArrayList;
+
 import org.hibernate.SessionFactory;
 
 import server.domain.cinema.Movie;
 import server.domain.showing.MovieShowing;
+import server.domain.theatre.Theatre;
 
 public class DBConnection {
 	private SessionFactory sessionFactory;
-	private SaleServices ticketServices;
+	private CinemaServices cinemaServices;
 
 	public DBConnection() {
 		this.sessionFactory = HibernateUtil.getSessionFactory();
-		ticketServices = new SaleServices(this.sessionFactory);
+		cinemaServices = new CinemaServices(this.sessionFactory);
 	}
 
-	/**
-	 * Create the ticket and store it in the DB
-	 */
-	//da correggere
-	public void addTicket (Movie movie, String seat, MovieShowing movieShowing, double price) {
-		ticketServices.addTicket(movie,seat,movieShowing, price);
+	public void addMovie(Movie movie) {
+		cinemaServices.addMovie(movie);
 	}
+	
+	public ArrayList<String> movieList(){
+		return cinemaServices.movieList();
+	}
+	
+	public void addTheatre(Theatre theatre) {
+		cinemaServices.addTheatre(theatre);
+	}
+	
+	public void addMovieShowing(MovieShowing show) {
+		cinemaServices.addMovieShowing(show);
+	}
+
 }

@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS movie;
 drop TABLE IF EXISTS typeOfSeat;
 
 CREATE TABLE movie
-        (title CHAR(10) PRIMARY KEY,
+        (title CHAR(50) PRIMARY KEY,
          duration SMALLINT NOT NULL,
          category CHAR(10) ,
          plot VARCHAR(1000),

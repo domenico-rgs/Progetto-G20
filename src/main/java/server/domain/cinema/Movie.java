@@ -20,7 +20,7 @@ public class Movie {
 	private TypeCategory category;
 	@Column(name="plot")
 	private String plot;
-	@Column(name="cover")
+	@Column(name="pathCover")
 	private String pathCover;
 
 	public Movie() {}

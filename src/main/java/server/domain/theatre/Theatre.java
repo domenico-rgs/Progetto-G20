@@ -19,6 +19,7 @@ public class Theatre {
 	@Id
 	@Column(name="theatreName")
 	private String theatreName;
+	@Transient
 	private HashMap<String, Seat> seatsList;
 	@Column(name="filePath")
 	private String filePath;

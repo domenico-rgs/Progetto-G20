@@ -51,9 +51,8 @@ public class Scheduling {
 		} catch (SearchException e) {
 			return false;
 		}
-
 	}
-
+	
 	public int searchShowing(String id) throws SearchException{
 		for(int i=0; i<showingList.size(); i++)
 			if(showingList.get(i).getId().equalsIgnoreCase(id))
