@@ -81,6 +81,8 @@ $('#editShowing id').on('keypress', function(e) {
          }
 
 
+	}
+	})
   }
 });
 
@@ -152,5 +154,5 @@ $('#editMovie #searchList').on('change', function() {
        }
 
      }
-})
+	})
 });

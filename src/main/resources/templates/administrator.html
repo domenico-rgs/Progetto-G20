@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
 @args {
 List<String> categoryList
-  List<String> titleMovieList
-    List<String> theatreList
-      }
+List<String> titleMovieList
+}
 
       <html>
 
@@ -170,9 +169,6 @@ List<String> categoryList
 
                   <input id="searchList" list="theatreList" placeholder="Select Theatre">
                   <datalist id="theatreList">
-                    @for (String theatre: theatreList) {
-                    <option value="@theatre">@theatre</optiont>
-                      }
                   </datalist>
                 </div>
 

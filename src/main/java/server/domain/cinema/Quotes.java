@@ -33,8 +33,8 @@ public class Quotes {
 	public List<String> getQuotes() {
 		int random = (int)(Math.random()*quote.size());
 		List<String> quoteList = new ArrayList<>();
-		quoteList.add(author.get(random));
 		quoteList.add(quote.get(random));
+		quoteList.add(author.get(random));
 		return quoteList;
 	}
 }
