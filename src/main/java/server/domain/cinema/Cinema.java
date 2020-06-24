@@ -87,12 +87,22 @@ public class Cinema {
 		}
 	}
 
-	synchronized public Movie searchMovie(String title) throws SearchException{
-		if(!(movieCatalog.containsKey(title)))
-			throw new SearchException(title+"'s not found");
-		else
-			return movieCatalog.get(title);
+//	synchronized public Movie searchMovie(String title) throws SearchException{
+//		if(!(movieCatalog.containsKey(title)))
+//			throw new SearchException(title+"'s not found");
+//		else
+//			return movieCatalog.get(title);
+//	}
+	
+	//metodo searchMovie from DB
+	
+	synchronized public Movie searchMovie(String title) throws SearchException {
+		
+		
+		
+		return null;
 	}
+	
 
 	public List<MovieShowing> getSchedule(Movie movie) throws SearchException{
 		return scheduler.get(movie).getShowingList();
@@ -120,6 +130,13 @@ public class Cinema {
 		return false;
 		//TO-DO
 	}
+	
+	public List<String> getQuotes() {
+		return quotes.getQuotes();
+	}
+	
+	//metodi per amministrazione applicazione web
+	
 
 	public List<String> getTitleMovieList() {
 		return db.movieList();
@@ -129,10 +146,14 @@ public class Cinema {
 
 		return titleList;*/
 	}
-
-	public List<String> getQuotes() {
-		return quotes.getQuotes();
+	
+	public List<String> getTheatreList() {
+		
+		
+		return null;
 	}
+
+	
 
 	public static Cinema getCinema() {
 		if (istance == null)
