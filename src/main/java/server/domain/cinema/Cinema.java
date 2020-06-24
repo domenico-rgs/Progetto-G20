@@ -46,6 +46,10 @@ public class Cinema {
 			return true;
 		}
 	}
+	
+	public void editShowing(String movie, String showing, String theatre, double price) throws SearchException {
+		scheduler.get(searchMovie(movie)).editShowing(showing, theatre, price);
+	}
 
 	//OCCORRE CONTROLLARE CHE NON SIA USATO
 	synchronized public boolean deleteTheatre(String name) throws SearchException{

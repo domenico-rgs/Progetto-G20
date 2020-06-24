@@ -3,6 +3,7 @@ package server.handler.adminHandler;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
+import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
 
 public class EditMovie {
@@ -10,17 +11,12 @@ public class EditMovie {
 	public static String doAction(HttpServletRequest req) {
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
+		TypeCategory category = TypeCategory.valueOf(req.getParameter("category"));
 		String cover = "../statics/images/cover/" + req.getParameter("cover") + ".jpg";
 
 
 		try {
-			int duration = Integer.valueOf(req.getParameter("duration"));
-
-			//Cinema.getCinema().searchMovie(title).setCategory(TypeCategory.valueOf(req.getParameter("category")));
-			Cinema.getCinema().searchMovie(title).setDuration(duration);
-			Cinema.getCinema().searchMovie(title).setPathCover(cover);
-			Cinema.getCinema().searchMovie(title).setPlot(plot);
-			Cinema.getCinema().searchMovie(title).setTitle(title);
+			Cinema.getCinema().searchMovie(title).editMovie(cover, plot, category);
 
 		}
 		catch (SearchException e1) {
