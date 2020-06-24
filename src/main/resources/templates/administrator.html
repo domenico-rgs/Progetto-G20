@@ -139,9 +139,15 @@ List<String> categoryList
                   <button>Modifica</button>
                 </div>
 
+                <input id="searchList" list="filmList" placeholder="Search Film">
+                <datalist id="filmList">
+                  @for (String title: titleMovieList) {
+                  <option value="@title">@title</option>
+                  }
+                </datalist>
+
                 <input placeholder="Theatre">
                 <input placeholder="Price">
-                <input placeholder="Movie" readonly>
                 <input placeholder="Date" readonly>
               </div>
 
