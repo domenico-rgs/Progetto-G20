@@ -22,6 +22,10 @@ public class Scheduling {
 		else
 			return null;
 	}
+	
+	public void editShowing(String showing, String theatre, double price) throws SearchException {
+		showingList.get(searchShowing(showing)).editShowing(theatre, price);
+	}
 
 	/*private boolean overlappingControl(Date date) {
 		for(String s : showingList.keySet()) {

@@ -106,19 +106,21 @@ body {
 .contentAdmin select option {
 }
 
-
 .contentAdmin textarea {
+  vertical-align: middle;
+  display: inline-block;
   width: 60%;
   background-color: #e6e6e6;
   resize: none;
   border: none;
   border-radius: 10px;
   padding: 5px 10px;
-  margin: 10px 10%;
   color: black;
 }
 
 .contentAdmin .leggenda {
+  vertical-align: middle;
+  display: inline-block;
   width: 30%;
 }
 

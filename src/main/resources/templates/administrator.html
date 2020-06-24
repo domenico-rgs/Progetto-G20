@@ -13,7 +13,6 @@ List<String> categoryList
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="stylesheet" href="../statics/css/main.css" />
-          <link rel="stylesheet" href="../statics/css/index.css">
           <link rel="stylesheet" href="../statics/css/admin.css">
 
 
@@ -26,7 +25,6 @@ List<String> categoryList
             <div class="menu">
               <ul>
                 <li value="addTheatre">Add Theatre</li>
-                <li value="editTheatre">Edit Theatre</li>
                 <li value="addMovie">Add Movie</li>
                 <li value="editMovie">Edit Movie</li>
                 <li value="addShowing">Add Showing</li>
@@ -63,55 +61,25 @@ List<String> categoryList
               </div>
 
               <!-- gestione delle sale -->
-              <div class="admin" id="editTheatre">
-                <p>Edit o remove a theatre:</p>
-
-                <div class="searchDiv">
-                  <input id="searchList" list="theatreList" placeholder="Cerca sala">
-                  <datalist id="theatreList">
-                    @for (String theare: theatreList) {
-                    <option value="@theatre">@theatre</option>
-                    }
-                  </datalist>
-
-                  <button>Remove</button>
-                  <button>Edit</button>
-                </div>
-
-                <input id="name" placeholder="Name">
-
-                <div class="searchDiv">
-                  <textarea id="configuration" maxlength="640" rows="8" cols="80" placeholder="configuration
-                example:
-                P-C-C-C-C-C-P
-                D-C-C-C-C-C-D"></textarea>
-                  <div class="leggenda">
-                    <h5><strong>Leggenda: </strong></h5>
-                    <h6>P: elemento 1</h6>
-                    <h6>C: elemento 2</h6>
-                    <h6>D: elemento 3</h6>
-                  </div>
-                </div>
-              </div>
-
-
               <div class="admin" id="addTheatre">
                 <p>Add a theatre:</p>
 
                 <input placeholder="Name">
                 <button>Add</button>
 
-                <textarea id="configuration" maxlength="640" rows="8" cols="80" placeholder="configuration
-              example:
-              P-C-C-C-C-C-P
-              D-C-C-C-C-C-D"></textarea>
-                <div class="leggenda">
-                  <h5><strong>Leggenda: </strong></h5>
-                  <h6>P: elemento 1</h6>
-                  <h6>C: elemento 2</h6>
-                  <h6>D: elemento 3</h6>
-                </div>
 
+                <div class="searchDiv">
+                  <textarea id="configuration" maxlength="640" rows="8" cols="80" placeholder="configuration
+                    example:
+                    P-C-C-C-C-C-P
+                    D-C-C-C-C-C-D"></textarea>
+                  <div class="leggenda">
+                    <h5><strong>Legend: </strong></h5>
+                    <h6>X: Normal seat</h6>
+                    <h6>P: Premium seat</h6>
+                    <h6>D: Disabled seat</h6>
+                  </div>
+                </div>
               </div>
 
 
@@ -128,14 +96,19 @@ List<String> categoryList
                   </datalist>
 
                   <button id='remove'>Remove</button>
-                  <button id='editM'>Modifica</button>
+                  <button id='editM'>Edit</button>
                 </div>
 
-                <input id='title' placeholder="Title">
-                <input id='duration' placeholder="Duration">
-                <textarea id='plot' rows="8" cols="80" maxlength="640" placeholder="Description (max 640 chars)"></textarea>
+                <input id='duration' placeholder="Duration" readonly>
+                <input id='cover' placeholder="Cover Name (jpg file)">
+                <select id='category'>
+                  <option value="" disabled selected>Category</option>
+                  @for (String category: categoryList) {
+                  <option>@category</option>
+                  }
+                  <textarea id='plot' rows="8" cols="80" maxlength="640" placeholder="Description (max 640 chars)"></textarea>
 
-                <p class="message"></p>
+                  <p class="message"></p>
               </div>
 
               <div class="admin" id="addMovie">
@@ -155,42 +128,27 @@ List<String> categoryList
                 <p class="message"></p>
               </div>
 
-
-              <!--Gestione dei biglietti -->
-              <!-- <div class="admin" id="editTicket">
-                <p>Cerca o modifica Biglietto:</p>
-
-                <div class="searchDiv">
-                  <input id="searchList" placeholder="ID Biglietto">
-
-                  <button>Cerca</button>
-                  <button>Rimuovi</button>
-                  <button>Modifica</button>
-                </div>
-
-                <input placeholder="Film Prenotato">
-                <input placeholder="Data Proiezione">
-                <input placeholder="Prezzo Pagato">
-                <input placeholder="Tipologia posto">
-
-              </div> -->
-
-
-
               <!--Gestione delle proiezioni -->
               <div class="admin" id="editShowing">
-                <p>Cerca o modifica Proiezione</p>
+                <p>Search or edit showing: </p>
 
                 <div class="searchDiv">
                   <input id="searchList" placeholder="ID proiezione">
 
-                  <button>Cerca</button>
                   <button>Rimuovi</button>
                   <button>Modifica</button>
                 </div>
 
-                <input placeholder="Sala">
-                <input placeholder="Prezzo">
+                <input id="searchList" list="filmList" placeholder="Search Film">
+                <datalist id="filmList">
+                  @for (String title: titleMovieList) {
+                  <option value="@title">@title</option>
+                  }
+                </datalist>
+
+                <input placeholder="Theatre">
+                <input placeholder="Price">
+                <input placeholder="Date" readonly>
               </div>
 
               <div class="admin" id="addShowing">
@@ -213,11 +171,11 @@ List<String> categoryList
                 </div>
 
                 <input placeholder="Date (ex: 12/06/2020)">
-                <input placeholder="Hour (ex: 12/06/2020)">
+                <input placeholder="Hour (ex: 18:00)">
                 <input placeholder="Price (ex: 12.00)">
                 <button>Add</button>
 
-                <p id="errorMess">Creata showing con ID: 00000</p>
+                <p id="errorMess">Create showing with ID: 00000</p>
               </div>
 
             </div>

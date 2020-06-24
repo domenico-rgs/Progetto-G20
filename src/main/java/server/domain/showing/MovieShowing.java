@@ -38,6 +38,11 @@ public class MovieShowing {
 		availability = new Availability(theatre.getSeatsList());
 		theatreName=theatre.getTheatreName();
 	}
+	
+	public void editShowing(String theatre, double price) {
+		theatreName=theatre;
+		this.price=price;
+	}
 
 	protected boolean searchAvailability(String seat) throws SeatException {
 		return availability.searchAvailability(seat);

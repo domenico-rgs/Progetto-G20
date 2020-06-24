@@ -32,13 +32,11 @@ public class Movie {
 		this.plot=plot;
 		this.pathCover=pathCover;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public void setDuration(int duration) {
-		this.duration = duration;
+	
+	public void editMovie(String pathCover, String plot, TypeCategory category) {
+		setCategory(category);
+		setPlot(plot);
+		setPathCover(pathCover);
 	}
 
 	public void setCategory(TypeCategory category) {
