@@ -24,7 +24,7 @@ public class Scheduling {
 	}
 	
 	public void editShowing(String showing, String theatre, double price) throws SearchException {
-		showingList.get(searchShowing(showing)).editShowing(theatre, price);
+		searchShowing(showing).editShowing(theatre, price);
 	}
 
 	/*private boolean overlappingControl(Date date) {
@@ -39,28 +39,27 @@ public class Scheduling {
 	}*/
 
 	public void changeAvailability(String showing, String[] seats, boolean value) throws SeatException, SearchException{
-		showingList.get(searchShowing(showing)).changeAvailability(seats, value);
+		searchShowing(showing).changeAvailability(seats, value);
 	}
 
 	public boolean searchAvailability(String showing, String seat) throws SeatException, SearchException {
-		return showingList.get(searchShowing(showing)).searchAvailability(seat);
+		return searchShowing(showing).searchAvailability(seat);
 
 	}
 
 	public boolean deleteMovieShowing(String id){
 		try {
-			int showing = searchShowing(id);
-			showingList.remove(showing);
+			showingList.remove(searchShowing(id));
 			return true;
 		} catch (SearchException e) {
 			return false;
 		}
 	}
 	
-	public int searchShowing(String id) throws SearchException{
+	public MovieShowing searchShowing(String id) throws SearchException{
 		for(int i=0; i<showingList.size(); i++)
 			if(showingList.get(i).getId().equalsIgnoreCase(id))
-				return i;
+				return showingList.get(i);
 		throw new SearchException(id+"'s not found.");
 	}
 

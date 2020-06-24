@@ -13,15 +13,14 @@ public class GetMovieInf {
 
 		try {
 			movie = Cinema.getCinema().searchMovie(title);
+			String inf = movie.getTitle() + "@" + String.valueOf(movie.getDuration()) +
+					"@" + movie.getPlot();
+
+			return inf;
 		}
 		catch (SearchException e) {
 			return "Error@" + title + " not found. Reload to see changes";
 		}
-
-		String inf = movie.getTitle() + "@" + String.valueOf(movie.getDuration()) +
-				"@" + movie.getPlot();
-
-		return inf;
 	}
 
 }
