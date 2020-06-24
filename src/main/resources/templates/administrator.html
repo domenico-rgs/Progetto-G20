@@ -29,7 +29,6 @@ List<String> categoryList
                 <li value="editTheatre">Edit Theatre</li>
                 <li value="addMovie">Add Movie</li>
                 <li value="editMovie">Edit Movie</li>
-                <li value="editTicket">Edit Ticket</li>
                 <li value="addShowing">Add Showing</li>
                 <li value="editShowing">Edit Showing</li>
 
@@ -81,15 +80,17 @@ List<String> categoryList
 
                 <input id="name" placeholder="Name">
 
-                <textarea id="configuration" maxlength="640" rows="8" cols="80" placeholder="configuration
-              example:
-              P-C-C-C-C-C-P
-              D-C-C-C-C-C-D"></textarea>
-                <div class="leggenda">
-                  <h5><strong>Leggenda: </strong></h5>
-                  <h6>P: elemento 1</h6>
-                  <h6>C: elemento 2</h6>
-                  <h6>D: elemento 3</h6>
+                <div class="searchDiv">
+                  <textarea id="configuration" maxlength="640" rows="8" cols="80" placeholder="configuration
+                example:
+                P-C-C-C-C-C-P
+                D-C-C-C-C-C-D"></textarea>
+                  <div class="leggenda">
+                    <h5><strong>Leggenda: </strong></h5>
+                    <h6>P: elemento 1</h6>
+                    <h6>C: elemento 2</h6>
+                    <h6>D: elemento 3</h6>
+                  </div>
                 </div>
               </div>
 
@@ -156,7 +157,7 @@ List<String> categoryList
 
 
               <!--Gestione dei biglietti -->
-              <div class="admin" id="editTicket">
+              <!-- <div class="admin" id="editTicket">
                 <p>Cerca o modifica Biglietto:</p>
 
                 <div class="searchDiv">
@@ -172,7 +173,7 @@ List<String> categoryList
                 <input placeholder="Prezzo Pagato">
                 <input placeholder="Tipologia posto">
 
-              </div>
+              </div> -->
 
 
 
@@ -188,8 +189,6 @@ List<String> categoryList
                   <button>Modifica</button>
                 </div>
 
-                <input placeholder="Film">
-                <input placeholder="Data e ora">
                 <input placeholder="Sala">
                 <input placeholder="Prezzo">
               </div>
@@ -214,6 +213,7 @@ List<String> categoryList
                 </div>
 
                 <input placeholder="Date (ex: 12/06/2020)">
+                <input placeholder="Hour (ex: 12/06/2020)">
                 <input placeholder="Price (ex: 12.00)">
                 <button>Add</button>
 

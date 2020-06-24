@@ -32,5 +32,10 @@ public class DBConnection {
 	public void addMovieShowing(MovieShowing show) {
 		cinemaServices.addMovieShowing(show);
 	}
+	
+	//manca? (si deve fare meglio, ora mi serve cosi per testare)
+	public Movie getMovie() {
+		return null;
+	}
 
 }
