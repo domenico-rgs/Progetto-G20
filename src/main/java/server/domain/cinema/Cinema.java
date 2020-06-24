@@ -33,7 +33,7 @@ public class Cinema {
 		movieCatalog=new HashMap<>();
 		scheduler = new HashMap<>();
 		payment= new SimPaymentAdapter();
-		db = new DBConnection();
+		//db = new DBConnection();
 	}
 
 	synchronized public boolean createTheatre(String name, String file) throws SearchException, IOException, SeatException {
@@ -42,7 +42,7 @@ public class Cinema {
 		else {
 			Theatre t = new Theatre(name, file);
 			theatreList.put(name, t);
-			db.addTheatre(t);
+			//db.addTheatre(t);
 			return true;
 		}
 	}
@@ -70,7 +70,7 @@ public class Cinema {
 		else {
 			Movie m = new Movie(title, duration, plot, pathCover, category);
 			movieCatalog.put(title, m);
-			db.addMovie(m);
+			//db.addMovie(m);
 			scheduler.put(m, new Scheduling());
 			return true;
 		}
@@ -87,20 +87,11 @@ public class Cinema {
 		}
 	}
 
-//	synchronized public Movie searchMovie(String title) throws SearchException{
-//		if(!(movieCatalog.containsKey(title)))
-//			throw new SearchException(title+"'s not found");
-//		else
-//			return movieCatalog.get(title);
-//	}
-	
-	//metodo searchMovie from DB
-	
-	synchronized public Movie searchMovie(String title) throws SearchException {
-		
-		
-		
-		return null;
+	synchronized public Movie searchMovie(String title) throws SearchException{
+		if(!(movieCatalog.containsKey(title)))
+			throw new SearchException(title+"'s not found");
+		else
+			return movieCatalog.get(title);
 	}
 	
 
@@ -139,21 +130,13 @@ public class Cinema {
 	
 
 	public List<String> getTitleMovieList() {
-		return db.movieList();
+		//return db.movieList();
 		
-		/*List<String> titleList = new ArrayList<>();
+		List<String> titleList = new ArrayList<>();
 		titleList.addAll(movieCatalog.keySet());
 
-		return titleList;*/
+		return titleList;
 	}
-	
-	public List<String> getTheatreList() {
-		
-		
-		return null;
-	}
-
-	
 
 	public static Cinema getCinema() {
 		if (istance == null)
