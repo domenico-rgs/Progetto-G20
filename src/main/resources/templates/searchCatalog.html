@@ -10,7 +10,8 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="../statics/css/main.css" />
-      <link rel="stylesheet" href="../statics/css/index.css">
+      <link rel="stylesheet" href="../statics/css/catalog.css">
+      <link rel="stylesheet" href="../statics/css/filmMenu.css">
     </head>
 
     <body>
@@ -38,7 +39,8 @@
 
           <!-- search bar -->
           <div class="searchBar">
-            <input id="searchMovie" autocomplete="off" placeholder="Search" />
+            <label>Search</label>
+            <input id="searchMovie" name="searchMovie" autocomplete="off" />
             <img id="searchImg" src="../statics/images/icon/search.png" alt="" />
           </div>
 
@@ -78,6 +80,18 @@
 
       <!-- nostri script -->
       <script src="../statics/js/GET.js"></script>
+
+      <!-- script labe effect -->
+      <script>
+        $('.searchBar input').on('focus', function()
+        {
+          $('.searchBar label').addClass('active');
+        }).on('blur', function()
+        {
+          $('.searchBar label').removeClass('active');
+          $('.searchBar input').val("");
+        })
+      </script>
 
     </body>
 

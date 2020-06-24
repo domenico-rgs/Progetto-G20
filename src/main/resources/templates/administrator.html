@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 @args {
-TypeCategory[] categoryList
-List<String> titleMovieList
+List<String> categoryList
+  List<String> titleMovieList
     }
 
     <html>
@@ -134,8 +134,8 @@ List<String> titleMovieList
               <input id='cover' placeholder="Cover Name (jpg file)">
               <select id='category'>
                 <option value="" disabled selected>Category</option>
-                @for (TypeCategory category: categoryList) {
-                <option>@category.toString().toLowerCase()</option>
+                @for (String category: categoryList) {
+                <option>@category</option>
                 }
               </select>
               <textarea id="plot" maxlength="640" rows="8" cols="80" placeholder="Description (max 640 chars)"></textarea>

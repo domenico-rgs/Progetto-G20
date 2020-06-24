@@ -7,7 +7,7 @@ String resultValue
 
   <head>
     <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-    <title>Cinema G20 - Delete Reservation</title>
+    <title>Delete Reservation</title>
     <meta charset="utf-16" />
     <meta http-equiv="cache-control" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,50 +37,30 @@ String resultValue
     <section id="three" class="wrapper align-center">
       <div class="inner">
 
-        <div class="loginImg">
+        <h1>Do you want to collect your reservation? no problem,
+          enter your ticket code below, and we'll take care of it!</h1>
+
+        <div class="deleteImg">
           <img src="../statics/images/icon/popcorn.png" alt="">
         </div>
 
-        <div class="loginImg">
+        <div class="deleteContent">
+
+          <div class="searchTicket">
+            <label for="">Ticket Code</label>
+            <input type="text" name="" value="">
+          </div>
+
+          <button id="deleteButton">DELETE</button>
+
+        </div>
+
+        <div class="deleteImg">
           <img src="../statics/images/icon/ticket.png" alt="">
 
         </div>
 
-        <div class="loginContent">
-
-          <div id="content">
-
-            <div class="login-content">
-              @if(result){
-              <p style="color:green;">@resultValue
-              <p>
-                }else{
-              <p style="color:red;">@resultValue
-              <p>
-                }
-              <form action="/delete" method="post">
-                <div class="input-div one">
-                  <div class="i">
-                    <i class="fas fa-user"></i>
-                  </div>
-                  <div class="div">
-                    <h5>Ticket code</h5>
-                    <input id="code" type="text" name="ticketCode" class="input">
-                  </div>
-                </div>
-
-                <div class="buttons">
-
-                  <button id="newBtn" type="submit" name="" class="btn">Delete Reservation</button>
-
-                </div>
-              </form>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
+        <p id="errorMess">Messaggio di errore</p>
     </section>
 
 
@@ -92,6 +72,17 @@ String resultValue
 
     <!-- Scripts -->
     <script src="../statics/js/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      $('.searchTicket input').on('focus', function()
+      {
+        $('.searchTicket label').addClass('active');
+      }).on('blur', function()
+      {
+        $('.searchTicket label').removeClass('active');
+        $('.searchTicket input').val("");
+      })
+    </script>
   </body>
 
 </html>

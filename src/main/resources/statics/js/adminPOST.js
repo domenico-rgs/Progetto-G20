@@ -3,7 +3,7 @@ $('#addMovie #add').on('click', function() {
        type: "POST",
        url: "/administrator",
        data: {
-         requestPost: "addMovie",
+         requestPost: "AddMovie",
          title: $('#addMovie #title').val(),
          duration: $('#addMovie #duration').val(),
          plot: $('#addMovie #plot').val(),
@@ -23,7 +23,7 @@ $('#editMovie #editM').on('click', function() {
        type: "POST",
        url: "/administrator",
        data: {
-         requestPost: "editM",
+         requestPost: "EditMovie",
          title: $('#editMovie #title').val(),
          duration: $('#editMovie #duration').val(),
          plot: $('#editMovie #plot').val(),
@@ -42,7 +42,7 @@ $('#editMovie #searchList').on('change', function() {
      type: "POST",
      url: "/administrator",
      data: {
-       requestPost: "getMovieInf",
+       requestPost: "GetMovieInf",
        title: $('#editMovie #searchList').val(),
      },
      success : function(response)
@@ -72,7 +72,7 @@ $('#editMovie .searchDiv #remove').on('click', function() {
        type: "POST",
        url: "/administrator",
        data: {
-         requestPost: "removeMovie",
+         requestPost: "RemoveMovie",
          title: $('#editMovie #title').val()
        },
        success : function(response)

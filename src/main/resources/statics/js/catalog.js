@@ -1,7 +1,10 @@
 var loadMess = $('#loadMess #mess')
 var loader = $('#loadMess .loader')
 
+
 $(window).on('load', function() {
+
+
   var ajax = $.ajax({
      type: "GET",
      url: "/movieList",
@@ -28,6 +31,7 @@ var scrollAdd = $(window).height / 3
 
 // mostra piu film al click del pulsante
 $(window).on('scroll', function() {
+
   if ($(window).scrollTop() > scrollPoint) {
     scrollPoint += scrollAdd
     $('#loadMess').append(loader)
