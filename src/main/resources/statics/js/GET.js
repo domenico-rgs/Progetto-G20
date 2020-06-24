@@ -11,6 +11,8 @@ $(document).on('click','.item', function() {
 //CATALOGO (in futuro lo rendo scrollabile)
 
 
+
+
 $('#searchMovie').on('keypress', function(e) {
   if (e.which == 13) {
     title = $(this).val()
