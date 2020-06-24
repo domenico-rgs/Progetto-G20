@@ -158,7 +158,7 @@ List<String> categoryList
               <p>Add Showing:</p>
 
               <div class="searchDiv">
-                <input id="searchList" list="filmList" placeholder="Select Movie">
+                <input id="movie" list="filmList" placeholder="Select Movie">
                 <datalist id="filmList">
                   @for (String movie: titleMovieList) {
                   <option value="@movie">@movie</option>
@@ -173,9 +173,9 @@ List<String> categoryList
                 </datalist>
               </div>
 
-              <input placeholder="Date (ex: 12/06/2020)">
-              <input placeholder="Hour (ex: 18:00)">
-              <input placeholder="Price (ex: 12.00)">
+              <input id='date' placeholder="Date (ex: 12/06/2020)">
+              <input id='hour' placeholder="Hour (ex: 18:00)">
+              <input id='price' placeholder="Price (ex: 12.00)">
               <button id='add'>Add</button>
 
               <p class='message'>Create showing with ID: 00000</p>
