@@ -1,3 +1,22 @@
+$('#addShowing #add').on('click', function() {
+    var ajax = $.ajax({
+       type: "POST",
+       url: "/administrator",
+       data: {
+         requestPost: "addShowing",
+         movie: $('#addShowing #movie').find(":selected").text(),
+         theatre: $('#addShowing #theatre').find(":selected").text(),
+         date: $('#addShowing #date').val(),
+         hour: $('#addShowing #hour').val(),
+         price: $('#addShowing #price').val()
+       },
+       success : function(response)
+       {
+         $('#addShowing.message').text(response)
+       }
+  })
+});
+
 $('#addMovie #add').on('click', function() {
     var ajax = $.ajax({
        type: "POST",
@@ -13,6 +32,41 @@ $('#addMovie #add').on('click', function() {
        success : function(response)
        {
          $('#addMovie .message').text(response)
+       }
+  })
+});
+
+
+$('#editShowing #editS').on('click', function() {
+    var ajax = $.ajax({
+       type: "POST",
+       url: "/administrator",
+       data: {
+         requestPost: "addShowing",
+         movie: $('#addShowing #movie').find(":selected").text(),
+         theatre: $('#addShowing #theatre').find(":selected").text(),
+         date: $('#addShowing #date').val(),
+         hour: $('#addShowing #hour').val(),
+         price: $('#addShowing #price').val()
+       },
+       success : function(response)
+       {
+         $('#editShowing .message').text(response)
+       }
+  })
+});
+
+$('#editShowing .searchDiv #remove').on('click', function() {
+    var ajax = $.ajax({
+       type: "POST",
+       url: "/administrator",
+       data: {
+         requestPost: "RemoveShowing",
+         title: $('#editShowing #id').val()
+       },
+       success : function(response)
+       {
+         $('#editShowing .message').text(response)
        }
   })
 });
