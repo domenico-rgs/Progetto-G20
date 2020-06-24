@@ -22,7 +22,7 @@ $('#addShowing #add').on('click', function() {
        data: {
          requestPost: "AddShowing",
          movie: $('#addShowing #movie').find(":selected").text(),
-         theatre: $('#addShowing #theatre').find(":selected").text(),
+         theatre: $('#addShowing #theatre').val(),
          date: $('#addShowing #date').val(),
          hour: $('#addShowing #hour').val(),
          price: $('#addShowing #price').val()
