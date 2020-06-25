@@ -22,14 +22,14 @@ public class Theatre {
 	@Id
 	@Column(name="theatreName")
 	private String theatreName;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinTable(name = "seat")
-	@MapKey(name = "position")
+	@Transient
 	private Map<String, Seat> seatsList;
 	@Column(name="filePath")
 	private String filePath;
 
 
+	public Theatre() {}
+	
 	public Theatre(String theatreName, String config) throws IOException, SeatException {
 		seatsList = new HashMap<>();
 		this.theatreName=theatreName;

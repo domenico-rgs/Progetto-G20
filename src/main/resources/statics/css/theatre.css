@@ -3,11 +3,14 @@
   margin-top: 3em;
 }
 
+.inner {
+  border-bottom: 1px solid rgb(30, 63, 97);
+}
+
 .inner .seatList {
-  border: 1px solid black;
   max-width: 90%;
   display: inline-block;
-  padding: 2%;
+  padding: 0 2%;
   margin-bottom: 2%;
 }
 
@@ -17,12 +20,43 @@
   height: auto;
 }
 
+.inner #display {
+  margin: 0 auto 2em auto;
+  border-radius: 50px;
+  width: 80%;
+  height: 20px;
+  background-color: grey;
+}
+
+.inner button {
+  width: 30%;
+  height: 2em;
+  font-size: 1.2em;
+  margin: 2em auto;
+  display: block;
+}
+
 .seatList .seat {
   display: inline-block;
   width: 40px;
   height: 40px;
+  transition: all 0.3s;
+}
+
+/* free seats */
+.seatList .seat[value='free'] {
   cursor: pointer;
   background-color: white;
+}
+
+.seatList .seat[value='free']:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* not free */
+.seatList .seat[value='not'] {
+  background-color: #8f0707;
 }
 
 .seatList #free {}

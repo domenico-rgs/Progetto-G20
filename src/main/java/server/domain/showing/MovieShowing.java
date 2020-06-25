@@ -35,20 +35,16 @@ public class MovieShowing {
 	@OneToOne( fetch= FetchType.EAGER )
 	@JoinColumn( name="Theatre")
 	private Theatre theatre;
-	@OneToOne( fetch= FetchType.EAGER )
-	@JoinColumn( name="Theatre")
-	private Movie movie;
 
 	public MovieShowing() {}
 
-	public MovieShowing(LocalDateTime date, Theatre theatre, Movie movie, double price) {
+	public MovieShowing(LocalDateTime date, Theatre theatre, double price) {
 		intId++;
 		id="P"+intId;
 		this.date=date;
 		this.price=price;
-		availability = new Availability(theatre.getSeatsList());
 		this.theatre=theatre;
-		this.movie=movie;
+		availability = new Availability(theatre.getSeatsList());
 	}
 
 	public void editShowing(Theatre theatre, double price) {

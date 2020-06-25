@@ -16,9 +16,8 @@ public class Availability {
 	}
 
 	private void genAvailabilityList(Map<String, Seat> list) {
-		Map<String,Seat> seats = list;
 		for(String s : list.keySet())
-			availability.put(seats.get(s), true);
+			availability.put(list.get(s), true);
 	}
 
 	protected boolean searchAvailability(String seat) throws SeatException {

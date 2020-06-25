@@ -76,7 +76,7 @@ public class Cinema {
 
 	synchronized public void createMovieShowing(String movie, LocalDateTime localDateTime, String theatre, double price) {
 		//PROBABILMENTE OCCORRE AGGIUNGERE QUALCOSA PER CONTROLLARE CHE LE DATE NON SI ACCAVALLINO
-		MovieShowing show = new MovieShowing(localDateTime, searchTheatre(theatre), searchMovie(movie),  price);
+		MovieShowing show = new MovieShowing(localDateTime, searchTheatre(theatre), price);
 		db.addMovieShowing(show);
 	}
 

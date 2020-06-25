@@ -23,7 +23,7 @@ public class AddShowing {
 					Integer.parseInt(d[1]), Integer.parseInt(d[0]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
 		}
 		catch (Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 			return "Incorrect or missing data";
 		}
 
