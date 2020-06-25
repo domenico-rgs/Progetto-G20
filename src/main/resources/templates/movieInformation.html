@@ -41,7 +41,7 @@ List<server.domain.showing.MovieShowing> showings
           </div>
 
           <div class="description">
-            <h5><strong>@movie.getTitle()</strong></h5>
+            <h5 id='title'><strong>@movie.getTitle()</strong></h5>
             <p>@movie.getPlot()</p>
             <h6><strong>Durata: </strong> @movie.getDuration()</h6>
             <h6><strong>Genere: </strong> @movie.getCategory().toString().toLowerCase()</h6>
@@ -68,7 +68,7 @@ List<server.domain.showing.MovieShowing> showings
                   <td>@show.getDate().toString()</td>
                   <td>@show.getTheatreName()</td>
                   <td>@show.getPrice()</td>
-                  <td> <button id="buy">BUY</button> </td>
+                  <td> <button id="buy" value='@show.getId()'>BUY</button> </td>
                 </tr>
                 }
 
@@ -88,6 +88,7 @@ List<server.domain.showing.MovieShowing> showings
       <!-- Scripts -->
       <script src="../statics/js/jquery.min.js"></script>
       <script src="../statics/js/showing.js"></script>
+      <script src="../statics/js/GET.js"></script>
 
     </body>
 

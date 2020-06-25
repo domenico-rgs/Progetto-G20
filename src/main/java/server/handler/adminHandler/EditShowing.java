@@ -10,9 +10,10 @@ public class EditShowing {
 		String id = req.getParameter("id");
 		String movie = req.getParameter("movie");
 		String theatre = req.getParameter("theatre");
-		double price = Double.parseDouble(req.getParameter("price"));
-
+		
 		try {
+			double price = Double.parseDouble(req.getParameter("price"));
+
 			Cinema.getCinema().editShowing(movie, id, theatre, price);
 
 		}

@@ -8,10 +8,7 @@ $(document).on('click','.item', function() {
 
 //////////////////////////////////////////
 
-//CATALOGO (in futuro lo rendo scrollabile)
-
-
-
+//CATALOGO
 
 $('#searchMovie').on('keypress', function(e) {
   if (e.which == 13) {
@@ -32,3 +29,13 @@ $('#searchImg').on('click', function(e) {
 $('#goToCatalog').on('click', function() {
     window.location.href = "/catalog?search=all";
 });
+
+/////////////////////////////////////////////////////
+
+// MOVIE INFORMATION
+
+$('.showingTable #buy').on('click', function() {
+  title = $('.description #title').text()
+  var id = $(this).attr("value")
+  window.location.href = "/theatre?id=" +id+ "&title=" + title;
+})

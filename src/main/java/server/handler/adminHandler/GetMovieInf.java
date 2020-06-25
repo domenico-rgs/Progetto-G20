@@ -14,7 +14,8 @@ public class GetMovieInf {
 		try {
 			movie = Cinema.getCinema().searchMovie(title);
 			String inf = movie.getTitle() + "@" + String.valueOf(movie.getDuration()) +
-					"@" + movie.getPlot();
+					"@" + movie.getPlot() + "@" + movie.getPathCover() + "@" +
+					movie.getCategory().toString();
 
 			return inf;
 		}

@@ -27,7 +27,6 @@ public class Theatre {
 	@Column(name="filePath")
 	private String filePath;
 
-	public Theatre() {}
 
 	public Theatre(String theatreName, String config) throws IOException, SeatException {
 		seatsList = new HashMap<>();

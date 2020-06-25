@@ -65,6 +65,10 @@ button#buy{
 	margin: 1rem 0;
 }
 
+.hiddenID {
+  visibility: hidden;
+}
+
 
 /*catalog list */
 .catalogList {

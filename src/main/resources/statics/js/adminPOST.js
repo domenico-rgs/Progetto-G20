@@ -21,7 +21,7 @@ $('#addShowing #add').on('click', function() {
        url: "/administrator",
        data: {
          requestPost: "AddShowing",
-         movie: $('#addShowing #movie').find(":selected").text(),
+         movie: $('#addShowing #movie').val(),
          theatre: $('#addShowing #theatre').val(),
          date: $('#addShowing #date').val(),
          hour: $('#addShowing #hour').val(),
@@ -40,7 +40,7 @@ $('#editShowing #editS').on('click', function() {
        url: "/administrator",
        data: {
          requestPost: "EditShowing",
-         movie: $('#editShowing #movie').find(":selected").text(),
+         movie: $('#editShowing #movie').val(),
          theatre: $('#editShowing #theatre').val(),
          id: $('#editShowing #id').val(),
          price: $('#editShowing #price').val()
@@ -53,14 +53,14 @@ $('#editShowing #editS').on('click', function() {
 });
 
 
-$('#editShowing id').on('keypress', function(e) {
+$('#editShowing #id').on('keypress', function(e) {
   if (e.which == 13) {
     var ajax = $.ajax({
        type: "POST",
        url: "/administrator",
        data: {
          requestPost: "GetShowingInf",
-         movie: $('#editShowing #movie').find(":selected").text(),
+         movie: $('#editShowing #movie').val(),
          id: $('#editShowing #id').val()
        },
        success : function(response)
@@ -78,6 +78,7 @@ $('#editShowing id').on('keypress', function(e) {
          else {
            $('#editShowing #theatre').val(params[0])
            $('#editShowing #price').val(params[1])
+           $('#editShowing #date').val(params[2])
          }
 
 
@@ -92,7 +93,7 @@ $('#addMovie #add').on('click', function() {
        url: "/administrator",
        data: {
          requestPost: "AddMovie",
-         title: $('#addMovie #title').val(),
+         title: $('#addMovie #movie').val(),
          duration: $('#addMovie #duration').val(),
          plot: $('#addMovie #plot').val(),
          cover: $('#addMovie #cover').val(),
@@ -115,7 +116,7 @@ $('#editMovie #editM').on('click', function() {
        url: "/administrator",
        data: {
          requestPost: "EditMovie",
-         title: $('#editMovie #title').val(),
+         title: $('#editMovie #movie').val(),
          plot: $('#editMovie #plot').val(),
          cover: $('#editMovie #cover').val(),
          category: $('#editMovie #category').find(":selected").text()
@@ -127,13 +128,13 @@ $('#editMovie #editM').on('click', function() {
   })
 });
 
-$('#editMovie #searchList').on('change', function() {
+$('#editMovie #movie').on('change', function() {
   var ajax = $.ajax({
      type: "POST",
      url: "/administrator",
      data: {
        requestPost: "GetMovieInf",
-       title: $('#editMovie #searchList').val(),
+       title: $('#editMovie #movie').val(),
      },
      success : function(response)
      {
@@ -151,6 +152,8 @@ $('#editMovie #searchList').on('change', function() {
          $('#editMovie #title').val(params[0])
          $('#editMovie #duration').val(params[1])
          $('#editMovie #plot').val(params[2])
+         $('#editMovie #cover').val(params[3])
+         $('#editMovie #category').val(params[4])
        }
 
      }
