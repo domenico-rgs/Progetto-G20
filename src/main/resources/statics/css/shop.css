@@ -9,26 +9,35 @@
 }
 
 .inner #shopCart {
-  height: 200px;
+  height: auto;
   width: 65%;
 }
 
 .inner #total {
-  padding: 10px;
-  height: auto;
   width: 20%;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: auto;
 }
 
 #shopCart .shopItem {
   margin: 5px 0;
   width: 90%;
+  height: 5em;
   border-bottom: 1px solid grey;
+}
+
+#shopCard .shopItem div {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #shopCart .shopItem div:first-child {
   float: left;
+  height: inherit;
+}
+
+#shopCart .shopItem div:first-child img {
+  height: 80%;
+  width: inherit;
 }
 
 #shopCart .shopItem div:nth-of-type(2) {
@@ -47,33 +56,47 @@
   color: black;
 }
 
-#total h1, p {
+#total .card {
+  padding: 10px;
+  margin-bottom: 5px;
+  height: auto;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#total .card h1, p {
   text-align: right;
   padding-right: 15%;
 }
 
-#total h1 {
+#total .card h1 {
   margin-bottom: 5px;
 }
 
-#total p:first-of-type {
+#total .card p:first-of-type {
   padding-bottom: 20px;
   margin-bottom: 5px;
   color: black;
   border-bottom: 1px solid grey;
 }
 
-#total button {
+#total .card button {
   border-radius: 5px;
   width: 70%;
   height: 40px;
   color: white;
-  background-color: rgb(199, 69, 69);
+  background-image: linear-gradient(to right, #cf1313, #e64343, #cf1313);
   cursor: pointer;
   border: none;
   transition: 0.5s;
 }
 
-#total button:hover {
-  transform: scale(1.1);
+#total .sconto {
+  padding: 10px;
+  margin-top: 5px;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

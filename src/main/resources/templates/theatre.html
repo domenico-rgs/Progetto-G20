@@ -1,16 +1,19 @@
 <!DOCTYPE HTML>
 @args {
 List<List<String>> config
+  String id
+  String title
   int rowN
   int col
   String pos
+  String[] alfaphet = {"A", "B", "C", "D", "E", "F", "G"}
   }
 
   <html>
 
     <head>
       <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-      <title>Cinema G20</title>
+      <title>Showing @id</title>
       <meta charset="utf-16" />
       <meta http-equiv="cache-control" content="no-cache">
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -45,13 +48,13 @@ List<List<String>> config
           </div>
 
           <div class="seatList">
-            @{rowN = 1}
+            @{rowN = 0}
             @for (List<String> row: config) {
               <div class="seatRow">
 
                 @{col = 1}
                 @for(String seat: row) {
-                @{pos = Integer.toString(rowN) + '-' + Integer.toString(col)}
+                @{pos = alfaphet[rowN] + Integer.toString(col)}
                 <div pos="@pos" select='false' value='free' class="seat">
                   <p>@seat</p>
                 </div>
@@ -63,7 +66,7 @@ List<List<String>> config
               }
           </div>
 
-          <button id="buyTicket">BUY</button>
+          <button id="buyTicket" value="title=@title&id=@id">BUY</button>
 
         </div>
       </section>
@@ -73,7 +76,6 @@ List<List<String>> config
       <script src="../statics/js/jquery.min.js"></script>
 
       <!-- nostri script -->
-      <script src="../statics/js/GET.js"></script>
       <script src="../statics/js/theatre.js"></script>
 
     </body>

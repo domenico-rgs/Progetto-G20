@@ -20,9 +20,12 @@ import server.domain.showing.MovieShowing;
 public class Theatre implements IHandler {
 
 	private static Theatre instance = null;
+	
+	private List<String> selectedPos;
 
 
 	private Theatre() {
+		selectedPos = new ArrayList<>();
 	}
 
 
@@ -38,6 +41,7 @@ public class Theatre implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		selectedPos.clear();
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config;
 		
@@ -54,14 +58,18 @@ public class Theatre implements IHandler {
 		}
 		
 		//passo tutto a rythm
-		resp.getWriter().write(Rythm.render("theatre.html", config));
+		resp.getWriter().write(Rythm.render("theatre.html", config, req.getParameter("id"),
+				req.getParameter("title")));
 
 	}
 
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		selectedPos.add(req.getParameter("seat"));
+	
+		
 
 	}
 	
@@ -105,6 +113,10 @@ public class Theatre implements IHandler {
 		
 		
 		return config;
+	}
+	
+	public List<String> getSelectedSeat() {
+		return this.selectedPos;
 	}
 
 }
