@@ -70,12 +70,7 @@ public class Catalog implements IHandler {
 		//ricerco se i titoli contengono quella parola
 		for (String title: movieTitle)
 			if (title.toLowerCase().contains(search.toLowerCase()))
-				try {
-					movieList.add(Cinema.getCinema().searchMovie(title));
-				}
-		catch(SearchException e) {
-			continue;
-		}
+				movieList.add(Cinema.getCinema().searchMovie(title));
 
 
 		return movieList;

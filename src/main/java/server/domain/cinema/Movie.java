@@ -1,6 +1,11 @@
 package server.domain.cinema;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import server.domain.showing.MovieShowing;
 
@@ -32,7 +37,7 @@ public class Movie {
 		this.plot=plot;
 		this.pathCover=pathCover;
 	}
-	
+
 	public void editMovie(String pathCover, String plot, TypeCategory category) {
 		setCategory(category);
 		setPlot(plot);

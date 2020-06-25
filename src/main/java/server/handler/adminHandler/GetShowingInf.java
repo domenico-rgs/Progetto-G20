@@ -11,14 +11,9 @@ public class GetShowingInf {
 		String movie = req.getParameter("movie");
 		String id = req.getParameter("id");
 
-		try {
-			MovieShowing m = Cinema.getCinema().getShowing(movie, id);
-			String inf =  m.getTheatreName() + "@" + m.getPrice() +
-					"@" + m.getDate();
-			return inf;
-		}
-		catch (SearchException e) {
-			return "Error@" + id + " not found. Reload to see changes";
-		}
+		MovieShowing m = Cinema.getCinema().searchShowing(id);
+		String inf =  m.getTheatreName() + "@" + m.getPrice() +
+				"@" + m.getDate();
+		return inf;
 	}
 }

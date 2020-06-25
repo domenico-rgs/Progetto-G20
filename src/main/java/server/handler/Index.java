@@ -57,13 +57,7 @@ public class Index implements IHandler {
 			n = title.size();
 
 		for (int i = 0; i<n; i++)
-			try {
-
-				movieList.add(Cinema.getCinema().searchMovie(title.get(i)));
-			}
-		catch (SearchException e) {
-			continue;
-		}
+			movieList.add(Cinema.getCinema().searchMovie(title.get(i)));
 
 		return movieList;
 

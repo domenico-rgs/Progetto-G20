@@ -1,6 +1,7 @@
 package server.domain.showing;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import server.domain.exception.SeatException;
 import server.domain.theatre.Seat;
@@ -8,14 +9,14 @@ import server.domain.theatre.Seat;
 public class Availability {
 	private HashMap <Seat,Boolean> availability;
 
-	public Availability(HashMap<String, Seat> list) {
+	public Availability(Map<String, Seat> map) {
 		availability=new HashMap<>();
-		genAvailabilityList(list);
+		genAvailabilityList(map);
 
 	}
 
-	private void genAvailabilityList(HashMap<String, Seat> list) {
-		HashMap<String,Seat> seats = list;
+	private void genAvailabilityList(Map<String, Seat> list) {
+		Map<String,Seat> seats = list;
 		for(String s : list.keySet())
 			availability.put(seats.get(s), true);
 	}

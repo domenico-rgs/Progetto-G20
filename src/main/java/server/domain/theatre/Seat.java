@@ -1,6 +1,13 @@
 package server.domain.theatre;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  * This class is referred to a seat in a cinema theatre
@@ -8,11 +15,14 @@ import javax.persistence.*;
  */
 @Entity(name="seat")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="typeOfSeat", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name="typeOfSeat", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("Normal")
 public class Seat {
 	@Id
 	@Column(name="pos")
 	private String position;
+	@Column(name="addition")
+	private final double addition = 0.0; //riduzione in percentuale
 
 	public Seat(String seatId) {
 		position = seatId;

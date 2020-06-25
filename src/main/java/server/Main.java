@@ -1,10 +1,9 @@
 package server;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
-import server.domain.exception.SearchException;
 
 public class Main {
 	public static void main(String[] argv) throws Exception {
@@ -25,10 +24,10 @@ public class Main {
 		Cinema.getCinema().createTheatre("theatre2", "fileTest/configTheatre/theatre2");
 		Cinema.getCinema().createTheatre("theatre3", "fileTest/configTheatre/theatre3");
 		Cinema.getCinema().createTheatre("theatre4", "fileTest/configTheatre/theatre4");
-		
-		Cinema.getCinema().createMovieShowing("Ritorno al futuro", new Date(120, 7, 27, 18,00), "theatre1", 4.6);
-		Cinema.getCinema().createMovieShowing("Ritorno al futuro", new Date(120, 7, 28, 20,00), "theatre3", 6.6);
-		Cinema.getCinema().createMovieShowing("Ritorno al futuro", new Date(120, 7, 29, 21,00), "theatre2", 5.6);
+
+		Cinema.getCinema().createMovieShowing("Ritorno al futuro", LocalDateTime.of(2020, 8, 27, 18,00), "theatre1", 4.6);
+		Cinema.getCinema().createMovieShowing("Ritorno al futuro", LocalDateTime.of(2020, 8, 27, 20,00), "theatre3", 6.6);
+		Cinema.getCinema().createMovieShowing("Ritorno al futuro", LocalDateTime.of(2020, 8, 27, 21,00), "theatre2", 5.6);
 		server.start();
 
 

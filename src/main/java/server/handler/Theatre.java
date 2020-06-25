@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import server.domain.cinema.Cinema;
-import server.domain.showing.MovieShowing;
 
 public class Theatre implements IHandler {
 
@@ -33,23 +32,22 @@ public class Theatre implements IHandler {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
-			
-			String thName = Cinema.getCinema().getShowing(req.getParameter("title"), 
-					req.getParameter("id")).getTheatreName();
-			
+
+			String thName = Cinema.getCinema().searchShowing(req.getParameter("id")).getTheatreName();
+
 			//ricerco il file, anche se dovrebbe farlo qualcun'altro
 			Scanner myReader = new Scanner(new File("src/main/resources/theatreConf/"
 					+ thName + ".txt"));
 
 
-			
-		
+
+
 		}
 		catch (Exception e) {
-			
+
 		}
-		
-		
+
+
 		System.out.println(req.getParameter("id"));
 		System.out.println(req.getParameter("title"));
 

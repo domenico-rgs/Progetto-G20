@@ -14,6 +14,8 @@
 
         <mapping class="server.domain.theatre.Theatre"/>
         <mapping class="server.domain.theatre.Seat"/>
+		<mapping class="server.domain.theatre.PremiumSeat"/>
+        <mapping class="server.domain.theatre.DisabledSeat"/>
         <mapping class="server.domain.showing.MovieShowing"/>
         <mapping class="server.domain.cinema.Ticket"/>
         <mapping class="server.domain.cinema.Movie"/>

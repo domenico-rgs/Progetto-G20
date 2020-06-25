@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
-
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -22,8 +22,10 @@ public class Theatre {
 	@Id
 	@Column(name="theatreName")
 	private String theatreName;
-	@Transient
-	private HashMap<String, Seat> seatsList;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinTable(name = "seat")
+	@MapKey(name = "position")
+	private Map<String, Seat> seatsList;
 	@Column(name="filePath")
 	private String filePath;
 
@@ -61,10 +63,10 @@ public class Theatre {
 			else
 				throw new SeatException("Unrecognized seat type, recheck the file");
 	}
-	
+
 	private String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
-		
+
 		out.println(config);
 		out.close();
 		return "src/main/resources/theatreConf/" + theatreName+".txt";
@@ -75,7 +77,7 @@ public class Theatre {
 		return "Theatre: " + theatreName;
 	}
 
-	public HashMap<String, Seat> getSeatsList() {
+	public Map<String, Seat> getSeatsList() {
 		return seatsList;
 	}
 

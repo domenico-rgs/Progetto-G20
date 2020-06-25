@@ -1,10 +1,17 @@
 package server.domain.showing;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import javax.persistence.*;
-
+import server.domain.cinema.Movie;
 import server.domain.exception.SeatException;
 import server.domain.theatre.Theatre;
 
@@ -19,28 +26,33 @@ public class MovieShowing {
 	private String id;
 	@Transient
 	private static int intId=0;
-	@Column(name="dateMovieShowing")
-	private Date date;
+	@Column(name="dateShow")
+	private LocalDateTime date;
 	@Transient //da correggere ?
 	private Availability availability;
 	@Column(name="price")
 	private double price;
-	@Column(name="theatre")
-	private String theatreName;
+	@OneToOne( fetch= FetchType.EAGER )
+	@JoinColumn( name="Theatre")
+	private Theatre theatre;
+	@OneToOne( fetch= FetchType.EAGER )
+	@JoinColumn( name="Theatre")
+	private Movie movie;
 
 	public MovieShowing() {}
 
-	public MovieShowing(Date date, Theatre theatre, double price) {
+	public MovieShowing(LocalDateTime date, Theatre theatre, Movie movie, double price) {
 		intId++;
 		id="P"+intId;
 		this.date=date;
 		this.price=price;
 		availability = new Availability(theatre.getSeatsList());
-		theatreName=theatre.getTheatreName();
+		this.theatre=theatre;
+		this.movie=movie;
 	}
-	
-	public void editShowing(String theatre, double price) {
-		theatreName=theatre;
+
+	public void editShowing(Theatre theatre, double price) {
+		this.theatre=theatre;
 		this.price=price;
 	}
 
@@ -56,23 +68,22 @@ public class MovieShowing {
 		return id;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
 
 	public String getTheatreName() {
-		return theatreName;
+		return theatre.getTheatreName();
 	}
 
 	public double getPrice() {
 		return price;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public String toString() {
-		return id + " - " + date.toLocaleString() + ", theatre: " + theatreName;
+		return id + " - " + date.toString() + ", theatre: " + theatre;
 	}
 
 	@Override

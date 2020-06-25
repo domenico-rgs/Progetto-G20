@@ -1,16 +1,14 @@
 package server.domain.cinema;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.SimPaymentAdapter;
 import server.domain.showing.MovieShowing;
-import server.domain.showing.Scheduling;
 import server.domain.theatre.Theatre;
 import server.services.DB.DBConnection;
 
@@ -18,10 +16,6 @@ import server.services.DB.DBConnection;
  * Facade controller for managing reservations in a cinema
  */
 public class Cinema {
-	private HashMap <String,Theatre> theatreList;
-	private HashMap <String, Movie> movieCatalog;
-	private HashMap <Movie, Scheduling> scheduler;
-
 	private SimPaymentAdapter payment;
 	private Quotes quotes = new Quotes();
 
@@ -29,94 +23,67 @@ public class Cinema {
 	private static Cinema istance = null;
 
 	private Cinema() {
-		theatreList=new HashMap<>();
-		movieCatalog=new HashMap<>();
-		scheduler = new HashMap<>();
 		payment= new SimPaymentAdapter();
-		//db = new DBConnection();
-	}
-
-	synchronized public boolean createTheatre(String name, String config) throws SearchException, IOException, SeatException {
-		if (theatreList.containsKey(name))
-			throw new SearchException(name+" already exists.");
-		else {
-			Theatre t = new Theatre(name, config);
-			theatreList.put(name, t);
-			//db.addTheatre(t);
-			return true;
-		}
+		db = new DBConnection();
 	}
 	
-	public void editShowing(String movie, String showing, String theatre, double price) throws SearchException {
-		scheduler.get(searchMovie(movie)).editShowing(showing, theatre, price);
+	synchronized public boolean createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException{
+			db.addMovie(title, duration, plot, pathCover, category);
+			return true;
+	}
+
+	synchronized public boolean createTheatre(String name, String config) throws IOException, SeatException {
+			Theatre t = new Theatre(name, config);
+			db.addTheatre(t);
+			return true;
+	}
+
+	public void editShowing(String showing, String theatre, double price) throws SearchException {
+			db.editShowing(showing, searchTheatre(theatre), price);
 	}
 
 	//OCCORRE CONTROLLARE CHE NON SIA USATO
-	synchronized public boolean deleteTheatre(String name) throws SearchException{
+	/*synchronized public boolean deleteTheatre(String name) throws SearchException{
 		if (!(theatreList.containsKey(name)))
 			throw new SearchException(name+"'s not found.");
 		else {
 			theatreList.remove(name);
 			return true;
 		}
-	}
+	}*/
 
-	synchronized public Theatre searchTheatre(String thName) throws SearchException{
-		if(!(theatreList.containsKey(thName)))
-			throw new SearchException(thName+"'s not found");
-		else
-			return theatreList.get(thName);
-	}
-
-	synchronized public boolean createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException{
-		if (movieCatalog.containsKey(title))
-			throw new SearchException(title+" already exists.");
-		else {
-			Movie m = new Movie(title, duration, plot, pathCover, category);
-			movieCatalog.put(title, m);
-			//db.addMovie(m);
-			scheduler.put(m, new Scheduling());
-			return true;
-		}
-
+	synchronized public Theatre searchTheatre(String theatreName){
+		return db.searchTheatre(theatreName);
 	}
 
 	//OCCORRE CONTROLLARE CHE NON SIA USATO
-	synchronized public boolean deleteMovie(String title) throws SearchException{
+	/*synchronized public boolean deleteMovie(String title) throws SearchException{
 		if (!(movieCatalog.containsKey(title)))
 			throw new SearchException(title+"'s not found.");
 		else {
 			movieCatalog.remove(title);
 			return true;
 		}
+	}*/
+
+	synchronized public Movie searchMovie(String title){
+		return db.searchMovie(title);
 	}
 
-	synchronized public Movie searchMovie(String title) throws SearchException{
-		if(!(movieCatalog.containsKey(title)))
-			throw new SearchException(title+"'s not found");
-		else
-			return movieCatalog.get(title);
-	}
-	
-
-	public List<MovieShowing> getSchedule(Movie movie) throws SearchException{
-		return scheduler.get(movie).getShowingList();
-	}
-	
-	public MovieShowing getShowing(String movie, String id) throws SearchException{
-		return scheduler.get(searchMovie(movie)).searchShowing(id);
+	public MovieShowing searchShowing(String id){
+		return db.searchShowing(id);
 	}
 
-
-	synchronized public void createMovieShowing(String movie, Date date, String theatre, double price) {
+	synchronized public void createMovieShowing(String movie, LocalDateTime localDateTime, String theatre, double price) {
 		//PROBABILMENTE OCCORRE AGGIUNGERE QUALCOSA PER CONTROLLARE CHE LE DATE NON SI ACCAVALLINO
-		scheduler.get(movieCatalog.get(movie)).createMovieShowing(date, theatreList.get(theatre), price);
+		MovieShowing show = new MovieShowing(localDateTime, searchTheatre(theatre), searchMovie(movie),  price);
+		db.addMovieShowing(show);
 	}
 
 	//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
-	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
+	/* synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
 		scheduler.get(movieCatalog.get(movie)).deleteMovieShowing(idShowing);
-	}
+	}*/
 
 	//Se lancia l'eccezione ne cancella solo una parte, rivedere dopo aver deciso cosa fare del ledger
 	synchronized public boolean deleteBooking(String string) throws SearchException{
@@ -130,21 +97,19 @@ public class Cinema {
 		return false;
 		//TO-DO
 	}
-	
+
 	public List<String> getQuotes() {
 		return quotes.getQuotes();
 	}
-	
+
 	//metodi per amministrazione applicazione web
-	
+	public ArrayList<MovieShowing> getShowingList(Movie movie) {
+		return db.getShowingList(movie);
+	}
+
 
 	public List<String> getTitleMovieList() {
-		//return db.movieList();
-		
-		List<String> titleList = new ArrayList<>();
-		titleList.addAll(movieCatalog.keySet());
-
-		return titleList;
+		return db.movieList();
 	}
 
 	public static Cinema getCinema() {

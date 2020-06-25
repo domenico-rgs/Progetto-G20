@@ -16,11 +16,8 @@ import server.domain.showing.MovieShowing;
 public class Movie implements IHandler {
 
 	private static Movie instance = null;
-	private final String coverPath = "../statics/images/cover/";
 
-	private Movie() {
-	}
-
+	private Movie() {}
 
 	public static Movie getInstance() {
 		if (instance == null)
@@ -33,25 +30,13 @@ public class Movie implements IHandler {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-		try {
-			server.domain.cinema.Movie movie = Cinema.getCinema().searchMovie(req.getParameter("title"));
-			List<MovieShowing> showings = Cinema.getCinema().getSchedule(movie);
+		server.domain.cinema.Movie movie = Cinema.getCinema().searchMovie(req.getParameter("title"));
+		List<MovieShowing> showings = Cinema.getCinema().getShowingList(movie);
 
-			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
-
-		}
-		//se non trova il film
-		catch (SearchException e) {
-			resp.getWriter().write(Rythm.render("404.html"));
-		}
-
-
+		resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
 	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
-
 }
-
-

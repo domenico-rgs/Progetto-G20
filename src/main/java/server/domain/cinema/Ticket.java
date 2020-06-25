@@ -2,7 +2,10 @@ package server.domain.cinema;
 
 import java.util.UUID;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * This class identifies a bought ticket to show a movie.

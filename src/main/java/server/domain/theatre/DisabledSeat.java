@@ -1,9 +1,11 @@
 package server.domain.theatre;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("DisabledSeat")
+@DiscriminatorValue("Disabled")
 public class DisabledSeat extends Seat {
 	@Column(name="addition")
 	private final double addition = 0.5; //riduzione in percentuale

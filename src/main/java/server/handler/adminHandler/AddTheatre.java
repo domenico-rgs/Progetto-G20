@@ -17,9 +17,7 @@ public class AddTheatre {
 
 		try {
 			Cinema.getCinema().createTheatre(theatreName, config);
-		} catch (SearchException e) {
-			return "Error: " + theatreName + " already exists";
-		}catch (IOException | SeatException e) {
+		} catch (IOException | SeatException e) {
 			e.printStackTrace();
 		}
 
