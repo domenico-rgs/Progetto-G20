@@ -1,9 +1,9 @@
 //metodo get al click di un film
 var title
 
-$(document).on('click','.item', function() {
-    title = $(this).find('p').text()
-    window.location.href = "/movie?title=" + title
+$(document).on('click', '.item', function() {
+  title = $(this).find('p').text()
+  window.location.href = "/movie?title=" + title
 });
 
 //////////////////////////////////////////
@@ -27,7 +27,7 @@ $('#searchImg').on('click', function(e) {
 // INDEX
 
 $('#goToCatalog').on('click', function() {
-    window.location.href = "/catalog?search=all";
+  window.location.href = "/catalog?search=all";
 });
 
 /////////////////////////////////////////////////////
@@ -37,5 +37,5 @@ $('#goToCatalog').on('click', function() {
 $('.showingTable #buy').on('click', function() {
   title = $('.description #title').text()
   var id = $(this).attr("value")
-  window.location.href = "/theatre?id=" +id+ "&title=" + title;
+  window.location.href = "/theatre?id=" + id + "&title=" + title;
 })

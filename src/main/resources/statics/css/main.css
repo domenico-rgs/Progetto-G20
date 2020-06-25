@@ -2,10 +2,7 @@
 @import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600";
 
 /* Qua ci sono i css  importati dal template */
-
-
 /* GENERAL */
-
 html, body, div, span, applet, object, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -35,230 +32,186 @@ body, input, select, textarea {
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-
-
-
 /* Text size from screen  */
-
 @media screen and (max-width: 1680px) {
-
   body, input, select, textarea {
-	font-size: 12pt;
-		}
-
-	}
+    font-size: 12pt;
+  }
+}
 
 @media screen and (max-width: 1280px) {
-
-	body, input, select, textarea {
-	font-size: 12pt;
-	}
-
+  body, input, select, textarea {
+    font-size: 12pt;
+  }
 }
 
 @media screen and (max-width: 980px) {
+  body, input, select, textarea {
+    font-size: 12pt;
+  }
+}
 
-	body, input, select, textarea {
-		font-size: 12pt;
-		}
+@media screen and (max-width: 736px) {
+  body, input, select, textarea {
+    font-size: 12pt;
+  }
+}
 
-	}
-
-		@media screen and (max-width: 736px) {
-
-			body, input, select, textarea {
-				font-size: 12pt;
-			}
-
-		}
-
-		@media screen and (max-width: 480px) {
-
-			body, input, select, textarea {
-				font-size: 12pt;
-			}
-
-		}
+@media screen and (max-width: 480px) {
+  body, input, select, textarea {
+    font-size: 12pt;
+  }
+}
 
 /* text */
+p {
+  margin: 0 0 2em 0;
+}
 
-	p {
-		margin: 0 0 2em 0;
-	}
+h1, h2, h3, h4, h5, h6 {
+  color: #555;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 1em 0;
+}
 
-	h1, h2, h3, h4, h5, h6 {
-		color: #555;
-		font-weight: 400;
-		line-height: 1.5;
-		margin: 0 0 1em 0;
-	}
-
-
-
-		@media screen and (max-width: 480px) {
-
-			h3 {
-				font-size: 1.25em;
-			}
-
-		}
-
-
-
-
-
-
-		@media screen and (max-width: 1280px) {
-
-			.inner {
-				max-width: 90%;
-			}
-
-		}
-
-		@media screen and (max-width: 480px) {
-
-			.inner {
-				max-width: 90%;
-			}
-
-		}
-
-  /* Elementi generali */
-
-  .align-center {
-    text-align: center;
+@media screen and (max-width: 480px) {
+  h3 {
+    font-size: 1.25em;
   }
+}
 
+@media screen and (max-width: 1280px) {
   .inner {
-    max-width: 75em;
-    margin: 0 auto;
+    max-width: 90%;
   }
+}
 
-  button {
-    outline: none;
-  	border: none;
-    background-image: linear-gradient(to right,   #1E3F61, #275687, #1E3F61);
-  	background-size: 200%;
-    border-radius: 25px;
-    color: #fff;
-    cursor: pointer;
-    transition: .5s;
+@media screen and (max-width: 480px) {
+  .inner {
+    max-width: 90%;
   }
+}
 
-  button:hover {
+/* Elementi generali */
+.align-center {
+  text-align: center;
+}
+
+.inner {
+  max-width: 75em;
+  margin: 0 auto;
+}
+
+button {
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to right, #1E3F61, #275687, #1E3F61);
+  background-size: 200%;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
+  transition: .5s;
+}
+
+button:hover {
   background-position: right;
-  }
+}
 
-  #errorMess {
-    font-size: 120%;
-    color: black;
-    text-align: center;
-    margin-top: 2em;
-  }
-
+#errorMess {
+  font-size: 120%;
+  color: black;
+  text-align: center;
+  margin-top: 2em;
+}
 
 /* Header */
+#header {
+  color: #fff;
+  cursor: default;
+  height: 3.85em;
+  left: 0;
+  line-height: 3.85em;
+  position: fixed;
+  text-align: right;
+  top: 0;
+  width: 100%;
+  z-index: 10001;
+  background-color: rgb(30, 63, 97, 1);
+  transition: background-color 0.5s ease-in-out;
+}
 
-	#header {
-		color: #fff;
-		cursor: default;
-		height: 3.85em;
-		left: 0;
-		line-height: 3.85em;
-		position: fixed;
-		text-align: right;
-		top: 0;
-		width: 100%;
-		z-index: 10001;
-		background-color: rgb(30,63,97, 1);
-		transition: background-color 0.5s ease-in-out;
-	}
+#header .inner {
+  margin-right: 4em;
+  position: relative;
+  float: right;
+  width: 100%;
+}
 
-		#header .inner {
-			margin-right: 4em;
-			position: relative;
-			float: right;
-			width: 100%;
-		}
+#header a {
+  -moz-transition: color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  display: inline-block;
+  padding: 0 0.75em;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1em;
+}
 
+#header a:hover {
+  color: #ffffff;
+}
 
-		#header a {
-			-moz-transition: color 0.2s ease-in-out;
-			-webkit-transition: color 0.2s ease-in-out;
-			-ms-transition: color 0.2s ease-in-out;
-			transition: color 0.2s ease-in-out;
-			display: inline-block;
-			padding: 0 0.75em;
-			color: inherit;
-			text-decoration: none;
-			font-size: 1em;
-		}
+@media screen and (max-width: 980px) {
+  #header {
+    top: 0;
+  }
+}
 
-			#header a:hover {
-				color: #ffffff;
-			}
+@media screen and (max-width: 736px) {
+  #header {
+    top: 0em;
+  }
+}
 
-
-	@media screen and (max-width: 980px) {
-
-		#header {
-			top: 0;
-		}
-
-	}
-
-	@media screen and (max-width: 736px) {
-
-		#header {
-			top: 0em;
-		}
-
-	}
-
-	@media screen and (max-width: 480px) {
-
-		#header {
-			font-size: 0em;
-		}
-
-	}
+@media screen and (max-width: 480px) {
+  #header {
+    font-size: 0em;
+  }
+}
 
 /* Nav */
+@media screen and (max-width: 980px) {
+  #nav {
+    display: none;
+  }
+}
 
-	@media screen and (max-width: 980px) {
+#nav div {
+  float: left;
+}
 
-		#nav {
-			display: none;
-		}
+#nav img {
+  vertical-align: text-bottom;
+}
 
-	}
+#nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
 
-		#nav div{
-			float: left;
-		}
-
-		#nav  img {
-			vertical-align: text-bottom;
-		}
-
-		#nav a:hover {
-			background-color: #ddd;
-			color: black;
-		}
-
-		#nav a.active {
-			background-color: #ddd;
-			color: black;
-		}
-
+#nav a.active {
+  background-color: #ddd;
+  color: black;
+}
 
 /* THREE GENERAL*/
-
 #three {
   background-color: rgb(230, 230, 230);
   padding-top: 5%;
@@ -279,257 +232,243 @@ form #itemForm {
 }
 
 /* Banner */
+#banner {
+  padding: 4em 0 6em 0 !important;
+  /* da sistemare col senno di poi */
+  background-image: url(../images/banner.jpg);
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+  position: relative;
+}
 
-	#banner {
-		padding: 4em 0 6em 0 !important;  /* da sistemare col senno di poi */
-		background-image: url(../images/banner.jpg);
-		background-size: cover;
-		background-position: bottom;
-		background-attachment: fixed;
-		background-repeat: no-repeat;
-		text-align: center;
-		position: relative;
-	}
+#banner:before {
+  content: '';
+  background: rgba(75, 75, 93, 0.7);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
 
-		#banner:before {
-			content: '';
-			background: rgba(75, 75, 93, 0.7);
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			left: 0;
-		}
+#banner .inner {
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 100;
+  padding-top: 8em;
+}
 
-		#banner .inner {
-			border-top: 2px solid rgba(255, 255, 255, 0.2);
-			position: relative;
-			z-index: 100;
-			padding-top: 8em;
-		}
+#banner h1 {
+  font-size: 3.5em;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1em;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
 
-		#banner h1 {
-			font-size: 3.5em;
-			font-weight: 400;
-			color: #fff;
-			line-height: 1em;
-			margin: 0 0 1em 0;
-			padding: 0;
-		}
+#banner h3 {
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  font-size: 1.5em;
+}
 
-		#banner h3 {
-			font-weight: 400;
-			color: #fff;
-			margin: 0;
-			font-size: 1.5em;
-		}
+#banner .icon {
+  color: #6cc091;
+  font-size: 2em;
+}
 
-		#banner .icon {
-			color: #6cc091;
-			font-size: 2em;
-		}
+#banner p {
+  font-size: 1em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 1.75em;
+}
 
-		#banner p {
-			font-size: 1em;
-			color: rgba(255, 255, 255, 0.55);
-			margin-bottom: 1.75em;
-		}
+#banner .flex {
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto 4em auto;
+}
 
-		#banner .flex {
-			-ms-flex-pack: center;
-			-moz-justify-content: center;
-			-webkit-justify-content: center;
-			-ms-justify-content: center;
-			justify-content: center;
-			text-align: center;
-			margin: 0 auto 4em auto;
-		}
+#banner .flex div {
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0 8em;
+}
 
-			#banner .flex div {
-				border-right: 2px solid rgba(255, 255, 255, 0.2);
-				padding: 0 8em;
-			}
+#banner .flex div:last-child {
+  border: none;
+  padding-right: 0;
+}
 
-				#banner .flex div:last-child {
-					border: none;
-					padding-right: 0;
-				}
+#banner .flex div:first-child {
+  padding-left: 0;
+}
 
-				#banner .flex div:first-child {
-					padding-left: 0;
-				}
+#banner .flex div p {
+  margin: 0;
+}
 
-				#banner .flex div p {
-					margin: 0;
-				}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  #banner {
+    background-attachment: scroll;
+  }
+}
 
-		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+@media screen and (max-width: 1680px) {
+  #banner .flex div {
+    padding: 0 6em;
+  }
+}
 
-			#banner {
-				background-attachment: scroll;
-			}
+@media screen and (max-width: 1280px) {
+  #banner {
+    padding: 7em 0 6em 0;
+  }
 
-		}
+  #banner .inner {
+    padding-top: 6em;
+  }
 
-		@media screen and (max-width: 1680px) {
+  #banner h1 {
+    font-size: 3em;
+  }
 
-			#banner .flex div {
-				padding: 0 6em;
-			}
+  #banner h3 {
+    font-size: 1.25em;
+  }
 
-		}
+  #banner .flex div {
+    padding: 0 3em;
+  }
+}
 
-		@media screen and (max-width: 1280px) {
+@media screen and (max-width: 980px) {
+  #banner {
+    background-attachment: scroll;
+    padding: 5em 0 4em 0;
+  }
 
-			#banner {
-				padding: 7em 0 6em 0;
-			}
+  #banner .inner {
+    padding-top: 4em;
+  }
 
-				#banner .inner {
-					padding-top: 6em;
-				}
+  #banner h1 {
+    font-size: 2.5em;
+  }
 
-				#banner h1 {
-					font-size: 3em;
-				}
+  #banner h3 {
+    font-size: 1.25em;
+  }
 
-				#banner h3 {
-					font-size: 1.25em;
-				}
+  #banner .flex div {
+    font-size: .85em;
+    padding: 0 1.5em;
+  }
+}
 
-				#banner .flex div {
-					padding: 0 3em;
-				}
+@media screen and (max-width: 736px) {
+  #banner {
+    padding: 4em 0 3em 0;
+  }
 
-		}
+  #banner .inner {
+    padding-top: 3em;
+  }
 
-		@media screen and (max-width: 980px) {
+  #banner h1 {
+    font-size: 2em;
+  }
 
-			#banner {
-				background-attachment: scroll;
-				padding: 5em 0 4em 0;
-			}
+  #banner h3 {
+    font-size: 1.25em;
+  }
 
-				#banner .inner {
-					padding-top: 4em;
-				}
+  #banner .flex {
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0 auto 2em auto;
+  }
 
-				#banner h1 {
-					font-size: 2.5em;
-				}
+  #banner .flex div {
+    font-size: .85em;
+    padding: 0;
+    border: none;
+    margin-bottom: 1em;
+  }
+}
 
-				#banner h3 {
-					font-size: 1.25em;
-				}
-
-				#banner .flex div {
-					font-size: .85em;
-					padding: 0 1.5em;
-				}
-
-		}
-
-		@media screen and (max-width: 736px) {
-
-			#banner {
-				padding: 4em 0 3em 0;
-			}
-
-				#banner .inner {
-					padding-top: 3em;
-				}
-
-				#banner h1 {
-					font-size: 2em;
-				}
-
-				#banner h3 {
-					font-size: 1.25em;
-				}
-
-				#banner .flex {
-					-moz-flex-direction: column;
-					-webkit-flex-direction: column;
-					-ms-flex-direction: column;
-					flex-direction: column;
-					margin: 0 auto 2em auto;
-				}
-
-					#banner .flex div {
-						font-size: .85em;
-						padding: 0;
-						border: none;
-						margin-bottom: 1em;
-					}
-
-		}
-
-		@media screen and (max-width: 480px) {
-
-			#banner h1 {
-				font-size: 1.5em;
-			}
-
-		}
+@media screen and (max-width: 480px) {
+  #banner h1 {
+    font-size: 1.5em;
+  }
+}
 
 /* Footer */
 #footer {
-	padding: 4em 0 6em 0 !important;  /* da sistemare col senno di poi */
-	background-image: url(../images/footBanner.png);
-	background-size: cover;
-	background-position: bottom;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	text-align: left;
-	position: relative;
-
+  padding: 4em 0 6em 0 !important;
+  /* da sistemare col senno di poi */
+  background-image: url(../images/footBanner.png);
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: left;
+  position: relative;
 }
 
 #footer:before {
-	content: '';
-	background: rgba(75, 75, 93, 0.7);
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
+  content: '';
+  background: rgba(75, 75, 93, 0.7);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 #footer .inner {
-	position: relative;
-	z-index: 100;
-	height: 400px;
+  position: relative;
+  z-index: 100;
+  height: 400px;
 }
 
-
-
 #footer h3 {
-	z-index: 1000;
-	color: #FFF;
-	margin-bottom: 2em !important;
+  z-index: 1000;
+  color: #FFF;
+  margin-bottom: 2em !important;
 }
 
 #footer .inf div {
   padding: 10px 0;
 }
 
-#footer div p{
+#footer div p {
   display: inline;
   color: white;
   font-size: 130%;
   padding: 0 10px;
 }
 
-#footer .social img{
+#footer .social img {
   display: inline;
   vertical-align: middle;
 }
 
 #footer .informationAbout {
-width: 40%;
-display: inline-block;
-vertical-align: baseline;
-float: right;
+  width: 40%;
+  display: inline-block;
+  vertical-align: baseline;
+  float: right;
 }
 
 #footer .social img {
@@ -540,38 +479,34 @@ float: right;
 #footerEmpty {
   width: 100%;
   height: 100px;
-  background-color: rgb(30,63,97);
+  background-color: rgb(30, 63, 97);
 }
 
 #footer .mappa {
   display: inline-block;
   float: left;
-width: 40%;
-height: 300px;
-position: relative;
-overflow: hidden;
+  width: 40%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
 }
 
 #footer .mappa iframe {
-position: absolute;
-top:0;
-left: 0;
-width: 100%;
-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-		@media screen and (max-width: 980px) {
+@media screen and (max-width: 980px) {
+  #footer {
+    padding: 4em 0;
+  }
+}
 
-			#footer {
-				padding: 4em 0;
-			}
-
-		}
-
-		@media screen and (max-width: 736px) {
-
-			#footer {
-				padding: 3em 0;
-			}
-
-		}
+@media screen and (max-width: 736px) {
+  #footer {
+    padding: 3em 0;
+  }
+}

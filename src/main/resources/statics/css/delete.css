@@ -1,57 +1,57 @@
-.inner .deleteImg{
-	display: inline-block;
-	vertical-align: middle;
+.inner .deleteImg {
+  display: inline-block;
+  vertical-align: middle;
   width: 20%;
 }
 
 .deleteImg img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #three .inner {
-	padding: 30px 0;
+  padding: 30px 0;
 }
 
-.deleteContent{
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0 5% 20px 5%;
-	padding: 1em;
-	height: 150px;
-	width: 40%;
-	background-color: white;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	border-radius: 10px;
+.deleteContent {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5% 20px 5%;
+  padding: 1em;
+  height: 150px;
+  width: 40%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
-.deleteContent #deleteButton{
-	background-image: linear-gradient(to right,  #cf1313, #e64343,  #cf1313);
-	width: 40%;
-	height: 2em;
-	font-size: 120%;
-	margin: 2em 0 0 0;
+.deleteContent #deleteButton {
+  background-image: linear-gradient(to right, #cf1313, #e64343, #cf1313);
+  width: 40%;
+  height: 2em;
+  font-size: 120%;
+  margin: 2em 0 0 0;
 }
 
 .deleteContent .searchTicket {
-	margin: 2em 0 0 0;
+  margin: 2em 0 0 0;
 }
 
 .searchTicket input {
-	outline: none;
-	background-color: transparent;
+  outline: none;
+  background-color: transparent;
   border: none;
   font-size: 25px;
   color: #333;
   width: 80%;
   height: 100%;
   border-bottom: 1px solid #263238;
-	position: relative;
+  position: relative;
 }
 
 .searchTicket label {
-	position: absolute;
-	margin-left: 10px;
+  position: absolute;
+  margin-left: 10px;
   font-size: 20px;
   transition: transform 150ms ease-out, font-size 150ms ease-out;
 }

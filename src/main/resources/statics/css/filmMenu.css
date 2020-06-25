@@ -1,5 +1,4 @@
 /* FILM MENU ITEM */
-
 .filmMenu {
   max-width: 100%;
   height: auto;
@@ -22,8 +21,7 @@
 }
 
 .item:hover {
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19)
-  -webkit-transform: scale(1.1);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19) -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
   transition: 0.2s;

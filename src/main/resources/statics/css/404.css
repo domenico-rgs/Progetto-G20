@@ -1,6 +1,6 @@
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -18,8 +18,8 @@ body {
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .notfound {
@@ -64,12 +64,11 @@ body {
   color: #fff;
   font-weight: 700;
   -webkit-box-shadow: 0px 4px 15px -5px #0046d5;
-          box-shadow: 0px 4px 15px -5px #0046d5;
+  box-shadow: 0px 4px 15px -5px #0046d5;
 }
 
-
 @media only screen and (max-width: 767px) {
-    .notfound .notfound-404 {
-      height: 142px;
-    }
+  .notfound .notfound-404 {
+    height: 142px;
+  }
 }

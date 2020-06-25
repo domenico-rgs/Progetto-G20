@@ -2,7 +2,7 @@ body {
   background-color: white !important;
 }
 
-#three{
+#three {
   padding: 4em 0;
   overflow-y: scroll;
   min-height: 100%;
@@ -19,9 +19,8 @@ body {
 }
 
 /* Side Admin Menu */
-
 .sideMenu {
-  top:  3.85em;
+  top: 3.85em;
   position: fixed;
   z-index: 100000;
   width: 15%;
@@ -56,9 +55,8 @@ body {
 /* non toccarli */
 .sideMenu li.active {
   background-color: white;
-  color:black;
+  color: black;
 }
-
 
 /*contenuto di amministrazione */
 .contentAdmin {
@@ -103,8 +101,7 @@ body {
   border: none;
 }
 
-.contentAdmin select option {
-}
+.contentAdmin select option {}
 
 .contentAdmin textarea {
   vertical-align: middle;
@@ -132,7 +129,7 @@ body {
   font-size: 120%;
 }
 
-.contentAdmin .leggenda h6{
+.contentAdmin .leggenda h6 {
   font-size: 110%;
 }
 
@@ -140,8 +137,8 @@ body {
   border-radius: 50px;
   width: 100px;
   color: white;
-  background-color: rgb(30,63,97);
-  padding:10px;
+  background-color: rgb(30, 63, 97);
+  padding: 10px;
 }
 
 .contentAdmin #searchList {
@@ -151,24 +148,25 @@ body {
 
 .contentAdmin p {
   text-align: left;
-  color: rgb(30,63,97);
+  color: rgb(30, 63, 97);
 }
 
-.contentAdmin p.message{
+.contentAdmin p.message {
   text-align: center;
 }
 
 #introduzione h1 {
   font-size: 150%;
 }
-#introduzione p{
+
+#introduzione p {
   text-align: center;
 }
+
 #introduzione img {
   height: 256px;
   width: 256px;
 }
-
 
 /* menu di sotto gestione selezionati da bottone*/
 .contentAdmin .admin {

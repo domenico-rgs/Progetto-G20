@@ -1,9 +1,7 @@
 /* MOVIE INFORMATION */
-
 .imgMovie {
   display: inline;
 }
-
 
 .imgMovie img {
   width: 25%;
@@ -44,31 +42,30 @@
 
 button#showsButton {
   display: block;
-	width: 25%;
-	height: 50px;
-	font-size: 1.2rem;
-	font-family: 'Poppins', sans-serif;
-	text-transform: uppercase;
-	margin: 0 auto;
+  width: 25%;
+  height: 50px;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  margin: 0 auto;
   margin-top: 2em;
 }
 
-button#buy{
-	display: block;
-	width: 100%;
-	height: 40px;
-	border-radius: 5px;
-	background-image: linear-gradient(to right,  #cf1313, #e64343,  #cf1313);
-	font-size: 1.2rem;
-	font-family: 'Poppins', sans-serif;
-	text-transform: uppercase;
-	margin: 1rem 0;
+button#buy {
+  display: block;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  background-image: linear-gradient(to right, #cf1313, #e64343, #cf1313);
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  margin: 1rem 0;
 }
 
 .hiddenID {
   visibility: hidden;
 }
-
 
 /*catalog list */
 .catalogList {
@@ -78,7 +75,7 @@ button#buy{
   border-top: 1px solid rgb(30, 63, 97);
 }
 
-  /* per ora è la p, dopo sara una div con la tabellla */
+/* per ora è la p, dopo sara una div con la tabellla */
 .catalogList .showingTable {
   opacity: 0;
   max-height: 0;
@@ -94,10 +91,7 @@ button#buy{
   transition: all 0.35s ease 0.15s;
 }
 
-
-
 /* tabella delle proiezioni */
-
 .showingTable {
   padding-bottom: 30px;
 }
@@ -105,11 +99,13 @@ button#buy{
 .showingTable table {
   width: 100%;
 }
+
 .showingTable th, td {
   width: 30%;
   color: black;
 }
-.showingTable th:last-child, td:last-child{
+
+.showingTable th:last-child, td:last-child {
   width: 10%;
 }
 
@@ -132,6 +128,7 @@ button#buy{
 .showingTable tr:nth-child(even) {
   background-color: #eee;
 }
+
 .showingTable tr:nth-child(odd) {
   background-color: #fff;
 }
@@ -144,5 +141,4 @@ button#buy{
   .description p {
     font-size: 1.1em;
   }
-
 }

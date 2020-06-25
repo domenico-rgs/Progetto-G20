@@ -1,5 +1,4 @@
 /* CATALOG */
-
 .searchBar {
   padding-top: 1%;
   position: relative;
@@ -30,7 +29,7 @@
   /*background: linear-gradient(to right, #333, #333) 0px calc(100% - 5px)/calc(100% - 10px) 2px no-repeat;*/
 }
 
-.searchBar > label {
+.searchBar>label {
   position: absolute;
   top: 30%;
   margin-left: 10px;
@@ -47,16 +46,22 @@
   margin: 0 auto 1em auto;
   border: 10px solid white;
   border-radius: 50%;
-  border-top: 10px solid rgb(30,63,97);
+  border-top: 10px solid rgb(30, 63, 97);
   width: 3em;
   height: 3em;
-  -webkit-animation: spin 1s linear infinite; /* Safari */
+  -webkit-animation: spin 1s linear infinite;
+  /* Safari */
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .searchBar img {

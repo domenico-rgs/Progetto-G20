@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Hind:300,400');
+
 *:before, *:after {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
@@ -15,7 +16,7 @@ body {
   width: 50%;
 }
 
-.faqImg{
+.faqImg {
   width: 256px;
   float: right;
   margin-right: 10%;
@@ -36,6 +37,7 @@ h1 {
   color: #373d51;
   top: 4em;
 }
+
 .accordion a {
   position: relative;
   display: -webkit-box;
@@ -54,18 +56,22 @@ h1 {
   font-weight: 400;
   border-bottom: 1px solid #e5e5e5;
 }
+
 .accordion a:hover,
 .accordion a:hover::after {
   cursor: pointer;
   color: #ff5353;
 }
+
 .accordion a:hover::after {
   border: 1px solid #ff5353;
 }
+
 .accordion a.active {
   color: #ff5353;
   border-bottom: 1px solid #ff5353;
 }
+
 .accordion a::after {
   font-family: 'Ionicons';
   content: '\f218';
@@ -83,12 +89,14 @@ h1 {
   border: 1px solid #7288a2;
   text-align: center;
 }
+
 .accordion a.active::after {
   font-family: 'Ionicons';
   content: '\f209';
   color: #ff5353;
   border: 1px solid #ff5353;
 }
+
 .accordion .content {
   opacity: 0;
   padding: 0 1rem;
@@ -100,10 +108,12 @@ h1 {
   -o-transition: all 0.2s ease 0.15s;
   transition: all 0.2s ease 0.15s;
 }
+
 .accordion .content p {
   font-size: 1rem;
   font-weight: 300;
 }
+
 .accordion .content.active {
   opacity: 1;
   padding: 1rem;

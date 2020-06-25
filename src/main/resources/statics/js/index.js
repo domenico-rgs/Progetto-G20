@@ -1,9 +1,9 @@
 // NAVBAR SCRIPTS
 
-window.onscroll = function()
-{
+window.onscroll = function() {
   scrollFunction()
 };
+
 
 window.onload = function() {
   navOnLoad();
@@ -16,12 +16,11 @@ var navbar = document.getElementById("header");
 // rende transparente la barra una volta entrato nel centro
 function scrollFunction() {
 
-if (document.documentElement.scrollTop >100) {
-  navbar.style.backgroundColor = rgb + 1 + ')';
-}
-else {
-  navbar.style.backgroundColor = rgb + 0 + ')';
-}
+  if (document.documentElement.scrollTop > 100) {
+    navbar.style.backgroundColor = rgb + 1 + ')';
+  } else {
+    navbar.style.backgroundColor = rgb + 0 + ')';
+  }
 };
 
 // se la pagina si avvia in testa, rende la pagina transparente
@@ -38,18 +37,19 @@ function navOnLoad() {
 //every 5 o 10 seconds
 
 var imgList = ["../statics/images/background/back0.jpg",
-                "../statics/images/background/back1.jpg",
-                "../statics/images/background/back2.jpg",
-                "../statics/images/background/back3.jpg",
-                "../statics/images/background/back4.jpg"];
+  "../statics/images/background/back1.jpg",
+  "../statics/images/background/back2.jpg",
+  "../statics/images/background/back3.jpg",
+  "../statics/images/background/back4.jpg"
+];
 
 var currentImage;
 var index = 1;
 var element = document.getElementById('banner')
 
 
-function changeImage(){
-  if(index == 5) {
+function changeImage() {
+  if (index == 5) {
     index = 0;
   }
 
@@ -60,7 +60,7 @@ function changeImage(){
 
 };
 
-setInterval("changeImage()",5000);
+setInterval("changeImage()", 5000);
 
 
 // ESTEREGG

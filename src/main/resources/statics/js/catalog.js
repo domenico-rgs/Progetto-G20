@@ -6,22 +6,21 @@ $(window).on('load', function() {
 
 
   var ajax = $.ajax({
-     type: "GET",
-     url: "/movieList",
-     data: {
-       startPoint: startPoint,
-       finalPoint: finalPoint
-     },
-     success : function(response)
-     {
-        loadMess.remove()
-        loader.remove()
+    type: "GET",
+    url: "/movieList",
+    data: {
+      startPoint: startPoint,
+      finalPoint: finalPoint
+    },
+    success: function(response) {
+      loadMess.remove()
+      loader.remove()
 
-         $('.filmMenu').append(response);
-         startPoint += 5
-         finalPoint += 5
-     }
-})
+      $('.filmMenu').append(response);
+      startPoint += 5
+      finalPoint += 5
+    }
+  })
 });
 
 var startPoint = 0
@@ -38,29 +37,28 @@ $(window).on('scroll', function() {
     $('#loadMess').append(loadMess)
 
     var ajax = $.ajax({
-       type: "GET",
-       url: "/movieList",
-       data: {
-         startPoint: startPoint,
-         finalPoint: finalPoint
-       },
-       success : function(response)
-       {
-          loadMess.remove()
-          loader.remove()
+      type: "GET",
+      url: "/movieList",
+      data: {
+        startPoint: startPoint,
+        finalPoint: finalPoint
+      },
+      success: function(response) {
+        loadMess.remove()
+        loader.remove()
 
-           $('.filmMenu').append(response);
-           startPoint += 5
-           finalPoint += 5
-       }
-  })
-}
+        $('.filmMenu').append(response);
+        startPoint += 5
+        finalPoint += 5
+      }
+    })
+  }
 });
 
 // label animation
-$('.searchBar input').on('focus', function () {
+$('.searchBar input').on('focus', function() {
   $('.searchBar label').addClass('active');
-}).on('blur', function () {
+}).on('blur', function() {
   $('.searchBar label').removeClass('active');
   $('.searchBar input').val("");
 })

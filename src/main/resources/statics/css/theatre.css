@@ -1,5 +1,4 @@
 /* composizione delle sedie della sala */
-
 #three {
   margin-top: 3em;
 }
@@ -26,9 +25,6 @@
   background-color: white;
 }
 
-.seatList #free {
+.seatList #free {}
 
-}
-.seatList #not {
-
-}
+.seatList #not {}
