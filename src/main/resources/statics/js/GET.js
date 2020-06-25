@@ -39,3 +39,12 @@ $('.showingTable #buy').on('click', function() {
   var id = $(this).attr("value")
   window.location.href = "/theatre?id=" + id + "&title=" + title;
 })
+
+////////////////////////////////
+
+//THEATRE
+$('#buyTicket').on('click', function() {
+  title = $('.description #title').text()
+  var id = $(this).attr("value")
+  window.location.href = "/theatre?id=" + id + "&title=" + title;
+})
