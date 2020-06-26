@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
 public class Catalog implements IHandler {
@@ -67,11 +67,11 @@ public class Catalog implements IHandler {
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 		List<String> movieTitle;
 		try {
-			movieTitle = CinemaFacade.getCinema().getMovieList();
+			movieTitle = Cinema.getCinema().getMovieList();
 			//ricerco se i titoli contengono quella parola
 			for (String title: movieTitle)
 				if (title.toLowerCase().contains(search.toLowerCase()))
-					movieList.add(CinemaFacade.getCinema().getMovie(title));
+					movieList.add(Cinema.getCinema().getMovie(title));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

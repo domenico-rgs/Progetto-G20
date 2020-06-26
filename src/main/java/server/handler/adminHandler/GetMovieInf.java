@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
 public class GetMovieInf {
@@ -15,7 +15,7 @@ public class GetMovieInf {
 		server.domain.cinema.Movie movie;
 
 		try {
-			movie = CinemaFacade.getCinema().getMovie(title);
+			movie = Cinema.getCinema().getMovie(title);
 			String inf = movie.getTitle() + "@" + String.valueOf(movie.getDuration()) +
 					"@" + movie.getPlot() + "@" + movie.getPathCover() + "@" +
 					movie.getCategory().toString();

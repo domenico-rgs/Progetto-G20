@@ -35,8 +35,8 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 
 		for (Map.Entry<String,Seat> temp:t.getSeatsList().entrySet()) {
 			PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?)");
-			pstm.setString(1,t.getTheatreName());
-			pstm.setString(2,temp.getKey());
+			pstm.setString(1,temp.getKey());
+			pstm.setString(2,t.getTheatreName());
 			pstm.setString(3,temp.getValue().getType().toString());
 			pstm.setDouble(4,temp.getValue().getAddition());
 			pstm.execute();
@@ -47,12 +47,6 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 	public synchronized  void updateTable(String OID, Object obj){
 	}
 
-	/**
-	 * Method called by CritiquesMapper when the system is set up,
-	 * in order to instance each critique with its MenuEntry
-	 * @param critiqueCode
-	 * @return the dishes of the critique , each one matched with its grade
-	 */
 	protected HashMap<String,Seat> getSeatsList(String theatreName) throws SQLException{
 		HashMap<String, Seat> seatsList = new HashMap<>();
 

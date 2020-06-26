@@ -46,7 +46,7 @@ public class PersistenceFacade {
 
 
 	public void addTheatre(String OID, Theatre t) throws SQLException {
-		mapper.get(ShowingsMapper.class).put(OID,t);
+		mapper.get(TheatreMapper.class).put(OID,t);
 	}
 
 	public Object get(String OID, Class klass) throws SQLException{

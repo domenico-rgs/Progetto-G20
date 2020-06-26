@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 
 public class AddShowing {
 
@@ -20,7 +20,7 @@ public class AddShowing {
 		try {
 			double price = Double.parseDouble(req.getParameter("price"));
 
-			CinemaFacade.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[2]),
+			Cinema.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[2]),
 					Integer.parseInt(d[1]), Integer.parseInt(d[0]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
 		}
 		catch (Exception e){

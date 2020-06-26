@@ -53,6 +53,8 @@ public class TheatreMapper extends AbstractPersistenceMapper {
 		pstm.setString(2,t.getFilePath());
 
 		pstm.execute();
+		
+		sm.put(t.getTheatreName(), t);
 
 	}
 

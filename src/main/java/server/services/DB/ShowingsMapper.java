@@ -1,10 +1,13 @@
 package server.services.DB;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +51,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?)");
 
 		pstm.setString(1,OID);
-		pstm.setDate(2, java.sql.Date.valueOf(s.getDate().toString()));
+		pstm.setDate(2, convertDate(s.getDate()));
 		pstm.setString(3,s.getTheatreName());
 		pstm.setDouble(4,s.getPrice());
 
@@ -87,6 +90,9 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		return showing;
 	}
 
-
+	private Date convertDate(LocalDateTime date) {
+		long millis = date.toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli();
+		return new Date(millis);
+	}
 
 }

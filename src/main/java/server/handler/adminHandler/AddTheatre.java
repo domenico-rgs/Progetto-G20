@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
 public class AddTheatre {
@@ -16,7 +16,7 @@ public class AddTheatre {
 
 
 		try {
-			CinemaFacade.getCinema().createTheatre(theatreName, config);
+			Cinema.getCinema().createTheatre(theatreName, config);
 		} catch (IOException | SeatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

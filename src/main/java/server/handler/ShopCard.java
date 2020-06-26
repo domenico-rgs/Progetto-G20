@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 
 
 public class ShopCard implements IHandler {
@@ -37,7 +37,7 @@ public class ShopCard implements IHandler {
 		String title = req.getParameter("title");
 
 		try {
-			resp.getWriter().write(Rythm.render("shop.html", CinemaFacade.getCinema().getMovieShowing(id),
+			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(id),
 					id, title, seats));
 		}
 		catch (Exception e) {

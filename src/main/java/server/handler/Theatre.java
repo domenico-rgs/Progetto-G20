@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 
 public class Theatre implements IHandler {
 
@@ -45,7 +45,7 @@ public class Theatre implements IHandler {
 
 		try {
 
-			String thName = CinemaFacade.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
+			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 
 			config = this.readConfig(thName);
 		}

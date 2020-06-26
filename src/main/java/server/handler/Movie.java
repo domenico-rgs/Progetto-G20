@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 import server.domain.showing.MovieShowing;
 
@@ -33,8 +33,8 @@ public class Movie implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			server.domain.cinema.Movie movie = CinemaFacade.getCinema().getMovie(req.getParameter("title"));
-			List<MovieShowing> showings = CinemaFacade.getCinema().getMovieShowings(movie.getTitle());
+			server.domain.cinema.Movie movie = Cinema.getCinema().getMovie(req.getParameter("title"));
+			List<MovieShowing> showings = Cinema.getCinema().getMovieShowings(movie.getTitle());
 
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
 

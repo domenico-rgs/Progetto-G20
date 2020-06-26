@@ -2,7 +2,7 @@ package server.handler.adminHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 
 public class EditMovie {
@@ -15,7 +15,7 @@ public class EditMovie {
 
 
 		try {
-			CinemaFacade.getCinema().getMovie(title).editMovie(cover, plot, category);
+			Cinema.getCinema().getMovie(title).editMovie(cover, plot, category);
 
 		}
 		catch (Exception e1) {

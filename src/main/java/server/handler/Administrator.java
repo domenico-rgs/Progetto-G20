@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SeatException;
 
@@ -41,7 +41,7 @@ public class Administrator implements IHandler {
 
 		try {
 			resp.getWriter().write(Rythm.render("administrator.html",
-					categoryList, CinemaFacade.getCinema().getMovieList()));
+					categoryList, Cinema.getCinema().getMovieList()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

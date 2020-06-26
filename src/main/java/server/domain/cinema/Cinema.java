@@ -20,13 +20,13 @@ import server.services.DB.TheatreMapper;
 /**
  * Facade controller for managing reservations in a cinema
  */
-public class CinemaFacade {
+public class Cinema {
 	private SimPaymentAdapter payment;
 	private Quotes quotes = new Quotes();
 
-	private static CinemaFacade istance = null;
+	private static Cinema istance = null;
 
-	private CinemaFacade() {
+	private Cinema() {
 		payment= new SimPaymentAdapter();
 	}
 
@@ -114,9 +114,9 @@ public class CinemaFacade {
 		return titleList;
 	}
 
-	public static CinemaFacade getCinema() {
+	public static Cinema getCinema() {
 		if (istance == null)
-			istance = new CinemaFacade();
+			istance = new Cinema();
 		return istance;
 	}
 }

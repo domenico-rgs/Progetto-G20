@@ -2,7 +2,7 @@ package server.handler.adminHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
 
@@ -19,7 +19,7 @@ public class AddMovie{
 		try {
 			int duration = Integer.valueOf(req.getParameter("duration"));
 
-			CinemaFacade.getCinema().createMovie(title, duration, plot, cover,
+			Cinema.getCinema().createMovie(title, duration, plot, cover,
 					TypeCategory.valueOf(req.getParameter("category")));
 		}
 		catch (SearchException e) {

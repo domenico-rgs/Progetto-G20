@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.CinemaFacade;
+import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 import server.domain.showing.MovieShowing;
 
@@ -15,7 +15,7 @@ public class GetShowingInf {
 		String id = req.getParameter("id");
 
 		try {
-			MovieShowing m = CinemaFacade.getCinema().getMovieShowing(id);
+			MovieShowing m = Cinema.getCinema().getMovieShowing(id);
 			String inf =  m.getTheatreName() + "@" + m.getPrice() +
 					"@" + m.getDate();
 			return inf;

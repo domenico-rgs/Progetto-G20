@@ -56,7 +56,8 @@ public class Theatre {
 
 		out.println(config);
 		out.close();
-		return "src/main/resources/theatreConf/" + theatreName+".txt";
+		filePath =  "src/main/resources/theatreConf/" + theatreName+".txt";
+		return filePath;
 	}
 
 	@Override

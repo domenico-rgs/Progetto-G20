@@ -1,1 +1,3 @@
-fileTest/configTheatre/theatre3
+X X X X
+P X D X
+D D P P
