@@ -13,7 +13,7 @@ public class AddMovie{
 
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
-		String cover = "../statics/images/cover/" + req.getParameter("cover") + ".jpg";
+		String cover = "../statics/images/cover/" + req.getParameter("cover");
 
 
 		try {

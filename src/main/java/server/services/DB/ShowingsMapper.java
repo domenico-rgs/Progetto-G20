@@ -51,7 +51,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?)");
 
 		pstm.setString(1,OID);
-		pstm.setDate(2, convertDate(s.getDate()));
+		pstm.setDate(2, convertDate(s.getDate())); //non salva l'ora
 		pstm.setString(3,s.getTheatreName());
 		pstm.setDouble(4,s.getPrice());
 
@@ -78,7 +78,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		Statement stm = super.conn.createStatement();
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
-			MovieShowing tmp = new MovieShowing(new Timestamp(rs.getDate(2).getTime()).toLocalDateTime(),
+			MovieShowing tmp = new MovieShowing(rs.getString(1), new Timestamp(rs.getDate(2).getTime()).toLocalDateTime(),
 					(Theatre) tm.get(rs.getString(3)),Double.parseDouble(rs.getString(4)));
 
 			this.showing.put(rs.getString(1),tmp);

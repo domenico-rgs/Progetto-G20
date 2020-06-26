@@ -51,7 +51,7 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 		HashMap<String, Seat> seatsList = new HashMap<>();
 
 		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE BINARY theatre = ?" );
-		pstm.setInt(1, Integer.parseInt(theatreName));
+		pstm.setString(1, theatreName);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next())
 			seatsList.put(rs.getString(2), new Seat(rs.getString(3)));

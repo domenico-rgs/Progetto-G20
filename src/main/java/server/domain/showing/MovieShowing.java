@@ -10,12 +10,14 @@ import server.domain.theatre.Theatre;
  */
 
 public class MovieShowing {
+	private String id;
 	private LocalDateTime date;
 	private Availability availability;
 	private double price;
 	private String theatreName;
 
-	public MovieShowing(LocalDateTime date, Theatre theatre, double price) {
+	public MovieShowing(String id, LocalDateTime date, Theatre theatre, double price) {
+		this.id=id;
 		this.date=date;
 		this.price=price;
 		availability = new Availability(theatre.getSeatsList());
@@ -46,6 +48,12 @@ public class MovieShowing {
 
 	public double getPrice() {
 		return price;
+	}
+	
+	
+
+	public String getId() {
+		return id;
 	}
 
 	@Override

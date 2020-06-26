@@ -62,8 +62,8 @@ public class Cinema {
 
 
 	synchronized public void createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
-		MovieShowing s = new MovieShowing(date, getTheatre(theatre), price);
-		PersistenceFacade.getInstance().addMovieShowing(OIDCreator.getInstance().getShowingCode(),s);
+		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), date, getTheatre(theatre), price);
+		PersistenceFacade.getInstance().addMovieShowing(s.getId(),s);
 	}
 
 	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {

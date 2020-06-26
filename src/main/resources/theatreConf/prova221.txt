@@ -1,0 +1,4 @@
+X X X P
+D D D D 
+P D X P
+P P P P
