@@ -62,7 +62,7 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 		updateCache(OID,m);
 
 		PreparedStatement pstm = conn.prepareStatement("UPDATE " + tableName+" SET plot=?, cover=?, category=?," +
-				"WHERE BINARY COD_REST=? ");
+				"WHERE BINARY title=? ");
 		pstm.setString(1,m.getPlot());
 		pstm.setString(2,m.getPathCover());
 		pstm.setString(3,m.getCategory().toString().toLowerCase());

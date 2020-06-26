@@ -24,4 +24,11 @@ public class OIDCreator {
 		showingCode++;
 		return "P"+showingCode;
 	}
+	
+	public void setShowingCode(String showingCode) {
+		if(showingCode == null)
+			this.showingCode=0;
+		else
+			this.showingCode = Integer.parseInt(showingCode.substring(1));
+    }
 }

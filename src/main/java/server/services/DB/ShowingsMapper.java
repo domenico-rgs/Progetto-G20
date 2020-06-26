@@ -49,9 +49,8 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		updateCache(OID,s);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?)");
-
 		pstm.setString(1,OID);
-		pstm.setDate(2, convertDate(s.getDate())); //non salva l'ora
+		pstm.setObject(2, new java.sql.Timestamp(s.getDate().toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()));
 		pstm.setString(3,s.getTheatreName());
 		pstm.setDouble(4,s.getPrice());
 
@@ -65,7 +64,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		updateCache(OID,s);
 
 		PreparedStatement pstm = conn.prepareStatement("UPDATE " + tableName+" SET theatre=?, price=?" +
-				"WHERE BINARY COD_REST=? ");
+				"WHERE BINARY id=? ");
 		pstm.setString(1,s.getTheatreName());
 		pstm.setDouble(2,s.getPrice());
 		pstm.setString(4,OID);
@@ -83,16 +82,12 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 
 			this.showing.put(rs.getString(1),tmp);
 		}
+		
+		OIDCreator.getInstance().setShowingCode(getLastObjectCode("id"));
 	}
 
 
 	public synchronized Map<String, MovieShowing> getShowings() {
 		return showing;
 	}
-
-	private Date convertDate(LocalDateTime date) {
-		long millis = date.toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli();
-		return new Date(millis);
-	}
-
 }
