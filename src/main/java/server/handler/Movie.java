@@ -34,9 +34,9 @@ public class Movie implements IHandler {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			server.domain.cinema.Movie movie = Cinema.getCinema().getMovie(req.getParameter("title"));
-			List<MovieShowing> showings = Cinema.getCinema().getMovieShowings(movie.getTitle());
+			List<MovieShowing> showingsForMovie = Cinema.getCinema().getMovieShowingList(movie.getTitle());
 
-			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
+			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showingsForMovie));
 
 		} catch (SQLException | IOException | SeatException e) {
 			// TODO Auto-generated catch block

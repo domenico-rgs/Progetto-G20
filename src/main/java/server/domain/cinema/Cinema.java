@@ -107,13 +107,39 @@ public class Cinema {
 		return (MovieShowing) PersistenceFacade.getInstance().get(id, ShowingsMapper.class);
 	}
 
-	public List<MovieShowing> getMovieShowings(String movie) throws IOException, SeatException {
-		List<MovieShowing> titleList = new ArrayList<>();
-		titleList.addAll((PersistenceFacade.getInstance().getAllMovieShowings().values()));
+	
+	public List<MovieShowing> getAllShowingList() throws IOException, SeatException {
+		List<MovieShowing> allList = new ArrayList<>();
+		allList.addAll((PersistenceFacade.getInstance().getAllMovieShowings().values()));
 
-		return titleList;
+		return allList;
 	}
-
+	
+	///// METODI DA IMPLEMENTARE ///////
+	
+	// prendere tutti i posti (SOLAMENTE LIBERI)  per proiezione
+	public List<String> getFreeSeatsForShowing (String idShowing) {
+		return null;
+	}
+	
+	//settare i posti scelti occupati, prima del pagamento (magari un timer?), ed eccezioni
+	public boolean setOccupedSeats (String idShowing, List<String> seats) {
+		return false;
+	}
+	
+	//rendere i posti liberi nel caso di rinuncia
+	public boolean setFreeSeats (String idShowing, List<String> seats) {
+		return false;
+	}
+	
+	//ritornare la lista delle proiezioni in base al film passato come stringa
+	public List<MovieShowing> getMovieShowingList(String Movie) throws IOException, SeatException {
+		List<MovieShowing> showList = new ArrayList<>();
+		
+		return showList;
+	}
+	
+	
 	public static Cinema getCinema() {
 		if (istance == null)
 			istance = new Cinema();

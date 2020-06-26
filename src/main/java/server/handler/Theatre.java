@@ -39,9 +39,11 @@ public class Theatre implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		
 		selectedPos.clear();
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config;
+		List<String> freeSeats = Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"));
 
 		try {
 

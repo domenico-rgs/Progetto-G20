@@ -1,4 +1,4 @@
-$(".seatList .seat[value='free']").on('click', function() {
+$(".seatList .seat[value='true']").on('click', function() {
 
   var elem = $(this)
 
@@ -25,8 +25,9 @@ $('#buyTicket').on('click', function() {
       data: {
         seat: $(this).attr("pos")
       }
+      success: function() {
+        window.location.href = "/shopCard?" + $('#buyTicket').attr("value")
+      }
     })
   })
-
-  window.location.href = "/shopCard?" + $('#buyTicket').attr("value")
 })
