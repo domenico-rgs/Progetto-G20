@@ -9,7 +9,7 @@ List<String> seats
 
     <head>
       <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-      <title>Shop Card</title>
+      <title idS='@id' titleM='@title'>Shop Card</title>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="../statics/css/main.css" />
@@ -42,7 +42,12 @@ List<String> seats
           <!-- elementi nel carrello -->
           <div id="shopCart">
 
+            @if(seats.size() == 0) {
+            <p>Shop Card is empty</p>
+            }
+
             @for (String seat: seats) {
+
 
             <div class="shopItem">
               <div>
@@ -56,7 +61,7 @@ List<String> seats
 
               <div>
                 <h1>@show.getPrice()</h1>
-                <h2>@(show.getTheatreName() +" posto: "+ seat)</h2>
+                <h2>@(show.getTheatreName() +"; Seat: "+ seat)</h2>
               </div>
             </div>
             }
@@ -76,7 +81,10 @@ List<String> seats
             </div>
 
             <div class="sconto">
-
+              <h1>Discount code: </h1>
+              <input placeholder="Code">
+              <button type="button">APPLY</button>
+              <p>message</p>
             </div>
 
 
@@ -85,18 +93,9 @@ List<String> seats
         </div>
       </section>
 
-
-
-      <!-- Footer -->
-      <footer id="footerEmpty">
-        <div class="inner">
-
-
-        </div>
-      </footer>
-
       <!-- Scripts -->
       <script src="../statics/js/jquery.min.js"></script>
+      <script src="../statics/js/shop.js"></script>
 
       <!-- nostri script -->
     </body>

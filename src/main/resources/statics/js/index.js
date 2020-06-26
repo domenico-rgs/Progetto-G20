@@ -7,7 +7,6 @@ window.onscroll = function() {
 
 window.onload = function() {
   navOnLoad();
-  animation();
 };
 
 var rgb = 'rgb(' + 30 + ',' + 63 + ',' + 97 + ',';

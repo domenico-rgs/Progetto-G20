@@ -65,7 +65,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#total .card h1, p {
+#total h1, p {
   text-align: right;
   padding-right: 15%;
 }
@@ -81,7 +81,7 @@
   border-bottom: 1px solid grey;
 }
 
-#total .card button {
+#total button {
   border-radius: 5px;
   width: 70%;
   height: 40px;
@@ -99,4 +99,18 @@
   height: auto;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#total .sconto input {
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid grey;
+}
+
+#total .sconto p {
+  text-align: center;
+  color: black;
+  margin-top: 10px;
+  padding: 0;
 }
