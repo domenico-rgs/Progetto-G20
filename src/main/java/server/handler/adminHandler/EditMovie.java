@@ -11,11 +11,11 @@ public class EditMovie {
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
 		TypeCategory category = TypeCategory.valueOf(req.getParameter("category"));
-		String cover = "../statics/images/cover/" + req.getParameter("cover") + ".jpg";
+		String cover = "../statics/images/cover/" + req.getParameter("cover");
 
 
 		try {
-			Cinema.getCinema().getMovie(title).editMovie(cover, plot, category);
+			Cinema.getCinema().editMovie(title, cover, plot, category);
 
 		}
 		catch (Exception e1) {

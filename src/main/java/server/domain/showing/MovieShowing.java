@@ -15,11 +15,13 @@ public class MovieShowing {
 	private Availability availability;
 	private double price;
 	private String theatreName;
+	private String movie;
 
-	public MovieShowing(String id, LocalDateTime date, Theatre theatre, double price) {
+	public MovieShowing(String id, String movie, LocalDateTime date, Theatre theatre, double price) {
 		this.id=id;
 		this.date=date;
 		this.price=price;
+		this.movie=movie;
 		availability = new Availability(theatre.getSeatsList());
 		theatreName=theatre.getTheatreName();
 	}
@@ -41,6 +43,9 @@ public class MovieShowing {
 		return date;
 	}
 
+	public String getMovie() {
+		return movie;
+	}
 
 	public String getTheatreName() {
 		return theatreName;
@@ -49,8 +54,6 @@ public class MovieShowing {
 	public double getPrice() {
 		return price;
 	}
-	
-	
 
 	public String getId() {
 		return id;

@@ -6,22 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import server.domain.showing.MovieShowing;
 import server.domain.theatre.Theatre;
 
 public class ShowingsMapper extends AbstractPersistenceMapper {
-
+	private TheatreMapper tm;
 	private Map<String, MovieShowing> showing;
 
 	public ShowingsMapper(TheatreMapper tm) throws SQLException {
 		super("MOVIESHOWINGS");
 		this.showing = new HashMap<>();
-		setUp(tm);
+		this.tm=tm;
+		setUp();
 	}
 
 	@Override
@@ -48,11 +53,12 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		MovieShowing s = (MovieShowing)obj;
 		updateCache(OID,s);
 
-		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?)");
+		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?,?)");
 		pstm.setString(1,OID);
-		pstm.setObject(2, new java.sql.Timestamp(s.getDate().toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()));
-		pstm.setString(3,s.getTheatreName());
-		pstm.setDouble(4,s.getPrice());
+		pstm.setString(2,s.getMovie());
+		pstm.setObject(3, new java.sql.Timestamp(s.getDate().toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()));
+		pstm.setString(4,s.getTheatreName());
+		pstm.setDouble(5,s.getPrice());
 
 		pstm.execute();
 
@@ -73,18 +79,33 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 
 	}
 
-	protected void setUp(TheatreMapper tm) throws SQLException {
+	protected void setUp() throws SQLException {
 		Statement stm = super.conn.createStatement();
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
-			MovieShowing tmp = new MovieShowing(rs.getString(1), new Timestamp(rs.getDate(2).getTime()).toLocalDateTime(),
-					(Theatre) tm.get(rs.getString(3)),Double.parseDouble(rs.getString(4)));
+			MovieShowing tmp = new MovieShowing(rs.getString(1), rs.getString(2), new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),
+					(Theatre) tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
 
 			this.showing.put(rs.getString(1),tmp);
 		}
 		
 		OIDCreator.getInstance().setShowingCode(getLastObjectCode("id"));
 	}
+	
+	 protected List<MovieShowing> getMovieShowingList(String OID_movie) throws SQLException {
+	        List<MovieShowing> showings = new ArrayList<>();
+	        PreparedStatement stm = conn.prepareStatement("select * from "+super.tableName + " where movieTitle = ?");
+	        stm.setString(1, OID_movie);
+	        ResultSet rs = stm.executeQuery();
+	        while (rs.next()){
+	        	//Correggere la visualizzazione dell'ora
+	            MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),
+						(Theatre) tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+	            updateCache(ms.getId(),ms);
+	            showings.add(ms);
+	        }
+	        return showings;
+	    }
 
 
 	public synchronized Map<String, MovieShowing> getShowings() {

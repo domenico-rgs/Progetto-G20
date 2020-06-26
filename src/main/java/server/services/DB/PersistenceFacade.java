@@ -2,6 +2,7 @@ package server.services.DB;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import server.domain.cinema.Movie;
@@ -44,7 +45,10 @@ public class PersistenceFacade {
 		mapper.get(ShowingsMapper.class).put(OID,show);
 	}
 
-
+	public List<MovieShowing> getMovieShowingList(String OID_movie) throws SQLException{
+		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_movie);
+	}
+	
 	public void addTheatre(String OID, Theatre t) throws SQLException {
 		mapper.get(TheatreMapper.class).put(OID,t);
 	}

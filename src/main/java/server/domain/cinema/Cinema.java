@@ -42,6 +42,12 @@ public class Cinema {
 		s.editShowing(theatre, price);
 		PersistenceFacade.getInstance().updateTable(ShowingsMapper.class, s, showing);
 	}
+	
+	public void editMovie(String title, String pathCover, String plot, TypeCategory category) throws SearchException, SQLException, IOException, SeatException {
+		Movie m = getMovie(title);
+		m.editMovie(pathCover, plot, category);
+		PersistenceFacade.getInstance().updateTable(MoviesMapper.class, m, title);
+	}
 
 	synchronized public boolean deleteTheatre(String name) throws SearchException{
 		return false;
@@ -62,7 +68,7 @@ public class Cinema {
 
 
 	synchronized public void createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
-		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), date, getTheatre(theatre), price);
+		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
 		PersistenceFacade.getInstance().addMovieShowing(s.getId(),s);
 	}
 
@@ -133,9 +139,8 @@ public class Cinema {
 	}
 	
 	//ritornare la lista delle proiezioni in base al film passato come stringa
-	public List<MovieShowing> getMovieShowingList(String Movie) throws IOException, SeatException {
-		List<MovieShowing> showList = new ArrayList<>();
-		
+	public List<MovieShowing> getMovieShowingList(String movie) throws IOException, SeatException, SQLException {
+		List<MovieShowing> showList = PersistenceFacade.getInstance().getMovieShowingList(movie);
 		return showList;
 	}
 	

@@ -40,7 +40,7 @@ public class Theatre {
 	}
 
 	private void addSeats(String[] row, int rowNum) throws SeatException {
-		for(int j = 0; j<row.length-1; j++)
+		for(int j = 0; j<row.length; j++)
 			if(row[j].equalsIgnoreCase("X"))
 				seatsList.put(Character.toString(65 + rowNum) + j, new Seat(Character.toString(65 + rowNum) + j));
 			else if (row[j].equalsIgnoreCase("P"))
