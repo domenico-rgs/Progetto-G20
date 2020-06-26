@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 import server.domain.exception.SearchException;
 
 public class Catalog implements IHandler {
@@ -64,14 +64,14 @@ public class Catalog implements IHandler {
 
 
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
-		List<String> movieTitle = Cinema.getCinema().getTitleMovieList();
+		List<String> movieTitle = CinemaFacade.getCinema().getTitleMovieList();
 
 
 		//ricerco se i titoli contengono quella parola
 		for (String title: movieTitle)
 			if (title.toLowerCase().contains(search.toLowerCase()))
 				try {
-					movieList.add(Cinema.getCinema().searchMovie(title));
+					movieList.add(CinemaFacade.getCinema().searchMovie(title));
 				}
 		catch(SearchException e) {
 			continue;

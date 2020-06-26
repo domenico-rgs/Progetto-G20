@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 import server.domain.exception.SearchException;
 
 public class Index implements IHandler {
@@ -34,7 +34,7 @@ public class Index implements IHandler {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		List<String> quote = Cinema.getCinema().getQuotes();
+		List<String> quote = CinemaFacade.getCinema().getQuotes();
 		int intexCatalog = 5;  //quanti elementi visualizzare in prima pagina
 
 		resp.getWriter().write(Rythm.render("index.html", this.getIndexMovie(intexCatalog),
@@ -49,7 +49,7 @@ public class Index implements IHandler {
 
 	private List<server.domain.cinema.Movie> getIndexMovie(int n) {
 
-		List<String> title = Cinema.getCinema().getTitleMovieList();
+		List<String> title = CinemaFacade.getCinema().getTitleMovieList();
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
 		//per evitare errori di sforamento
@@ -59,7 +59,7 @@ public class Index implements IHandler {
 		for (int i = 0; i<n; i++)
 			try {
 
-				movieList.add(Cinema.getCinema().searchMovie(title.get(i)));
+				movieList.add(CinemaFacade.getCinema().searchMovie(title.get(i)));
 			}
 		catch (SearchException e) {
 			continue;

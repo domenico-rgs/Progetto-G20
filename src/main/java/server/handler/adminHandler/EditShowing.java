@@ -2,7 +2,7 @@ package server.handler.adminHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 import server.domain.exception.SearchException;
 
 public class EditShowing {
@@ -10,11 +10,11 @@ public class EditShowing {
 		String id = req.getParameter("id");
 		String movie = req.getParameter("movie");
 		String theatre = req.getParameter("theatre");
-		
+
 		try {
 			double price = Double.parseDouble(req.getParameter("price"));
 
-			Cinema.getCinema().editShowing(movie, id, theatre, price);
+			CinemaFacade.getCinema().editShowing(movie, id, theatre, price);
 
 		}
 		catch (SearchException e1) {

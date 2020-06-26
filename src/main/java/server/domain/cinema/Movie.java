@@ -1,26 +1,16 @@
 package server.domain.cinema;
 
-import javax.persistence.*;
-
 import server.domain.showing.MovieShowing;
 
 /**
  * This class is referred to a movie
  * @see MovieShowing
  */
-@Entity
-@Table(name="movie")
 public class Movie {
-	@Id
-	@Column(name="title")
 	private String title;
-	@Column(name="duration")
 	private int duration; //in minutes
-	@Enumerated(EnumType.STRING)
 	private TypeCategory category;
-	@Column(name="plot")
 	private String plot;
-	@Column(name="pathCover")
 	private String pathCover;
 
 	public Movie() {}
@@ -32,7 +22,7 @@ public class Movie {
 		this.plot=plot;
 		this.pathCover=pathCover;
 	}
-	
+
 	public void editMovie(String pathCover, String plot, TypeCategory category) {
 		setCategory(category);
 		setPlot(plot);

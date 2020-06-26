@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 
 public class MovieList implements IHandler {
 
@@ -72,7 +72,7 @@ public class MovieList implements IHandler {
 		 */
 		try {
 			for (int i=start; i<end; i++)
-				movieList.add(Cinema.getCinema().searchMovie(this.titleMovieList.get(i)));
+				movieList.add(CinemaFacade.getCinema().searchMovie(this.titleMovieList.get(i)));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class MovieList implements IHandler {
 	}
 
 	public void updateMovieList() {
-		this.titleMovieList = Cinema.getCinema().getTitleMovieList();
+		this.titleMovieList = CinemaFacade.getCinema().getTitleMovieList();
 	}
 
 }

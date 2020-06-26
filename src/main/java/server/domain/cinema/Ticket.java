@@ -2,24 +2,14 @@ package server.domain.cinema;
 
 import java.util.UUID;
 
-import javax.persistence.*;
-
 /**
  * This class identifies a bought ticket to show a movie.
  */
-@Entity
-@Table(name="ticket")
 public class Ticket {
-	@Id
-	@Column(name="ticketCode", updatable = false)
 	private String code;
-	@Column(name="movie")
 	private String movie;
-	@Column(name="occupiedSeat")
 	private String seat;
-	@Column(name="showing")
 	private String showing;
-	@Column(name="totalPrice", updatable = false)
 	private double totalPrice;
 
 	public Ticket() {}

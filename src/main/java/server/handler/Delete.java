@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 import server.domain.exception.SearchException;
 
 public class Delete implements IHandler {
@@ -38,7 +38,7 @@ public class Delete implements IHandler {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			Cinema.getCinema().deleteBooking(req.getParameter("ticketCode"));
+			CinemaFacade.getCinema().deleteBooking(req.getParameter("ticketCode"));
 			resp.getWriter().write(Rythm.render("delete.html", true, "The reservation has been canceled, you will receive a refund as soon as possible on the payment method used for the purchase"));
 		} catch (SearchException e) {
 			resp.getWriter().write(Rythm.render("delete.html", false, "The ticket was not removed, the code may be incorrect"));

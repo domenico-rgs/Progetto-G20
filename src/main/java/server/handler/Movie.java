@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 import server.domain.exception.SearchException;
 import server.domain.showing.MovieShowing;
 
@@ -34,8 +34,8 @@ public class Movie implements IHandler {
 
 
 		try {
-			server.domain.cinema.Movie movie = Cinema.getCinema().searchMovie(req.getParameter("title"));
-			List<MovieShowing> showings = Cinema.getCinema().getSchedule(movie);
+			server.domain.cinema.Movie movie = CinemaFacade.getCinema().searchMovie(req.getParameter("title"));
+			List<MovieShowing> showings = CinemaFacade.getCinema().getSchedule(movie);
 
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
 

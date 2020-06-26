@@ -8,23 +8,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
-
-import javax.persistence.*;
-
 import server.domain.exception.SeatException;
 
 /**
  * The theatre of a Cinema, allows you to manage its projections
  */
-@Entity
-@Table(name = "theatre")
 public class Theatre {
-	@Id
-	@Column(name="theatreName")
 	private String theatreName;
-	@Transient
 	private HashMap<String, Seat> seatsList;
-	@Column(name="filePath")
 	private String filePath;
 
 
@@ -61,10 +52,10 @@ public class Theatre {
 			else
 				throw new SeatException("Unrecognized seat type, recheck the file");
 	}
-	
+
 	private String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
-		
+
 		out.println(config);
 		out.close();
 		return "src/main/resources/theatreConf/" + theatreName+".txt";
@@ -77,6 +68,10 @@ public class Theatre {
 
 	public HashMap<String, Seat> getSeatsList() {
 		return seatsList;
+	}
+
+	public String getFilePath() {
+		return filePath;
 	}
 
 	public String getTheatreName() {

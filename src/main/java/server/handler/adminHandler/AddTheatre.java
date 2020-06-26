@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
@@ -16,7 +16,7 @@ public class AddTheatre {
 
 
 		try {
-			Cinema.getCinema().createTheatre(theatreName, config);
+			CinemaFacade.getCinema().createTheatre(theatreName, config);
 		} catch (SearchException e) {
 			return "Error: " + theatreName + " already exists";
 		}catch (IOException | SeatException e) {

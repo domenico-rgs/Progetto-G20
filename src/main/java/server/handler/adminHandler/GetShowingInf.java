@@ -2,7 +2,7 @@ package server.handler.adminHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 import server.domain.exception.SearchException;
 import server.domain.showing.MovieShowing;
 
@@ -12,7 +12,7 @@ public class GetShowingInf {
 		String id = req.getParameter("id");
 
 		try {
-			MovieShowing m = Cinema.getCinema().getShowing(movie, id);
+			MovieShowing m = CinemaFacade.getCinema().getShowing(movie, id);
 			String inf =  m.getTheatreName() + "@" + m.getPrice() +
 					"@" + m.getDate();
 			return inf;

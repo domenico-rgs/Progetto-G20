@@ -2,12 +2,12 @@ package server.handler.adminHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.CinemaFacade;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
 
 public class EditMovie {
-	
+
 	public static String doAction(HttpServletRequest req) {
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
@@ -16,7 +16,7 @@ public class EditMovie {
 
 
 		try {
-			Cinema.getCinema().searchMovie(title).editMovie(cover, plot, category);
+			CinemaFacade.getCinema().searchMovie(title).editMovie(cover, plot, category);
 
 		}
 		catch (SearchException e1) {
