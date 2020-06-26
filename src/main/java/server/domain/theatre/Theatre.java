@@ -19,18 +19,16 @@ public class Theatre {
 	private String filePath;
 
 
-	public Theatre(String theatreName, String config) throws IOException, SeatException {
+	public Theatre(String theatreName) throws IOException, SeatException {
 		seatsList = new HashMap<>();
 		this.theatreName=theatreName;
-		filePath = createConfigFile(config);
-		createSeats(filePath);
 	}
 
 	/*
 	 * Create the seats in the room by associating them with an id consisting of a
 	 * letter that identifies the row and a number that identifies the column
 	 */
-	private void createSeats(String file) throws IOException, SeatException {
+	public void createSeats(String file) throws IOException, SeatException {
 		BufferedReader seats = new BufferedReader(new FileReader(file));
 		String s;
 		int rowNum=0;
@@ -53,7 +51,7 @@ public class Theatre {
 				throw new SeatException("Unrecognized seat type, recheck the file");
 	}
 
-	private String createConfigFile(String config) throws FileNotFoundException {
+	public String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
 
 		out.println(config);
@@ -68,6 +66,10 @@ public class Theatre {
 
 	public HashMap<String, Seat> getSeatsList() {
 		return seatsList;
+	}
+
+	public void setSeatsList(HashMap<String, Seat> seatsList) {
+		this.seatsList = seatsList;
 	}
 
 	public String getFilePath() {

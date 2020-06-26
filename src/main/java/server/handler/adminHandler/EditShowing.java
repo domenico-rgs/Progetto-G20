@@ -14,7 +14,7 @@ public class EditShowing {
 		try {
 			double price = Double.parseDouble(req.getParameter("price"));
 
-			CinemaFacade.getCinema().editShowing(movie, id, theatre, price);
+			CinemaFacade.getCinema().editShowing(id, theatre, price);
 
 		}
 		catch (SearchException e1) {

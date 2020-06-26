@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.CinemaFacade;
 import server.domain.cinema.TypeCategory;
-import server.domain.exception.SearchException;
 
 public class EditMovie {
 
@@ -16,12 +15,8 @@ public class EditMovie {
 
 
 		try {
-			CinemaFacade.getCinema().searchMovie(title).editMovie(cover, plot, category);
+			CinemaFacade.getCinema().getMovie(title).editMovie(cover, plot, category);
 
-		}
-		catch (SearchException e1) {
-			System.out.println(e1);
-			return "Error: " + title + " already exists";
 		}
 		catch (Exception e1) {
 			System.out.println(e1);

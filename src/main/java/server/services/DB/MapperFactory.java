@@ -13,7 +13,8 @@ public class MapperFactory {
 
 	private MapperFactory()throws SQLException, IOException, SeatException {
 		this.mappers  = new HashMap<>();
-		TheatreMapper tm = new TheatreMapper();
+		SeatsMapper sm = new SeatsMapper();
+		TheatreMapper tm = new TheatreMapper(sm);
 		this.mappers.put(TheatreMapper.class, tm);
 		this.mappers.put(MoviesMapper.class, new MoviesMapper());
 		this.mappers.put(ShowingsMapper.class, new ShowingsMapper(tm));

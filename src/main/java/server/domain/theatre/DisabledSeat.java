@@ -7,8 +7,14 @@ public class DisabledSeat extends Seat {
 		super(position);
 	}
 
+	@Override
 	public double getAddition() {
 		return addition;
+	}
+
+	@Override
+	public TypeSeat getType() {
+		return TypeSeat.DISABLED;
 	}
 
 	@Override

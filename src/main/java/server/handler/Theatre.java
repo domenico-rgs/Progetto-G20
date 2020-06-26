@@ -45,8 +45,7 @@ public class Theatre implements IHandler {
 
 		try {
 
-			String thName = CinemaFacade.getCinema().getShowing(req.getParameter("title"),
-					req.getParameter("id")).getTheatreName();
+			String thName = CinemaFacade.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 
 			config = this.readConfig(thName);
 		}

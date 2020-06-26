@@ -13,11 +13,12 @@ import server.domain.theatre.Theatre;
 
 
 public class TheatreMapper extends AbstractPersistenceMapper {
-
 	private Map<String, Theatre> theatre;
+	private SeatsMapper sm ;
 
-	public TheatreMapper() throws SQLException, IOException, SeatException {
+	public TheatreMapper(SeatsMapper sm) throws SQLException, IOException, SeatException {
 		super("THEATRE");
+		this.sm=sm;
 		this.theatre = new HashMap<>();
 		setUp();
 	}
@@ -63,7 +64,8 @@ public class TheatreMapper extends AbstractPersistenceMapper {
 		Statement stm = super.conn.createStatement();
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
-			Theatre tmp = new Theatre(rs.getString(1),rs.getString(2));
+			Theatre tmp = new Theatre(rs.getString(1));
+			tmp.setSeatsList(sm.getSeatsList(tmp.getTheatreName()));
 
 			this.theatre.put(rs.getString(1),tmp);
 		}

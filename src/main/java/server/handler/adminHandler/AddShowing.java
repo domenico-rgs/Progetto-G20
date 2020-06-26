@@ -1,6 +1,6 @@
 package server.handler.adminHandler;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,8 +20,8 @@ public class AddShowing {
 		try {
 			double price = Double.parseDouble(req.getParameter("price"));
 
-			CinemaFacade.getCinema().createMovieShowing(movie, new Date((Integer.parseInt(d[2])-2000)+100,
-					Integer.parseInt(d[1])-1, Integer.parseInt(d[0]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
+			CinemaFacade.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[2]),
+					Integer.parseInt(d[1]), Integer.parseInt(d[0]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
 		}
 		catch (Exception e){
 			System.out.println(e);

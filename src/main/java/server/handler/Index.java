@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.CinemaFacade;
-import server.domain.exception.SearchException;
+import server.domain.exception.SeatException;
 
 public class Index implements IHandler {
 
@@ -49,24 +50,26 @@ public class Index implements IHandler {
 
 	private List<server.domain.cinema.Movie> getIndexMovie(int n) {
 
-		List<String> title = CinemaFacade.getCinema().getTitleMovieList();
-		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
+		List<String> title;
+		try {
+			title = CinemaFacade.getCinema().getMovieList();
+			List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
-		//per evitare errori di sforamento
-		if (n > title.size())
-			n = title.size();
+			//per evitare errori di sforamento
+			if (n > title.size())
+				n = title.size();
 
-		for (int i = 0; i<n; i++)
-			try {
-
-				movieList.add(CinemaFacade.getCinema().searchMovie(title.get(i)));
-			}
-		catch (SearchException e) {
-			continue;
+			for (int i = 0; i<n; i++)
+				movieList.add(CinemaFacade.getCinema().getMovie(title.get(i)));
+			return movieList;
+		} catch (IOException | SeatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		return movieList;
-
+		return null;
 	}
 
 }

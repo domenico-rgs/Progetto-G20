@@ -12,6 +12,7 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.CinemaFacade;
 import server.domain.cinema.TypeCategory;
+import server.domain.exception.SeatException;
 
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
@@ -38,8 +39,16 @@ public class Administrator implements IHandler {
 		for (TypeCategory cat: TypeCategory.values())
 			categoryList.add(cat.toString());
 
-		resp.getWriter().write(Rythm.render("administrator.html",
-				categoryList, CinemaFacade.getCinema().getTitleMovieList()));
+		try {
+			resp.getWriter().write(Rythm.render("administrator.html",
+					categoryList, CinemaFacade.getCinema().getMovieList()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SeatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

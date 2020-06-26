@@ -6,20 +6,30 @@ package server.domain.theatre;
  */
 public class Seat {
 	private String position;
+	private final double addition = 0.0; //aggiunta in percentuale
+	private TypeSeat type;
 
 	public Seat(String seatId) {
 		position = seatId;
+		type=getType();
 	}
-
-	public Seat() {}
 
 	public String getPosition() {
 		return position;
 	}
 
+	public double getAddition() {
+		return addition;
+	}
+
 	@Override
 	public String toString() {
 		return "Seat: " + position;
+	}
+
+
+	public TypeSeat getType() {
+		return TypeSeat.NORMAL;
 	}
 
 	@Override

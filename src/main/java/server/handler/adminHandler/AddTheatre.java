@@ -1,11 +1,11 @@
 package server.handler.adminHandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.CinemaFacade;
-import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
 public class AddTheatre {
@@ -17,9 +17,10 @@ public class AddTheatre {
 
 		try {
 			CinemaFacade.getCinema().createTheatre(theatreName, config);
-		} catch (SearchException e) {
-			return "Error: " + theatreName + " already exists";
-		}catch (IOException | SeatException e) {
+		} catch (IOException | SeatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.CinemaFacade;
-import server.domain.exception.SearchException;
+import server.domain.exception.SeatException;
 import server.domain.showing.MovieShowing;
 
 public class Movie implements IHandler {
@@ -31,20 +32,16 @@ public class Movie implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
 		try {
-			server.domain.cinema.Movie movie = CinemaFacade.getCinema().searchMovie(req.getParameter("title"));
-			List<MovieShowing> showings = CinemaFacade.getCinema().getSchedule(movie);
+			server.domain.cinema.Movie movie = CinemaFacade.getCinema().getMovie(req.getParameter("title"));
+			List<MovieShowing> showings = CinemaFacade.getCinema().getMovieShowings(movie.getTitle());
 
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showings));
 
+		} catch (SQLException | IOException | SeatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		//se non trova il film
-		catch (SearchException e) {
-			resp.getWriter().write(Rythm.render("404.html"));
-		}
-
 
 	}
 

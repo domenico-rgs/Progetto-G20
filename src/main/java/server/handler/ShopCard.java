@@ -37,7 +37,7 @@ public class ShopCard implements IHandler {
 		String title = req.getParameter("title");
 
 		try {
-			resp.getWriter().write(Rythm.render("shop.html", CinemaFacade.getCinema().getShowing(title, id),
+			resp.getWriter().write(Rythm.render("shop.html", CinemaFacade.getCinema().getMovieShowing(id),
 					id, title, seats));
 		}
 		catch (Exception e) {

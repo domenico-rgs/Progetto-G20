@@ -31,7 +31,9 @@ public class CinemaFacade {
 	}
 
 	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException  {
-		Theatre t = new Theatre(name, config);
+		Theatre t = new Theatre(name);
+		String file = t.createConfigFile(config);
+		t.createSeats(file);
 		PersistenceFacade.getInstance().addTheatre(name,t);
 	}
 

@@ -7,8 +7,14 @@ public class PremiumSeat extends Seat{
 		super(position);
 	}
 
+	@Override
 	public double getAddition() {
 		return addition;
+	}
+
+	@Override
+	public TypeSeat getType() {
+		return TypeSeat.PREMIUM;
 	}
 
 	@Override
