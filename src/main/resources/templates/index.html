@@ -3,98 +3,98 @@
 @//dichiarazione variabili
 @args {
 List<server.domain.cinema.Movie> movieList
-List<String> quote;
-	}
+	List<String> quote;
+		}
 
-	<html>
+		<html>
 
-		<head>
-			<link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-			<title>Cinema G20</title>
-			<audio id="audio" src="../statics/easteregg.mp3"></audio>
-			<meta charset="utf-16" />
-			<meta http-equiv="cache-control" content="no-cache">
-			<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<link rel="stylesheet" href="../statics/css/homepage.css">
-			<link rel="stylesheet" href="../statics/css/main.css">
-			<link rel="stylesheet" href="../statics/css/filmMenu.css">
-		</head>
+			<head>
+				<link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+				<title>Cinema G20</title>
+				<audio id="audio" src="../statics/easteregg.mp3"></audio>
+				<meta charset="utf-16" />
+				<meta http-equiv="cache-control" content="no-cache">
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<link rel="stylesheet" href="../statics/css/homepage.css">
+				<link rel="stylesheet" href="../statics/css/main.css">
+				<link rel="stylesheet" href="../statics/css/filmMenu.css">
+			</head>
 
-		<body>
+			<body>
 
-			<!-- Header with navbar-->
-			<header id="header">
-				<div class="inner">
-					<nav id="nav">
-						<a href="/home">Home</a>
-						<a href="/catalog?search=all">Movie catalog</a>
-						<a href="/delete">Delete reservation</a>
-						<a href="/faq">FAQ</a>
-						<a href="#footer">Contact us</a>
-					</nav>
-				</div>
-			</header>
-
-
-			<!-- Banner con immagine di sfondo -->
-			<section id="banner">
-				<div class="inner">
-					<header>
-						<h1 onclick="playAudio()">Cinema G20</h1>
-						<h2><i>The best site in Italy to buy tickets. Maybe!</i></h2>
-					</header>
-				</div>
-			</section>
+				<!-- Header with navbar-->
+				<header id="header">
+					<div class="inner">
+						<nav id="nav">
+							<a href="/home">Home</a>
+							<a href="/catalog?search=all">Movie catalog</a>
+							<a href="/delete">Delete reservation</a>
+							<a href="/faq">FAQ</a>
+							<a href="#footer">Contact us</a>
+						</nav>
+					</div>
+				</header>
 
 
-			<!-- Three -->
-			<section id="three" class="wrapper align-center">
-				<div class="inner">
-					<h1>Latest Movies</h1>
+				<!-- Banner con immagine di sfondo -->
+				<section id="banner">
+					<div class="inner">
+						<header>
+							<h1 onclick="playAudio()">Cinema G20</h1>
+							<h2><i>The best site in Italy to buy tickets. Maybe!</i></h2>
+						</header>
+					</div>
+				</section>
 
-					<!-- Main Movie (5 elemtents)-->
-					<div class="filmMenu">
 
-						@for (server.domain.cinema.Movie movie: movieList) {
+				<!-- Three -->
+				<section id="three" class="wrapper align-center">
+					<div class="inner">
+						<h1>Latest Movies</h1>
 
-						<div class="item">
-							<div class="img">
-								<img src='@(movie.getPathCover())' alt="">
+						<!-- Main Movie (5 elemtents)-->
+						<div class="filmMenu">
+
+							@for (server.domain.cinema.Movie movie: movieList) {
+
+							<div class="item">
+								<div class="img">
+									<img src='@(movie.getPathCover())' alt="">
+								</div>
+								<div class="name">
+									<p>@(movie.getTitle())</p>
+								</div>
 							</div>
-							<div class="name">
-								<p>@(movie.getTitle())</p>
-							</div>
+							}
+
 						</div>
-						}
+
+						<button id="goToCatalog" class="showFilm">show entire catalog</button>
+
+						<!-- Citazione -->
+						<div class="quotes">
+							<img src='../statics/images/icon/quote.png' alt="">
+							<center>
+								<h1>@quote.get(0)</h1>
+								<p align="right">@quote.get(1)</p>
+							</center>
+						</div>
 
 					</div>
-
-					<button id="goToCatalog" class="showFilm">show entire catalog</button>
-
-					<!-- Citazione -->
-					<div class="quotes">
-						<img src='../statics/images/icon/quote.png' alt="">
-						<center>
-							<h1>@quote.get(0)</h1>
-							<p align="right">@quote.get(1)</p>
-						</center>
-					</div>
-
-				</div>
-			</section>
+				</section>
 
 
-			<!-- Footer -->
-			<footer id="footer">
-				@imported.footer()
-			</footer>
+				<!-- Footer -->
+				<footer id="footer">
+					@imported.footer()
+				</footer>
 
-			<!-- Scripts -->
-			<script src="../statics/js/jquery.min.js"></script>
+				<!-- Scripts -->
+				<script src="../statics/js/jquery.min.js"></script>
 
-			<!-- nostri script -->
-			<script src="../statics/js/index.js"></script>
-			<script src="../statics/js/GET.js"></script>
-		</body>
+				<!-- nostri script -->
+				<script src="../statics/js/index.js"></script>
+				<script src="../statics/js/GET.js"></script>
+			</body>
 
-	</html>
+		</html>

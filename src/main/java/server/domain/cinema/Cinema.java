@@ -1,16 +1,24 @@
 package server.domain.cinema;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.SimPaymentAdapter;
 import server.domain.showing.MovieShowing;
+import server.domain.theatre.Seat;
+
 import server.domain.theatre.Theatre;
-import server.services.DB.DBConnection;
+import server.services.DB.MoviesMapper;
+import server.services.DB.OIDCreator;
+import server.services.DB.PersistenceFacade;
+import server.services.DB.ShowingsMapper;
+import server.services.DB.TheatreMapper;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -19,71 +27,58 @@ public class Cinema {
 	private SimPaymentAdapter payment;
 	private Quotes quotes = new Quotes();
 
-	private DBConnection db;
 	private static Cinema istance = null;
 
 	private Cinema() {
 		payment= new SimPaymentAdapter();
-		db = new DBConnection();
-	}
-	
-	synchronized public boolean createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException{
-			db.addMovie(title, duration, plot, pathCover, category);
-			return true;
 	}
 
-	synchronized public boolean createTheatre(String name, String config) throws IOException, SeatException {
-			Theatre t = new Theatre(name, config);
-			db.addTheatre(t);
-			return true;
+	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException  {
+		Theatre t = new Theatre(name);
+		String file = t.createConfigFile(config);
+		t.createSeats(file);
+		PersistenceFacade.getInstance().addTheatre(name,t);
 	}
 
-	public void editShowing(String showing, String theatre, double price) throws SearchException {
-			db.editShowing(showing, searchTheatre(theatre), price);
+	public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, IOException, SeatException {
+		MovieShowing s = getMovieShowing(showing);
+		s.editShowing(theatre, price);
+		PersistenceFacade.getInstance().updateTable(ShowingsMapper.class, s, showing);
 	}
 
-	//OCCORRE CONTROLLARE CHE NON SIA USATO
-	/*synchronized public boolean deleteTheatre(String name) throws SearchException{
-		if (!(theatreList.containsKey(name)))
-			throw new SearchException(name+"'s not found.");
-		else {
-			theatreList.remove(name);
-			return true;
-		}
-	}*/
-
-	synchronized public Theatre searchTheatre(String theatreName){
-		return db.searchTheatre(theatreName);
+	public void editMovie(String title, String pathCover, String plot, TypeCategory category) throws SearchException, SQLException, IOException, SeatException {
+		Movie m = getMovie(title);
+		m.editMovie(pathCover, plot, category);
+		PersistenceFacade.getInstance().updateTable(MoviesMapper.class, m, title);
 	}
 
-	//OCCORRE CONTROLLARE CHE NON SIA USATO
-	/*synchronized public boolean deleteMovie(String title) throws SearchException{
-		if (!(movieCatalog.containsKey(title)))
-			throw new SearchException(title+"'s not found.");
-		else {
-			movieCatalog.remove(title);
-			return true;
-		}
-	}*/
-
-	synchronized public Movie searchMovie(String title){
-		return db.searchMovie(title);
+	synchronized public boolean deleteTheatre(String name) throws SearchException{
+		return false;
+		//OCCORRE CONTROLLARE CHE NON SIA USATO
+		//TO-DO
 	}
 
-	public MovieShowing searchShowing(String id){
-		return db.searchShowing(id);
+	synchronized public void createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException, SQLException, IOException, SeatException{
+		Movie m = new Movie(title, duration, plot, pathCover, category);
+		PersistenceFacade.getInstance().addMovie(title,m);
 	}
 
-	synchronized public void createMovieShowing(String movie, LocalDateTime localDateTime, String theatre, double price) {
-		//PROBABILMENTE OCCORRE AGGIUNGERE QUALCOSA PER CONTROLLARE CHE LE DATE NON SI ACCAVALLINO
-		MovieShowing show = new MovieShowing(localDateTime, searchTheatre(theatre), price);
-		db.addMovieShowing(show);
+	synchronized public boolean deleteMovie(String title) throws SearchException{
+		return false;
+		//OCCORRE CONTROLLARE CHE NON SIA USATO
+		//TO-DO
 	}
 
-	//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
-	/* synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
-		scheduler.get(movieCatalog.get(movie)).deleteMovieShowing(idShowing);
-	}*/
+
+	synchronized public void createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
+		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
+		PersistenceFacade.getInstance().addMovieShowing(s.getId(),s);
+	}
+
+	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
+		//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
+		//TO-DO
+	}
 
 	//Se lancia l'eccezione ne cancella solo una parte, rivedere dopo aver deciso cosa fare del ledger
 	synchronized public boolean deleteBooking(String string) throws SearchException{
@@ -102,15 +97,53 @@ public class Cinema {
 		return quotes.getQuotes();
 	}
 
-	//metodi per amministrazione applicazione web
-	public ArrayList<MovieShowing> getShowingList(Movie movie) {
-		return db.getShowingList(movie);
+	public Movie getMovie(String title) throws SQLException, IOException, SeatException{
+		return (Movie) PersistenceFacade.getInstance().get(title, MoviesMapper.class);
+	}
+
+	public Theatre getTheatre(String name) throws SQLException, IOException, SeatException{
+		return (Theatre) PersistenceFacade.getInstance().get(name, TheatreMapper.class);
+	}
+
+	public List<String> getMovieList() throws IOException, SeatException {
+		List<String> titleList = new ArrayList<>();
+		titleList.addAll(PersistenceFacade.getInstance().getAllMovies().keySet());
+		return titleList;
+	}
+
+	public MovieShowing getMovieShowing(String id) throws SQLException, IOException, SeatException{
+		return (MovieShowing) PersistenceFacade.getInstance().get(id, ShowingsMapper.class);
 	}
 
 
-	public List<String> getTitleMovieList() {
-		return db.movieList();
+	public List<MovieShowing> getAllShowingList() throws IOException, SeatException {
+		List<MovieShowing> allList = new ArrayList<>();
+		allList.addAll((PersistenceFacade.getInstance().getAllMovieShowings().values()));
+
+		return allList;
 	}
+
+	public HashMap<Seat, Boolean> getSeatsForShowing (String idShowing) throws SQLException, IOException, SeatException {
+		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
+	}
+
+	///// METODI DA IMPLEMENTARE ///////
+
+	//settare i posti scelti occupati, prima del pagamento (magari un timer?), ed eccezioni
+	public boolean setOccupedSeats (String idShowing, List<String> seats) {
+		return false;
+	}
+
+	//rendere i posti liberi nel caso di rinuncia
+	public boolean setFreeSeats (String idShowing, List<String> seats) {
+		return false;
+	}
+
+	public List<MovieShowing> getMovieShowingList(String movie) throws IOException, SeatException, SQLException {
+		List<MovieShowing> showList = PersistenceFacade.getInstance().getMovieShowingList(movie);
+		return showList;
+	}
+
 
 	public static Cinema getCinema() {
 		if (istance == null)

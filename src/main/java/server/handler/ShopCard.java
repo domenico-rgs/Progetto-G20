@@ -1,7 +1,6 @@
 package server.handler;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,9 +13,9 @@ import server.domain.cinema.Cinema;
 
 
 public class ShopCard implements IHandler {
-	
+
 	private static ShopCard instance = null;
-	
+
 	private ShopCard() {
 	}
 
@@ -36,25 +35,38 @@ public class ShopCard implements IHandler {
 		List<String> seats = Theatre.getInstance().getSelectedSeat();
 		String id = req.getParameter("id");
 		String title = req.getParameter("title");
-		
+		System.out.println(seats.size());
+
 		try {
-			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().searchShowing(id),
+			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(id),
 					id, title, seats));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
 
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+
+		String code = req.getParameter("code");
+
+		String discount = this.calculateDiscount(code);
+
+		resp.getWriter().write(discount);
+
 	}
-	
-	
+
+
+	private String calculateDiscount(String code) {
+		//fai qualcosa
+
+		return "33";
+	}
+
+
 
 }

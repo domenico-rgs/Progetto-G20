@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.domain.exception.SeatException;
 
 public class MovieList implements IHandler {
 
@@ -72,7 +73,7 @@ public class MovieList implements IHandler {
 		 */
 		try {
 			for (int i=start; i<end; i++)
-				movieList.add(Cinema.getCinema().searchMovie(this.titleMovieList.get(i)));
+				movieList.add(Cinema.getCinema().getMovie(this.titleMovieList.get(i)));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -83,7 +84,12 @@ public class MovieList implements IHandler {
 	}
 
 	public void updateMovieList() {
-		this.titleMovieList = Cinema.getCinema().getTitleMovieList();
+		try {
+			this.titleMovieList = Cinema.getCinema().getMovieList();
+		} catch (IOException | SeatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

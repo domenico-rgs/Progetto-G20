@@ -1,6 +1,8 @@
 var loadMess = $('#loadMess #mess')
 var loader = $('#loadMess .loader')
 
+var startPoint = 0
+var finalPoint = 5
 
 $(window).on('load', function() {
 
@@ -23,8 +25,6 @@ $(window).on('load', function() {
   })
 });
 
-var startPoint = 0
-var finalPoint = 5
 var scrollPoint = 100
 var scrollAdd = $(window).height / 3
 

@@ -44,18 +44,18 @@
 }
 
 /* free seats */
-.seatList .seat[value='free'] {
+.seatList .seat[value='true'] {
   cursor: pointer;
   background-color: white;
 }
 
-.seatList .seat[value='free']:hover {
+.seatList .seat[value='true']:hover {
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* not free */
-.seatList .seat[value='not'] {
+.seatList .seat[value='false'] {
   background-color: #8f0707;
 }
 

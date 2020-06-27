@@ -3,81 +3,84 @@
 List<List<String>> config
   String id
   String title
-  int rowN
-  int col
-  String pos
-  String[] alfaphet = {"A", "B", "C", "D", "E", "F", "G"}
-  }
+  List<String> freeSeats
 
-  <html>
+    @// variabili che servono in locale
+    int rowN
+    int col
+    String pos
+    String[] alfaphet = {"A", "B", "C", "D", "E", "F", "G"}
+    }
 
-    <head>
-      <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-      <title>Showing @id</title>
-      <meta charset="utf-16" />
-      <meta http-equiv="cache-control" content="no-cache">
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href="../statics/css/main.css">
-      <link rel="stylesheet" href="../statics/css/theatre.css">
-    </head>
+    <html>
 
-    <body>
+      <head>
+        <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+        <title>Showing @id for @title</title>
+        <meta charset="utf-16" />
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../statics/css/main.css">
+        <link rel="stylesheet" href="../statics/css/theatre.css">
+      </head>
 
-      <!-- Header with navbar-->
-      <header id="header">
-        <div class="inner">
-          <nav id="nav">
-            <a href="#">Home</a>
-            <a href="/catalog?search=all">Movie catalog</a>
-            <a href="/delete">Delete reservation</a>
-            <a href="/faq">FAQ</a>
-            <a href="#footer">Contact us</a>
-          </nav>
-        </div>
-      </header>
+      <body>
 
-
-      <!-- Three -->
-      <section id="three" class="wrapper align-center">
-        <div class="inner">
-
-          <h1>Select your seat for @@showing</h1>
-
-          <h2>DISPLAY</h2>
-          <div id='display'>
+        <!-- Header with navbar-->
+        <header id="header">
+          <div class="inner">
+            <nav id="nav">
+              <a href="#">Home</a>
+              <a href="/catalog?search=all">Movie catalog</a>
+              <a href="/delete">Delete reservation</a>
+              <a href="/faq">FAQ</a>
+              <a href="#footer">Contact us</a>
+            </nav>
           </div>
+        </header>
 
-          <div class="seatList">
-            @{rowN = 0}
-            @for (List<String> row: config) {
-              <div class="seatRow">
 
-                @{col = 1}
-                @for(String seat: row) {
-                @{pos = alfaphet[rowN] + Integer.toString(col)}
-                <div pos="@pos" select='false' value='free' class="seat">
-                  <p>@seat</p>
+        <!-- Three -->
+        <section id="three" class="wrapper align-center">
+          <div class="inner">
+
+            <h1>Select your seat for @title showing</h1>
+
+            <h2>DISPLAY</h2>
+            <div id='display'>
+            </div>
+
+            <div class="seatList">
+              @{rowN = 0}
+              @for (List<String> row: config) {
+                <div class="seatRow">
+
+                  @{col = 1}
+                  @for(String seat: row) {
+                  @{pos = alfaphet[rowN] + Integer.toString(col)}
+                  <div pos="@pos" select='false' value='@(String.valueOf(freeSeats.contains(pos)))' class="seat">
+                    <p>@seat</p>
+                  </div>
+                  @{col++}
+                  }
+
                 </div>
-                @{col++}
+                @{rowN++}
                 }
+            </div>
 
-              </div>
-              @{rowN++}
-              }
+            <button id="buyTicket" value="title=@title&id=@id">BUY</button>
+
           </div>
-
-          <button id="buyTicket" value="title=@title&id=@id">BUY</button>
-
-        </div>
-      </section>
+        </section>
 
 
-      <!-- Scripts -->
-      <script src="../statics/js/jquery.min.js"></script>
+        <!-- Scripts -->
+        <script src="../statics/js/jquery.min.js"></script>
 
-      <!-- nostri script -->
-      <script src="../statics/js/theatre.js"></script>
+        <!-- nostri script -->
+        <script src="../statics/js/theatre.js"></script>
 
-    </body>
+      </body>
 
-  </html>
+    </html>

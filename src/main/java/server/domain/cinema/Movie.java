@@ -1,31 +1,16 @@
 package server.domain.cinema;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import server.domain.showing.MovieShowing;
 
 /**
  * This class is referred to a movie
  * @see MovieShowing
  */
-@Entity
-@Table(name="movie")
 public class Movie {
-	@Id
-	@Column(name="title")
 	private String title;
-	@Column(name="duration")
 	private int duration; //in minutes
-	@Enumerated(EnumType.STRING)
 	private TypeCategory category;
-	@Column(name="plot")
 	private String plot;
-	@Column(name="pathCover")
 	private String pathCover;
 
 	public Movie() {}

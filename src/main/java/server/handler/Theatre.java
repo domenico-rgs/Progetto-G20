@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ import server.domain.cinema.Cinema;
 public class Theatre implements IHandler {
 
 	private static Theatre instance = null;
-	
+
 	private List<String> selectedPos;
 
 
@@ -40,33 +39,25 @@ public class Theatre implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
 		selectedPos.clear();
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config;
-		
+		List<String> freeSeats = Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"));
+
 		try {
+			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 
-			String thName = Cinema.getCinema().searchShowing(req.getParameter("id")).getTheatreName();
-
-			//ricerco il file, anche se dovrebbe farlo qualcun'altro
-			Scanner myReader = new Scanner(new File("src/main/resources/theatreConf/"
-					+ thName + ".txt"));
-
-
-
-
+			config = this.readConfig(thName);
 		}
 		catch (Exception e) {
-		System.out.println(req.getParameter("id"));
-		System.out.println(req.getParameter("title"));
-			
-			String thName = Cinema.getCinema().searchShowing(req.getParameter("id")).getTheatreName();
-			
-			config = this.readConfig(thName);
-			
-			resp.getWriter().write(Rythm.render("theatre.html", config, req.getParameter("id"),
-					req.getParameter("title")));
-		}		
+			e.printStackTrace();
+			return;
+		}
+
+		//passo tutto a rythm
+		resp.getWriter().write(Rythm.render("theatre.html", config, req.getParameter("id"),
+				req.getParameter("title")));
 	}
 
 
@@ -74,41 +65,40 @@ public class Theatre implements IHandler {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		selectedPos.add(req.getParameter("seat"));
-	
-		
+
+
 
 	}
-	
-	
-	
+
+
+
 	private List<List<String>> readConfig(String thName) {
-		
+
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config = new ArrayList<>();
 		BufferedReader file;
-				
+
 		try {
 			//ricerco il file, anche se dovrebbe farlo qualcun'altro
 			file = new BufferedReader( new FileReader(new File("fileTest/"
 					+ "configTheatre/" + thName)));
-					
+
 			//variabili temporanee
 			String row;
 			String[] col;
-					
+
 			//per ogni riga lezza
 			while ((row = file.readLine()) != null) {
-					
+
 				//righe vuote
-				if (row.contentEquals("")) 
+				if (row.contentEquals(""))
 					continue;
-					
+
 				List<String> rowList = new ArrayList<>();
 				col = row.split(" ");
-				
-				for (String seat: col) {
-				rowList.add(seat);
-				}	
+
+				for (String seat: col)
+					rowList.add(seat);
 				config.add(rowList);
 			}
 			file.close();
@@ -116,11 +106,11 @@ public class Theatre implements IHandler {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return config;
 	}
-	
+
 	public List<String> getSelectedSeat() {
 		return this.selectedPos;
 	}

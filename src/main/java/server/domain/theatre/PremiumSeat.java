@@ -1,13 +1,6 @@
 package server.domain.theatre;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-
-@Entity
-@DiscriminatorValue("Premium")
 public class PremiumSeat extends Seat{
-	@Column(name="addition")
 	private final double addition = 1.2; //aggiunta in percentuale
 
 
@@ -15,8 +8,14 @@ public class PremiumSeat extends Seat{
 		super(position);
 	}
 
+	@Override
 	public double getAddition() {
 		return addition;
+	}
+
+	@Override
+	public TypeSeat getType() {
+		return TypeSeat.PREMIUM;
 	}
 
 	@Override

@@ -1,11 +1,11 @@
 package server.handler.adminHandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
-import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
 public class AddTheatre {
@@ -17,7 +17,7 @@ public class AddTheatre {
 
 		try {
 			Cinema.getCinema().createTheatre(theatreName, config);
-		} catch (IOException | SeatException e) {
+		} catch (IOException | SeatException | SQLException e) {
 			e.printStackTrace();
 		}
 

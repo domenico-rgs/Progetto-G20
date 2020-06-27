@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
-import server.domain.exception.SearchException;
+import server.domain.exception.SeatException;
 
 public class Catalog implements IHandler {
 
@@ -61,20 +62,26 @@ public class Catalog implements IHandler {
 
 
 	private List<server.domain.cinema.Movie> searchMovieForString(String search) {
-
-
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
-		List<String> movieTitle = Cinema.getCinema().getTitleMovieList();
 
-
-		//ricerco se i titoli contengono quella parola
-		for (String title: movieTitle)
-			if (title.toLowerCase().contains(search.toLowerCase()))
-				movieList.add(Cinema.getCinema().searchMovie(title));
-
+		List<String> movieTitle;
+		try {
+			movieTitle = Cinema.getCinema().getMovieList();
+			//ricerco se i titoli contengono quella parola
+			for (String title: movieTitle)
+				if (title.toLowerCase().contains(search.toLowerCase()))
+					movieList.add(Cinema.getCinema().getMovie(title));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SeatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return movieList;
 	}
-
-
 }
