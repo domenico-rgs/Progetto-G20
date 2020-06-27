@@ -53,17 +53,17 @@ public class ShopCard implements IHandler {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String code = req.getParameter("code");
-		
+
 		String discount = this.calculateDiscount(code);
-		
+
 		resp.getWriter().write(discount);
 
 	}
-	
-	
+
+
 	private String calculateDiscount(String code) {
 		//fai qualcosa
-		
+
 		return "33";
 	}
 

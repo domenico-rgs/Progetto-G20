@@ -46,4 +46,8 @@ public class Availability {
 		else
 			availability.replace(s, true);
 	}
+
+	public HashMap<Seat, Boolean> getAvailability() {
+		return availability;
+	}
 }

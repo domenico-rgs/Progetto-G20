@@ -59,6 +59,10 @@ public class MovieShowing {
 		return id;
 	}
 
+	public Availability getAvailability() {
+		return availability;
+	}
+
 	@Override
 	public String toString() {
 		return  date.toString() + ", theatre: " + theatreName;

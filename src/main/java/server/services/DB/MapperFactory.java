@@ -15,9 +15,10 @@ public class MapperFactory {
 		this.mappers  = new HashMap<>();
 		SeatsMapper sm = new SeatsMapper();
 		TheatreMapper tm = new TheatreMapper(sm);
+		AvailabilityMapper am = new AvailabilityMapper();
 		this.mappers.put(TheatreMapper.class, tm);
 		this.mappers.put(MoviesMapper.class, new MoviesMapper());
-		this.mappers.put(ShowingsMapper.class, new ShowingsMapper(tm));
+		this.mappers.put(ShowingsMapper.class, new ShowingsMapper(tm,am));
 	}
 
 	public static MapperFactory getInstance()throws SQLException, IOException, SeatException {

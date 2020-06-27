@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.SimPaymentAdapter;
 import server.domain.showing.MovieShowing;
+import server.domain.theatre.Seat;
 import server.domain.theatre.Theatre;
 import server.services.DB.MoviesMapper;
 import server.services.DB.OIDCreator;
@@ -42,7 +44,7 @@ public class Cinema {
 		s.editShowing(theatre, price);
 		PersistenceFacade.getInstance().updateTable(ShowingsMapper.class, s, showing);
 	}
-	
+
 	public void editMovie(String title, String pathCover, String plot, TypeCategory category) throws SearchException, SQLException, IOException, SeatException {
 		Movie m = getMovie(title);
 		m.editMovie(pathCover, plot, category);
@@ -113,38 +115,36 @@ public class Cinema {
 		return (MovieShowing) PersistenceFacade.getInstance().get(id, ShowingsMapper.class);
 	}
 
-	
+
 	public List<MovieShowing> getAllShowingList() throws IOException, SeatException {
 		List<MovieShowing> allList = new ArrayList<>();
 		allList.addAll((PersistenceFacade.getInstance().getAllMovieShowings().values()));
 
 		return allList;
 	}
-	
-	///// METODI DA IMPLEMENTARE ///////
-	
-	// prendere tutti i posti (SOLAMENTE LIBERI)  per proiezione
-	public List<String> getFreeSeatsForShowing (String idShowing) {
-		return null;
+
+	public HashMap<Seat, Boolean> getSeatsForShowing (String idShowing) throws SQLException, IOException, SeatException {
+		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
 	}
-	
+
+	///// METODI DA IMPLEMENTARE ///////
+
 	//settare i posti scelti occupati, prima del pagamento (magari un timer?), ed eccezioni
 	public boolean setOccupedSeats (String idShowing, List<String> seats) {
 		return false;
 	}
-	
+
 	//rendere i posti liberi nel caso di rinuncia
 	public boolean setFreeSeats (String idShowing, List<String> seats) {
 		return false;
 	}
-	
-	//ritornare la lista delle proiezioni in base al film passato come stringa
+
 	public List<MovieShowing> getMovieShowingList(String movie) throws IOException, SeatException, SQLException {
 		List<MovieShowing> showList = PersistenceFacade.getInstance().getMovieShowingList(movie);
 		return showList;
 	}
-	
-	
+
+
 	public static Cinema getCinema() {
 		if (istance == null)
 			istance = new Cinema();

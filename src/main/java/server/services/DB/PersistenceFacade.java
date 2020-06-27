@@ -2,12 +2,14 @@ package server.services.DB;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import server.domain.cinema.Movie;
 import server.domain.exception.SeatException;
 import server.domain.showing.MovieShowing;
+import server.domain.theatre.Seat;
 import server.domain.theatre.Theatre;
 
 public class PersistenceFacade {
@@ -48,7 +50,11 @@ public class PersistenceFacade {
 	public List<MovieShowing> getMovieShowingList(String OID_movie) throws SQLException{
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_movie);
 	}
-	
+
+	public HashMap<Seat,Boolean> getAvailabilityList(String OID_movieShowing) throws SQLException{
+		return ((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).getAvailabilityList(OID_movieShowing);
+	}
+
 	public void addTheatre(String OID, Theatre t) throws SQLException {
 		mapper.get(TheatreMapper.class).put(OID,t);
 	}
