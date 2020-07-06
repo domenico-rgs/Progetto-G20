@@ -11,7 +11,12 @@ public class EditMovie {
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
 		TypeCategory category = TypeCategory.valueOf(req.getParameter("category"));
-		String cover = "../statics/images/cover/" + req.getParameter("cover");
+		String cover;
+		
+		if (req.getParameter("cover").contentEquals(""))
+			cover = "../statics/images/cover/unavaliable.jpg";
+		else 
+			cover = "../statics/images/cover/" + req.getParameter("cover");
 
 
 		try {

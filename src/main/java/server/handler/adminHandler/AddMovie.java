@@ -8,12 +8,17 @@ import server.domain.exception.SearchException;
 
 public class AddMovie{
 
-	//idee migliori?
+
 	public static String doAction(HttpServletRequest req) {
 
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
-		String cover = "../statics/images/cover/" + req.getParameter("cover");
+		String cover;
+		
+		if (req.getParameter("cover").contentEquals(""))
+			cover = "../statics/images/cover/unavaliable.jpg";
+		else 
+			cover = "../statics/images/cover/" + req.getParameter("cover");
 
 
 		try {

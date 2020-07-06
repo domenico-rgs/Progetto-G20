@@ -43,9 +43,11 @@ public class Theatre implements IHandler {
 		selectedPos.clear();
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config;
-		List<String> freeSeats = Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"));
+		List<String> freeSeats;
 
 		try {
+			freeSeats = Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"));
+			
 			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 
 			config = this.readConfig(thName);
@@ -57,7 +59,7 @@ public class Theatre implements IHandler {
 
 		//passo tutto a rythm
 		resp.getWriter().write(Rythm.render("theatre.html", config, req.getParameter("id"),
-				req.getParameter("title")));
+				req.getParameter("title"), freeSeats));
 	}
 
 
@@ -80,8 +82,8 @@ public class Theatre implements IHandler {
 
 		try {
 			//ricerco il file, anche se dovrebbe farlo qualcun'altro
-			file = new BufferedReader( new FileReader(new File("fileTest/"
-					+ "configTheatre/" + thName)));
+			file = new BufferedReader( new FileReader(new File("src/main/resources/"
+					+ "theatreConf/" + thName)));
 
 			//variabili temporanee
 			String row;

@@ -70,9 +70,11 @@ public class Cinema {
 	}
 
 
-	synchronized public void createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
+	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
 		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
 		PersistenceFacade.getInstance().addMovieShowing(s.getId(),s);
+		
+		return s.getId();
 	}
 
 	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
@@ -123,11 +125,37 @@ public class Cinema {
 		return allList;
 	}
 
-	public HashMap<Seat, Boolean> getSeatsForShowing (String idShowing) throws SQLException, IOException, SeatException {
+	public HashMap<Seat, Boolean> getAllSeatsForShowing (String idShowing) throws SQLException, IOException, SeatException {
 		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
+	}
+	
+	//restituisce solo i posti liberi per proiezione
+	public List<String> getFreeSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
+		List<String> freeSeats = new ArrayList<>();
+		
+		
+		HashMap<Seat,Boolean> tmp = this.getAllSeatsForShowing(idShowing);
+		
+		//crea la lista di posti liberi, che verranno poi controllati da applicazione web
+		for (Seat s: tmp.keySet()) {
+			if (tmp.get(s)) 
+				freeSeats.add(s.getPosition());
+		}
+		
+		return freeSeats;
+	}
+	
+	public List<MovieShowing> getMovieShowingList(String movie) throws IOException, SeatException, SQLException {
+		List<MovieShowing> showList = PersistenceFacade.getInstance().getMovieShowingList(movie);
+		return showList;
 	}
 
 	///// METODI DA IMPLEMENTARE ///////
+	
+	//restituisci la lista di tutti i teatri
+	public List<String> getTheatreList() {
+		return null;
+	}
 
 	//settare i posti scelti occupati, prima del pagamento (magari un timer?), ed eccezioni
 	public boolean setOccupedSeats (String idShowing, List<String> seats) {
@@ -139,10 +167,7 @@ public class Cinema {
 		return false;
 	}
 
-	public List<MovieShowing> getMovieShowingList(String movie) throws IOException, SeatException, SQLException {
-		List<MovieShowing> showList = PersistenceFacade.getInstance().getMovieShowingList(movie);
-		return showList;
-	}
+	
 
 
 	public static Cinema getCinema() {

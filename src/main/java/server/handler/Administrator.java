@@ -16,6 +16,7 @@ import server.domain.exception.SeatException;
 
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
+	
 
 	private Administrator() {
 	}
@@ -41,7 +42,8 @@ public class Administrator implements IHandler {
 
 		try {
 			resp.getWriter().write(Rythm.render("administrator.html",
-					categoryList, Cinema.getCinema().getMovieList()));
+					categoryList, Cinema.getCinema().getMovieList(),
+					Cinema.getCinema().getTheatreList()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,6 +58,7 @@ public class Administrator implements IHandler {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 
 		String message = "";
+		
 
 		/*
 		 * java reflection che richiama il metodo doAction ()

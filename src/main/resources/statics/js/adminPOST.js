@@ -148,3 +148,51 @@ $('#editMovie #movie').on('change', function() {
     }
   })
 });
+
+
+//password check
+$('.passDiv #home').on('click', function(e) {
+  window.location.href = "/home"
+});
+
+$('.passDiv input').on('keypress', function(e) {
+  if (e.which == 13) {
+    passCheck();
+  }
+});
+
+$('.passDiv #check').on('click', function(e) {
+  passCheck();
+});
+
+function passCheck() {
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "PassCheck",
+      passText: $('.passDiv input').val()
+    },
+    success: function(response) {
+      if (response == "true") {
+
+        // animazioni di entrata
+        $('#passInsert').animate({
+          "opacity": "0"
+        }, 300).css("visibility", "hidden")
+        $('#three').animate({
+          "opacity": "1"
+        }, 1000).css("visibility", "visible")
+        entered = true
+
+        //per il Menu$('.sideMenu').animate({
+        $('.sideMenu').animate({
+          "left": "0px"
+        }, 500);
+      }
+      if (response == "false") {
+        $('.passDiv p').text("Incorrect password. Try again")
+      }
+    }
+  })
+}

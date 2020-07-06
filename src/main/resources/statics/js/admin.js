@@ -1,7 +1,19 @@
 var backItem;
 var selectedItem;
+var entered = false
 
-$(window).on('load', sideMenuSwitch());
+$(window).on('load', function() {
+
+  $('.passDiv').animate({
+    "opacity": "1"
+  }, 700);
+
+  // selectedItem = '#introduzione';
+  //
+  // changeView();
+
+  sideMenuSwitch();
+});
 //ho levato window rezise per motivi di performance
 // e perche non funzionava....cercare un'implementazione migliore
 
@@ -34,7 +46,7 @@ function changeView() {
     $(backItem).css("border-bottom", "none");
   }
 
-  $(selectedItem).css("height", "auto");
+  $(selectedItem).css("height", "auto").slideDown(1000);
   $(selectedItem).css("border-bottom", "1px solid rgb(30,63,97)");
 
 }

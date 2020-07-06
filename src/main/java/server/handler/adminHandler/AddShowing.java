@@ -15,11 +15,13 @@ public class AddShowing {
 
 		String[] d = req.getParameter("date").split("/"); //lanciare eccezioni
 		String[] h = req.getParameter("hour").split(":");
+		
+		String id;
 
 		try {
 			double price = Double.parseDouble(req.getParameter("price"));
 
-			Cinema.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[2]),
+			id = Cinema.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[2]),
 					Integer.parseInt(d[1]), Integer.parseInt(d[0]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
 		}
 		catch (Exception e){
@@ -28,7 +30,7 @@ public class AddShowing {
 		}
 
 
-		return "Showing succefully added. Reload to see changes";
+		return "Showing succefully added with id: " +id+ ". Reload to see changes";
 
 	}
 }
