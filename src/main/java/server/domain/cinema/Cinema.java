@@ -10,6 +10,8 @@ import java.util.List;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.SimPaymentAdapter;
+import server.domain.shopCard.Item;
+import server.domain.shopCard.ShopCard;
 import server.domain.showing.MovieShowing;
 import server.domain.theatre.Seat;
 
@@ -25,12 +27,14 @@ import server.services.DB.TheatreMapper;
  */
 public class Cinema {
 	private SimPaymentAdapter payment;
+	private ShopCard shopCard;
 	private Quotes quotes = new Quotes();
 
 	private static Cinema istance = null;
 
 	private Cinema() {
 		payment= new SimPaymentAdapter();
+		shopCard = new ShopCard();
 	}
 
 	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException  {
@@ -170,6 +174,45 @@ public class Cinema {
 	}
 	
 	// METODI DI GESTIONE DELLO SHOPCARD //
+	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
+		MovieShowing sh = this.getMovieShowing(id);
+		
+		for (String seat: seats) {
+			this.shopCard.addItem(sh.getMovie(), sh.getDate().toString(), sh.getTheatreName(), seat, sh.getPrice(), id);
+		}
+	}
+	
+	public ShopCard getShopCard () {
+		return this.shopCard;
+	}
+	
+	//METODI NEL PAGAMENTO//
+	public double getDiscount(String code) {
+		
+		//controllo i buffer in shopcard (evito di usarlo due volte di seguito prima del pagamento)
+		if (this.shopCard.getCode().contains(code)) return -1;
+		
+		/*ricerca il ticket nel database, se lo trova, 
+		 * aggiorna lo shopcard e ritorna il valore, senno ritorna 0
+		 */
+		double discount = 4;
+		this.shopCard.addCode(code);
+		this.shopCard.changeTotal(discount);
+		
+		return 4;
+	}
+	
+	public void doPayment() {
+		this.removeBufferDiscount();
+		
+		//altro
+	}
+	
+	private void removeBufferDiscount() {
+		//metodi per rimuovere gli elementi dal database
+		
+		this.shopCard.getCode().clear();
+	}
 
 	
 

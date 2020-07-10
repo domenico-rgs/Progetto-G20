@@ -7,13 +7,15 @@ public class Item {
 	private double price;
 	private String theatreName;
 	private String seat;
+	private String idsh;
 	
-	public Item (String title, String date, String theatre, String seat, double price) {
+	public Item (String title, String date, String theatre, String seat, double price, String idsh) {
 		this.title = title;
 		this.date = date;
 		this.theatreName = theatre;
 		this.seat = seat;
 		this.price = price;
+		this.idsh = idsh;
 	}
 
 	public String getTitle() {
@@ -36,6 +38,9 @@ public class Item {
 		return seat;
 	}
 	
+	public String getIdsh() {
+		return this.getIdsh();
+	}
 	
 
 }

@@ -18,6 +18,12 @@
   height: auto;
 }
 
+#shopCart p {
+  text-align: center;
+  font-size: 130%;
+  color: black
+}
+
 #shopCart .shopItem {
   margin: 5px 0;
   width: 90%;
