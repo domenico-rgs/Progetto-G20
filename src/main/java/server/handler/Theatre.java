@@ -19,11 +19,8 @@ public class Theatre implements IHandler {
 
 	private static Theatre instance = null;
 
-	private List<String> selectedPos;
-
 
 	private Theatre() {
-		selectedPos = new ArrayList<>();
 	}
 
 
@@ -40,7 +37,6 @@ public class Theatre implements IHandler {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-		selectedPos.clear();
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config;
 		List<String> freeSeats;
@@ -68,7 +64,7 @@ public class Theatre implements IHandler {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		selectedPos.add(req.getParameter("seat"));
+		String [] seats = req.getParameter("seats").split("-");
 
 
 
@@ -113,10 +109,6 @@ public class Theatre implements IHandler {
 
 
 		return config;
-	}
-
-	public List<String> getSelectedSeat() {
-		return this.selectedPos;
 	}
 
 }

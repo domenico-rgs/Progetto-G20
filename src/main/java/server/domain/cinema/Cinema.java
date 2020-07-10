@@ -168,6 +168,8 @@ public class Cinema {
 	public boolean setFreeSeats (String idShowing, List<String> seats) {
 		return false;
 	}
+	
+	// METODI DI GESTIONE DELLO SHOPCARD //
 
 	
 

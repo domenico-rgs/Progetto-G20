@@ -17,17 +17,24 @@ $(".seatList .seat[value='true']").on('click', function() {
 
 $('#buyTicket').on('click', function() {
 
+  var seats
 
   $(".seatList .seat[select='true']").each(function() {
-    var ajax = $.ajax({
-      type: "POST",
-      url: "/theatre",
-      data: {
-        seat: $(this).attr("pos")
-      },
-      success: function() {
-        window.location.href = "/shopCard?" + $('#buyTicket').attr("value")
-      }
-    })
+
+    seats = seats + $(this).attr("pos") + "-"
   })
+
+
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/theatre",
+    data: {
+      seat: seats,
+      id: $('title').attr("idvalue")
+    },
+    success: function() {
+      window.location.href = "/shopCard"
+    }
+  })
+
 })
