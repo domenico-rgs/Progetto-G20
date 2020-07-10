@@ -83,7 +83,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
 			MovieShowing tmp = new MovieShowing(rs.getString(1), rs.getString(2), new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),
-					(Theatre) tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+					rs.getString(4),Double.parseDouble(rs.getString(5)));
 
 			this.showing.put(rs.getString(1),tmp);
 		}
@@ -99,7 +99,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		while (rs.next()){
 			//Correggere la visualizzazione dell'ora
 			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),
-					(Theatre) tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+					rs.getString(4),Double.parseDouble(rs.getString(5)));
 			updateCache(ms.getId(),ms);
 			showings.add(ms);
 		}

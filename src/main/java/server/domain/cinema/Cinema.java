@@ -71,7 +71,7 @@ public class Cinema {
 
 
 	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
-		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
+		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, theatre, price);
 		PersistenceFacade.getInstance().addMovieShowing(s.getId(),s);
 		
 		return s.getId();
@@ -153,8 +153,10 @@ public class Cinema {
 	///// METODI DA IMPLEMENTARE ///////
 	
 	//restituisci la lista di tutti i teatri
-	public List<String> getTheatreList() {
-		return null;
+	public List<String> getTheatreList() throws IOException, SeatException {
+		List<String> theatreList = new ArrayList<>();
+		theatreList.addAll(PersistenceFacade.getInstance().getAllTheatre().keySet());
+		return theatreList;
 	}
 
 	//settare i posti scelti occupati, prima del pagamento (magari un timer?), ed eccezioni

@@ -4,9 +4,15 @@ import java.time.LocalDateTime;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
+import server.domain.showing.MovieShowing;
 
 public class Main {
 	public static void main(String[] argv) throws Exception {
+		
+		//funzioni di testing
+		for (MovieShowing s: Cinema.getCinema().getMovieShowingList("Ritorno al futuro")) {
+			System.out.println(s);
+		}
 
 
 		ApplicationServer server = new ApplicationServer(8080, new CinemaServlet());
@@ -28,6 +34,9 @@ public class Main {
 //				Cinema.getCinema().createMovieShowing("Ritorno al futuro", LocalDateTime.of(2020, 8, 27, 20,00), "theatre3", 6.6);
 //				Cinema.getCinema().createMovieShowing("Ritorno al futuro", LocalDateTime.of(2020, 8, 27, 21,00), "theatre2", 5.6);
 		server.start();
+		
+		
+		
 
 
 	}

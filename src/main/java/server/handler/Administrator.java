@@ -41,6 +41,8 @@ public class Administrator implements IHandler {
 			categoryList.add(cat.toString());
 
 		try {
+			//il tempo di sistemare la vera lista di teatri
+			
 			resp.getWriter().write(Rythm.render("administrator.html",
 					categoryList, Cinema.getCinema().getMovieList(),
 					Cinema.getCinema().getTheatreList()));

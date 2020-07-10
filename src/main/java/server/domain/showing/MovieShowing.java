@@ -17,11 +17,12 @@ public class MovieShowing {
 	private String theatreName;
 	private String movie;
 
-	public MovieShowing(String id, String movie, LocalDateTime date, Theatre theatre, double price) {
+	public MovieShowing(String id, String movie, LocalDateTime date, String theatre, double price) {
 		this.id=id;
 		this.date=date;
 		this.price=price;
 		this.movie=movie;
+		this.theatreName = theatre;
 		//availability = new Availability(theatre.getSeatsList()); da rivedere
 	}
 

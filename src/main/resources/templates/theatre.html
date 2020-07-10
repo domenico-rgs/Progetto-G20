@@ -4,12 +4,10 @@ List<List<String>> config
   String id
   String title
   List<String> freeSeats
-
-    @// variabili che servono in locale
     int rowN
     int col
     String pos
-    String[] alfaphet = {"A", "B", "C", "D", "E", "F", "G"}
+    String[] alfaphet
     }
 
     <html>
@@ -44,7 +42,7 @@ List<List<String>> config
         <section id="three" class="wrapper align-center">
           <div class="inner">
 
-            <h1>Select your seat for @title showing</h1>
+            <h1>Select your seat for @title </h1>
 
             <h2>DISPLAY</h2>
             <div id='display'>
@@ -55,7 +53,7 @@ List<List<String>> config
               @for (List<String> row: config) {
                 <div class="seatRow">
 
-                  @{col = 1}
+                  @{col = 0}
                   @for(String seat: row) {
                   @{pos = alfaphet[rowN] + Integer.toString(col)}
                   <div pos="@pos" select='false' value='@(String.valueOf(freeSeats.contains(pos)))' class="seat">

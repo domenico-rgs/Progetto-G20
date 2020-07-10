@@ -57,6 +57,11 @@ public class PersistenceFacade {
 		return a.getAvailabilityList(OID_movieShowing);
 		//return ((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).getAvailabilityList(OID_movieShowing);
 	}
+	
+	//non era implementata
+	public Map<String, Theatre> getAllTheatre(){
+		return ((TheatreMapper)mapper.get(TheatreMapper.class)).getTheatres();
+	}
 
 	public void addTheatre(String OID, Theatre t) throws SQLException {
 		mapper.get(TheatreMapper.class).put(OID,t);

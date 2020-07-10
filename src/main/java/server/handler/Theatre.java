@@ -58,8 +58,10 @@ public class Theatre implements IHandler {
 		}
 
 		//passo tutto a rythm
+		String[] alfaphet = {"A", "B", "C", "D", "E", "F", "G"};
+		
 		resp.getWriter().write(Rythm.render("theatre.html", config, req.getParameter("id"),
-				req.getParameter("title"), freeSeats));
+				req.getParameter("title"), freeSeats, 0, 0, "none", alfaphet));
 	}
 
 
@@ -83,7 +85,7 @@ public class Theatre implements IHandler {
 		try {
 			//ricerco il file, anche se dovrebbe farlo qualcun'altro
 			file = new BufferedReader( new FileReader(new File("src/main/resources/"
-					+ "theatreConf/" + thName)));
+					+ "theatreConf/" + thName+ ".txt")));
 
 			//variabili temporanee
 			String row;

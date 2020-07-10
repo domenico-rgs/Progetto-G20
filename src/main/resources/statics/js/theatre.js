@@ -24,7 +24,7 @@ $('#buyTicket').on('click', function() {
       url: "/theatre",
       data: {
         seat: $(this).attr("pos")
-      }
+      },
       success: function() {
         window.location.href = "/shopCard?" + $('#buyTicket').attr("value")
       }
