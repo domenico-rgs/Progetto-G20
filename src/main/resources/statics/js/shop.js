@@ -62,9 +62,11 @@ function buyFunc() {
     },
     success: function(response) {
       if (response == "true") {
-        $('#total #buyMess').text("Acquistato con successo")
+        alert(response)
+        $('.ticketConfirm').css("visibility", "hidden")
       }
       if (response == "false") {
+        alert(response)
         $('#total #buyMess').text("Acquistato non completato, verifica i dati")
       } else {
         $('#total #buyMess').text(response)

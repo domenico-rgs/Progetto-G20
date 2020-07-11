@@ -1,8 +1,45 @@
+/* conferma di acquisto */
+.ticketConfirm {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 1000px;
+  background-color: grey;
+  z-index: 100000;
+  visibility: hidden;
+}
+
+.ticketConfirm #ticket {
+  position: relative;
+  border-radius: 20px;
+  margin: 4em auto;
+  padding: 10px;
+  width: 60%;
+  height: 200px;
+  background-color: white;
+  opacity: 1;
+  text-align: center;
+}
+
+.ticketConfirm #ticket p {
+  text-align: center;
+  margin: 20px auto;
+  padding: 0;
+  color: black;
+  font-size: 120%;
+}
+
+.ticketConfirm #ticket a {
+  color: blue;
+  font-size: 120%;
+  outline: none;
+}
+
 /*  Pagine correnti */
 .pageContainer {
   width: 90%;
   height: 10%;
-  margin: 10px auto 4em auto;
+  margin: 0 auto 2em auto;
 }
 
 .pageContainer li {
@@ -21,6 +58,10 @@
 }
 
 /* blocco centrale che contiene i sotto menu */
+#three {
+  position: relative;
+}
+
 #three .inner div {
   display: inline-block;
   vertical-align: middle;
@@ -31,7 +72,7 @@
 }
 
 #three #shopInner {
-  padding: 50px 0;
+  padding: 20px 0;
 }
 
 .content {
@@ -49,6 +90,7 @@
 .content>div.active {
   visibility: visible;
   height: auto;
+  min-height: 200px
 }
 
 /* div dei bottoni */
@@ -185,7 +227,7 @@
 /* Confirm div */
 #total>div {
   display: inline-block;
-  margin: 0 10px;
+  margin: -4em 10px 0 20px;
   vertical-align: center;
 }
 

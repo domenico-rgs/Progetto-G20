@@ -199,12 +199,16 @@ public class Cinema {
 		}
 		PersistenceFacade.getInstance().addTickets(ticketList);
 		
-		for (Ticket t: ticketList) {
-			this.shopCard.addTotal(t.getTotalPrice());;
-		}
 		
 		return ticketList;
 		
+	}
+	
+	public void calculateTotal() {
+		//dkfkaf
+		double price = 0;
+		
+		this.shopCard.addTotal(price);
 	}
 	
 	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException {

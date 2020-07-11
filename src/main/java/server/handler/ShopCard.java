@@ -31,6 +31,8 @@ public class ShopCard implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		Cinema.getCinema().calculateTotal();
 
 
 		try {
@@ -70,6 +72,7 @@ public class ShopCard implements IHandler {
 				resp.getWriter().write(String.valueOf(value));
 			}
 			catch (Exception e) {
+				e.printStackTrace();
 				resp.getWriter().write("Impossible buy this ticket");
 			}
 			
