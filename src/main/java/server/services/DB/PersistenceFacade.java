@@ -25,6 +25,7 @@ public class PersistenceFacade {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public static PersistenceFacade getInstance() throws IOException, SeatException{
 		if(instance == null)
@@ -67,11 +68,15 @@ public class PersistenceFacade {
 
 	//non era implementata
 	public Map<String, Theatre> getAllTheatre(){
-		return ((TheatreMapper)mapper.get(TheatreMapper.class)).getTheatres();
+		return ((TheatresMapper)mapper.get(TheatresMapper.class)).getTheatres();
 	}
 
 	public void addTheatre(String OID, Theatre t) throws SQLException {
-		mapper.get(TheatreMapper.class).put(OID,t);
+		mapper.get(TheatresMapper.class).put(OID,t);
+	}
+	
+	public void deleteExpiredShowing(long millis) throws SQLException {
+		 ((ShowingsMapper)mapper.get(ShowingsMapper.class)).deleteExpiredShowing(millis);
 	}
 	
 	public void addTickets(List<Ticket> ticketList) throws SQLException {
