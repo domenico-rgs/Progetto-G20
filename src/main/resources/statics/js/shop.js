@@ -55,15 +55,21 @@ function buyFunc() {
     url: "/shopCard",
     data: {
       action: "buy",
-      codeCard: ,
-      date: ,
-      cvv: ,
-      email:
-
+      codeCard: $('.cardNumber input').val(),
+      date: $('.cardNumber input:first-child').val() + "/" + $('.cardNumber input:last-child').val(),
+      cvv: $('.cvv input').val(),
+      email: $('.insertEmail input').val()
     },
     success: function(response) {
-
-      //reindirizza da qualche parte
+      if (response == "true") {
+        $('#total #buyMess').text("Acquistato con successo")
+      }
+      if (response == "false") {
+        $('#total #buyMess').text("Acquistato non completato, verifica i dati")
+      } else {
+        $('#total #buyMess').text(response)
+      }
+      //faccio qualcosa
     }
   })
 }

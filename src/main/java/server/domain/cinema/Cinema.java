@@ -206,6 +206,10 @@ public class Cinema {
 		}
 		PersistenceFacade.getInstance().addTickets(ticketList);
 		
+		for (Ticket t: ticketList) {
+			this.shopCard.addTotal(t.getTotalPrice());;
+		}
+		
 		return ticketList;
 		
 	}

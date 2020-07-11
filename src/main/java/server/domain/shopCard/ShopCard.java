@@ -18,13 +18,13 @@ public class ShopCard {
 		total = 0;
 	}
 
-	public void addItem(String idSh, String[] seats) {
-
-		//implementare eliminazione dupblicati
-	}
 
 	public void addCode(String code) {
 		this.bufferDiscountCode.add(code);
+	}
+	
+	public void addTotal(double price) {
+		this.total += price;
 	}
 
 	public void refresh() {
@@ -59,10 +59,6 @@ public class ShopCard {
 
 	public List<String> getBufferDiscountCode() {
 		return bufferDiscountCode;
-	}
-
-	public void setTotal(double total) {
-		this.total = total;
 	}
 
 	
