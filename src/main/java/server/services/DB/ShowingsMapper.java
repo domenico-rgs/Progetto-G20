@@ -14,15 +14,15 @@ import java.util.Map;
 import server.domain.showing.MovieShowing;
 
 public class ShowingsMapper extends AbstractPersistenceMapper {
-	private TheatreMapper tm;
+	private TheatresMapper tm;
 	private AvailabilityMapper am;
 	private Map<String, MovieShowing> showing;
 
-	public ShowingsMapper(TheatreMapper tm, AvailabilityMapper am) throws SQLException {
+	public ShowingsMapper(TheatresMapper tm, AvailabilityMapper am) throws SQLException {
 		super("MOVIESHOWINGS");
 		this.showing = new HashMap<>();
-		this.tm=tm;
 		this.am=am;
+		this.tm=tm;
 		setUp();
 	}
 
@@ -82,7 +82,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
 			MovieShowing tmp = new MovieShowing(rs.getString(1), rs.getString(2), new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),
-					rs.getString(4),Double.parseDouble(rs.getString(5)));
+					(server.domain.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
 
 			this.showing.put(rs.getString(1),tmp);
 		}
@@ -97,15 +97,21 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
 			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime(),
-					rs.getString(4),Double.parseDouble(rs.getString(5)));
+					(server.domain.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
 			updateCache(ms.getId(),ms);
 			showings.add(ms);
 		}
 		return showings;
 	}
 
-
-	public synchronized Map<String, MovieShowing> getShowings() {
+	
+	protected void deleteExpiredShowing(long millis) throws SQLException {
+		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE dateShow< ?");
+		stm.setObject(1, new java.sql.Timestamp(millis));
+		stm.execute();
+	}
+	
+	protected synchronized Map<String, MovieShowing> getShowings() {
 		return showing;
 	}
 }

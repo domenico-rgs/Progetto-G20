@@ -20,7 +20,7 @@ import server.services.DB.MoviesMapper;
 import server.services.DB.OIDCreator;
 import server.services.DB.PersistenceFacade;
 import server.services.DB.ShowingsMapper;
-import server.services.DB.TheatreMapper;
+import server.services.DB.TheatresMapper;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -75,7 +75,7 @@ public class Cinema {
 
 
 	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
-		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, theatre, price);
+		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
 		PersistenceFacade.getInstance().addMovieShowing(s.getId(),s);
 
 		return s.getId();
@@ -91,13 +91,6 @@ public class Cinema {
 		//TO-DO
 	}
 
-	//AGGIUNGERE LA VENDITA DEI TICKET
-
-	public boolean pay(double money, String seat, String movieShowing) {
-		return false;
-		//TO-DO
-	}
-
 	public List<String> getQuotes() {
 		return quotes.getQuotes();
 	}
@@ -107,7 +100,7 @@ public class Cinema {
 	}
 
 	public Theatre getTheatre(String name) throws SQLException, IOException, SeatException{
-		return (Theatre) PersistenceFacade.getInstance().get(name, TheatreMapper.class);
+		return (Theatre) PersistenceFacade.getInstance().get(name, TheatresMapper.class);
 	}
 
 	public List<String> getMovieList() throws IOException, SeatException {
