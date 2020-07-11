@@ -1,143 +1,151 @@
 <!DOCTYPE HTML>
 @args {
-List<server.domain.showing.MovieShowing> showing
-  String[] seats
-  double price
-  }
-  <html>
+server.domain.showing.MovieShowing showing
+String[] seats
+double price
+}
+<html>
 
-    <head>
-      <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-      <title>Shop Card</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href="../statics/css/main.css" />
-      <link rel="stylesheet" href="../statics/css/shop.css">
+  <head>
+    <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+    <title>Shop Card</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../statics/css/main.css" />
+    <link rel="stylesheet" href="../statics/css/shop.css">
 
 
-    </head>
+  </head>
 
-    <body>
+  <body>
 
-      <!-- Header with navbar-->
-      <header id="header">
-        <div class="inner">
-          <nav id="nav">
-            <a href="/">Home</a>
-          </nav>
-          <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+    <!-- Header with navbar-->
+    <header id="header">
+      <div class="inner">
+        <nav id="nav">
+          <a href="/">Home</a>
+        </nav>
+        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+      </div>
+    </header>
+
+
+
+
+    <!-- Three -->
+    <section id="three" class="wrapper align-center">
+      <div id="shopInner" class="inner">
+
+        <!-- pagine correnti -->
+        <div class="pageContainer">
+          <li value="1" text="order">1. Order details</li>
+          <li value="2" text="email">2. Insert email</li>
+          <li value="3" text="paycard">3. Card details</li>
+          <li value="4" text="total">4. Confirm Order</li>
         </div>
-      </header>
 
+        <!-- ORder div-->
+        <div class="content">
 
+          <div id="order">
 
+            @if(seats.length == 0) {
+            <p>Shop Card is empty</p>
+            }
 
-      <!-- Three -->
-      <section id="three" class="wrapper align-center">
-        <div id="shopInner" class="inner">
+            @for (String seat: seats) {
+            <div class="shopItem">
+              <div>
+                <img src="../statics/images/icon/ticket.png" alt="">
+              </div>
 
-          <!-- pagine correnti -->
-          <div class="pageContainer">
-            <li value="1" text="order">1. Order details</li>
-            <li value="2" text="email">2. Insert email</li>
-            <li value="3" text="paycard">3. Card details</li>
-            <li value="4" text="total">4. Confirm Order</li>
+              <div>
+                <h1>@showing.getMovie()</h1>
+                <h2>@showing.getDateToString()</h2>
+              </div>
+
+              <div>
+                <h1>problem</h1>
+                <h2>@(showing.getTheatreName() +" - Seat: "+ seat)</h2>
+              </div>
+            </div>
+            }
           </div>
 
-          <!-- ORder div-->
-          <div class="content">
+          <!-- Email div -->
+          <div id="email">
+            <p>Please inset the email to send the order details and the pdf order summary</p>
 
-            <div id="order">
-
-              @if(seats.lenght == 0) {
-              <p>Shop Card is empty</p>
-              }
-
-              @for (String seat: seats) {
-              <div class="shopItem">
-                <div>
-                  <img src="../statics/images/icon/ticket.png" alt="">
-                </div>
-
-                <div>
-                  <h1>@showing.getTitle()</h1>
-                  <h2>@showing.getDate()</h2>
-                </div>
-
-                <div>
-                  <h1>@.getPrice()</h1>
-                  <h2>@(item.getTheatreName() +" - Seat: "+ item.getSeat())</h2>
-                </div>
-              </div>
-              }
+            <div class="insertEmail">
+              <label for="">Email: </label>
+              <input>
             </div>
-
-            <!-- Email div -->
-            <div id="email">
-              <p>Please inset the email to send the order details and the pdf order summary</p>
-
-              <div class="insertEmail">
-                <label for="">Email: </label>
-                <input>
-              </div>
-            </div>
-
-            <!-- Card div -->
-            <div id="paycard">
-              <div class="cardNumber">
-                <label for="">Card Number: </label>
-                <input maxlength="16">
-              </div>
-
-              <div class="deadline">
-                <label for="">Deadline: </label>
-                <input maxlength="2">
-                <p> / </p>
-                <input maxlength="2">
-              </div>
-
-              <div class="cvv">
-                <label for="">CVV: </label>
-                <input maxlength="3">
-              </div>
-            </div>
-
-            <!-- confirm div -->
-            <div id="total">
-              <div class="card">
-                <h1>Total: </h1>
-                <p id="totalPrice" price='@price'>@price Euro</p>
-                <p id="discount"></p>
-
-                <button type="button">ACQUISTA</button>
-              </div>
-
-              <div class="sconto">
-                <h1>Discount code: </h1>
-                <input placeholder="Code">
-                <button type="button">APPLY</button>
-                <p>message</p>
-              </div>
-
-              <p id="buyMess">acquistato</p>
-            </div>
-
           </div>
 
-          <div class="buttons">
-            <button name="back">Back</button>
-            <button name="continue">Continue</button>
+          <!-- Card div -->
+          <div id="paycard">
+            <div class="cardNumber">
+              <label for="">Card Number: </label>
+              <input maxlength="16">
+            </div>
+
+            <div class="deadline">
+              <label for="">Deadline: </label>
+              <input maxlength="2">
+              <p> / </p>
+              <input maxlength="2">
+            </div>
+
+            <div class="cvv">
+              <label for="">CVV: </label>
+              <input maxlength="3">
+            </div>
           </div>
 
+          <!-- confirm div -->
+          <div id="total">
+            <div class="card">
+              <h1>Total: </h1>
+              <p id="totalPrice" price='@price'>@price Euro</p>
+              <p id="discount"></p>
+
+              <button type="button">ACQUISTA</button>
+            </div>
+
+            <div class="sconto">
+              <h1>Discount code: </h1>
+              <input placeholder="Code">
+              <button type="button">APPLY</button>
+              <p>message</p>
+            </div>
+
+            <p id="buyMess">acquistato</p>
+          </div>
 
         </div>
-      </section>
 
-      <!-- Scripts -->
-      <script src="../statics/js/jquery.min.js"></script>
-      <script src="../statics/js/shop.js"></script>
+        <div class="buttons">
+          <button name="back">Back</button>
+          <button name="continue">Continue</button>
+        </div>
 
-      <!-- nostri script -->
-    </body>
 
-  </html>
+      </div>
+    </section>
+
+    <section class="ticketConfirm">
+      <div id="ticket">
+        <p> Ticket successfully bought.</p>
+        <p>Thank you and good vision!</p>
+        <a href="/">Home</a>
+      </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="../statics/js/jquery.min.js"></script>
+    <script src="../statics/js/shop.js"></script>
+
+    <!-- nostri script -->
+  </body>
+
+</html>

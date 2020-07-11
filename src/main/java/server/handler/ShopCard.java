@@ -31,9 +31,12 @@ public class ShopCard implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 
 
 		try {
+			Cinema.getCinema().setShopCardTotal();
 			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(req.getParameter("id")),
 					Cinema.getCinema().getShopCard().getSeats(),
 					Cinema.getCinema().getShopCard().getTotal()));
@@ -64,15 +67,16 @@ public class ShopCard implements IHandler {
 			String date = req.getParameter("date");
 			String cvv = req.getParameter("cvv");
 			String email = req.getParameter("email");
-			
+
 			try {
 				boolean value = Cinema.getCinema().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
 			}
 			catch (Exception e) {
+				e.printStackTrace();
 				resp.getWriter().write("Impossible buy this ticket");
 			}
-			
+
 			break;
 		}
 

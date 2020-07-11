@@ -7,11 +7,9 @@ package server.domain.theatre;
 public class Seat {
 	private String position;
 	private final double addition = 0.0; //aggiunta in percentuale
-	private TypeSeat type;
 
 	public Seat(String seatId) {
 		position = seatId;
-		type=getType();
 	}
 
 	public String getPosition() {

@@ -43,9 +43,10 @@ public class Theatre implements IHandler {
 		List<String> freeSeats = new ArrayList<>();
 
 		try {
-			for (Seat s: Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"))) {
-				freeSeats.add(s.toString());
-			}
+			for (Seat s: Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id")))
+				freeSeats.add(s.getPosition());
+
+			System.out.println(freeSeats);
 
 			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 

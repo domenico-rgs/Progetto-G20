@@ -13,7 +13,7 @@ public class ServiceFactory {
 			paymentSimulator = new SimPaymentAdapter();
 		return paymentSimulator;
 	}
-	
+
 	public static ServiceFactory getInstance() {
 		if (istance == null)
 			istance = new ServiceFactory();
