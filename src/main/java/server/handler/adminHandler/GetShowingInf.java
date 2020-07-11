@@ -15,7 +15,7 @@ public class GetShowingInf {
 		try {
 			MovieShowing m = Cinema.getCinema().getMovieShowing(id);
 			String inf =  m.getTheatreName() + "@" + m.getPrice() +
-					"@" + m.getDate();
+					"@" + m.getDateToString();
 			return inf;
 		}
 		catch (SQLException e) {

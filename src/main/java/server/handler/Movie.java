@@ -2,6 +2,8 @@ package server.handler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -32,7 +34,6 @@ public class Movie implements IHandler {
 		try {
 			server.domain.cinema.Movie movie = Cinema.getCinema().getMovie(req.getParameter("title"));
 			List<MovieShowing> showingsForMovie = Cinema.getCinema().getMovieShowingList(movie.getTitle());
-
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showingsForMovie));
 
 		} catch (SQLException | IOException | SeatException e) {

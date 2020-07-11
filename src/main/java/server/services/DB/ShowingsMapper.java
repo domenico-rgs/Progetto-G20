@@ -96,9 +96,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		stm.setString(1, OID_movie);
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
-			//Correggere la visualizzazione dell'ora
-			System.out.println(new Timestamp(rs.getDate(3).getTime()).toLocalDateTime().getHour());
-			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),
+			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime(),
 					rs.getString(4),Double.parseDouble(rs.getString(5)));
 			updateCache(ms.getId(),ms);
 			showings.add(ms);

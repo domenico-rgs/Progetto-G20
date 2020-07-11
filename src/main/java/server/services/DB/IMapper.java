@@ -7,7 +7,7 @@ import java.sql.SQLException;
  */
 public interface IMapper {
 
-	String DB_URL = "jdbc:mysql://web-lnx243.ergonet.host:3306/progG20?serverTimezone=UTC";
+	String DB_URL = "jdbc:mysql://web-lnx243.ergonet.host:3306/progG20?serverTimezone=Europe/Rome";
 	String USER = "cinemaG20";
 	String PASSWORD = "progettoG20";
 

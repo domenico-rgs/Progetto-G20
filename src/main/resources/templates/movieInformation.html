@@ -2,7 +2,7 @@
 @args {
 server.domain.cinema.Movie movie
 List<server.domain.showing.MovieShowing> showings
-  }
+}
   <html>
 
     <head>
@@ -44,8 +44,8 @@ List<server.domain.showing.MovieShowing> showings
           <div class="description">
             <h5 id='title'><strong>@movie.getTitle()</strong></h5>
             <p>@movie.getPlot()</p>
-            <h6><strong>Durata: </strong> @movie.getDuration()</h6>
-            <h6><strong>Genere: </strong> @movie.getCategory().toString().toLowerCase()</h6>
+            <h6><strong>Duration: </strong> @movie.getDuration()</h6>
+            <h6><strong>Genre: </strong> @movie.getCategory().toString().toLowerCase()</h6>
 
           </div>
 
@@ -57,16 +57,16 @@ List<server.domain.showing.MovieShowing> showings
             <div class="showingTable">
               <table>
                 <tr>
-                  <th> <strong>Data e orario</strong></th>
-                  <th> <strong>Sala proiezione</strong> </th>
-                  <th> <strong>Prezzo</strong></th>
+                  <th> <strong>Date and time</strong></th>
+                  <th> <strong>Theatre</strong> </th>
+                  <th> <strong>Price</strong></th>
                   <th></th>
                 </tr>
 
                 @for (server.domain.showing.MovieShowing show: showings) {
 
                 <tr>
-                  <td>@show.getDate().toString()</td>
+                  <td>@show.getDateToString()</td>
                   <td>@show.getTheatreName()</td>
                   <td>@show.getPrice()</td>
                   <td> <button id="buy" value='@show.getId()'>BUY</button> </td>

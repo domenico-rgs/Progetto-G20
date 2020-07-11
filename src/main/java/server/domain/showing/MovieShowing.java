@@ -1,6 +1,7 @@
 package server.domain.showing;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import server.domain.exception.SeatException;
 
@@ -41,6 +42,10 @@ public class MovieShowing {
 	public LocalDateTime getDate() {
 		return date;
 	}
+	
+	public String getDateToString() {
+		return date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm"));
+	}
 
 	public String getMovie() {
 		return movie;
@@ -64,7 +69,7 @@ public class MovieShowing {
 
 	@Override
 	public String toString() {
-		return  date.toString() + ", theatre: " + theatreName;
+		return  date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm")).toString() + ", theatre: " + theatreName;
 	}
 
 
