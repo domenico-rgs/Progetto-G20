@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import server.MailSender;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.ServiceFactory;
-import server.domain.payment.SimPaymentAdapter;
 import server.domain.shopCard.ShopCard;
 import server.domain.showing.MovieShowing;
 import server.domain.theatre.Seat;
@@ -26,14 +27,12 @@ import server.services.DB.TheatresMapper;
  * Facade controller for managing reservations in a cinema
  */
 public class Cinema {
-	private SimPaymentAdapter payment;
 	private ShopCard shopCard;
 	private Quotes quotes = new Quotes();
 
 	private static Cinema istance = null;
 
 	private Cinema() {
-		payment= new SimPaymentAdapter();
 		shopCard = new ShopCard();
 	}
 
@@ -161,8 +160,8 @@ public class Cinema {
 	// METODI DI GESTIONE DELLO SHOPCARD //
 	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
 
-		this.shopCard.setIdSh(id);	
-		
+		this.shopCard.setIdSh(id);
+
 		this.shopCard.setSeats(seats);
 	}
 
@@ -189,45 +188,53 @@ public class Cinema {
 	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing m = getMovieShowing(showingID);
 		List<Seat> sList = getFreeSeatsForShowing(showingID);
-		
+
 		List<Ticket> ticketList = new ArrayList<>();
-		for(String s : seats) {
-			for(Seat sL : sList) {
+		for(String s : seats)
+			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
 					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, showingID, (m.getPrice()+sL.getAddition()*100)));
-			}
-		}
 		PersistenceFacade.getInstance().addTickets(ticketList);
-		
+
 		for (Ticket t: ticketList) {
 			this.shopCard.addTotal(t.getTotalPrice());;
 		}
-		
+
 		return ticketList;
-		
+
 	}
-	
-	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException {
-		double total = 0.0;
+
+	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException {
 		List<Ticket> ticketList = createTickets(this.shopCard.getIdSh(), this.shopCard.getSeats());
-		for(Ticket t : ticketList) {
-			total += t.getTotalPrice();
-		}
-		
-		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(total, codeCard, date, cvc);
+
+
+		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, ticketList);
 			return true;
-		}else {
+		} else
 			return false;
-		}
 	}
 
-//	private void removeBufferDiscount() {
-//		//metodi per rimuovere gli elementi dal database
-//
-//		this.shopCard.getCode().clear();
-//	}
+	private double getTotalPriceTickets(List<Ticket> ticketList) {
+		double total = 0.0;
+
+		for(Ticket t : ticketList)
+			total += t.getTotalPrice();
+		return total;
+	}
+
+	public double getTotalPriceTickets(String showingID, String[] seats) throws SQLException, IOException, SeatException {
+		double total = 0.0;
+		MovieShowing m = getMovieShowing(showingID);
+		List<Seat> sList = getFreeSeatsForShowing(showingID);
+
+		for(String s : seats)
+			for(Seat sL : sList)
+				if(sL.getPosition().equalsIgnoreCase(s))
+					total+=m.getPrice()+sL.getAddition()*100;
+		return total;
+	}
 
 	public static Cinema getCinema() {
 		if (istance == null)
