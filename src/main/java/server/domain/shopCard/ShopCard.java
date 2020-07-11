@@ -8,22 +8,19 @@ public class ShopCard {
 	/* uno shop card per cinema
 	 * si potrebbe implementare uno shopcard per connessine, ma richiede tempo (ne vale la pena?)
 	 */
-
-	private List<Item> items;
+	String[] seats;
+	String idSh;
 	private List<String> bufferDiscountCode;
 	private double total;
 
 	public ShopCard () {
-		items = new ArrayList<>();
 		bufferDiscountCode = new ArrayList<>();
 		total = 0;
 	}
 
-	public void addItem(String title, String date, String theatre, String seat, double price,String idsh) {
+	public void addItem(String idSh, String[] seats) {
 
 		//implementare eliminazione dupblicati
-		items.add(new Item(title,date,theatre,seat,price,idsh));
-		total += price;
 	}
 
 	public void addCode(String code) {
@@ -31,7 +28,6 @@ public class ShopCard {
 	}
 
 	public void refresh() {
-		items.clear();
 		bufferDiscountCode.clear();
 		total = 0;
 	}
@@ -45,11 +41,31 @@ public class ShopCard {
 		this.total -= discount;
 	}
 
-	public List<Item> getItems() {
-		return this.items;
+	public String[] getSeats() {
+		return seats;
 	}
 
-	public List<String> getCode() {
-		return this.bufferDiscountCode;
+	public void setSeats(String[] seats) {
+		this.seats = seats;
 	}
+
+	public String getIdSh() {
+		return idSh;
+	}
+
+	public void setIdSh(String idSh) {
+		this.idSh = idSh;
+	}
+
+	public List<String> getBufferDiscountCode() {
+		return bufferDiscountCode;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	
 }
+
+	

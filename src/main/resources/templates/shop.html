@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 @args {
-List<server.domain.shopCard.Item> itemList
+List<server.domain.showing.MovieShowing> showing
+  String[] seats
   double price
   }
   <html>
@@ -48,23 +49,23 @@ List<server.domain.shopCard.Item> itemList
 
             <div id="order">
 
-              @if(itemList.size() == 0) {
+              @if(seats.lenght == 0) {
               <p>Shop Card is empty</p>
               }
 
-              @for (server.domain.shopCard.Item item: itemList) {
+              @for (String seat: seats) {
               <div class="shopItem">
                 <div>
                   <img src="../statics/images/icon/ticket.png" alt="">
                 </div>
 
                 <div>
-                  <h1>@item.getTitle()</h1>
-                  <h2>@item.getDate()</h2>
+                  <h1>@showing.getTitle()</h1>
+                  <h2>@showing.getDate()</h2>
                 </div>
 
                 <div>
-                  <h1>@item.getPrice()</h1>
+                  <h1>@.getPrice()</h1>
                   <h2>@(item.getTheatreName() +" - Seat: "+ item.getSeat())</h2>
                 </div>
               </div>
