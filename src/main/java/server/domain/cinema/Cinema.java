@@ -10,11 +10,9 @@ import java.util.List;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.SimPaymentAdapter;
-import server.domain.shopCard.Item;
 import server.domain.shopCard.ShopCard;
 import server.domain.showing.MovieShowing;
 import server.domain.theatre.Seat;
-
 import server.domain.theatre.Theatre;
 import server.services.DB.MoviesMapper;
 import server.services.DB.OIDCreator;
@@ -77,7 +75,7 @@ public class Cinema {
 	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
 		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, theatre, price);
 		PersistenceFacade.getInstance().addMovieShowing(s.getId(),s);
-		
+
 		return s.getId();
 	}
 
@@ -132,30 +130,29 @@ public class Cinema {
 	public HashMap<Seat, Boolean> getAllSeatsForShowing (String idShowing) throws SQLException, IOException, SeatException {
 		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
 	}
-	
+
 	//restituisce solo i posti liberi per proiezione
 	public List<String> getFreeSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		List<String> freeSeats = new ArrayList<>();
-		
+
 		HashMap<Seat,Boolean> tmp = PersistenceFacade.getInstance().getAvailableSeatsList(idShowing);
-		
-		for(Seat s : tmp.keySet()) {
+
+		for(Seat s : tmp.keySet())
 			freeSeats.add(s.getPosition());
-		}
 		return freeSeats;
 	}
-	
+
 	public List<MovieShowing> getMovieShowingList(String movie) throws IOException, SeatException, SQLException {
 		List<MovieShowing> showList = PersistenceFacade.getInstance().getMovieShowingList(movie);
 		return showList;
 	}
-	
+
 	public List<String> getTheatreList() throws IOException, SeatException {
 		List<String> theatreList = new ArrayList<>();
 		theatreList.addAll(PersistenceFacade.getInstance().getAllTheatre().keySet());
 		return theatreList;
 	}
-	
+
 	///// METODI DA IMPLEMENTARE ///////
 	//settare i posti scelti occupati, prima del pagamento (magari un timer?), ed eccezioni
 	public boolean setOccupedSeats (String idShowing, List<String> seats) {
@@ -166,45 +163,44 @@ public class Cinema {
 	public boolean setFreeSeats (String idShowing, List<String> seats) {
 		return false;
 	}
-	
+
 	// METODI DI GESTIONE DELLO SHOPCARD //
 	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing sh = this.getMovieShowing(id);
-		
-		for (String seat: seats) {
+
+		for (String seat: seats)
 			this.shopCard.addItem(sh.getMovie(), sh.getDate().toString(), sh.getTheatreName(), seat, sh.getPrice(), id);
-		}
 	}
-	
+
 	public ShopCard getShopCard () {
 		return this.shopCard;
 	}
-	
+
 	//METODI NEL PAGAMENTO//
 	public double getDiscount(String code) {
-		
+
 		//controllo i buffer in shopcard (evito di usarlo due volte di seguito prima del pagamento)
 		if (this.shopCard.getCode().contains(code)) return -1;
-		
-		/*ricerca il ticket nel database, se lo trova, 
+
+		/*ricerca il ticket nel database, se lo trova,
 		 * aggiorna lo shopcard e ritorna il valore, senno ritorna 0
 		 */
 		double discount = 4;
 		this.shopCard.addCode(code);
 		this.shopCard.changeTotal(discount);
-		
+
 		return 4;
 	}
-	
+
 	public void doPayment() {
 		this.removeBufferDiscount();
-		
+
 		//altro
 	}
-	
+
 	private void removeBufferDiscount() {
 		//metodi per rimuovere gli elementi dal database
-		
+
 		this.shopCard.getCode().clear();
 	}
 

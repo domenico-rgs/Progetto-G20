@@ -3,7 +3,6 @@ package server.domain.showing;
 import java.time.LocalDateTime;
 
 import server.domain.exception.SeatException;
-import server.domain.theatre.Theatre;
 
 /**
  * This class is referred to a movie projection in the cinema.
@@ -55,7 +54,7 @@ public class MovieShowing {
 		return price;
 	}
 
-		public String getId() {
+	public String getId() {
 		return id;
 	}
 

@@ -1,14 +1,14 @@
 package server.domain.shopCard;
 
 public class Item {
-	
+
 	private String title;
 	private String date;
 	private double price;
 	private String theatreName;
 	private String seat;
 	private String idsh;
-	
+
 	public Item (String title, String date, String theatre, String seat, double price, String idsh) {
 		this.title = title;
 		this.date = date;
@@ -37,10 +37,10 @@ public class Item {
 	public String getSeat() {
 		return seat;
 	}
-	
+
 	public String getIdsh() {
 		return this.getIdsh();
 	}
-	
+
 
 }

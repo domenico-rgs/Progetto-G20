@@ -1,6 +1,7 @@
 package server.handler.adminHandler;
 
 import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
@@ -15,7 +16,7 @@ public class AddShowing {
 
 		String[] d = req.getParameter("date").split("/"); //lanciare eccezioni
 		String[] h = req.getParameter("hour").split(":");
-		
+
 		String id;
 
 		try {

@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import server.domain.showing.MovieShowing;
-import server.domain.theatre.Theatre;
 
 public class ShowingsMapper extends AbstractPersistenceMapper {
 	private TheatreMapper tm;

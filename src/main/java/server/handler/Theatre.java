@@ -43,7 +43,7 @@ public class Theatre implements IHandler {
 
 		try {
 			freeSeats = Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"));
-			
+
 			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 
 			config = this.readConfig(thName);
@@ -55,7 +55,7 @@ public class Theatre implements IHandler {
 
 		//passo tutto a rythm
 		String[] alfaphet = {"A", "B", "C", "D", "E", "F", "G"};
-		
+
 		resp.getWriter().write(Rythm.render("theatre.html", config, req.getParameter("id"),
 				req.getParameter("title"), freeSeats, 0, 0, "none", alfaphet));
 	}
@@ -72,7 +72,7 @@ public class Theatre implements IHandler {
 		catch (Exception e) {
 			resp.getWriter().write("Error");
 		}
-		
+
 
 	}
 

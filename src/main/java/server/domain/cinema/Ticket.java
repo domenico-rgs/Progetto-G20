@@ -30,7 +30,7 @@ public class Ticket {
 		this.seat=seat;
 		this.totalPrice=totalPrice;
 	}
-	
+
 	public File genPDF() throws FileNotFoundException {
 		PdfWriter writer = new PdfWriter("Ticket"+code, new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
 		PdfDocument pdfDocument = new PdfDocument(writer);
@@ -38,7 +38,7 @@ public class Ticket {
 		Document document = new Document(pdfDocument);
 		document.add(new Paragraph(toString()));
 		document.close();
-		
+
 		return new File("Ticket"+code);
 	}
 

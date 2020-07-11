@@ -9,7 +9,7 @@ body {
   height: 100%;
   background-color: rgb(171, 171, 171, 0.5);
   z-index: 100000;
-  visibility: hidden;
+  visibility: visible;
   opacity: 1;
 }
 

@@ -14,10 +14,10 @@ public class AddMovie{
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
 		String cover;
-		
+
 		if (req.getParameter("cover").contentEquals(""))
 			cover = "../statics/images/cover/unavaliable.jpg";
-		else 
+		else
 			cover = "../statics/images/cover/" + req.getParameter("cover");
 
 
