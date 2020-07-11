@@ -64,9 +64,15 @@ public class Theatre implements IHandler {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String [] seats = req.getParameter("seats").split("-");
+		String [] seats = req.getParameter("seat").split("-");
 
-
+		try {
+			Cinema.getCinema().updateShopCardItems(req.getParameter("id"), seats);
+		}
+		catch (Exception e) {
+			resp.getWriter().write("Error");
+		}
+		
 
 	}
 

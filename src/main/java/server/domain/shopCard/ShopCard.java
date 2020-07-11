@@ -10,37 +10,46 @@ public class ShopCard {
 	 */
 	
 	private List<Item> items;
+	private List<String> bufferDiscountCode;
 	private double total;
 	
 	public ShopCard () {
 		items = new ArrayList<>();
+		bufferDiscountCode = new ArrayList<>();
 		total = 0;
 	}
 	
-	public void addItem(String title, String date, String theatre, String seat, double price) {
-		items.add(new Item(title,date,theatre,seat,price));
+	public void addItem(String title, String date, String theatre, String seat, double price,String idsh) {
+		
+		//implementare eliminazione dupblicati
+		items.add(new Item(title,date,theatre,seat,price,idsh));
+		total += price;
+	}
+	
+	public void addCode(String code) {
+		this.bufferDiscountCode.add(code);
 	}
 	
 	public void refresh() {
 		items.clear();
+		bufferDiscountCode.clear();
+		total = 0;
 	}
-	
-	public void getItems() {
-		
-	}
+
 	
 	public double getTotal() {
-		this.total = 0;
-		
-		for(Item i: items) {
-			total += i.getPrice();
-		}
-		
 		return this.total;
 	}
 	
-	public void changeTotal(double diff) {
-		this.total -= diff;
+	public void changeTotal(double discount) {
+		this.total -= discount;
+	}
+	
+	public List<Item> getItems() {
+		return this.items;
 	}
 
+	public List<String> getCode() {
+		return this.bufferDiscountCode;
+	}
 }

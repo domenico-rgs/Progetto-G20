@@ -1,15 +1,13 @@
 <!DOCTYPE HTML>
 @args {
-server.domain.showing.MovieShowing show
-String id
-String title
-List<String> seats
+List<server.domain.shopCard.Item> itemList
+  double price
   }
   <html>
 
     <head>
       <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-      <title idS='@id' titleM='@title'>Shop Card</title>
+      <title>Shop Card</title>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="../statics/css/main.css" />
@@ -25,8 +23,6 @@ List<String> seats
         <div class="inner">
           <nav id="nav">
             <a href="/">Home</a>
-            <a href="/faq">FAQ</a>
-            <a href="/home#footer">About</a>
           </nav>
           <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
         </div>
@@ -42,11 +38,11 @@ List<String> seats
           <!-- elementi nel carrello -->
           <div id="shopCart">
 
-            @if(seats.size() == 0) {
+            @if(itemList.size() == 0) {
             <p>Shop Card is empty</p>
             }
 
-            @for (String seat: seats) {
+            @for (server.domain.shopCard.Item item: itemList) {
 
 
             <div class="shopItem">
@@ -55,13 +51,13 @@ List<String> seats
               </div>
 
               <div>
-                <h1>@title</h1>
-                <h2>@show.getDate()</h2>
+                <h1>@item.getTitle()</h1>
+                <h2>@item.getDate()</h2>
               </div>
 
               <div>
-                <h1>@show.getPrice()</h1>
-                <h2>@(show.getTheatreName() +"; Seat: "+ seat)</h2>
+                <h1>@item.getPrice()</h1>
+                <h2>@(item.getTheatreName() +" - Seat: "+ item.getSeat())</h2>
               </div>
             </div>
             }
@@ -73,9 +69,9 @@ List<String> seats
           <div id="total">
 
             <div class="card">
-              <h1>Totale: </h1>
-              <p>200 Euro</p>
-              <p>Sconti: -30 Euro</p>
+              <h1>Total: </h1>
+              <p id="totalPrice" price='@price'>@price Euro</p>
+              <p id="discount"></p>
 
               <button type="button">ACQUISTA</button>
             </div>

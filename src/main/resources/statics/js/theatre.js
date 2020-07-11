@@ -17,7 +17,7 @@ $(".seatList .seat[value='true']").on('click', function() {
 
 $('#buyTicket').on('click', function() {
 
-  var seats
+  var seats = ""
 
   $(".seatList .seat[select='true']").each(function() {
 
@@ -32,7 +32,13 @@ $('#buyTicket').on('click', function() {
       seat: seats,
       id: $('title').attr("idvalue")
     },
-    success: function() {
+    success: function(resp) {
+
+      if (resp == "Error") {
+        $('#error').text("Error with server")
+        return
+      }
+
       window.location.href = "/shopCard"
     }
   })
