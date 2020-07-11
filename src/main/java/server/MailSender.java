@@ -71,7 +71,7 @@ public class MailSender {
 
 			DataSource source = new FileDataSource(t.genPDF());
 			messageBodyPart2.setDataHandler(new DataHandler(source));
-			messageBodyPart2.setFileName(t.getCode());
+			messageBodyPart2.setFileName(t.getCode()+".pdf");
 			multipart.addBodyPart(messageBodyPart2);
 		}
 
