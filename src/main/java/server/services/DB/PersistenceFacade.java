@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import server.domain.cinema.Movie;
+import server.domain.cinema.Ticket;
 import server.domain.exception.SeatException;
 import server.domain.showing.MovieShowing;
 import server.domain.theatre.Seat;
@@ -71,6 +72,12 @@ public class PersistenceFacade {
 
 	public void addTheatre(String OID, Theatre t) throws SQLException {
 		mapper.get(TheatreMapper.class).put(OID,t);
+	}
+	
+	public void addTickets(List<Ticket> ticketList) throws SQLException {
+		for(Ticket t : ticketList) {
+			mapper.get(TicketsMapper.class).put(t.getCode(), t);
+		}
 	}
 
 	public Object get(String OID, Class klass) throws SQLException{

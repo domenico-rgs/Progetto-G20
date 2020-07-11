@@ -1,5 +1,7 @@
 package server.services.DB;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 public class OIDCreator {
 	private static OIDCreator instance = null;
 	private int showingCode;
@@ -30,5 +32,9 @@ public class OIDCreator {
 			this.showingCode=0;
 		else
 			this.showingCode = Integer.parseInt(showingCode.substring(1));
+	}
+	
+	public synchronized String getTicketCode() {
+		return RandomStringUtils.randomAlphanumeric(8);
 	}
 }

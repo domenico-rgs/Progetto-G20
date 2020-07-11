@@ -2,7 +2,6 @@ package server.domain.cinema;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.UUID;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfVersion;
@@ -21,10 +20,8 @@ public class Ticket {
 	private String showing;
 	private double totalPrice;
 
-	public Ticket() {}
-
-	public Ticket(String movie, String seat, String showing, double totalPrice) {
-		code = UUID.randomUUID().toString();
+	public Ticket(String code, String movie, String seat, String showing, double totalPrice) {
+		this.code = code;
 		this.movie=movie;
 		this.showing=showing;
 		this.seat=seat;
@@ -40,6 +37,22 @@ public class Ticket {
 		document.close();
 
 		return new File("Ticket"+code);
+	}
+
+	public String getMovie() {
+		return movie;
+	}
+
+	public String getSeat() {
+		return seat;
+	}
+
+	public String getShowing() {
+		return showing;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
 	}
 
 	@Override
