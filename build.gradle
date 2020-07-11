@@ -18,6 +18,16 @@ dependencies {
     //this is for mysql java connector
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
     runtime "mysql:mysql-connector-java:8.0.20"
+    
+    //this is for pdf
+	compile 'com.itextpdf:io:7.0.2'
+	compile 'com.itextpdf:kernel:7.0.2'
+	compile 'com.itextpdf:layout:7.0.2'
+	
+	// https://mvnrepository.com/artifact/javax.mail/mail
+	compile group: 'javax.mail', name: 'mail', version: '1.4.1'
+	
+    
 }
 
 application {

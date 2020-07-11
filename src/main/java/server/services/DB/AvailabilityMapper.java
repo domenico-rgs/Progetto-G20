@@ -57,4 +57,16 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 
 		return availabilityList;
 	}
+
+	public HashMap<Seat, Boolean> getAvailableSeatsList(String OID_movieShowing) throws SQLException {
+		HashMap<Seat, Boolean> availabilityList = new HashMap<>();
+
+		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE BINARY showingID = ? and available= 1" );
+		pstm.setString(1, OID_movieShowing);
+		ResultSet rs = pstm.executeQuery();
+		while (rs.next())
+			availabilityList.put(new Seat(rs.getString(2)), rs.getBoolean(3));
+
+		return availabilityList;
+	}
 }

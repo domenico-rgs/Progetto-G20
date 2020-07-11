@@ -1,6 +1,15 @@
 package server.domain.cinema;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.UUID;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfVersion;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.WriterProperties;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 
 /**
  * This class identifies a bought ticket to show a movie.
@@ -20,6 +29,17 @@ public class Ticket {
 		this.showing=showing;
 		this.seat=seat;
 		this.totalPrice=totalPrice;
+	}
+	
+	public File genPDF() throws FileNotFoundException {
+		PdfWriter writer = new PdfWriter("Ticket"+code, new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
+		PdfDocument pdfDocument = new PdfDocument(writer);
+		pdfDocument.setTagged();
+		Document document = new Document(pdfDocument);
+		document.add(new Paragraph(toString()));
+		document.close();
+		
+		return new File("Ticket"+code);
 	}
 
 	@Override

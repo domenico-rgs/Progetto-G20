@@ -133,15 +133,11 @@ public class Cinema {
 	public List<String> getFreeSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		List<String> freeSeats = new ArrayList<>();
 		
+		HashMap<Seat,Boolean> tmp = PersistenceFacade.getInstance().getAvailableSeatsList(idShowing);
 		
-		HashMap<Seat,Boolean> tmp = this.getAllSeatsForShowing(idShowing);
-		
-		//crea la lista di posti liberi, che verranno poi controllati da applicazione web
-		for (Seat s: tmp.keySet()) {
-			if (tmp.get(s)) 
-				freeSeats.add(s.getPosition());
+		for(Seat s : tmp.keySet()) {
+			freeSeats.add(s.getPosition());
 		}
-		
 		return freeSeats;
 	}
 	
@@ -149,16 +145,14 @@ public class Cinema {
 		List<MovieShowing> showList = PersistenceFacade.getInstance().getMovieShowingList(movie);
 		return showList;
 	}
-
-	///// METODI DA IMPLEMENTARE ///////
 	
-	//restituisci la lista di tutti i teatri
 	public List<String> getTheatreList() throws IOException, SeatException {
 		List<String> theatreList = new ArrayList<>();
 		theatreList.addAll(PersistenceFacade.getInstance().getAllTheatre().keySet());
 		return theatreList;
 	}
-
+	
+	///// METODI DA IMPLEMENTARE ///////
 	//settare i posti scelti occupati, prima del pagamento (magari un timer?), ed eccezioni
 	public boolean setOccupedSeats (String idShowing, List<String> seats) {
 		return false;
@@ -170,10 +164,6 @@ public class Cinema {
 	}
 	
 	// METODI DI GESTIONE DELLO SHOPCARD //
-
-	
-
-
 	public static Cinema getCinema() {
 		if (istance == null)
 			istance = new Cinema();
