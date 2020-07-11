@@ -1,9 +1,9 @@
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS THEATRE;
+DROP TABLE IF EXISTS THEATRES;
 DROP TABLE IF EXISTS SEATS;
 DROP TABLE IF EXISTS AVAILABILITY;
--- DROP TABLE IF EXISTS ticket;
+DROP TABLE IF EXISTS TICKETS;
 DROP TABLE IF EXISTS MOVIESHOWINGS;
 DROP TABLE IF EXISTS MOVIES;
 
@@ -15,7 +15,7 @@ CREATE TABLE MOVIES
 		category CHAR(20));
 	
      
-CREATE TABLE THEATRE
+CREATE TABLE THEATRES
         (theatreName CHAR(10),
          filePath VARCHAR(100),
          
@@ -43,12 +43,10 @@ CREATE TABLE AVAILABILITY
 
 	  PRIMARY KEY (showingID, pos));
 
-/*
-CREATE TABLE ticket
-        (ticketCode CHAR(4) PRIMARY KEY,
-         totalPrice DECIMAL (4,2) NOT NULL,
-         occupiedSeat CHAR(4) NOT NULL,
-		 theatre CHAR(10),
 
-         FOREIGN KEY (occupiedSeat, theatre) REFERENCES occupiedSeat(pos, theatre));
-*/
+CREATE TABLE TICKETS
+        (ticketCode CHAR(16) PRIMARY KEY,
+         showingID CHAR (4) NOT NULL,
+         occupiedSeat CHAR(4) NOT NULL,
+		 totalPrice DOUBLE NOT NULL);
+

@@ -12,14 +12,14 @@ import server.domain.exception.SeatException;
 import server.domain.theatre.Theatre;
 
 
-public class TheatreMapper extends AbstractPersistenceMapper {
-	private Map<String, Theatre> theatre;
+public class TheatresMapper extends AbstractPersistenceMapper {
+	private Map<String, Theatre> theatres;
 	private SeatsMapper sm ;
 
-	public TheatreMapper(SeatsMapper sm) throws SQLException, IOException, SeatException {
-		super("THEATRE");
+	public TheatresMapper(SeatsMapper sm) throws SQLException, IOException, SeatException {
+		super("THEATRES");
 		this.sm=sm;
-		this.theatre = new HashMap<>();
+		this.theatres = new HashMap<>();
 		setUp();
 	}
 
@@ -30,15 +30,15 @@ public class TheatreMapper extends AbstractPersistenceMapper {
 
 	@Override
 	protected Object getObjectFromCache(String OID) {
-		if(this.theatre.containsKey(OID))
-			return this.theatre.get(OID);
+		if(this.theatres.containsKey(OID))
+			return this.theatres.get(OID);
 		return null;
 	}
 
 	@Override
 	protected void updateCache(String OID,Object obj) {
-		this.theatre.remove(OID);
-		this.theatre.put(OID,(Theatre)obj);
+		this.theatres.remove(OID);
+		this.theatres.put(OID,(Theatre)obj);
 	}
 
 
@@ -69,12 +69,12 @@ public class TheatreMapper extends AbstractPersistenceMapper {
 			Theatre tmp = new Theatre(rs.getString(1));
 			tmp.setSeatsList(sm.getSeatsList(tmp.getTheatreName()));
 
-			this.theatre.put(rs.getString(1),tmp);
+			this.theatres.put(rs.getString(1),tmp);
 		}
 	}
 
 
 	public synchronized Map<String, Theatre> getTheatres() {
-		return theatre;
+		return theatres;
 	}
 }

@@ -31,8 +31,7 @@ dependencies {
 	compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.8.0-beta4'
 	
 	// https://mvnrepository.com/artifact/javax.mail/mail
-	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
-	
+	compile group: 'javax.mail', name: 'mail', version: '1.4.7'	
 }
 
 application {

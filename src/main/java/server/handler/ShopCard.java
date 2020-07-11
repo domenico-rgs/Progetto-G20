@@ -34,9 +34,9 @@ public class ShopCard implements IHandler {
 
 
 		try {
-			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getShopCard().getItems(),
+			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(req.getParameter("id")),
+					Cinema.getCinema().getShopCard().getSeats(),
 					Cinema.getCinema().getShopCard().getTotal()));
-			//per ora faccio cosi, si può implementare meglio
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -60,6 +60,19 @@ public class ShopCard implements IHandler {
 			resp.getWriter().write(String.valueOf(discount));
 
 		case "buy":
+			String codeCard = req.getParameter("codeCard");
+			String date = req.getParameter("date");
+			String cvv = req.getParameter("cvv");
+			String email = req.getParameter("email");
+			
+			try {
+				boolean value = Cinema.getCinema().buyTicket(codeCard, date, cvv, email);
+				resp.getWriter().write(String.valueOf(value));
+			}
+			catch (Exception e) {
+				resp.getWriter().write("Impossible buy this ticket");
+			}
+			
 			break;
 		}
 

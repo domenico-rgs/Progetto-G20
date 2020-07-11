@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.domain.theatre.Seat;
 
 public class Theatre implements IHandler {
 
@@ -39,10 +40,12 @@ public class Theatre implements IHandler {
 
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config;
-		List<String> freeSeats;
+		List<String> freeSeats = new ArrayList<>();
 
 		try {
-			freeSeats = Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"));
+			for (Seat s: Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"))) {
+				freeSeats.add(s.toString());
+			}
 
 			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 

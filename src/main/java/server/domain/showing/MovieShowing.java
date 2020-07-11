@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import server.domain.exception.SeatException;
+import server.domain.theatre.Theatre;
 
 /**
  * This class is referred to a movie projection in the cinema.
@@ -16,14 +17,15 @@ public class MovieShowing {
 	private double price;
 	private String theatreName;
 	private String movie;
+	
 
-	public MovieShowing(String id, String movie, LocalDateTime date, String theatre, double price) {
+	public MovieShowing(String id, String movie, LocalDateTime date, Theatre theatre, double price) {
 		this.id=id;
 		this.date=date;
 		this.price=price;
 		this.movie=movie;
-		this.theatreName = theatre;
-		//availability = new Availability(theatre.getSeatsList()); da rivedere
+		this.theatreName = theatre.getTheatreName();
+		availability = new Availability(theatre.getSeatsList()); //da rivedere per persistenza
 	}
 
 	public void editShowing(String theatre, double price) {
@@ -69,7 +71,7 @@ public class MovieShowing {
 
 	@Override
 	public String toString() {
-		return  date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm")).toString() + ", theatre: " + theatreName;
+		return  getDateToString() + ", theatre: " + theatreName;
 	}
 
 

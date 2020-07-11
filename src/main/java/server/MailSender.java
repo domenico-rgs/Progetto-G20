@@ -1,7 +1,8 @@
-package server.domain.cinema;
+package server;
 
 import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -19,10 +20,12 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import server.domain.cinema.Ticket;
+
 public class MailSender {
 
 	// Metodo che si occupa dell'invio effettivo della mail
-	public static void sendTicketMail(String recipient, Ticket[] ticket) throws FileNotFoundException {
+	public static void sendTicketMail(String recipient, List<Ticket> ticket) throws FileNotFoundException {
 		int port = 465; //porta 25 per non usare SSL
 
 		Properties props = new Properties();
