@@ -35,56 +35,97 @@ List<server.domain.shopCard.Item> itemList
       <section id="three" class="wrapper align-center">
         <div id="shopInner" class="inner">
 
-          <!-- elementi nel carrello -->
-          <div id="shopCart">
+          <!-- pagine correnti -->
+          <div class="pageContainer">
+            <li value="1" text="order">1. Order details</li>
+            <li value="2" text="email">2. Insert email</li>
+            <li value="3" text="paycard">3. Card details</li>
+            <li value="4" text="total">4. Confirm Order</li>
+          </div>
 
-            @if(itemList.size() == 0) {
-            <p>Shop Card is empty</p>
-            }
+          <!-- ORder div-->
+          <div class="content">
 
-            @for (server.domain.shopCard.Item item: itemList) {
+            <div id="order">
 
+              @if(itemList.size() == 0) {
+              <p>Shop Card is empty</p>
+              }
 
-            <div class="shopItem">
-              <div>
-                <img src="../statics/images/icon/ticket.png" alt="">
+              @for (server.domain.shopCard.Item item: itemList) {
+              <div class="shopItem">
+                <div>
+                  <img src="../statics/images/icon/ticket.png" alt="">
+                </div>
+
+                <div>
+                  <h1>@item.getTitle()</h1>
+                  <h2>@item.getDate()</h2>
+                </div>
+
+                <div>
+                  <h1>@item.getPrice()</h1>
+                  <h2>@(item.getTheatreName() +" - Seat: "+ item.getSeat())</h2>
+                </div>
               </div>
+              }
+            </div>
 
-              <div>
-                <h1>@item.getTitle()</h1>
-                <h2>@item.getDate()</h2>
-              </div>
+            <!-- Email div -->
+            <div id="email">
+              <p>Please inset the email to send the order details and the pdf order summary</p>
 
-              <div>
-                <h1>@item.getPrice()</h1>
-                <h2>@(item.getTheatreName() +" - Seat: "+ item.getSeat())</h2>
+              <div class="insertEmail">
+                <label for="">Email: </label>
+                <input>
               </div>
             </div>
-            }
 
+            <!-- Card div -->
+            <div id="paycard">
+              <div class="cardNumber">
+                <label for="">Card Number: </label>
+                <input maxlength="16">
+              </div>
+
+              <div class="deadline">
+                <label for="">Deadline: </label>
+                <input maxlength="2">
+                <p> / </p>
+                <input maxlength="2">
+              </div>
+
+              <div class="cvv">
+                <label for="">CVV: </label>
+                <input maxlength="3">
+              </div>
+            </div>
+
+            <!-- confirm div -->
+            <div id="total">
+              <div class="card">
+                <h1>Total: </h1>
+                <p id="totalPrice" price='@price'>@price Euro</p>
+                <p id="discount"></p>
+
+                <button type="button">ACQUISTA</button>
+              </div>
+
+              <div class="sconto">
+                <h1>Discount code: </h1>
+                <input placeholder="Code">
+                <button type="button">APPLY</button>
+                <p>message</p>
+              </div>
+            </div>
 
           </div>
 
-          <!-- totale spesa -->
-          <div id="total">
-
-            <div class="card">
-              <h1>Total: </h1>
-              <p id="totalPrice" price='@price'>@price Euro</p>
-              <p id="discount"></p>
-
-              <button type="button">ACQUISTA</button>
-            </div>
-
-            <div class="sconto">
-              <h1>Discount code: </h1>
-              <input placeholder="Code">
-              <button type="button">APPLY</button>
-              <p>message</p>
-            </div>
-
-
+          <div class="buttons">
+            <button name="back">Back</button>
+            <button name="continue">Continue</button>
           </div>
+
 
         </div>
       </section>

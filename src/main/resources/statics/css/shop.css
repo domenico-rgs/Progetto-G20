@@ -1,72 +1,198 @@
+/*  Pagine correnti */
+.pageContainer {
+  width: 90%;
+  height: 10%;
+  margin: 10px auto 4em auto;
+}
+
+.pageContainer li {
+  display: inline-block;
+  color: grey;
+  font-size: 130%;
+  padding: 0 1em;
+  margin: 0 2em;
+  transition: all 0s;
+}
+
+.pageContainer li.active {
+  border-bottom: 2px solid blue;
+  font-weight: bold;
+  color: blue;
+}
+
+/* blocco centrale che contiene i sotto menu */
 #three .inner div {
   display: inline-block;
   vertical-align: middle;
 }
 
+#three p {
+  padding: 0;
+}
+
 #three #shopInner {
-  padding-top: 50px;
-  min-height: 400px;
+  padding: 50px 0;
 }
 
-.inner #shopCart {
+.content {
+  width: 90%;
   height: auto;
-  width: 65%;
+  margin: 0 auto;
 }
 
-.inner #total {
-  width: 20%;
+.content>div {
+  width: 100%;
+  visibility: hidden;
+  height: 0;
+}
+
+.content>div.active {
+  visibility: visible;
   height: auto;
 }
 
-#shopCart p {
+/* div dei bottoni */
+.buttons {
+  margin: 20px auto;
+  width: 100%;
+  height: auto;
+}
+
+.buttons button {
+  width: 120px;
+  padding: 15px;
+  font-size: 110%;
+}
+
+.buttons button:first-child {
+  float: left;
+  margin-left: 3em;
+}
+
+.buttons button:last-child {
+  float: right;
+  margin-right: 3em;
+}
+
+/* Order div */
+#order p {
   text-align: center;
   font-size: 130%;
   color: black
 }
 
-#shopCart .shopItem {
+#order .shopItem {
   margin: 5px 0;
   width: 90%;
   height: 5em;
   border-bottom: 1px solid grey;
 }
 
-#shopCard .shopItem div {
+#order .shopItem div {
   display: inline-block;
   vertical-align: middle;
 }
 
-#shopCart .shopItem div:first-child {
+#order .shopItem div:first-child {
   float: left;
   height: inherit;
 }
 
-#shopCart .shopItem div:first-child img {
+#order .shopItem div:first-child img {
   height: 80%;
   width: inherit;
 }
 
-#shopCart .shopItem div:nth-of-type(2) {
+#order .shopItem div:nth-of-type(2) {
   float: left;
   margin-left: 20px;
 }
 
-#shopCart .shopItem div:last-child {
+#order .shopItem div:last-child {
   float: right;
 }
 
-#shopCart .shopItem h1, h2 {
+#order .shopItem h1, h2 {
   text-align: left;
   margin-bottom: 10px;
   font-size: 120%;
   color: black;
 }
 
+/* Email div */
+#email .insertEmail {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#email p {
+  color: black;
+  font-size: 120%;
+  text-align: center;
+}
+
+#email label, #paycard label {
+  font-size: 130%;
+  color: black;
+  margin-right: 1em;
+}
+
+#email input {
+  width: 40%;
+  border: none;
+  padding-left: 1em;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  outline: none;
+  font-size: 120%;
+  color: black;
+}
+
+/* card div */
+#paycard>div {
+  width: 100%;
+  margin: 10px auto;
+}
+
+#paycard input {
+  outline: none;
+  color: black;
+  font-size: 120%;
+}
+
+#paycard .cardNumber input {
+  width: 200px;
+}
+
+#paycard .deadline input {
+  width: 30px;
+}
+
+#paycard .deadline * {
+  display: inline-block;
+}
+
+#paycard .deadline p {
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+
+#paycard .cvv input {
+  width: 40px;
+}
+
+/* Confirm div */
+#total>div {
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: center;
+}
+
 #total .card {
   padding: 10px;
-  margin-bottom: 5px;
-  height: auto;
-  width: 100%;
+  height: 200px;
+  width: 20%;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -100,9 +226,8 @@
 
 #total .sconto {
   padding: 10px;
-  margin-top: 5px;
-  width: 100%;
-  height: auto;
+  width: 20%;
+  height: 200px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

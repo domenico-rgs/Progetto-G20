@@ -1,4 +1,10 @@
-//evitare problemi nel caso dal carrello tornassi indietro
+var page = 1
+var element
+var container
+
+window.onload = function() {
+  startPage()
+}
 
 $('#total .sconto button').on('click', function() {
   discoFunc()
@@ -56,3 +62,49 @@ function buyFunc() {
     }
   })
 }
+
+//getione delle pagine
+
+function setPageValue() {
+  element = "li[value='" + page + "']"
+}
+
+function setContainer() {
+  container = '#' + $(element).attr('text')
+}
+
+function startPage() {
+  setPageValue()
+  setContainer()
+  $(element).addClass('active')
+  $(container).addClass('active')
+}
+
+$('.buttons button[name="back"]').on('click', function() {
+  if (page == 1) {
+    return
+  }
+
+  $(element).removeClass('active')
+  $(container).removeClass('active')
+  page -= 1
+  setPageValue()
+  setContainer()
+  $(element).addClass('active')
+  $(container).addClass('active')
+
+})
+
+$('.buttons button[name="continue"]').on('click', function() {
+  if (page == 4) {
+    return
+  }
+
+  $(element).removeClass('active')
+  $(container).removeClass('active')
+  page += 1
+  setPageValue()
+  setContainer()
+  $(element).addClass('active')
+  $(container).addClass('active')
+})
