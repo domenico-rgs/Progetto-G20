@@ -55,6 +55,11 @@ function buyFunc() {
     url: "/shopCard",
     data: {
       action: "buy",
+      codeCard: ,
+      date: ,
+      cvv: ,
+      email:
+
     },
     success: function(response) {
 

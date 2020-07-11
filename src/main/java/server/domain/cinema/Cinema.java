@@ -167,10 +167,10 @@ public class Cinema {
 
 	// METODI DI GESTIONE DELLO SHOPCARD //
 	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
-		MovieShowing sh = this.getMovieShowing(id);
 
-		for (String seat: seats)
-			this.shopCard.addItem(sh.getMovie(), sh.getDate().toString(), sh.getTheatreName(), seat, sh.getPrice(), id);
+		this.shopCard.setIdSh(id);	
+		
+		this.shopCard.setSeats(seats);
 	}
 
 	public ShopCard getShopCard () {
@@ -181,7 +181,7 @@ public class Cinema {
 	public double getDiscount(String code) {
 
 		//controllo i buffer in shopcard (evito di usarlo due volte di seguito prima del pagamento)
-		if (this.shopCard.getCode().contains(code)) return -1;
+		//if (this.shopCard.getCode().contains(code)) return -1;
 
 		/*ricerca il ticket nel database, se lo trova,
 		 * aggiorna lo shopcard e ritorna il valore, senno ritorna 0
@@ -210,16 +210,16 @@ public class Cinema {
 		
 	}
 	
-	public boolean buyTicket(String showingID, String[] seats, String code, String date, String cvc, String recipient) throws SQLException, IOException, SeatException {
+	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException {
 		double total = 0.0;
-		List<Ticket> ticketList = createTickets(showingID, seats);
+		List<Ticket> ticketList = createTickets(this.shopCard.getIdSh(), this.shopCard.getSeats());
 		for(Ticket t : ticketList) {
 			total += t.getTotalPrice();
 		}
 		
-		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(total, code, date, cvc);
+		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(total, codeCard, date, cvc);
 		if(result) {
-			MailSender.sendTicketMail(recipient, ticketList);
+			MailSender.sendTicketMail(emailRecipient, ticketList);
 			return true;
 		}else {
 			return false;
