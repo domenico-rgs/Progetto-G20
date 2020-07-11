@@ -13,7 +13,7 @@ import server.domain.exception.SeatException;
 
 public class TicketsMapper extends AbstractPersistenceMapper {
 	private Map<String, Ticket> tickets;
-	
+
 	public TicketsMapper() throws SQLException, IOException, SeatException {
 		super("TICKETS");
 		this.tickets = new HashMap<>();
@@ -45,13 +45,13 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		updateCache(OID,t);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?,?)");
-		
+
 		pstm.setString(1,OID);
 		pstm.setString(2, t.getMovie());
 		pstm.setString(3,t.getShowing());
 		pstm.setString(4,t.getSeat());
 		pstm.setDouble(5,t.getTotalPrice());
-		
+
 		pstm.execute();
 	}
 
@@ -59,7 +59,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	public synchronized void updateTable(String OID, Object obj)throws SQLException {
 	}
 
-	protected void setUp() throws SQLException, IOException, SeatException {		
+	protected void setUp() throws SQLException, IOException, SeatException {
 		Statement stm = super.conn.createStatement();
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){

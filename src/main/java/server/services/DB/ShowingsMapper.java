@@ -104,13 +104,13 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		return showings;
 	}
 
-	
+
 	protected void deleteExpiredShowing(long millis) throws SQLException {
 		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE dateShow< ?");
 		stm.setObject(1, new java.sql.Timestamp(millis));
 		stm.execute();
 	}
-	
+
 	protected synchronized Map<String, MovieShowing> getShowings() {
 		return showing;
 	}

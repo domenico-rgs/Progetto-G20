@@ -17,7 +17,7 @@ public class MovieShowing {
 	private double price;
 	private String theatreName;
 	private String movie;
-	
+
 
 	public MovieShowing(String id, String movie, LocalDateTime date, Theatre theatre, double price) {
 		this.id=id;
@@ -44,7 +44,7 @@ public class MovieShowing {
 	public LocalDateTime getDate() {
 		return date;
 	}
-	
+
 	public String getDateToString() {
 		return date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm"));
 	}
@@ -73,6 +73,4 @@ public class MovieShowing {
 	public String toString() {
 		return  getDateToString() + ", theatre: " + theatreName;
 	}
-
-
 }

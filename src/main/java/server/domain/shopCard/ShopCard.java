@@ -22,7 +22,7 @@ public class ShopCard {
 	public void addCode(String code) {
 		this.bufferDiscountCode.add(code);
 	}
-	
+
 	public void addTotal(double price) {
 		this.total += price;
 	}
@@ -61,7 +61,7 @@ public class ShopCard {
 		return bufferDiscountCode;
 	}
 
-	
+
 }
 
-	
+

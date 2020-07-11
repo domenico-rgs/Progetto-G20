@@ -66,7 +66,7 @@ public class ShopCard implements IHandler {
 			String date = req.getParameter("date");
 			String cvv = req.getParameter("cvv");
 			String email = req.getParameter("email");
-			
+
 			try {
 				boolean value = Cinema.getCinema().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
@@ -75,7 +75,7 @@ public class ShopCard implements IHandler {
 				e.printStackTrace();
 				resp.getWriter().write("Impossible buy this ticket");
 			}
-			
+
 			break;
 		}
 
