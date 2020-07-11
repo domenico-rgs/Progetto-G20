@@ -32,10 +32,11 @@ public class ShopCard implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Cinema.getCinema().calculateTotal();
+		
 
 
 		try {
+			Cinema.getCinema().setShopCardTotal();
 			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(req.getParameter("id")),
 					Cinema.getCinema().getShopCard().getSeats(),
 					Cinema.getCinema().getShopCard().getTotal()));

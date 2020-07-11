@@ -206,14 +206,6 @@ public class Cinema {
 
 	}
 
-	
-	public void calculateTotal() {
-		//dkfkaf
-		double price = 0;
-		
-		this.shopCard.addTotal(price);
-	}
-	
 
 	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException {
 
@@ -236,16 +228,17 @@ public class Cinema {
 		return total;
 	}
 
-	public double getTotalPriceTickets(String showingID, String[] seats) throws SQLException, IOException, SeatException {
+	public void setShopCardTotal() throws SQLException, IOException, SeatException {
 		double total = 0.0;
-		MovieShowing m = getMovieShowing(showingID);
-		List<Seat> sList = getFreeSeatsForShowing(showingID);
+		MovieShowing m = getMovieShowing(this.shopCard.getIdSh());
+		List<Seat> sList = getFreeSeatsForShowing(this.shopCard.getIdSh());
 
-		for(String s : seats)
+		for(String s : this.shopCard.getSeats())
 			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
 					total+=m.getPrice()+sL.getAddition()*100;
-		return total;
+		
+		this.shopCard.addTotal(total);;
 	}
 
 	public static Cinema getCinema() {

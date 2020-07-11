@@ -28,7 +28,7 @@ public class MailSender {
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.user", "indirizzo@cinemaG20.it"); //mittente
+		props.put("mail.smtp.user", "progettog20@gmail.com"); //mittente
 		props.put("mail.smtp.host", "smtp.gmail.com"); //host
 		props.put("mail.smtp.port", port);
 
@@ -54,7 +54,7 @@ public class MailSender {
 		// header del messaggio
 		msg.setSubject("Here are the tickets you purchased from CinemaG20");
 		msg.setSentDate(new Date());
-		msg.setFrom(new InternetAddress("indirizzo@cinemaG20.it"));
+		msg.setFrom(new InternetAddress("progettog20@gmail.com"));
 
 		// destinatario
 		msg.addRecipient(Message.RecipientType.TO,
@@ -79,7 +79,7 @@ public class MailSender {
 		msg.setContent(multipart);
 
 		Transport transport = session.getTransport("smtps"); //("smtp") per non usare SSL
-		transport.connect("smtp.gmail.com", "indirizzo@cinemaG20.it", "password"); //correggere parametri
+		transport.connect("smtp.gmail.com", "progettog20@gmail.com", "ViaAdolfoFerrata5"); //correggere parametri
 		transport.sendMessage(msg, msg.getAllRecipients());
 		transport.close();
 	}
