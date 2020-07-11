@@ -80,7 +80,28 @@ public class Cinema {
 		return s.getId();
 	}
 	
-	synchronized private controlOverlapping() {
+	
+	
+	//da verificare
+	synchronized private boolean controlOverlapping() {
+		//get prenotazione
+		//get film
+		//orario prenotazione convertito in secondi + durata film convertito in secondi
+		LocalDateTime date = LocalDateTime.of(2020, 7, 22, 18, 00, 01);   // da sostituire con la data che ricavo dal database
+		ZonedDateTime zoneDate = date.atZone(ZoneId.of("Europe/Rome"));
+		long millisDate1 = zoneDate.toInstant().toEpochMilli();
+		int minutiFilm = 200;    // da sostituire con il getduration del film
+		millisDateFilm1 = TimeUnit.MINUTES.toMillis(minutiFilm);
+		long dateEnd = long(millisDate1 + millisDateFilm1); 
+		//orario inizio -----> millisDateFilm1    orario fine ----> dateEnd
+		//orario prenotazione casuale 121212313123
+		long casual = 12144212;
+		//ciclo for
+		if(casual>= millisDateFilm1 && casual <= dateEnd) {
+			return false;
+		}
+		//fuori dal ciclo
+		return true;
 		
 	}
 
