@@ -102,24 +102,31 @@ public class Cinema {
 	
 	
 	//da verificare
-	synchronized private boolean controlOverlapping() {
+	synchronized private boolean controlOverlapping(MovieShowing showing) throws SQLException, IOException, SeatException {
 		//get prenotazione
 		//get film
 		//orario prenotazione convertito in secondi + durata film convertito in secondi
+		
+		long millisDate1, millisDateFilm1, dateEnd;
+		
 		LocalDateTime date = LocalDateTime.of(2020, 7, 22, 18, 00, 01);   // da sostituire con la data che ricavo dal database
-		ZonedDateTime zoneDate = date.atZone(ZoneId.of("Europe/Rome"));
-		long millisDate1 = zoneDate.toInstant().toEpochMilli();
-		int minutiFilm = 200;    // da sostituire con il getduration del film
-		long millisDateFilm1 = TimeUnit.MINUTES.toMillis(minutiFilm);
-		long dateEnd = (millisDate1 + millisDateFilm1); 
+		
+		millisDate1 = showing.getDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		
+		int filmTime = getMovie(showing.getMovie()).getDuration();    // da sostituire con il getduration del film
+		millisDateFilm1 = TimeUnit.MINUTES.toMillis(filmTime);
+		dateEnd = (millisDate1 + millisDateFilm1); 
 		//orario inizio -----> millisDateFilm1    orario fine ----> dateEnd
 		//orario prenotazione casuale 121212313123
-		long casual = 12144212;
-		//ciclo for
-		if(casual>= millisDateFilm1 && casual <= dateEnd) {
-			return false;
+		//long casual = 12144212;
+		
+		/*
+		for() {
+			if(casual>= millisDateFilm1 && casual <= dateEnd) {
+				return false;
+			}
 		}
-		//fuori dal ciclo
+		*/
 		return true;
 		
 	}
@@ -245,7 +252,7 @@ public class Cinema {
 		} else
 			return false;
 	}
-
+	
 	private double getTotalPriceTickets(List<Ticket> ticketList) {
 		double total = 0.0;
 
