@@ -5,9 +5,7 @@ import java.util.List;
 
 public class ShopCard {
 
-	/* uno shop card per cinema
-	 * si potrebbe implementare uno shopcard per connessine, ma richiede tempo (ne vale la pena?)
-	 */
+	/*shop card per aquisto singolo, si resetta ogni volta */
 	String[] seats;
 	String idSh;
 	private List<String> bufferDiscountCode;
@@ -16,6 +14,7 @@ public class ShopCard {
 	public ShopCard () {
 		bufferDiscountCode = new ArrayList<>();
 		total = 0;
+		idSh = null;
 	}
 
 
@@ -30,11 +29,17 @@ public class ShopCard {
 	public void refresh() {
 		bufferDiscountCode.clear();
 		total = 0;
+		idSh = null;
+		seats = null;
 	}
 
 
 	public double getTotal() {
 		return this.total;
+	}
+	
+	public void setZeroTotal() {
+		total = 0;
 	}
 
 	public void changeTotal(double discount) {

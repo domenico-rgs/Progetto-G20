@@ -33,7 +33,8 @@ function sideMenuSwitch() {
     }, 500);
   }
 
-  selectedItem = '#introduzione';
+  selectedItem = '#general';
+  $('.sideMenu .menu ul li:first-child').addClass('active')
 
   changeView();
 

@@ -122,3 +122,13 @@ h1 {
   -o-transition: all 0.35s ease 0.15s;
   transition: all 0.35s ease 0.15s;
 }
+
+.accordion-item ul, li {
+  color: black;
+  font-size: 100%;
+}
+
+.accordion-item .content p {
+  color: black !important;
+  font-size: 110%;
+}

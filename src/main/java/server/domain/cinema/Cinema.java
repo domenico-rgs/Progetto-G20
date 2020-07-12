@@ -5,9 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.mail.MessagingException;
 
@@ -32,6 +35,7 @@ import server.services.DB.PersistenceFacade;
 import server.services.DB.ShowingsMapper;
 import server.services.DB.TheatresMapper;
 import server.services.DB.TicketsMapper;
+import server.domain.cinema.*;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -107,8 +111,8 @@ public class Cinema {
 		ZonedDateTime zoneDate = date.atZone(ZoneId.of("Europe/Rome"));
 		long millisDate1 = zoneDate.toInstant().toEpochMilli();
 		int minutiFilm = 200;    // da sostituire con il getduration del film
-		millisDateFilm1 = TimeUnit.MINUTES.toMillis(minutiFilm);
-		long dateEnd = long(millisDate1 + millisDateFilm1); 
+		long millisDateFilm1 = TimeUnit.MINUTES.toMillis(minutiFilm);
+		long dateEnd = (millisDate1 + millisDateFilm1); 
 		//orario inizio -----> millisDateFilm1    orario fine ----> dateEnd
 		//orario prenotazione casuale 121212313123
 		long casual = 12144212;
@@ -280,6 +284,9 @@ public class Cinema {
 	}
 
 	public void setShopCardTotal() throws SQLException, IOException, SeatException {
+		//resetto il carrello
+		this.shopCard.setZeroTotal();
+		
 		double total = 0.0;
 		MovieShowing m = getMovieShowing(this.shopCard.getIdSh());
 		List<Seat> sList = getFreeSeatsForShowing(this.shopCard.getIdSh());

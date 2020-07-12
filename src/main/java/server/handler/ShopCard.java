@@ -55,7 +55,7 @@ public class ShopCard implements IHandler {
 
 		switch(req.getParameter("action")) {
 		case "discount":
-
+			//da sistemare in futuro ancora
 			String code = req.getParameter("code");
 
 			double discount = Cinema.getCinema().getDiscount(code);

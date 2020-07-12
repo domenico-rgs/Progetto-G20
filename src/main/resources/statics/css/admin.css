@@ -1,5 +1,5 @@
 body {
-  background-color: white !important;
+  background-color: #dedede !important;
 }
 
 /* blocco di inserimento password */
@@ -9,8 +9,8 @@ body {
   height: 100%;
   background-color: rgb(171, 171, 171, 0.5);
   z-index: 100000;
-  visibility: visible;
-  opacity: 1;
+  visibility: hidden;
+  opacity: 0;
 }
 
 #passInsert .passDiv {
@@ -63,7 +63,7 @@ body {
   overflow-y: scroll;
   min-height: 100%;
   max-height: 100%;
-  background-color: white;
+  background-color: #dedede;
   visibility: visible;
   opacity: 1;
 }
@@ -132,7 +132,7 @@ body {
 }
 
 .contentAdmin input {
-  background-color: #e6e6e6;
+  background-color: white;
   width: 35%;
   border-radius: 50px;
   border: none;
@@ -141,7 +141,7 @@ body {
 }
 
 .contentAdmin select {
-  background-color: #e6e6e6;
+  background-color: white;
   width: 35%;
   border-radius: 50px;
   border: none;
@@ -165,7 +165,7 @@ body {
   vertical-align: middle;
   display: inline-block;
   width: 60%;
-  background-color: #e6e6e6;
+  background-color: white;
   resize: none;
   border: none;
   border-radius: 10px;
@@ -230,4 +230,29 @@ body {
 .contentAdmin .admin {
   overflow: hidden;
   height: 0;
+}
+
+/* general menu */
+#general .stat {
+  display: inline-block;
+  background-color: white;
+  width: 40%;
+  height: 150px;
+  margin: 0 2.5%;
+  padding: 5px;
+  box-shadow: 5px 5px 20px;
+}
+
+#general .stat h1 {
+  text-align: left;
+  font-size: 140%;
+  color: black;
+}
+
+#general .stat p {
+  text-align: left;
+  margin-left: 10%;
+  font-size: 200%;
+  color: black;
+  font-weight: bold;
 }

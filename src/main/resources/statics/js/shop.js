@@ -32,12 +32,12 @@ function discoFunc() {
 
       //nel caso non funziona ritorno 0 dal server
       if (response == '0.0') {
-        $('#total .sconto p').text("Code not avaliable")
+        $('#total #buyMess').text("Code not avaliable")
       }
       if (response == '-1.0') {
-        $('#total .sconto p').text("Code already used")
+        $('#total #buyMess').text("Code already used")
       } else {
-        $('#total .sconto p').text("Code successfully applied")
+        $('#total #buyMess').text("Code successfully applied")
         //cambio il prezzo visualizzato
         var price = $('#total .card #totalPrice').attr('price')
         price = parseFloat(price) - parseFloat(response)
@@ -56,22 +56,21 @@ function buyFunc() {
     data: {
       action: "buy",
       codeCard: $('.cardNumber input').val(),
-      date: $('.cardNumber input:first-child').val() + "/" + $('.cardNumber input:last-child').val(),
+      date: $('.cardNumber input:nth-child(1)').val() + "/" + $('.cardNumber input:last-child').val(),
       cvv: $('.cvv input').val(),
       email: $('.insertEmail input').val()
     },
     success: function(response) {
-      if (response == "true") {
+      if (response === "true") {
         alert(response)
-        $('.ticketConfirm').css("visibility", "hidden")
+        $('.ticketConfirm').css("visibility", "visible")
       }
-      if (response == "false") {
+      if (response === "false") {
         alert(response)
-        $('#total #buyMess').text("Acquistato non completato, verifica i dati")
+        $('#total #buyMess').text("Insert data not correct. Verify please.")
       } else {
         $('#total #buyMess').text(response)
       }
-      //faccio qualcosa
     }
   })
 }
