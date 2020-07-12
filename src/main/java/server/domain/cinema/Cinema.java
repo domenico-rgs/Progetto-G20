@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -226,7 +227,7 @@ public class Cinema {
 		for(String s : seats) {
 			for(Seat sL : sList) {
 				if(sL.getPosition().equalsIgnoreCase(s)) {
-					double price = m.getPrice()*sL.getAddition();
+					double price = (double) Math.round(m.getPrice()*sL.getAddition() * 100) / 100;
 					doubleList[count] = price;
 					this.shopCard.addTotal(price);
 				}		
