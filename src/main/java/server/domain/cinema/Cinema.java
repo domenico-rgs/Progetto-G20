@@ -9,6 +9,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -200,6 +201,7 @@ public class Cinema {
 
 	// METODI DI GESTIONE DELLO SHOPCARD //
 	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
+		
 		this.shopCard.setIdSh(id);
 		this.shopCard.setSeats(seats);
 	}
@@ -219,12 +221,32 @@ public class Cinema {
 					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID).getDate(), (m.getPrice()+sL.getAddition()*100)));
 		PersistenceFacade.getInstance().addTickets(ticketList);
 
-
-		for (Ticket t: ticketList) {
-			this.shopCard.addTotal(t.getTotalPrice());;
-		}
+	
 		return ticketList;
 
+	}
+	
+	public double[] ticketsPrice(String showingID, String[] seats) throws SQLException, IOException, SeatException {
+		MovieShowing m = getMovieShowing(showingID);
+		List<Seat> sList = getFreeSeatsForShowing(showingID);
+		double[] doubleList = new double[sList.size()];
+		
+		System.out.println(doubleList.length);
+
+		int count = 0;
+		for(String s : seats) {
+			for(Seat sL : sList) {
+				//non entra mai in questo if
+				if(sL.getPosition().equalsIgnoreCase(s)) {
+					double price = m.getPrice()+sL.getAddition()*100.0;
+					System.out.println(price);
+					doubleList[count] = price;
+					this.shopCard.addTotal(price);
+				}		
+			}
+			count++;
+		}
+		return doubleList;
 	}
 
 	private File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
@@ -241,10 +263,7 @@ public class Cinema {
 
 
 	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException {
-
 		List<Ticket> ticketList = createTickets(this.shopCard.getIdSh(), this.shopCard.getSeats());
-
-
 		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
@@ -261,21 +280,7 @@ public class Cinema {
 		return total;
 	}
 
-	public void setShopCardTotal() throws SQLException, IOException, SeatException {
-		//resetto il carrello
-		this.shopCard.setZeroTotal();
-		
-		double total = 0.0;
-		MovieShowing m = getMovieShowing(this.shopCard.getIdSh());
-		List<Seat> sList = getFreeSeatsForShowing(this.shopCard.getIdSh());
-
-		for(String s : this.shopCard.getSeats())
-			for(Seat sL : sList)
-				if(sL.getPosition().equalsIgnoreCase(s))
-					total+=m.getPrice()+sL.getAddition()*100;
-
-		this.shopCard.addTotal((double) Math.round(total * 100)/100);;
-	}
+	
 	
 	///// METODI DA IMPLEMENTARE ///////
 	//METODI NEL PAGAMENTO//

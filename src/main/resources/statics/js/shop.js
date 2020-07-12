@@ -59,7 +59,7 @@ function buyFunc() {
     data: {
       action: "buy",
       codeCard: $('.cardNumber input').val(),
-      date: $('.deadline input:nth-child(1)').val() + "/" + $('.cardNumber input:last-child').val(),
+      date: $('.deadline input:nth-child(2)').val() + "/" + $('.deadline input:last-child').val(),
       cvv: $('.cvv input').val(),
       email: $('.insertEmail input').val()
     },
@@ -152,6 +152,7 @@ function startTimer() {
     if (distance < 0) {
       clearInterval(x);
       document.getElementById("demo").innerHTML = "EXPIRED";
+      window.location.href = "/home"
     }
   }, 1000);
 
