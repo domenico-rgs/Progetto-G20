@@ -26,7 +26,11 @@ CREATE TABLE MOVIESHOWINGS
         movieTitle CHAR(50) NOT NULL,
 		dateShow DATETIME,
          theatre CHAR(10),
-         price DECIMAL(4,2) NOT NULL);
+         price DECIMAL(4,2) NOT NULL,
+         
+		FOREIGN KEY (movieTitle) REFERENCES MOVIES(title),
+		FOREIGN KEY (theatre) REFERENCES THEATRES(theatreName));
+
          
 CREATE TABLE SEATS
         ( pos CHAR(4),
@@ -34,14 +38,18 @@ CREATE TABLE SEATS
           typeOfSeat CHAR(10),
           addition DECIMAL (4,2),
 
-	  PRIMARY KEY (pos,theatre));
-  
+	  PRIMARY KEY (pos,theatre),
+	FOREIGN KEY (theatre) REFERENCES THEATRES(theatreName));
+
 CREATE TABLE AVAILABILITY
-        ( showingID CHAR(4),
-          pos CHAR(10),
+        ( showingID CHAR(10),
+          pos CHAR(4),
           available BOOLEAN,
 
-	  PRIMARY KEY (showingID, pos));
+	PRIMARY KEY (showingID, pos),
+	FOREIGN KEY (pos) REFERENCES SEATS(pos),
+	FOREIGN KEY (showingID) REFERENCES MOVIESHOWINGS(id));
+
 
 
 CREATE TABLE TICKETS
@@ -49,5 +57,9 @@ CREATE TABLE TICKETS
          movieTitle CHAR(50) NOT NULL,
          dateShow DATETIME,
          occupiedSeat CHAR(4) NOT NULL,
-		 totalPrice DOUBLE NOT NULL);
+		 totalPrice DOUBLE NOT NULL,
+         
+	FOREIGN KEY (movieTitle) REFERENCES MOVIES(title),
+	FOREIGN KEY (dateShow) REFERENCES MOVINGSHOWINGS(dateShow),
+	FOREIGN KEY (occupiedSeat) REFERENCES SEATS(pos));
 
