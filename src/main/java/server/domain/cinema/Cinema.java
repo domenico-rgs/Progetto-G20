@@ -31,6 +31,7 @@ import server.services.DB.OIDCreator;
 import server.services.DB.PersistenceFacade;
 import server.services.DB.ShowingsMapper;
 import server.services.DB.TheatresMapper;
+import server.services.DB.TicketsMapper;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -81,9 +82,9 @@ public class Cinema {
 		//TO-DO
 	}
 	
-	synchronized public void deleteTicket(String code) throws SQLException, IOException, SeatException{
+	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, IOException, SeatException, MessagingException{
+		MailSender.sendRefundMail(code, cardNumber, ((Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class)).getTotalPrice());
 		PersistenceFacade.getInstance().deleteTicket(code);
-		//invio mail
 	}
 
 

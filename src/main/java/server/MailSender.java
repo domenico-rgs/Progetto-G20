@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMultipart;
 import server.domain.cinema.Ticket;
 
 public class MailSender {
-
+	//URGE REFACTOR
 	// Metodo che si occupa dell'invio effettivo della mail
 	public static void sendTicketMail(String recipient, File pdf) throws FileNotFoundException, MessagingException {
 		int port = 465; //porta 25 per non usare SSL
@@ -81,4 +81,57 @@ public class MailSender {
 		transport.sendMessage(msg, msg.getAllRecipients());
 		transport.close();
 	}
+	
+	// Metodo che si occupa dell'invio effettivo della mail
+		public static void sendRefundMail(String ticketCode, String cardNumber, double total) throws FileNotFoundException, MessagingException {
+			int port = 465; //porta 25 per non usare SSL
+
+			Properties props = new Properties();
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.user", "progettog20@gmail.com"); //mittente
+			props.put("mail.smtp.host", "smtp.gmail.com"); //host
+			props.put("mail.smtp.port", port);
+
+			// commentare la riga seguente per non usare SSL
+			props.put("mail.smtp.starttls.enable","true");
+			props.put("mail.smtp.socketFactory.port", port);
+
+			// commentare la riga seguente per non usare SSL
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.socketFactory.fallback", "false");
+
+			Session session = Session.getInstance(props, null);
+			session.setDebug(true);
+
+			// Creazione delle BodyParts del messaggio
+			MimeBodyPart messageBodyPart1 = new MimeBodyPart();
+
+			// COSTRUZIONE DEL MESSAGGIO
+			Multipart multipart = new MimeMultipart();
+			MimeMessage msg = new MimeMessage(session);
+
+			// header del messaggio
+			msg.setSubject("Here are the tickets you purchased from CinemaG20");
+			msg.setSentDate(new Date());
+			msg.setFrom(new InternetAddress("progettog20@gmail.com"));
+
+			// destinatario
+			msg.addRecipient(Message.RecipientType.TO,
+					new InternetAddress("progettog20@gmail.com"));
+
+			// corpo del messaggio
+			messageBodyPart1.setText("Hello,\r\n" + 
+					"a user has requested a refund for the ticket: " + ticketCode + "\r\n" + 
+					"on card n°" +"\r\n" + cardNumber +
+					"for a total of €"+ total);
+			multipart.addBodyPart(messageBodyPart1);
+
+			// inserimento delle parti nel messaggio
+			msg.setContent(multipart);
+
+			Transport transport = session.getTransport("smtps"); //("smtp") per non usare SSL
+			transport.connect("smtp.gmail.com", "progettog20@gmail.com", "ViaAdolfoFerrata5"); //correggere parametri
+			transport.sendMessage(msg, msg.getAllRecipients());
+			transport.close();
+		}
 }
