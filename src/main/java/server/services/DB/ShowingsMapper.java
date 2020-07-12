@@ -71,7 +71,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 				"WHERE BINARY id=? ");
 		pstm.setString(1,s.getTheatreName());
 		pstm.setDouble(2,s.getPrice());
-		pstm.setString(4,OID);
+		pstm.setString(3,OID);
 		pstm.execute();
 
 
