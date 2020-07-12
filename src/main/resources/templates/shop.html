@@ -2,6 +2,7 @@
 @args {
 server.domain.cinema.MovieShowing showing
 String[] seats
+double[] singlePrice
 double price
 }
 <html>
@@ -53,6 +54,7 @@ double price
             <p>Shop Card is empty</p>
             }
 
+            @{int count = 0}
             @for (String seat: seats) {
             <div class="shopItem">
               <div>
@@ -65,10 +67,11 @@ double price
               </div>
 
               <div>
-                <h1>problem</h1>
+                <h1>@singlePrice[count]</h1>
                 <h2>@(showing.getTheatreName() +" - Seat: "+ seat)</h2>
               </div>
             </div>
+            @{count++}
             }
           </div>
 

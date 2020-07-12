@@ -41,11 +41,14 @@ public class ShopCard implements IHandler {
 		waiting = new ShopTimer(timeWait, this);
 		waiting.start();
 		valid = true;
+		String id = req.getParameter("id");
+		String[] seats = Cinema.getCinema().getShopCard().getSeats();
 
 		try {
-			Cinema.getCinema().setShopCardTotal();
-			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(req.getParameter("id")),
-					Cinema.getCinema().getShopCard().getSeats(),
+			
+			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(id),
+					seats,
+					Cinema.getCinema().ticketsPrice(id, seats),
 					Cinema.getCinema().getShopCard().getTotal()));
 		}
 		catch (Exception e) {
