@@ -9,6 +9,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -220,6 +221,20 @@ public class Cinema {
 		return ticketList;
 
 	}
+	
+	public List<Double> ticketsPrice(String showingID, String[] seats) throws SQLException, IOException, SeatException {
+		List<Double> doubleList = new LinkedList<>();
+		MovieShowing m = getMovieShowing(showingID);
+		List<Seat> sList = getFreeSeatsForShowing(showingID);
+
+		for(String s : seats) {
+			for(Seat sL : sList) {
+				if(sL.getPosition().equalsIgnoreCase(s))
+					doubleList.add(m.getPrice()+sL.getAddition()*100);
+			}
+		}
+		return doubleList;
+	}
 
 	private File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
 		PdfWriter writer = new PdfWriter("G20Ticket", new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
@@ -235,10 +250,7 @@ public class Cinema {
 
 
 	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException {
-
 		List<Ticket> ticketList = createTickets(this.shopCard.getIdSh(), this.shopCard.getSeats());
-
-
 		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
