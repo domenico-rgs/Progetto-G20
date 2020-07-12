@@ -1,4 +1,4 @@
-package server.domain.theatre;
+package server.domain.cinema.theatre;
 
 import java.io.BufferedReader;
 import java.io.File;

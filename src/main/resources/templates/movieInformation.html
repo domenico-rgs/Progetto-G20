@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 @args {
 server.domain.cinema.Movie movie
-List<server.domain.showing.MovieShowing> showings
+List<server.domain.cinema.MovieShowing> showings
 }
   <html>
 
@@ -62,7 +62,7 @@ List<server.domain.showing.MovieShowing> showings
                   <th></th>
                 </tr>
 
-                @for (server.domain.showing.MovieShowing show: showings) {
+                @for (server.domain.cinema.MovieShowing show: showings) {
 
                 <tr>
                   <td>@show.getDateToString()</td>

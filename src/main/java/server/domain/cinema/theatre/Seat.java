@@ -1,4 +1,4 @@
-package server.domain.theatre;
+package server.domain.cinema.theatre;
 
 /**
  * This class is referred to a seat in a cinema theatre

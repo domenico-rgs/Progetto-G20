@@ -1,4 +1,4 @@
-package server.domain.theatre;
+package server.domain.cinema.theatre;
 
 public enum TypeSeat {
 	NORMAL,PREMIUM,DISABLED

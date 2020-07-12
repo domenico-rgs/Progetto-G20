@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import server.domain.theatre.Seat;
-import server.domain.theatre.Theatre;
+import server.domain.cinema.theatre.Seat;
+import server.domain.cinema.theatre.Theatre;
 
 
 public class SeatsMapper extends AbstractPersistenceMapper {

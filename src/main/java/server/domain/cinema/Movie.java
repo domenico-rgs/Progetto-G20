@@ -1,7 +1,5 @@
 package server.domain.cinema;
 
-import server.domain.showing.MovieShowing;
-
 /**
  * This class is referred to a movie
  * @see MovieShowing

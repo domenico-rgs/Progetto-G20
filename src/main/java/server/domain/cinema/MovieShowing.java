@@ -1,10 +1,10 @@
-package server.domain.showing;
+package server.domain.cinema;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.SeatException;
-import server.domain.theatre.Theatre;
 
 /**
  * This class is referred to a movie projection in the cinema.
@@ -13,9 +13,8 @@ import server.domain.theatre.Theatre;
 public class MovieShowing {
 	private String id;
 	private LocalDateTime date;
-	private Availability availability;
 	private double price;
-	private String theatreName;
+	private Theatre theatre;
 	private String movie;
 
 
@@ -24,21 +23,12 @@ public class MovieShowing {
 		this.date=date;
 		this.price=price;
 		this.movie=movie;
-		this.theatreName = theatre.getTheatreName();
-		availability = new Availability(theatre.getSeatsList()); //da rivedere per persistenza
+		this.theatre = theatre;
 	}
 
-	public void editShowing(String theatre, double price) {
-		theatreName=theatre;
+	public void editShowing(Theatre theatre, double price) {
+		this.theatre=theatre;
 		this.price=price;
-	}
-
-	protected boolean searchAvailability(String seat) throws SeatException {
-		return availability.searchAvailability(seat);
-	}
-
-	protected void changeAvailability(String[] seats, boolean value) throws SeatException {
-		availability.changeAvailability(seats, value);
 	}
 
 	public LocalDateTime getDate() {
@@ -54,7 +44,11 @@ public class MovieShowing {
 	}
 
 	public String getTheatreName() {
-		return theatreName;
+		return theatre.getTheatreName();
+	}
+
+	public Theatre getTheatre() {
+		return theatre;
 	}
 
 	public double getPrice() {
@@ -64,13 +58,9 @@ public class MovieShowing {
 	public String getId() {
 		return id;
 	}
-
-	public Availability getAvailability() {
-		return availability;
-	}
-
+	
 	@Override
 	public String toString() {
-		return  getDateToString() + ", theatre: " + theatreName;
+		return  getDateToString() + ", theatre: " + getTheatreName();
 	}
 }

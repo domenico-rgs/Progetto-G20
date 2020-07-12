@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import server.domain.cinema.Movie;
+import server.domain.cinema.MovieShowing;
 import server.domain.cinema.Ticket;
+import server.domain.cinema.theatre.Seat;
+import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.SeatException;
-import server.domain.showing.MovieShowing;
-import server.domain.theatre.Seat;
-import server.domain.theatre.Theatre;
 
 public class PersistenceFacade {
 	private static PersistenceFacade instance = null;

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.domain.cinema.MovieShowing;
 import server.domain.exception.SeatException;
-import server.domain.showing.MovieShowing;
 
 public class Movie implements IHandler {
 

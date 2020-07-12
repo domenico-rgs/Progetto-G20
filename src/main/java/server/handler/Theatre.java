@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
-import server.domain.theatre.Seat;
+import server.domain.cinema.theatre.Seat;
 
 public class Theatre implements IHandler {
 

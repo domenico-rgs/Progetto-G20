@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import server.domain.showing.MovieShowing;
-import server.domain.theatre.Seat;
+import server.domain.cinema.MovieShowing;
+import server.domain.cinema.theatre.Seat;
 
 public class AvailabilityMapper extends AbstractPersistenceMapper {
 	public AvailabilityMapper() throws SQLException {
@@ -32,11 +32,11 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 	public synchronized void  put(String OID, Object obj)throws SQLException {
 		MovieShowing ms = (MovieShowing)obj;
 
-		for (Map.Entry<Seat, Boolean> temp:ms.getAvailability().getAvailability().entrySet()) {
+		for (Map.Entry<String, Seat> temp:ms.getTheatre().getSeatsList().entrySet()) {
 			PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?)");
 			pstm.setString(1,ms.getId());
-			pstm.setString(2,temp.getKey().getPosition());
-			pstm.setBoolean(3,temp.getValue());
+			pstm.setString(2,temp.getValue().getPosition());
+			pstm.setBoolean(3,true);
 			pstm.execute();
 		}
 	}

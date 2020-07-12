@@ -25,10 +25,7 @@ import server.MailSender;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.ServiceFactory;
-import server.domain.shopCard.ShopCard;
-import server.domain.showing.MovieShowing;
-import server.domain.theatre.Seat;
-import server.domain.theatre.Theatre;
+import server.domain.payment.ShopCard;
 import server.services.DB.MoviesMapper;
 import server.services.DB.OIDCreator;
 import server.services.DB.PersistenceFacade;
@@ -36,6 +33,8 @@ import server.services.DB.ShowingsMapper;
 import server.services.DB.TheatresMapper;
 import server.services.DB.TicketsMapper;
 import server.domain.cinema.*;
+import server.domain.cinema.theatre.Seat;
+import server.domain.cinema.theatre.Theatre;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -59,7 +58,7 @@ public class Cinema {
 
 	public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, IOException, SeatException {
 		MovieShowing s = getMovieShowing(showing);
-		s.editShowing(theatre, price);
+		s.editShowing(this.getTheatre(theatre), price);
 		PersistenceFacade.getInstance().updateTable(ShowingsMapper.class, s, showing);
 	}
 
@@ -127,11 +126,6 @@ public class Cinema {
 
 	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
 		//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
-		//TO-DO
-	}
-
-	//Se lancia l'eccezione ne cancella solo una parte, rivedere dopo aver deciso cosa fare del ledger
-	synchronized public void deleteBooking(String string) throws SearchException{
 		//TO-DO
 	}
 

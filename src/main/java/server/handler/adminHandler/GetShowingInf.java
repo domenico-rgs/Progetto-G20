@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
+import server.domain.cinema.MovieShowing;
 import server.domain.exception.SeatException;
-import server.domain.showing.MovieShowing;
 
 public class GetShowingInf {
 	public static String doAction(HttpServletRequest req) {

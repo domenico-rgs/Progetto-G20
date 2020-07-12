@@ -1,4 +1,4 @@
-package server.domain.theatre;
+package server.domain.cinema.theatre;
 
 public class DisabledSeat extends Seat {
 	private final double addition = 0.5; //riduzione in percentuale

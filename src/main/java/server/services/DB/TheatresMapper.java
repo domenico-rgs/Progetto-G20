@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.SeatException;
-import server.domain.theatre.Theatre;
 
 
 public class TheatresMapper extends AbstractPersistenceMapper {

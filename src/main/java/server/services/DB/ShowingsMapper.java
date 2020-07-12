@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import server.domain.showing.MovieShowing;
+import server.domain.cinema.MovieShowing;
 
 public class ShowingsMapper extends AbstractPersistenceMapper {
 	private TheatresMapper tm;
@@ -82,7 +82,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
 			MovieShowing tmp = new MovieShowing(rs.getString(1), rs.getString(2), new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),
-					(server.domain.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+					(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
 
 			this.showing.put(rs.getString(1),tmp);
 		}
@@ -97,7 +97,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
 			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime(),
-					(server.domain.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+					(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
 			updateCache(ms.getId(),ms);
 			showings.add(ms);
 		}

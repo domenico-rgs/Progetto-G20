@@ -1,4 +1,4 @@
-package server.domain.theatre;
+package server.domain.cinema.theatre;
 
 public class PremiumSeat extends Seat{
 	private final double addition = 1.2; //aggiunta in percentuale

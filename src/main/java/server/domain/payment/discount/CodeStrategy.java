@@ -1,4 +1,4 @@
-package server.domain.discount;
+package server.domain.payment.discount;
 
 public class CodeStrategy implements TicketPricingStrategy{
 	private String code;

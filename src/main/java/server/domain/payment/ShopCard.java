@@ -1,4 +1,4 @@
-package server.domain.shopCard;
+package server.domain.payment;
 
 import java.util.ArrayList;
 import java.util.List;
