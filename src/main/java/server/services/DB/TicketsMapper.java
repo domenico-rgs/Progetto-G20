@@ -71,6 +71,12 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 			this.tickets.put(rs.getString(1),tmp);
 		}
 	}
+	
+	protected void deleteTicket(String OID) throws SQLException {
+		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE ticketCode= ?");
+		stm.setString(1, OID);
+		stm.execute();
+	}
 
 
 	public synchronized Map<String, Ticket> getTickets() {

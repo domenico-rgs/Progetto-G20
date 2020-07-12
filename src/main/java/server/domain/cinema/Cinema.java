@@ -80,6 +80,11 @@ public class Cinema {
 		//OCCORRE CONTROLLARE CHE NON SIA USATO
 		//TO-DO
 	}
+	
+	synchronized public void deleteTicket(String code) throws SQLException, IOException, SeatException{
+		PersistenceFacade.getInstance().deleteTicket(code);
+		//invio mail
+	}
 
 
 	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
