@@ -15,6 +15,9 @@ import server.domain.cinema.Cinema;
 public class ShopCard implements IHandler {
 
 	private static ShopCard instance = null;
+	private static final int timeWait = 1; //in minuti
+	private ShopTimer waiting;
+	private boolean valid;
 
 	private ShopCard() {
 	}
@@ -31,9 +34,11 @@ public class ShopCard implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-
+		
+		//avvia il thread di attesa
+		waiting = new ShopTimer(timeWait, this);
+		waiting.start();
+		valid = true;
 
 		try {
 			Cinema.getCinema().setShopCardTotal();
@@ -51,6 +56,12 @@ public class ShopCard implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		if (!valid) {
+			resp.getWriter().write("Carrello scaduto, rifai ordinazione");
+			return;
+		}
+			
 
 
 		switch(req.getParameter("action")) {
@@ -71,6 +82,10 @@ public class ShopCard implements IHandler {
 			try {
 				boolean value = Cinema.getCinema().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
+				
+				//interropre il thread di attesa se funziona
+				if (value) 
+					this.waiting.interrupt();
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -80,8 +95,11 @@ public class ShopCard implements IHandler {
 			break;
 		}
 
-
-
+	}
+	
+	public void timeBreak() {
+		Cinema.getCinema().getShopCard().refresh();
+		valid = false;		
 	}
 
 }
