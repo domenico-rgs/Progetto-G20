@@ -18,7 +18,7 @@
   vertical-align: middle;
   margin: 0 5% 20px 5%;
   padding: 1em;
-  height: 150px;
+  height: auto;
   width: 40%;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -37,6 +37,10 @@
   margin: 2em 0 0 0;
 }
 
+.searchTicket .elem {
+  margin: 2em 0;
+}
+
 .searchTicket input {
   outline: none;
   background-color: transparent;
@@ -47,6 +51,7 @@
   height: 100%;
   border-bottom: 1px solid #263238;
   position: relative;
+  margin: 0 0;
 }
 
 .searchTicket label {

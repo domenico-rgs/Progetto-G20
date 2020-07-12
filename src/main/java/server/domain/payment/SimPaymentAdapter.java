@@ -1,5 +1,6 @@
 package server.domain.payment;
 
+import java.util.Date;
 import java.util.Random;
 
 public class SimPaymentAdapter implements PaymentAdapter{
@@ -14,6 +15,7 @@ public class SimPaymentAdapter implements PaymentAdapter{
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	private boolean checkData(double money, String code, String date, String cvc) {
 		if(money<=0)
 			return false;
@@ -29,8 +31,9 @@ public class SimPaymentAdapter implements PaymentAdapter{
 				if (c < '0' || c > '9')
 					return false;
 			}
-		//		}else if(new Date("01/"+date).before(new Date(System.currentTimeMillis()))) {
-		//			return false;
+//		else if(new Date("01/"+date).before(new Date(System.currentTimeMillis()))) {
+//					return false;
+//			}
 		return true;
 	}
 
