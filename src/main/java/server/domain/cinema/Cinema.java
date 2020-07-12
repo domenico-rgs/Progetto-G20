@@ -193,6 +193,7 @@ public class Cinema {
 
 	// METODI DI GESTIONE DELLO SHOPCARD //
 	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
+		
 		this.shopCard.setIdSh(id);
 		this.shopCard.setSeats(seats);
 	}
@@ -266,6 +267,8 @@ public class Cinema {
 			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
 					total+=m.getPrice()+sL.getAddition()*100;
+		
+		System.out.println(total);
 
 		this.shopCard.addTotal((double) Math.round(total * 100)/100);;
 	}
