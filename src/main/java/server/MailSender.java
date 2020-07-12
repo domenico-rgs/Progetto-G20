@@ -1,5 +1,6 @@
 package server;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ import server.domain.cinema.Ticket;
 public class MailSender {
 
 	// Metodo che si occupa dell'invio effettivo della mail
-	public static void sendTicketMail(String recipient, List<Ticket> ticket) throws FileNotFoundException, MessagingException {
+	public static void sendTicketMail(String recipient, File pdf) throws FileNotFoundException, MessagingException {
 		int port = 465; //porta 25 per non usare SSL
 
 		Properties props = new Properties();
@@ -67,13 +68,10 @@ public class MailSender {
 		multipart.addBodyPart(messageBodyPart1);
 
 		// allegato al messaggio
-		for(Ticket t : ticket) {
-
-			DataSource source = new FileDataSource(t.genPDF());
-			messageBodyPart2.setDataHandler(new DataHandler(source));
-			messageBodyPart2.setFileName(t.getCode()+".pdf");
-			multipart.addBodyPart(messageBodyPart2);
-		}
+		DataSource source = new FileDataSource(pdf);
+		messageBodyPart2.setDataHandler(new DataHandler(source));
+		messageBodyPart2.setFileName("G20Tickets.pdf");
+		multipart.addBodyPart(messageBodyPart2);
 
 		// inserimento delle parti nel messaggio
 		msg.setContent(multipart);

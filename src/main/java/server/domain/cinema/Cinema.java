@@ -1,5 +1,7 @@
 package server.domain.cinema;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -8,6 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.mail.MessagingException;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfVersion;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.WriterProperties;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 
 import server.MailSender;
 import server.domain.exception.SearchException;
@@ -193,17 +202,28 @@ public class Cinema {
 		for(String s : seats)
 			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
-					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, showingID, (m.getPrice()+sL.getAddition()*100)));
+					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID).getDate(), (m.getPrice()+sL.getAddition()*100)));
 		PersistenceFacade.getInstance().addTickets(ticketList);
 
 
 		for (Ticket t: ticketList) {
 			this.shopCard.addTotal(t.getTotalPrice());;
 		}
-
-
 		return ticketList;
 
+	}
+	
+	private File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
+		PdfWriter writer = new PdfWriter("G20Ticket", new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
+		PdfDocument pdfDocument = new PdfDocument(writer);
+		pdfDocument.setTagged();
+		Document document = new Document(pdfDocument);
+		for(Ticket t : ticketList) {
+			document.add(new Paragraph(t.toString()));
+		}
+		document.close();
+
+		return new File("G20Ticket");
 	}
 
 
@@ -214,7 +234,7 @@ public class Cinema {
 
 		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
-			MailSender.sendTicketMail(emailRecipient, ticketList);
+			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
 			return true;
 		} else
 			return false;

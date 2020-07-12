@@ -1,14 +1,9 @@
 package server.domain.cinema;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfVersion;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.WriterProperties;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 /**
  * This class identifies a bought ticket to show a movie.
@@ -17,26 +12,15 @@ public class Ticket {
 	private String code;
 	private String movie;
 	private String seat;
-	private String showing;
+	private LocalDateTime date;
 	private double totalPrice;
 
-	public Ticket(String code, String movie, String seat, String showing, double totalPrice) {
+	public Ticket(String code, String movie, String seat, LocalDateTime date, double totalPrice) {
 		this.code = code;
 		this.movie=movie;
-		this.showing=showing;
+		this.date=date;
 		this.seat=seat;
 		this.totalPrice=totalPrice;
-	}
-
-	public File genPDF() throws FileNotFoundException {
-		PdfWriter writer = new PdfWriter("Ticket"+code, new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
-		PdfDocument pdfDocument = new PdfDocument(writer);
-		pdfDocument.setTagged();
-		Document document = new Document(pdfDocument);
-		document.add(new Paragraph(toString()));
-		document.close();
-
-		return new File("Ticket"+code);
 	}
 
 	public String getMovie() {
@@ -47,8 +31,8 @@ public class Ticket {
 		return seat;
 	}
 
-	public String getShowing() {
-		return showing;
+	public LocalDateTime getDate() {
+		return date;
 	}
 
 	public double getTotalPrice() {
@@ -57,7 +41,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket id: " + code + "\nDate: " + showing + "- Seat: " + seat +"\nMovie: " + movie + "\nPrice: € "
+		return "Ticket id: " + code + "\nDate: " + date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm")) + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: € "
 				+ totalPrice;
 	}
 

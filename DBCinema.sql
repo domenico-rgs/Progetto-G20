@@ -16,7 +16,7 @@ CREATE TABLE MOVIES
 	
      
 CREATE TABLE THEATRES
-        (theatreName CHAR(10),
+        (theatreName CHAR(20),
          filePath VARCHAR(100),
          
 		PRIMARY KEY (theatreName));
@@ -30,7 +30,7 @@ CREATE TABLE MOVIESHOWINGS
          
 CREATE TABLE SEATS
         ( pos CHAR(4),
-          theatre CHAR(10),
+          theatre CHAR(20),
           typeOfSeat CHAR(10),
           addition DECIMAL (4,2),
 
@@ -46,7 +46,8 @@ CREATE TABLE AVAILABILITY
 
 CREATE TABLE TICKETS
         (ticketCode CHAR(16) PRIMARY KEY,
-         showingID CHAR (4) NOT NULL,
+         movieTitle CHAR(50) NOT NULL,
+         dateShow DATETIME,
          occupiedSeat CHAR(4) NOT NULL,
 		 totalPrice DOUBLE NOT NULL);
 
