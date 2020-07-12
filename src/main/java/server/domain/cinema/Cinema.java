@@ -69,6 +69,7 @@ public class Cinema {
 		return false;
 		//OCCORRE CONTROLLARE CHE NON SIA USATO
 		//TO-DO
+
 	}
 
 	synchronized public void createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException, SQLException, IOException, SeatException{
@@ -81,7 +82,7 @@ public class Cinema {
 		//OCCORRE CONTROLLARE CHE NON SIA USATO
 		//TO-DO
 	}
-	
+
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, IOException, SeatException, MessagingException{
 		MailSender.sendRefundMail(code, cardNumber, ((Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class)).getTotalPrice());
 		PersistenceFacade.getInstance().deleteTicket(code);
@@ -218,15 +219,14 @@ public class Cinema {
 		return ticketList;
 
 	}
-	
+
 	private File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
 		PdfWriter writer = new PdfWriter("G20Ticket", new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
 		PdfDocument pdfDocument = new PdfDocument(writer);
 		pdfDocument.setTagged();
 		Document document = new Document(pdfDocument);
-		for(Ticket t : ticketList) {
+		for(Ticket t : ticketList)
 			document.add(new Paragraph(t.toString()));
-		}
 		document.close();
 
 		return new File("G20Ticket");
@@ -263,8 +263,8 @@ public class Cinema {
 			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
 					total+=m.getPrice()+sL.getAddition()*100;
-		
-		this.shopCard.addTotal(total);;
+
+		this.shopCard.addTotal((double) Math.round(total * 100)/100);;
 	}
 
 	public static Cinema getCinema() {
