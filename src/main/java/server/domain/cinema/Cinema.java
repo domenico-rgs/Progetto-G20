@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.mail.MessagingException;
@@ -160,7 +161,7 @@ public class Cinema {
 		return allList;
 	}
 
-	public HashMap<Seat, Boolean> getAllSeatsForShowing (String idShowing) throws SQLException, IOException, SeatException {
+	public HashMap<Seat, Boolean> getAllSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
 	}
 
@@ -211,7 +212,7 @@ public class Cinema {
 		for(String s : seats)
 			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
-					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID).getDate(), (m.getPrice()+sL.getAddition()*100)));
+					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID).getDate(), (m.getPrice()*sL.getAddition())));
 		PersistenceFacade.getInstance().addTickets(ticketList);
 
 	
@@ -221,18 +222,14 @@ public class Cinema {
 	
 	public double[] ticketsPrice(String showingID, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing m = getMovieShowing(showingID);
-		List<Seat> sList = getFreeSeatsForShowing(showingID);
-		double[] doubleList = new double[sList.size()];
-		
-		System.out.println(doubleList.length);
+		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
+		double[] doubleList = new double[seats.length];
 
 		int count = 0;
 		for(String s : seats) {
 			for(Seat sL : sList) {
-				//non entra mai in questo if
 				if(sL.getPosition().equalsIgnoreCase(s)) {
-					double price = m.getPrice()+sL.getAddition()*100.0;
-					System.out.println(price);
+					double price = m.getPrice()*sL.getAddition();
 					doubleList[count] = price;
 					this.shopCard.addTotal(price);
 				}		

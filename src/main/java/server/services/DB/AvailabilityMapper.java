@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import server.domain.cinema.MovieShowing;
+import server.domain.cinema.theatre.DisabledSeat;
+import server.domain.cinema.theatre.PremiumSeat;
 import server.domain.cinema.theatre.Seat;
 
 public class AvailabilityMapper extends AbstractPersistenceMapper {
@@ -33,10 +35,11 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 		MovieShowing ms = (MovieShowing)obj;
 
 		for (Map.Entry<String, Seat> temp:ms.getTheatre().getSeatsList().entrySet()) {
-			PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?)");
+			PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?)");
 			pstm.setString(1,ms.getId());
 			pstm.setString(2,temp.getValue().getPosition());
-			pstm.setBoolean(3,true);
+			pstm.setString(3,temp.getValue().getType().toString());
+			pstm.setBoolean(4,true);
 			pstm.execute();
 		}
 	}
@@ -53,7 +56,17 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next())
-			availabilityList.put(new Seat(rs.getString(2)), rs.getBoolean(3));
+			switch(rs.getString(3)) {
+			case "NORMAL":
+				availabilityList.put(new Seat(rs.getString(2)),rs.getBoolean(4));
+				break;
+			case "PREMIUM":
+				availabilityList.put(new PremiumSeat(rs.getString(2)), rs.getBoolean(4));
+				break;
+			case "DISABLED":
+				availabilityList.put(new DisabledSeat(rs.getString(2)), rs.getBoolean(4));
+				break;
+			}
 
 		return availabilityList;
 	}
@@ -73,7 +86,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next())
-			availabilityList.put(new Seat(rs.getString(2)), rs.getBoolean(3));
+			availabilityList.put(new Seat(rs.getString(2)), rs.getBoolean(4));
 
 		return availabilityList;
 	}

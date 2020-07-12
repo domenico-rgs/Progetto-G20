@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import server.domain.cinema.theatre.DisabledSeat;
+import server.domain.cinema.theatre.PremiumSeat;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 
@@ -53,8 +55,19 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE BINARY theatre = ?" );
 		pstm.setString(1, theatreName);
 		ResultSet rs = pstm.executeQuery();
-		while (rs.next())
-			seatsList.put(rs.getString(2), new Seat(rs.getString(3)));
+		while (rs.next()) {
+			switch(rs.getString(3)) {
+			case "NORMAL":
+				seatsList.put(rs.getString(1), new Seat(rs.getString(1)));
+				break;
+			case "PREMIUM":
+				seatsList.put(rs.getString(1), new PremiumSeat(rs.getString(1)));
+				break;
+			case "DISABLED":
+				seatsList.put(rs.getString(1), new DisabledSeat(rs.getString(1)));
+				break;
+			}
+		}
 
 		return seatsList;
 	}
