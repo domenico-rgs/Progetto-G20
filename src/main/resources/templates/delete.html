@@ -47,8 +47,16 @@ String resultValue
         <div class="deleteContent">
 
           <div class="searchTicket">
-            <label for="">Ticket Code</label>
-            <input type="text" name="" value="">
+            <div class="elem" id="ticket">
+              <label for="">Ticket Code</label>
+              <input type="text" name="" value="">
+            </div>
+
+            <div class="elem" id="card">
+              <label for="">Card Number</label>
+              <input type="text" maxlength="16">
+            </div>
+
           </div>
 
           <button id="deleteButton">DELETE</button>
@@ -60,7 +68,7 @@ String resultValue
 
         </div>
 
-        <p id="errorMess">Messaggio di errore</p>
+        <p id="errorMess"></p>
     </section>
 
 
@@ -73,16 +81,8 @@ String resultValue
     <!-- Scripts -->
     <script src="../statics/js/jquery.min.js"></script>
 
-    <script type="text/javascript">
-      $('.searchTicket input').on('focus', function()
-      {
-        $('.searchTicket label').addClass('active');
-      }).on('blur', function()
-      {
-        $('.searchTicket label').removeClass('active');
-        $('.searchTicket input').val("");
-      })
-    </script>
+    <script src="../statics/js/delete.js"></script>
+
   </body>
 
 </html>

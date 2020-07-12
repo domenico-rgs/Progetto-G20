@@ -37,12 +37,19 @@ public class Delete implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String ticket = req.getParameter("ticketCode");
+		String cardN = req.getParameter("cardNumber");
+		
 		try {
-			Cinema.getCinema().deleteBooking(req.getParameter("ticketCode"));
-			resp.getWriter().write(Rythm.render("delete.html", true, "The reservation has been canceled, you will receive a refund as soon as possible on the payment method used for the purchase"));
-		} catch (SearchException e) {
-			resp.getWriter().write(Rythm.render("delete.html", false, "The ticket was not removed, the code may be incorrect"));
+			Cinema.getCinema().deleteTicket(ticket, cardN);
+			resp.getWriter().write("Ticket delete with success");
 		}
+		catch (Exception e) {
+			resp.getWriter().write("Ticket code or card number not corretct");
+		}
+		
+		
 	}
 
 }

@@ -235,24 +235,37 @@ body {
 /* general menu */
 #general .stat {
   display: inline-block;
+  vertical-align: middle;
   background-color: white;
   width: 40%;
-  height: 150px;
-  margin: 0 2.5%;
+  height: auto;
+  margin: 0 2.5% 5% 2.5%;
   padding: 5px;
   box-shadow: 5px 5px 20px;
 }
 
-#general .stat h1 {
-  text-align: left;
-  font-size: 140%;
+#general .stat h1, #pstat {
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 150%;
   color: black;
 }
 
-#general .stat p {
-  text-align: left;
-  margin-left: 10%;
-  font-size: 200%;
-  color: black;
+#general .stat #pstat {
   font-weight: bold;
+}
+
+.stat .seeTable {
+  border-top: 1px solid grey;
+  height: auto;
+  cursor: pointer;
+}
+
+.stat .seeTable h2 {
+  color: rgb(30, 63, 97);
+  font-size: 110%;
+}
+
+#general .table {
+  height: auto;
 }
