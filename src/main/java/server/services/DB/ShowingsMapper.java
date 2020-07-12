@@ -73,8 +73,6 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		pstm.setDouble(2,s.getPrice());
 		pstm.setString(3,OID);
 		pstm.execute();
-
-
 	}
 
 	protected void setUp() throws SQLException {

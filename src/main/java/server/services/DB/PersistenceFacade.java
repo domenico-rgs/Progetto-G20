@@ -82,6 +82,11 @@ public class PersistenceFacade {
 	public void deleteTicket(String OID) throws SQLException {
 		((TicketsMapper)mapper.get(TicketsMapper.class)).deleteTicket(OID);
 	}
+	
+	public void changeAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
+		((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).changeAvailability(OID_showing, OID_seat, availability);
+	}
+
 
 	public void addTickets(List<Ticket> ticketList) throws SQLException {
 		for(Ticket t : ticketList)

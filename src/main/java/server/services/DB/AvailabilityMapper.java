@@ -42,7 +42,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	public synchronized  void updateTable(String OID, Object obj){
+	public synchronized  void updateTable(String OID, Object obj) throws SQLException{
 	}
 
 	protected HashMap<Seat,Boolean> getAvailabilityList(String OID_movieShowing) throws SQLException{
@@ -56,6 +56,14 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 			availabilityList.put(new Seat(rs.getString(2)), rs.getBoolean(3));
 
 		return availabilityList;
+	}
+	
+	protected synchronized void changeAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
+		PreparedStatement pstm = conn.prepareStatement("UPDATE " + tableName+ " SET available=? WHERE BINARY showingID=? AND pos=?");
+		pstm.setBoolean(1,availability);
+		pstm.setString(2,OID_showing);
+		pstm.setString(3,OID_seat);
+		pstm.execute();
 	}
 
 	public HashMap<Seat, Boolean> getAvailableSeatsList(String OID_movieShowing) throws SQLException {

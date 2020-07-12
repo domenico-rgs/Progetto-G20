@@ -185,43 +185,20 @@ public class Cinema {
 		return theatreList;
 	}
 
-	///// METODI DA IMPLEMENTARE ///////
-	//settare i posti scelti occupati, prima del pagamento (magari un timer?), ed eccezioni
-	public boolean setOccupedSeats (String idShowing, List<String> seats) {
-		return false;
-	}
-
-	//rendere i posti liberi nel caso di rinuncia
-	public boolean setFreeSeats (String idShowing, List<String> seats) {
-		return false;
+	public void setAvailability(String idShowing, String[] seats, boolean availability) throws SQLException, IOException, SeatException {
+		for(String s : seats) {
+			PersistenceFacade.getInstance().changeAvailability(idShowing, s, availability);
+		}
 	}
 
 	// METODI DI GESTIONE DELLO SHOPCARD //
 	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
-
 		this.shopCard.setIdSh(id);
-
 		this.shopCard.setSeats(seats);
 	}
 
 	public ShopCard getShopCard () {
 		return this.shopCard;
-	}
-
-	//METODI NEL PAGAMENTO//
-	public double getDiscount(String code) {
-
-		//controllo i buffer in shopcard (evito di usarlo due volte di seguito prima del pagamento)
-		//if (this.shopCard.getCode().contains(code)) return -1;
-
-		/*ricerca il ticket nel database, se lo trova,
-		 * aggiorna lo shopcard e ritorna il valore, senno ritorna 0
-		 */
-		double discount = 4;
-		this.shopCard.addCode(code);
-		this.shopCard.changeTotal(discount);
-
-		return 4;
 	}
 
 	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException, IOException, SeatException {
@@ -291,6 +268,23 @@ public class Cinema {
 					total+=m.getPrice()+sL.getAddition()*100;
 
 		this.shopCard.addTotal((double) Math.round(total * 100)/100);;
+	}
+	
+	///// METODI DA IMPLEMENTARE ///////
+	//METODI NEL PAGAMENTO//
+	public double getDiscount(String code) {
+
+		//controllo i buffer in shopcard (evito di usarlo due volte di seguito prima del pagamento)
+		//if (this.shopCard.getCode().contains(code)) return -1;
+
+		/*ricerca il ticket nel database, se lo trova,
+		 * aggiorna lo shopcard e ritorna il valore, senno ritorna 0
+		 */
+		double discount = 4;
+		this.shopCard.addCode(code);
+		this.shopCard.changeTotal(discount);
+
+		return 4;
 	}
 
 	public static Cinema getCinema() {
