@@ -1,4 +1,0 @@
-modifica showing solo sala e prezzo
-cancellazione automatica proiezioni una volta al giorno
-ricerca proiezioni per film o data
-modifica film tranne titolo e durata

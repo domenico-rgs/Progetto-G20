@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +50,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 
 		pstm.setString(1,OID);
 		pstm.setString(2, t.getMovie());
-		pstm.setString(3,t.getShowing());
+		pstm.setObject(3, new java.sql.Timestamp(t.getDate().toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()));
 		pstm.setString(4,t.getSeat());
 		pstm.setDouble(5,t.getTotalPrice());
 
@@ -64,10 +66,16 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
 			Ticket tmp = new Ticket(rs.getNString(1),rs.getString(2),rs.getString(4),
-					rs.getString(3),rs.getDouble(5));
+					new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),rs.getDouble(5));
 
 			this.tickets.put(rs.getString(1),tmp);
 		}
+	}
+
+	protected void deleteTicket(String OID) throws SQLException {
+		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE ticketCode= ?");
+		stm.setString(1, OID);
+		stm.execute();
 	}
 
 

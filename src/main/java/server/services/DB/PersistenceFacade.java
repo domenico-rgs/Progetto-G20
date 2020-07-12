@@ -79,6 +79,10 @@ public class PersistenceFacade {
 		((ShowingsMapper)mapper.get(ShowingsMapper.class)).deleteExpiredShowing(millis);
 	}
 
+	public void deleteTicket(String OID) throws SQLException {
+		((TicketsMapper)mapper.get(TicketsMapper.class)).deleteTicket(OID);
+	}
+
 	public void addTickets(List<Ticket> ticketList) throws SQLException {
 		for(Ticket t : ticketList)
 			mapper.get(TicketsMapper.class).put(t.getCode(), t);

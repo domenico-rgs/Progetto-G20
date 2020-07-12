@@ -31,8 +31,8 @@ public class ShopCard implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
+
+
 
 
 		try {
