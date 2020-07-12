@@ -3,12 +3,15 @@ package server.domain.payment;
 import java.util.ArrayList;
 import java.util.List;
 
+import server.domain.cinema.Ticket;
+
 public class ShopCard {
 
 	/*shop card per aquisto singolo, si resetta ogni volta */
 	String[] seats;
 	String idSh;
 	private List<String> bufferDiscountCode;
+	private List<Ticket> ticketList;
 	private double total;
 
 	public ShopCard () {
@@ -17,6 +20,9 @@ public class ShopCard {
 		idSh = null;
 	}
 
+	public void setTicketList(List<Ticket> ticketList) {
+		this.ticketList = ticketList;
+	}
 
 	public void addCode(String code) {
 		this.bufferDiscountCode.add(code);
@@ -65,8 +71,4 @@ public class ShopCard {
 	public List<String> getBufferDiscountCode() {
 		return bufferDiscountCode;
 	}
-
-
 }
-
-
