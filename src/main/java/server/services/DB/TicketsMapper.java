@@ -73,10 +73,11 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	}
 
 	protected void deleteTicket(String OID) throws SQLException {
-		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE BINARY ticketCode=?");
-		//controllare query
-		stm.setString(1, OID);
-		stm.execute();
+		Statement stm = super.conn.createStatement();
+		stm.executeQuery("SET SQL_SAFE_UPDATES = 0");
+		PreparedStatement sm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE BINARY ticketCode=?");
+		sm.setString(1, OID);
+		sm.execute();
 	}
 
 

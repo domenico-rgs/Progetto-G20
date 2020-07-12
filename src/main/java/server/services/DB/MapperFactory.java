@@ -14,12 +14,14 @@ public class MapperFactory {
 	private MapperFactory()throws SQLException, IOException, SeatException {
 		this.mappers  = new HashMap<>();
 		SeatsMapper sm = new SeatsMapper();
-		TheatresMapper tm = new TheatresMapper(sm);
 		AvailabilityMapper am = new AvailabilityMapper();
+		TheatresMapper tm = new TheatresMapper(sm);
 		this.mappers.put(TheatresMapper.class, tm);
 		this.mappers.put(MoviesMapper.class, new MoviesMapper());
 		this.mappers.put(ShowingsMapper.class, new ShowingsMapper(tm,am));
 		this.mappers.put(TicketsMapper.class, new TicketsMapper());
+		this.mappers.put(AvailabilityMapper.class, am);
+		this.mappers.put(SeatsMapper.class, sm);
 
 	}
 
