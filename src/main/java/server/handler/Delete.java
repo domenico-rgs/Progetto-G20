@@ -39,12 +39,14 @@ public class Delete implements IHandler {
 		
 		String ticket = req.getParameter("ticketCode");
 		String cardN = req.getParameter("cardNumber");
+		System.out.println(ticket);
 		
 		try {
 			Cinema.getCinema().deleteTicket(ticket, cardN);
 			resp.getWriter().write("Ticket delete with success");
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			resp.getWriter().write("Ticket code or card number not corretct");
 		}
 	}
