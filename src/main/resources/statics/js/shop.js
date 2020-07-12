@@ -50,23 +50,23 @@ function discoFunc() {
 }
 
 function buyFunc() {
+  $('.loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/shopCard",
     data: {
       action: "buy",
       codeCard: $('.cardNumber input').val(),
-      date: $('.cardNumber input:nth-child(1)').val() + "/" + $('.cardNumber input:last-child').val(),
+      date: $('.deadline input:nth-child(1)').val() + "/" + $('.cardNumber input:last-child').val(),
       cvv: $('.cvv input').val(),
       email: $('.insertEmail input').val()
     },
     success: function(response) {
+      $('.loader').css("visibility", "hidden")
       if (response === "true") {
-        alert(response)
         $('.ticketConfirm').css("visibility", "visible")
       }
       if (response === "false") {
-        alert(response)
         $('#total #buyMess').text("Insert data not correct. Verify please.")
       } else {
         $('#total #buyMess').text(response)
