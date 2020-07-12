@@ -11,17 +11,12 @@ public class ShopCard {
 	String[] seats;
 	String idSh;
 	private List<String> bufferDiscountCode;
-	private List<Ticket> ticketList;
 	private double total;
 
 	public ShopCard () {
 		bufferDiscountCode = new ArrayList<>();
 		total = 0;
 		idSh = null;
-	}
-
-	public void setTicketList(List<Ticket> ticketList) {
-		this.ticketList = ticketList;
 	}
 
 	public void addCode(String code) {

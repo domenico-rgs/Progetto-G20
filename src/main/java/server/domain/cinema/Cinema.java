@@ -206,7 +206,7 @@ public class Cinema {
 
 	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing m = getMovieShowing(showingID);
-		List<Seat> sList = getFreeSeatsForShowing(showingID);
+		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
 
 		List<Ticket> ticketList = new ArrayList<>();
 		for(String s : seats)
@@ -214,10 +214,7 @@ public class Cinema {
 				if(sL.getPosition().equalsIgnoreCase(s))
 					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID).getDate(), (m.getPrice()*sL.getAddition())));
 		PersistenceFacade.getInstance().addTickets(ticketList);
-
-	
 		return ticketList;
-
 	}
 	
 	public double[] ticketsPrice(String showingID, String[] seats) throws SQLException, IOException, SeatException {

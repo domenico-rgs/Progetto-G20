@@ -16,7 +16,7 @@ public class Seat {
 	}
 
 	public double getAddition() {
-		return 0.0;
+		return 1.0;
 	}
 	
 	@Override
