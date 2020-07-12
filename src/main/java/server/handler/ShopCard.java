@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.domain.exception.SeatException;
 
 
 
@@ -98,6 +100,23 @@ public class ShopCard implements IHandler {
 	}
 	
 	public void timeBreak() {
+		String id = Cinema.getCinema().getShopCard().getIdSh();
+		String[] seats = Cinema.getCinema().getShopCard().getSeats();
+		
+		//true = posti liberati
+		try {
+			Cinema.getCinema().setAvailability(id, seats, true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SeatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		Cinema.getCinema().getShopCard().refresh();
 		valid = false;		
 	}
