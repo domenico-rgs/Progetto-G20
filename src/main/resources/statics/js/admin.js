@@ -4,6 +4,8 @@ var entered = false
 
 $(window).on('load', function() {
 
+  loadGeneralPage();
+
   $('.passDiv').animate({
     "opacity": "1"
   }, 700);
@@ -14,8 +16,19 @@ $(window).on('load', function() {
 
   sideMenuSwitch();
 });
-//ho levato window rezise per motivi di performance
-// e perche non funzionava....cercare un'implementazione migliore
+//funzione per caricare lapagina generale dinamica
+function loadGeneralPage() {
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "LoadGeneral",
+    },
+    success: function(response) {
+      $('#general').append(response)
+    }
+  })
+}
 
 // comparsa e scomparsa menu laterale
 
@@ -74,3 +87,15 @@ $('#closeButton').click(function() {
     "left": "-15%"
   }, 500);
 });
+
+
+
+$('.stat #movie').click(function() {
+  $('.table .movieT').addClass('active')
+  $('.table .theatreT').removeClass('active')
+})
+
+$('.stat #theatre').click(function() {
+  $('.table .theatreT').addClass('active')
+  $('.table .movieT').removeClass('active')
+})

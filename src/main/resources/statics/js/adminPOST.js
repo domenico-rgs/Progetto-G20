@@ -9,6 +9,7 @@ $('#addTheatre #add').on('click', function() {
     },
     success: function(response) {
       $('#addTheatre .message').text(response)
+      reloadGeneral()
     }
   })
 });
@@ -28,6 +29,7 @@ $('#addShowing #add').on('click', function() {
     },
     success: function(response) {
       $('#addShowing .message').text(response)
+      reloadGeneral()
     }
   })
 });
@@ -45,6 +47,7 @@ $('#editShowing #editS').on('click', function() {
     },
     success: function(response) {
       $('#editShowing .message').text(response)
+      reloadGeneral()
     }
   })
 });
@@ -95,6 +98,7 @@ $('#addMovie #add').on('click', function() {
     },
     success: function(response) {
       $('#addMovie .message').text(response)
+      reloadGeneral()
     }
   })
 });
@@ -116,6 +120,7 @@ $('#editMovie #editM').on('click', function() {
     },
     success: function(response) {
       $('#editMovie .message').text(response)
+      reloadGeneral()
     }
   })
 });
@@ -195,4 +200,19 @@ function passCheck() {
       }
     }
   })
+}
+
+function reloadGeneral() {
+  $('#general').empty()
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "LoadGeneral",
+    },
+    success: function(response) {
+      $('#general').append(response)
+    }
+  })
+
 }
