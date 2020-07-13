@@ -1,5 +1,6 @@
 package server.domain.payment;
 
+/**This singleton class creates different payment items. */
 public class ServiceFactory {
 	private static ServiceFactory istance = null;
 	private PaymentAdapter paymentSimulator;
