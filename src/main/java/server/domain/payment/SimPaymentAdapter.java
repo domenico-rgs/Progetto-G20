@@ -3,6 +3,8 @@ package server.domain.payment;
 import java.util.Date;
 import java.util.Random;
 
+/**This class creates a Payment simulator which can simulate a payment. */
+
 public class SimPaymentAdapter implements PaymentAdapter{
 
 	@Override
@@ -14,7 +16,15 @@ public class SimPaymentAdapter implements PaymentAdapter{
 			return false;
 		return true;
 	}
-
+	
+	/**
+	 * this method can check all data inserted into the payment simulator
+	 * @param money money for the payment
+	 * @param code cod for a discount
+	 * @param date card's deadline
+	 * @param cvc card's cvc
+	 * @return
+	 */
 	private boolean checkData(double money, String code, String date, String cvc) {
 		if(money<=0) {
 			return false;
