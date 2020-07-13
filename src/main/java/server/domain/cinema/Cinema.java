@@ -59,7 +59,11 @@ public class Cinema {
 	synchronized public void createDiscountCode(String code, double percent) throws SQLException, IOException, SeatException  {
 		PricingStrategyFactory.getInstance().createDiscountCode(code, percent);
 	}
-
+	
+	synchronized public void getDiscountCode(String code) throws SQLException, IOException, SeatException{
+		PricingStrategyFactory.getInstance().getCodeStrategy(code);
+	}
+	
 	public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, IOException, SeatException {
 		MovieShowing s = getMovieShowing(showing);
 		s.editShowing(this.getTheatre(theatre), price);
@@ -262,9 +266,7 @@ public class Cinema {
 	}
 
 
-
 	///// METODI DA IMPLEMENTARE ///////
-
 	synchronized public boolean deleteTheatre(String name) throws SearchException{
 		return false;
 		//OCCORRE CONTROLLARE CHE NON SIA USATO
