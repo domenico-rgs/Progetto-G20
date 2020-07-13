@@ -1,3 +1,4 @@
+// add theatre
 $('#addTheatre #add').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -14,7 +15,7 @@ $('#addTheatre #add').on('click', function() {
   })
 });
 
-
+//add showing
 $('#addShowing #add').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -34,6 +35,7 @@ $('#addShowing #add').on('click', function() {
   })
 });
 
+//edit showing
 $('#editShowing #editS').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -52,7 +54,7 @@ $('#editShowing #editS').on('click', function() {
   })
 });
 
-
+//edit showing
 $('#editShowing #id').on('keypress', function(e) {
   if (e.which == 13) {
     var ajax = $.ajax({
@@ -60,14 +62,13 @@ $('#editShowing #id').on('keypress', function(e) {
       url: "/administrator",
       data: {
         requestPost: "GetShowingInf",
-        movie: $('#editShowing #movie').val(),
         id: $('#editShowing #id').val()
       },
       success: function(response) {
-        // per ora cosi, sicuramente c'è di meglio (invio parametri splittando la stringa)
-        // 0: theatre
-        // 1: price
-
+        // 0: movie
+        // 1: theatre
+        // 2: Price
+        // 3: date
         var params = response.split("@")
 
         if (params[0] == "Error") {
@@ -84,6 +85,32 @@ $('#editShowing #id').on('keypress', function(e) {
   }
 });
 
+$('#editShowing #movie').on('change', function() {
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "GetMovieInf",
+      action: "getID",
+      title: $('#editShowing #movie').val(),
+    },
+    success: function(response) {
+      $('#idS idList').empty()
+      //lista di id disponibili, da splittare
+      var idList = response.split("@")
+      var element
+
+      idList.forEach(function(item, index) {
+        //item è il mio elemento
+        element = '<option value=' + item + '>' + item + '</option>'
+        $('#idS idList').append(element)
+      })
+
+    }
+  })
+});
+
+//add movie
 $('#addMovie #add').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -106,7 +133,7 @@ $('#addMovie #add').on('click', function() {
 
 
 
-
+//edit movie
 $('#editMovie #editM').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -125,6 +152,7 @@ $('#editMovie #editM').on('click', function() {
   })
 });
 
+//edit movie
 $('#editMovie #movie').on('change', function() {
   var ajax = $.ajax({
     type: "POST",

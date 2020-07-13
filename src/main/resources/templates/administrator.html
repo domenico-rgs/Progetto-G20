@@ -3,227 +3,258 @@
 List<String> categoryList
   List<String> titleMovieList
     List<String> theatreList
-      }
+      List<String> codeList
+        }
 
 
-      <html>
+        <html>
 
-        <head>
-          <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
-          <title>Administration</title>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="stylesheet" href="../statics/css/main.css" />
-          <link rel="stylesheet" href="../statics/css/admin.css">
-
-
-        </head>
-
-        <body>
-
-          <!-- menu laterale a comparsa -->
-          <div class="sideMenu">
-            <div class="menu">
-              <ul>
-                <li value="general">General</li>
-                <li value="addTheatre">Add Theatre</li>
-                <li value="addMovie">Add Movie</li>
-                <li value="editMovie">Edit Movie</li>
-                <li value="addShowing">Add Showing</li>
-                <li value="editShowing">Edit Showing</li>
-
-              </ul>
-            </div>
-          </div>
-
-          <!-- Header with navbar-->
-
-          <header id="header">
-            <div class="inner">
-              <nav id="nav">
-                <a href="/home">Go to Home</a>
-                <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-            </div>
-          </header>
+          <head>
+            <link rel="icon" href="../statics/images/favicon.png" type="image/png" />
+            <title>Administration</title>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="stylesheet" href="../statics/css/main.css" />
+            <link rel="stylesheet" href="../statics/css/admin.css">
 
 
-          <section id="passInsert">
-            <div class="passDiv">
-              <h1>Insert the password to continue: </h1>
-              <input type="password" placeholder="Password here: ">
-              <div class="buttons">
-                <button id='check' type="button" name="button">Check</button>
-                <button id='home' type="button" name="button">Home</button>
+          </head>
+
+          <body>
+
+            <!-- menu laterale a comparsa -->
+            <div class="sideMenu">
+              <div class="menu">
+                <ul>
+                  <li value="general">General</li>
+                  <li value="addTheatre">Add Theatre</li>
+                  <li value="addMovie">Add Movie</li>
+                  <li value="editMovie">Edit Movie</li>
+                  <li value="addShowing">Add Showing</li>
+                  <li value="editShowing">Edit Showing</li>
+                  <li value="discounts">Discounts</li>
+
+                </ul>
               </div>
-              <p></p>
             </div>
-          </section>
 
+            <!-- Header with navbar-->
 
-
-
-          <!-- Three -->
-          <section id="three" class="wrapper align-center">
-
-            <!-- div che si mostrano in relaizione al bottone premuto ------>
-            <div class="contentAdmin">
-
-              <div class="admin" id="introduzione">
-                <h1>Welcome Administrator</h1>
-                <p>Here you can make changes you need</p>
-                <img src="../statics/images/icon/adminIcon.png" alt="">
-
+            <header id="header">
+              <div class="inner">
+                <nav id="nav">
+                  <a href="/home">Go to Home</a>
+                  <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
               </div>
+            </header>
 
-              <div class="admin" id="general">
 
+            <section id="passInsert">
+              <div class="passDiv">
+                <h1>Insert the password to continue: </h1>
+                <input type="password" placeholder="Password here: ">
+                <div class="buttons">
+                  <button id='check' type="button" name="button">Check</button>
+                  <button id='home' type="button" name="button">Home</button>
+                </div>
+                <p></p>
               </div>
+            </section>
 
 
-              <!-- add Theatre -->
-              <div class="admin" id="addTheatre">
-                <p>Add a theatre:</p>
-
-                <input id='name' placeholder="Name">
-                <button id='add'>Add</button>
 
 
-                <div class="searchDiv">
-                  <textarea id="config" maxlength="640" rows="8" cols="80" placeholder="configuration
+            <!-- Three -->
+            <section id="three" class="wrapper align-center">
+
+              <!-- div che si mostrano in relaizione al bottone premuto ------>
+              <div class="contentAdmin">
+
+                <div class="admin" id="introduzione">
+                  <h1>Welcome Administrator</h1>
+                  <p>Here you can make changes you need</p>
+                  <img src="../statics/images/icon/adminIcon.png" alt="">
+
+                </div>
+
+                <div class="admin" id="general">
+
+                </div>
+
+
+                <!-- add Theatre -->
+                <div class="admin" id="addTheatre">
+                  <p>Add a theatre:</p>
+
+                  <input id='name' placeholder="Name">
+                  <button id='add'>Add</button>
+
+
+                  <div class="searchDiv">
+                    <textarea id="config" maxlength="640" rows="8" cols="80" placeholder="configuration
                     example:
                     P-C-C-C-C-C-P
                     D-C-C-C-C-C-D"></textarea>
-                  <div class="leggenda">
-                    <h5><strong>Legend: </strong></h5>
-                    <h6>X: Normal seat</h6>
-                    <h6>P: Premium seat</h6>
-                    <h6>D: Disabled seat</h6>
+                    <div class="leggenda">
+                      <h5><strong>Legend: </strong></h5>
+                      <h6>X: Normal seat</h6>
+                      <h6>P: Premium seat</h6>
+                      <h6>D: Disabled seat</h6>
+                    </div>
                   </div>
+
+                  <p class="message"></p>
                 </div>
 
-                <p class="message"></p>
-              </div>
 
+                <!-- edit Movie -->
+                <div class="admin" id="editMovie">
+                  <p>Edit or remove Movie:</p>
 
-              <!-- edit Movie -->
-              <div class="admin" id="editMovie">
-                <p>Edit or remove Movie:</p>
+                  <div class="searchDiv">
+                    <input id="movie" list="filmList" placeholder="Search Film">
+                    <datalist id="filmList">
+                      @for (String movie: titleMovieList) {
+                      <option value="@movie">@movie</option>
+                      }
 
-                <div class="searchDiv">
-                  <input id="movie" list="filmList" placeholder="Search Film">
-                  <datalist id="filmList">
-                    @for (String movie: titleMovieList) {
-                    <option value="@movie">@movie</option>
+                    </datalist>
+
+                    <button id='remove'>Remove</button>
+                    <button id='editM'>Edit</button>
+                  </div>
+
+                  <input id='duration' placeholder="Duration" readonly>
+                  <input id='cover' placeholder="Cover Name (jpg file)">
+                  <select id='category'>
+                    <option value="" disabled selected>Category</option>
+                    @for (String category: categoryList) {
+                    <option>@category</option>
                     }
+                  </select>
+                  <textarea id='plot' rows="8" cols="80" maxlength="640" placeholder="Description (max 640 chars)"></textarea>
 
-                  </datalist>
-
-                  <button id='remove'>Remove</button>
-                  <button id='editM'>Edit</button>
+                  <p class="message"></p>
                 </div>
 
-                <input id='duration' placeholder="Duration" readonly>
-                <input id='cover' placeholder="Cover Name (jpg file)">
-                <select id='category'>
-                  <option value="" disabled selected>Category</option>
-                  @for (String category: categoryList) {
-                  <option>@category</option>
-                  }
-                </select>
-                <textarea id='plot' rows="8" cols="80" maxlength="640" placeholder="Description (max 640 chars)"></textarea>
-
-                <p class="message"></p>
-              </div>
-
-              <div class="admin" id="addMovie">
-                <p>Add Movie:</p>
+                <div class="admin" id="addMovie">
+                  <p>Add Movie:</p>
 
 
-                <input id='movie' placeholder="Title">
-                <input id='duration' placeholder="Duration (minutes)">
-                <input id='cover' placeholder="Cover Name (jpg file)">
-                <select id='category'>
-                  <option value="" disabled selected>Category</option>
-                  @for (String category: categoryList) {
-                  <option>@category</option>
-                  }
-                </select>
-                <textarea id="plot" maxlength="640" rows="8" cols="80" placeholder="Description (max 640 chars)"></textarea>
-                <button id='add'>Add Movie</button>
-
-                <p class="message"></p>
-              </div>
-
-              <!--edit showing -->
-              <div class="admin" id="editShowing">
-                <p>Search or edit showing: </p>
-
-                <div class="searchDiv">
-                  <input id="id" placeholder="ID proiezione">
-
-                  <button>Remove</button>
-                  <button id='editS'>Edit</button>
-                </div>
-
-                <input id="movie" list="filmList" placeholder="Search Film">
-                <datalist id="filmList">
-                  @for (String movie: titleMovieList) {
-                  <option value="@movie">@movie</option>
-                  }
-                </datalist>
-
-                <input id='theatre' placeholder="Theatre">
-                <input id='price' placeholder="Price">
-                <input id='date' placeholder="Date" readonly>
-
-                <p class="message"></p>
-              </div>
-
-
-              <!-- add showing -->
-              <div class="admin" id="addShowing">
-                <p>Add Showing:</p>
-
-                <div class="searchDiv">
-                  <input id="movie" list="filmList" placeholder="Select Movie">
-                  <datalist id="filmList">
-                    @for (String movie: titleMovieList) {
-                    <option value="@movie">@movie</option>
+                  <input id='movie' placeholder="Title">
+                  <input id='duration' placeholder="Duration (minutes)">
+                  <input id='cover' placeholder="Cover Name (jpg file)">
+                  <select id='category'>
+                    <option value="" disabled selected>Category</option>
+                    @for (String category: categoryList) {
+                    <option>@category</option>
                     }
-                  </datalist>
+                  </select>
+                  <textarea id="plot" maxlength="640" rows="8" cols="80" placeholder="Description (max 640 chars)"></textarea>
+                  <button id='add'>Add Movie</button>
 
-                  <input id="theatre" list="theatreList" placeholder="Select Theatre">
-                  <datalist id="theatreList">
-                    @for (String theatre: theatreList) {
-                    <option value="@theatre">@theatre</option>
-                    }
-                  </datalist>
+                  <p class="message"></p>
                 </div>
 
-                <input id='date' placeholder="Date (ex: 12/06/2020)">
-                <input id='hour' placeholder="Hour (ex: 18:00)">
-                <input id='price' placeholder="Price (ex: 12.00)">
-                <button id='add'>Add</button>
+                <!--edit showing -->
+                <div class="admin" id="editShowing">
+                  <p>Search or edit showing: </p>
+
+                  <div class="searchDiv">
+                    <input id="movie" list="filmList" placeholder="Search Film">
+                    <datalist id="filmList">
+                      @for (String movie: titleMovieList) {
+                      <option value="@movie">@movie</option>
+                      }
+                    </datalist>
+
+                    <input id="idS" list="idList" placeholder="ID proiezione">
+                    <datalist id="idList">
+                      <!-- le aggiunge ajax -->
+                    </datalist>
+
+                    <button>Remove</button>
+                    <button id='editS'>Edit</button>
+                  </div>
+
+                  <input id='theatre' placeholder="Theatre" readonly>
+                  <input id='price' placeholder="Price">
+                  <input id='date' placeholder="Date" readonly>
+
+                  <p class="message"></p>
+                </div>
+
+
+                <!-- add showing -->
+                <div class="admin" id="addShowing">
+                  <p>Add Showing:</p>
+
+                  <div class="searchDiv">
+                    <input id="movie" list="filmList" placeholder="Select Movie">
+                    <datalist id="filmList">
+                      @for (String movie: titleMovieList) {
+                      <option value="@movie">@movie</option>
+                      }
+                    </datalist>
+
+                    <input id="theatre" list="theatreList" placeholder="Select Theatre">
+                    <datalist id="theatreList">
+                      @for (String theatre: theatreList) {
+                      <option value="@theatre">@theatre</option>
+                      }
+                    </datalist>
+                  </div>
+
+                  <input id='date' placeholder="Date (ex: 12/06/2020)">
+                  <input id='hour' placeholder="Hour (ex: 18:00)">
+                  <input id='price' placeholder="Price (ex: 12.00)">
+                  <button id='add'>Add</button>
 
 
 
-                <p class='message'>Create showing with ID: 00000</p>
+                  <p class='message'></p>
+                </div>
+
+
+                <!-- discounts edit -->
+                <div class="admin" id="discounts">
+                  <p>Add discounts code:</p>
+
+                  <div class="searchDiv">
+                    <input placeholder="New discount code">
+                    <input placeholder="Value ex: 5 (in %)" maxlength="3">
+                    <button id="add">Add</button>
+                  </div>
+
+                  <p>Remove discount code:</p>
+
+                  <div class="searchDiv">
+                    <input id="discoCode" list="codeList" placeholder="Select discount code">
+                    <datalist id="codeList">
+                      @for (String code: codeList) {
+                      <option value="@theatre">@code</option>
+                      }
+                    </datalist>
+                    <input placeholder="Value" disabled selected>
+                    <button id="remove">Remove</button>
+                  </div>
+                  <p class="message">Rimosso con successo</p>
+                </div>
+
               </div>
 
-            </div>
-
-          </section>
+            </section>
 
 
 
-          <!-- Footer -->
+            <!-- Footer -->
 
 
-          <!-- Scripts -->
-          <script src="../statics/js/jquery.min.js"></script>
-          <!-- nostri script -->
-          <script src="../statics/js/admin.js"></script>
-          <script src="../statics/js/adminPOST.js"></script>
-        </body>
+            <!-- Scripts -->
+            <script src="../statics/js/jquery.min.js"></script>
+            <!-- nostri script -->
+            <script src="../statics/js/admin.js"></script>
+            <script src="../statics/js/adminPOST.js"></script>
+          </body>
 
-      </html>
+        </html>
