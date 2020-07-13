@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -91,50 +92,63 @@ public class Cinema {
 
 	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
 		String s = "";
-		MovieShowing ms = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
-		boolean test = controlOverlapping(ms, theatre, date);
+		
+		//passo la data, non creo la showing prima!!!
+		boolean test = controlOverlapping(date, theatre, movie);
 		if(test) {
 			PersistenceFacade.getInstance().addMovieShowing(ms.getId(),ms);
-			s = ms.getId();
 		} else
 			s = "null";
 		return s;
 	}
 
-	//da verificare
-	synchronized private boolean controlOverlapping(MovieShowing showing, String theatre, LocalDateTime date) throws SQLException, IOException, SeatException {
-		//orario prenotazione convertito in secondi + durata film convertito in secondi
-
-		long dateStartControl, millisDateFilm1Control, dateEndControl;
-		long dateStart, millisDateFilm1, dateEnd;
-		List<MovieShowing> showingList = new ArrayList<>();
-		showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
+	//da verificare (domenico ci sto pensando io)
+	private boolean controlOverlapping(LocalDateTime date, String theatre, String movie) throws SQLException, IOException, SeatException {
 		
-		System.out.println(showingList.size());
-		System.out.println(showingList);
-
-		dateStartControl = date.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-		int filmTimeControl = getMovie(showing.getMovie()).getDuration();
-		millisDateFilm1Control = TimeUnit.MINUTES.toMillis(filmTimeControl);
-		dateEndControl = (dateStartControl + millisDateFilm1Control);
-		/* orario della proiezione che andremo a controllare risulta essere tempo esatto di inizio
-		 * che è dateStartControl e il momento di fine di tale proiezione è dateEndControl
-		 */
-
-		for(MovieShowing ms:showingList) {
-			dateStart = ms.getDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-			int filmTime = getMovie(showing.getMovie()).getDuration();
-			millisDateFilm1 = TimeUnit.MINUTES.toMillis(filmTime);
-			dateEnd = (dateStart + millisDateFilm1);
-
-			if(ms.getTheatreName().equals(theatre))
-				System.out.println("ciao");
-				if(dateStartControl>=dateStart && dateStartControl<=dateEnd || dateEndControl>=dateStart && dateEndControl<=dateEnd)
-					return false;
+		//in millisecondi
+		ZonedDateTime zdt = date.atZone(ZoneId.systemDefault());
+		long dateShowingSec = zdt.toInstant().getEpochSecond();
+		long movieDurationSec = this.getMovie(movie).getDuration()*60;
+		
+		//ricavo le proiezioni alla data attuale (spero che funzioni)
+		List<MovieShowing> showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
+		
+		//controllo se non ci sono film che DOPO si accavallano
+		long durationShowingToControll;
+		for (MovieShowing sh: showingList) {
+			//controllo solo se le sale sono uguali
+			if (!(sh.getTheatreName().contentEquals(theatre))) continue;
+			
+			zdt = sh.getDate().atZone(ZoneId.systemDefault());
+			durationShowingToControll = zdt.toInstant().getEpochSecond();
+			
+			//se trovo un film dopo (intuitivo?)
+			if ((durationShowingToControll - dateShowingSec) < movieDurationSec) 
+				return false;
 		}
 		
-		System.out.println();
-
+		//controllo se non ci sono film che PRIMA SI accavallano
+		long filmToControllDuration;
+		for(MovieShowing sh: showingList) {
+			
+			//se la sala è diversa skippo
+			if (!(sh.getTheatreName().contentEquals(theatre))) continue;
+			
+			zdt = sh.getDate().atZone(ZoneId.systemDefault());
+			durationShowingToControll = zdt.toInstant().getEpochSecond();
+			
+			//se la data è successiva non controllo
+			if (durationShowingToControll > dateShowingSec) continue;
+			
+			filmToControllDuration = getMovie(sh.getMovie()).getDuration()*60;
+			
+			//se si accavalla con una precedente
+			if ((durationShowingToControll + filmToControllDuration) >= dateShowingSec)
+				return false;
+		}
+		
+		
+		
 		return true;
 	}
 
