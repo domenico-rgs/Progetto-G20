@@ -93,6 +93,10 @@ public class PersistenceFacade {
 	public Object get(String OID, Class klass) throws SQLException{
 		return this.mapper.get(klass).get(OID);
 	}
+	
+	public void put(String OID, Class klass, Object obj) throws SQLException{
+		this.mapper.get(klass).put(OID, obj);
+	}
 
 	public void updateTable(Class klass,Object obj,String OID)throws SQLException{
 		mapper.get(klass).updateTable(OID,obj);

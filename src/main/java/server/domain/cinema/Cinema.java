@@ -4,13 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -29,13 +27,13 @@ import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.ServiceFactory;
 import server.domain.payment.ShopCard;
+import server.domain.payment.discount.PricingStrategyFactory;
 import server.services.DB.MoviesMapper;
 import server.services.DB.OIDCreator;
 import server.services.DB.PersistenceFacade;
 import server.services.DB.ShowingsMapper;
 import server.services.DB.TheatresMapper;
 import server.services.DB.TicketsMapper;
-import server.domain.cinema.*;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 
@@ -58,6 +56,10 @@ public class Cinema {
 		t.createSeats(file);
 		PersistenceFacade.getInstance().addTheatre(name,t);
 	}
+	
+	synchronized public void createDiscountCode(String code, double percent) throws SQLException, IOException, SeatException  {
+		PricingStrategyFactory.getInstance().createDiscountCode(code, percent);
+	}
 
 	public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, IOException, SeatException {
 		MovieShowing s = getMovieShowing(showing);
@@ -75,7 +77,6 @@ public class Cinema {
 		return false;
 		//OCCORRE CONTROLLARE CHE NON SIA USATO
 		//TO-DO
-
 	}
 
 	synchronized public void createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException, SQLException, IOException, SeatException{

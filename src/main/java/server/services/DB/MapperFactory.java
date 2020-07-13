@@ -22,6 +22,7 @@ public class MapperFactory {
 		this.mappers.put(TicketsMapper.class, new TicketsMapper());
 		this.mappers.put(AvailabilityMapper.class, am);
 		this.mappers.put(SeatsMapper.class, sm);
+		this.mappers.put(DiscountCodesMapper.class, new DiscountCodesMapper());
 
 	}
 

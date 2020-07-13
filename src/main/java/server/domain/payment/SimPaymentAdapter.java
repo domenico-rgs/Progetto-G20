@@ -7,8 +7,8 @@ public class SimPaymentAdapter implements PaymentAdapter{
 
 	@Override
 	public boolean pay(double money, String code, String date, String cvc) {
-//		if(!checkData(money,code,date,cvc))
-//			return false;
+		if(!checkData(money,code,date,cvc))
+			return false;
 		Random random = new Random();
 		if(random.nextInt(1000)==0)
 			return false;
