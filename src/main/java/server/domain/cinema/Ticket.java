@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 
 /**
- * This class identifies a bought ticket to show a movie.
+ * This class identifies a ticket to show a movie.
  */
 public class Ticket {
 	private String code;
@@ -41,7 +41,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket id: " + code + "\nDate: " + date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm")) + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: € "
+		return "Ticket id: " + code + "\nDate: " + date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm")) + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: ï¿½ "
 				+ totalPrice;
 	}
 

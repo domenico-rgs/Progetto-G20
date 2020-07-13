@@ -1,16 +1,14 @@
 package server.domain.cinema.theatre;
 
+/** this class represents a seat more confortable than the others */
 public class PremiumSeat extends Seat{
-	private final double addition = 1.2; //aggiunta in percentuale
-
-
 	public PremiumSeat(String position) {
 		super(position);
 	}
 
 	@Override
 	public double getAddition() {
-		return addition;
+		return 1.2;
 	}
 
 	@Override

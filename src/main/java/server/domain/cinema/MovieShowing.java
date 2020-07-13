@@ -25,7 +25,12 @@ public class MovieShowing {
 		this.movie=movie;
 		this.theatre = theatre;
 	}
-
+	
+	/**
+	 * this methos permits to modify a showing
+	 * @param theatre this is the theatre of the showing
+	 * @param price this is the price of the showing
+	 */
 	public void editShowing(Theatre theatre, double price) {
 		this.theatre=theatre;
 		this.price=price;

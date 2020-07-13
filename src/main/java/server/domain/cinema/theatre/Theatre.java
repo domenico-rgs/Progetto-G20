@@ -11,9 +11,7 @@ import java.util.Map;
 
 import server.domain.exception.SeatException;
 
-/**
- * The theatre of a Cinema, allows you to manage its projections
- */
+	/** This class represents a cinema's theatre. */
 public class Theatre {
 	private String theatreName;
 	private Map<String, Seat> seatsList;
@@ -24,9 +22,10 @@ public class Theatre {
 		this.theatreName=theatreName;
 	}
 
-	/*
-	 * Create the seats in the room by associating them with an id consisting of a
+	/**
+	 * Create the seats in the room by associating them with an id consisting of a 
 	 * letter that identifies the row and a number that identifies the column
+	 * @param file file used to create the positioning of the seats in a theatre
 	 */
 	public void createSeats(String file) throws IOException, SeatException {
 		BufferedReader seats = new BufferedReader(new FileReader(file));
@@ -38,7 +37,13 @@ public class Theatre {
 		}
 		seats.close();
 	}
-
+	
+	/**
+	 * this is a private method which adds seats to a seat list
+	 * @param row seats lines
+	 * @param rowNum number of seats lines
+	 * @throws SeatException this exception occurs if there are no correct inputs in the lines
+	 */
 	private void addSeats(String[] row, int rowNum) throws SeatException {
 		for(int j = 0; j<row.length; j++)
 			if(row[j].equalsIgnoreCase("X"))
@@ -50,7 +55,13 @@ public class Theatre {
 			else
 				throw new SeatException("Unrecognized seat type, recheck the file");
 	}
-
+	
+	/**
+	 * It creates a configuration file.
+	 * @param config this is the string which represents the theatre's seats configuration
+	 * @return return path's configuration file
+	 * @throws FileNotFoundException it occurs if the received string is not correct
+	 */
 	public String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
 

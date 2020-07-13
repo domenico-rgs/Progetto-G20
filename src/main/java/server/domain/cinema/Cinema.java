@@ -9,8 +9,8 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.mail.MessagingException;
@@ -26,14 +26,14 @@ import server.MailSender;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.ServiceFactory;
-import server.domain.payment.ShopCard;
+import server.domain.payment.ShopCart;
+import server.domain.payment.discount.PricingStrategyFactory;
 import server.services.DB.MoviesMapper;
 import server.services.DB.OIDCreator;
 import server.services.DB.PersistenceFacade;
 import server.services.DB.ShowingsMapper;
 import server.services.DB.TheatresMapper;
 import server.services.DB.TicketsMapper;
-import server.domain.cinema.*;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 
@@ -41,13 +41,13 @@ import server.domain.cinema.theatre.Theatre;
  * Facade controller for managing reservations in a cinema
  */
 public class Cinema {
-	private ShopCard shopCard;
+	private ShopCart shopCard;
 	private Quotes quotes = new Quotes();
 
 	private static Cinema istance = null;
 
 	private Cinema() {
-		shopCard = new ShopCard();
+		shopCard = new ShopCart();
 	}
 
 	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException  {
@@ -55,6 +55,10 @@ public class Cinema {
 		String file = t.createConfigFile(config);
 		t.createSeats(file);
 		PersistenceFacade.getInstance().addTheatre(name,t);
+	}
+	
+	synchronized public void createDiscountCode(String code, double percent) throws SQLException, IOException, SeatException  {
+		PricingStrategyFactory.getInstance().createDiscountCode(code, percent);
 	}
 
 	public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, IOException, SeatException {
@@ -69,22 +73,9 @@ public class Cinema {
 		PersistenceFacade.getInstance().updateTable(MoviesMapper.class, m, title);
 	}
 
-	synchronized public boolean deleteTheatre(String name) throws SearchException{
-		return false;
-		//OCCORRE CONTROLLARE CHE NON SIA USATO
-		//TO-DO
-
-	}
-
 	synchronized public void createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException, SQLException, IOException, SeatException{
 		Movie m = new Movie(title, duration, plot, pathCover, category);
 		PersistenceFacade.getInstance().addMovie(title,m);
-	}
-
-	synchronized public boolean deleteMovie(String title) throws SearchException{
-		return false;
-		//OCCORRE CONTROLLARE CHE NON SIA USATO
-		//TO-DO
 	}
 
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, IOException, SeatException, MessagingException{
@@ -99,8 +90,6 @@ public class Cinema {
 
 		return s.getId();
 	}
-	
-	
 	
 	//da verificare
 	synchronized private boolean controlOverlapping(MovieShowing showing) throws SQLException, IOException, SeatException {
@@ -129,12 +118,6 @@ public class Cinema {
 		}
 		*/
 		return true;
-		
-	}
-
-	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
-		//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
-		//TO-DO
 	}
 
 	public List<String> getQuotes() {
@@ -167,11 +150,10 @@ public class Cinema {
 		return allList;
 	}
 
-	public HashMap<Seat, Boolean> getAllSeatsForShowing (String idShowing) throws SQLException, IOException, SeatException {
+	public HashMap<Seat, Boolean> getAllSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
 	}
 
-	//restituisce solo i posti liberi per proiezione
 	public List<Seat> getFreeSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		List<Seat> freeSeats = new ArrayList<>();
 
@@ -206,40 +188,33 @@ public class Cinema {
 		this.shopCard.setSeats(seats);
 	}
 
-	public ShopCard getShopCard () {
+	public ShopCart getShopCard () {
 		return this.shopCard;
 	}
 
 	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing m = getMovieShowing(showingID);
-		List<Seat> sList = getFreeSeatsForShowing(showingID);
+		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
 
 		List<Ticket> ticketList = new ArrayList<>();
 		for(String s : seats)
 			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
-					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID).getDate(), (m.getPrice()+sL.getAddition()*100)));
+					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID).getDate(), (m.getPrice()*sL.getAddition())));
 		PersistenceFacade.getInstance().addTickets(ticketList);
-
-	
 		return ticketList;
-
 	}
 	
 	public double[] ticketsPrice(String showingID, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing m = getMovieShowing(showingID);
-		List<Seat> sList = getFreeSeatsForShowing(showingID);
-		double[] doubleList = new double[sList.size()];
-		
-		System.out.println(doubleList.length);
+		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
+		double[] doubleList = new double[seats.length];
 
 		int count = 0;
 		for(String s : seats) {
 			for(Seat sL : sList) {
-				//non entra mai in questo if
 				if(sL.getPosition().equalsIgnoreCase(s)) {
-					double price = m.getPrice()+sL.getAddition()*100.0;
-					System.out.println(price);
+					double price = (double) Math.round(m.getPrice()*sL.getAddition() * 100) / 100;
 					doubleList[count] = price;
 					this.shopCard.addTotal(price);
 				}		
@@ -267,7 +242,9 @@ public class Cinema {
 		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
+			this.shopCard.refresh();
 			return true;
+			
 		} else
 			return false;
 	}
@@ -283,20 +260,22 @@ public class Cinema {
 	
 	
 	///// METODI DA IMPLEMENTARE ///////
-	//METODI NEL PAGAMENTO//
-	public double getDiscount(String code) {
 
-		//controllo i buffer in shopcard (evito di usarlo due volte di seguito prima del pagamento)
-		//if (this.shopCard.getCode().contains(code)) return -1;
+	synchronized public boolean deleteTheatre(String name) throws SearchException{
+		return false;
+		//OCCORRE CONTROLLARE CHE NON SIA USATO
+		//TO-DO
+	}
+	
+	synchronized public boolean deleteMovie(String title) throws SearchException{
+		return false;
+		//OCCORRE CONTROLLARE CHE NON SIA USATO
+		//TO-DO
+	}
 
-		/*ricerca il ticket nel database, se lo trova,
-		 * aggiorna lo shopcard e ritorna il valore, senno ritorna 0
-		 */
-		double discount = 4;
-		this.shopCard.addCode(code);
-		this.shopCard.changeTotal(discount);
-
-		return 4;
+	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
+		//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
+		//TO-DO
 	}
 
 	public static Cinema getCinema() {

@@ -39,7 +39,7 @@ public class MailSender {
 		props.put("mail.smtp.socketFactory.fallback", "false");
 
 		Session session = Session.getInstance(props, null);
-		session.setDebug(true);
+		session.setDebug(false);
 
 		// Creazione delle BodyParts del messaggio
 		MimeBodyPart messageBodyPart1 = new MimeBodyPart();
@@ -98,7 +98,7 @@ public class MailSender {
 		props.put("mail.smtp.socketFactory.fallback", "false");
 
 		Session session = Session.getInstance(props, null);
-		session.setDebug(true);
+		session.setDebug(false);
 
 		// Creazione delle BodyParts del messaggio
 		MimeBodyPart messageBodyPart1 = new MimeBodyPart();

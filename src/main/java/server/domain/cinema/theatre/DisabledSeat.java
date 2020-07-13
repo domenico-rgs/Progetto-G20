@@ -1,15 +1,14 @@
 package server.domain.cinema.theatre;
 
+/** This class represents a seat made available for disabled person. */
 public class DisabledSeat extends Seat {
-	private final double addition = 0.5; //riduzione in percentuale
-
 	public DisabledSeat(String position) {
 		super(position);
 	}
-
+	
 	@Override
 	public double getAddition() {
-		return addition;
+		return 0.5;
 	}
 
 	@Override

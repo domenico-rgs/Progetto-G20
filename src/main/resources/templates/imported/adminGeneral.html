@@ -1,0 +1,75 @@
+@args {
+Map<String, Integer> forMovie
+  Map<String, Integer> forTheatre
+    Set<String> listM
+      Set<String> listT
+        }
+
+        @{listM = forMovie.keySet()}
+        @{listT = forTheatre.keySet()}
+
+
+        <div class="stat">
+          <h1>Current Movie: </h1>
+          <p id="pstat">@listM.size()</p>
+          <div id="movie" class="seeTable">
+            <h2>Show statistics</h2>
+          </div>
+        </div>
+
+        <div class="stat">
+          <h1>Current Theatre: </h1>
+          <p id="pstat">@listT.size()</p>
+          <div id="theatre" class="seeTable">
+            <h2>Show statistics</h2>
+          </div>
+        </div>
+
+        <div class="stat">
+          <h1>Programmed showing: </h1>
+          <p id="pstat">300</p>
+          <div id="showing" class="seeTable">
+            <h2>Show statistics</h2>
+          </div>
+        </div>
+
+        <div class="table">
+          <div class="movieT">
+            <table>
+              <h1>Statistics for Movie:</h1>
+              <tr>
+                <th> <strong>TITLE</strong></th>
+                <th> <strong>SHOWINGS</strong> </th>
+              </tr>
+
+              @for (String movie: listM) {
+              <tr>
+                <td>@movie</td>
+                <td>@forMovie.get(movie)</td>
+              </tr>
+              }
+
+            </table>
+          </div>
+
+          <div class="theatreT">
+            <table>
+              <h1>Statistics for Theatre:</h1>
+              <tr>
+                <th> <strong>NAME</strong></th>
+                <th> <strong>SEAT</strong> </th>
+              </tr>
+
+              @for (String theatre: listT) {
+              <tr>
+                <td>@theatre</td>
+                <td>@forTheatre.get(theatre)</td>
+              </tr>
+              }
+
+            </table>
+          </div>
+        </div>
+
+        <script src="../statics/js/jquery.min.js"></script>
+        <script src="../statics/js/admin.js"></script>

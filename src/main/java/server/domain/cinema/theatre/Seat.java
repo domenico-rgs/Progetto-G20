@@ -1,13 +1,12 @@
 package server.domain.cinema.theatre;
 
 /**
- * This class is referred to a seat in a cinema theatre
+ * This class is referred to a seat in a cinema's theatre
  * @see Theatre
  */
 public class Seat {
 	private String position;
-	private final double addition = 0.0; //aggiunta in percentuale
-
+	
 	public Seat(String seatId) {
 		position = seatId;
 	}
@@ -17,9 +16,9 @@ public class Seat {
 	}
 
 	public double getAddition() {
-		return addition;
+		return 1.0;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Seat: " + position;

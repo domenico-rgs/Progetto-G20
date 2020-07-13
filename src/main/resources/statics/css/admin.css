@@ -9,12 +9,12 @@ body {
   height: 100%;
   background-color: rgb(171, 171, 171, 0.5);
   z-index: 100000;
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
 }
 
 #passInsert .passDiv {
-  opacity: 0;
+  opacity: 1;
   text-align: center;
   position: relative;
   margin: 10% auto 0 auto;
@@ -64,8 +64,8 @@ body {
   min-height: 100%;
   max-height: 100%;
   background-color: #dedede;
-  visibility: visible;
-  opacity: 1;
+  visibility: hidden;
+  opacity: 0;
 }
 
 #three::-webkit-scrollbar {
@@ -237,9 +237,9 @@ body {
   display: inline-block;
   vertical-align: middle;
   background-color: white;
-  width: 40%;
+  width: 25%;
   height: auto;
-  margin: 0 2.5% 5% 2.5%;
+  margin: 0 1.5% 5% 1.5%;
   padding: 5px;
   box-shadow: 5px 5px 20px;
 }
@@ -266,6 +266,72 @@ body {
   font-size: 110%;
 }
 
-#general .table {
+.table {
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.table table {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.table table {
+  box-shadow: 5px 5px 20px;
+}
+
+.table th, td {
+  color: black;
+}
+
+.table th:first-child, td:first-child {
+  width: 70%;
+}
+
+.table th:last-child, td:last-child {
+  width: 30%;
+}
+
+.table th {
+  font-size: 120%;
+}
+
+.table td {
+  padding: 0 10px;
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+  font-size: normal;
+}
+
+.table table, th, td {
+  border: 1px solid rgb(185, 185, 185);
+}
+
+.table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.movieT {
+  visibility: hidden;
+  height: 0;
+}
+
+.theatreT {
+  height: 0;
+  visibility: hidden;
+}
+
+.movieT.active {
+  visibility: visible;
   height: auto;
+}
+
+.theatreT.active {
+  height: auto;
+  visibility: visible;
 }
