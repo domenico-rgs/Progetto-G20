@@ -365,6 +365,7 @@ body {
   -webkit-animation: spin 1s linear infinite;
   /* Safari */
   animation: spin 1s linear infinite;
+  visibility: hidden;
 }
 
 @keyframes spin {
