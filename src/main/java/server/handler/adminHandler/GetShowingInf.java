@@ -11,18 +11,17 @@ import server.domain.exception.SeatException;
 
 public class GetShowingInf {
 	public static String doAction(HttpServletRequest req) throws IOException, SeatException, SQLException {
-		
+
 		switch (req.getParameter("action")) {
 		case "getID":
 			String title = req.getParameter("title");
 			String message = "";
 
-			for (MovieShowing sh : Cinema.getCinema().getMovieShowingList(title) ) {
+			for (MovieShowing sh : Cinema.getCinema().getMovieShowingList(title) )
 				message += sh.getId() + "@";
-			}
-			
+
 			return message;
-			
+
 		case "getINF":
 			String id = req.getParameter("id");
 			if (id == null) return "";
@@ -37,8 +36,8 @@ public class GetShowingInf {
 				return "Error@Impossible get information";
 			}
 		}
-		
-		
+
+
 		return "problem with server";
 	}
 }

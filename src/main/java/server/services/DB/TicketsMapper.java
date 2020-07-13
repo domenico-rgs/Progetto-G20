@@ -5,9 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +63,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 
 	protected void setUp() throws SQLException, IOException, SeatException {
 		Statement stm = super.conn.createStatement();
-		
+
 		ResultSet rs = stm.executeQuery("select ticketCode, movieTitle, occupiedSeat, showingID, totalPrice from TICKETS join MOVIESHOWINGS on TICKETS.showingID = MOVIESHOWINGS.id");
 
 		while (rs.next()){

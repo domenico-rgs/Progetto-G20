@@ -20,7 +20,7 @@ public class Movie {
 		this.plot=plot;
 		this.pathCover=pathCover;
 	}
-	
+
 	/**
 	 * this methods can modify a movie
 	 * @param pathCover this is the path of the movie's cover

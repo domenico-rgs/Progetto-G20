@@ -53,7 +53,7 @@ public class PersistenceFacade {
 	public List<MovieShowing> getMovieShowingList(String OID_movie) throws SQLException{
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_movie);
 	}
-	
+
 	public List<MovieShowing> getMovieShowingList(String OID_theatre, LocalDateTime date) throws SQLException{
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_theatre, date);
 	}
@@ -84,7 +84,7 @@ public class PersistenceFacade {
 	public void deleteTicket(String OID) throws SQLException {
 		((TicketsMapper)mapper.get(TicketsMapper.class)).deleteTicket(OID);
 	}
-	
+
 	public void changeAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
 		((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).changeAvailability(OID_showing, OID_seat, availability);
 	}
@@ -98,7 +98,7 @@ public class PersistenceFacade {
 	public Object get(String OID, Class klass) throws SQLException{
 		return this.mapper.get(klass).get(OID);
 	}
-	
+
 	public void put(String OID, Class klass, Object obj) throws SQLException{
 		this.mapper.get(klass).put(OID, obj);
 	}

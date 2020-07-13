@@ -36,11 +36,11 @@ public class Delete implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String ticket = req.getParameter("ticketCode");
 		String cardN = req.getParameter("cardNumber");
 		System.out.println(ticket);
-		
+
 		try {
 			Cinema.getCinema().deleteTicket(ticket, cardN);
 			resp.getWriter().write("Ticket delete with success");

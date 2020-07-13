@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import server.domain.cinema.theatre.Theatre;
-import server.domain.exception.SeatException;
 
 /**
  * This class is referred to a movie projection in the cinema.
@@ -25,7 +24,7 @@ public class MovieShowing {
 		this.movie=movie;
 		this.theatre = theatre;
 	}
-	
+
 	/**
 	 * this methos permits to modify a showing
 	 * @param theatre this is the theatre of the showing
@@ -63,7 +62,7 @@ public class MovieShowing {
 	public String getId() {
 		return id;
 	}
-	
+
 	@Override
 	public String toString() {
 		return  getDateToString() + ", theatre: " + getTheatreName();

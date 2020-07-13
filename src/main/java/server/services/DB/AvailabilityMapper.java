@@ -70,7 +70,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 
 		return availabilityList;
 	}
-	
+
 	protected synchronized void changeAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
 		PreparedStatement pstm = conn.prepareStatement("UPDATE " + tableName+ " SET available=? WHERE BINARY showingID=? AND pos=?");
 		pstm.setBoolean(1,availability);
@@ -83,7 +83,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 		HashMap<Seat, Boolean> availabilityList = new HashMap<>();
 
 		PreparedStatement pstm = conn.prepareStatement("SELECT SHOWINGID, AVAILABILITY.POS, TYPEOFSEAT, AVAILABLE FROM " +tableName+
-				" JOIN SEATS ON (SEATS.POS=AVAILABILITY.POS) AND (SEATS.THEATRE=AVAILABILITY.THEATRE) WHERE BINARY showingID =? and available=1" );		
+				" JOIN SEATS ON (SEATS.POS=AVAILABILITY.POS) AND (SEATS.THEATRE=AVAILABILITY.THEATRE) WHERE BINARY showingID =? and available=1" );
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next())

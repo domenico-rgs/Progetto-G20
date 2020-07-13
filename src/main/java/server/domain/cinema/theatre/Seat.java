@@ -6,7 +6,7 @@ package server.domain.cinema.theatre;
  */
 public class Seat {
 	private String position;
-	
+
 	public Seat(String seatId) {
 		position = seatId;
 	}
@@ -18,7 +18,7 @@ public class Seat {
 	public double getAddition() {
 		return 1.0;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Seat: " + position;

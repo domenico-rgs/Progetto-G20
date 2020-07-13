@@ -11,7 +11,7 @@ import java.util.Map;
 
 import server.domain.exception.SeatException;
 
-	/** This class represents a cinema's theatre. */
+/** This class represents a cinema's theatre. */
 public class Theatre {
 	private String theatreName;
 	private Map<String, Seat> seatsList;
@@ -23,7 +23,7 @@ public class Theatre {
 	}
 
 	/**
-	 * Create the seats in the room by associating them with an id consisting of a 
+	 * Create the seats in the room by associating them with an id consisting of a
 	 * letter that identifies the row and a number that identifies the column
 	 * @param file file used to create the positioning of the seats in a theatre
 	 */
@@ -37,7 +37,7 @@ public class Theatre {
 		}
 		seats.close();
 	}
-	
+
 	/**
 	 * this is a private method which adds seats to a seat list
 	 * @param row seats lines
@@ -55,7 +55,7 @@ public class Theatre {
 			else
 				throw new SeatException("Unrecognized seat type, recheck the file");
 	}
-	
+
 	/**
 	 * It creates a configuration file.
 	 * @param config this is the string which represents the theatre's seats configuration

@@ -2,17 +2,16 @@ package server.handler.adminHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
 import server.domain.payment.discount.PricingStrategyFactory;
 
 public class Discount {
-	
+
 	public static String doAction(HttpServletRequest req) {
-		
+
 		switch (req.getParameter("action")) {
 		case "save":
 			String code = req.getParameter("code");
-			
+
 			try {
 				double value = Double.valueOf(req.getParameter("value"));
 				PricingStrategyFactory.getInstance().createDiscountCode(code, value);
@@ -23,7 +22,7 @@ public class Discount {
 			catch (Exception e) {
 				return "problem with server";
 			}
-			
+
 			return "Code successfully added. Recharge to see changes";
 
 		case "remove":
@@ -35,9 +34,9 @@ public class Discount {
 				return "problem with server";
 			}
 			return "Code removed with success";
-			
+
 		}
-		
+
 		return "problem with javascript script";
 	}
 

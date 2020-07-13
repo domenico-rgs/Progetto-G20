@@ -102,7 +102,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		}
 		return showings;
 	}
-	
+
 	protected List<MovieShowing> getMovieShowingList(String OID_theatre, LocalDateTime date) throws SQLException{
 		List<MovieShowing> showings = new ArrayList<>();
 		PreparedStatement stm = conn.prepareStatement("select * from "+super.tableName + " where theatre=? and (dateShow<? and dateShow>=?)");

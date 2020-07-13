@@ -5,7 +5,7 @@ public class DisabledSeat extends Seat {
 	public DisabledSeat(String position) {
 		super(position);
 	}
-	
+
 	@Override
 	public double getAddition() {
 		return 0.5;

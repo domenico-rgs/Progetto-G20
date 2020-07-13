@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +22,8 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 
 import server.MailSender;
+import server.domain.cinema.theatre.Seat;
+import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.ServiceFactory;
@@ -34,8 +35,6 @@ import server.services.DB.PersistenceFacade;
 import server.services.DB.ShowingsMapper;
 import server.services.DB.TheatresMapper;
 import server.services.DB.TicketsMapper;
-import server.domain.cinema.theatre.Seat;
-import server.domain.cinema.theatre.Theatre;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -56,7 +55,7 @@ public class Cinema {
 		t.createSeats(file);
 		PersistenceFacade.getInstance().addTheatre(name,t);
 	}
-	
+
 	synchronized public void createDiscountCode(String code, double percent) throws SQLException, IOException, SeatException  {
 		PricingStrategyFactory.getInstance().createDiscountCode(code, percent);
 	}
@@ -91,43 +90,39 @@ public class Cinema {
 		if(test) {
 			PersistenceFacade.getInstance().addMovieShowing(ms.getId(),ms);
 			s = ms.getId();
-		}
-		else {
+		} else
 			s = "null";
-		}
 		return s;
 	}
-	
+
 	//da verificare
 	synchronized private boolean controlOverlapping(MovieShowing showing, String theatre, LocalDateTime date) throws SQLException, IOException, SeatException {
 		//orario prenotazione convertito in secondi + durata film convertito in secondi
-		
+
 		long dateStartControl, millisDateFilm1Control, dateEndControl;
 		long dateStart, millisDateFilm1, dateEnd;
-		List<MovieShowing> showingList = new ArrayList<MovieShowing>(); 
+		List<MovieShowing> showingList = new ArrayList<MovieShowing>();
 		showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
-		
+
 		dateStartControl = date.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-		int filmTimeControl = getMovie(showing.getMovie()).getDuration();    
+		int filmTimeControl = getMovie(showing.getMovie()).getDuration();
 		millisDateFilm1Control = TimeUnit.MINUTES.toMillis(filmTimeControl);
-		dateEndControl = (dateStartControl + millisDateFilm1Control); 
-		/* orario della proiezione che andremo a controllare risulta essere tempo esatto di inizio 
+		dateEndControl = (dateStartControl + millisDateFilm1Control);
+		/* orario della proiezione che andremo a controllare risulta essere tempo esatto di inizio
 		 * che è dateStartControl e il momento di fine di tale proiezione è dateEndControl
 		 */
-		
+
 		for(MovieShowing msl:showingList) {
 			dateStart = msl.getDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-			int filmTime = getMovie(showing.getMovie()).getDuration();    
+			int filmTime = getMovie(showing.getMovie()).getDuration();
 			millisDateFilm1 = TimeUnit.MINUTES.toMillis(filmTime);
-			dateEnd = (dateStart + millisDateFilm1); 
-			
-			if(msl.getTheatreName() == theatre) {
-				if(dateStartControl>=dateStart && dateStartControl<=dateEnd || dateEndControl>=dateStart && dateEndControl<=dateEnd) {
+			dateEnd = (dateStart + millisDateFilm1);
+
+			if(msl.getTheatreName() == theatre)
+				if(dateStartControl>=dateStart && dateStartControl<=dateEnd || dateEndControl>=dateStart && dateEndControl<=dateEnd)
 					return false;
-				}
-			}
 		}
-		
+
 		return true;
 	}
 
@@ -187,14 +182,13 @@ public class Cinema {
 	}
 
 	public void setAvailability(String idShowing, String[] seats, boolean availability) throws SQLException, IOException, SeatException {
-		for(String s : seats) {
+		for(String s : seats)
 			PersistenceFacade.getInstance().changeAvailability(idShowing, s, availability);
-		}
 	}
 
 	// METODI DI GESTIONE DELLO SHOPCARD //
 	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
-		
+
 		this.shopCard.setIdSh(id);
 		this.shopCard.setSeats(seats);
 	}
@@ -215,7 +209,7 @@ public class Cinema {
 		PersistenceFacade.getInstance().addTickets(ticketList);
 		return ticketList;
 	}
-	
+
 	public double[] ticketsPrice(String showingID, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing m = getMovieShowing(showingID);
 		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
@@ -223,13 +217,12 @@ public class Cinema {
 
 		int count = 0;
 		for(String s : seats) {
-			for(Seat sL : sList) {
+			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s)) {
 					double price = m.getPrice()*sL.getAddition();
 					doubleList[count] = price;
 					this.shopCard.addTotal(price);
-				}		
-			}
+				}
 			count++;
 		}
 		return doubleList;
@@ -255,11 +248,11 @@ public class Cinema {
 			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
 			this.shopCard.refresh();
 			return true;
-			
+
 		} else
 			return false;
 	}
-	
+
 	private double getTotalPriceTickets(List<Ticket> ticketList) {
 		double total = 0.0;
 
@@ -268,8 +261,8 @@ public class Cinema {
 		return total;
 	}
 
-	
-	
+
+
 	///// METODI DA IMPLEMENTARE ///////
 
 	synchronized public boolean deleteTheatre(String name) throws SearchException{
@@ -277,7 +270,7 @@ public class Cinema {
 		//OCCORRE CONTROLLARE CHE NON SIA USATO
 		//TO-DO
 	}
-	
+
 	synchronized public boolean deleteMovie(String title) throws SearchException{
 		return false;
 		//OCCORRE CONTROLLARE CHE NON SIA USATO

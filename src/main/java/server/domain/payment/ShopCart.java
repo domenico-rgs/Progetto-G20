@@ -3,8 +3,6 @@ package server.domain.payment;
 import java.util.ArrayList;
 import java.util.List;
 
-import server.domain.cinema.Ticket;
-
 public class ShopCart {
 
 	/**this class works as a shopping cart */
@@ -18,16 +16,16 @@ public class ShopCart {
 		total = 0;
 		idSh = null;
 	}
-	
+
 	/**
 	 * this method permits to add a new discount code
 	 * @param code discount code
 	 */
 	public void addCode(String code) {
-		
+
 		this.bufferDiscountCode.add(code);
 	}
-	
+
 	/**
 	 * this method check if a discount code is already used for the same purchase
 	 * @param code discount code
@@ -43,7 +41,7 @@ public class ShopCart {
 	public void addTotal(double price) {
 		this.total += price;
 	}
-	
+
 	/**
 	 * this methods resets the shopping cart
 	 */
@@ -59,14 +57,14 @@ public class ShopCart {
 		//ritorna il prezzo con due cifre decimali
 		return (double) Math.round(this.total * 100) / 100;
 	}
-	
+
 	/**
 	 * it sets to 0 the value of "total"
 	 */
 	public void setZeroTotal() {
 		total = 0;
 	}
-	
+
 	/**
 	 * it modifies the value of "total"
 	 * @param discount
@@ -74,7 +72,7 @@ public class ShopCart {
 	public void changeTotal(double discount) {
 		this.total -= discount;
 	}
-	
+
 	public void setTotal(double newPrice) {
 		this.total = newPrice;
 	}

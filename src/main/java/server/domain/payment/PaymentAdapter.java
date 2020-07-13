@@ -4,7 +4,7 @@ package server.domain.payment;
 public interface PaymentAdapter {
 	/**
 	 * this methods permits to pay a ticket
-	 * @param money the amount of available money 
+	 * @param money the amount of available money
 	 * @param code code for a discount
 	 * @param pin card's pin
 	 * @param cvc card's cvc

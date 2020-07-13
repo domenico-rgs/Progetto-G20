@@ -12,7 +12,6 @@ import org.rythmengine.Rythm;
 import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 import server.domain.payment.discount.PricingStrategyFactory;
-import server.domain.payment.discount.TicketPricingStrategy;
 
 
 
@@ -38,7 +37,7 @@ public class ShopCard implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		//avvia il thread di attesa
 		waiting = new ShopTimer(timeWait, this);
 		waiting.start();
@@ -47,7 +46,7 @@ public class ShopCard implements IHandler {
 		String[] seats = Cinema.getCinema().getShopCard().getSeats();
 
 		try {
-			
+
 			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(id),
 					seats,
 					Cinema.getCinema().ticketsPrice(id, seats),
@@ -63,12 +62,12 @@ public class ShopCard implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		if (!valid) {
 			resp.getWriter().write("Carrello scaduto, rifai ordinazione");
 			return;
 		}
-			
+
 
 
 		switch(req.getParameter("action")) {
@@ -77,8 +76,8 @@ public class ShopCard implements IHandler {
 			String code = req.getParameter("code");
 			double price = Double.valueOf(req.getParameter("price"));
 			double finalPrice;
-			
-			
+
+
 			//se il biglietto è gia usato nello stesso acquisto
 			if (Cinema.getCinema().getShopCard().hasCode(code)) {
 				resp.getWriter().write("-1.0");
@@ -104,16 +103,16 @@ public class ShopCard implements IHandler {
 			String date = req.getParameter("date");
 			String cvv = req.getParameter("cvv");
 			String email = req.getParameter("email");
-			
+
 			System.out.println(date);
-			
+
 
 			try {
 				boolean value = Cinema.getCinema().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
-				
+
 				//interropre il thread di attesa se funziona
-				if (value) 
+				if (value)
 					this.waiting.interrupt();
 			}
 			catch (Exception e) {
@@ -125,11 +124,11 @@ public class ShopCard implements IHandler {
 		}
 
 	}
-	
+
 	public void timeBreak() {
 		String id = Cinema.getCinema().getShopCard().getIdSh();
 		String[] seats = Cinema.getCinema().getShopCard().getSeats();
-		
+
 		//true = posti liberati
 		try {
 			Cinema.getCinema().setAvailability(id, seats, true);
@@ -143,9 +142,9 @@ public class ShopCard implements IHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		Cinema.getCinema().getShopCard().refresh();
-		valid = false;		
+		valid = false;
 	}
 
 }
