@@ -7,7 +7,7 @@ import server.domain.cinema.Ticket;
 
 public class ShopCart {
 
-	/*this class works as a shopping cart */
+	/**this class works as a shopping cart */
 	String[] seats;
 	String idSh;
 	private List<String> bufferDiscountCode;
@@ -24,10 +24,14 @@ public class ShopCart {
 	 * @param code discount code
 	 */
 	public void addCode(String code) {
+		
 		this.bufferDiscountCode.add(code);
 	}
 	
-
+	/**
+	 * this method check if a discount code is already used for the same purchase
+	 * @param code discount code
+	 */
 	public boolean hasCode (String code) {
 		return this.bufferDiscountCode.contains(code);
 	}
@@ -39,7 +43,10 @@ public class ShopCart {
 	public void addTotal(double price) {
 		this.total += price;
 	}
-
+	
+	/**
+	 * this methods resets the shopping cart
+	 */
 	public void refresh() {
 		bufferDiscountCode.clear();
 		total = 0;
@@ -49,13 +56,21 @@ public class ShopCart {
 
 
 	public double getTotal() {
-		return this.total;
+		//ritorna il prezzo con due cifre decimali
+		return (double) Math.round(this.total * 100) / 100;
 	}
 	
+	/**
+	 * it sets to 0 the value of "total"
+	 */
 	public void setZeroTotal() {
 		total = 0;
 	}
-
+	
+	/**
+	 * it modifies the value of "total"
+	 * @param discount
+	 */
 	public void changeTotal(double discount) {
 		this.total -= discount;
 	}

@@ -9,7 +9,7 @@ body {
   height: 100%;
   background-color: rgb(171, 171, 171, 0.5);
   z-index: 100000;
-  visibility: visible;
+  visibility: hidden;
   opacity: 1;
 }
 
@@ -64,8 +64,8 @@ body {
   min-height: 100%;
   max-height: 100%;
   background-color: #dedede;
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
 }
 
 #three::-webkit-scrollbar {
@@ -230,6 +230,24 @@ body {
 .contentAdmin .admin {
   overflow: hidden;
   height: 0;
+}
+
+#editShowing .searchDiv #idS {
+  width: 20%;
+}
+
+/* discount div */
+#discounts>div:nth-child(2) {
+  border-bottom: 1px solid rgb(30, 63, 97);
+  margin-bottom: 2em;
+}
+
+#discounts>div:nth-child(2) input:nth-child(2) {
+  width: 120px;
+}
+
+#discounts>div:nth-child(4) input:nth-child(3) {
+  width: 50px;
 }
 
 /* general menu */

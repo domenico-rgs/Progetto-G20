@@ -1,3 +1,4 @@
+// add theatre
 $('#addTheatre #add').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -14,7 +15,7 @@ $('#addTheatre #add').on('click', function() {
   })
 });
 
-
+//add showing
 $('#addShowing #add').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -34,56 +35,71 @@ $('#addShowing #add').on('click', function() {
   })
 });
 
-$('#editShowing #editS').on('click', function() {
+
+//edit showing
+$('#editShowing #idS').on('change', function() {
+
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "EditShowing",
-      movie: $('#editShowing #movie').val(),
-      theatre: $('#editShowing #theatre').val(),
-      id: $('#editShowing #id').val(),
-      price: $('#editShowing #price').val()
+      requestPost: "GetShowingInf",
+      action: "getINF",
+      id: $('#editShowing #idS').val()
     },
     success: function(response) {
-      $('#editShowing .message').text(response)
-      reloadGeneral()
+      // 0: theatre
+      // 1: Price
+      // 2: date
+      var params = response.split("@")
+
+      if (params.length == 1) {
+        $('#editShowing .message').text(response)
+      }
+      if (params[0] == "Error") {
+        $('#editShowing .message').text(params[1])
+      } else {
+        $('#editShowing #theatre').val(params[0])
+        $('#editShowing #price').val(params[1])
+        $('#editShowing #date').val(params[2])
+      }
+    }
+  })
+});
+
+$('#editShowing #movie').on('change', function() {
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "GetShowingInf",
+      action: "getID",
+      title: $('#editShowing #movie').val(),
+    },
+    success: function(response) {
+      $('#editShowing #idList').empty()
+      $('#editShowing #idS').attr('placeholder', 'ID');
+      //lista di id disponibili, da splittare
+      var idList = response.split("@")
+      var element
+
+      if (idList.length == 0) {
+        $('#editShowing #idS').attr('placeholder', 'Nothing ID');
+        return;
+      }
+
+      idList.forEach(function(item, index) {
+        //item è il mio elemento
+        element = '<option value=' + item + '>' + item + '</option>'
+        $('#editShowing #idList').append(element)
+      })
+
     }
   })
 });
 
 
-$('#editShowing #id').on('keypress', function(e) {
-  if (e.which == 13) {
-    var ajax = $.ajax({
-      type: "POST",
-      url: "/administrator",
-      data: {
-        requestPost: "GetShowingInf",
-        movie: $('#editShowing #movie').val(),
-        id: $('#editShowing #id').val()
-      },
-      success: function(response) {
-        // per ora cosi, sicuramente c'è di meglio (invio parametri splittando la stringa)
-        // 0: theatre
-        // 1: price
-
-        var params = response.split("@")
-
-        if (params[0] == "Error") {
-          $('#editShowing .message').text(params[1])
-        } else {
-          $('#editShowing #theatre').val(params[0])
-          $('#editShowing #price').val(params[1])
-          $('#editShowing #date').val(params[2])
-        }
-
-
-      }
-    })
-  }
-});
-
+//add movie
 $('#addMovie #add').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -106,7 +122,7 @@ $('#addMovie #add').on('click', function() {
 
 
 
-
+//edit movie
 $('#editMovie #editM').on('click', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -125,6 +141,7 @@ $('#editMovie #editM').on('click', function() {
   })
 });
 
+//edit movie
 $('#editMovie #movie').on('change', function() {
   var ajax = $.ajax({
     type: "POST",
@@ -154,6 +171,52 @@ $('#editMovie #movie').on('change', function() {
   })
 });
 
+//discounts actions
+$('#discounts #add').on('click', function() {
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "Discount",
+      action: "save",
+      code: $('#discounts #code').val(),
+      value: $('#discounts #value').val(),
+    },
+    success: function(response) {
+      $('#discounts .messagge').text(response)
+    }
+  })
+});
+
+$('#discounts #add').on('click', function() {
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "Discount",
+      code: $('#discounts #code').val(),
+      value: $('#discounts #value').val(),
+    },
+    success: function(response) {
+      $('#discounts .messagge').text(response)
+    }
+  })
+});
+
+$('#discounts #remove').on('click', function() {
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "Discount",
+      action: "remove",
+      code: $('#discounts #code').val(),
+    },
+    success: function(response) {
+      $('#discounts .messagge').text(response)
+    }
+  })
+});
 
 //password check
 $('.passDiv #home').on('click', function(e) {

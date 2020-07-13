@@ -7,25 +7,7 @@ import server.domain.exception.SearchException;
 
 public class EditShowing {
 	public static String doAction(HttpServletRequest req) {
-		String id = req.getParameter("id");
-		String theatre = req.getParameter("theatre");
-
-		try {
-			double price = Double.parseDouble(req.getParameter("price"));
-
-			Cinema.getCinema().editShowing(id, theatre, price);
-
-		}
-		catch (SearchException e1) {
-			System.out.println(e1);
-			return "Error: showing " + id + " already exists";
-		}
-		catch (Exception e1) {
-			System.out.println(e1);
-			return "Incorrect or missing data";
-		}
-
-		return "Showing " + id + " succefully added. Reload to see changes";
+		return null;
 	}
 
 }

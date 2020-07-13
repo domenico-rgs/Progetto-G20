@@ -225,7 +225,7 @@ public class Cinema {
 		for(String s : seats) {
 			for(Seat sL : sList) {
 				if(sL.getPosition().equalsIgnoreCase(s)) {
-					double price = (double) Math.round(m.getPrice()*sL.getAddition() * 100) / 100;
+					double price = m.getPrice()*sL.getAddition();
 					doubleList[count] = price;
 					this.shopCard.addTotal(price);
 				}		
