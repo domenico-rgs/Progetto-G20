@@ -85,31 +85,49 @@ public class Cinema {
 
 
 	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException {
-		MovieShowing s = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
-		PersistenceFacade.getInstance().addMovieShowing(s.getId(),s);
-
-		return s.getId();
+		String s = "";
+		MovieShowing ms = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
+		boolean test = controlOverlapping(ms, theatre, date);
+		if(test) {
+			PersistenceFacade.getInstance().addMovieShowing(ms.getId(),ms);
+			s = ms.getId();
+		}
+		else {
+			s = "null";
+		}
+		return s;
 	}
 	
 	//da verificare
-	synchronized private boolean controlOverlapping() {
-		//get prenotazione
-		//get film
+	synchronized private boolean controlOverlapping(MovieShowing showing, String theatre, LocalDateTime date) throws SQLException, IOException, SeatException {
 		//orario prenotazione convertito in secondi + durata film convertito in secondi
-		LocalDateTime date = LocalDateTime.of(2020, 7, 22, 18, 00, 01);   // da sostituire con la data che ricavo dal database
-		ZonedDateTime zoneDate = date.atZone(ZoneId.of("Europe/Rome"));
-		long millisDate1 = zoneDate.toInstant().toEpochMilli();
-		int minutiFilm = 200;    // da sostituire con il getduration del film
-		long millisDateFilm1 = TimeUnit.MINUTES.toMillis(minutiFilm);
-		long dateEnd = (millisDate1 + millisDateFilm1); 
-		//orario inizio -----> millisDateFilm1    orario fine ----> dateEnd
-		//orario prenotazione casuale 121212313123
-		long casual = 12144212;
-		//ciclo for
-		if(casual>= millisDateFilm1 && casual <= dateEnd) {
-			return false;
+		
+		long dateStartControl, millisDateFilm1Control, dateEndControl;
+		long dateStart, millisDateFilm1, dateEnd;
+		List<MovieShowing> showingList = new ArrayList<MovieShowing>(); 
+		showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
+		
+		dateStartControl = date.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		int filmTimeControl = getMovie(showing.getMovie()).getDuration();    
+		millisDateFilm1Control = TimeUnit.MINUTES.toMillis(filmTimeControl);
+		dateEndControl = (dateStartControl + millisDateFilm1Control); 
+		/* orario della proiezione che andremo a controllare risulta essere tempo esatto di inizio 
+		 * che è dateStartControl e il momento di fine di tale proiezione è dateEndControl
+		 */
+		
+		for(MovieShowing msl:showingList) {
+			dateStart = msl.getDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+			int filmTime = getMovie(showing.getMovie()).getDuration();    
+			millisDateFilm1 = TimeUnit.MINUTES.toMillis(filmTime);
+			dateEnd = (dateStart + millisDateFilm1); 
+			
+			if(msl.getTheatreName() == theatre) {
+				if(dateStartControl>=dateStart && dateStartControl<=dateEnd || dateEndControl>=dateStart && dateEndControl<=dateEnd) {
+					return false;
+				}
+			}
 		}
-		//fuori dal ciclo
+		
 		return true;
 	}
 
@@ -241,7 +259,7 @@ public class Cinema {
 		} else
 			return false;
 	}
-
+	
 	private double getTotalPriceTickets(List<Ticket> ticketList) {
 		double total = 0.0;
 
