@@ -111,7 +111,6 @@ public class Cinema {
 		}
 		//fuori dal ciclo
 		return true;
-		
 	}
 
 	public List<String> getQuotes() {
