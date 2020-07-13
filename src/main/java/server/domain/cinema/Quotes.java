@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/** This class collects many quotes used for the web application */
 public class Quotes {
 	private ArrayList<String> quote;
 	private ArrayList<String> author;

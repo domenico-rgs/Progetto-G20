@@ -1,7 +1,7 @@
 package server.domain.cinema.theatre;
 
 /**
- * This class is referred to a seat in a cinema theatre
+ * This class is referred to a seat in a cinema's theatre
  * @see Theatre
  */
 public class Seat {

@@ -20,7 +20,13 @@ public class Movie {
 		this.plot=plot;
 		this.pathCover=pathCover;
 	}
-
+	
+	/**
+	 * this methods can modify a movie
+	 * @param pathCover this is the path of the movie's cover
+	 * @param plot movie's plot
+	 * @param category movie's category
+	 */
 	public void editMovie(String pathCover, String plot, TypeCategory category) {
 		setCategory(category);
 		setPlot(plot);

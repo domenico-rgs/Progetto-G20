@@ -1,5 +1,6 @@
 package server.domain.cinema.theatre;
 
+/** this class represents a seat more confortable than the others */
 public class PremiumSeat extends Seat{
 	public PremiumSeat(String position) {
 		super(position);

@@ -1,5 +1,6 @@
 package server.domain.cinema.theatre;
 
+/** This class represents a seat made available for disabled person. */
 public class DisabledSeat extends Seat {
 	public DisabledSeat(String position) {
 		super(position);
