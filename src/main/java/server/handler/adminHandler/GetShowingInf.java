@@ -10,24 +10,35 @@ import server.domain.cinema.MovieShowing;
 import server.domain.exception.SeatException;
 
 public class GetShowingInf {
-	public static String doAction(HttpServletRequest req) {
-		String id = req.getParameter("id");
-		try {
-			MovieShowing m = Cinema.getCinema().getMovieShowing(id);
-			String inf =  m.getTheatreName() + "@" + m.getPrice() +
-					"@" + m.getDateToString();
-			return inf;
+	public static String doAction(HttpServletRequest req) throws IOException, SeatException, SQLException {
+		
+		switch (req.getParameter("action")) {
+		case "getID":
+			String title = req.getParameter("title");
+			String message = "";
+
+			for (MovieShowing sh : Cinema.getCinema().getMovieShowingList(title) ) {
+				message += sh.getId() + "@";
+			}
+			
+			return message;
+			
+		case "getINF":
+			String id = req.getParameter("id");
+			if (id == null) return "";
+			try {
+				MovieShowing m = Cinema.getCinema().getMovieShowing(id);
+				String inf =  m.getTheatreName() + "@" + m.getPrice() +
+						"@" + m.getDateToString();
+				return inf;
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				return "Error@Impossible get information";
+			}
 		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SeatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		
+		
+		return "problem with server";
 	}
 }

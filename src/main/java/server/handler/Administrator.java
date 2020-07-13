@@ -42,10 +42,12 @@ public class Administrator implements IHandler {
 
 		try {
 			//il tempo di sistemare la vera lista di teatri
+			List<String> prova = new ArrayList<>();
+			prova.add("provacodice");
 
 			resp.getWriter().write(Rythm.render("administrator.html",
 					categoryList, Cinema.getCinema().getMovieList(),
-					Cinema.getCinema().getTheatreList()));
+					Cinema.getCinema().getTheatreList(), prova));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

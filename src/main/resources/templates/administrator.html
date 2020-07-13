@@ -174,11 +174,10 @@ List<String> categoryList
                     </datalist>
 
                     <button>Remove</button>
-                    <button id='editS'>Edit</button>
                   </div>
 
                   <input id='theatre' placeholder="Theatre" readonly>
-                  <input id='price' placeholder="Price">
+                  <input id='price' placeholder="Price" readonly>
                   <input id='date' placeholder="Date" readonly>
 
                   <p class="message"></p>
@@ -221,8 +220,8 @@ List<String> categoryList
                   <p>Add discounts code:</p>
 
                   <div class="searchDiv">
-                    <input placeholder="New discount code">
-                    <input placeholder="Value ex: 5 (in %)" maxlength="3">
+                    <input id="code" placeholder="New discount code">
+                    <input id="value" placeholder="Value ex: 5 (in %)" maxlength="3">
                     <button id="add">Add</button>
                   </div>
 
@@ -232,13 +231,13 @@ List<String> categoryList
                     <input id="discoCode" list="codeList" placeholder="Select discount code">
                     <datalist id="codeList">
                       @for (String code: codeList) {
-                      <option value="@theatre">@code</option>
+                      <option value="@code">@code</option>
                       }
                     </datalist>
-                    <input placeholder="Value" disabled selected>
                     <button id="remove">Remove</button>
                   </div>
-                  <p class="message">Rimosso con successo</p>
+
+                  <p class="message"></p>
                 </div>
 
               </div>
