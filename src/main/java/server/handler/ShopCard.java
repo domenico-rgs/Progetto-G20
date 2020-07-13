@@ -78,12 +78,11 @@ public class ShopCard implements IHandler {
 			double price = Double.valueOf(req.getParameter("price"));
 			double finalPrice;
 			
-			System.out.println(code);
-			System.out.println(price);
 			
 			//se il biglietto è gia usato nello stesso acquisto
 			if (Cinema.getCinema().getShopCard().hasCode(code)) {
 				resp.getWriter().write("-1.0");
+				break;
 			}
 
 			try {

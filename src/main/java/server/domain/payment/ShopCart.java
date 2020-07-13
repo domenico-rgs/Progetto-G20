@@ -33,7 +33,6 @@ public class ShopCart {
 	 * @param code discount code
 	 */
 	public boolean hasCode (String code) {
-		System.out.println(this.bufferDiscountCode);
 		return this.bufferDiscountCode.contains(code);
 	}
 
