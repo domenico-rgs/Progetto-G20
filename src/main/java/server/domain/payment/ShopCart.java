@@ -5,24 +5,32 @@ import java.util.List;
 
 import server.domain.cinema.Ticket;
 
-public class ShopCard {
+public class ShopCart {
 
-	/*shop card per aquisto singolo, si resetta ogni volta */
+	/*this class works as a shopping cart */
 	String[] seats;
 	String idSh;
 	private List<String> bufferDiscountCode;
 	private double total;
 
-	public ShopCard () {
+	public ShopCart () {
 		bufferDiscountCode = new ArrayList<>();
 		total = 0;
 		idSh = null;
 	}
-
+	
+	/**
+	 * this method permits to add a new discount code
+	 * @param code discount code
+	 */
 	public void addCode(String code) {
 		this.bufferDiscountCode.add(code);
 	}
-
+	
+	/**
+	 *  this methods permits to add a price to the total
+	 * @param price adding price
+	 */
 	public void addTotal(double price) {
 		this.total += price;
 	}
