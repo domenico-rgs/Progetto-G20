@@ -29,7 +29,7 @@ function discoFunc() {
     data: {
       action: "discount",
       code: $('#total .sconto input').val(),
-      price: $('#total .card #totalPrice').val().split(" ")[1]
+      price: $('#total .card #totalPrice').text().split(" ")[1]
     },
     success: function(response) {
 
@@ -42,7 +42,7 @@ function discoFunc() {
       } else {
         $('#total #buyMess').text("Code successfully applied")
         //cambio il prezzo visualizzato
-        $('#total .card #totalPrice').text("€ " + response)
+        $('#total .card #totalPrice').text("Euro " + response)
       }
     }
   })

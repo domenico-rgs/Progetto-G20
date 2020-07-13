@@ -78,6 +78,9 @@ public class ShopCard implements IHandler {
 			double price = Double.valueOf(req.getParameter("price"));
 			double finalPrice;
 			
+			System.out.println(code);
+			System.out.println(price);
+			
 			//se il biglietto è gia usato nello stesso acquisto
 			if (Cinema.getCinema().getShopCard().hasCode(code)) {
 				resp.getWriter().write("-1.0");
@@ -87,8 +90,10 @@ public class ShopCard implements IHandler {
 				finalPrice = PricingStrategyFactory.getInstance().getCodeStrategy(code).getTotalPrice(price);
 				Cinema.getCinema().getShopCard().addCode(code);
 				Cinema.getCinema().getShopCard().setTotal(finalPrice);
+				finalPrice = (double) Math.round(finalPrice * 100) / 100;
 			}
 			catch (Exception e) {
+				e.printStackTrace();
 				finalPrice = 0.0;
 			}
 
