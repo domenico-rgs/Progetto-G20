@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import server.domain.cinema.theatre.Theatre;
+import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
 
@@ -71,6 +72,26 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 
 			this.theatres.put(rs.getString(1),tmp);
 		}
+	}
+	
+	private boolean isUsed(String OID) throws SQLException {
+		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM MOVIESHOWINGS WHERE theatre=?");
+		pstm.setString(1,OID);
+		ResultSet rs = pstm.executeQuery();
+		rs.next();
+		if(rs.getInt(1)!=0)
+			return false;
+		else
+			return true;
+	}
+	
+	protected void deleteTheatre(String OID) throws SQLException, SearchException {
+		if(!isUsed(OID)) {
+			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE theatreName!='' and theatreName= ?");
+			stm.setObject(1, OID);
+			stm.execute();
+		}else
+			throw new SearchException("Theatre is used!");
 	}
 
 

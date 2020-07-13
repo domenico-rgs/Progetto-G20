@@ -9,6 +9,7 @@ import java.util.Map;
 
 import server.domain.cinema.Movie;
 import server.domain.cinema.TypeCategory;
+import server.domain.exception.SearchException;
 
 public class MoviesMapper extends AbstractPersistenceMapper {
 
@@ -81,6 +82,26 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 
 			this.movie.put(rs.getString(1),tmp);
 		}
+	}
+	
+	private boolean isUsed(String OID) throws SQLException {
+		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM MOVIESHOWINGS WHERE MOVIETITLE=?");
+		pstm.setString(1,OID);
+		ResultSet rs = pstm.executeQuery();
+		rs.next();
+		if(rs.getInt(1)!=0)
+			return false;
+		else
+			return true;
+	}
+	
+	protected void deleteMovie(String OID) throws SQLException, SearchException {
+		if(!isUsed(OID)) {
+			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE title!='' and title= ?");
+			stm.setObject(1, OID);
+			stm.execute();
+		}else
+			throw new SearchException("Movie is used!");
 	}
 
 

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import server.domain.cinema.MovieShowing;
+import server.domain.exception.SearchException;
 
 public class ShowingsMapper extends AbstractPersistenceMapper {
 	private TheatresMapper tm;
@@ -117,6 +118,26 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 			showings.add(ms);
 		}
 		return showings;
+	}
+	
+	private boolean isUsed(String OID) throws SQLException {
+		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM AVAILABLE WHERE SHOWINGID=? AND AVAILABLE=0");
+		pstm.setString(1,OID);
+		ResultSet rs = pstm.executeQuery();
+		rs.next();
+		if(rs.getInt(1)!=0)
+			return false;
+		else
+			return true;
+	}
+	
+	protected void deleteShowing(String OID) throws SQLException, SearchException {
+		if(!isUsed(OID)) {
+			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE id!='' and id= ?");
+			stm.setObject(1, OID);
+			stm.execute();
+		}else
+			throw new SearchException("The showing is used!");
 	}
 
 

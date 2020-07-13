@@ -12,6 +12,7 @@ import server.domain.cinema.MovieShowing;
 import server.domain.cinema.Ticket;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
+import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
 public class PersistenceFacade {
@@ -67,14 +68,22 @@ public class PersistenceFacade {
 
 		return a.getAvailableSeatsList(OID_movieShowing);
 	}
+	
+	public void removeDiscount(String code) throws SQLException {
+		((DiscountCodesMapper)mapper.get(DiscountCodesMapper.class)).deleteDiscount(code);		
+	}
 
 	//non era implementata
 	public Map<String, Theatre> getAllTheatre(){
 		return ((TheatresMapper)mapper.get(TheatresMapper.class)).getTheatres();
 	}
+	
+	public void deleteTheatre(String OID) throws SQLException, SearchException {
+		((TheatresMapper)mapper.get(TheatresMapper.class)).deleteTheatre(OID);
+	}
 
 	public void addTheatre(String OID, Theatre t) throws SQLException {
-		mapper.get(TheatresMapper.class).put(OID,t);
+		((TheatresMapper)mapper.get(TheatresMapper.class)).put(OID,t);
 	}
 
 	public void deleteExpiredShowing(long millis) throws SQLException {
@@ -84,7 +93,15 @@ public class PersistenceFacade {
 	public void deleteTicket(String OID) throws SQLException {
 		((TicketsMapper)mapper.get(TicketsMapper.class)).deleteTicket(OID);
 	}
-
+	
+	public void deleteMovie(String OID) throws SQLException, SearchException {
+		((MoviesMapper)mapper.get(MoviesMapper.class)).deleteMovie(OID);
+	}
+	
+	public void deleteMovieShowing(String OID) throws SQLException, SearchException {
+		((ShowingsMapper)mapper.get(ShowingsMapper.class)).deleteShowing(OID);
+	}
+	
 	public void changeAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
 		((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).changeAvailability(OID_showing, OID_seat, availability);
 	}

@@ -273,23 +273,16 @@ public class Cinema {
 		return total;
 	}
 
-
-	///// METODI DA IMPLEMENTARE ///////
-	synchronized public boolean deleteTheatre(String name) throws SearchException{
-		return false;
-		//OCCORRE CONTROLLARE CHE NON SIA USATO
-		//TO-DO
+	synchronized public void deleteTheatre(String name) throws SearchException, SQLException, IOException, SeatException{
+		PersistenceFacade.getInstance().deleteTheatre(name);
 	}
 
-	synchronized public boolean deleteMovie(String title) throws SearchException{
-		return false;
-		//OCCORRE CONTROLLARE CHE NON SIA USATO
-		//TO-DO
+	synchronized public void deleteMovie(String title) throws SearchException, SQLException, IOException, SeatException{
+		PersistenceFacade.getInstance().deleteMovie(title);
 	}
 
-	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
-		//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
-		//TO-DO
+	synchronized public void deleteMovieShowing(String idShowing) throws SearchException, SQLException, IOException, SeatException {
+		PersistenceFacade.getInstance().deleteMovieShowing(idShowing);
 	}
 
 	public static Cinema getCinema() {

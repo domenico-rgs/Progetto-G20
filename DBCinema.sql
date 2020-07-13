@@ -35,7 +35,8 @@ CREATE TABLE SEATS
           typeOfSeat CHAR(10) NOT NULL,
           
 	PRIMARY KEY (pos,theatre),
-	FOREIGN KEY (theatre) REFERENCES THEATRES(theatreName));
+	FOREIGN KEY (theatre) REFERENCES THEATRES(theatreName),
+	ON DELETE CASCADE);
 
 CREATE TABLE AVAILABILITY
         (showingID CHAR(10),
@@ -55,7 +56,8 @@ CREATE TABLE TICKETS
 		totalPrice DOUBLE NOT NULL,
          
 	FOREIGN KEY (showingID) REFERENCES MOVIESHOWINGS(id),
-	FOREIGN KEY (occupiedSeat, theatre) REFERENCES SEATS(pos, theatre));
+	FOREIGN KEY (occupiedSeat, theatre) REFERENCES SEATS(pos, theatre),
+	ON DELETE NO ACTION);
     
     CREATE TABLE DISCOUNTS
         (discountCode CHAR(16) PRIMARY KEY,

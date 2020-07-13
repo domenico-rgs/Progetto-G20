@@ -22,6 +22,10 @@ public class PricingStrategyFactory {
 	public void createDiscountCode(String code, double percent) throws SQLException, IOException, SeatException {
 		PersistenceFacade.getInstance().put(code,  DiscountCodesMapper.class, new CodeStrategy(code,percent));
 	}
+	
+	public void removeDiscountCode(String code, double percent) throws SQLException, IOException, SeatException {
+		PersistenceFacade.getInstance().removeDiscount(code);
+	}
 
 	/**
 	 * it permits to obtain a code strategy
