@@ -38,8 +38,14 @@ public class ShopCard implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		if(waiting.isAlive())
-			waiting.interrupt();
+		try {
+			if(waiting.isAlive())
+				waiting.interrupt();
+		}
+		catch (Exception e) {
+			//non succede niente
+		}
+		
 
 		//avvia il thread di attesa
 		waiting = new ShopTimer(timeWait, this);

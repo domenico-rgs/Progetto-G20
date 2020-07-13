@@ -183,25 +183,11 @@ $('#discounts #add').on('click', function() {
       value: $('#discounts #value').val(),
     },
     success: function(response) {
-      $('#discounts .messagge').text(response)
+      $('#discounts .message').text(response)
     }
   })
 });
 
-$('#discounts #add').on('click', function() {
-  var ajax = $.ajax({
-    type: "POST",
-    url: "/administrator",
-    data: {
-      requestPost: "Discount",
-      code: $('#discounts #code').val(),
-      value: $('#discounts #value').val(),
-    },
-    success: function(response) {
-      $('#discounts .messagge').text(response)
-    }
-  })
-});
 
 $('#discounts #remove').on('click', function() {
   var ajax = $.ajax({
@@ -213,7 +199,7 @@ $('#discounts #remove').on('click', function() {
       code: $('#discounts #code').val(),
     },
     success: function(response) {
-      $('#discounts .messagge').text(response)
+      $('#discounts .message').text(response)
     }
   })
 });

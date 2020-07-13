@@ -18,9 +18,11 @@ public class Discount {
 				Cinema.getCinema().createDiscountCode(code, value);
 			}
 			catch (NumberFormatException e) {
+				e.printStackTrace();
 				return "Value insert not correct";
 			}
 			catch (Exception e) {
+				e.printStackTrace();
 				return "problem with server";
 			}
 

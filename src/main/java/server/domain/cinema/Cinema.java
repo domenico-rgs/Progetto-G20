@@ -20,6 +20,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.WriterProperties;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import com.mysql.cj.jdbc.SuspendableXAConnection;
 
 import server.MailSender;
 import server.domain.cinema.theatre.Seat;
@@ -106,8 +107,11 @@ public class Cinema {
 
 		long dateStartControl, millisDateFilm1Control, dateEndControl;
 		long dateStart, millisDateFilm1, dateEnd;
-		List<MovieShowing> showingList = new ArrayList<MovieShowing>();
+		List<MovieShowing> showingList = new ArrayList<>();
 		showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
+		
+		System.out.println(showingList.size());
+		System.out.println(showingList);
 
 		dateStartControl = date.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 		int filmTimeControl = getMovie(showing.getMovie()).getDuration();
@@ -117,16 +121,19 @@ public class Cinema {
 		 * che è dateStartControl e il momento di fine di tale proiezione è dateEndControl
 		 */
 
-		for(MovieShowing msl:showingList) {
-			dateStart = msl.getDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		for(MovieShowing ms:showingList) {
+			dateStart = ms.getDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 			int filmTime = getMovie(showing.getMovie()).getDuration();
 			millisDateFilm1 = TimeUnit.MINUTES.toMillis(filmTime);
 			dateEnd = (dateStart + millisDateFilm1);
 
-			if(msl.getTheatreName() == theatre)
+			if(ms.getTheatreName().equals(theatre))
+				System.out.println("ciao");
 				if(dateStartControl>=dateStart && dateStartControl<=dateEnd || dateEndControl>=dateStart && dateEndControl<=dateEnd)
 					return false;
 		}
+		
+		System.out.println();
 
 		return true;
 	}
