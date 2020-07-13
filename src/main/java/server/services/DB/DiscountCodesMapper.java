@@ -7,10 +7,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import server.domain.cinema.Movie;
-import server.domain.cinema.TypeCategory;
 import server.domain.payment.discount.CodeStrategy;
-import server.domain.payment.discount.TicketPricingStrategy;
 
 public class DiscountCodesMapper extends AbstractPersistenceMapper {
 

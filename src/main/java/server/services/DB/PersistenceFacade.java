@@ -2,6 +2,7 @@ package server.services.DB;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,10 @@ public class PersistenceFacade {
 
 	public List<MovieShowing> getMovieShowingList(String OID_movie) throws SQLException{
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_movie);
+	}
+	
+	protected List<MovieShowing> getMovieShowingList(String OID_theatre, LocalDateTime date) throws SQLException{
+		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_theatre, date);
 	}
 
 	public HashMap<Seat,Boolean> getAvailabilityList(String OID_movieShowing) throws SQLException{

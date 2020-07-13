@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,6 +93,22 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		List<MovieShowing> showings = new ArrayList<>();
 		PreparedStatement stm = conn.prepareStatement("select * from "+super.tableName + " where movieTitle = ?");
 		stm.setString(1, OID_movie);
+		ResultSet rs = stm.executeQuery();
+		while (rs.next()){
+			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime(),
+					(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+			updateCache(ms.getId(),ms);
+			showings.add(ms);
+		}
+		return showings;
+	}
+	
+	protected List<MovieShowing> getMovieShowingList(String OID_theatre, LocalDateTime date) throws SQLException{
+		List<MovieShowing> showings = new ArrayList<>();
+		PreparedStatement stm = conn.prepareStatement("select * from "+super.tableName + " where theatre=? and (dateShow<? and dateShow>=?)");
+		stm.setString(1, OID_theatre);
+		stm.setObject(2, new java.sql.Timestamp(date.toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()+1000 * 60 * 60 * 24));
+		stm.setObject(3, new java.sql.Timestamp(date.toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()));
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
 			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime(),

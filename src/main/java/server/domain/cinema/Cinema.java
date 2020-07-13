@@ -73,21 +73,9 @@ public class Cinema {
 		PersistenceFacade.getInstance().updateTable(MoviesMapper.class, m, title);
 	}
 
-	synchronized public boolean deleteTheatre(String name) throws SearchException{
-		return false;
-		//OCCORRE CONTROLLARE CHE NON SIA USATO
-		//TO-DO
-	}
-
 	synchronized public void createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException, SQLException, IOException, SeatException{
 		Movie m = new Movie(title, duration, plot, pathCover, category);
 		PersistenceFacade.getInstance().addMovie(title,m);
-	}
-
-	synchronized public boolean deleteMovie(String title) throws SearchException{
-		return false;
-		//OCCORRE CONTROLLARE CHE NON SIA USATO
-		//TO-DO
 	}
 
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, IOException, SeatException, MessagingException{
@@ -102,8 +90,6 @@ public class Cinema {
 
 		return s.getId();
 	}
-	
-	
 	
 	//da verificare
 	synchronized private boolean controlOverlapping() {
@@ -126,11 +112,6 @@ public class Cinema {
 		//fuori dal ciclo
 		return true;
 		
-	}
-
-	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
-		//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
-		//TO-DO
 	}
 
 	public List<String> getQuotes() {
@@ -167,7 +148,6 @@ public class Cinema {
 		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
 	}
 
-	//restituisce solo i posti liberi per proiezione
 	public List<Seat> getFreeSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		List<Seat> freeSeats = new ArrayList<>();
 
@@ -286,6 +266,24 @@ public class Cinema {
 		this.shopCard.changeTotal(discount);
 
 		return 4;
+	}
+	
+
+	synchronized public boolean deleteTheatre(String name) throws SearchException{
+		return false;
+		//OCCORRE CONTROLLARE CHE NON SIA USATO
+		//TO-DO
+	}
+	
+	synchronized public boolean deleteMovie(String title) throws SearchException{
+		return false;
+		//OCCORRE CONTROLLARE CHE NON SIA USATO
+		//TO-DO
+	}
+
+	synchronized public void deleteMovieShowing(String movie, String idShowing) throws SearchException {
+		//OCCORRE CONTROLLARE CHE NON SIANO STATE FATTE PRENOTAZIONI PER QUESTA PROIEZIONE
+		//TO-DO
 	}
 
 	public static Cinema getCinema() {
