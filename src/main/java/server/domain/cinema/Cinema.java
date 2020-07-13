@@ -26,7 +26,7 @@ import server.MailSender;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.ServiceFactory;
-import server.domain.payment.ShopCard;
+import server.domain.payment.ShopCart;
 import server.domain.payment.discount.PricingStrategyFactory;
 import server.services.DB.MoviesMapper;
 import server.services.DB.OIDCreator;
@@ -41,13 +41,13 @@ import server.domain.cinema.theatre.Theatre;
  * Facade controller for managing reservations in a cinema
  */
 public class Cinema {
-	private ShopCard shopCard;
+	private ShopCart shopCard;
 	private Quotes quotes = new Quotes();
 
 	private static Cinema istance = null;
 
 	private Cinema() {
-		shopCard = new ShopCard();
+		shopCard = new ShopCart();
 	}
 
 	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException  {
@@ -111,7 +111,6 @@ public class Cinema {
 		}
 		//fuori dal ciclo
 		return true;
-		
 	}
 
 	public List<String> getQuotes() {
@@ -182,7 +181,7 @@ public class Cinema {
 		this.shopCard.setSeats(seats);
 	}
 
-	public ShopCard getShopCard () {
+	public ShopCart getShopCard () {
 		return this.shopCard;
 	}
 
