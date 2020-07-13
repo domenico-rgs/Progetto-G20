@@ -28,7 +28,8 @@ function discoFunc() {
     url: "/shopCard",
     data: {
       action: "discount",
-      code: $('#total .sconto input').val()
+      code: $('#total .sconto input').val(),
+      price: $('#total .card #totalPrice').val().split(" ")[1]
     },
     success: function(response) {
 
@@ -41,12 +42,8 @@ function discoFunc() {
       } else {
         $('#total #buyMess').text("Code successfully applied")
         //cambio il prezzo visualizzato
-        var price = $('#total .card #totalPrice').attr('price')
-        price = parseFloat(price) - parseFloat(response)
-        $('#total .card #totalPrice').text(price + " Euro")
-        $('#total .card #discount').text("-" + response + " Euro discount applied")
+        $('#total .card #totalPrice').text("€ " + response)
       }
-
     }
   })
 }

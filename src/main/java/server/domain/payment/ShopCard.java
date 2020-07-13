@@ -22,6 +22,10 @@ public class ShopCard {
 	public void addCode(String code) {
 		this.bufferDiscountCode.add(code);
 	}
+	
+	public boolean hasCode (String code) {
+		return this.bufferDiscountCode.contains(code);
+	}
 
 	public void addTotal(double price) {
 		this.total += price;
@@ -46,6 +50,10 @@ public class ShopCard {
 	public void changeTotal(double discount) {
 		this.total -= discount;
 	}
+	
+	public void setTotal(double newPrice) {
+		this.total = newPrice;
+	}
 
 	public String[] getSeats() {
 		return seats;
@@ -61,9 +69,5 @@ public class ShopCard {
 
 	public void setIdSh(String idSh) {
 		this.idSh = idSh;
-	}
-
-	public List<String> getBufferDiscountCode() {
-		return bufferDiscountCode;
 	}
 }
