@@ -23,6 +23,8 @@ public class ShopTimer extends Thread{
 
 		//se il thread non viene interrotto dalla classe shopCard, esegue questo
 		this.parent.timeBreak();
+		
+		interrupt();
 
 	}
 

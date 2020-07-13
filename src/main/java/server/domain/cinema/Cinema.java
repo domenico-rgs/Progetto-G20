@@ -60,8 +60,9 @@ public class Cinema {
 		PricingStrategyFactory.getInstance().createDiscountCode(code, percent);
 	}
 	
-	synchronized public void getDiscountCode(String code) throws SQLException, IOException, SeatException{
-		PricingStrategyFactory.getInstance().getCodeStrategy(code);
+	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, IOException, SeatException{
+		return PricingStrategyFactory.getInstance().getCodeStrategy(code).getTotalPrice(price);	
+		
 	}
 	
 	public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, IOException, SeatException {

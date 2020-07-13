@@ -2,6 +2,7 @@ package server.handler.adminHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
+import server.domain.cinema.Cinema;
 import server.domain.payment.discount.PricingStrategyFactory;
 
 public class Discount {
@@ -14,7 +15,7 @@ public class Discount {
 
 			try {
 				double value = Double.valueOf(req.getParameter("value"));
-				PricingStrategyFactory.getInstance().createDiscountCode(code, value);
+				Cinema.getCinema().createDiscountCode(code, value);
 			}
 			catch (NumberFormatException e) {
 				return "Value insert not correct";
@@ -27,7 +28,7 @@ public class Discount {
 
 		case "remove":
 			try {
-				//PricingStrategyFactory.getInstance().deleteCode(req.getParameter("code"));
+				//da scrivere
 			}
 			catch (Exception e) {
 				e.printStackTrace();

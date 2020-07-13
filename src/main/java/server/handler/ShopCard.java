@@ -37,6 +37,9 @@ public class ShopCard implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		if(waiting.isAlive())
+			waiting.interrupt();
 
 		//avvia il thread di attesa
 		waiting = new ShopTimer(timeWait, this);
@@ -85,7 +88,7 @@ public class ShopCard implements IHandler {
 			}
 
 			try {
-				finalPrice = PricingStrategyFactory.getInstance().getCodeStrategy(code).getTotalPrice(price);
+				finalPrice = Cinema.getCinema().applyDiscountOnPrice(code, price);;
 				Cinema.getCinema().getShopCard().addCode(code);
 				Cinema.getCinema().getShopCard().setTotal(finalPrice);
 				finalPrice = (double) Math.round(finalPrice * 100) / 100;

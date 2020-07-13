@@ -50,6 +50,6 @@ public class CodeStrategy implements TicketPricingStrategy{
 
 	@Override
 	public double getTotalPrice(double price) {
-		return price*(percent/100);
+		return price - price*(percent/100);
 	}
 }
