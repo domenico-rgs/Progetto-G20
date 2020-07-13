@@ -11,6 +11,8 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
+import server.domain.payment.discount.PricingStrategyFactory;
+import server.domain.payment.discount.TicketPricingStrategy;
 
 
 
@@ -73,10 +75,25 @@ public class ShopCard implements IHandler {
 		case "discount":
 			//da sistemare in futuro ancora
 			String code = req.getParameter("code");
+			double price = Double.valueOf(req.getParameter("price"));
+			double finalPrice;
+			
+			//se il biglietto è gia usato nello stesso acquisto
+			if (Cinema.getCinema().getShopCard().hasCode(code)) {
+				resp.getWriter().write("-1.0");
+			}
 
-			double discount = Cinema.getCinema().getDiscount(code);
+			try {
+				finalPrice = PricingStrategyFactory.getInstance().getCodeStrategy(code).getTotalPrice(price);
+				Cinema.getCinema().getShopCard().addCode(code);
+				Cinema.getCinema().getShopCard().setTotal(finalPrice);
+			}
+			catch (Exception e) {
+				finalPrice = 0.0;
+			}
 
-			resp.getWriter().write(String.valueOf(discount));
+			resp.getWriter().write(String.valueOf(String.valueOf(finalPrice)));
+			break;
 
 		case "buy":
 			String codeCard = req.getParameter("codeCard");

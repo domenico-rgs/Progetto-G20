@@ -27,6 +27,11 @@ public class ShopCart {
 		this.bufferDiscountCode.add(code);
 	}
 	
+
+	public boolean hasCode (String code) {
+		return this.bufferDiscountCode.contains(code);
+	}
+
 	/**
 	 *  this methods permits to add a price to the total
 	 * @param price adding price
@@ -64,6 +69,10 @@ public class ShopCart {
 	public void changeTotal(double discount) {
 		this.total -= discount;
 	}
+	
+	public void setTotal(double newPrice) {
+		this.total = newPrice;
+	}
 
 	public String[] getSeats() {
 		return seats;
@@ -79,9 +88,5 @@ public class ShopCart {
 
 	public void setIdSh(String idSh) {
 		this.idSh = idSh;
-	}
-
-	public List<String> getBufferDiscountCode() {
-		return bufferDiscountCode;
 	}
 }

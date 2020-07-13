@@ -111,7 +111,6 @@ public class Cinema {
 		}
 		//fuori dal ciclo
 		return true;
-		
 	}
 
 	public List<String> getQuotes() {
@@ -236,7 +235,9 @@ public class Cinema {
 		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
+			this.shopCard.refresh();
 			return true;
+			
 		} else
 			return false;
 	}
@@ -252,22 +253,6 @@ public class Cinema {
 	
 	
 	///// METODI DA IMPLEMENTARE ///////
-	//METODI NEL PAGAMENTO//
-	public double getDiscount(String code) {
-
-		//controllo i buffer in shopcard (evito di usarlo due volte di seguito prima del pagamento)
-		//if (this.shopCard.getCode().contains(code)) return -1;
-
-		/*ricerca il ticket nel database, se lo trova,
-		 * aggiorna lo shopcard e ritorna il valore, senno ritorna 0
-		 */
-		double discount = 4;
-		this.shopCard.addCode(code);
-		this.shopCard.changeTotal(discount);
-
-		return 4;
-	}
-	
 
 	synchronized public boolean deleteTheatre(String name) throws SearchException{
 		return false;
