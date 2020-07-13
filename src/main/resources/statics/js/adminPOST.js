@@ -1,6 +1,6 @@
 // add theatre
 $('#addTheatre #add').on('click', function() {
-  $('.loader').css("visibility", "visible")
+  $('#addTheatre .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -10,7 +10,7 @@ $('#addTheatre #add').on('click', function() {
       config: $('#addTheatre #config').val(),
     },
     success: function(response) {
-      $('.loader').css("visibility", "hidden")
+      $('#addTheatre .loader').css("visibility", "hidden")
       $('#addTheatre .message').text(response)
       reloadGeneral()
     }
@@ -19,7 +19,7 @@ $('#addTheatre #add').on('click', function() {
 
 //add showing
 $('#addShowing #add').on('click', function() {
-  $('.loader').css("visibility", "visible")
+  $('#addShowing .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -32,7 +32,7 @@ $('#addShowing #add').on('click', function() {
       price: $('#addShowing #price').val()
     },
     success: function(response) {
-      $('.loader').css("visibility", "hidden")
+      $('#addShowing .loader').css("visibility", "hidden")
       $('#addShowing .message').text(response)
       reloadGeneral()
     }
@@ -42,7 +42,7 @@ $('#addShowing #add').on('click', function() {
 
 //edit showing
 $('#editShowing #idS').on('change', function() {
-  $('.loader').css("visibility", "visible")
+  $('#editShowing .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -57,7 +57,7 @@ $('#editShowing #idS').on('change', function() {
       // 2: date
       var params = response.split("@")
 
-      $('.loader').css("visibility", "hidden")
+      $('#editShowing .loader').css("visibility", "hidden")
       if (params.length == 1) {
         $('#editShowing .message').text(response)
       }
@@ -73,7 +73,7 @@ $('#editShowing #idS').on('change', function() {
 });
 
 $('#editShowing #movie').on('change', function() {
-  $('.loader').css("visibility", "visible")
+  $('#editShowing .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -89,7 +89,7 @@ $('#editShowing #movie').on('change', function() {
       //lista di id disponibili, da splittare
       var idList = response.split("@")
       var element
-      $('.loader').css("visibility", "hidden")
+      $('#editShowing .loader').css("visibility", "hidden")
 
       if (idList.length == 0) {
         $('#editShowing #idS').attr('placeholder', 'Nothing ID');
@@ -109,7 +109,7 @@ $('#editShowing #movie').on('change', function() {
 
 //add movie
 $('#addMovie #add').on('click', function() {
-  $('.loader').css("visibility", "visible")
+  $('#addMovie .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -122,7 +122,7 @@ $('#addMovie #add').on('click', function() {
       category: $('#addMovie #category').find(":selected").text()
     },
     success: function(response) {
-      $('.loader').css("visibility", "hidden")
+      $('#addMovie .loader').css("visibility", "hidden")
       $('#addMovie .message').text(response)
       reloadGeneral()
     }
@@ -134,7 +134,7 @@ $('#addMovie #add').on('click', function() {
 
 //edit movie
 $('#editMovie #editM').on('click', function() {
-  $('.loader').css("visibility", "visible")
+  $('#editMovie .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -146,7 +146,7 @@ $('#editMovie #editM').on('click', function() {
       category: $('#editMovie #category').find(":selected").text()
     },
     success: function(response) {
-      $('.loader').css("visibility", "hidden")
+      $('#editMovie .loader').css("visibility", "hidden")
       $('#editMovie .message').text(response)
       reloadGeneral()
     }
@@ -155,7 +155,7 @@ $('#editMovie #editM').on('click', function() {
 
 //edit movie
 $('#editMovie #movie').on('change', function() {
-  $('.loader').css("visibility", "visible")
+  $('#editMovie .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -169,7 +169,7 @@ $('#editMovie #movie').on('change', function() {
       // 1: Durata
       // 2: Plot
       var params = response.split("@")
-      $('.loader').css("visibility", "hidden")
+      $('#editMovie .loader').css("visibility", "hidden")
 
       if (params[0] == "Error") {
         $('#editMovie .message').text(params[1])
@@ -187,7 +187,7 @@ $('#editMovie #movie').on('change', function() {
 
 //discounts actions
 $('#discounts #add').on('click', function() {
-  $('.loader').css("visibility", "visible")
+  $('#discounts .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -198,7 +198,7 @@ $('#discounts #add').on('click', function() {
       value: $('#discounts #value').val(),
     },
     success: function(response) {
-      $('.loader').css("visibility", "hidden")
+      $('#discounts .loader').css("visibility", "hidden")
       $('#discounts .message').text(response)
     }
   })

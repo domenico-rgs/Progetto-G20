@@ -16,9 +16,12 @@ public class AddTheatre {
 
 		try {
 			Cinema.getCinema().createTheatre(theatreName, config);
-		} catch (IOException | SeatException | SQLException e) {
+		} catch (IOException | SQLException e) {
 			e.printStackTrace();
 			return "Error with creation of new theatre. Please try again";
+		}
+		catch(SeatException e) {
+			return "Configuration is errated";
 		}
 
 		return theatreName + " succefully added. Reload to see changes";
