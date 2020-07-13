@@ -38,7 +38,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 			PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?)");
 			pstm.setString(1,ms.getId());
 			pstm.setString(2,temp.getValue().getPosition());
-			pstm.setString(3,temp.getValue().getType().toString());
+			pstm.setString(3,ms.getTheatreName());;
 			pstm.setBoolean(4,true);
 			pstm.execute();
 		}
@@ -50,8 +50,9 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 
 	protected HashMap<Seat,Boolean> getAvailabilityList(String OID_movieShowing) throws SQLException{
 		HashMap<Seat, Boolean> availabilityList = new HashMap<>();
-
-		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE BINARY showingID = ?" );
+		PreparedStatement pstm = conn.prepareStatement("SELECT SHOWINGID, AVAILABILITY.POS, TYPEOFSEAT, AVAILABLE FROM "
+				+tableName+" JOIN SEATS ON (SEATS.POS=AVAILABILITY.POS) AND (SEATS.THEATRE=AVAILABILITY.THEATRE)"
+				+ " WHERE BINARY showingID = ?" );
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next())
@@ -81,12 +82,22 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 	public HashMap<Seat, Boolean> getAvailableSeatsList(String OID_movieShowing) throws SQLException {
 		HashMap<Seat, Boolean> availabilityList = new HashMap<>();
 
-		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE BINARY showingID = ? and available= 1" );
+		PreparedStatement pstm = conn.prepareStatement("SELECT SHOWINGID, AVAILABILITY.POS, TYPEOFSEAT, AVAILABLE FROM " +tableName+
+				" JOIN SEATS ON (SEATS.POS=AVAILABILITY.POS) AND (SEATS.THEATRE=AVAILABILITY.THEATRE) WHERE BINARY showingID =? and available=1" );		
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next())
-			availabilityList.put(new Seat(rs.getString(2)), rs.getBoolean(4));
-
+			switch(rs.getString(3)) {
+			case "NORMAL":
+				availabilityList.put(new Seat(rs.getString(2)),rs.getBoolean(4));
+				break;
+			case "PREMIUM":
+				availabilityList.put(new PremiumSeat(rs.getString(2)), rs.getBoolean(4));
+				break;
+			case "DISABLED":
+				availabilityList.put(new DisabledSeat(rs.getString(2)), rs.getBoolean(4));
+				break;
+			}
 		return availabilityList;
 	}
 }

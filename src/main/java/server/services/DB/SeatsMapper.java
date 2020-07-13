@@ -36,11 +36,10 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 		Theatre t = (Theatre)obj;
 
 		for (Map.Entry<String,Seat> temp:t.getSeatsList().entrySet()) {
-			PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?)");
+			PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?)");
 			pstm.setString(1,temp.getKey());
 			pstm.setString(2,t.getTheatreName());
 			pstm.setString(3,temp.getValue().getType().toString());
-			pstm.setDouble(4,temp.getValue().getAddition());
 			pstm.execute();
 		}
 	}

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,10 +16,12 @@ import server.domain.exception.SeatException;
 
 public class TicketsMapper extends AbstractPersistenceMapper {
 	private Map<String, Ticket> tickets;
+	private ShowingsMapper sm;
 
-	public TicketsMapper() throws SQLException, IOException, SeatException {
+	public TicketsMapper(ShowingsMapper sm) throws SQLException, IOException, SeatException {
 		super("TICKETS");
 		this.tickets = new HashMap<>();
+		this.sm=sm;
 		setUp();
 	}
 
@@ -49,8 +52,8 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?,?)");
 
 		pstm.setString(1,OID);
-		pstm.setString(2, t.getMovie());
-		pstm.setObject(3, new java.sql.Timestamp(t.getDate().toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()));
+		pstm.setString(2, t.getShowing().getTheatreName());
+		pstm.setObject(3, t.getShowing().getId());
 		pstm.setString(4,t.getSeat());
 		pstm.setDouble(5,t.getTotalPrice());
 
@@ -63,10 +66,12 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 
 	protected void setUp() throws SQLException, IOException, SeatException {
 		Statement stm = super.conn.createStatement();
-		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
+		
+		ResultSet rs = stm.executeQuery("select ticketCode, movieTitle, occupiedSeat, showingID, totalPrice from TICKETS join MOVIESHOWINGS on TICKETS.showingID = MOVIESHOWINGS.id");
+
 		while (rs.next()){
-			Ticket tmp = new Ticket(rs.getNString(1),rs.getString(2),rs.getString(4),
-					new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),rs.getDouble(5));
+			Ticket tmp = new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
+					(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
 
 			this.tickets.put(rs.getString(1),tmp);
 		}

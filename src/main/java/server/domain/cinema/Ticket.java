@@ -1,10 +1,5 @@
 package server.domain.cinema;
 
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-
 /**
  * This class identifies a ticket to show a movie.
  */
@@ -12,13 +7,13 @@ public class Ticket {
 	private String code;
 	private String movie;
 	private String seat;
-	private LocalDateTime date;
+	private MovieShowing showing;
 	private double totalPrice;
 
-	public Ticket(String code, String movie, String seat, LocalDateTime date, double totalPrice) {
+	public Ticket(String code, String movie, String seat, MovieShowing showing, double totalPrice) {
 		this.code = code;
 		this.movie=movie;
-		this.date=date;
+		this.showing=showing;
 		this.seat=seat;
 		this.totalPrice=totalPrice;
 	}
@@ -31,8 +26,8 @@ public class Ticket {
 		return seat;
 	}
 
-	public LocalDateTime getDate() {
-		return date;
+	public MovieShowing getShowing() {
+		return showing;
 	}
 
 	public double getTotalPrice() {
@@ -41,7 +36,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket id: " + code + "\nDate: " + date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm")) + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: � "
+		return "Ticket id: " + code + "\nDate: " + showing.getDateToString() + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: � "
 				+ totalPrice;
 	}
 
