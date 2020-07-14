@@ -56,7 +56,7 @@ public class Index implements IHandler {
 			}
 
 			for (int i = 0; i<n; i++) {
-				movieList.add(Cinema.getCinema().getMovie(title.get(i)));
+				movieList.add(Cinema.getCinema().getMovie(title.get(title.size()-(i+1))));
 			}
 			return movieList;
 		} catch (IOException | SeatException e) {

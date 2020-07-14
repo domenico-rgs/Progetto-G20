@@ -134,7 +134,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 	}
 
 	private boolean isUsed(String OID) throws SQLException {
-		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM AVAILABLE WHERE SHOWINGID=? AND AVAILABLE=0");
+		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM AVAILABILITY WHERE SHOWINGID=? AND AVAILABLE=0");
 		pstm.setString(1,OID);
 		ResultSet rs = pstm.executeQuery();
 		rs.next();
