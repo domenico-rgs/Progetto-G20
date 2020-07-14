@@ -16,7 +16,7 @@ import server.domain.exception.SeatException;
 public class MovieList implements IHandler {
 	private static MovieList instance = null;
 
-	//serve nel catalogo per trenere traccia di una lista di film 'indexate'
+	/** this class is used in the catalog to keep track of a list of films */
 	private List<String> titleMovieList = new ArrayList<>();
 
 	private MovieList() {}
@@ -50,7 +50,7 @@ public class MovieList implements IHandler {
 	private List<server.domain.cinema.Movie> updateMovieList(int start, int end) {
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
-		//controllo se sono alla fine della lista
+		/**check if they are at the end of the list*/
 		if (end > this.titleMovieList.size()) {
 			end = this.titleMovieList.size();
 		}

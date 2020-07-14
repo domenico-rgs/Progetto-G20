@@ -14,6 +14,8 @@ import server.domain.cinema.Cinema;
 import server.domain.cinema.MovieShowing;
 import server.domain.exception.SeatException;
 
+/**this class is a controller that manages the movie page*/
+
 public class Movie implements IHandler {
 	private static Movie instance = null;
 
@@ -29,6 +31,7 @@ public class Movie implements IHandler {
 		return instance;
 	}
 
+	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {

@@ -9,7 +9,10 @@ import server.domain.exception.SearchException;
  */
 public interface IMapper {
 
-	String DB_URL = "jdbc:mysql://web-lnx243.ergonet.host:3306/progG20?serverTimezone=UTC";
+	
+	
+	//web-lnx243.ergonet.host
+	String DB_URL = "jdbc:mysql://185.205.41.113:3306/progG20?serverTimezone=UTC";
 	String USER = "cinemaG20";
 	String PASSWORD = "progettoG20";
 
