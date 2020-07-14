@@ -29,6 +29,7 @@ public class ShopCart implements IHandler {
 			instance = new ShopCart();
 		}
 		return instance;
+		
 	}
 
 	@Override
