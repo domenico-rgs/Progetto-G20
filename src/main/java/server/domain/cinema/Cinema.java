@@ -25,11 +25,13 @@ import server.MailSender;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.OverlapException;
+import server.domain.exception.PaymentException;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.ServiceFactory;
 import server.domain.payment.ShopCart;
 import server.domain.payment.discount.PricingStrategyFactory;
+import server.domain.payment.discount.TicketPricingStrategy;
 import server.services.DB.MoviesMapper;
 import server.services.DB.OIDCreator;
 import server.services.DB.PersistenceFacade;
@@ -93,8 +95,13 @@ public class Cinema {
 		PricingStrategyFactory.getInstance().createDiscountCode(code, percent);
 	}
 
-	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, IOException, SeatException{
-		return PricingStrategyFactory.getInstance().getCodeStrategy(code).getTotalPrice(price);
+	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, IOException, SeatException, PaymentException{
+		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getCodeStrategy(code);
+				
+		if(discount != null)
+			discount.getTotalPrice(price);
+		
+		throw new PaymentException("Discount code not found");
 	}
 
 	/* Edit Methods */
@@ -272,7 +279,7 @@ public class Cinema {
 		return doubleList;
 	}
 
-	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException {
+	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException, PaymentException {
 		List<Ticket> ticketList = createTickets(this.shopCart.getIdSh(), this.shopCart.getSeats());
 		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {

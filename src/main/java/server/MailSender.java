@@ -31,9 +31,9 @@ public class MailSender {
 	public static void sendRefundMail(String ticketCode, String cardNumber, double total) throws FileNotFoundException, MessagingException {
 		String header = "Someone has requested a refund";
 		String body = "Hello,\r\n" +
-				"a user has requested a refund for the ticket: " + ticketCode + "\r\n" +
-				"on card n°" +"\r\n" + cardNumber +
-				"for a total of €"+ total;
+				"a user has requested a refund for the ticket " + ticketCode +
+				" on card n°" + cardNumber +"\r\n" +
+				" for a total of €"+ total;
 		sendMail("progettog20@gmail.com",header,body,null);
 	}
 

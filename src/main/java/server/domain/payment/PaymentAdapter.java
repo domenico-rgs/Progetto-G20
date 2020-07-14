@@ -1,5 +1,7 @@
 package server.domain.payment;
 
+import server.domain.exception.PaymentException;
+
 /**This interface implements all essential methods for a payment */
 public interface PaymentAdapter {
 	/**
@@ -9,6 +11,7 @@ public interface PaymentAdapter {
 	 * @param pin card's pin
 	 * @param cvc card's cvc
 	 * @return true if the payment is successful
+	 * @throws PaymentException 
 	 */
-	boolean pay(double money, String code, String date, String cvc);
+	boolean pay(double money, String code, String date, String cvc) throws PaymentException;
 }
