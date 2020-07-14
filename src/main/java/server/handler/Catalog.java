@@ -28,8 +28,7 @@ public class Catalog implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (req.getParameter("search").contentEquals("all") ||
-				req.getParameter("search").contentEquals(""))
+		if (req.getParameter("search").contentEquals("all") || req.getParameter("search").contentEquals(""))
 			resp.getWriter().write(Rythm.render("catalog.html"));
 		else {
 			List<server.domain.cinema.Movie> movieList = this.searchMovieForString(req.getParameter("search"));

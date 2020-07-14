@@ -38,11 +38,11 @@ public class Main {
 //								Cinema.getCinema().createMovieShowing("Ritorno al futuro", LocalDateTime.of(2020, 8, 27, 20,00), "theatre3", 6.6);
 //								Cinema.getCinema().createMovieShowing("Ritorno al futuro", LocalDateTime.of(2020, 8, 27, 21,00), "theatre2", 5.6);
 
-		automaticExecution();
+		autoShowDelete();
 		server.start();
 	}
 
-	private static void automaticExecution() {
+	private static void autoShowDelete() {
 		final Runnable runnab = new Runnable() {
 			@Override
 			public void run() {

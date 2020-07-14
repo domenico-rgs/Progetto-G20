@@ -60,11 +60,13 @@ public class MovieList implements IHandler {
 		 * per motivi di efficienza
 		 * in quanto la lista nasce e muore sul momento dopo l'utilizzo
 		 */
-		try {
-			for (int i=start; i<end; i++)
+		
+		for (int i=start; i<end; i++) {
+			try {
 				movieList.add(Cinema.getCinema().getMovie(this.titleMovieList.get(i)));
-		}catch (Exception e) {
-			e.printStackTrace();
+			}catch (Exception e) {
+				e.toString();
+			}
 		}
 		return movieList;
 	}
@@ -73,7 +75,7 @@ public class MovieList implements IHandler {
 		try {
 			this.titleMovieList = Cinema.getCinema().getMovieList();
 		} catch (IOException | SeatException e) {
-			e.printStackTrace();
+			e.toString();
 		}
 	}
 }

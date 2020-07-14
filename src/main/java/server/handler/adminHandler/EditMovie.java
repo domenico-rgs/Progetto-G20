@@ -1,9 +1,13 @@
 package server.handler.adminHandler;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
+import server.domain.exception.SearchException;
 
 public class EditMovie {
 
@@ -21,10 +25,19 @@ public class EditMovie {
 		try {
 			Cinema.getCinema().editMovie(title, cover, plot, category);
 
-		}catch (Exception e1) {
-			System.out.println(e1);
-			return "Incorrect or missing data";
+		}catch (IOException e) {
+			System.out.println(e);
+			return "Problem with I/O operation. Please try again.";
+		}catch (SQLException e) {
+			System.out.println(e);
+			return e.toString();
+		}catch (NumberFormatException e) {
+			System.out.println(e);
+			return "Incorrect value for duration";
+		}catch (Exception e) {
+			System.out.println(e);
+			return e.toString();
 		}
-		return title + " succefully added. Reload to see changes";
+		return title + " succefully changed. Reload to see changes";
 	}
 }

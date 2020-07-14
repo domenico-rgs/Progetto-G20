@@ -31,9 +31,9 @@ public class GetShowingInf {
 				return inf;
 			}catch (Exception e) {
 				e.printStackTrace();
-				return "Error@Impossible get information";
+				return "Error@" +e.toString();
 			}
 		}
-		return "problem with server";
+		return "problem with javascript getRequest";
 	}
 }

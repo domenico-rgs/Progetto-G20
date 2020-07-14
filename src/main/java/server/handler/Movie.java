@@ -34,7 +34,8 @@ public class Movie implements IHandler {
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showingsForMovie));
 
 		} catch (SQLException | IOException | SeatException e) {
-			e.printStackTrace();
+			resp.getWriter().write(Rythm.render("404.html"));
+			e.toString();
 		}
 	}
 
