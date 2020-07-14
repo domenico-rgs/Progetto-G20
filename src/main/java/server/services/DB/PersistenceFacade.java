@@ -14,6 +14,7 @@ import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
+import server.domain.payment.discount.TicketPricingStrategy;
 
 public class PersistenceFacade {
 	private static PersistenceFacade instance = null;
@@ -37,7 +38,7 @@ public class PersistenceFacade {
 		return ((MoviesMapper)mapper.get(MoviesMapper.class)).getMovies();
 	}
 
-	public Map<String, MovieShowing> getAllMovieShowings(){
+	public List<MovieShowing> getAllMovieShowings(){
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getShowings();
 	}
 
@@ -88,5 +89,9 @@ public class PersistenceFacade {
 
 	public void delete(String OID, Class<?> klass) throws SQLException, SearchException{
 		this.mapper.get(klass).delete(OID);
+	}
+
+	public List<TicketPricingStrategy> getDiscountList() throws NumberFormatException, SQLException {
+		return ((DiscountCodesMapper)mapper.get(DiscountCodesMapper.class)).getDiscountList();
 	}
 }
