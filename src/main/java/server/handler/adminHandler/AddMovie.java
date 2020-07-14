@@ -34,7 +34,7 @@ public class AddMovie{
 			return "Problem with I/O operation. Please try again.";
 		}catch (SQLException e) {
 			System.out.println(e);
-			return e.toString();
+			return "Problem with database or " +title+ " already exists";
 		}catch (NumberFormatException e) {
 			System.out.println(e);
 			return "Incorrect value for duration";
