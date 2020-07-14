@@ -56,13 +56,13 @@ public class MovieList implements IHandler {
 		}
 
 		if (start >= this.titleMovieList.size())
-			return movieList;   //in realta vuota
+			return movieList;   //actually empty
 
 		/*
-		 * prendo i film dal cinema e li metto in una lista proprietaria
-		 * da valutare se non conservare tutti i film ma solo i valori necessari
-		 * per motivi di efficienza
-		 * in quanto la lista nasce e muore sul momento dopo l'utilizzo
+		 * we take the films from the cinema and put them on a proprietary list
+		 * to evaluate if not to keep all the films but only the necessary values
+		 * for efficiency reasons
+		 * as the list is born and dies on the spot after use
 		 */
 
 		for (int i=start; i<end; i++) {

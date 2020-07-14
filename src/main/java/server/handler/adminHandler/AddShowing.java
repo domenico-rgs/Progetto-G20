@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import server.domain.cinema.Cinema;
 import server.domain.exception.OverlapException;
 
+
+/** this class together with others serve as a control on the admin page, precisely this deals
+ *  with connecting the web interface to logic and transmitting information to create a showing*/
 public class AddShowing {
 
 	public static String doAction(HttpServletRequest req) {
