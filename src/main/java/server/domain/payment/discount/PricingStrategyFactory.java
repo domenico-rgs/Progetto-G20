@@ -42,14 +42,15 @@ public class PricingStrategyFactory {
 	public TicketPricingStrategy getCodeStrategy(String discount) throws SQLException, IOException, SeatException {
 		return (TicketPricingStrategy) PersistenceFacade.getInstance().get(discount, DiscountCodesMapper.class);
 	}
-	
+
 	public List<TicketPricingStrategy> getDiscountList() throws NumberFormatException, SQLException, IOException, SeatException{
 		return PersistenceFacade.getInstance().getDiscountList();
 	}
 
 	public static PricingStrategyFactory getInstance() {
-		if (istance == null)
+		if (istance == null) {
 			istance = new PricingStrategyFactory();
+		}
 		return istance;
 	}
 }

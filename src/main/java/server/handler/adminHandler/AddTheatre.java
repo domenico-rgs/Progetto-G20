@@ -1,6 +1,5 @@
 package server.handler.adminHandler;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;

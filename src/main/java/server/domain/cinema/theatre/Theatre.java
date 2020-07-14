@@ -45,13 +45,13 @@ public class Theatre {
 	 */
 	private void addSeats(String[] row, int rowNum) throws SeatException {
 		for(int j = 0; j<row.length; j++)
-			if(row[j].equalsIgnoreCase("X"))
+			if(row[j].equalsIgnoreCase("X")) {
 				seatsList.put(Character.toString(65 + rowNum) + j, new Seat(Character.toString(65 + rowNum) + j));
-			else if (row[j].equalsIgnoreCase("P"))
+			} else if (row[j].equalsIgnoreCase("P")) {
 				seatsList.put(Character.toString(65 + rowNum) + j, new PremiumSeat(Character.toString(65 + rowNum) + j));
-			else if (row[j].equalsIgnoreCase("D"))
+			} else if (row[j].equalsIgnoreCase("D")) {
 				seatsList.put(Character.toString(65 + rowNum) + j, new DisabledSeat(Character.toString(65 + rowNum) + j));
-			else
+			} else
 				throw new SeatException("Unrecognized seat type, recheck the file");
 	}
 

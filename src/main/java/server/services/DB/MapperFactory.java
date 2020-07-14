@@ -27,8 +27,9 @@ public class MapperFactory {
 	}
 
 	public static MapperFactory getInstance()throws SQLException, IOException, SeatException {
-		if(instance == null)
+		if(instance == null) {
 			instance = new MapperFactory();
+		}
 		return instance;
 	}
 

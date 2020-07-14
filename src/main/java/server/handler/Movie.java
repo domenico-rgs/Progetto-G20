@@ -20,8 +20,9 @@ public class Movie implements IHandler {
 	private Movie() {}
 
 	public static Movie getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new Movie();
+		}
 
 		return instance;
 	}

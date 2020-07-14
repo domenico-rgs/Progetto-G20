@@ -23,16 +23,18 @@ public class ShopCard implements IHandler {
 	private ShopCard() {}
 
 	public static ShopCard getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new ShopCard();
+		}
 		return instance;
 	}
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			if(waiting.isAlive())
+			if(waiting.isAlive()) {
 				waiting.interrupt();
+			}
 		}catch (Exception e) {
 			//non succede niente
 		}
@@ -103,8 +105,9 @@ public class ShopCard implements IHandler {
 				resp.getWriter().write(String.valueOf(value));
 
 				//interropre il thread di attesa se funziona
-				if (value)
+				if (value) {
 					this.waiting.interrupt();
+				}
 			}catch (Exception e) {
 				e.printStackTrace();
 				resp.getWriter().write("Impossible buy this ticket");

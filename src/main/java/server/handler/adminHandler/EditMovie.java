@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
-import server.domain.exception.SearchException;
 
 public class EditMovie {
 
@@ -17,10 +16,11 @@ public class EditMovie {
 		TypeCategory category = TypeCategory.valueOf(req.getParameter("category"));
 		String cover;
 
-		if (req.getParameter("cover").contentEquals(""))
+		if (req.getParameter("cover").contentEquals("")) {
 			cover = "../statics/images/cover/unavaliable.jpg";
-		else
+		} else {
 			cover = "../statics/images/cover/" + req.getParameter("cover");
+		}
 
 		try {
 			Cinema.getCinema().editMovie(title, cover, plot, category);

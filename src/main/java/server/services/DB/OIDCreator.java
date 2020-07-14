@@ -18,8 +18,9 @@ public class OIDCreator {
 	 * @return instance(OIDCreator)
 	 */
 	public static OIDCreator getInstance(){
-		if(instance == null)
+		if(instance == null) {
 			instance = new OIDCreator();
+		}
 		return instance;
 	}
 
@@ -29,10 +30,11 @@ public class OIDCreator {
 	}
 
 	public void setShowingCode(String showingCode) {
-		if(showingCode == null)
+		if(showingCode == null) {
 			this.showingCode=0;
-		else
+		} else {
 			this.showingCode = Integer.parseInt(showingCode.substring(1));
+		}
 	}
 
 	public synchronized String getTicketCode() {

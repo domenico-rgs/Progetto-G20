@@ -16,8 +16,9 @@ public class Delete implements IHandler {
 	private Delete() {}
 
 	public static Delete getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new Delete();
+		}
 		return instance;
 	}
 

@@ -59,7 +59,7 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE BINARY theatre = ?" );
 		pstm.setString(1, theatreName);
 		ResultSet rs = pstm.executeQuery();
-		while (rs.next())
+		while (rs.next()) {
 			switch(rs.getString(3)) {
 			case "NORMAL":
 				seatsList.put(rs.getString(1), new Seat(rs.getString(1)));
@@ -71,6 +71,7 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 				seatsList.put(rs.getString(1), new DisabledSeat(rs.getString(1)));
 				break;
 			}
+		}
 
 		return seatsList;
 	}

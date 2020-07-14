@@ -10,14 +10,16 @@ public class ServiceFactory {
 	}
 
 	public PaymentAdapter getPaymentAdapter() {
-		if (paymentSimulator == null)
+		if (paymentSimulator == null) {
 			paymentSimulator = new SimPaymentAdapter();
+		}
 		return paymentSimulator;
 	}
 
 	public static ServiceFactory getInstance() {
-		if (istance == null)
+		if (istance == null) {
 			istance = new ServiceFactory();
+		}
 		return istance;
 	}
 }

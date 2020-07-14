@@ -29,8 +29,9 @@ public class PersistenceFacade {
 	}
 
 	public static PersistenceFacade getInstance() throws IOException, SeatException{
-		if(instance == null)
+		if(instance == null) {
 			instance = new PersistenceFacade();
+		}
 		return instance;
 	}
 
@@ -71,8 +72,9 @@ public class PersistenceFacade {
 	}
 
 	public void addTickets(List<Ticket> ticketList) throws SQLException {
-		for(Ticket t : ticketList)
+		for(Ticket t : ticketList) {
 			put(t.getCode(), TicketsMapper.class, t);
+		}
 	}
 
 	public Object get(String OID, Class<?> klass) throws SQLException{

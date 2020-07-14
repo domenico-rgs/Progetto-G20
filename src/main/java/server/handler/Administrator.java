@@ -20,8 +20,9 @@ public class Administrator implements IHandler {
 	private Administrator() {}
 
 	public static Administrator getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new Administrator();
+		}
 		return instance;
 	}
 
@@ -31,8 +32,9 @@ public class Administrator implements IHandler {
 		//passare values() a rythm non funziona
 		List<String> categoryList = new ArrayList<>();
 
-		for (TypeCategory cat: TypeCategory.values())
+		for (TypeCategory cat: TypeCategory.values()) {
 			categoryList.add(cat.toString());
+		}
 
 		try {
 			//il tempo di sistemare la vera lista di teatri

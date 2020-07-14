@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
-import server.domain.exception.SeatException;
 
 public class AddMovie{
 	public static String doAction(HttpServletRequest req) {
@@ -16,10 +15,11 @@ public class AddMovie{
 		String plot = req.getParameter("plot");
 		String cover;
 
-		if (req.getParameter("cover").contentEquals(""))
+		if (req.getParameter("cover").contentEquals("")) {
 			cover = "../statics/images/cover/unavaliable.jpg";
-		else
+		} else {
 			cover = "../statics/images/cover/" + req.getParameter("cover");
+		}
 
 		try {
 			int duration = Integer.valueOf(req.getParameter("duration"));

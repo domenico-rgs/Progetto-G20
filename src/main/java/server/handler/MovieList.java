@@ -22,8 +22,9 @@ public class MovieList implements IHandler {
 	private MovieList() {}
 
 	public static MovieList getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new MovieList();
+		}
 		return instance;
 	}
 
@@ -48,8 +49,9 @@ public class MovieList implements IHandler {
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
 		//controllo se sono alla fine della lista
-		if (end > this.titleMovieList.size())
+		if (end > this.titleMovieList.size()) {
 			end = this.titleMovieList.size();
+		}
 
 		if (start >= this.titleMovieList.size())
 			return movieList;   //in realta vuota
@@ -60,7 +62,7 @@ public class MovieList implements IHandler {
 		 * per motivi di efficienza
 		 * in quanto la lista nasce e muore sul momento dopo l'utilizzo
 		 */
-		
+
 		for (int i=start; i<end; i++) {
 			try {
 				movieList.add(Cinema.getCinema().getMovie(this.titleMovieList.get(i)));

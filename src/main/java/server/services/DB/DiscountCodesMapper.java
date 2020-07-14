@@ -4,13 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import server.domain.cinema.MovieShowing;
 import server.domain.payment.discount.CodeStrategy;
 import server.domain.payment.discount.TicketPricingStrategy;
 
@@ -39,8 +37,9 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 	@Override
 	protected void updateCache(String OID,Object obj) {
 		this.discounts.remove(OID);
-		if(obj!=null)
+		if(obj!=null) {
 			this.discounts.put(OID,(CodeStrategy)obj);
+		}
 	}
 
 	@Override
