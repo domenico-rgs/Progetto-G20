@@ -23,6 +23,8 @@ public class ShopCard implements IHandler {
 
 	private ShopCard() {}
 
+	
+	//*singleton*/
 	public static ShopCard getInstance() {
 		if (instance == null) {
 			instance = new ShopCard();

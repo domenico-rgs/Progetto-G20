@@ -22,7 +22,7 @@ public class Theatre implements IHandler {
 	private Theatre() {
 	}
 
-
+	//*singleton*/
 	public static Theatre getInstance() {
 		if (instance == null) {
 			instance = new Theatre();
