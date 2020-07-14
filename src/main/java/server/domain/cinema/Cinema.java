@@ -167,11 +167,11 @@ public class Cinema {
 			//test
 			System.out.println(dateShowingToControll);
 
-			//se l'orario è lo stesso
+			//se l'orario ï¿½ lo stesso
 			if (dateShowingToControll == dateShowingSec)
 				throw new OverlapException();
 
-			//se l'orario è successivo a quella che voglio aggiungere
+			//se l'orario ï¿½ successivo a quella che voglio aggiungere
 			if (dateShowingToControll > dateShowingSec) {
 
 				//se si accavalla con una successiva
@@ -179,7 +179,7 @@ public class Cinema {
 					throw new OverlapException();
 			}
 
-			//se l'orario è precendete a quella che voglio aggiungere
+			//se l'orario ï¿½ precendete a quella che voglio aggiungere
 			if (dateShowingToControll < dateShowingSec) {
 				filmToControllDuration = getMovie(sh.getMovie()).getDuration()*60;
 
