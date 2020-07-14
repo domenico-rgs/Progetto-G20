@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import server.domain.exception.SearchException;
+
 /**
  * Abstract class which has to be extended by all the Mappers.
  * Each represents a table of the Database and it only can access that table.
@@ -64,6 +66,10 @@ public abstract class AbstractPersistenceMapper implements IMapper {
 	 * @param obj the object itself
 	 */
 	protected abstract void updateCache(String OID,Object obj);
+
+	@Override
+	public abstract void delete(String OID) throws SQLException, SearchException;
+
 
 	/**
 	 * Method which select from the table the last code of the Objects of the table belonging

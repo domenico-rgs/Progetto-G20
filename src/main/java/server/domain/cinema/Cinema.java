@@ -59,18 +59,18 @@ public class Cinema {
 		Theatre t = new Theatre(name);
 		String file = t.createConfigFile(config);
 		t.createSeats(file);
-		PersistenceFacade.getInstance().addTheatre(name,t);
+		PersistenceFacade.getInstance().put(name, TheatresMapper.class,t);
 	}
 
 	synchronized public void createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException, SQLException, IOException, SeatException{
 		Movie m = new Movie(title, duration, plot, pathCover, category);
-		PersistenceFacade.getInstance().addMovie(title,m);
+		PersistenceFacade.getInstance().put(title,MoviesMapper.class,m);
 	}
 
 	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException, OverlapException {
 		controlOverlapping(date, theatre, movie);
 		MovieShowing sh = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
-		PersistenceFacade.getInstance().addMovieShowing(sh.getId(),sh);
+		PersistenceFacade.getInstance().put(sh.getId(),ShowingsMapper.class,sh);
 		return sh.getId();
 	}
 
@@ -84,7 +84,7 @@ public class Cinema {
 			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
 					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID), (m.getPrice()*sL.getAddition())));
-		PersistenceFacade.getInstance().addTickets(ticketList);
+			PersistenceFacade.getInstance().addTickets(ticketList);
 		return ticketList;
 	}
 
@@ -111,21 +111,21 @@ public class Cinema {
 	}
 
 	/*Delete Methods */
-	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, IOException, SeatException, MessagingException{
+	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, IOException, SeatException, MessagingException, SearchException{
 		MailSender.sendRefundMail(code, cardNumber, ((Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class)).getTotalPrice());
-		PersistenceFacade.getInstance().deleteTicket(code);
+		PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
 	}
 
 	synchronized public void deleteTheatre(String name) throws SearchException, SQLException, IOException, SeatException{
-		PersistenceFacade.getInstance().deleteTheatre(name);
+		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
 	}
 
 	synchronized public void deleteMovie(String title) throws SearchException, SQLException, IOException, SeatException{
-		PersistenceFacade.getInstance().deleteMovie(title);
+		PersistenceFacade.getInstance().delete(title, MoviesMapper.class);
 	}
 
 	synchronized public void deleteMovieShowing(String idShowing) throws SearchException, SQLException, IOException, SeatException {
-		PersistenceFacade.getInstance().deleteMovieShowing(idShowing);
+		PersistenceFacade.getInstance().delete(idShowing, ShowingsMapper.class);
 	}
 
 	//OVERLAP SHOWING CONTROLL

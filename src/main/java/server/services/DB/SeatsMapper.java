@@ -10,6 +10,7 @@ import server.domain.cinema.theatre.DisabledSeat;
 import server.domain.cinema.theatre.PremiumSeat;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
+import server.domain.exception.SearchException;
 
 
 public class SeatsMapper extends AbstractPersistenceMapper {
@@ -29,6 +30,10 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 
 	@Override
 	protected void updateCache(String OID, Object obj) {
+	}
+
+	@Override
+	public void delete(String OID) throws SQLException, SearchException {
 	}
 
 	@Override

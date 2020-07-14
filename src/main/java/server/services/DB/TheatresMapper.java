@@ -42,6 +42,16 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 		this.theatres.put(OID,(Theatre)obj);
 	}
 
+	@Override
+	public void delete(String OID) throws SQLException, SearchException {
+		if(!isUsed(OID)) {
+			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE theatreName!='' and theatreName= ?");
+			stm.setObject(1, OID);
+			stm.execute();
+		}else
+			throw new SearchException("Theatre is used!");
+	}
+
 
 	@Override
 	public synchronized void put(String OID, Object obj) throws SQLException{
@@ -73,7 +83,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 			this.theatres.put(rs.getString(1),tmp);
 		}
 	}
-	
+
 	private boolean isUsed(String OID) throws SQLException {
 		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM MOVIESHOWINGS WHERE theatre=?");
 		pstm.setString(1,OID);
@@ -84,16 +94,6 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 		else
 			return true;
 	}
-	
-	protected void deleteTheatre(String OID) throws SQLException, SearchException {
-		if(!isUsed(OID)) {
-			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE theatreName!='' and theatreName= ?");
-			stm.setObject(1, OID);
-			stm.execute();
-		}else
-			throw new SearchException("Theatre is used!");
-	}
-
 
 	public synchronized Map<String, Theatre> getTheatres() {
 		return theatres;

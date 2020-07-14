@@ -9,7 +9,7 @@ import server.domain.exception.SeatException;
 
 public class MapperFactory {
 	private static MapperFactory instance = null;
-	private Map<Class,IMapper> mappers;
+	private Map<Class<?>,IMapper> mappers;
 
 	private MapperFactory()throws SQLException, IOException, SeatException {
 		this.mappers  = new HashMap<>();
@@ -24,7 +24,6 @@ public class MapperFactory {
 		this.mappers.put(AvailabilityMapper.class, am);
 		this.mappers.put(SeatsMapper.class, sm);
 		this.mappers.put(DiscountCodesMapper.class, new DiscountCodesMapper());
-
 	}
 
 	public static MapperFactory getInstance()throws SQLException, IOException, SeatException {
@@ -33,7 +32,7 @@ public class MapperFactory {
 		return instance;
 	}
 
-	public Map<Class, IMapper> getMappers() {
+	public Map<Class<?>, IMapper> getMappers() {
 		return mappers;
 	}
 }

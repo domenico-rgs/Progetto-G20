@@ -34,7 +34,16 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 	@Override
 	protected void updateCache(String OID,Object obj) {
 		this.discounts.remove(OID);
-		this.discounts.put(OID,(CodeStrategy)obj);
+		if(obj!=null)
+			this.discounts.put(OID,(CodeStrategy)obj);
+	}
+
+	@Override
+	public void delete(String OID) throws SQLException {
+		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE discountCode!='' and discountCode=?");
+		stm.setObject(1, OID);
+		stm.execute();
+		updateCache(OID,null);
 	}
 
 
@@ -63,7 +72,7 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 		pstm.setString(3,OID);
 		pstm.execute();
 	}
-	
+
 	protected void deleteDiscount(String code) throws SQLException {
 		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE discountCode!='' and discountCode=?");
 		stm.setObject(1, code);

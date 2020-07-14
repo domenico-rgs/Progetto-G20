@@ -2,6 +2,7 @@ package server.services.DB;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+@SuppressWarnings("deprecation")
 public class OIDCreator {
 	private static OIDCreator instance = null;
 	private int showingCode;
@@ -35,6 +36,6 @@ public class OIDCreator {
 	}
 
 	public synchronized String getTicketCode() {
-		return RandomStringUtils.randomAlphanumeric(8);
+		return RandomStringUtils.randomAlphanumeric(8).toUpperCase();
 	}
 }

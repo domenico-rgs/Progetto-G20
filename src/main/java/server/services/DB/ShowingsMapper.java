@@ -46,6 +46,16 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		this.showing.put(OID,(MovieShowing)obj);
 	}
 
+	@Override
+	public void delete(String OID) throws SQLException, SearchException {
+		if(!isUsed(OID)) {
+			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE id!='' and id= ?");
+			stm.setObject(1, OID);
+			stm.execute();
+		}else
+			throw new SearchException("The showing is used!");
+	}
+
 
 	@Override
 	public synchronized void put(String OID, Object obj) throws SQLException{
@@ -119,7 +129,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		}
 		return showings;
 	}
-	
+
 	private boolean isUsed(String OID) throws SQLException {
 		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM AVAILABLE WHERE SHOWINGID=? AND AVAILABLE=0");
 		pstm.setString(1,OID);
@@ -130,16 +140,6 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		else
 			return true;
 	}
-	
-	protected void deleteShowing(String OID) throws SQLException, SearchException {
-		if(!isUsed(OID)) {
-			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE id!='' and id= ?");
-			stm.setObject(1, OID);
-			stm.execute();
-		}else
-			throw new SearchException("The showing is used!");
-	}
-
 
 	protected void deleteExpiredShowing(long millis) throws SQLException {
 		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE id!='' and dateShow< ?");

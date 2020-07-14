@@ -31,6 +31,10 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
+	public void delete(String OID) throws SQLException {
+	}
+
+	@Override
 	public synchronized void  put(String OID, Object obj)throws SQLException {
 		MovieShowing ms = (MovieShowing)obj;
 

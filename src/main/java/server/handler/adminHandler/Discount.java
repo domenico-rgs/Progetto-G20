@@ -3,7 +3,6 @@ package server.handler.adminHandler;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
-import server.domain.payment.discount.PricingStrategyFactory;
 
 public class Discount {
 

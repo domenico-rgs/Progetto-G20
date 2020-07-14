@@ -2,6 +2,8 @@ package server.services.DB;
 
 import java.sql.SQLException;
 
+import server.domain.exception.SearchException;
+
 /**
  * Interface for Mapper Class
  */
@@ -27,6 +29,8 @@ public interface IMapper {
 	 */
 	void put(String OID, Object obj) throws SQLException;
 
+	void delete(String OID) throws SQLException, SearchException;
+
 	/**
 	 * Method which modifies the information of the object in the table belonging to the Mapper
 	 * @param OID is the code of the Object
@@ -34,5 +38,4 @@ public interface IMapper {
 	 * @throws SQLException
 	 */
 	void updateTable(String OID,Object obj) throws SQLException;
-
 }

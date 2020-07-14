@@ -63,6 +63,6 @@ public class MovieShowing {
 
 	@Override
 	public String toString() {
-		return  getDateToString() + ", theatre: " + getTheatreName();
+		return  getId() + ",date: " + getDateToString() + ", theatre: " + getTheatreName();
 	}
 }

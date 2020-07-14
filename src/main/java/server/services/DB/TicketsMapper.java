@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import server.domain.cinema.Ticket;
+import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
 public class TicketsMapper extends AbstractPersistenceMapper {
@@ -38,6 +39,13 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	protected void updateCache(String OID,Object obj) {
 		this.tickets.remove(OID);
 		this.tickets.put(OID,(Ticket)obj);
+	}
+
+	@Override
+	public void delete(String OID) throws SQLException, SearchException {
+		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE ticketCode!='' and ticketCode=?");
+		stm.setString(1, OID);
+		stm.execute();
 	}
 
 

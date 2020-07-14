@@ -17,8 +17,7 @@ import server.domain.exception.SeatException;
 
 public class PersistenceFacade {
 	private static PersistenceFacade instance = null;
-	private Map<Class, IMapper> mapper;
-
+	private Map<Class<?>, IMapper> mapper;
 
 	private PersistenceFacade() throws IOException, SeatException {
 		try {
@@ -27,7 +26,6 @@ public class PersistenceFacade {
 			e.printStackTrace();
 		}
 	}
-
 
 	public static PersistenceFacade getInstance() throws IOException, SeatException{
 		if(instance == null)
@@ -43,14 +41,6 @@ public class PersistenceFacade {
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getShowings();
 	}
 
-	public void addMovie(String OID, Movie movie)throws SQLException{
-		mapper.get(MoviesMapper.class).put(OID,movie);
-	}
-
-	public void addMovieShowing(String OID, MovieShowing show)throws SQLException{
-		mapper.get(ShowingsMapper.class).put(OID,show);
-	}
-
 	public List<MovieShowing> getMovieShowingList(String OID_movie) throws SQLException{
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_movie);
 	}
@@ -64,63 +54,39 @@ public class PersistenceFacade {
 	}
 
 	public HashMap<Seat,Boolean> getAvailableSeatsList(String OID_movieShowing) throws SQLException{
-		AvailabilityMapper a = new AvailabilityMapper();
-
-		return a.getAvailableSeatsList(OID_movieShowing);
-	}
-	
-	public void removeDiscount(String code) throws SQLException {
-		((DiscountCodesMapper)mapper.get(DiscountCodesMapper.class)).deleteDiscount(code);		
+		return ((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).getAvailableSeatsList(OID_movieShowing);
 	}
 
-	//non era implementata
 	public Map<String, Theatre> getAllTheatre(){
 		return ((TheatresMapper)mapper.get(TheatresMapper.class)).getTheatres();
-	}
-	
-	public void deleteTheatre(String OID) throws SQLException, SearchException {
-		((TheatresMapper)mapper.get(TheatresMapper.class)).deleteTheatre(OID);
-	}
-
-	public void addTheatre(String OID, Theatre t) throws SQLException {
-		((TheatresMapper)mapper.get(TheatresMapper.class)).put(OID,t);
 	}
 
 	public void deleteExpiredShowing(long millis) throws SQLException {
 		((ShowingsMapper)mapper.get(ShowingsMapper.class)).deleteExpiredShowing(millis);
 	}
 
-	public void deleteTicket(String OID) throws SQLException {
-		((TicketsMapper)mapper.get(TicketsMapper.class)).deleteTicket(OID);
-	}
-	
-	public void deleteMovie(String OID) throws SQLException, SearchException {
-		((MoviesMapper)mapper.get(MoviesMapper.class)).deleteMovie(OID);
-	}
-	
-	public void deleteMovieShowing(String OID) throws SQLException, SearchException {
-		((ShowingsMapper)mapper.get(ShowingsMapper.class)).deleteShowing(OID);
-	}
-	
 	public void changeAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
 		((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).changeAvailability(OID_showing, OID_seat, availability);
 	}
 
-
 	public void addTickets(List<Ticket> ticketList) throws SQLException {
 		for(Ticket t : ticketList)
-			mapper.get(TicketsMapper.class).put(t.getCode(), t);
+			put(t.getCode(), TicketsMapper.class, t);
 	}
 
-	public Object get(String OID, Class klass) throws SQLException{
+	public Object get(String OID, Class<?> klass) throws SQLException{
 		return this.mapper.get(klass).get(OID);
 	}
 
-	public void put(String OID, Class klass, Object obj) throws SQLException{
+	public void put(String OID, Class<?> klass, Object obj) throws SQLException{
 		this.mapper.get(klass).put(OID, obj);
 	}
 
-	public void updateTable(Class klass,Object obj,String OID)throws SQLException{
+	public void updateTable(Class<?> klass,Object obj,String OID)throws SQLException{
 		mapper.get(klass).updateTable(OID,obj);
+	}
+
+	public void delete(String OID, Class<?> klass) throws SQLException, SearchException{
+		this.mapper.get(klass).delete(OID);
 	}
 }

@@ -3,6 +3,7 @@ package server.domain.payment.discount;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.services.DB.DiscountCodesMapper;
 import server.services.DB.PersistenceFacade;
@@ -23,9 +24,13 @@ public class PricingStrategyFactory {
 	/**
 	 * It permits to create a discount code
 	 * @param code discount code
+	 * @throws SearchException 
+	 * @throws SeatException 
+	 * @throws IOException 
+	 * @throws SQLException 
 	 */
-	public void removeDiscountCode(String code) throws SQLException, IOException, SeatException {
-		PersistenceFacade.getInstance().removeDiscount(code);
+	public void removeDiscountCode(String code) throws SearchException, SQLException, IOException, SeatException {
+		PersistenceFacade.getInstance().delete(code, DiscountCodesMapper.class);
 	}
 
 	/**
