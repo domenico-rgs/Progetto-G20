@@ -25,7 +25,7 @@ $('#total .card button').on('click', function() {
 function discoFunc() {
   var ajax = $.ajax({
     type: "POST",
-    url: "/shopCard",
+    url: "/shopCart",
     data: {
       action: "discount",
       code: $('#total .sconto input').val(),
@@ -52,7 +52,7 @@ function buyFunc() {
   $('.loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
-    url: "/shopCard",
+    url: "/shopCart",
     data: {
       action: "buy",
       codeCard: $('.cardNumber input').val(),

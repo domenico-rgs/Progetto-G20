@@ -12,6 +12,9 @@ public class AddTheatre {
 	public static String doAction(HttpServletRequest req) {
 		String theatreName = req.getParameter("name");
 		String config = req.getParameter("config");
+		
+		if(theatreName.equals(""))
+			theatreName = null;
 
 		try {
 			Cinema.getCinema().createTheatre(theatreName, config);

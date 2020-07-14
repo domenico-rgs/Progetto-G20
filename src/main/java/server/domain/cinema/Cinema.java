@@ -273,7 +273,7 @@ public class Cinema {
 		this.shopCart.setSeats(seats);
 	}
 
-	public ShopCart getShopCard () {
+	public ShopCart getShopCart () {
 		return this.shopCart;
 	}
 

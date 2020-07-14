@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
+import server.domain.exception.SearchException;
 
 public class EditMovie {
 
@@ -34,6 +35,8 @@ public class EditMovie {
 		}catch (NumberFormatException e) {
 			System.out.println(e);
 			return "Incorrect value for duration";
+		}catch (SearchException e) {
+			return "Movie is used!";
 		}catch (Exception e) {
 			System.out.println(e);
 			return e.toString();
