@@ -142,7 +142,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 	}
 
 	protected void deleteExpiredShowing(long millis) throws SQLException {
-		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE id!='' and dateShow< ?");
+		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE id!='' and dateShow< ?");
 		stm.setObject(1, new java.sql.Timestamp(millis));
 		stm.execute();
 	}
