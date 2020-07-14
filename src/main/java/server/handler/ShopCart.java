@@ -23,7 +23,13 @@ public class ShopCart implements IHandler {
 
 	private ShopCart() {}
 
+<<<<<<< HEAD:src/main/java/server/handler/ShopCart.java
 	public static ShopCart getInstance() {
+=======
+	
+	//*singleton*/
+	public static ShopCard getInstance() {
+>>>>>>> 69a6d9a0aa57107eb8249fe922ab30414c731d1a:src/main/java/server/handler/ShopCard.java
 		if (instance == null) {
 			instance = new ShopCart();
 		}

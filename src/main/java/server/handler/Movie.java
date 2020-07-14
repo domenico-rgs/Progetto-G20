@@ -19,6 +19,8 @@ public class Movie implements IHandler {
 
 	private Movie() {}
 
+	
+	//*singleton*/
 	public static Movie getInstance() {
 		if (instance == null) {
 			instance = new Movie();

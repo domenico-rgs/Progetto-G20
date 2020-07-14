@@ -14,12 +14,16 @@ import org.rythmengine.Rythm;
 import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
-//singleton
+
+
+/**controller class that manages the catalog page*/
 public class Catalog implements IHandler {
 	private static Catalog instance = null;
 
 	private Catalog() {}
 
+	
+	//*singleton*/
 	public static Catalog getInstance() {
 		if (instance == null) {
 			instance = new Catalog();
@@ -58,7 +62,8 @@ public class Catalog implements IHandler {
 		List<String> movieTitle;
 		try {
 			movieTitle = Cinema.getCinema().getMovieList();
-			//ricerco se i titoli contengono quella parola
+			
+		/**search if the titles contain that word*/	
 			for (String title: movieTitle)
 				if (title.toLowerCase().contains(search.toLowerCase())) {
 					movieList.add(Cinema.getCinema().getMovie(title));

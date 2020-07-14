@@ -15,6 +15,7 @@ import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SeatException;
 
+/**this class is the controller that binds the administrator page to logic */
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
 
@@ -30,7 +31,7 @@ public class Administrator implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//passare values() a rythm non funziona
+		
 		List<String> categoryList = new ArrayList<>();
 
 		for (TypeCategory cat: TypeCategory.values()) {
@@ -56,9 +57,9 @@ public class Administrator implements IHandler {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String message = "";
 		/*
-		 * java reflection che richiama il metodo doAction ()
-		 * dalla classe dello stesso nome del requestPost
-		 * sfrutto il polimorfismo tra classi (diciamo) per sostiture il caseSwitch
+		 * java reflection which calls the doAction() method
+		 * from the class of the same name as the requestPost
+		 * we use the polymorphism between classes to replace the caseSwitch
 		 */
 		try {
 			message = (String)Class.forName("server.handler.adminHandler." + req.getParameter("requestPost")).
