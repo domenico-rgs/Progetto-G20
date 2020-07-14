@@ -14,6 +14,8 @@ import org.rythmengine.Rythm;
 import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
+
+/**the control class that links the index.html page to logic*/
 public class Index implements IHandler {
 	private static Index instance = null;
 
@@ -31,8 +33,9 @@ public class Index implements IHandler {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<String> quote = Cinema.getCinema().getQuotes();
-		int intexCatalog = 5;  //quanti elementi visualizzare in prima pagina
+		int intexCatalog = 5;  		// how many items to display on the first page
 
+		/**I publish 5 films on the main page*/
 		resp.getWriter().write(Rythm.render("index.html", this.getIndexMovie(intexCatalog),
 				quote));
 	}
@@ -47,7 +50,7 @@ public class Index implements IHandler {
 			title = Cinema.getCinema().getMovieList();
 			List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
-			//per evitare errori di sforamento
+			/**to avoid overrun errors*/
 			if (n > title.size()) {
 				n = title.size();
 			}

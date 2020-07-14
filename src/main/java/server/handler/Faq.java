@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
+/**the control class that returns the static faq page*/
 public class Faq implements IHandler {
 	private static Faq instance = null;
 
