@@ -1,10 +1,14 @@
 package server.handler.adminHandler;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
+import server.domain.exception.SeatException;
 
 public class AddMovie{
 	public static String doAction(HttpServletRequest req) {
@@ -25,9 +29,18 @@ public class AddMovie{
 		}catch (SearchException e) {
 			System.out.println(e);
 			return "Error: " + title + " already exists";
+		}catch (IOException e) {
+			System.out.println(e);
+			return "Problem with I/O operation. Please try again.";
+		}catch (SQLException e) {
+			System.out.println(e);
+			return e.toString();
+		}catch (NumberFormatException e) {
+			System.out.println(e);
+			return "Incorrect value for duration";
 		}catch (Exception e) {
 			System.out.println(e);
-			return "Incorrect or missing data";
+			return e.toString();
 		}
 		return title + " succefully added. Reload to see changes";
 	}

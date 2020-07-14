@@ -143,48 +143,47 @@ public class Cinema {
 		long dateShowingSec = zdt.toInstant().getEpochSecond();
 		long movieDurationSec = this.getMovie(movie).getDuration()*60;
 
+		//testing
 		System.out.println(dateShowingSec);
 		System.out.println(movieDurationSec);
 
 		//ricavo le proiezioni alla data attuale (spero che funzioni)
 		List<MovieShowing> showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
 
+		//test
 		System.out.println(showingList);
 
-		//controllo se non ci sono film che DOPO si accavallano
+		//variabili delle proiezioni gia esistenti nella lista restituita
 		long dateShowingToControll;
+		long filmToControllDuration;
 		for (MovieShowing sh: showingList) {
 
 			zdt = sh.getDate().atZone(ZoneId.systemDefault());
 			dateShowingToControll = zdt.toInstant().getEpochSecond();
 
+			//test
 			System.out.println(dateShowingToControll);
-			System.out.println(dateShowingToControll - (dateShowingSec + movieDurationSec));
-
-			//se la data è precedente non controllo
-			if (dateShowingToControll < dateShowingSec) continue;
-
-			//se trovo un film dopo (intuitivo?)
-			if ((dateShowingSec + movieDurationSec) >= dateShowingToControll)
+			
+			//se l'orario è lo stesso
+			if (dateShowingToControll == dateShowingSec)
 				throw new OverlapException();
-		}
 
-		//controllo se non ci sono film che PRIMA SI accavallano
-		long filmToControllDuration;
-		for(MovieShowing sh: showingList) {
-
-
-			zdt = sh.getDate().atZone(ZoneId.systemDefault());
-			dateShowingToControll = zdt.toInstant().getEpochSecond();
-
-			//se la data è successiva non controllo
-			if (dateShowingToControll > dateShowingSec) continue;
-
-			filmToControllDuration = getMovie(sh.getMovie()).getDuration()*60;
-
-			//se si accavalla con una precedente
-			if ((dateShowingToControll + filmToControllDuration) >= dateShowingSec)
-				throw new OverlapException();
+			//se l'orario è successivo a quella che voglio aggiungere 
+			if (dateShowingToControll > dateShowingSec) {
+				
+				//se si accavalla con una successiva
+				if ((dateShowingSec + movieDurationSec) >= dateShowingToControll)
+					throw new OverlapException();
+			}
+			
+			//se l'orario è precendete a quella che voglio aggiungere 
+			if (dateShowingToControll < dateShowingSec) {
+				filmToControllDuration = getMovie(sh.getMovie()).getDuration()*60;
+				
+				//se si accavalla con una precedente
+				if ((dateShowingToControll + filmToControllDuration) >= dateShowingSec)
+					throw new OverlapException();
+			}
 		}
 	}
 
@@ -312,6 +311,8 @@ public class Cinema {
 		return total;
 	}
 
+	
+	//singleton method
 	public static Cinema getCinema() {
 		if (istance == null)
 			istance = new Cinema();

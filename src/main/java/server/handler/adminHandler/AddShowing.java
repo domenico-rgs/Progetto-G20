@@ -24,11 +24,14 @@ public class AddShowing {
 			id = Cinema.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[2]),
 					Integer.parseInt(d[1]), Integer.parseInt(d[0]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
 		}catch (OverlapException e) {
-			e.printStackTrace();
+			System.out.println(e);
 			return "The showing overlaps with another";
-		}catch (Exception e){
-			e.printStackTrace();
-			return "Incorrect or missing data";
+		}catch (NumberFormatException e){
+			System.out.println(e);
+			return "Incorrect or missing value for date or hour";
+		}catch (Exception e) {
+			System.out.println(e);
+			return e.toString();
 		}
 		return "Showing succefully added with id: " +id+ ". Reload to see changes";
 	}
