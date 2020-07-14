@@ -217,14 +217,15 @@ public class Cinema {
 	}
 
 	public List<MovieShowing> getAllShowingList() throws IOException, SeatException {
-		List<MovieShowing> allList = new ArrayList<>();
-		allList.addAll((PersistenceFacade.getInstance().getAllMovieShowings().values()));
-
-		return allList;
+		return PersistenceFacade.getInstance().getAllMovieShowings();
 	}
 
 	public HashMap<Seat, Boolean> getAllSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
+	}
+	
+	public List<TicketPricingStrategy> getDiscountList() throws IOException, SeatException, NumberFormatException, SQLException {
+		return PersistenceFacade.getInstance().getDiscountList();
 	}
 
 	public List<Seat> getFreeSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {

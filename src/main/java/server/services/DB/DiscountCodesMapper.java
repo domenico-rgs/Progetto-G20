@@ -4,10 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import server.domain.cinema.MovieShowing;
 import server.domain.payment.discount.CodeStrategy;
+import server.domain.payment.discount.TicketPricingStrategy;
 
 public class DiscountCodesMapper extends AbstractPersistenceMapper {
 
@@ -87,5 +92,17 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 
 			this.discounts.put(rs.getString(1),tmp);
 		}
+	}
+
+	protected List<TicketPricingStrategy> getDiscountList() throws NumberFormatException, SQLException {
+		List<TicketPricingStrategy> discount = new ArrayList<>();
+		PreparedStatement stm = conn.prepareStatement("select * from "+super.tableName);
+		ResultSet rs = stm.executeQuery();
+		while (rs.next()){
+			CodeStrategy dm = new CodeStrategy(rs.getString(1), Double.parseDouble(rs.getString(2)));
+			updateCache(dm.getCode(),dm);
+			discount.add(dm);
+		}
+		return discount;
 	}
 }
