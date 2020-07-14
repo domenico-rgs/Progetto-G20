@@ -13,5 +13,5 @@ public interface PaymentAdapter {
 	 * @return true if the payment is successful
 	 * @throws PaymentException 
 	 */
-	boolean pay(double money, String code, String date, String cvc) throws PaymentException;
+	boolean pay(double money, String code, String pin, String cvc) throws PaymentException;
 }
