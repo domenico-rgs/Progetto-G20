@@ -26,7 +26,7 @@ public class LoadGeneral {
 				Integer value = 0; //qualcosa per vedere la lunghezza
 				forTheatre.put(theatre, value);
 			}
-			messagge = Rythm.render("imported/adminGeneral.html",forMovie, forTheatre);
+			messagge = Rythm.render("imported/adminGeneral.html",forMovie, forTheatre, Cinema.getCinema().getAllShowingList().size());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
