@@ -11,24 +11,25 @@ import server.services.DB.PersistenceFacade;
 public class PricingStrategyFactory {
 	private static PricingStrategyFactory istance = null;
 
-	private PricingStrategyFactory() {
-	}
-
 	/**
-	 * it permits to create a discount code
+	 * It permits to create a discount code
 	 * @param code discount code
 	 * @param percent discount percentage
 	 */
 	public void createDiscountCode(String code, double percent) throws SQLException, IOException, SeatException {
 		PersistenceFacade.getInstance().put(code,  DiscountCodesMapper.class, new CodeStrategy(code,percent));
 	}
-	
-	public void removeDiscountCode(String code, double percent) throws SQLException, IOException, SeatException {
+
+	/**
+	 * It permits to create a discount code
+	 * @param code discount code
+	 */
+	public void removeDiscountCode(String code) throws SQLException, IOException, SeatException {
 		PersistenceFacade.getInstance().removeDiscount(code);
 	}
 
 	/**
-	 * it permits to obtain a code strategy
+	 * It permits to obtain a code strategy
 	 * @param discount discount code
 	 * @return the discount object
 	 */

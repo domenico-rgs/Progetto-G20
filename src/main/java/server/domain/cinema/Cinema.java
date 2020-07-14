@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-
 import javax.mail.MessagingException;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -21,7 +20,6 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.WriterProperties;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-
 
 import server.MailSender;
 import server.domain.cinema.theatre.Seat;
@@ -43,43 +41,40 @@ import server.services.DB.TicketsMapper;
  * Facade controller for managing reservations in a cinema
  */
 public class Cinema {
-	private ShopCart shopCard;
-	private Quotes quotes = new Quotes();
-
+	private ShopCart shopCart;
+	private Quotes quotes;
 	private static Cinema istance = null;
 
 	private Cinema() {
-		shopCard = new ShopCart();
+		try {
+			quotes = new Quotes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		shopCart = new ShopCart();
 	}
-	
-	//METODI DI CREAZIONE//
 
+	/* Creation methods */
 	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException  {
 		Theatre t = new Theatre(name);
 		String file = t.createConfigFile(config);
 		t.createSeats(file);
 		PersistenceFacade.getInstance().addTheatre(name,t);
 	}
-	
+
 	synchronized public void createMovie(String title, int duration, String plot, String pathCover, TypeCategory category) throws SearchException, SQLException, IOException, SeatException{
 		Movie m = new Movie(title, duration, plot, pathCover, category);
 		PersistenceFacade.getInstance().addMovie(title,m);
 	}
-	
+
 	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, IOException, SeatException, OverlapException {
-		
-		try {
-			controlOverlapping(date, theatre, movie);
-			MovieShowing sh = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
-			PersistenceFacade.getInstance().addMovieShowing(sh.getId(),sh);
-			return sh.getId();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return null;
+		controlOverlapping(date, theatre, movie);
+		MovieShowing sh = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
+		PersistenceFacade.getInstance().addMovieShowing(sh.getId(),sh);
+		return sh.getId();
 	}
-	
+
+	// Called at the time of purchase by the buyTicket method
 	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing m = getMovieShowing(showingID);
 		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
@@ -92,20 +87,17 @@ public class Cinema {
 		PersistenceFacade.getInstance().addTickets(ticketList);
 		return ticketList;
 	}
-	
-	//GESTIONE CODICI SCONTO//
 
+	/* Discounts */
 	synchronized public void createDiscountCode(String code, double percent) throws SQLException, IOException, SeatException  {
 		PricingStrategyFactory.getInstance().createDiscountCode(code, percent);
 	}
-	
+
 	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, IOException, SeatException{
-		return PricingStrategyFactory.getInstance().getCodeStrategy(code).getTotalPrice(price);	
-		
+		return PricingStrategyFactory.getInstance().getCodeStrategy(code).getTotalPrice(price);
 	}
-	
-	//METODI DI EDIT//
-	
+
+	/* Edit Methods */
 	public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, IOException, SeatException {
 		MovieShowing s = getMovieShowing(showing);
 		s.editShowing(this.getTheatre(theatre), price);
@@ -117,74 +109,79 @@ public class Cinema {
 		m.editMovie(pathCover, plot, category);
 		PersistenceFacade.getInstance().updateTable(MoviesMapper.class, m, title);
 	}
-	
 
-	
-	//METODI DI ELIMINAZIONE//
-
+	/*Delete Methods */
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, IOException, SeatException, MessagingException{
 		MailSender.sendRefundMail(code, cardNumber, ((Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class)).getTotalPrice());
 		PersistenceFacade.getInstance().deleteTicket(code);
 	}
 
+	synchronized public void deleteTheatre(String name) throws SearchException, SQLException, IOException, SeatException{
+		PersistenceFacade.getInstance().deleteTheatre(name);
+	}
 
-	
+	synchronized public void deleteMovie(String title) throws SearchException, SQLException, IOException, SeatException{
+		PersistenceFacade.getInstance().deleteMovie(title);
+	}
+
+	synchronized public void deleteMovieShowing(String idShowing) throws SearchException, SQLException, IOException, SeatException {
+		PersistenceFacade.getInstance().deleteMovieShowing(idShowing);
+	}
 
 	//OVERLAP SHOWING CONTROLL
 	private void controlOverlapping(LocalDateTime date, String theatre, String movie) throws SQLException, IOException, SeatException, OverlapException {
-		
+
 		//in millisecondi
 		ZonedDateTime zdt = date.atZone(ZoneId.systemDefault());
 		long dateShowingSec = zdt.toInstant().getEpochSecond();
 		long movieDurationSec = this.getMovie(movie).getDuration()*60;
-		
+
 		System.out.println(dateShowingSec);
 		System.out.println(movieDurationSec);
-		
+
 		//ricavo le proiezioni alla data attuale (spero che funzioni)
 		List<MovieShowing> showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
-		
+
 		System.out.println(showingList);
-		
+
 		//controllo se non ci sono film che DOPO si accavallano
 		long dateShowingToControll;
 		for (MovieShowing sh: showingList) {
-		
+
 			zdt = sh.getDate().atZone(ZoneId.systemDefault());
 			dateShowingToControll = zdt.toInstant().getEpochSecond();
-			
+
 			System.out.println(dateShowingToControll);
 			System.out.println(dateShowingToControll - (dateShowingSec + movieDurationSec));
-			
+
 			//se la data è precedente non controllo
 			if (dateShowingToControll < dateShowingSec) continue;
-			
+
 			//se trovo un film dopo (intuitivo?)
-			if ((dateShowingSec + movieDurationSec) >= dateShowingToControll) 
+			if ((dateShowingSec + movieDurationSec) >= dateShowingToControll)
 				throw new OverlapException();
 		}
-		
+
 		//controllo se non ci sono film che PRIMA SI accavallano
 		long filmToControllDuration;
 		for(MovieShowing sh: showingList) {
-			
-			
+
+
 			zdt = sh.getDate().atZone(ZoneId.systemDefault());
 			dateShowingToControll = zdt.toInstant().getEpochSecond();
-			
+
 			//se la data è successiva non controllo
 			if (dateShowingToControll > dateShowingSec) continue;
-			
+
 			filmToControllDuration = getMovie(sh.getMovie()).getDuration()*60;
-			
+
 			//se si accavalla con una precedente
 			if ((dateShowingToControll + filmToControllDuration) >= dateShowingSec)
 				throw new OverlapException();
 		}
 	}
-	
-	//METODI PER PRENDERE I VALORI UTILI//
 
+	/* Methods for searching already saved objects */
 	public List<String> getQuotes() {
 		return quotes.getQuotes();
 	}
@@ -206,27 +203,13 @@ public class Cinema {
 	public MovieShowing getMovieShowing(String id) throws SQLException, IOException, SeatException{
 		return (MovieShowing) PersistenceFacade.getInstance().get(id, ShowingsMapper.class);
 	}
-	
+
 	public List<String> getTheatreList() throws IOException, SeatException {
 		List<String> theatreList = new ArrayList<>();
 		theatreList.addAll(PersistenceFacade.getInstance().getAllTheatre().keySet());
 		return theatreList;
 	}
-	
-	// METODI DI GESTIONE DELLO SHOPCARD //
-		public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
 
-			this.shopCard.setIdSh(id);
-			this.shopCard.setSeats(seats);
-		}
-
-		public ShopCart getShopCard () {
-			return this.shopCard;
-		}
-
-	
-	//METODI USATI PER L'INTERFACCIA WEB//
-	
 	public List<MovieShowing> getAllShowingList() throws IOException, SeatException {
 		List<MovieShowing> allList = new ArrayList<>();
 		allList.addAll((PersistenceFacade.getInstance().getAllMovieShowings().values()));
@@ -253,14 +236,24 @@ public class Cinema {
 		return showList;
 	}
 
-	
+
 	public void setAvailability(String idShowing, String[] seats, boolean availability) throws SQLException, IOException, SeatException {
 		for(String s : seats)
 			PersistenceFacade.getInstance().changeAvailability(idShowing, s, availability);
 	}
-	
-	//METODI GESTIONE ACQUISTO IN APP WEB//
 
+	/* ShopCart management */
+	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
+
+		this.shopCart.setIdSh(id);
+		this.shopCart.setSeats(seats);
+	}
+
+	public ShopCart getShopCard () {
+		return this.shopCart;
+	}
+
+	/* Purchase management */
 	public double[] ticketsPrice(String showingID, String[] seats) throws SQLException, IOException, SeatException {
 		MovieShowing m = getMovieShowing(showingID);
 		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
@@ -272,11 +265,23 @@ public class Cinema {
 				if(sL.getPosition().equalsIgnoreCase(s)) {
 					double price = m.getPrice()*sL.getAddition();
 					doubleList[count] = price;
-					this.shopCard.addTotal(price);
+					this.shopCart.addTotal(price);
 				}
 			count++;
 		}
 		return doubleList;
+	}
+
+	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException {
+		List<Ticket> ticketList = createTickets(this.shopCart.getIdSh(), this.shopCart.getSeats());
+		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
+		if(result) {
+			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
+			this.shopCart.refresh();
+			return true;
+
+		} else
+			return false;
 	}
 
 	private File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
@@ -291,19 +296,6 @@ public class Cinema {
 		return new File("G20Ticket");
 	}
 
-
-	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException {
-		List<Ticket> ticketList = createTickets(this.shopCard.getIdSh(), this.shopCard.getSeats());
-		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
-		if(result) {
-			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
-			this.shopCard.refresh();
-			return true;
-
-		} else
-			return false;
-	}
-
 	private double getTotalPriceTickets(List<Ticket> ticketList) {
 		double total = 0.0;
 
@@ -311,21 +303,6 @@ public class Cinema {
 			total += t.getTotalPrice();
 		return total;
 	}
-
-	synchronized public void deleteTheatre(String name) throws SearchException, SQLException, IOException, SeatException{
-		PersistenceFacade.getInstance().deleteTheatre(name);
-	}
-
-	synchronized public void deleteMovie(String title) throws SearchException, SQLException, IOException, SeatException{
-		PersistenceFacade.getInstance().deleteMovie(title);
-	}
-
-	synchronized public void deleteMovieShowing(String idShowing) throws SearchException, SQLException, IOException, SeatException {
-		PersistenceFacade.getInstance().deleteMovieShowing(idShowing);
-	}
-	
-	
-	//METODO DEL SINGLETON//
 
 	public static Cinema getCinema() {
 		if (istance == null)

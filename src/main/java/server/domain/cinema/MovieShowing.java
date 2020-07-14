@@ -10,12 +10,10 @@ import server.domain.cinema.theatre.Theatre;
  */
 
 public class MovieShowing {
-	private String id;
+	private String id, movie;
 	private LocalDateTime date;
 	private double price;
 	private Theatre theatre;
-	private String movie;
-
 
 	public MovieShowing(String id, String movie, LocalDateTime date, Theatre theatre, double price) {
 		this.id=id;
@@ -40,7 +38,7 @@ public class MovieShowing {
 	}
 
 	public String getDateToString() {
-		return date.format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm"));
+		return date.format(DateTimeFormatter.ofPattern("dd MMM uuuu - HH:mm"));
 	}
 
 	public String getMovie() {

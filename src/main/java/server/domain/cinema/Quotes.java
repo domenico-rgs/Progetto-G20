@@ -6,19 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/** This class collects many quotes used for the web application */
+/** This class collects many quotes used for the homepage of the app */
 public class Quotes {
-	private ArrayList<String> quote;
-	private ArrayList<String> author;
+	private ArrayList<String> quote, author;
 
-	public Quotes() {
+	public Quotes() throws IOException {
 		quote = new ArrayList<>();
 		author = new ArrayList<>();
-		try {
-			populateCitations();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		populateCitations();
 	}
 
 	private void populateCitations() throws IOException {

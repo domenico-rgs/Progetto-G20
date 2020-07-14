@@ -4,9 +4,7 @@ package server.domain.cinema;
  * This class identifies a ticket to show a movie.
  */
 public class Ticket {
-	private String code;
-	private String movie;
-	private String seat;
+	private String code, movie, seat;
 	private MovieShowing showing;
 	private double totalPrice;
 
@@ -34,9 +32,13 @@ public class Ticket {
 		return totalPrice;
 	}
 
+	public String getCode() {
+		return code;
+	}
+
 	@Override
 	public String toString() {
-		return "Ticket id: " + code + "\nDate: " + showing.getDateToString() + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: ï¿½ "
+		return "Ticket id: " + code + "\nDate: " + showing.getDateToString() + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: € "
 				+ totalPrice;
 	}
 
@@ -64,10 +66,4 @@ public class Ticket {
 			return false;
 		return true;
 	}
-
-	public String getCode() {
-		return code;
-	}
-
-
 }

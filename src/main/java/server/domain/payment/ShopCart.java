@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopCart {
-
 	/**this class works as a shopping cart */
 	String[] seats;
 	String idSh;
@@ -22,7 +21,6 @@ public class ShopCart {
 	 * @param code discount code
 	 */
 	public void addCode(String code) {
-
 		this.bufferDiscountCode.add(code);
 	}
 

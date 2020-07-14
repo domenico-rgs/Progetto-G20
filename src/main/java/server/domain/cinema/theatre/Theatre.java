@@ -13,9 +13,8 @@ import server.domain.exception.SeatException;
 
 /** This class represents a cinema's theatre. */
 public class Theatre {
-	private String theatreName;
+	private String theatreName, filePath;
 	private Map<String, Seat> seatsList;
-	private String filePath;
 
 	public Theatre(String theatreName) throws IOException, SeatException {
 		seatsList = new HashMap<>();

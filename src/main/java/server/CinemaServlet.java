@@ -14,28 +14,23 @@ import org.rythmengine.RythmEngine;
 
 import server.handler.IHandler;
 
+@SuppressWarnings("serial")
 public class CinemaServlet extends HttpServlet {
-
-
 	/* variabili usate nella gestione del servlet
 	 *
 	 * conf: mappa di variabili da passare al template
 	 * templates: mappa dei template renderizzati (da gestire le eccezioni)
 	 * engine: motore di renderizzazione
 	 */
-	//Cinema c = new Cinema();
 	Map<String, Object> conf;
 	Map<String, String> templates;
 	RythmEngine engine;
 	String templateResp;
 
 	public CinemaServlet() {
-
-		//inizializzazione delle variabili
 		conf = new HashMap<>();
 		conf.put("home.template", "templates");
 		Rythm.init(conf);
-
 	}
 
 
@@ -46,38 +41,27 @@ public class CinemaServlet extends HttpServlet {
 		IHandler classHandler;
 
 		try {
-			classHandler = (IHandler)Class.forName("server.handler." + reqHandler).
-					getMethod("getInstance").invoke(null);
-
+			classHandler = (IHandler)Class.forName("server.handler." + reqHandler).getMethod("getInstance").invoke(null);
 			classHandler.doGet(req, resp);
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 			resp.getWriter().write(Rythm.render("404.html"));
 		}
-
-
 	}
 
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
 		String reqHandler = this.parsePath(req.getRequestURI());
 		IHandler classHandler;
 
 		try {
-			classHandler = (IHandler)Class.forName("server.handler." + reqHandler).
-					getMethod("getInstance").invoke(null);
-
+			classHandler = (IHandler)Class.forName("server.handler." + reqHandler).getMethod("getInstance").invoke(null);
 			classHandler.doPost(req, resp);
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 			resp.getWriter().write(Rythm.render("404.html"));
 		}
-
 	}
 
 
@@ -87,10 +71,7 @@ public class CinemaServlet extends HttpServlet {
 	 * al primo argomento, che chiama la classe corretta
 	 */
 	private String parsePath(String path) {
-
-
-		if (path.contentEquals("/") || path.contentEquals("/favicon.ico") ||
-				path.contentEquals("/home")) {
+		if (path.contentEquals("/") || path.contentEquals("/favicon.ico") || path.contentEquals("/home")) {
 			path = "Index";
 			return path;
 		}
@@ -99,7 +80,5 @@ public class CinemaServlet extends HttpServlet {
 		path = path.substring(0,1).toUpperCase() + path.substring(1);
 
 		return path;
-
 	}
-
 }

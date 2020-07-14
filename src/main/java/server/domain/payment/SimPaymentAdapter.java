@@ -1,6 +1,6 @@
 package server.domain.payment;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Random;
 
 /**This class creates a Payment simulator which can simulate a payment. */
@@ -28,7 +28,13 @@ public class SimPaymentAdapter implements PaymentAdapter{
 	private boolean checkData(double money, String code, String date, String cvc) {
 		if(money<=0)
 			return false;
-		else if (!(code.length()==16))
+		return checkCard(code, date, cvc);
+	}
+
+	private boolean checkCard(String code, String date, String cvc) {
+		String[] value = date.split("/");
+		LocalDate cardDate = LocalDate.of(Integer.parseInt(value[1]), Integer.parseInt(value[2]), 01);
+		if (!(code.length()==16))
 			for (int i =0; i < code.length(); i++) {
 				char c = code.charAt(i);
 				if (c < '0' || c > '9')
@@ -40,7 +46,7 @@ public class SimPaymentAdapter implements PaymentAdapter{
 				if (c < '0' || c > '9')
 					return false;
 			}
-		else if(new Date("01/"+date).before(new Date(System.currentTimeMillis())))
+		else if(cardDate.isBefore(LocalDate.now()))
 			return false;
 		return true;
 	}

@@ -1,6 +1,6 @@
 package server.domain.payment.discount;
 
-/**This class represents a discount code used to modified the total value of the ticket */
+/** This class represents a discount code used to modified the total value of the ticket */
 public class CodeStrategy implements TicketPricingStrategy{
 	private String code;
 	private double percent;

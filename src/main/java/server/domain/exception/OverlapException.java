@@ -1,5 +1,6 @@
 package server.domain.exception;
 
+@SuppressWarnings("serial")
 public class OverlapException extends Exception {
 	public OverlapException() {
 		super("The showing overlaps with another");

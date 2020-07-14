@@ -5,11 +5,9 @@ package server.domain.cinema;
  * @see MovieShowing
  */
 public class Movie {
-	private String title;
+	private String title, plot, pathCover;
 	private int duration; //in minutes
 	private TypeCategory category;
-	private String plot;
-	private String pathCover;
 
 	public Movie() {}
 
