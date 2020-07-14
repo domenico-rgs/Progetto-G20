@@ -33,7 +33,7 @@ public class OIDCreator {
 		if(showingCode == null) {
 			this.showingCode=0;
 		} else {
-			this.showingCode = Integer.parseInt(showingCode.substring(1));
+			this.showingCode = (int)Double.parseDouble(showingCode);
 		}
 	}
 

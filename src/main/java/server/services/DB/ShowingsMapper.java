@@ -30,6 +30,15 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		this.tm=tm;
 		setUp();
 	}
+	
+	@Override
+	protected synchronized String getLastObjectCode(String keyName) throws SQLException{
+		Statement stm = conn.createStatement();
+		ResultSet rs = stm.executeQuery("Select max("+keyName+") from (select CAST((substring(id,2)) As double) id from "+super.tableName+")a order by id");
+		if(rs.next())
+			return rs.getString(1);
+		return null;
+	}
 
 	@Override
 	protected Object getObjectFromTable(String OID) {
@@ -100,7 +109,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 			this.showing.put(rs.getString(1),tmp);
 		}
 
-		OIDCreator.getInstance().setShowingCode(getLastObjectCode("id"));
+		OIDCreator.getInstance().setShowingCode(this.getLastObjectCode("id"));
 	}
 
 	protected List<MovieShowing> getMovieShowingList(String OID_movie) throws SQLException {
