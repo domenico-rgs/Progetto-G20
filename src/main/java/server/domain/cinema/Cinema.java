@@ -106,6 +106,17 @@ public class Cinema {
 
 		throw new PaymentException("Discount code not found");
 	}
+	
+	public List<String> getDiscountList() throws IOException, SeatException, NumberFormatException, SQLException {
+		List<String> discountCodeList = new ArrayList<>();
+		
+		for (TicketPricingStrategy disc: PersistenceFacade.getInstance().getDiscountList()) {
+			discountCodeList.add(disc.getCode());
+		}
+		
+		return discountCodeList;
+	}
+
 
 	/* Edit Methods */
 	public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, IOException, SeatException {
@@ -136,6 +147,10 @@ public class Cinema {
 
 	synchronized public void deleteMovieShowing(String idShowing) throws SearchException, SQLException, IOException, SeatException {
 		PersistenceFacade.getInstance().delete(idShowing, ShowingsMapper.class);
+	}
+	
+	public void deleteDiscount(String code) throws SearchException, SQLException, IOException, SeatException {
+		PricingStrategyFactory.getInstance().removeDiscountCode(code);
 	}
 
 	//OVERLAP SHOWING CONTROLL
@@ -227,9 +242,6 @@ public class Cinema {
 		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
 	}
 
-	public List<TicketPricingStrategy> getDiscountList() throws IOException, SeatException, NumberFormatException, SQLException {
-		return PersistenceFacade.getInstance().getDiscountList();
-	}
 
 	public List<Seat> getFreeSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		List<Seat> freeSeats = new ArrayList<>();

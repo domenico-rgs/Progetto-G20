@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,16 +38,15 @@ public class Administrator implements IHandler {
 		}
 
 		try {
-			//il tempo di sistemare la vera lista di teatri
-			List<String> prova = new ArrayList<>();
-			prova.add("provacodice");
-
 			resp.getWriter().write(Rythm.render("administrator.html",
 					categoryList, Cinema.getCinema().getMovieList(),
-					Cinema.getCinema().getTheatreList(), prova));
+					Cinema.getCinema().getTheatreList(),
+					Cinema.getCinema().getDiscountList()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (SeatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

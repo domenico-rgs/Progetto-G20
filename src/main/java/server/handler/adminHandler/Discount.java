@@ -1,5 +1,7 @@
 package server.handler.adminHandler;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
@@ -7,9 +9,10 @@ import server.domain.cinema.Cinema;
 public class Discount {
 
 	public static String doAction(HttpServletRequest req) {
+		String code = req.getParameter("code");
+				
 		switch (req.getParameter("action")) {
 		case "save":
-			String code = req.getParameter("code");
 
 			try {
 				double value = Double.valueOf(req.getParameter("value"));
@@ -26,10 +29,13 @@ public class Discount {
 
 		case "remove":
 			try {
-				//da scrivere
+				Cinema.getCinema().deleteDiscount(code);
+			}catch (SQLException e) {
+				System.out.println(e);
+				return "Ticket already deleted";
 			}catch (Exception e) {
-				e.printStackTrace();
-				return "problem with server";
+				System.out.println(e);
+				return e.toString();
 			}
 			return "Code removed with success";
 		}
