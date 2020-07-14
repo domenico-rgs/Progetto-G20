@@ -18,17 +18,13 @@ public class EditMovie {
 		else
 			cover = "../statics/images/cover/" + req.getParameter("cover");
 
-
 		try {
 			Cinema.getCinema().editMovie(title, cover, plot, category);
 
-		}
-		catch (Exception e1) {
+		}catch (Exception e1) {
 			System.out.println(e1);
 			return "Incorrect or missing data";
 		}
-
 		return title + " succefully added. Reload to see changes";
 	}
-
 }

@@ -17,23 +17,17 @@ import server.domain.exception.SeatException;
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
 
-
-	private Administrator() {
-	}
-
+	private Administrator() {}
 
 	public static Administrator getInstance() {
 		if (instance == null)
 			instance = new Administrator();
-
 		return instance;
 	}
 
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
 		//passare values() a rythm non funziona
 		List<String> categoryList = new ArrayList<>();
 
@@ -49,10 +43,8 @@ public class Administrator implements IHandler {
 					categoryList, Cinema.getCinema().getMovieList(),
 					Cinema.getCinema().getTheatreList(), prova));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SeatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -60,10 +52,7 @@ public class Administrator implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-
 		String message = "";
-
-
 		/*
 		 * java reflection che richiama il metodo doAction ()
 		 * dalla classe dello stesso nome del requestPost
@@ -72,13 +61,9 @@ public class Administrator implements IHandler {
 		try {
 			message = (String)Class.forName("server.handler.adminHandler." + req.getParameter("requestPost")).
 					getMethod("doAction", HttpServletRequest.class).invoke(null, req);
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 		resp.getWriter().write(message);
 	}
-
 }

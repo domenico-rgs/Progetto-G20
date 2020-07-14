@@ -14,30 +14,23 @@ import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
 public class MovieList implements IHandler {
-
 	private static MovieList instance = null;
 
 	//serve nel catalogo per trenere traccia di una lista di film 'indexate'
 	private List<String> titleMovieList = new ArrayList<>();
 
-	private MovieList() {
-
-	}
-
+	private MovieList() {}
 
 	public static MovieList getInstance() {
 		if (instance == null)
 			instance = new MovieList();
-
 		return instance;
 	}
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		int startPoint = Integer.parseInt(req.getParameter("startPoint"));
 		int finalPoint = Integer.parseInt(req.getParameter("finalPoint"));
-
 
 		List<server.domain.cinema.Movie> movieList =
 				this.updateMovieList(startPoint, finalPoint);
@@ -45,17 +38,13 @@ public class MovieList implements IHandler {
 		resp.getWriter().write(Rythm.render("imported/movieItem.html", movieList));
 
 		movieList.clear();
-
 	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 	}
 
 	private List<server.domain.cinema.Movie> updateMovieList(int start, int end) {
-
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
 		//controllo se sono alla fine della lista
@@ -74,12 +63,9 @@ public class MovieList implements IHandler {
 		try {
 			for (int i=start; i<end; i++)
 				movieList.add(Cinema.getCinema().getMovie(this.titleMovieList.get(i)));
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 		return movieList;
 	}
 
@@ -87,9 +73,7 @@ public class MovieList implements IHandler {
 		try {
 			this.titleMovieList = Cinema.getCinema().getMovieList();
 		} catch (IOException | SeatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 }

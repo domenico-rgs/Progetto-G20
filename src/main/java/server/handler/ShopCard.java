@@ -15,33 +15,25 @@ import server.domain.exception.SeatException;
 
 
 public class ShopCard implements IHandler {
-
 	private static ShopCard instance = null;
 	private static final int timeWait = 1; //in minuti
 	private ShopTimer waiting;
 	private boolean valid;
 
-	private ShopCard() {
-	}
-
+	private ShopCard() {}
 
 	public static ShopCard getInstance() {
-
 		if (instance == null)
 			instance = new ShopCard();
-
 		return instance;
 	}
 
-
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		try {
 			if(waiting.isAlive())
 				waiting.interrupt();
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			//non succede niente
 		}
 		
@@ -59,32 +51,23 @@ public class ShopCard implements IHandler {
 					seats,
 					Cinema.getCinema().ticketsPrice(id, seats),
 					Cinema.getCinema().getShopCard().getTotal()));
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 	}
-
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		if (!valid) {
 			resp.getWriter().write("Carrello scaduto, rifai ordinazione");
 			return;
 		}
-
-
-
 		switch(req.getParameter("action")) {
 		case "discount":
 			//da sistemare in futuro ancora
 			String code = req.getParameter("code");
 			double price = Double.valueOf(req.getParameter("price"));
 			double finalPrice;
-
 
 			//se il biglietto è gia usato nello stesso acquisto
 			if (Cinema.getCinema().getShopCard().hasCode(code)) {
@@ -122,15 +105,12 @@ public class ShopCard implements IHandler {
 				//interropre il thread di attesa se funziona
 				if (value)
 					this.waiting.interrupt();
-			}
-			catch (Exception e) {
+			}catch (Exception e) {
 				e.printStackTrace();
 				resp.getWriter().write("Impossible buy this ticket");
 			}
-
 			break;
 		}
-
 	}
 
 	public void timeBreak() {
@@ -141,18 +121,13 @@ public class ShopCard implements IHandler {
 		try {
 			Cinema.getCinema().setAvailability(id, seats, true);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SeatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		Cinema.getCinema().getShopCard().refresh();
 		valid = false;
 	}
-
 }

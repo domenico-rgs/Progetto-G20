@@ -6,5 +6,4 @@ public class EditShowing {
 	public static String doAction(HttpServletRequest req) {
 		return null;
 	}
-
 }

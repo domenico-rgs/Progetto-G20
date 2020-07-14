@@ -13,5 +13,4 @@ public interface IHandler {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException;
-
 }

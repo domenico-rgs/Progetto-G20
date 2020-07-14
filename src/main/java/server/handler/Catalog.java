@@ -14,40 +14,30 @@ import org.rythmengine.Rythm;
 import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
+//singleton
 public class Catalog implements IHandler {
-
-
-	//singleton
 	private static Catalog instance = null;
 
-
-	private Catalog() {
-	}
-
+	private Catalog() {}
 
 	public static Catalog getInstance() {
-
 		if (instance == null)
 			instance = new Catalog();
-
 		return instance;
 	}
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		if (req.getParameter("search").contentEquals("all") ||
-				req.getParameter("search").contentEquals(""))
+				req.getParameter("search").contentEquals("")) {
 			resp.getWriter().write(Rythm.render("catalog.html"));
-		else {
+		}else {
 			List<server.domain.cinema.Movie> movieList = this.searchMovieForString(req.getParameter("search"));
 
 			if (movieList.size() == 0) {
 				String messagge = req.getParameter("search") + " does not exist";
 				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,messagge));
-			}
-
-			else
+			}else
 				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,""));
 		}
 
@@ -72,16 +62,12 @@ public class Catalog implements IHandler {
 				if (title.toLowerCase().contains(search.toLowerCase()))
 					movieList.add(Cinema.getCinema().getMovie(title));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SeatException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return movieList;
 	}
 }

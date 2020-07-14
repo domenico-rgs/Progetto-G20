@@ -19,11 +19,9 @@ public class AddTheatre {
 		} catch (IOException | SQLException e) {
 			e.printStackTrace();
 			return "Error with creation of new theatre. Please try again";
-		}
-		catch(SeatException e) {
+		}catch(SeatException e) {
 			return "Configuration is errated";
 		}
-
 		return theatreName + " succefully added. Reload to see changes";
 
 	}

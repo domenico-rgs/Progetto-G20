@@ -7,7 +7,6 @@ import server.domain.cinema.Cinema;
 public class Discount {
 
 	public static String doAction(HttpServletRequest req) {
-
 		switch (req.getParameter("action")) {
 		case "save":
 			String code = req.getParameter("code");
@@ -15,12 +14,10 @@ public class Discount {
 			try {
 				double value = Double.valueOf(req.getParameter("value"));
 				Cinema.getCinema().createDiscountCode(code, value);
-			}
-			catch (NumberFormatException e) {
+			}catch (NumberFormatException e) {
 				e.printStackTrace();
 				return "Value insert not correct";
-			}
-			catch (Exception e) {
+			}catch (Exception e) {
 				e.printStackTrace();
 				return "problem with server";
 			}
@@ -30,17 +27,12 @@ public class Discount {
 		case "remove":
 			try {
 				//da scrivere
-			}
-			catch (Exception e) {
+			}catch (Exception e) {
 				e.printStackTrace();
 				return "problem with server";
 			}
 			return "Code removed with success";
-
 		}
-
 		return "problem with javascript script";
 	}
-
-
 }

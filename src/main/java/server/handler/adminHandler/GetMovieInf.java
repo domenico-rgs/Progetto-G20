@@ -20,18 +20,13 @@ public class GetMovieInf {
 					movie.getCategory().toString();
 
 			return inf;
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}	catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SeatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-
 }

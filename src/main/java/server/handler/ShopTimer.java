@@ -1,7 +1,6 @@
 package server.handler;
 
 public class ShopTimer extends Thread{
-
 	private int timeWait; //in minute
 	server.handler.ShopCard parent;
 
@@ -12,7 +11,6 @@ public class ShopTimer extends Thread{
 
 	@Override
 	public void run() {
-
 		//attesa del thread
 		try {
 			Thread.sleep(timeWait * 60 * 1000);
@@ -23,9 +21,6 @@ public class ShopTimer extends Thread{
 
 		//se il thread non viene interrotto dalla classe shopCard, esegue questo
 		this.parent.timeBreak();
-		
 		interrupt();
-
 	}
-
 }

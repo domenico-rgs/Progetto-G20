@@ -15,26 +15,18 @@ import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
 public class Index implements IHandler {
-
 	private static Index instance = null;
 
-	private Index() {
-	}
-
+	private Index() {}
 
 	public static Index getInstance() {
 		if (instance == null)
 			instance = new Index();
-
 		return instance;
 	}
 
-	//get and post
-
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<String> quote = Cinema.getCinema().getQuotes();
 		int intexCatalog = 5;  //quanti elementi visualizzare in prima pagina
 
@@ -45,9 +37,7 @@ public class Index implements IHandler {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
-
-
-
+	
 	private List<server.domain.cinema.Movie> getIndexMovie(int n) {
 		List<String> title;
 		try {
@@ -62,13 +52,10 @@ public class Index implements IHandler {
 				movieList.add(Cinema.getCinema().getMovie(title.get(i)));
 			return movieList;
 		} catch (IOException | SeatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-
 }

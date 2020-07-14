@@ -12,7 +12,6 @@ import server.domain.cinema.Cinema;
 public class LoadGeneral {
 
 	public static String doAction(HttpServletRequest req) {
-
 		Map<String,Integer> forMovie = new HashMap<>();
 		Map<String,Integer> forTheatre = new HashMap<>();
 		String messagge;
@@ -34,10 +33,6 @@ public class LoadGeneral {
 			e.printStackTrace();
 			messagge = "Error from server, sorry :(";
 		}
-
-
 		return messagge;
-
 	}
-
 }

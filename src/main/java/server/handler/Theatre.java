@@ -17,27 +17,21 @@ import server.domain.cinema.Cinema;
 import server.domain.cinema.theatre.Seat;
 
 public class Theatre implements IHandler {
-
 	private static Theatre instance = null;
-
 
 	private Theatre() {
 	}
 
 
 	public static Theatre getInstance() {
-
 		if (instance == null)
 			instance = new Theatre();
-
 		return instance;
 	}
 
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config;
 		List<String> freeSeats = new ArrayList<>();
@@ -49,8 +43,7 @@ public class Theatre implements IHandler {
 			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 
 			config = this.readConfig(thName);
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 			return;
 		}
@@ -65,7 +58,6 @@ public class Theatre implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		String [] seats = req.getParameter("seat").split("-");
 		String id = req.getParameter("id");
 
@@ -73,19 +65,13 @@ public class Theatre implements IHandler {
 			Cinema.getCinema().updateShopCardItems(req.getParameter("id"), seats);
 			//false = setta occupati
 			Cinema.getCinema().setAvailability(id, seats, false);
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 			resp.getWriter().write("Error");
 		}
-
-
 	}
 
-
-
 	private List<List<String>> readConfig(String thName) {
-
 		//matrice non uniforme di righe colonne, da passare all'html
 		List<List<String>> config = new ArrayList<>();
 		BufferedReader file;
@@ -114,13 +100,9 @@ public class Theatre implements IHandler {
 				config.add(rowList);
 			}
 			file.close();
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 		return config;
 	}
-
 }

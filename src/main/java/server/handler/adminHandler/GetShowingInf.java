@@ -11,7 +11,6 @@ import server.domain.exception.SeatException;
 
 public class GetShowingInf {
 	public static String doAction(HttpServletRequest req) throws IOException, SeatException, SQLException {
-
 		switch (req.getParameter("action")) {
 		case "getID":
 			String title = req.getParameter("title");
@@ -30,14 +29,11 @@ public class GetShowingInf {
 				String inf =  m.getTheatreName() + "@" + m.getPrice() +
 						"@" + m.getDateToString();
 				return inf;
-			}
-			catch (Exception e) {
+			}catch (Exception e) {
 				e.printStackTrace();
 				return "Error@Impossible get information";
 			}
 		}
-
-
 		return "problem with server";
 	}
 }

@@ -15,7 +15,6 @@ import server.domain.cinema.MovieShowing;
 import server.domain.exception.SeatException;
 
 public class Movie implements IHandler {
-
 	private static Movie instance = null;
 
 	private Movie() {}
@@ -35,7 +34,6 @@ public class Movie implements IHandler {
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showingsForMovie));
 
 		} catch (SQLException | IOException | SeatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
