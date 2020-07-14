@@ -1,5 +1,0 @@
-x x x x x x x x x x x x x x x x x x x x x
-p p p p p p p p p p p p p p p p p p p
-x x x x x x x x x x x x x x x x x x x x x x 
-p p p p p p 
-d d d
