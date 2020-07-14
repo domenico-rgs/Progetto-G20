@@ -44,7 +44,7 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 
 	@Override
 	public void delete(String OID) throws SQLException {
-		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE discountCode!='' and discountCode=?");
+		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE discountCode!='' and discountCode=?");
 		stm.setObject(1, OID);
 		stm.execute();
 		updateCache(OID,null);

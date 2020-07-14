@@ -22,6 +22,7 @@ public class ApplicationServer {
 		server = new Server(port);
 		ServletContextHandler handler = new ServletContextHandler();
 		handler.addServlet(new ServletHolder(servlet), "/*");
+		handler.setStopTimeout(300000);
 		addStaticFileServing(handler);
 		server.setHandler(handler);
 		server.start();

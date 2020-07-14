@@ -64,7 +64,7 @@ public class Theatre implements IHandler {
 		String id = req.getParameter("id");
 
 		try {
-			Cinema.getCinema().updateShopCardItems(req.getParameter("id"), seats);
+			Cinema.getCinema().updateShopCartItems(req.getParameter("id"), seats);
 			//false = setta occupati
 			Cinema.getCinema().setAvailability(id, seats, false);
 		}catch (Exception e) {

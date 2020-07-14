@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.domain.exception.PaymentException;
 import server.domain.exception.SeatException;
 
 
@@ -78,19 +79,20 @@ public class ShopCard implements IHandler {
 			}
 
 			try {
-				finalPrice = Cinema.getCinema().applyDiscountOnPrice(code, price);;
+				finalPrice = Cinema.getCinema().applyDiscountOnPrice(code, price);
 				Cinema.getCinema().getShopCard().addCode(code);
 				Cinema.getCinema().getShopCard().setTotal(finalPrice);
 				finalPrice = (double) Math.round(finalPrice * 100) / 100;
+				resp.getWriter().write(String.valueOf(String.valueOf(finalPrice)));
+				break;
+			} catch (SQLException | IOException | SeatException e) {
+				e.getStackTrace();
+			}catch(PaymentException e1) {
+				finalPrice=price;
+				resp.getWriter().write(String.valueOf(String.valueOf(finalPrice)));
+				break;
 			}
-			catch (Exception e) {
-				e.printStackTrace();
-				finalPrice = 0.0;
-			}
-
-			resp.getWriter().write(String.valueOf(String.valueOf(finalPrice)));
-			break;
-
+				
 		case "buy":
 			String codeCard = req.getParameter("codeCard");
 			String date = req.getParameter("date");

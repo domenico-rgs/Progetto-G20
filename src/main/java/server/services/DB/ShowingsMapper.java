@@ -49,7 +49,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 	@Override
 	public void delete(String OID) throws SQLException, SearchException {
 		if(!isUsed(OID)) {
-			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE id!='' and id= ?");
+			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE id!='' and id= ?");
 			stm.setObject(1, OID);
 			stm.execute();
 		}else
@@ -135,7 +135,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		pstm.setString(1,OID);
 		ResultSet rs = pstm.executeQuery();
 		rs.next();
-		if(rs.getInt(1)!=0)
+		if(rs.getInt(1)==0)
 			return false;
 		else
 			return true;

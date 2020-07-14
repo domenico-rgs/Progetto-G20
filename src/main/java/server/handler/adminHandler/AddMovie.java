@@ -38,6 +38,9 @@ public class AddMovie{
 		}catch (NumberFormatException e) {
 			System.out.println(e);
 			return "Incorrect value for duration";
+		}catch (IllegalArgumentException e) {
+				System.out.println(e);
+				return "The category was not chosen or something else went wrong";
 		}catch (Exception e) {
 			System.out.println(e);
 			return e.toString();

@@ -45,7 +45,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 	@Override
 	public void delete(String OID) throws SQLException, SearchException {
 		if(!isUsed(OID)) {
-			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE theatreName!='' and theatreName= ?");
+			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE theatreName!='' and theatreName= ?");
 			stm.setObject(1, OID);
 			stm.execute();
 		}else
@@ -89,7 +89,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 		pstm.setString(1,OID);
 		ResultSet rs = pstm.executeQuery();
 		rs.next();
-		if(rs.getInt(1)!=0)
+		if(rs.getInt(1)==0)
 			return false;
 		else
 			return true;

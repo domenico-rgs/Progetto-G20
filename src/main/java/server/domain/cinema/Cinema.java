@@ -267,7 +267,7 @@ public class Cinema {
 	}
 
 	/* ShopCart management */
-	public void updateShopCardItems(String id, String[] seats) throws SQLException, IOException, SeatException {
+	public void updateShopCartItems(String id, String[] seats) throws SQLException, IOException, SeatException {
 
 		this.shopCart.setIdSh(id);
 		this.shopCart.setSeats(seats);
