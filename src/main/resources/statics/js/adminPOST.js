@@ -106,6 +106,24 @@ $('#editShowing #movie').on('change', function() {
   })
 });
 
+$('#editShowing #remove').on('click', function() {
+  $('#editShowing .loader').css("visibility", "visible")
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "DeleteItem",
+      object: "showing",
+      id: $('#editShowing  #idS').val(),
+    },
+    success: function(response) {
+      $('#editMovie .loader').css("visibility", "hidden")
+      $('#editMovie .message').text(response)
+      reloadGeneral()
+    }
+  })
+});
+
 
 //add movie
 $('#addMovie #add').on('click', function() {
@@ -181,6 +199,24 @@ $('#editMovie #movie').on('change', function() {
         $('#editMovie #category').val(params[4])
       }
 
+    }
+  })
+});
+
+$('#editMovie #remove').on('click', function() {
+  $('#editMovie .loader').css("visibility", "visible")
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "DeleteItem",
+      object: "movie",
+      title: $('#editMovie #movie').val(),
+    },
+    success: function(response) {
+      $('#editMovie .loader').css("visibility", "hidden")
+      $('#editMovie .message').text(response)
+      reloadGeneral()
     }
   })
 });

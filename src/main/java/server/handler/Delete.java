@@ -38,7 +38,7 @@ public class Delete implements IHandler {
 			resp.getWriter().write("Ticket delete with success");
 		}catch (Exception e) {
 			e.toString();
-			resp.getWriter().write("Ticket code or card number not corretct");
+			resp.getWriter().write("Ticket code or card number not correct");
 		}
 	}
 }
