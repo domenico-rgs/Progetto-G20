@@ -5,8 +5,8 @@ import java.util.List;
 
 public class ShopCart {
 	/**this class works as a shopping cart */
-	String[] seats;
-	String idSh;
+	private String[] seats;
+	private String idSh;
 	private List<String> bufferDiscountCode;
 	private double total;
 

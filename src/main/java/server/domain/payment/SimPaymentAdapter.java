@@ -8,7 +8,8 @@ import server.domain.exception.PaymentException;
 /**This class creates a Payment simulator which can simulate a payment. */
 
 public class SimPaymentAdapter implements PaymentAdapter{
-
+	SimPaymentAdapter() {}
+	
 	@Override
 	public boolean pay(double money, String code, String date, String cvc) throws PaymentException {
 		checkCard(code,date,cvc);
