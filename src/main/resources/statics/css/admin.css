@@ -334,6 +334,7 @@ body {
   background-color: #fff;
 }
 
+/* comparsa e scomparsa */
 .movieT {
   visibility: hidden;
   height: 0;
@@ -344,12 +345,22 @@ body {
   visibility: hidden;
 }
 
+.showingT {
+  height: 0;
+  visibility: hidden;
+}
+
 .movieT.active {
   visibility: visible;
   height: auto;
 }
 
 .theatreT.active {
+  height: auto;
+  visibility: visible;
+}
+
+.showingT.active {
   height: auto;
   visibility: visible;
 }

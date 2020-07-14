@@ -70,6 +70,20 @@ Map<String, Integer> forMovie
 
             </table>
           </div>
+
+          <div class="showingT">
+            <input id="movie" list="filmList" placeholder="Search Film">
+            <datalist id="filmList">
+              @for (String movie: listM) {
+              <option value="@movie">@movie</option>
+              }
+            </datalist>
+
+            <table>
+
+            </table>
+
+          </div>
         </div>
 
         <script src="../statics/js/jquery.min.js"></script>

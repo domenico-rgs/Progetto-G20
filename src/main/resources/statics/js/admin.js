@@ -93,9 +93,35 @@ $('#closeButton').click(function() {
 $('.stat #movie').click(function() {
   $('.table .movieT').addClass('active')
   $('.table .theatreT').removeClass('active')
+  $('.table .showingT').removeClass('active')
 })
 
 $('.stat #theatre').click(function() {
   $('.table .theatreT').addClass('active')
   $('.table .movieT').removeClass('active')
+  $('.table .showingT').removeClass('active')
 })
+
+$('.stat #showing').click(function() {
+  $('.table .showingT').addClass('active')
+  $('.table .movieT').removeClass('active')
+  $('.table .theatreT').removeClass('active')
+})
+
+
+//per mostrare i showing per film
+$('.showingT #movie').on('change', function() {
+  $('.showingT table').empty()
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "LoadShowStat",
+      title: $(this).val()
+    },
+    success: function(response) {
+      $('.showingT table').append(response)
+    }
+  })
+
+});
