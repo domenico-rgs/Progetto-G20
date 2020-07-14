@@ -13,7 +13,7 @@ public class AddShowing {
 		String movie = req.getParameter("movie");
 		String theatre = req.getParameter("theatre");
 
-		String[] d = req.getParameter("date").split("/"); 
+		String[] d = req.getParameter("date").split("/");
 		String[] h = req.getParameter("hour").split(":");
 
 		String id;

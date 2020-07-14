@@ -84,7 +84,7 @@ public class Cinema {
 			for(Seat sL : sList)
 				if(sL.getPosition().equalsIgnoreCase(s))
 					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID), (m.getPrice()*sL.getAddition())));
-			PersistenceFacade.getInstance().addTickets(ticketList);
+		PersistenceFacade.getInstance().addTickets(ticketList);
 		return ticketList;
 	}
 

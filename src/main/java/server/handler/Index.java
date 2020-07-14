@@ -37,7 +37,7 @@ public class Index implements IHandler {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
-	
+
 	private List<server.domain.cinema.Movie> getIndexMovie(int n) {
 		List<String> title;
 		try {

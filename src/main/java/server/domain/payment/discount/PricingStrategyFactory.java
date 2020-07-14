@@ -24,10 +24,10 @@ public class PricingStrategyFactory {
 	/**
 	 * It permits to create a discount code
 	 * @param code discount code
-	 * @throws SearchException 
-	 * @throws SeatException 
-	 * @throws IOException 
-	 * @throws SQLException 
+	 * @throws SearchException
+	 * @throws SeatException
+	 * @throws IOException
+	 * @throws SQLException
 	 */
 	public void removeDiscountCode(String code) throws SearchException, SQLException, IOException, SeatException {
 		PersistenceFacade.getInstance().delete(code, DiscountCodesMapper.class);

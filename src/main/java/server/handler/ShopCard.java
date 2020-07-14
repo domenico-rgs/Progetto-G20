@@ -36,7 +36,7 @@ public class ShopCard implements IHandler {
 		}catch (Exception e) {
 			//non succede niente
 		}
-		
+
 
 		//avvia il thread di attesa
 		waiting = new ShopTimer(timeWait, this);
