@@ -1,5 +1,7 @@
 package server.handler;
 
+/**this class takes care of launching a countdown to end the purchase within a time*/
+
 public class ShopTimer extends Thread{
 	private int timeWait; //in minute
 	server.handler.ShopCart parent;
@@ -11,15 +13,16 @@ public class ShopTimer extends Thread{
 
 	@Override
 	public void run() {
-		//attesa del thread
+		//thread wait
 		try {
 			Thread.sleep(timeWait * 60 * 5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
-		//se il thread non viene interrotto dalla classe shopCard, esegue questo
+		//if the thread is not stopped by the shopCard class, it does this
+		
 		this.parent.timeBreak();
 		interrupt();
 	}

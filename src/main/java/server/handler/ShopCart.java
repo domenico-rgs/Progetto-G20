@@ -39,11 +39,11 @@ public class ShopCart implements IHandler {
 				waiting.interrupt();
 			}
 		}catch (Exception e) {
-			//non succede niente
+			//nothing
 		}
 
 
-		//avvia il thread di attesa
+		// start the wait thread
 		waiting = new ShopTimer(timeWait, this);
 		waiting.start();
 		valid = true;
@@ -69,12 +69,12 @@ public class ShopCart implements IHandler {
 		}
 		switch(req.getParameter("action")) {
 		case "discount":
-			//da sistemare in futuro ancora
+			// to be fixed again in the future
 			String code = req.getParameter("code");
 			double price = Double.valueOf(req.getParameter("price"));
 			double finalPrice;
 
-			//se il biglietto è gia usato nello stesso acquisto
+			// if the ticket is already used in the same purchase
 			if (Cinema.getCinema().getShopCart().hasCode(code)) {
 				resp.getWriter().write("-1.0");
 				break;
@@ -108,7 +108,7 @@ public class ShopCart implements IHandler {
 				boolean value = Cinema.getCinema().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
 
-				//interropre il thread di attesa se funziona
+				//interrupt the wait thread if it works
 				if (value) {
 					this.waiting.interrupt();
 				}
@@ -124,7 +124,7 @@ public class ShopCart implements IHandler {
 		String id = Cinema.getCinema().getShopCart().getIdSh();
 		String[] seats = Cinema.getCinema().getShopCart().getSeats();
 
-		//true = posti liberati
+		//true == free seat
 		try {
 			Cinema.getCinema().setAvailability(id, seats, true);
 		} catch (SQLException e) {

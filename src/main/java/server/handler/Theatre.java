@@ -33,7 +33,7 @@ public class Theatre implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//matrice non uniforme di righe colonne, da passare all'html
+		// non-uniform array of column rows, to be passed to HTML
 		List<List<String>> config;
 		List<String> freeSeats = new ArrayList<>();
 
@@ -50,7 +50,8 @@ public class Theatre implements IHandler {
 			return;
 		}
 
-		//passo tutto a rythm
+		// we pass everything to rhythm
+
 		String[] alfaphet = {"A", "B", "C", "D", "E", "F", "G"};
 
 		resp.getWriter().write(Rythm.render("theatre.html", config, req.getParameter("id"),
@@ -65,7 +66,7 @@ public class Theatre implements IHandler {
 
 		try {
 			Cinema.getCinema().updateShopCartItems(req.getParameter("id"), seats);
-			//false = setta occupati
+			//false = set to busy
 			Cinema.getCinema().setAvailability(id, seats, false);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -74,23 +75,23 @@ public class Theatre implements IHandler {
 	}
 
 	private List<List<String>> readConfig(String thName) {
-		//matrice non uniforme di righe colonne, da passare all'html
+		// non-uniform array of column rows, to be passed to HTML
 		List<List<String>> config = new ArrayList<>();
 		BufferedReader file;
 
 		try {
-			//ricerco il file, anche se dovrebbe farlo qualcun'altro
+			//i'm search the file
 			file = new BufferedReader( new FileReader(new File("src/main/resources/"
 					+ "theatreConf/" + thName+ ".txt")));
 
-			//variabili temporanee
+			//temporary variable
 			String row;
 			String[] col;
 
-			//per ogni riga lezza
+			
 			while ((row = file.readLine()) != null) {
 
-				//righe vuote
+				//empty lines
 				if (row.contentEquals("")) {
 					continue;
 				}
