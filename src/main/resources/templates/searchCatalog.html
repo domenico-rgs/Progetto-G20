@@ -88,8 +88,10 @@
           $('.searchBar label').addClass('active');
         }).on('blur', function()
         {
-          $('.searchBar label').removeClass('active');
-          $('.searchBar input').val("");
+          if ($('.searchBar input').val() == "")
+          {
+            $('.searchBar label').removeClass('active');
+          }
         })
       </script>
 

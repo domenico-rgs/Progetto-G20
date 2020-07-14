@@ -59,6 +59,25 @@ $(window).on('scroll', function() {
 $('.searchBar input').on('focus', function() {
   $('.searchBar label').addClass('active');
 }).on('blur', function() {
-  $('.searchBar label').removeClass('active');
-  $('.searchBar input').val("");
+  if ($('.searchBar input').val() == "") {
+    $('.searchBar label').removeClass('active');
+  }
 })
+
+//get requests
+$(document).on('click', '.item', function() {
+  var title = $(this).find('p').text()
+  window.location.href = "/movie?title=" + title
+});
+
+$('#searchMovie').on('keypress', function(e) {
+  if (e.which == 13) {
+    var title = $(this).val()
+    window.location.href = "/catalog?search=" + title
+  }
+});
+
+$('#searchImg').on('click', function() {
+  var title = $('#searchMovie').val()
+  window.location.href = "/catalog?search=" + title
+});

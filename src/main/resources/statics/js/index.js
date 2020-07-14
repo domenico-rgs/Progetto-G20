@@ -72,3 +72,14 @@ function playAudio() {
     myAudio.play();
   }
 }
+
+//get requests
+
+$('#goToCatalog').on('click', function() {
+  window.location.href = "/catalog?search=all";
+});
+
+$(document).on('click', '.item', function() {
+  var title = $(this).find('p').text()
+  window.location.href = "/movie?title=" + title
+});
