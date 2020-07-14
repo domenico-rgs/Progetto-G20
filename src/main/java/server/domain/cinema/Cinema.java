@@ -92,11 +92,11 @@ public class Cinema {
 
 	/* Discounts */
 	synchronized public void createDiscountCode(String code, double percent) throws SQLException, IOException, SeatException  {
-		PricingStrategyFactory.getInstance().createDiscountCode(code, percent);
+		PricingStrategyFactory.getInstance().createDiscountCode(code.toUpperCase(), percent);
 	}
 
 	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, IOException, SeatException, PaymentException{
-		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getCodeStrategy(code);
+		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getCodeStrategy(code.toUpperCase());
 				
 		if(discount != null)
 			discount.getTotalPrice(price);

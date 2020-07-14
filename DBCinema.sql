@@ -16,10 +16,8 @@ CREATE TABLE MOVIES
 		category CHAR(20));
      
 CREATE TABLE THEATRES
-        (theatreName CHAR(20),
-         filePath VARCHAR(100) NOT NULL,
-         
-		PRIMARY KEY (theatreName));
+        (theatreName CHAR(20) PRIMARY KEY,
+         filePath VARCHAR(100) NOT NULL);
 
 CREATE TABLE MOVIESHOWINGS
         (id CHAR(10) PRIMARY KEY,
