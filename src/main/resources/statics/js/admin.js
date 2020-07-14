@@ -111,7 +111,7 @@ $('.stat #showing').click(function() {
 
 //per mostrare i showing per film
 $('.showingT #movie').on('change', function() {
-  $('.showingT table').empty()
+  $('.showingT .tableSh').empty()
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
@@ -120,7 +120,7 @@ $('.showingT #movie').on('change', function() {
       title: $(this).val()
     },
     success: function(response) {
-      $('.showingT table').append(response)
+      $('.showingT .tableSh').append(response)
     }
   })
 

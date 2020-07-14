@@ -1,20 +1,25 @@
-@{
+@args{
 List<server.domain.cinema.MovieShowing> shList
   String title
   }
 
 
   <h1>Statistics for @title showing:</h1>
-  <tr>
-    <th> <strong>ID</strong></th>
-    <th> <strong>DATE</strong> </th>
-    <th> <strong>THEATRE</strong> </th>
-  </tr>
+  <table>
 
-  @for (server.domain.cinema.MovieShowing sh: shList) {
-  <tr>
-    <td>@sh.getId()</td>
-    <td>@sh.getDateToString()</td>
-    <td>@sh.getTheatreName()</td>
-  </tr>
-  }
+
+    <tr>
+      <th> <strong>ID</strong></th>
+      <th> <strong>DATE</strong> </th>
+      <th> <strong>THEATRE</strong> </th>
+    </tr>
+
+    @for (server.domain.cinema.MovieShowing sh: shList) {
+    <tr>
+      <td>@sh.getId()</td>
+      <td>@sh.getDateToString()</td>
+      <td>@sh.getTheatreName()</td>
+    </tr>
+    }
+
+  </table>

@@ -292,9 +292,6 @@ body {
 .table table {
   width: 50%;
   margin: 0 auto;
-}
-
-.table table {
   box-shadow: 5px 5px 20px;
 }
 
@@ -332,6 +329,25 @@ body {
 
 .table tr:nth-child(odd) {
   background-color: #fff;
+}
+
+/* tabella delle showing */
+.showing table {
+  width: 70%;
+  margin: 0 auto;
+  box-shadow: 5px 5px 20px;
+}
+
+.showingT th:first-child, td:first-child {
+  width: 20%;
+}
+
+.showingT th:nth-child(2), td:nth-child(2) {
+  width: 50%;
+}
+
+.showingT th:last-child, td:last-child {
+  width: 30%;
 }
 
 /* comparsa e scomparsa */

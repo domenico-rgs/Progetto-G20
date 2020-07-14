@@ -17,7 +17,7 @@ public class LoadShowStat {
 			messagge = Rythm.render("imported/showTableAdmin.html", 
 					Cinema.getCinema().getMovieShowingList(title), title);
 		} catch (Exception e) {
-			e.toString();
+			System.out.println(e);
 			messagge = "Error with server";
 		}
 		
