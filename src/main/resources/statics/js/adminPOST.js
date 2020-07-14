@@ -17,6 +17,24 @@ $('#addTheatre #add').on('click', function() {
   })
 });
 
+//remove theatre
+$('#deleteTheatre #remove').on('click', function() {
+  $('#deleteTheatre .loader').css("visibility", "visible")
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "RemoveTheatre",
+      name: $('#deleteTheatre #theatre').val(),
+    },
+    success: function(response) {
+      $('#deleteTheatre .loader').css("visibility", "hidden")
+      $('#deleteTheatre .message').text(response)
+      reloadGeneral()
+    }
+  })
+});
+
 //add showing
 $('#addShowing #add').on('click', function() {
   $('#addShowing .loader').css("visibility", "visible")

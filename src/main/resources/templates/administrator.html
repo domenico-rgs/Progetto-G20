@@ -28,6 +28,7 @@ List<String> categoryList
                 <ul>
                   <li value="general">General</li>
                   <li value="addTheatre">Add Theatre</li>
+                  <li value="deleteTheatre">Delete Theatre</li>
                   <li value="addMovie">Add Movie</li>
                   <li value="editMovie">Edit Movie</li>
                   <li value="addShowing">Add Showing</li>
@@ -106,6 +107,21 @@ List<String> categoryList
                   <div class="loader"></div>
                   <p class=" message">
                   </p>
+                </div>
+
+                <!-- delete theatre -->
+                <div class="admin" id="deleteTheatre">
+                  <input id="theatre" list="theatreList" placeholder="Select Theatre">
+                  <datalist id="theatreList">
+                    @for (String theatre: theatreList) {
+                    <option value="@theatre">@theatre</option>
+                    }
+                  </datalist>
+                  <button id='remove'>Remove</button>
+
+                  <div class="loader"></div>
+                  <p class=" message">
+
                 </div>
 
 
