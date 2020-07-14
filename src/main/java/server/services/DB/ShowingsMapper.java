@@ -147,7 +147,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		stm.execute();
 	}
 
-	protected synchronized Map<String, MovieShowing> getShowings() {
-		return showing;
+	protected synchronized List<MovieShowing> getShowings() {
+		return new ArrayList<MovieShowing>(showing.values());
 	}
 }

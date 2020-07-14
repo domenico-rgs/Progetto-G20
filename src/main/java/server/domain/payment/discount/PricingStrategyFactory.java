@@ -2,6 +2,7 @@ package server.domain.payment.discount;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
@@ -42,9 +43,14 @@ public class PricingStrategyFactory {
 		return (TicketPricingStrategy) PersistenceFacade.getInstance().get(discount, DiscountCodesMapper.class);
 	}
 
+	public List<TicketPricingStrategy> getDiscountList() throws NumberFormatException, SQLException, IOException, SeatException{
+		return PersistenceFacade.getInstance().getDiscountList();
+	}
+
 	public static PricingStrategyFactory getInstance() {
-		if (istance == null)
+		if (istance == null) {
 			istance = new PricingStrategyFactory();
+		}
 		return istance;
 	}
 }

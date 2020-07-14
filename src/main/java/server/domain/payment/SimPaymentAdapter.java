@@ -8,6 +8,7 @@ import server.domain.exception.PaymentException;
 /**This class creates a Payment simulator which can simulate a payment. */
 
 public class SimPaymentAdapter implements PaymentAdapter{
+	SimPaymentAdapter() {}
 
 	@Override
 	public boolean pay(double money, String code, String date, String cvc) throws PaymentException {
@@ -25,7 +26,7 @@ public class SimPaymentAdapter implements PaymentAdapter{
 	 * @param date card's deadline
 	 * @param cvc card's cvc
 	 * @return
-	 * @throws PaymentException 
+	 * @throws PaymentException
 	 */
 	private boolean checkCard(String code, String date, String cvc) throws PaymentException {
 		String[] value = date.split("/");
@@ -35,19 +36,18 @@ public class SimPaymentAdapter implements PaymentAdapter{
 				throw new PaymentException("Card code must be numeric only");
 		}else
 			throw new PaymentException("The data entered is not valid");
-		
+
 		if((cvc.length()==3)) {
 			if(!isNumberOnly(code))
 				throw new PaymentException("CVC must be numeric only");
 		}else
 			throw new PaymentException("The data entered is not valid");
-		
-		if(cardDate.isBefore(LocalDate.now())) {
+
+		if(cardDate.isBefore(LocalDate.now()))
 			throw new PaymentException("The date entered is not valid");
-		}
 		return true;
 	}
-	
+
 	private boolean isNumberOnly(String code) throws PaymentException {
 		for (int i =0; i < code.length(); i++) {
 			char c = code.charAt(i);
@@ -57,4 +57,4 @@ public class SimPaymentAdapter implements PaymentAdapter{
 		return true;
 	}
 }
-		
+

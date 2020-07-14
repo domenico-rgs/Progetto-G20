@@ -16,8 +16,9 @@ public class Delete implements IHandler {
 	private Delete() {}
 
 	public static Delete getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new Delete();
+		}
 		return instance;
 	}
 
@@ -36,7 +37,7 @@ public class Delete implements IHandler {
 			Cinema.getCinema().deleteTicket(ticket, cardN);
 			resp.getWriter().write("Ticket delete with success");
 		}catch (Exception e) {
-			e.printStackTrace();
+			e.toString();
 			resp.getWriter().write("Ticket code or card number not corretct");
 		}
 	}

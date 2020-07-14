@@ -82,10 +82,12 @@ public class Cinema {
 		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
 
 		List<Ticket> ticketList = new ArrayList<>();
-		for(String s : seats)
+		for(String s : seats) {
 			for(Seat sL : sList)
-				if(sL.getPosition().equalsIgnoreCase(s))
+				if(sL.getPosition().equalsIgnoreCase(s)) {
 					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, getMovieShowing(showingID), (m.getPrice()*sL.getAddition())));
+				}
+		}
 		PersistenceFacade.getInstance().addTickets(ticketList);
 		return ticketList;
 	}
@@ -97,10 +99,11 @@ public class Cinema {
 
 	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, IOException, SeatException, PaymentException{
 		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getCodeStrategy(code.toUpperCase());
-				
-		if(discount != null)
+
+		if(discount != null) {
 			discount.getTotalPrice(price);
-		
+		}
+
 		throw new PaymentException("Discount code not found");
 	}
 
@@ -143,48 +146,47 @@ public class Cinema {
 		long dateShowingSec = zdt.toInstant().getEpochSecond();
 		long movieDurationSec = this.getMovie(movie).getDuration()*60;
 
+		//testing
 		System.out.println(dateShowingSec);
 		System.out.println(movieDurationSec);
 
 		//ricavo le proiezioni alla data attuale (spero che funzioni)
 		List<MovieShowing> showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
 
+		//test
 		System.out.println(showingList);
 
-		//controllo se non ci sono film che DOPO si accavallano
+		//variabili delle proiezioni gia esistenti nella lista restituita
 		long dateShowingToControll;
+		long filmToControllDuration;
 		for (MovieShowing sh: showingList) {
 
 			zdt = sh.getDate().atZone(ZoneId.systemDefault());
 			dateShowingToControll = zdt.toInstant().getEpochSecond();
 
+			//test
 			System.out.println(dateShowingToControll);
-			System.out.println(dateShowingToControll - (dateShowingSec + movieDurationSec));
 
-			//se la data è precedente non controllo
-			if (dateShowingToControll < dateShowingSec) continue;
-
-			//se trovo un film dopo (intuitivo?)
-			if ((dateShowingSec + movieDurationSec) >= dateShowingToControll)
+			//se l'orario è lo stesso
+			if (dateShowingToControll == dateShowingSec)
 				throw new OverlapException();
-		}
 
-		//controllo se non ci sono film che PRIMA SI accavallano
-		long filmToControllDuration;
-		for(MovieShowing sh: showingList) {
+			//se l'orario è successivo a quella che voglio aggiungere
+			if (dateShowingToControll > dateShowingSec) {
 
+				//se si accavalla con una successiva
+				if ((dateShowingSec + movieDurationSec) >= dateShowingToControll)
+					throw new OverlapException();
+			}
 
-			zdt = sh.getDate().atZone(ZoneId.systemDefault());
-			dateShowingToControll = zdt.toInstant().getEpochSecond();
+			//se l'orario è precendete a quella che voglio aggiungere
+			if (dateShowingToControll < dateShowingSec) {
+				filmToControllDuration = getMovie(sh.getMovie()).getDuration()*60;
 
-			//se la data è successiva non controllo
-			if (dateShowingToControll > dateShowingSec) continue;
-
-			filmToControllDuration = getMovie(sh.getMovie()).getDuration()*60;
-
-			//se si accavalla con una precedente
-			if ((dateShowingToControll + filmToControllDuration) >= dateShowingSec)
-				throw new OverlapException();
+				//se si accavalla con una precedente
+				if ((dateShowingToControll + filmToControllDuration) >= dateShowingSec)
+					throw new OverlapException();
+			}
 		}
 	}
 
@@ -218,14 +220,15 @@ public class Cinema {
 	}
 
 	public List<MovieShowing> getAllShowingList() throws IOException, SeatException {
-		List<MovieShowing> allList = new ArrayList<>();
-		allList.addAll((PersistenceFacade.getInstance().getAllMovieShowings().values()));
-
-		return allList;
+		return PersistenceFacade.getInstance().getAllMovieShowings();
 	}
 
 	public HashMap<Seat, Boolean> getAllSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
 		return PersistenceFacade.getInstance().getAvailabilityList(idShowing);
+	}
+
+	public List<TicketPricingStrategy> getDiscountList() throws IOException, SeatException, NumberFormatException, SQLException {
+		return PersistenceFacade.getInstance().getDiscountList();
 	}
 
 	public List<Seat> getFreeSeatsForShowing(String idShowing) throws SQLException, IOException, SeatException {
@@ -233,8 +236,9 @@ public class Cinema {
 
 		HashMap<Seat,Boolean> tmp = PersistenceFacade.getInstance().getAvailableSeatsList(idShowing);
 
-		for(Seat s : tmp.keySet())
+		for(Seat s : tmp.keySet()) {
 			freeSeats.add(s);
+		}
 		return freeSeats;
 	}
 
@@ -245,8 +249,9 @@ public class Cinema {
 
 
 	public void setAvailability(String idShowing, String[] seats, boolean availability) throws SQLException, IOException, SeatException {
-		for(String s : seats)
+		for(String s : seats) {
 			PersistenceFacade.getInstance().changeAvailability(idShowing, s, availability);
+		}
 	}
 
 	/* ShopCart management */
@@ -296,8 +301,9 @@ public class Cinema {
 		PdfDocument pdfDocument = new PdfDocument(writer);
 		pdfDocument.setTagged();
 		Document document = new Document(pdfDocument);
-		for(Ticket t : ticketList)
+		for(Ticket t : ticketList) {
 			document.add(new Paragraph(t.toString()));
+		}
 		document.close();
 
 		return new File("G20Ticket");
@@ -306,14 +312,18 @@ public class Cinema {
 	private double getTotalPriceTickets(List<Ticket> ticketList) {
 		double total = 0.0;
 
-		for(Ticket t : ticketList)
+		for(Ticket t : ticketList) {
 			total += t.getTotalPrice();
+		}
 		return total;
 	}
 
+
+	//singleton method
 	public static Cinema getCinema() {
-		if (istance == null)
+		if (istance == null) {
 			istance = new Cinema();
+		}
 		return istance;
 	}
 }

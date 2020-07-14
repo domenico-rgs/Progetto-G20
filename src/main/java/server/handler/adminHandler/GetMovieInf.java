@@ -1,12 +1,8 @@
 package server.handler.adminHandler;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
-import server.domain.exception.SeatException;
 
 public class GetMovieInf {
 
@@ -20,13 +16,9 @@ public class GetMovieInf {
 					movie.getCategory().toString();
 
 			return inf;
-		}	catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SeatException e) {
-			e.printStackTrace();
+		}catch (Exception e) {
+			System.out.println(e);
+			return "Error@"+ e.toString();
 		}
-		return null;
 	}
 }

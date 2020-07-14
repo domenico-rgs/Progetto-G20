@@ -20,8 +20,9 @@ public class Movie implements IHandler {
 	private Movie() {}
 
 	public static Movie getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new Movie();
+		}
 
 		return instance;
 	}
@@ -34,7 +35,8 @@ public class Movie implements IHandler {
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showingsForMovie));
 
 		} catch (SQLException | IOException | SeatException e) {
-			e.printStackTrace();
+			resp.getWriter().write(Rythm.render("404.html"));
+			e.toString();
 		}
 	}
 

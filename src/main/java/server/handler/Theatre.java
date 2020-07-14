@@ -24,8 +24,9 @@ public class Theatre implements IHandler {
 
 
 	public static Theatre getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new Theatre();
+		}
 		return instance;
 	}
 
@@ -37,8 +38,9 @@ public class Theatre implements IHandler {
 		List<String> freeSeats = new ArrayList<>();
 
 		try {
-			for (Seat s: Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id")))
+			for (Seat s: Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"))) {
 				freeSeats.add(s.getPosition());
+			}
 
 			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
 
@@ -89,14 +91,16 @@ public class Theatre implements IHandler {
 			while ((row = file.readLine()) != null) {
 
 				//righe vuote
-				if (row.contentEquals(""))
+				if (row.contentEquals("")) {
 					continue;
+				}
 
 				List<String> rowList = new ArrayList<>();
 				col = row.split(" ");
 
-				for (String seat: col)
+				for (String seat: col) {
 					rowList.add(seat);
+				}
 				config.add(rowList);
 			}
 			file.close();

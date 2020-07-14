@@ -20,8 +20,9 @@ public class Index implements IHandler {
 	private Index() {}
 
 	public static Index getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new Index();
+		}
 		return instance;
 	}
 
@@ -45,11 +46,13 @@ public class Index implements IHandler {
 			List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
 			//per evitare errori di sforamento
-			if (n > title.size())
+			if (n > title.size()) {
 				n = title.size();
+			}
 
-			for (int i = 0; i<n; i++)
+			for (int i = 0; i<n; i++) {
 				movieList.add(Cinema.getCinema().getMovie(title.get(i)));
+			}
 			return movieList;
 		} catch (IOException | SeatException e) {
 			e.printStackTrace();

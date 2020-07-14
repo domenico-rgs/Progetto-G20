@@ -59,7 +59,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				+ " WHERE BINARY showingID = ?" );
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
-		while (rs.next())
+		while (rs.next()) {
 			switch(rs.getString(3)) {
 			case "NORMAL":
 				availabilityList.put(new Seat(rs.getString(2)),rs.getBoolean(4));
@@ -71,6 +71,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				availabilityList.put(new DisabledSeat(rs.getString(2)), rs.getBoolean(4));
 				break;
 			}
+		}
 
 		return availabilityList;
 	}
@@ -90,7 +91,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				" JOIN SEATS ON (SEATS.POS=AVAILABILITY.POS) AND (SEATS.THEATRE=AVAILABILITY.THEATRE) WHERE BINARY showingID =? and available=1" );
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
-		while (rs.next())
+		while (rs.next()) {
 			switch(rs.getString(3)) {
 			case "NORMAL":
 				availabilityList.put(new Seat(rs.getString(2)),rs.getBoolean(4));
@@ -102,6 +103,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				availabilityList.put(new DisabledSeat(rs.getString(2)), rs.getBoolean(4));
 				break;
 			}
+		}
 		return availabilityList;
 	}
 }

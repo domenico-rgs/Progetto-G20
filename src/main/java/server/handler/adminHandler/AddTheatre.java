@@ -1,6 +1,5 @@
 package server.handler.adminHandler;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +15,15 @@ public class AddTheatre {
 
 		try {
 			Cinema.getCinema().createTheatre(theatreName, config);
-		} catch (IOException | SQLException e) {
-			e.printStackTrace();
-			return "Error with creation of new theatre. Please try again";
+		} catch (SQLException e) {
+			System.out.println(e);
+			return "Problem with database or " + theatreName + " already exists";
 		}catch(SeatException e) {
+			System.out.println(e);
 			return "Configuration is errated";
+		}catch (Exception e) {
+			System.out.println(e);
+			return e.toString();
 		}
 		return theatreName + " succefully added. Reload to see changes";
 

@@ -1,5 +1,8 @@
 package server.handler.adminHandler;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
@@ -12,10 +15,11 @@ public class AddMovie{
 		String plot = req.getParameter("plot");
 		String cover;
 
-		if (req.getParameter("cover").contentEquals(""))
+		if (req.getParameter("cover").contentEquals("")) {
 			cover = "../statics/images/cover/unavaliable.jpg";
-		else
+		} else {
 			cover = "../statics/images/cover/" + req.getParameter("cover");
+		}
 
 		try {
 			int duration = Integer.valueOf(req.getParameter("duration"));
@@ -25,9 +29,18 @@ public class AddMovie{
 		}catch (SearchException e) {
 			System.out.println(e);
 			return "Error: " + title + " already exists";
+		}catch (IOException e) {
+			System.out.println(e);
+			return "Problem with I/O operation. Please try again.";
+		}catch (SQLException e) {
+			System.out.println(e);
+			return "Problem with database or " +title+ " already exists";
+		}catch (NumberFormatException e) {
+			System.out.println(e);
+			return "Incorrect value for duration";
 		}catch (Exception e) {
 			System.out.println(e);
-			return "Incorrect or missing data";
+			return e.toString();
 		}
 		return title + " succefully added. Reload to see changes";
 	}

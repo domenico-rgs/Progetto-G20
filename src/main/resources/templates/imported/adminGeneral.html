@@ -1,6 +1,7 @@
 @args {
 Map<String, Integer> forMovie
   Map<String, Integer> forTheatre
+    int showingTot
     Set<String> listM
       Set<String> listT
         }
@@ -27,7 +28,7 @@ Map<String, Integer> forMovie
 
         <div class="stat">
           <h1>Programmed showing: </h1>
-          <p id="pstat">300</p>
+          <p id="pstat">@showingTot</p>
           <div id="showing" class="seeTable">
             <h2>Show statistics</h2>
           </div>

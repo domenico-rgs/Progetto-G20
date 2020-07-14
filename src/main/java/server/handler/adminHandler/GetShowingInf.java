@@ -16,8 +16,9 @@ public class GetShowingInf {
 			String title = req.getParameter("title");
 			String message = "";
 
-			for (MovieShowing sh : Cinema.getCinema().getMovieShowingList(title) )
+			for (MovieShowing sh : Cinema.getCinema().getMovieShowingList(title) ) {
 				message += sh.getId() + "@";
+			}
 
 			return message;
 
@@ -31,9 +32,9 @@ public class GetShowingInf {
 				return inf;
 			}catch (Exception e) {
 				e.printStackTrace();
-				return "Error@Impossible get information";
+				return "Error@" +e.toString();
 			}
 		}
-		return "problem with server";
+		return "problem with javascript getRequest";
 	}
 }

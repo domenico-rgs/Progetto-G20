@@ -10,6 +10,7 @@ public class CodeStrategy implements TicketPricingStrategy{
 		this.percent=percent;
 	}
 
+	@Override
 	public String getCode() {
 		return code;
 	}
