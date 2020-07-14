@@ -39,7 +39,7 @@ $('#buyTicket').on('click', function() {
         return
       }
 
-      window.location.href = "/shopCard?id=" + $('title').attr("idvalue")
+      window.location.href = "/shopCart?id=" + $('title').attr("idvalue")
     }
   })
 

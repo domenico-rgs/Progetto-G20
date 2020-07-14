@@ -15,17 +15,17 @@ import server.domain.exception.SeatException;
 
 
 
-public class ShopCard implements IHandler {
-	private static ShopCard instance = null;
+public class ShopCart implements IHandler {
+	private static ShopCart instance = null;
 	private static final int timeWait = 1; //in minuti
 	private ShopTimer waiting;
 	private boolean valid;
 
-	private ShopCard() {}
+	private ShopCart() {}
 
-	public static ShopCard getInstance() {
+	public static ShopCart getInstance() {
 		if (instance == null) {
-			instance = new ShopCard();
+			instance = new ShopCart();
 		}
 		return instance;
 	}
@@ -46,14 +46,14 @@ public class ShopCard implements IHandler {
 		waiting.start();
 		valid = true;
 		String id = req.getParameter("id");
-		String[] seats = Cinema.getCinema().getShopCard().getSeats();
+		String[] seats = Cinema.getCinema().getShopCart().getSeats();
 
 		try {
 
 			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(id),
 					seats,
 					Cinema.getCinema().ticketsPrice(id, seats),
-					Cinema.getCinema().getShopCard().getTotal()));
+					Cinema.getCinema().getShopCart().getTotal()));
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -73,15 +73,15 @@ public class ShopCard implements IHandler {
 			double finalPrice;
 
 			//se il biglietto è gia usato nello stesso acquisto
-			if (Cinema.getCinema().getShopCard().hasCode(code)) {
+			if (Cinema.getCinema().getShopCart().hasCode(code)) {
 				resp.getWriter().write("-1.0");
 				break;
 			}
 
 			try {
 				finalPrice = Cinema.getCinema().applyDiscountOnPrice(code, price);
-				Cinema.getCinema().getShopCard().addCode(code);
-				Cinema.getCinema().getShopCard().setTotal(finalPrice);
+				Cinema.getCinema().getShopCart().addCode(code);
+				Cinema.getCinema().getShopCart().setTotal(finalPrice);
 				finalPrice = (double) Math.round(finalPrice * 100) / 100;
 				resp.getWriter().write(String.valueOf(String.valueOf(finalPrice)));
 				break;
@@ -119,8 +119,8 @@ public class ShopCard implements IHandler {
 	}
 
 	public void timeBreak() {
-		String id = Cinema.getCinema().getShopCard().getIdSh();
-		String[] seats = Cinema.getCinema().getShopCard().getSeats();
+		String id = Cinema.getCinema().getShopCart().getIdSh();
+		String[] seats = Cinema.getCinema().getShopCart().getSeats();
 
 		//true = posti liberati
 		try {
@@ -132,7 +132,7 @@ public class ShopCard implements IHandler {
 		} catch (SeatException e) {
 			e.printStackTrace();
 		}
-		Cinema.getCinema().getShopCard().refresh();
+		Cinema.getCinema().getShopCart().refresh();
 		valid = false;
 	}
 }

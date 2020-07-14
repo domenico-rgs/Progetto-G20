@@ -2,9 +2,9 @@ package server.handler;
 
 public class ShopTimer extends Thread{
 	private int timeWait; //in minute
-	server.handler.ShopCard parent;
+	server.handler.ShopCart parent;
 
-	public ShopTimer(int minuteWait,server.handler.ShopCard parent) {
+	public ShopTimer(int minuteWait,server.handler.ShopCart parent) {
 		this.timeWait = minuteWait;
 		this.parent = parent;
 	}
@@ -13,7 +13,7 @@ public class ShopTimer extends Thread{
 	public void run() {
 		//attesa del thread
 		try {
-			Thread.sleep(timeWait * 60 * 1000);
+			Thread.sleep(timeWait * 60 * 5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
