@@ -11,16 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
 import javax.mail.MessagingException;
-
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfVersion;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.WriterProperties;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
-
 import server.MailSender;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
@@ -278,7 +269,7 @@ public class Cinema {
 		return (Theatre) PersistenceFacade.getInstance().get(name, TheatresMapper.class);
 	}
 
-	synchronized public List<String> getMovieList(){
+	synchronized public List<String> getMovieList() throws SQLException{
 		List<String> titleList = new ArrayList<>();
 		titleList.addAll(PersistenceFacade.getInstance().getAllMovies().keySet());
 		return titleList;
@@ -288,13 +279,13 @@ public class Cinema {
 		return (MovieShowing) PersistenceFacade.getInstance().get(id, ShowingsMapper.class);
 	}
 
-	synchronized public List<String> getTheatreList(){
+	synchronized public List<String> getTheatreList() throws SQLException{
 		List<String> theatreList = new ArrayList<>();
 		theatreList.addAll(PersistenceFacade.getInstance().getAllTheatre().keySet());
 		return theatreList;
 	}
 
-	synchronized public List<MovieShowing> getAllShowingList() {
+	synchronized public List<MovieShowing> getAllShowingList() throws SQLException {
 		return PersistenceFacade.getInstance().getAllMovieShowings();
 	}
 
@@ -318,7 +309,6 @@ public class Cinema {
 		return showList;
 	}
 
-
 	synchronized public void setAvailability(String idShowing, String[] seats, boolean availability) throws SQLException {
 		for(String s : seats) {
 			PersistenceFacade.getInstance().changeAvailability(idShowing, s, availability);
@@ -332,7 +322,6 @@ public class Cinema {
 	 * @param seats booked seats
 	 */
 	synchronized public void updateShopCartItems(String id, String[] seats) throws SQLException {
-
 		this.shopCart.refresh();
 		this.shopCart.setIdSh(id);
 		this.shopCart.setSeats(seats);
@@ -379,29 +368,11 @@ public class Cinema {
 		List<Ticket> ticketList = createTickets(this.shopCart.getIdSh(), this.shopCart.getSeats());
 		boolean result = PaymentFactory.getInstance().getSimPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
-			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
+			MailSender.sendTicketMail(emailRecipient, ticketList);
 			return true;
 
 		} else
 			return false;
-	}
-	
-	/**
-	 * this method generates a pdf in order to send it in an email
-	 * @param ticketList tickets' list
-	 * @return pdf file
-	 */
-	synchronized private File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
-		PdfWriter writer = new PdfWriter("G20Ticket", new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
-		PdfDocument pdfDocument = new PdfDocument(writer);
-		pdfDocument.setTagged();
-		Document document = new Document(pdfDocument);
-		for(Ticket t : ticketList) {
-			document.add(new Paragraph(t.toString()));
-		}
-		document.close();
-
-		return new File("G20Ticket");
 	}
 
 	synchronized private double getTotalPriceTickets(List<Ticket> ticketList) {

@@ -1,5 +1,6 @@
 var open = true;
 
+//listener class "AVALIABLE SHOW"
 $('button').on('click', function() {
   if (open) {
     open = false;
@@ -10,9 +11,7 @@ $('button').on('click', function() {
   }
 });
 
-//get requests
-
-
+//listener del pulsante BUY nella scelta delle proiezioni dei film
 $('.showingTable #buy').on('click', function() {
   var title = $('.description #title').text()
   var id = $(this).attr("value")

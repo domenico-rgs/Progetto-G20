@@ -47,7 +47,7 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE discountCode!='' and discountCode=?");
 		stm.setObject(1, OID);
 		stm.execute();
-		updateCache(OID,null);
+		this.discounts.remove(OID);
 	}
 
 
@@ -57,10 +57,9 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 		updateCache(OID,d);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?)");
-
 		pstm.setString(1,OID);
 		pstm.setDouble(2,d.getPercent());
-
+		
 		pstm.execute();
 
 	}

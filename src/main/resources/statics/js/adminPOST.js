@@ -1,3 +1,11 @@
+/* dentro questo script vengono eseguite tutte le richieste
+  di POST da parte dei click degli elementi nella pagina di administrator,
+  che tramite il parametro requestPost verranno reindirizzati verso
+  gli Handler corrispondenti.
+  La risposta ritorna se la richiesta è andata a buon fine o l'errore
+  presentatosi
+*/
+
 // add theatre
 $('#addTheatre #add').on('click', function() {
   $('#addTheatre .loader').css("visibility", "visible")
@@ -190,8 +198,6 @@ $('#addMovie #add').on('click', function() {
 });
 
 
-
-
 //edit movie
 $('#editMovie #editM').on('click', function() {
   $('#editMovie .loader').css("visibility", "visible")
@@ -291,7 +297,7 @@ $('#discounts #remove').on('click', function() {
     data: {
       requestPost: "Discount",
       action: "remove",
-      code: $('#discounts #code').val(),
+      code: $('#discounts #discoCode').val(),
     },
     success: function(response) {
       $('.loader').css("visibility", "hidden")
@@ -347,6 +353,8 @@ function passCheck() {
   })
 }
 
+
+// ogni volta che modifico qualcosa aggiorno la pagina generale in backGround
 function reloadGeneral() {
   $('#general').empty()
   var ajax = $.ajax({

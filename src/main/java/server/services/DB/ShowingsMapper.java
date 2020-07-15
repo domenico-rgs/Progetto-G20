@@ -33,7 +33,6 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		setUp();
 	}
 
-	@Override
 	protected synchronized String getLastObjectCode(String keyName) throws SQLException{
 		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery("Select max("+keyName+") from (select CAST((substring(id,2)) As double) id from "+super.tableName+")a order by id");

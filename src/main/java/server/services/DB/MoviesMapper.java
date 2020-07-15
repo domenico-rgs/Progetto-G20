@@ -49,6 +49,8 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE title!='' and title= ?");
 			stm.setObject(1, OID);
 			stm.execute();
+			
+			this.movie.remove(OID);
 		}else
 			throw new SearchException("Movie is used!");
 	}
@@ -60,7 +62,6 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 		updateCache(OID,m);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?,?)");
-
 		pstm.setString(1,OID);
 		pstm.setInt(2,m.getDuration());
 		pstm.setString(3,m.getPlot());
@@ -109,7 +110,7 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 			return true;
 	}
 
-	public synchronized Map<String, Movie> getMovies() {
+	protected synchronized Map<String, Movie> getMovies() {
 		return movie;
 	}
 }

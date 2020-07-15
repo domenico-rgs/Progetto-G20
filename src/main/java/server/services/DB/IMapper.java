@@ -8,9 +8,6 @@ import server.domain.exception.SearchException;
  * Interface for Mapper Class
  */
 public interface IMapper {
-
-
-
 	//web-lnx243.ergonet.host
 	String DB_URL = "jdbc:mysql://185.205.41.113:3306/progG20?serverTimezone=UTC";
 	String USER = "cinemaG20";
@@ -32,6 +29,13 @@ public interface IMapper {
 	 */
 	void put(String OID, Object obj) throws SQLException;
 
+	/**
+	 * Method which delete the object linked to the mapper, represented by its key, from the table
+	 * @param OID is the key of the object
+	 * @return the object requested
+	 * @throws SQLException
+	 * @throws SearchException
+	 */
 	void delete(String OID) throws SQLException, SearchException;
 
 	/**
