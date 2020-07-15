@@ -20,7 +20,7 @@ List<String> categoryList
 
           </head>
 
-          <body login="@login">
+          <body>
 
             <!-- menu laterale a comparsa -->
             <div class="sideMenu">
@@ -87,7 +87,7 @@ List<String> categoryList
                 <div class="admin" id="addTheatre">
                   <p>Add a theatre:</p>
 
-                  <input id='name' placeholder="Name">
+                  <input id='name' placeholder="Name" autocomplete="off">
                   <button id='add'>Add</button>
 
 
@@ -225,8 +225,8 @@ List<String> categoryList
                     </datalist>
                   </div>
 
-                  <input id='date' placeholder="Date (ex: 12/06/2020)">
-                  <input id='hour' placeholder="Hour (ex: 18:00)">
+                  <input type="date" id='date'>
+                  <input type="time" id='hour'>
                   <input id='price' placeholder="Price (ex: 12.00)">
                   <button id='add'>Add</button>
 

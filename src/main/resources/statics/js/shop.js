@@ -51,6 +51,8 @@ function discoFunc() {
 }
 
 function buyFunc() {
+  var data = $('.deadline input').val().split("-")
+  alert(data[1] + "/" + data[0])
   $('.loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
@@ -58,7 +60,7 @@ function buyFunc() {
     data: {
       action: "buy",
       codeCard: $('.cardNumber input').val(),
-      date: $('.deadline input:nth-child(2)').val() + "/" + $('.deadline input:last-child').val(),
+      date: data[1] + "/" + data[0],
       cvv: $('.cvv input').val(),
       email: $('.insertEmail input').val()
     },
