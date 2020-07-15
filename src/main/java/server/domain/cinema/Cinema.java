@@ -383,7 +383,7 @@ public class Cinema {
 		}
 		return total;
 	}
-
+	
 	public static Cinema getCinema() {
 		if (istance == null) {
 			istance = new Cinema();

@@ -49,7 +49,7 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE title!='' and title= ?");
 			stm.setObject(1, OID);
 			stm.execute();
-			
+
 			this.movie.remove(OID);
 		}else
 			throw new SearchException("Movie is used!");

@@ -59,7 +59,7 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?)");
 		pstm.setString(1,OID);
 		pstm.setDouble(2,d.getPercent());
-		
+
 		pstm.execute();
 
 	}

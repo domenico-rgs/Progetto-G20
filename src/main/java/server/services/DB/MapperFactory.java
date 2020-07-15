@@ -13,10 +13,10 @@ public class MapperFactory {
 	private Map<Class<?>,IMapper> mappers;
 
 	/**
-     *Initialize a map which contains all the mappers( key : the Class Object of the mapper,
-     * and value : is the instance of the mapper itself.
-     * @throws SQLException
-     */
+	 *Initialize a map which contains all the mappers( key : the Class Object of the mapper,
+	 * and value : is the instance of the mapper itself.
+	 * @throws SQLException
+	 */
 	private MapperFactory()throws SQLException {
 		this.mappers  = new HashMap<>();
 		SeatsMapper sm = new SeatsMapper();
@@ -33,11 +33,11 @@ public class MapperFactory {
 	}
 
 	/**
-     * 'Pattern Singleton Implementation'
-     *
-     * If the object has not already been instanced, it is instanced and it is returned.
-     * @return instance(MapperFactory)
-     */
+	 * 'Pattern Singleton Implementation'
+	 *
+	 * If the object has not already been instanced, it is instanced and it is returned.
+	 * @return instance(MapperFactory)
+	 */
 	public static MapperFactory getInstance()throws SQLException {
 		if(instance == null) {
 			instance = new MapperFactory();

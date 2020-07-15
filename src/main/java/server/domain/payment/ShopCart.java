@@ -42,7 +42,7 @@ public class ShopCart {
 	public void addTotal(double price) {
 		this.total += price;
 	}
-	
+
 
 	/**
 	 * It modifies the value of "total"
