@@ -38,7 +38,8 @@ public class ShopCart implements IHandler {
 		}
 
 		String idsh = Cinema.getCinema().getShopCart().getIdSh();
-		String[] seats = Cinema.getCinema().getShopCart().getSeats();
+		String []seats = Cinema.getCinema().getShopCart().getSeats();
+		
 
 		try {
 
@@ -60,15 +61,16 @@ public class ShopCart implements IHandler {
 			String code = req.getParameter("code");
 			double price = Double.valueOf(req.getParameter("price"));
 			double finalPrice;
+			
 
 			// if the ticket is already used in the same purchase
 			if (Cinema.getCinema().getShopCart().hasCode(code)) {
-				resp.getWriter().write("-1.0");
+				resp.getWriter().write("already");
 				break;
 			}
 
 			if (code == null || code.contentEquals("")) {
-				resp.getWriter().write("-2.0");
+				resp.getWriter().write("not");
 				break;
 			}
 
@@ -81,7 +83,7 @@ public class ShopCart implements IHandler {
 				resp.getWriter().write(String.valueOf(finalPrice));
 			} catch(Exception e) {
 				e.printStackTrace();
-				resp.getWriter().write("-2.0");
+				resp.getWriter().write("not");
 			}
 			break;
 

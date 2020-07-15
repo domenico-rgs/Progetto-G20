@@ -40,8 +40,6 @@ public class CinemaServlet extends HttpServlet {
 		String reqHandler = this.parsePath(req.getPathInfo());
 		IHandler classHandler;
 
-
-
 		try {
 			classHandler = (IHandler)Class.forName("server.handler." + reqHandler).getMethod("getInstance").invoke(null);
 			classHandler.doGet(req, resp);

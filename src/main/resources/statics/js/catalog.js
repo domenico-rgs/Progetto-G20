@@ -19,8 +19,8 @@ $(window).on('load', function() {
       loader.remove()
 
       $('.filmMenu').append(response);
-      startPoint += 5
-      finalPoint += 5
+      startPoint += 10
+      finalPoint += 10
     }
   })
 });

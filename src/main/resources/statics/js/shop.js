@@ -36,18 +36,14 @@ function discoFunc() {
       $('.loader').css("visibility", "hidden")
 
       //nel caso non funziona ritorno 0 dal server
-      if (response == '0.0') {
-        $('#total #buyMess').text("Code not avaliable")
-      }
-      if (response == '-1.0') {
-        $('#total #buyMess').text("Code already used")
-      }
-      if (response == '-2.0') {
+      if (response === "not") {
         $('#total #buyMess').text("Please enter a valid code")
+      } else if (response === "already") {
+        $('#total #buyMess').text("Code already used")
       } else {
         $('#total #buyMess').text("Code successfully applied")
         //cambio il prezzo visualizzato
-        $('#total .card #totalPrice').text("&euro; " + response)
+        $('#total .card #totalPrice').text("€ " + response)
       }
     }
   })
