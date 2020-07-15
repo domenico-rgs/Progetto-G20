@@ -28,7 +28,7 @@ import server.domain.exception.OverlapException;
 import server.domain.exception.PaymentException;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
-import server.domain.payment.ServiceFactory;
+import server.domain.payment.PaymentFactory;
 import server.domain.payment.ShopCart;
 import server.domain.payment.discount.PricingStrategyFactory;
 import server.domain.payment.discount.TicketPricingStrategy;
@@ -278,7 +278,7 @@ public class Cinema {
 
 	public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, IOException, SeatException, MessagingException, PaymentException {
 		List<Ticket> ticketList = createTickets(this.shopCart.getIdSh(), this.shopCart.getSeats());
-		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
+		boolean result = PaymentFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
 			return true;

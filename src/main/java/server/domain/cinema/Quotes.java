@@ -26,6 +26,10 @@ public class Quotes {
 		inFile.close();
 	}
 
+	/**
+	 * Creates a list where the quote is saved in the first element and the author in the second
+	 * @return the list with the author and his quote
+	 */
 	public List<String> getQuotes() {
 		int random = (int)(Math.random()*quote.size());
 		List<String> quoteList = new ArrayList<>();

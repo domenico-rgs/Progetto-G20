@@ -32,7 +32,7 @@ public class Discount {
 				return "Code already exist";
 			}catch (Exception e) {
 				System.out.println(e.toString());
-				return "problem with server";
+				return "There was a problem with the server";
 			}
 
 			return "Code successfully added. Recharge to see changes";
@@ -49,6 +49,6 @@ public class Discount {
 			}
 			return "Code removed with success";
 		}
-		return "problem with javascript script";
+		return "There was a problem with javascript script";
 	}
 }

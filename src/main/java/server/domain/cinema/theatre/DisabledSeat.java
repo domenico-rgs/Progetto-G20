@@ -9,6 +9,7 @@ public class DisabledSeat extends Seat {
 		super(position);
 	}
 
+	//50% reduction for the disabled seat to the price of the showing
 	@Override
 	public double getAddition() {
 		return 0.5;

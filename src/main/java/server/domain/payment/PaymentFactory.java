@@ -1,11 +1,11 @@
 package server.domain.payment;
 
 /**This singleton class creates different payment items. */
-public class ServiceFactory {
-	private static ServiceFactory istance = null;
+public class PaymentFactory {
+	private static PaymentFactory istance = null;
 	private PaymentAdapter paymentSimulator;
 
-	private ServiceFactory() {
+	private PaymentFactory() {
 		paymentSimulator=null;
 	}
 
@@ -16,9 +16,9 @@ public class ServiceFactory {
 		return paymentSimulator;
 	}
 
-	public static ServiceFactory getInstance() {
+	public static PaymentFactory getInstance() {
 		if (istance == null) {
-			istance = new ServiceFactory();
+			istance = new PaymentFactory();
 		}
 		return istance;
 	}

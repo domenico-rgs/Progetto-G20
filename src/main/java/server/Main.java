@@ -27,6 +27,9 @@ public class Main {
 		server.start();
 	}
 
+	/*
+	 * Method that starts a thread for the automatic elimination of projections whose date is earlier than the current system date
+	 */
 	private static void autoShowDelete() {
 		final Runnable runnab = new Runnable() {
 			@Override
@@ -41,6 +44,5 @@ public class Main {
 		};
 		@SuppressWarnings("unused")
 		final ScheduledFuture<?> runnableHandle = scheduler.scheduleAtFixedRate(runnab, 1, 1, java.util.concurrent.TimeUnit.HOURS);
-
 	}
 }

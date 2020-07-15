@@ -21,8 +21,7 @@ public class AddMultiShowing {
 		String []hour = req.getParameter("hour").split(":");
 		LocalDateTime startD;
 		LocalDateTime finalD;
-		int duration;
-		
+
 		if (movie == null || theatre == null || price == null) {
 			return "please insert correct data";
 		}
@@ -44,7 +43,7 @@ public class AddMultiShowing {
 		}
 		
 		
-		//prendo la durata del film
+		int duration;
 		try {
 			duration = Cinema.getCinema().getMovie(movie).getDuration();
 		} catch (Exception e) {
@@ -66,10 +65,7 @@ public class AddMultiShowing {
 				e.toString();
 				return "Errore creazione proiezioni";
 			} 
-		}
-		
+		}	
 		return "Showings created";
-
 	}
-
 }

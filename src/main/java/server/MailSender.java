@@ -19,6 +19,13 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class MailSender {
+	/**
+	 * Send the email containing the ticket in pdf format to the user who purchased it.
+	 * @param recipient recipient email
+	 * @param pdf PDF file to attach to the email
+	 * @throws FileNotFoundException
+	 * @throws MessagingException
+	 */
 	public static void sendTicketMail(String recipient, File pdf) throws FileNotFoundException, MessagingException {
 		String header = "Here are the tickets you purchased from CinemaG20";
 		String body = "Hi!\r\n" +
@@ -28,6 +35,14 @@ public class MailSender {
 
 	}
 
+	/**
+	 * Send the email to the cinema administrator with the data to refund the user who requested the cancellation of a ticket
+	 * @param ticketCode
+	 * @param cardNumber
+	 * @param total
+	 * @throws FileNotFoundException
+	 * @throws MessagingException
+	 */
 	public static void sendRefundMail(String ticketCode, String cardNumber, double total) throws FileNotFoundException, MessagingException {
 		String header = "Someone has requested a refund";
 		String body = "Hello,\r\n" +

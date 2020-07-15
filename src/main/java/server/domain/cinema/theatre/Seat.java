@@ -15,6 +15,7 @@ public class Seat {
 		return position;
 	}
 
+	//no addition to the showing price
 	public double getAddition() {
 		return 1.0;
 	}

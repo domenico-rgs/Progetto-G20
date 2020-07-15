@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**interface implemented by handlers*/
 public interface IHandler {
-
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException;
-
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException;
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 }
