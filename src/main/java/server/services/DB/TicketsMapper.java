@@ -89,7 +89,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	}
 
 
-	public synchronized Map<String, Ticket> getTickets() {
+	protected synchronized Map<String, Ticket> getTickets() {
 		return tickets;
 	}
 }

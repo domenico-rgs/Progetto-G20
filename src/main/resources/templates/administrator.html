@@ -28,6 +28,7 @@ List<String> categoryList
                 <ul>
                   <li value="general">General</li>
                   <li value="addTheatre">Add Theatre</li>
+                  <li value="deleteTheatre">Delete Theatre</li>
                   <li value="addMovie">Add Movie</li>
                   <li value="editMovie">Edit Movie</li>
                   <li value="addShowing">Add Showing</li>
@@ -93,8 +94,8 @@ List<String> categoryList
                   <div class="searchDiv">
                     <textarea id="config" maxlength="640" rows="8" cols="80" placeholder="configuration
                     example:
-                    P-C-C-C-C-C-P
-                    D-C-C-C-C-C-D"></textarea>
+                    P C C C C C P
+                    D C C C C C D"></textarea>
                     <div class="leggenda">
                       <h5><strong>Legend: </strong></h5>
                       <h6>X: Normal seat</h6>
@@ -106,6 +107,21 @@ List<String> categoryList
                   <div class="loader"></div>
                   <p class=" message">
                   </p>
+                </div>
+
+                <!-- delete theatre -->
+                <div class="admin" id="deleteTheatre">
+                  <input id="theatre" list="theatreList" placeholder="Select Theatre">
+                  <datalist id="theatreList">
+                    @for (String theatre: theatreList) {
+                    <option value="@theatre">@theatre</option>
+                    }
+                  </datalist>
+                  <button id='remove'>Remove</button>
+
+                  <div class="loader"></div>
+                  <p class=" message">
+
                 </div>
 
 
@@ -146,7 +162,7 @@ List<String> categoryList
 
                   <input id='movie' placeholder="Title">
                   <input id='duration' placeholder="Duration (minutes)">
-                  <input id='cover' placeholder="Cover Name (jpg file)">
+                  <input id='cover' placeholder="Cover Name (.extension)">
                   <select id='category'>
                     <option value="" disabled selected>Category</option>
                     @for (String category: categoryList) {

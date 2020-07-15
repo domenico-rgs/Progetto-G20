@@ -155,50 +155,28 @@ public class Cinema {
 
 	//OVERLAP SHOWING CONTROLL
 	private void controlOverlapping(LocalDateTime date, String theatre, String movie) throws SQLException, IOException, SeatException, OverlapException {
-
-		//in millisecondi
 		ZonedDateTime zdt = date.atZone(ZoneId.systemDefault());
 		long dateShowingSec = zdt.toInstant().getEpochSecond();
 		long movieDurationSec = this.getMovie(movie).getDuration()*60;
 
-		//testing
-		System.out.println(dateShowingSec);
-		System.out.println(movieDurationSec);
-
-		//ricavo le proiezioni alla data attuale (spero che funzioni)
 		List<MovieShowing> showingList = PersistenceFacade.getInstance().getMovieShowingList(theatre, date);
-
-		//test
-		System.out.println(showingList);
-
-		//variabili delle proiezioni gia esistenti nella lista restituita
 		long dateShowingToControll;
 		long filmToControllDuration;
 		for (MovieShowing sh: showingList) {
-
 			zdt = sh.getDate().atZone(ZoneId.systemDefault());
 			dateShowingToControll = zdt.toInstant().getEpochSecond();
-
-			//test
-			System.out.println(dateShowingToControll);
-
-			//se l'orario � lo stesso
+			
 			if (dateShowingToControll == dateShowingSec)
 				throw new OverlapException();
 
-			//se l'orario � successivo a quella che voglio aggiungere
 			if (dateShowingToControll > dateShowingSec) {
-
-				//se si accavalla con una successiva
 				if ((dateShowingSec + movieDurationSec) >= dateShowingToControll)
 					throw new OverlapException();
 			}
 
-			//se l'orario � precendete a quella che voglio aggiungere
 			if (dateShowingToControll < dateShowingSec) {
 				filmToControllDuration = getMovie(sh.getMovie()).getDuration()*60;
 
-				//se si accavalla con una precedente
 				if ((dateShowingToControll + filmToControllDuration) >= dateShowingSec)
 					throw new OverlapException();
 			}

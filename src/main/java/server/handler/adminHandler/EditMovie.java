@@ -23,7 +23,7 @@ public class EditMovie {
 		if (req.getParameter("cover").contentEquals("")) {
 			cover = "../statics/images/cover/unavaliable.jpg";
 		} else {
-			cover = "../statics/images/cover/" + req.getParameter("cover");
+			cover = req.getParameter("cover");
 		}
 
 		try {
