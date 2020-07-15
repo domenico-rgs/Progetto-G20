@@ -18,7 +18,7 @@ public class SimPaymentAdapter implements PaymentAdapter{
 		return true;
 	}
 
-	/*
+	/**
 	 * This method can check all data inserted into the payment simulator
 	 */
 	private boolean checkCard(String code, String date, String cvc) throws PaymentException {
