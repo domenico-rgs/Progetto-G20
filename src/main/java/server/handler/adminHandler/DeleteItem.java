@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 
-/**his class together with others serve as a control on the
+/**This class together with others serve as a control on the
  * admin page, precisely this deals with connecting the web interface
  * to logic and transmitting information to eliminate a film or showing*/
 
