@@ -16,20 +16,20 @@ public class LoadGeneral {
 		Map<String,Integer> forTheatre = new HashMap<>();
 		String messagge;
 
-		//creo la prima mappa per i film (guardare adminGeneral.html)
+		// I create the first map for the movies (see adminGeneral.html)
 		try {
 			for (String movie: Cinema.getCinema().getMovieList()) {
 				Integer value = Cinema.getCinema().getMovieShowingList(movie).size();
 				forMovie.put(movie, value);
 			}
 			for (String theatre: Cinema.getCinema().getTheatreList()) {
-				Integer value = 0; //qualcosa per vedere la lunghezza
+				Integer value = 0; 
 				forTheatre.put(theatre, value);
 			}
 			messagge = Rythm.render("imported/adminGeneral.html",forMovie, forTheatre, Cinema.getCinema().getAllShowingList().size());
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			messagge = "Error from server, sorry :(";
 		}

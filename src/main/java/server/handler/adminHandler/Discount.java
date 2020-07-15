@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 
+
+/**this class together with others serve as a check on the admin page, precisely this 
+ * deals with connecting the web interface to logic and transmitting information to insert a discount code*/
+
 public class Discount {
 
 	public static String doAction(HttpServletRequest req) {
