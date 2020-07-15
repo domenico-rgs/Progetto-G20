@@ -147,10 +147,12 @@ public class AddItem {
 					return "Some showings Overlaps with anothers";
 				}catch (NullPointerException e) {
 					return "Please enter correct data";
+				}catch (OverlapException e) {
+					return "Some showings Overlaps with anothers";
 				}
 				catch (Exception e) {
 					e.toString();
-					return "Errore creazione proiezioni";
+					return "General error occured. Please try again";
 				}
 			}
 			return "Showings created";

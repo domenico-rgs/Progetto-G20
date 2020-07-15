@@ -15,13 +15,17 @@ $(window).on('load', function() {
 });
 //funzione per caricare lapagina generale principale in modo dinamic0
 function loadGeneralPage() {
+  $('#general .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
     data: {
       requestPost: "LoadGeneral",
+      object: "general"
     },
     success: function(response) {
+      $('#general .loader').css("visibility", "hidden")
+      $('#general').empty()
       $('#general').append(response)
     }
   })
@@ -101,7 +105,8 @@ $('.showingT #movie').on('change', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "LoadShowStat",
+      requestPost: "LoadGeneral",
+      object: "showingsStat",
       title: $(this).val()
     },
     success: function(response) {

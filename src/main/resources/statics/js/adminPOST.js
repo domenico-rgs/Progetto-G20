@@ -362,13 +362,17 @@ function passCheck() {
 // ogni volta che modifico qualcosa aggiorno la pagina generale in backGround
 function reloadGeneral() {
   $('#general').empty()
+  $('#general .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
     data: {
       requestPost: "LoadGeneral",
+      object: "general"
     },
     success: function(response) {
+      $('#general').empty()
+      $('#general .loader').css("visibility", "hidden")
       $('#general').append(response)
     }
   })
