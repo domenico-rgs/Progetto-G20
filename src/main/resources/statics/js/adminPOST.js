@@ -13,7 +13,8 @@ $('#addTheatre #add').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "AddTheatre",
+      requestPost: "AddItem",
+      object: "theatre",
       name: $('#addTheatre #name').val(),
       config: $('#addTheatre #config').val(),
     },
@@ -51,7 +52,8 @@ $('#addShowing #add').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "AddShowing",
+      requestPost: "AddItem",
+      object: "showing",
       movie: $('#addShowing #movie').val(),
       theatre: $('#addShowing #theatre').val(),
       date: $('#addShowing #date').val(),
@@ -73,7 +75,8 @@ $('#multiShowings #add').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "AddMultiShowing",
+      requestPost: "AddItem",
+      object: "multiShowing",
       movie: $('#multiShowings #movie').val(),
       theatre: $('#multiShowings  #theatre').val(),
       dateStart: $('#multiShowings  #dateStart').val(),
@@ -182,7 +185,8 @@ $('#addMovie #add').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "AddMovie",
+      requestPost: "AddItem",
+      object: "movie",
       title: $('#addMovie #movie').val(),
       duration: $('#addMovie #duration').val(),
       plot: $('#addMovie #plot').val(),
@@ -205,7 +209,8 @@ $('#editMovie #editM').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "EditMovie",
+      requestPost: "EditItem",
+      object: "movie",
       title: $('#editMovie #movie').val(),
       plot: $('#editMovie #plot').val(),
       cover: $('#editMovie #cover').val(),

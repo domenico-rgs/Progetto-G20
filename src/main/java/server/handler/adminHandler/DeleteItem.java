@@ -57,8 +57,8 @@ public class DeleteItem {
 				System.out.println(e.toString());
 				return name + " not exists yet";
 			} catch (Exception e) {
-				System.out.println(e.toString());
-				return e.getMessage();
+				System.out.println(e);
+				return "impossible to remove " + name;
 			}
 		}
 		return "Error with javascript getRequests";
