@@ -41,9 +41,16 @@ public class AddMultiShowing {
 
 		if (finalD.isBefore(startD))
 			return "Date and/or hour not correct";
+<<<<<<< HEAD
+		}
+		
+		
+		//I take the length of the film
+=======
 
 
 		int duration;
+>>>>>>> 08943b84245317356182ead152eb966fd3a720e2
 		try {
 			duration = Cinema.getCinema().getMovie(movie).getDuration();
 		} catch (Exception e) {
@@ -51,7 +58,7 @@ public class AddMultiShowing {
 		}
 
 		LocalDateTime date;
-		//splitto per tempo
+		// split in time
 		for (date = startD; date.isBefore(finalD.plusDays(1)); date = date.plusDays(1)) {
 
 			try {

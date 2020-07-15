@@ -61,7 +61,7 @@ public class MailSender {
 				" for a total of €"+ total;
 		sendMail("progettog20@gmail.com",header,body,null);
 	}
-	
+
 
 	private static File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
 		PdfWriter writer = new PdfWriter("G20Ticket", new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
