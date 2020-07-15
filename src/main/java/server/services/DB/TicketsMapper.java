@@ -29,7 +29,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	protected Object getObjectFromTable(String OID) {
 		return null;
 	}
-	
+
 
 	@Override
 	public synchronized void updateTable(String OID, Object obj)throws SQLException {
@@ -53,7 +53,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE ticketCode!='' and ticketCode=?");
 		stm.setString(1, OID);
 		stm.execute();
-		
+
 		this.tickets.remove(OID);
 	}
 

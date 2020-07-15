@@ -23,15 +23,15 @@ public class PersistenceFacade {
 	private Map<Class<?>, IMapper> mapper;
 
 	private PersistenceFacade() throws SQLException{
-			this.mapper = MapperFactory.getInstance().getMappers();
+		this.mapper = MapperFactory.getInstance().getMappers();
 	}
 
 	/**
-     * 'Pattern Singleton Implementation'
-     *
-     * If the object has not already been instanced, it is instanced and it is returned.
-     * @return instance(PersistenceFacade)
-     */
+	 * 'Pattern Singleton Implementation'
+	 *
+	 * If the object has not already been instanced, it is instanced and it is returned.
+	 * @return instance(PersistenceFacade)
+	 */
 	public static PersistenceFacade getInstance() throws SQLException{
 		if(instance == null) {
 			instance = new PersistenceFacade();

@@ -54,7 +54,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 			stm.execute();
 		}else
 			throw new SearchException("Theatre is used!");
-		
+
 		this.theatres.remove(OID);
 	}
 

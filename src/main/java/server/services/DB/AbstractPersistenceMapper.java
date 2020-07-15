@@ -2,9 +2,7 @@ package server.services.DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import server.domain.exception.SearchException;
 
@@ -71,5 +69,6 @@ public abstract class AbstractPersistenceMapper implements IMapper {
 	 * @return the object requested
 	 * @throws SQLException
 	 */
+	@Override
 	public abstract void delete(String OID) throws SQLException, SearchException;
 }

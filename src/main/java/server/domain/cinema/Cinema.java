@@ -255,7 +255,7 @@ public class Cinema {
 		}
 		return total;
 	}
-	
+
 
 	private void controlOverlapping(LocalDateTime date, String theatre, String movie) throws SQLException, OverlapException {
 		ZonedDateTime zdt = date.atZone(ZoneId.systemDefault());
@@ -274,7 +274,7 @@ public class Cinema {
 
 			if (dateShowingToControll > dateShowingSec) {
 				if ((dateShowingSec + movieDurationSec) >= dateShowingToControll)
-						throw new OverlapException();
+					throw new OverlapException();
 			}
 
 			if (dateShowingToControll < dateShowingSec) {
