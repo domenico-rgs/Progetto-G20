@@ -38,7 +38,7 @@ public class LoadGeneral {
 			} catch (Exception e) {
 
 				e.printStackTrace();
-				messagge = "Error from server, sorry :(";
+				messagge = "General error occured. Please try later";
 			}
 			return messagge;
 			

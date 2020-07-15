@@ -23,8 +23,7 @@ public class GetMovieInf {
 
 			return inf;
 		}catch (Exception e) {
-			System.out.println(e);
-			return "Error@"+ e.toString();
+			return "Error@"+ "Get information for " + title;
 		}
 	}
 }

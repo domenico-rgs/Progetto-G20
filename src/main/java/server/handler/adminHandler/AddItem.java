@@ -39,13 +39,14 @@ public class AddItem {
 			}catch (SearchException e) {
 				return "Error: " + title + " already exists";
 			}catch (SQLException e) {
-				return "Problem with database or " +title+ " already exists";
+				return title+ " already exists or problem with database";
 			}catch (NumberFormatException e) {
 				return "Incorrect value for duration";
 			}catch (IllegalArgumentException e) {
 				return "The category was not chosen or something else went wrong";
 			}catch (Exception e) {
 				e.getStackTrace();
+				return e.getMessage();
 			}
 			return title + " succefully added. Reload to see changes";
 		
@@ -60,13 +61,13 @@ public class AddItem {
 				Cinema.getCinema().createTheatre(theatreName, config);
 			} catch (SQLException e) {
 				System.out.println(e);
-				return "Problem with database or " + theatreName + " already exists";
+				return theatreName+ " already exists or problem with database";
 			}catch(SeatException e) {
 				System.out.println(e);
 				return "Configuration is errated";
 			}catch (Exception e) {
 				System.out.println(e);
-				return e.toString();
+				return e.getMessage();
 			}
 			return theatreName + " succefully added. Reload to see changes";
 			
@@ -76,19 +77,24 @@ public class AddItem {
 
 			String[] d = req.getParameter("date").split("-");
 			String[] h = req.getParameter("hour").split(":");
+			LocalDateTime date = LocalDateTime.of(Integer.parseInt(d[0]),
+					Integer.parseInt(d[1]), Integer.parseInt(d[2]), Integer.parseInt(h[0]),Integer.parseInt(h[1]));
 
 			//se i valori non sono nulli
 			if (movie.contentEquals("") || theatre.contentEquals("") ||
 					d[0].contentEquals("") || h[0].contentEquals(""))
 				return "Please insert correct data";
+			
+			//se la data non è antecedete a now
+			if (date.isBefore(LocalDateTime.now()))
+				return "Please insert data after now";
 
 			String id;
 
 			try {
 				double price = Double.parseDouble(req.getParameter("price"));
 
-				id = Cinema.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[0]),
-						Integer.parseInt(d[1]), Integer.parseInt(d[2]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
+				id = Cinema.getCinema().createMovieShowing(movie, date, theatre, price);
 			}catch (OverlapException e) {
 				e.printStackTrace();
 				return "The showing overlaps with another";
@@ -97,7 +103,7 @@ public class AddItem {
 				return "Invalid data: double check the date, price and/or time";
 			}catch (Exception e) {
 				e.printStackTrace();
-				return e.toString();
+				return e.getMessage();
 			}
 			return "Showing succefully added with id: " +id+ ". Reload to see changes";
 			
@@ -113,6 +119,7 @@ public class AddItem {
 
 			if (movie == null || theatre == null || price == null)
 				return "please insert correct data";
+			
 
 			try {
 				startD = LocalDateTime.of(Integer.valueOf(dateStart[0]), Integer.valueOf(dateStart[1]),
@@ -125,6 +132,9 @@ public class AddItem {
 			}catch (Exception e) {
 				return "Data and/or hour not correct";
 			}
+			
+			if (startD.isBefore(LocalDateTime.now()))
+				return "Please insert data after now";
 
 			if (finalD.isBefore(startD))
 				return "Date and/or hour not correct";
@@ -134,10 +144,9 @@ public class AddItem {
 			try {
 				duration = Cinema.getCinema().getMovie(movie).getDuration();
 			} catch (Exception e) {
-				return e.getMessage();
+				return "Problem with reading of movie";
 			}
 
-			LocalDateTime date;
 			//splitto per tempo
 			for (date = startD; date.isBefore(finalD.plusDays(1)); date = date.plusDays(1)) {
 

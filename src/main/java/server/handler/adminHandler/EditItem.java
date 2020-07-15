@@ -31,15 +31,15 @@ public static String doAction(HttpServletRequest req) {
 
 			}catch (SQLException e) {
 				System.out.println(e);
-				return e.toString();
+				return "Impossible found the movie " + title;
 			}catch (NumberFormatException e) {
 				System.out.println(e);
 				return "Incorrect value for duration";
 			}catch (SearchException e) {
-				return "Movie is used!";
+				return title + " is used!";
 			}catch (Exception e) {
 				System.out.println(e);
-				return e.toString();
+				return e.getMessage();
 			}
 			return title + " succefully changed. Reload to see changes";
 		}

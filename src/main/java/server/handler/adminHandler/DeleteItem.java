@@ -21,14 +21,14 @@ public class DeleteItem {
 				return "Please enter a valid title";
 			try {
 				Cinema.getCinema().deleteMovie(title);
-				return title + " successfully deleted";
 			} catch (SQLException e) {
 				System.out.println(e);
 				return title + " not exists";
 			}catch (Exception e) {
 				System.out.println(e);
-				return e.toString();
+				return e.getMessage();
 			}
+			return title + " successfully deleted";
 
 		case "showing":
 			String id = req.getParameter("id");
@@ -36,13 +36,13 @@ public class DeleteItem {
 				return "Please enter valid id";
 			try {
 				Cinema.getCinema().deleteMovieShowing(id);
-				return id + " successfully deleted";
 			} catch (SQLException e) {
 				System.out.println(e);
 				return id + " not exists";
 			}catch (Exception e) {
-				e.getStackTrace();
+				return e.getMessage();
 			}
+			return id + " successfully deleted";
 
 		case "theatre":
 			String name = req.getParameter("name");
@@ -51,7 +51,6 @@ public class DeleteItem {
 
 			try {
 				Cinema.getCinema().deleteTheatre(name);
-				return name + " successfully removed. Recharge to see changes";
 			}
 			catch (SQLException e) {
 				System.out.println(e.toString());
@@ -60,6 +59,7 @@ public class DeleteItem {
 				System.out.println(e);
 				return "impossible to remove " + name;
 			}
+			return name + " successfully removed. Recharge to see changes";
 		}
 		return "Error with javascript getRequests";
 	}
