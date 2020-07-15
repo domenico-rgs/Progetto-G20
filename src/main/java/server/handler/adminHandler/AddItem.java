@@ -77,8 +77,14 @@ public class AddItem {
 
 			String[] d = req.getParameter("date").split("-");
 			String[] h = req.getParameter("hour").split(":");
-			LocalDateTime date = LocalDateTime.of(Integer.parseInt(d[0]),
+			LocalDateTime date ;
+			
+			try {
+				date = LocalDateTime.of(Integer.parseInt(d[0]),
 					Integer.parseInt(d[1]), Integer.parseInt(d[2]), Integer.parseInt(h[0]),Integer.parseInt(h[1]));
+			}catch (Exception e) {
+				return "Incorrect or missing data";
+			}
 
 			//se i valori non sono nulli
 			if (movie.contentEquals("") || theatre.contentEquals("") ||
