@@ -25,6 +25,8 @@ public class Theatre {
 	 * Create the seats in the room by associating them with an id consisting of a
 	 * letter that identifies the row and a number that identifies the column
 	 * @param file file used to create the positioning of the seats in a theatre
+	 * @throws IOException if there are problems with the file
+	 * @throws SeatException problems recognizing the seat (e.g. wrong identifier (x, d, p))
 	 */
 	public void createSeats(String file) throws IOException, SeatException {
 		BufferedReader seats = new BufferedReader(new FileReader(file));
@@ -32,13 +34,13 @@ public class Theatre {
 		int rowNum=0;
 		while((s = seats.readLine())!= null){
 			String[] tmp = s.split("\\s+");
-			addSeats(tmp, rowNum++);
+			addSeats(tmp, rowNum++); //adds seats for the current row to the seat list
 		}
 		seats.close();
 	}
 
 	/**
-	 * this is a private method which adds seats to a seat list
+	 * This is a private method which adds seats to the seat list
 	 * @param row seats lines
 	 * @param rowNum number of seats lines
 	 * @throws SeatException this exception occurs if there are no correct inputs in the lines
@@ -63,7 +65,7 @@ public class Theatre {
 	 */
 	public String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
-		config = config.replaceAll("[^\\S\\r\\n]+"," ");
+		config = config.replaceAll("[^\\S\\r\\n]+"," "); //the regex expression is used to remove "extra" spaces if they are added
 
 		out.println(config);
 		out.close();

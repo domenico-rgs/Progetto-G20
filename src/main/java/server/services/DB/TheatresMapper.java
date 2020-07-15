@@ -12,8 +12,8 @@ import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
-/**this class has the task of interacting with the database, 
- * retrieving the requested object from the table and updating 
+/**this class has the task of interacting with the database,
+ * retrieving the requested object from the table and updating
  * the cache, precisely the theatres table*/
 
 
@@ -21,7 +21,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 	private Map<String, Theatre> theatres;
 	private SeatsMapper sm ;
 
-	public TheatresMapper(SeatsMapper sm) throws SQLException, IOException, SeatException {
+	public TheatresMapper(SeatsMapper sm) throws SQLException {
 		super("THEATRES");
 		this.sm=sm;
 		this.theatres = new HashMap<>();
@@ -77,14 +77,19 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 	public synchronized void updateTable(String OID, Object obj)throws SQLException {
 	}
 
-	protected void setUp() throws SQLException, IOException, SeatException {
+	protected void setUp() throws SQLException {
 		Statement stm = super.conn.createStatement();
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
-			Theatre tmp = new Theatre(rs.getString(1));
-			tmp.setSeatsList(sm.getSeatsList(tmp.getTheatreName()));
+			Theatre tmp;
+			try {
+				tmp = new Theatre(rs.getString(1));
+				tmp.setSeatsList(sm.getSeatsList(tmp.getTheatreName()));
 
-			this.theatres.put(rs.getString(1),tmp);
+				this.theatres.put(rs.getString(1),tmp);
+			} catch (IOException | SeatException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

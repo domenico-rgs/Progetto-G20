@@ -1,6 +1,5 @@
 package server;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -8,7 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
-import server.domain.exception.SeatException;
 import server.services.DB.PersistenceFacade;
 
 public class Main {
@@ -27,6 +25,9 @@ public class Main {
 		server.start();
 	}
 
+	/*
+	 * Method that starts a thread for the automatic elimination of projections whose date is earlier than the current system date
+	 */
 	private static void autoShowDelete() {
 		final Runnable runnab = new Runnable() {
 			@Override
@@ -34,13 +35,12 @@ public class Main {
 				System.out.println("Deleting old showngs...");
 				try {
 					PersistenceFacade.getInstance().deleteExpiredShowing(LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli());
-				} catch (SQLException | IOException | SeatException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 		};
 		@SuppressWarnings("unused")
 		final ScheduledFuture<?> runnableHandle = scheduler.scheduleAtFixedRate(runnab, 1, 1, java.util.concurrent.TimeUnit.HOURS);
-
 	}
 }

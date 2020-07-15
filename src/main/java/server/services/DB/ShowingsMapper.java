@@ -16,8 +16,8 @@ import java.util.Map;
 import server.domain.cinema.MovieShowing;
 import server.domain.exception.SearchException;
 
-/**this class has the task of interacting with the database, 
- * retrieving the requested object from the table and updating 
+/**this class has the task of interacting with the database,
+ * retrieving the requested object from the table and updating
  * the cache, precisely the showings table*/
 
 public class ShowingsMapper extends AbstractPersistenceMapper {

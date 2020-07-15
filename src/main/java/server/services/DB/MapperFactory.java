@@ -1,17 +1,14 @@
 package server.services.DB;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-
-import server.domain.exception.SeatException;
 
 public class MapperFactory {
 	private static MapperFactory instance = null;
 	private Map<Class<?>,IMapper> mappers;
 
-	private MapperFactory()throws SQLException, IOException, SeatException {
+	private MapperFactory()throws SQLException {
 		this.mappers  = new HashMap<>();
 		SeatsMapper sm = new SeatsMapper();
 		AvailabilityMapper am = new AvailabilityMapper();
@@ -26,7 +23,7 @@ public class MapperFactory {
 		this.mappers.put(DiscountCodesMapper.class, new DiscountCodesMapper());
 	}
 
-	public static MapperFactory getInstance()throws SQLException, IOException, SeatException {
+	public static MapperFactory getInstance()throws SQLException {
 		if(instance == null) {
 			instance = new MapperFactory();
 		}

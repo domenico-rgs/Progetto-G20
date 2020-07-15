@@ -16,15 +16,10 @@ import server.handler.IHandler;
 
 @SuppressWarnings("serial")
 public class CinemaServlet extends HttpServlet {
-	/* variabili usate nella gestione del servlet
-	 *
-	 * conf: mappa di variabili da passare al template
-	 * templates: mappa dei template renderizzati (da gestire le eccezioni)
-	 * engine: motore di renderizzazione
-	 */
-	Map<String, Object> conf;
-	Map<String, String> templates;
-	RythmEngine engine;
+	// Variables used in the servlet management
+	Map<String, Object> conf; //map of variables to be passed to the template
+	Map<String, String> templates; //rendered template map (to manage exceptions)
+	RythmEngine engine; //rendering engine
 	String templateResp;
 
 	public CinemaServlet() {
@@ -66,9 +61,9 @@ public class CinemaServlet extends HttpServlet {
 
 
 	/*
-	 * Valuta il get richiesto e ne fa uno split se richiesti altri argomenti,
-	 * dopo di che verra richiamato l'handler corretto in riferimento
-	 * al primo argomento, che chiama la classe corretta
+	 * Evaluate the required get and split it if other arguments are requested,
+	 * after which the correct handler will be called in reference to the first argument,
+	 * which calls the correct class
 	 */
 	private String parsePath(String path) {
 		if (path.contentEquals("/") || path.contentEquals("/favicon.ico") || path.contentEquals("/home")) {

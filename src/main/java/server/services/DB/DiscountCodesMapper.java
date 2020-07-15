@@ -77,12 +77,6 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 		pstm.execute();
 	}
 
-	protected void deleteDiscount(String code) throws SQLException {
-		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + "WHERE discountCode!='' and discountCode=?");
-		stm.setObject(1, code);
-		stm.execute();
-	}
-
 	protected void setUp() throws SQLException {
 		Statement stm = super.conn.createStatement();
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);

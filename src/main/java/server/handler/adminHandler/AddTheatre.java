@@ -17,7 +17,7 @@ public class AddTheatre {
 		String config = req.getParameter("config");
 
 		if(theatreName.equals(""))
-			return "please insert correct value for name";
+			return "Please insert correct value for name";
 
 		try {
 			Cinema.getCinema().createTheatre(theatreName, config);
