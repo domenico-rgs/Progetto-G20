@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 import org.rythmengine.RythmEngine;
 
+import server.domain.cinema.Cinema;
 import server.handler.IHandler;
 
 @SuppressWarnings("serial")
@@ -39,6 +40,8 @@ public class CinemaServlet extends HttpServlet {
 
 		String reqHandler = this.parsePath(req.getPathInfo());
 		IHandler classHandler;
+		
+		
 
 		try {
 			classHandler = (IHandler)Class.forName("server.handler." + reqHandler).getMethod("getInstance").invoke(null);

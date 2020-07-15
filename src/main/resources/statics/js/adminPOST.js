@@ -24,7 +24,8 @@ $('#deleteTheatre #remove').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "RemoveTheatre",
+      requestPost: "DeleteItem",
+      object: "theatre",
       name: $('#deleteTheatre #theatre').val(),
     },
     success: function(response) {
@@ -135,8 +136,8 @@ $('#editShowing #remove').on('click', function() {
       id: $('#editShowing  #idS').val(),
     },
     success: function(response) {
-      $('#editMovie .loader').css("visibility", "hidden")
-      $('#editMovie .message').text(response)
+      $('#editShowing .loader').css("visibility", "hidden")
+      $('#editShowing .message').text(response)
       reloadGeneral()
     }
   })

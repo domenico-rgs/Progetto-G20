@@ -5,7 +5,7 @@ var timer = 1
 
 window.onload = function() {
   startPage()
-  startTimer()
+  //startTimer()
 }
 
 $('#total .sconto button').on('click', function() {
@@ -23,6 +23,7 @@ $('#total .card button').on('click', function() {
 
 
 function discoFunc() {
+  $('.loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/shopCart",
@@ -32,6 +33,7 @@ function discoFunc() {
       price: $('#total .card #totalPrice').text().split(" ")[1]
     },
     success: function(response) {
+      $('.loader').css("visibility", "hidden")
 
       //nel caso non funziona ritorno 0 dal server
       if (response == '0.0') {
@@ -39,10 +41,13 @@ function discoFunc() {
       }
       if (response == '-1.0') {
         $('#total #buyMess').text("Code already used")
+      }
+      if (response == '-2.0') {
+        $('#total #buyMess').text("Please enter a valid code")
       } else {
         $('#total #buyMess').text("Code successfully applied")
         //cambio il prezzo visualizzato
-        $('#total .card #totalPrice').text("Euro " + response)
+        $('#total .card #totalPrice').text("&euro; " + response)
       }
     }
   })

@@ -18,6 +18,11 @@ public class AddShowing {
 
 		String[] d = req.getParameter("date").split("/");
 		String[] h = req.getParameter("hour").split(":");
+		
+		//se i valori non sono nulli
+		if (movie.contentEquals("") || theatre.contentEquals("") || 
+				d[0].contentEquals("") || h[0].contentEquals(""))
+			return "Please insert correct data";
 
 		String id;
 
@@ -31,7 +36,7 @@ public class AddShowing {
 			return "The showing overlaps with another";
 		}catch (NumberFormatException e){
 			System.out.println(e);
-			return "Invalid data: double check the date, price and / or time";
+			return "Invalid data: double check the date, price and/or time";
 		}catch (Exception e) {
 			System.out.println(e);
 			return e.toString();

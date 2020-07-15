@@ -59,6 +59,11 @@
   background-color: #8f0707;
 }
 
+#error {
+  font-size: 120%;
+  color: black;
+}
+
 .seatList #free {}
 
 .seatList #not {}

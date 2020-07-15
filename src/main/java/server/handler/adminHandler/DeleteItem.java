@@ -38,10 +38,24 @@ public class DeleteItem {
 				return id + " not exist";
 			}catch (Exception e) {
 				System.out.println(e);
-				return e.toString();
+				System.out.println("ciao");
+				return e.getMessage();
 			}
 
-		
+		case "theatre":
+			String name = req.getParameter("name");
+			
+			try {
+				Cinema.getCinema().deleteTheatre(name);
+				return name + " successfully removed. Recharge to see changes";
+			}
+			catch (SQLException e) {
+				System.out.println(e.toString());
+				return name + " not exist yet";
+			} catch (Exception e) {
+				System.out.println(e.toString());
+				return e.getMessage();
+			}
 		}
 		return "Error with javascript getRequests";
 	}

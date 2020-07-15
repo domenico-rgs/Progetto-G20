@@ -18,6 +18,10 @@ public class AddMovie{
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
 		String cover;
+		
+		if (title.contentEquals("")) {
+			return "Please insert a value for title";
+		}
 
 		if (req.getParameter("cover").contentEquals("")) {
 			cover = "../statics/images/cover/unavaliable.jpg";

@@ -13,6 +13,9 @@ public class LoadShowStat {
 		String title = req.getParameter("title");
 		String messagge;
 		
+		if (title == null || title.contentEquals(""))
+			return "";
+		
 		try {
 			messagge = Rythm.render("imported/showTableAdmin.html", 
 					Cinema.getCinema().getMovieShowingList(title), title);

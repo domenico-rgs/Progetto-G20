@@ -8,6 +8,9 @@ public class GetMovieInf {
 
 	public static String doAction(HttpServletRequest req) {
 		String title = req.getParameter("title");
+		
+		if (title == null || title.contentEquals("")) return "";
+		
 		server.domain.cinema.Movie movie;
 		try {
 			movie = Cinema.getCinema().getMovie(title);
