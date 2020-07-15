@@ -6,6 +6,8 @@ var finalPoint = 20
 
 $(window).on('load', function() {
 
+  $('filmMenu').empty()
+
 
   var ajax = $.ajax({
     type: "GET",
