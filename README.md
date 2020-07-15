@@ -21,6 +21,12 @@ Applicazione web per la prenotazione di biglietti in un cinema multisala
 
 - [JQuery Plugin For Gradle](https://mvnrepository.com/artifact/com.jgeppert.struts2.jquery/struts2-jquery-plugin) - versione 4.0.3
 
+### Set up database
+Per avviare il programma è necessario prima di tutto avere il database a disposizione e funzionante.
+ Per evitare di dover modificare parametri all'interno del codice creare il db tramite MySQL Workbench con gli stessi parametri
+ presenti all'interno dell'interterfaccia "IMapper" del progetto. Creare quindi un nuovo schema e impostarlo come schema di default. 
+ Per creare le tabelle e inserire i record necessari al programma eseguire lo script MySQL contenuto nel file "DBCinema.sql".
+ 
 ### Avvio del server
 Avvio del server tramite terminale :
 il numero della porta del server è configurabile tramite linea di comando(se non specificata il programma usa la porta 8080)
