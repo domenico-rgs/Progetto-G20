@@ -47,7 +47,7 @@ public class AddMultiShowing {
 		}
 		
 		
-		//prendo la durata del film
+		//I take the length of the film
 		try {
 			duration = Cinema.getCinema().getMovie(movie).getDuration();
 		} catch (Exception e) {
@@ -55,7 +55,7 @@ public class AddMultiShowing {
 		}
 		
 		LocalDateTime date;
-		//splitto per tempo
+		// split in time
 		for (date = startD; date.isBefore(finalD.plusDays(1)); date = date.plusDays(1)) {
 		
 			try {
