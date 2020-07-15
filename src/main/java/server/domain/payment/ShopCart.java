@@ -1,13 +1,8 @@
 package server.domain.payment;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import server.domain.cinema.Cinema;
-import server.domain.exception.SeatException;
 
 public class ShopCart {
 	/**this class works as a shopping cart */
@@ -58,7 +53,7 @@ public class ShopCart {
 		seats = null;
 		tmpID = null;
 	}
-	
+
 	public String generateID() {
 		UUID id = UUID.randomUUID();
 		this.tmpID = id.toString();
@@ -102,5 +97,5 @@ public class ShopCart {
 	public void setIdSh(String idSh) {
 		this.idSh = idSh;
 	}
-	
+
 }

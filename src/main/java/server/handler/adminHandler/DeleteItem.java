@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 
-/**his class together with others serve as a control on the 
- * admin page, precisely this deals with connecting the web interface 
+/**his class together with others serve as a control on the
+ * admin page, precisely this deals with connecting the web interface
  * to logic and transmitting information to eliminate a film or showing*/
 
 public class DeleteItem {
-	
+
 	public static String doAction(HttpServletRequest req) {
-		
+
 		switch (req.getParameter("object")) {
 		case "movie":
 			String title = req.getParameter("title");
@@ -27,7 +27,7 @@ public class DeleteItem {
 				System.out.println(e);
 				return e.toString();
 			}
-			
+
 		case "showing":
 			String id = req.getParameter("id");
 			try {
@@ -44,7 +44,7 @@ public class DeleteItem {
 
 		case "theatre":
 			String name = req.getParameter("name");
-			
+
 			try {
 				Cinema.getCinema().deleteTheatre(name);
 				return name + " successfully removed. Recharge to see changes";

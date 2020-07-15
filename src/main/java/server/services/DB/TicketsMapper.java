@@ -60,7 +60,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		pstm.setString(2, t.getShowing().getTheatreName());
 		pstm.setObject(3, t.getShowing().getId());
 		pstm.setString(4,t.getSeat());
-		pstm.setDouble(5,t.getTotalPrice());
+		pstm.setDouble(5,Math.round(t.getTotalPrice()*100)/100);
 
 		pstm.execute();
 	}

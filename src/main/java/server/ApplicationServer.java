@@ -1,7 +1,6 @@
 package server;
 
 import javax.servlet.Servlet;
-import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
@@ -26,7 +25,7 @@ public class ApplicationServer {
 		handler.setStopTimeout(300000);
 		addStaticFileServing(handler);
 		server.setHandler(handler);
-		
+
 		server.start();
 
 	}

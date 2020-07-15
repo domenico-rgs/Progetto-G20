@@ -7,18 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import server.domain.cinema.Cinema;
 
 
-/**this class together with others serve as a check on the admin page, precisely this 
+/**this class together with others serve as a check on the admin page, precisely this
  * deals with connecting the web interface to logic and transmitting information to insert a discount code*/
 
 public class Discount {
 
 	public static String doAction(HttpServletRequest req) {
 		String code = req.getParameter("code");
-		
-		if (code.contentEquals("")) {
+
+		if (code.contentEquals(""))
 			return "Please insert correct data for code";
-		}
-				
+
 		switch (req.getParameter("action")) {
 		case "save":
 
@@ -29,8 +28,8 @@ public class Discount {
 				System.out.println(e.toString());
 				return "Value not correct";
 			}catch (SQLException e) {
-				 System.out.println(e.toString());
-				 return "Code already exist";
+				System.out.println(e.toString());
+				return "Code already exist";
 			}catch (Exception e) {
 				System.out.println(e.toString());
 				return "problem with server";

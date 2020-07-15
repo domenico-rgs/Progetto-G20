@@ -100,20 +100,19 @@ public class Cinema {
 	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, IOException, SeatException, PaymentException{
 		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getCodeStrategy(code.toUpperCase());
 
-		if(discount != null) {
+		if(discount != null)
 			return discount.getTotalPrice(price);
-		}
 
 		throw new PaymentException("Discount code not found");
 	}
-	
+
 	public List<String> getDiscountList() throws IOException, SeatException, NumberFormatException, SQLException {
 		List<String> discountCodeList = new ArrayList<>();
-		
+
 		for (TicketPricingStrategy disc: PersistenceFacade.getInstance().getDiscountList()) {
 			discountCodeList.add(disc.getCode());
 		}
-		
+
 		return discountCodeList;
 	}
 
@@ -138,6 +137,8 @@ public class Cinema {
 	}
 
 	synchronized public void deleteTheatre(String name) throws SearchException, SQLException, IOException, SeatException{
+		File f = new File(this.getTheatre(name).getFilePath());
+		f.delete();
 		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
 	}
 
@@ -148,7 +149,7 @@ public class Cinema {
 	synchronized public void deleteMovieShowing(String idShowing) throws SearchException, SQLException, IOException, SeatException {
 		PersistenceFacade.getInstance().delete(idShowing, ShowingsMapper.class);
 	}
-	
+
 	public void deleteDiscount(String code) throws SearchException, SQLException, IOException, SeatException {
 		PricingStrategyFactory.getInstance().removeDiscountCode(code);
 	}
@@ -165,7 +166,7 @@ public class Cinema {
 		for (MovieShowing sh: showingList) {
 			zdt = sh.getDate().atZone(ZoneId.systemDefault());
 			dateShowingToControll = zdt.toInstant().getEpochSecond();
-			
+
 			if (dateShowingToControll == dateShowingSec)
 				throw new OverlapException();
 

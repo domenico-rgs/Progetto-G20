@@ -18,9 +18,9 @@ public class AddShowing {
 
 		String[] d = req.getParameter("date").split("/");
 		String[] h = req.getParameter("hour").split(":");
-		
+
 		//se i valori non sono nulli
-		if (movie.contentEquals("") || theatre.contentEquals("") || 
+		if (movie.contentEquals("") || theatre.contentEquals("") ||
 				d[0].contentEquals("") || h[0].contentEquals(""))
 			return "Please insert correct data";
 

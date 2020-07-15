@@ -2,7 +2,7 @@ var loadMess = $('#loadMess #mess')
 var loader = $('#loadMess .loader')
 
 var startPoint = 0
-var finalPoint = 5
+var finalPoint = 20
 
 $(window).on('load', function() {
 
@@ -26,7 +26,7 @@ $(window).on('load', function() {
 });
 
 var scrollPoint = 100
-var scrollAdd = $(window).height / 3
+var scrollAdd = $(window).height / 1
 
 // mostra piu film al click del pulsante
 $(window).on('scroll', function() {

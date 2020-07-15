@@ -1,7 +1,6 @@
 package server.handler;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
-import server.domain.exception.PaymentException;
-import server.domain.exception.SeatException;
 
 
 
@@ -19,27 +16,27 @@ public class ShopCart implements IHandler {
 	private static ShopCart instance = null;
 
 	private ShopCart() {}
-	
+
 	//*singleton*/
 	public static ShopCart getInstance() {
 		if (instance == null) {
 			instance = new ShopCart();
 		}
 		return instance;
-		
+
 	}
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String shopId = req.getParameter("shopID");
 		String realShopId = Cinema.getCinema().getShopCart().getID();
-		
+
 		if (shopId == null || !(shopId.contentEquals(realShopId))) {
 			resp.getWriter().write(Rythm.render("404.html"));
 			return;
 		}
-		
+
 		String idsh = Cinema.getCinema().getShopCart().getIdSh();
 		String[] seats = Cinema.getCinema().getShopCart().getSeats();
 
@@ -56,7 +53,7 @@ public class ShopCart implements IHandler {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+
 		switch(req.getParameter("action")) {
 		case "discount":
 			// to be fixed again in the future
@@ -69,12 +66,12 @@ public class ShopCart implements IHandler {
 				resp.getWriter().write("-1.0");
 				break;
 			}
-			
+
 			if (code == null || code.contentEquals("")) {
 				resp.getWriter().write("-2.0");
 				break;
 			}
-				
+
 
 			try {
 				finalPrice = Cinema.getCinema().applyDiscountOnPrice(code, price);
@@ -87,7 +84,7 @@ public class ShopCart implements IHandler {
 				resp.getWriter().write("-2.0");
 			}
 			break;
-				
+
 		case "buy":
 			String codeCard = req.getParameter("codeCard");
 			String date = req.getParameter("date");
@@ -100,7 +97,7 @@ public class ShopCart implements IHandler {
 			try {
 				boolean value = Cinema.getCinema().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
-				
+
 				//acquisto va a buon fine
 				if(value) {
 					String id = Cinema.getCinema().getShopCart().getIdSh();

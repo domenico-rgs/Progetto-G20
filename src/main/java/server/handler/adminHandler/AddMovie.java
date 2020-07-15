@@ -9,8 +9,8 @@ import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
 
-/**this class together with others serve as a control on the admin page, 
- * precisely this deals with connecting the web interface to logic and 
+/**this class together with others serve as a control on the admin page,
+ * precisely this deals with connecting the web interface to logic and
  * transmitting information to create a film*/
 
 public class AddMovie{
@@ -18,10 +18,9 @@ public class AddMovie{
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
 		String cover;
-		
-		if (title.contentEquals("")) {
+
+		if (title.contentEquals(""))
 			return "Please insert a value for title";
-		}
 
 		if (req.getParameter("cover").contentEquals("")) {
 			cover = "../statics/images/cover/unavaliable.jpg";
@@ -47,8 +46,8 @@ public class AddMovie{
 			System.out.println(e);
 			return "Incorrect value for duration";
 		}catch (IllegalArgumentException e) {
-				System.out.println(e);
-				return "The category was not chosen or something else went wrong";
+			System.out.println(e);
+			return "The category was not chosen or something else went wrong";
 		}catch (Exception e) {
 			System.out.println(e);
 			return e.toString();

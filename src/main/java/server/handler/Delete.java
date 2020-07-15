@@ -10,7 +10,7 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 
-/** control class that connects the web interface to the logic of deleting 
+/** control class that connects the web interface to the logic of deleting
  * a ticket given the ticket code and the payment card number */
 
 public class Delete implements IHandler {
@@ -18,7 +18,7 @@ public class Delete implements IHandler {
 
 	private Delete() {}
 
-	
+
 	//*singleton*/
 	public static Delete getInstance() {
 		if (instance == null) {
@@ -27,7 +27,7 @@ public class Delete implements IHandler {
 		return instance;
 	}
 
-	
+
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.getWriter().write(Rythm.render("delete.html"));

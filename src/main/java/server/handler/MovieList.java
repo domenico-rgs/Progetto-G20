@@ -21,7 +21,7 @@ public class MovieList implements IHandler {
 
 	private MovieList() {}
 
-	
+
 	//*singleton*/
 	public static MovieList getInstance() {
 		if (instance == null) {

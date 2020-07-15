@@ -89,7 +89,7 @@ public class Theatre implements IHandler {
 			String row;
 			String[] col;
 
-			
+
 			while ((row = file.readLine()) != null) {
 
 				//empty lines

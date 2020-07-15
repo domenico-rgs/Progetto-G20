@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +29,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		this.tm=tm;
 		setUp();
 	}
-	
+
 	@Override
 	protected synchronized String getLastObjectCode(String keyName) throws SQLException{
 		Statement stm = conn.createStatement();

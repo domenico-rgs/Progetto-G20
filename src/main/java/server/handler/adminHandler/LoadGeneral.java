@@ -23,13 +23,13 @@ public class LoadGeneral {
 				forMovie.put(movie, value);
 			}
 			for (String theatre: Cinema.getCinema().getTheatreList()) {
-				Integer value = 0; 
+				Integer value = 0;
 				forTheatre.put(theatre, value);
 			}
 			messagge = Rythm.render("imported/adminGeneral.html",forMovie, forTheatre, Cinema.getCinema().getAllShowingList().size());
 
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 			messagge = "Error from server, sorry :(";
 		}

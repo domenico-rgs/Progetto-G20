@@ -17,7 +17,7 @@ public class GetShowingInf {
 		case "getID":
 			String title = req.getParameter("title");
 			String message = "";
-			
+
 			if(title == null || title.contentEquals("")) return "";
 
 			for (MovieShowing sh : Cinema.getCinema().getMovieShowingList(title) ) {

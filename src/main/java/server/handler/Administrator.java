@@ -31,7 +31,7 @@ public class Administrator implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		List<String> categoryList = new ArrayList<>();
 
 		for (TypeCategory cat: TypeCategory.values()) {

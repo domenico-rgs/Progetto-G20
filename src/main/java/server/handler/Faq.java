@@ -14,7 +14,7 @@ public class Faq implements IHandler {
 
 	private Faq() {}
 
-	
+
 	//*singleton*/
 	public static Faq getInstance() {
 		if (instance == null) {
