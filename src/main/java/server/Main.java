@@ -15,7 +15,12 @@ public class Main {
 	private final static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
 	public static void main(String[] argv) throws Exception {
-		ApplicationServer server = new ApplicationServer(8080, new CinemaServlet());
+		int portNumber = 8080;
+        if(argv.length !=0)
+            portNumber = Integer.parseInt(argv[0]);
+        
+		ApplicationServer server = new ApplicationServer(portNumber, new CinemaServlet());
+        PersistenceFacade.getInstance();
 
 		//		Cinema.getCinema().createMovie("Armageddon", 120, "Bruce Willis", "../statics/images/cover/armageddon.jpg", TypeCategory.ACTION);
 		//		Cinema.getCinema().createMovie("Interstellar", 120, "Bellissimo", "../statics/images/cover/interstellar.jpg", TypeCategory.FANTASY);
