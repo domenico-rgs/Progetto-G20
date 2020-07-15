@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -102,7 +101,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		Statement stm = super.conn.createStatement();
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
-			MovieShowing tmp = new MovieShowing(rs.getString(1), rs.getString(2), new Timestamp(rs.getDate(3).getTime()).toLocalDateTime(),
+			MovieShowing tmp = new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
 					(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
 
 			this.showing.put(rs.getString(1),tmp);
@@ -117,7 +116,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		stm.setString(1, OID_movie);
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
-			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime(),
+			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
 					(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
 			updateCache(ms.getId(),ms);
 			showings.add(ms);

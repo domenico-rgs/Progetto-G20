@@ -63,6 +63,7 @@ public class Theatre {
 	 */
 	public String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
+		config = config.replaceAll("[^\\S\\r\\n]+"," ");
 
 		out.println(config);
 		out.close();

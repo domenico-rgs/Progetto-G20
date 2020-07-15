@@ -17,7 +17,7 @@ public class DeleteItem {
 		switch (req.getParameter("object")) {
 		case "movie":
 			String title = req.getParameter("title");
-			if (title == null || title.contentEquals("")) 
+			if (title == null || title.contentEquals(""))
 				return "please enter valid title";
 			try {
 				Cinema.getCinema().deleteMovie(title);
@@ -32,7 +32,7 @@ public class DeleteItem {
 
 		case "showing":
 			String id = req.getParameter("id");
-			if (id == null || id.contentEquals("")) 
+			if (id == null || id.contentEquals(""))
 				return "please enter valid id";
 			try {
 				Cinema.getCinema().deleteMovieShowing(id);
@@ -48,7 +48,7 @@ public class DeleteItem {
 
 		case "theatre":
 			String name = req.getParameter("name");
-			if (name == null || name.contentEquals("")) 
+			if (name == null || name.contentEquals(""))
 				return "please enter valid name";
 
 			try {

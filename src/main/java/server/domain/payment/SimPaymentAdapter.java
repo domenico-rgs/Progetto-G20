@@ -30,7 +30,7 @@ public class SimPaymentAdapter implements PaymentAdapter{
 	 */
 	private boolean checkCard(String code, String date, String cvc) throws PaymentException {
 		String[] value = date.split("/");
-		LocalDate cardDate = LocalDate.of(2000+Integer.parseInt(value[1]), Integer.parseInt(value[0]), 01);
+		LocalDate cardDate = LocalDate.of(Integer.parseInt(value[1]), Integer.parseInt(value[0]), 01);
 		if ((code.length()==16)) {
 			if(!isNumberOnly(code))
 				throw new PaymentException("Card code must be numeric only");
