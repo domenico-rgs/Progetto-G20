@@ -1,6 +1,5 @@
 package server.handler.adminHandler;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,23 +33,15 @@ public class AddMovie{
 			Cinema.getCinema().createMovie(title, duration, plot, cover,
 					TypeCategory.valueOf(req.getParameter("category")));
 		}catch (SearchException e) {
-			System.out.println(e);
 			return "Error: " + title + " already exists";
-		}catch (IOException e) {
-			System.out.println(e);
-			return "Problem with I/O operation. Please try again.";
 		}catch (SQLException e) {
-			System.out.println(e);
 			return "Problem with database or " +title+ " already exists";
 		}catch (NumberFormatException e) {
-			System.out.println(e);
 			return "Incorrect value for duration";
 		}catch (IllegalArgumentException e) {
-			System.out.println(e);
 			return "The category was not chosen or something else went wrong";
 		}catch (Exception e) {
-			System.out.println(e);
-			return e.toString();
+			e.getStackTrace();
 		}
 		return title + " succefully added. Reload to see changes";
 	}

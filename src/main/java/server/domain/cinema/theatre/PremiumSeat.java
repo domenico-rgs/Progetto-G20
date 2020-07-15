@@ -9,6 +9,7 @@ public class PremiumSeat extends Seat{
 		super(position);
 	}
 
+	//20% addition for the premium seat to the price of the showing
 	@Override
 	public double getAddition() {
 		return 1.2;

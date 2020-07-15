@@ -1,6 +1,5 @@
 package server.services.DB;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -13,24 +12,27 @@ import server.domain.cinema.Ticket;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.SearchException;
-import server.domain.exception.SeatException;
 import server.domain.payment.discount.TicketPricingStrategy;
 
-/**this class turns out to be the facade object that creates an indirect mapping*/
-
+/**
+ * A class which is the Facade Controller of the package persistence.
+ * It is implemented through Singleton pattern implementation.
+ */
 public class PersistenceFacade {
 	private static PersistenceFacade instance = null;
 	private Map<Class<?>, IMapper> mapper;
 
-	private PersistenceFacade() throws IOException, SeatException {
-		try {
-			this.mapper = MapperFactory.getInstance().getMappers();
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
+	private PersistenceFacade() throws SQLException{
+		this.mapper = MapperFactory.getInstance().getMappers();
 	}
 
-	public static PersistenceFacade getInstance() throws IOException, SeatException{
+	/**
+	 * 'Pattern Singleton Implementation'
+	 *
+	 * If the object has not already been instanced, it is instanced and it is returned.
+	 * @return instance(PersistenceFacade)
+	 */
+	public static PersistenceFacade getInstance() throws SQLException{
 		if(instance == null) {
 			instance = new PersistenceFacade();
 		}

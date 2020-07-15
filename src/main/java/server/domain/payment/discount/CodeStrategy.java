@@ -10,8 +10,11 @@ public class CodeStrategy implements TicketPricingStrategy{
 		this.percent=percent;
 	}
 
+	@Override
+	public double getTotalPrice(double price) {
+		return price - price*(percent/100);
+	}
 
-	/** with these methods I extract the discount code and the discount percentage */
 	@Override
 	public String getCode() {
 		return code;
@@ -20,7 +23,6 @@ public class CodeStrategy implements TicketPricingStrategy{
 	public double getPercent() {
 		return percent;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -50,10 +52,5 @@ public class CodeStrategy implements TicketPricingStrategy{
 		if (Double.doubleToLongBits(percent) != Double.doubleToLongBits(other.percent))
 			return false;
 		return true;
-	}
-
-	@Override
-	public double getTotalPrice(double price) {
-		return price - price*(percent/100);
 	}
 }

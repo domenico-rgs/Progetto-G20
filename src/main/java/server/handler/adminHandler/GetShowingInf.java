@@ -39,6 +39,6 @@ public class GetShowingInf {
 				return "Error@" +e.toString();
 			}
 		}
-		return "problem with javascript getRequest";
+		return "There was a problem with javascript getRequest";
 	}
 }

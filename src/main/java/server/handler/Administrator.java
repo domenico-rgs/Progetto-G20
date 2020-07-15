@@ -13,14 +13,11 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
-import server.domain.exception.SeatException;
 
 
 /**this class is the controller that binds the administrator page to logic */
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
-
-
 
 	private Administrator() {}
 
@@ -47,8 +44,6 @@ public class Administrator implements IHandler {
 					Cinema.getCinema().getTheatreList(),
 					Cinema.getCinema().getDiscountList()));
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SeatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();

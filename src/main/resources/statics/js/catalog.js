@@ -6,9 +6,12 @@ var finalPoint = 20
 
 $(window).on('load', function() {
 
+  //svuoto per evitare duplicazioni
   $('filmMenu').empty()
 
-
+  /* Invio le variabili di point, che mi indicizzano quali
+  film prendere dal lista dei film salvata nel server
+  */
   var ajax = $.ajax({
     type: "GET",
     url: "/movieList",
@@ -30,7 +33,7 @@ $(window).on('load', function() {
 var scrollPoint = 100
 var scrollAdd = $(window).height / 1
 
-// mostra piu film al click del pulsante
+// mostra piu film allo scroll
 $(window).on('scroll', function() {
 
   if ($(window).scrollTop() > scrollPoint) {
@@ -66,7 +69,7 @@ $('.searchBar input').on('focus', function() {
   }
 })
 
-//get requests
+//get requests nelle richieste di ricerca nella barra
 $(document).on('click', '.item', function() {
   var title = $(this).find('p').text()
   window.location.href = "/movie?title=" + title

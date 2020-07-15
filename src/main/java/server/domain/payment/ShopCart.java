@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**This class works as a shopping cart */
 public class ShopCart {
-	/**this class works as a shopping cart */
 	private String[] seats;
-	private String idSh;
+	private String idSh, tmpID;
 	private List<String> bufferDiscountCode;
 	private double total;
-	private String tmpID;
 
 	public ShopCart () {
 		bufferDiscountCode = new ArrayList<>();
@@ -20,7 +19,7 @@ public class ShopCart {
 	}
 
 	/**
-	 * this method permits to add a new discount code to buffer to check if will be used again
+	 * This method permits to add a new discount code to buffer to check if will be used again
 	 * @param code discount code
 	 */
 	public void addCode(String code) {
@@ -28,23 +27,33 @@ public class ShopCart {
 	}
 
 	/**
-	 * this method check if a discount code is already used for the same purchase
+	 * This method check if a discount code is already used for the same purchase
 	 * @param code discount code
+	 * @return true if the code has already been used otherwise false
 	 */
 	public boolean hasCode (String code) {
 		return this.bufferDiscountCode.contains(code);
 	}
 
 	/**
-	 *  this methods permits to add a price to the total
+	 * This methods permits to add a price to the total
 	 * @param price adding price
 	 */
 	public void addTotal(double price) {
 		this.total += price;
 	}
 
+
 	/**
-	 * this methods resets the shopping cart
+	 * It modifies the value of "total"
+	 * @param discount discount value based on ticket price
+	 */
+	public void changeTotal(double discount) {
+		this.total -= discount;
+	}
+
+	/**
+	 * This methods resets the shopping cart
 	 */
 	public void refresh() {
 		bufferDiscountCode.clear();
@@ -64,18 +73,8 @@ public class ShopCart {
 		return this.tmpID;
 	}
 
-
 	public double getTotal() {
-		//ritorna il prezzo con due cifre decimali
-		return (double) Math.round(this.total * 100) / 100;
-	}
-
-	/**
-	 * it modifies the value of "total"
-	 * @param discount
-	 */
-	public void changeTotal(double discount) {
-		this.total -= discount;
+		return (double) Math.round(this.total * 100) / 100; //two decimal
 	}
 
 	public void setTotal(double newPrice) {
@@ -97,5 +96,4 @@ public class ShopCart {
 	public void setIdSh(String idSh) {
 		this.idSh = idSh;
 	}
-
 }

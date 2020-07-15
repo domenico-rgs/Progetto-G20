@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
-import server.domain.exception.SeatException;
 
 
 
@@ -32,7 +31,7 @@ public class Catalog implements IHandler {
 	}
 
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
 		if (req.getParameter("search").contentEquals("all") || req.getParameter("search").contentEquals("")) {
 			resp.getWriter().write(Rythm.render("catalog.html"));
 		} else {
@@ -68,11 +67,7 @@ public class Catalog implements IHandler {
 				if (title.toLowerCase().contains(search.toLowerCase())) {
 					movieList.add(Cinema.getCinema().getMovie(title));
 				}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (SeatException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return movieList;

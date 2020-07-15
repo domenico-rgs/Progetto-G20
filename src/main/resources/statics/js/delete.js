@@ -1,3 +1,4 @@
+//animazioni input
 $('#ticket input').on('focus', function() {
   $('#ticket label').addClass('active');
 }).on('blur', function() {
@@ -14,6 +15,7 @@ $('#card input').on('focus', function() {
   }
 })
 
+//post request al click del pulsante "DELETE"
 $('#deleteButton').on('click', function() {
   $('.loader').css("visibility", "visible")
   var ajax = $.ajax({

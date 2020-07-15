@@ -7,9 +7,7 @@ public class OIDCreator {
 	private static OIDCreator instance = null;
 	private int showingCode;
 
-
-	private OIDCreator() {
-	}
+	private OIDCreator() {}
 
 	/**
 	 * 'Pattern Singleton Implementation'

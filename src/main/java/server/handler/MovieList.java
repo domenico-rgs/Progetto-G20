@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
-import server.domain.exception.SeatException;
 
 public class MovieList implements IHandler {
 	private static MovieList instance = null;
@@ -75,11 +75,7 @@ public class MovieList implements IHandler {
 		return movieList;
 	}
 
-	public void updateMovieList() {
-		try {
-			this.titleMovieList = Cinema.getCinema().getMovieList();
-		} catch (IOException | SeatException e) {
-			e.toString();
-		}
+	public void updateMovieList() throws SQLException {
+		this.titleMovieList = Cinema.getCinema().getMovieList();
 	}
 }

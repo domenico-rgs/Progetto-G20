@@ -18,13 +18,13 @@ public class DeleteItem {
 		case "movie":
 			String title = req.getParameter("title");
 			if (title == null || title.contentEquals(""))
-				return "please enter valid title";
+				return "Please enter a valid title";
 			try {
 				Cinema.getCinema().deleteMovie(title);
 				return title + " successfully deleted";
 			} catch (SQLException e) {
 				System.out.println(e);
-				return title + " not exist";
+				return title + " not exists";
 			}catch (Exception e) {
 				System.out.println(e);
 				return e.toString();
@@ -33,23 +33,21 @@ public class DeleteItem {
 		case "showing":
 			String id = req.getParameter("id");
 			if (id == null || id.contentEquals(""))
-				return "please enter valid id";
+				return "Please enter valid id";
 			try {
 				Cinema.getCinema().deleteMovieShowing(id);
 				return id + " successfully deleted";
 			} catch (SQLException e) {
 				System.out.println(e);
-				return id + " not exist";
+				return id + " not exists";
 			}catch (Exception e) {
-				System.out.println(e);
-				System.out.println("ciao");
-				return e.getMessage();
+				e.getStackTrace();
 			}
 
 		case "theatre":
 			String name = req.getParameter("name");
 			if (name == null || name.contentEquals(""))
-				return "please enter valid name";
+				return "Please enter valid name";
 
 			try {
 				Cinema.getCinema().deleteTheatre(name);
@@ -57,7 +55,7 @@ public class DeleteItem {
 			}
 			catch (SQLException e) {
 				System.out.println(e.toString());
-				return name + " not exist yet";
+				return name + " not exists yet";
 			} catch (Exception e) {
 				System.out.println(e.toString());
 				return e.getMessage();
@@ -65,5 +63,4 @@ public class DeleteItem {
 		}
 		return "Error with javascript getRequests";
 	}
-
 }

@@ -75,7 +75,6 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				break;
 			}
 		}
-
 		return availabilityList;
 	}
 

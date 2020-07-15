@@ -9,8 +9,6 @@ public class Movie {
 	private int duration; //in minutes
 	private TypeCategory category;
 
-	public Movie() {}
-
 	public Movie(String title, int duration, String plot, String pathCover, TypeCategory category) {
 		this.title=title;
 		this.duration=duration;
@@ -20,7 +18,7 @@ public class Movie {
 	}
 
 	/**
-	 * this methods can modify a movie
+	 * This methods can modify a movie
 	 * @param pathCover this is the path of the movie's cover
 	 * @param plot movie's plot
 	 * @param category movie's category

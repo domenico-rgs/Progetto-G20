@@ -15,7 +15,10 @@ public class Quotes {
 		author = new ArrayList<>();
 		populateCitations();
 	}
-
+	
+	/**
+	 * This methods permits to use quotes contained in a file
+	 */
 	private void populateCitations() throws IOException {
 		BufferedReader inFile = new BufferedReader(new FileReader("src/main/resources/statics/quotes.txt"));
 		String riga;
@@ -26,7 +29,11 @@ public class Quotes {
 		inFile.close();
 	}
 
-	public List<String> getQuotes() {
+	/**
+	 * Creates a list where the quote is saved in the first element and the author in the second
+	 * @return the list with the author and his quote
+	 */
+	protected List<String> getQuotes() {
 		int random = (int)(Math.random()*quote.size());
 		List<String> quoteList = new ArrayList<>();
 		quoteList.add(quote.get(random));

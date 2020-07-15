@@ -6,17 +6,14 @@ $(window).on('load', function() {
 
   loadGeneralPage();
 
+  // animazione del blocco della password
   $('.passDiv').animate({
     "opacity": "1"
   }, 700);
 
-  // selectedItem = '#introduzione';
-  //
-  // changeView();
-
   sideMenuSwitch();
 });
-//funzione per caricare lapagina generale dinamica
+//funzione per caricare lapagina generale principale in modo dinamic0
 function loadGeneralPage() {
   var ajax = $.ajax({
     type: "POST",
@@ -30,8 +27,7 @@ function loadGeneralPage() {
   })
 }
 
-// comparsa e scomparsa menu laterale
-
+// comparsa iniziale della barra laterale
 function sideMenuSwitch() {
 
   if ($(window).width() > 600) {
@@ -53,6 +49,7 @@ function sideMenuSwitch() {
 
 }
 
+//cambio della pagina principale a seconda del toggle scelto nella barra laterale sinistra
 function changeView() {
 
   if (backItem != undefined) {
@@ -75,21 +72,7 @@ $('.sideMenu li').click(function() {
 });
 
 
-
-$('#sideButton').click(function() {
-  $('.sideMenu').animate({
-    "left": "0px"
-  }, 500);
-});
-
-$('#closeButton').click(function() {
-  $('.sideMenu').animate({
-    "left": "-15%"
-  }, 500);
-});
-
-
-
+//comparsa al click nei "show statistscs della pagina principale"
 $('.stat #movie').click(function() {
   $('.table .movieT').addClass('active')
   $('.table .theatreT').removeClass('active')
@@ -109,7 +92,7 @@ $('.stat #showing').click(function() {
 })
 
 
-//per mostrare i showing per film
+//per mostrare i showing per film in "programmed showings" nella pagina principale
 $('.showingT #movie').on('change', function() {
   $('.showingT .tableSh').empty()
   $('.showingT .tableSh .loader').css("visibility", "visible")

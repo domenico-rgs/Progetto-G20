@@ -8,7 +8,6 @@ import server.domain.cinema.theatre.Theatre;
 /**
  * This class is referred to a movie projection in the cinema.
  */
-
 public class MovieShowing {
 	private String id, movie;
 	private LocalDateTime date;
@@ -24,7 +23,7 @@ public class MovieShowing {
 	}
 
 	/**
-	 * this methos permits to modify a showing
+	 * This methos permits to modify a showing
 	 * @param theatre this is the theatre of the showing
 	 * @param price this is the price of the showing
 	 */
@@ -63,6 +62,6 @@ public class MovieShowing {
 
 	@Override
 	public String toString() {
-		return  getId() + ",date: " + getDateToString() + ", theatre: " + getTheatreName();
+		return  getId() + ", date: " + getDateToString() + ", theatre: " + getTheatreName();
 	}
 }

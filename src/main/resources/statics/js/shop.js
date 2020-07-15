@@ -3,10 +3,10 @@ var element
 var container
 var timer = 1
 
+//aggiunta dei listener agli elementi cliccabili
 window.onload = function() {
   startPage()
   $('.buttons button[name="back"]').css("opacity", "0.5").css("cursor", "no-drop");
-  //startTimer()
 }
 
 $('#total .sconto button').on('click', function() {
@@ -22,7 +22,7 @@ $('#total .card button').on('click', function() {
   buyFunc()
 });
 
-
+//post request al click del pulsante "APPLY"
 function discoFunc() {
   $('.loader').css("visibility", "visible")
   var ajax = $.ajax({
@@ -50,6 +50,7 @@ function discoFunc() {
   })
 }
 
+//post request al click del pulsante "BUY"
 function buyFunc() {
   var data = $('.deadline input').val().split("-")
   $('.loader').css("visibility", "visible")
@@ -77,8 +78,8 @@ function buyFunc() {
   })
 }
 
-//getione delle pagine
-
+//gestione delle 4 pagine indicizzate nella barra superiore (sono 4)
+//gestione delle aniamzioni dei bottoni
 function setPageValue() {
   element = "li[value='" + page + "']"
 }
@@ -135,7 +136,7 @@ $('.buttons button[name="continue"]').on('click', function() {
 })
 
 
-//
+//NON DISPONIBILE, MA IN FUTURO FORSE SI
 function startTimer() {
   // Set the date we're counting down to
   var timerDate = new Date()

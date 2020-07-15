@@ -1,3 +1,4 @@
+// animazioni dei click dei posti a sedere
 $(".seatList .seat[value='true']").on('click', function() {
 
   var elem = $(this)
@@ -13,8 +14,7 @@ $(".seatList .seat[value='true']").on('click', function() {
 });
 
 
-//richiesta di get
-
+//richiesta di get al click del "BUY"
 $('#buyTicket').on('click', function() {
 
   var seats = ""
@@ -24,6 +24,7 @@ $('#buyTicket').on('click', function() {
     seats = seats + $(this).attr("pos") + "-"
   })
 
+  //se non seleziono niente, non eseguo la richiesta di get
   if (seats == "") {
     $('#error').text("Please select valid seat")
     return
