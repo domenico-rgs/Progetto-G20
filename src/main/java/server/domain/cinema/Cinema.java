@@ -247,6 +247,7 @@ public class Cinema {
 	/* ShopCart management */
 	public void updateShopCartItems(String id, String[] seats) throws SQLException, IOException, SeatException {
 
+		this.shopCart.refresh();
 		this.shopCart.setIdSh(id);
 		this.shopCart.setSeats(seats);
 	}
@@ -279,7 +280,6 @@ public class Cinema {
 		boolean result = ServiceFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, genPDF(ticketList));
-			this.shopCart.refresh();
 			return true;
 
 		} else

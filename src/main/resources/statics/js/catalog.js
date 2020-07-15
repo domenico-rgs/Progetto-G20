@@ -2,7 +2,7 @@ var loadMess = $('#loadMess #mess')
 var loader = $('#loadMess .loader')
 
 var startPoint = 0
-var finalPoint = 5
+var finalPoint = 10
 
 $(window).on('load', function() {
 
@@ -19,8 +19,8 @@ $(window).on('load', function() {
       loader.remove()
 
       $('.filmMenu').append(response);
-      startPoint += 5
-      finalPoint += 5
+      startPoint += 10
+      finalPoint += 10
     }
   })
 });
