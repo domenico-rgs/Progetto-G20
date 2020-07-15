@@ -101,7 +101,7 @@ public class Cinema {
 		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getCodeStrategy(code.toUpperCase());
 
 		if(discount != null) {
-			discount.getTotalPrice(price);
+			return discount.getTotalPrice(price);
 		}
 
 		throw new PaymentException("Discount code not found");
