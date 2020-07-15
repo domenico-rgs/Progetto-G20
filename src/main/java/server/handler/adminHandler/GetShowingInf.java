@@ -35,8 +35,7 @@ public class GetShowingInf {
 						"@" + m.getDateToString();
 				return inf;
 			}catch (Exception e) {
-				e.printStackTrace();
-				return "Error@" +e.toString();
+				return "Error@" +"Get information for " + id;
 			}
 		}
 		return "There was a problem with javascript getRequest";

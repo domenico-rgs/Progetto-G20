@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+
 import javax.mail.MessagingException;
+
 import server.MailSender;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
@@ -53,14 +55,14 @@ public class Cinema {
 	 * This method creates a theatre
 	 * @param name this is the theatre's name
 	 * @param config this is the configuration of the theatre
+	 * @throws SeatException
 	 */
-	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException  {
+	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException {
 		Theatre t = new Theatre(name);
-		String file = t.createConfigFile(config);
-		t.createSeats(file);
+		t.createSeats(config);
 		PersistenceFacade.getInstance().put(name, TheatresMapper.class,t);
 	}
-	
+
 	/**
 	 * This method permits to create movie
 	 * @param title movie's title
@@ -73,7 +75,7 @@ public class Cinema {
 		Movie m = new Movie(title, duration, plot, pathCover, category);
 		PersistenceFacade.getInstance().put(title,MoviesMapper.class,m);
 	}
-	
+
 	/**
 	 * it creates a movie showing
 	 * @param movie showed movie
@@ -120,7 +122,7 @@ public class Cinema {
 	synchronized public void createDiscountCode(String code, double percent) throws SQLException  {
 		PricingStrategyFactory.getInstance().createDiscountCode(code.toUpperCase(), percent);
 	}
-	
+
 	/**
 	 * it permits to apply a discount
 	 * @param code discount's code
@@ -161,9 +163,9 @@ public class Cinema {
 		s.editShowing(this.getTheatre(theatre), price);
 		PersistenceFacade.getInstance().updateTable(ShowingsMapper.class, s, showing);
 	}
-	
+
 	/**
-	 * It permits to modify a movie 
+	 * It permits to modify a movie
 	 * @param title movie's title
 	 * @param pathCover cover's path
 	 * @param plot movie's plot
@@ -185,7 +187,7 @@ public class Cinema {
 		MailSender.sendRefundMail(code, cardNumber, ((Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class)).getTotalPrice());
 		PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
 	}
-	
+
 	/**
 	 * this method permits to delete a theatre
 	 * @param name theatre's name
@@ -195,7 +197,7 @@ public class Cinema {
 		f.delete();
 		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
 	}
-	
+
 	/**
 	 * it permits to delete a movie
 	 * @param title movie's title
@@ -203,7 +205,7 @@ public class Cinema {
 	synchronized public void deleteMovie(String title) throws SearchException, SQLException{
 		PersistenceFacade.getInstance().delete(title, MoviesMapper.class);
 	}
-	
+
 	/**
 	 * This method deletes a movieshowing
 	 * @param idShowing showing's id
@@ -211,7 +213,7 @@ public class Cinema {
 	synchronized public void deleteMovieShowing(String idShowing) throws SearchException, SQLException {
 		PersistenceFacade.getInstance().delete(idShowing, ShowingsMapper.class);
 	}
-	
+
 	/**
 	 * it permits to delete a discount
 	 * @param code discount's code
@@ -355,7 +357,7 @@ public class Cinema {
 		}
 		return doubleList;
 	}
-	
+
 	/**
 	 * it permits to buy a ticket
 	 * @param codeCard code of a card
@@ -383,7 +385,7 @@ public class Cinema {
 		}
 		return total;
 	}
-	
+
 	public static Cinema getCinema() {
 		if (istance == null) {
 			istance = new Cinema();

@@ -15,7 +15,7 @@ public class Quotes {
 		author = new ArrayList<>();
 		populateCitations();
 	}
-	
+
 	/**
 	 * This methods permits to use quotes contained in a file
 	 */

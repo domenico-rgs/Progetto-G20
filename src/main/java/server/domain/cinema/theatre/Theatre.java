@@ -1,9 +1,7 @@
 package server.domain.cinema.theatre;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -28,15 +26,14 @@ public class Theatre {
 	 * @throws IOException if there are problems with the file
 	 * @throws SeatException problems recognizing the seat (e.g. wrong identifier (x, d, p))
 	 */
-	public void createSeats(String file) throws IOException, SeatException {
-		BufferedReader seats = new BufferedReader(new FileReader(file));
-		String s;
+	public void createSeats(String config) throws IOException, SeatException {
+		String[] s = config.split("\\n");
 		int rowNum=0;
-		while((s = seats.readLine())!= null){
-			String[] tmp = s.split("\\s+");
+		for(int i =0; i<s.length; i++) {
+			String[] tmp = s[i].split("\\s+");
 			addSeats(tmp, rowNum++); //adds seats for the current row to the seat list
 		}
-		seats.close();
+		createConfigFile(config);
 	}
 
 	/**
@@ -63,7 +60,7 @@ public class Theatre {
 	 * @return return path's configuration file
 	 * @throws FileNotFoundException it occurs if the received string is not correct
 	 */
-	public String createConfigFile(String config) throws FileNotFoundException {
+	private String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
 		config = config.replaceAll("[^\\S\\r\\n]+"," "); //the regex expression is used to remove "extra" spaces if they are added
 

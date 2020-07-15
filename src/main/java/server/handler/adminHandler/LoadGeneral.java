@@ -15,9 +15,9 @@ import server.domain.cinema.Cinema;
 public class LoadGeneral {
 
 	public static String doAction(HttpServletRequest req) {
-		
+
 		switch (req.getParameter("object")) {
-		
+
 		case "general":
 			Map<String,Integer> forMovie = new HashMap<>();
 			Map<String,Integer> forTheatre = new HashMap<>();
@@ -38,10 +38,10 @@ public class LoadGeneral {
 			} catch (Exception e) {
 
 				e.printStackTrace();
-				messagge = "Error from server, sorry :(";
+				messagge = "General error occured. Please try later";
 			}
 			return messagge;
-			
+
 		case "showingsStat":
 			String title = req.getParameter("title");
 
@@ -58,8 +58,8 @@ public class LoadGeneral {
 
 			return messagge;
 		}
-		
+
 		return "Error with javascript server";
-	
+
 	}
 }

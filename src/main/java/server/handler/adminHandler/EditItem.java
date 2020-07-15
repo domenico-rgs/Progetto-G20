@@ -9,11 +9,11 @@ import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
 
 public class EditItem {
-	
-public static String doAction(HttpServletRequest req) {
-		
+
+	public static String doAction(HttpServletRequest req) {
+
 		switch (req.getParameter("object")) {
-		
+
 		case "movie":
 			String title = req.getParameter("title");
 			String plot = req.getParameter("plot");
@@ -31,19 +31,19 @@ public static String doAction(HttpServletRequest req) {
 
 			}catch (SQLException e) {
 				System.out.println(e);
-				return e.toString();
+				return "Impossible found the movie " + title;
 			}catch (NumberFormatException e) {
 				System.out.println(e);
 				return "Incorrect value for duration";
 			}catch (SearchException e) {
-				return "Movie is used!";
+				return title + " is used!";
 			}catch (Exception e) {
 				System.out.println(e);
-				return e.toString();
+				return e.getMessage();
 			}
 			return title + " succefully changed. Reload to see changes";
 		}
-		
+
 
 		return "Error with javascript scripts";
 	}
