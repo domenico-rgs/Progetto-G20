@@ -52,7 +52,6 @@ function discoFunc() {
 
 function buyFunc() {
   var data = $('.deadline input').val().split("-")
-  alert(data[1] + "/" + data[0])
   $('.loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",

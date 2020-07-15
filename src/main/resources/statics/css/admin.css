@@ -209,6 +209,10 @@ body {
   color: rgb(30, 63, 97);
 }
 
+.contentAdmin label {
+  color: black;
+}
+
 .contentAdmin p.message {
   text-align: center;
 }
@@ -224,6 +228,10 @@ body {
 #introduzione img {
   height: 256px;
   width: 256px;
+}
+
+#multiShowings #beetween input {
+  width: 30%;
 }
 
 /* menu di sotto gestione selezionati da bottone*/

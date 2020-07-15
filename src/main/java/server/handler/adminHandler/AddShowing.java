@@ -16,7 +16,7 @@ public class AddShowing {
 		String movie = req.getParameter("movie");
 		String theatre = req.getParameter("theatre");
 
-		String[] d = req.getParameter("date").split("/");
+		String[] d = req.getParameter("date").split("-");
 		String[] h = req.getParameter("hour").split(":");
 
 		//se i valori non sono nulli
@@ -29,8 +29,8 @@ public class AddShowing {
 		try {
 			double price = Double.parseDouble(req.getParameter("price"));
 
-			id = Cinema.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[2]),
-					Integer.parseInt(d[1]), Integer.parseInt(d[0]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
+			id = Cinema.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[0]),
+					Integer.parseInt(d[1]), Integer.parseInt(d[2]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
 		}catch (OverlapException e) {
 			System.out.println(e);
 			return "The showing overlaps with another";

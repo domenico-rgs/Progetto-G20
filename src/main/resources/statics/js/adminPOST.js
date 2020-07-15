@@ -58,6 +58,29 @@ $('#addShowing #add').on('click', function() {
   })
 });
 
+//add multiple Showings
+$('#multiShowings #add').on('click', function() {
+  $('#multiShowings .loader').css("visibility", "visible")
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "AddMultiShowing",
+      movie: $('#multiShowings #movie').val(),
+      theatre: $('#multiShowings  #theatre').val(),
+      dateStart: $('#multiShowings  #dateStart').val(),
+      dateFinal: $('#multiShowings  #dateFinal').val(),
+      hour: $('#multiShowings  #hour').val(),
+      price: $('#multiShowings  #price').val()
+    },
+    success: function(response) {
+      $('#multiShowings .loader').css("visibility", "hidden")
+      $('#multiShowings .message').text(response)
+      reloadGeneral()
+    }
+  })
+});
+
 
 //edit showing
 $('#editShowing #idS').on('change', function() {
