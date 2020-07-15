@@ -32,6 +32,9 @@ public class Catalog implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
+		
+		MovieList.getInstance().refreshMovieList();
+		
 		if (req.getParameter("search").contentEquals("all") || req.getParameter("search").contentEquals("")) {
 			resp.getWriter().write(Rythm.render("catalog.html"));
 		} else {
@@ -44,9 +47,6 @@ public class Catalog implements IHandler {
 				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,""));
 			}
 		}
-
-		MovieList.getInstance().updateMovieList();
-
 
 	}
 

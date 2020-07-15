@@ -56,9 +56,8 @@ public class Administrator implements IHandler {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String message = "";
 		/*
-		 * java reflection which calls the doAction() method
-		 * from the class of the same name as the requestPost
-		 * we use the polymorphism between classes to replace the caseSwitch
+		 * java reflection calls the doAction() method
+		 * from the class with same name of requestPost parameter
 		 */
 		try {
 			message = (String)Class.forName("server.handler.adminHandler." + req.getParameter("requestPost")).

@@ -1,31 +1,19 @@
 var loadMess = $('#loadMess #mess')
 var loader = $('#loadMess .loader')
 
-var startPoint = 0
-var finalPoint = 20
-
 $(window).on('load', function() {
 
   //svuoto per evitare duplicazioni
   $('filmMenu').empty()
 
-  /* Invio le variabili di point, che mi indicizzano quali
-  film prendere dal lista dei film salvata nel server
-  */
   var ajax = $.ajax({
     type: "GET",
     url: "/movieList",
-    data: {
-      startPoint: startPoint,
-      finalPoint: finalPoint
-    },
     success: function(response) {
       loadMess.remove()
       loader.remove()
 
       $('.filmMenu').append(response);
-      startPoint += 10
-      finalPoint += 10
     }
   })
 });
@@ -44,17 +32,11 @@ $(window).on('scroll', function() {
     var ajax = $.ajax({
       type: "GET",
       url: "/movieList",
-      data: {
-        startPoint: startPoint,
-        finalPoint: finalPoint
-      },
       success: function(response) {
         loadMess.remove()
         loader.remove()
 
         $('.filmMenu').append(response);
-        startPoint += 5
-        finalPoint += 5
       }
     })
   }

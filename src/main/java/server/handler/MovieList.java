@@ -1,8 +1,10 @@
 package server.handler;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,15 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
+
 import server.domain.cinema.Cinema;
 
 public class MovieList implements IHandler {
 	private static MovieList instance = null;
 
 	/** this class is used in the catalog to keep track of a list of films */
-	private List<String> titleMovieList = new ArrayList<>();
+	private LinkedList<String> titleMovieList = new LinkedList<>();
+	private final int margin = 10;
+	
 
-	private MovieList() {}
+	private MovieList() {
+	}
 
 
 	//*singleton*/
@@ -32,50 +38,46 @@ public class MovieList implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int startPoint = Integer.parseInt(req.getParameter("startPoint"));
-		int finalPoint = Integer.parseInt(req.getParameter("finalPoint"));
+		
+	
+		resp.getWriter().write(Rythm.render("imported/movieItem.html", this.updateMovieList()));
 
-		List<server.domain.cinema.Movie> movieList =
-				this.updateMovieList(startPoint, finalPoint);
-
-		resp.getWriter().write(Rythm.render("imported/movieItem.html", movieList));
-
-		movieList.clear();
 	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
 
-	private List<server.domain.cinema.Movie> updateMovieList(int start, int end) {
-		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
-
-		/**check if they are at the end of the list*/
-		if (end > this.titleMovieList.size()) {
-			end = this.titleMovieList.size();
-		}
-
-		if (start >= this.titleMovieList.size())
-			return movieList;   //actually empty
-
-		/*
-		 * we take the films from the cinema and put them on a proprietary list
-		 * to evaluate if not to keep all the films but only the necessary values
-		 * for efficiency reasons
-		 * as the list is born and dies on the spot after use
-		 */
-
-		for (int i=start; i<end; i++) {
+	private List<server.domain.cinema.Movie> updateMovieList() {
+		List<server.domain.cinema.Movie> tmpList = new ArrayList<>();
+		
+		
+		//evito overflow della lista
+		if (titleMovieList.size() == 0) 
+			return tmpList; //empty
+					
+		String title;
+		for (int i=0; i<margin; i++) {
+			//se la lista vuota
+			if (titleMovieList.size() == 0) {
+				return tmpList;
+			}
+			
+			title = titleMovieList.pop();
 			try {
-				movieList.add(Cinema.getCinema().getMovie(this.titleMovieList.get(i)));
+				tmpList.add(Cinema.getCinema().getMovie(title));
 			}catch (Exception e) {
-				e.toString();
+				e.printStackTrace();
+				return tmpList;
 			}
 		}
-		return movieList;
+		return tmpList;
 	}
 
-	public void updateMovieList() throws SQLException {
-		this.titleMovieList = Cinema.getCinema().getMovieList();
+	public void refreshMovieList() throws SQLException {
+		this.titleMovieList.clear();
+		for (String movie: Cinema.getCinema().getMovieList()) {
+			titleMovieList.push(movie);
+		}
 	}
 }
