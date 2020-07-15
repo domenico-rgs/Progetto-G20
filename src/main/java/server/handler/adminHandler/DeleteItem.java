@@ -23,10 +23,10 @@ public class DeleteItem {
 				Cinema.getCinema().deleteMovie(title);
 				return title + " successfully deleted";
 			} catch (SQLException e) {
-				System.out.println(e);
+				e.printStackTrace();
 				return title + " not exists";
 			}catch (Exception e) {
-				System.out.println(e);
+				e.printStackTrace();
 				return e.toString();
 			}
 
@@ -38,10 +38,10 @@ public class DeleteItem {
 				Cinema.getCinema().deleteMovieShowing(id);
 				return id + " successfully deleted";
 			} catch (SQLException e) {
-				System.out.println(e);
+				e.printStackTrace();
 				return id + " not exists";
 			}catch (Exception e) {
-				e.getStackTrace();
+				e.printStackTrace();
 			}
 
 		case "theatre":
@@ -54,10 +54,10 @@ public class DeleteItem {
 				return name + " successfully removed. Recharge to see changes";
 			}
 			catch (SQLException e) {
-				System.out.println(e.toString());
+				e.printStackTrace();
 				return name + " not exists yet";
 			} catch (Exception e) {
-				System.out.println(e);
+				e.printStackTrace();
 				return "impossible to remove " + name;
 			}
 		}

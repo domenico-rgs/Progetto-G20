@@ -68,6 +68,4 @@ public class Administrator implements IHandler {
 		}
 		resp.getWriter().write(message);
 	}
-
-
 }

@@ -191,7 +191,7 @@ public class Cinema {
 	 * @param name theatre's name
 	 */
 	synchronized public void deleteTheatre(String name) throws SearchException, SQLException{
-		File f = new File(this.getTheatre(name).getFilePath());
+		File f = new File("src/main/resources/theatreConf/"+this.getTheatre(name).getFilePath()+".txt");
 		f.delete();
 		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
 	}
