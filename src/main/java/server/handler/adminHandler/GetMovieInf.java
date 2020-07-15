@@ -4,6 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 
+/**this class gives me the information of the films*/
+
+
 public class GetMovieInf {
 
 	public static String doAction(HttpServletRequest req) {

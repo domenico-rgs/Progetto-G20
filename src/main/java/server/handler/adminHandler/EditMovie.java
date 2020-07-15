@@ -9,6 +9,9 @@ import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
 
+/**this class together with others serve as a control on the admin page, precisely this deals with 
+ * connecting the web interface to logic and transmitting information to modify a film already inserted*/
+
 public class EditMovie {
 
 	public static String doAction(HttpServletRequest req) {
