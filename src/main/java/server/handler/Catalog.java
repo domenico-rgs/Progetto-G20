@@ -31,7 +31,7 @@ public class Catalog implements IHandler {
 	}
 
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
 		if (req.getParameter("search").contentEquals("all") || req.getParameter("search").contentEquals("")) {
 			resp.getWriter().write(Rythm.render("catalog.html"));
 		} else {

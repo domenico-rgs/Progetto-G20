@@ -29,6 +29,11 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	protected Object getObjectFromTable(String OID) {
 		return null;
 	}
+	
+
+	@Override
+	public synchronized void updateTable(String OID, Object obj)throws SQLException {
+	}
 
 	@Override
 	protected Object getObjectFromCache(String OID) {
@@ -48,6 +53,8 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE ticketCode!='' and ticketCode=?");
 		stm.setString(1, OID);
 		stm.execute();
+		
+		this.tickets.remove(OID);
 	}
 
 
@@ -67,13 +74,8 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		pstm.execute();
 	}
 
-	@Override
-	public synchronized void updateTable(String OID, Object obj)throws SQLException {
-	}
-
 	protected void setUp() throws SQLException {
 		Statement stm = super.conn.createStatement();
-
 		ResultSet rs = stm.executeQuery("select ticketCode, movieTitle, occupiedSeat, showingID, totalPrice from TICKETS join MOVIESHOWINGS on TICKETS.showingID = MOVIESHOWINGS.id");
 
 		while (rs.next()){
@@ -83,13 +85,6 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 			this.tickets.put(rs.getString(1),tmp);
 		}
 	}
-
-	protected void deleteTicket(String OID) throws SQLException {
-		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE ticketCode!='' and ticketCode=?");
-		stm.setString(1, OID);
-		stm.execute();
-	}
-
 
 	protected synchronized Map<String, Ticket> getTickets() {
 		return tickets;

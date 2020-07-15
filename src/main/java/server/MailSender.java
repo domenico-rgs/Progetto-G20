@@ -3,6 +3,7 @@ package server;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -18,6 +19,15 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfVersion;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.WriterProperties;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+import server.domain.cinema.Ticket;
+
 public class MailSender {
 	/**
 	 * Send the email containing the ticket in pdf format to the user who purchased it.
@@ -26,12 +36,12 @@ public class MailSender {
 	 * @throws FileNotFoundException if there are problems with the PDF file
 	 * @throws MessagingException if the recipient's or sender's address is incorrect
 	 */
-	public static void sendTicketMail(String recipient, File pdf) throws FileNotFoundException, MessagingException {
+	public static void sendTicketMail(String recipient, List<Ticket> ticketList) throws FileNotFoundException, MessagingException {
 		String header = "Here are the tickets you purchased from CinemaG20";
 		String body = "Hi!\r\n" +
 				"Attached to this email is the tickets you purchased on CinemaG20.\r\n" +
 				"Thanks and enjoy!";
-		sendMail(recipient,header,body,pdf);
+		sendMail(recipient,header,body, genPDF(ticketList));
 
 	}
 
@@ -50,6 +60,20 @@ public class MailSender {
 				" on card n°" + cardNumber +"\r\n" +
 				" for a total of €"+ total;
 		sendMail("progettog20@gmail.com",header,body,null);
+	}
+	
+
+	private static File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
+		PdfWriter writer = new PdfWriter("G20Ticket", new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
+		PdfDocument pdfDocument = new PdfDocument(writer);
+		pdfDocument.setTagged();
+		Document document = new Document(pdfDocument);
+		for(Ticket t : ticketList) {
+			document.add(new Paragraph(t.toString()));
+		}
+		document.close();
+
+		return new File("G20Ticket");
 	}
 
 	private static void sendMail(String recipient, String header, String body, File attachments)  throws FileNotFoundException, MessagingException{

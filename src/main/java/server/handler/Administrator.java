@@ -18,9 +18,7 @@ import server.domain.cinema.TypeCategory;
 /**this class is the controller that binds the administrator page to logic */
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
-
-
-
+	
 	private Administrator() {}
 
 	public static Administrator getInstance() {

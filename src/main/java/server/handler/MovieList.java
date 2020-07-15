@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class MovieList implements IHandler {
 		return movieList;
 	}
 
-	public void updateMovieList() {
+	public void updateMovieList() throws SQLException {
 		this.titleMovieList = Cinema.getCinema().getMovieList();
 	}
 }

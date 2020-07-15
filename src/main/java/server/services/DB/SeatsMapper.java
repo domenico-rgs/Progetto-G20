@@ -75,7 +75,6 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 				break;
 			}
 		}
-
 		return seatsList;
 	}
 }

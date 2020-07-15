@@ -54,6 +54,8 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 			stm.execute();
 		}else
 			throw new SearchException("Theatre is used!");
+		
+		this.theatres.remove(OID);
 	}
 
 
@@ -63,10 +65,8 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 		updateCache(OID,t);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?)");
-
 		pstm.setString(1,OID);
 		pstm.setString(2,t.getFilePath());
-
 		pstm.execute();
 
 		sm.put(t.getTheatreName(), t);
@@ -104,7 +104,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 			return true;
 	}
 
-	public synchronized Map<String, Theatre> getTheatres() {
+	protected synchronized Map<String, Theatre> getTheatres() {
 		return theatres;
 	}
 }

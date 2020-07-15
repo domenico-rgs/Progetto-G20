@@ -13,10 +13,8 @@ import server.domain.exception.SearchException;
  * Each represents a table of the Database and it only can access that table.
  */
 public abstract class AbstractPersistenceMapper implements IMapper {
-
 	protected String tableName;
 	protected Connection conn;
-
 
 	/**
 	 * Constructor of the class
@@ -67,22 +65,11 @@ public abstract class AbstractPersistenceMapper implements IMapper {
 	 */
 	protected abstract void updateCache(String OID,Object obj);
 
-	@Override
-	public abstract void delete(String OID) throws SQLException, SearchException;
-
-
 	/**
-	 * Method which select from the table the last code of the Objects of the table belonging
-	 * to the Mapper
-	 * @param keyName is the name of the key of the table
-	 * @return the last code of the table
+	 * Method which delete the object linked to the mapper, represented by its key, from the table
+	 * @param OID is the key of the object
+	 * @return the object requested
 	 * @throws SQLException
 	 */
-	protected synchronized String getLastObjectCode(String keyName) throws SQLException{
-		Statement stm = conn.createStatement();
-		ResultSet rs = stm.executeQuery("select max("+keyName+") from "+tableName);
-		if(rs.next())
-			return rs.getString(1);
-		return null;
-	}
+	public abstract void delete(String OID) throws SQLException, SearchException;
 }
