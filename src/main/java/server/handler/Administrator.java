@@ -1,6 +1,7 @@
 package server.handler;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,12 @@ import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SeatException;
 
+
 /**this class is the controller that binds the administrator page to logic */
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
+
+	
 
 	private Administrator() {}
 
@@ -37,7 +41,7 @@ public class Administrator implements IHandler {
 		for (TypeCategory cat: TypeCategory.values()) {
 			categoryList.add(cat.toString());
 		}
-
+	
 		try {
 			resp.getWriter().write(Rythm.render("administrator.html",
 					categoryList, Cinema.getCinema().getMovieList(),
@@ -50,6 +54,7 @@ public class Administrator implements IHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 
@@ -69,4 +74,6 @@ public class Administrator implements IHandler {
 		}
 		resp.getWriter().write(message);
 	}
+	
+
 }

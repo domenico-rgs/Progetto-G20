@@ -26,7 +26,7 @@ $(window).on('load', function() {
 });
 
 var scrollPoint = 100
-var scrollAdd = $(window).height / 1
+var scrollAdd = $(window).height / 3
 
 // mostra piu film al click del pulsante
 $(window).on('scroll', function() {

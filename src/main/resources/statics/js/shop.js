@@ -5,6 +5,7 @@ var timer = 1
 
 window.onload = function() {
   startPage()
+  $('.buttons button[name="back"]').css("opacity", "0.5").css("cursor", "no-drop");
   //startTimer()
 }
 
@@ -93,6 +94,11 @@ function startPage() {
 }
 
 $('.buttons button[name="back"]').on('click', function() {
+  $('.buttons button[name="continue"]').css("opacity", "1").css("cursor", "pointer");
+  if (page == 2) {
+    $(this).css("opacity", "0.5").css("cursor", "no-drop");
+  }
+
   if (page == 1) {
     return
   }
@@ -108,8 +114,14 @@ $('.buttons button[name="back"]').on('click', function() {
 })
 
 $('.buttons button[name="continue"]').on('click', function() {
+  $('.buttons button[name="back"]').css("opacity", "1").css("cursor", "pointer");
+
+  if (page == 3) {
+    $(this).css("opacity", "0.5").css("cursor", "no-drop");
+  }
+
   if (page == 4) {
-    return
+    return;
   }
 
   $(element).removeClass('active')
