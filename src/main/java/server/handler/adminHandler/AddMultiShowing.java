@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import server.domain.cinema.Cinema;
 import server.domain.exception.SearchException;
 
+/** this class together with others serve as a control on the admin page, precisely this deals
+ *  with connecting the web interface to logic and transmitting information to create a multishowing*/
+
 public class AddMultiShowing {
 	
 	public static String doAction(HttpServletRequest req) {
