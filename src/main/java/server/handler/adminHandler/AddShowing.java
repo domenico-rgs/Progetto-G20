@@ -32,13 +32,13 @@ public class AddShowing {
 			id = Cinema.getCinema().createMovieShowing(movie, LocalDateTime.of(Integer.parseInt(d[0]),
 					Integer.parseInt(d[1]), Integer.parseInt(d[2]), Integer.parseInt(h[0]),Integer.parseInt(h[1])), theatre, price);
 		}catch (OverlapException e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return "The showing overlaps with another";
 		}catch (NumberFormatException e){
-			System.out.println(e);
+			e.printStackTrace();
 			return "Invalid data: double check the date, price and/or time";
 		}catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return e.toString();
 		}
 		return "Showing succefully added with id: " +id+ ". Reload to see changes";
