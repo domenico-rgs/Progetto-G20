@@ -42,10 +42,10 @@ dove portNumber è il numero della porta desiderata.
 ### Accedere al servizio
 In generale, se addressOfMyServer è l'indirizzo del server e ServerPort è la porta di quest'ultimo dedicata al servizio, connettersi tramite l'indirizzo http://addressOfMyServer:ServerPort
 
-#### Utente
+- #### Utente
 Supponendo che la connessione avvenga dalla stessa macchina su cui è attivo il server, connettersi al server alla pagina:
 http://localhost:8080
 
-#### Amministratore
+- #### Amministratore
 Supponendo che la connessione avvenga dalla stessa macchina su cui è attivo il server, connettersi al server alla pagina:
 http://localhost:8080/administrator
