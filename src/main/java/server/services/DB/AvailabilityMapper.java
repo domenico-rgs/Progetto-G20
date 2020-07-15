@@ -11,6 +11,8 @@ import server.domain.cinema.theatre.DisabledSeat;
 import server.domain.cinema.theatre.PremiumSeat;
 import server.domain.cinema.theatre.Seat;
 
+/**this class has the task of returning the info concerning the database tables*/
+
 public class AvailabilityMapper extends AbstractPersistenceMapper {
 	public AvailabilityMapper() throws SQLException {
 		super("AVAILABILITY");
@@ -29,6 +31,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 	@Override
 	protected void updateCache(String OID, Object obj) {
 	}
+
 
 	@Override
 	public void delete(String OID) throws SQLException {

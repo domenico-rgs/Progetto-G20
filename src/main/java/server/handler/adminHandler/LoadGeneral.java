@@ -9,6 +9,9 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 
+
+/**this class is specifically for the admin page to give general information*/
+
 public class LoadGeneral {
 
 	public static String doAction(HttpServletRequest req) {

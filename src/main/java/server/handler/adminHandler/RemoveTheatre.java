@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.Cinema;
 
+
+/**this class has the task of eliminating a theater by receiving the parameters from the html page*/
+
 public class RemoveTheatre {
 	
 	public static String doAction(HttpServletRequest req) {

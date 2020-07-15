@@ -6,6 +6,8 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 
+/**this class is specifically for the admin page to give information on showing*/
+
 public class LoadShowStat {
 	
 	public static String doAction(HttpServletRequest req) {

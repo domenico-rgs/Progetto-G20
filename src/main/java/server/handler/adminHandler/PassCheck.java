@@ -2,6 +2,8 @@ package server.handler.adminHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**this class is for access control*/
+
 public class PassCheck {
 
 	private final static String password = "password";
