@@ -1,6 +1,5 @@
 package server.handler.adminHandler;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,8 +34,6 @@ public class AddMovie{
 					TypeCategory.valueOf(req.getParameter("category")));
 		}catch (SearchException e) {
 			return "Error: " + title + " already exists";
-		}catch (IOException e) {
-			return "Problem with I/O operation. Please try again.";
 		}catch (SQLException e) {
 			return "Problem with database or " +title+ " already exists";
 		}catch (NumberFormatException e) {

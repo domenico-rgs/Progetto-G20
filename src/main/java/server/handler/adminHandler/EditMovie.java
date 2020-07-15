@@ -1,6 +1,5 @@
 package server.handler.adminHandler;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +28,6 @@ public class EditMovie {
 		try {
 			Cinema.getCinema().editMovie(title, cover, plot, category);
 
-		}catch (IOException e) {
-			System.out.println(e);
-			return "Problem with I/O operation. Please try again.";
 		}catch (SQLException e) {
 			System.out.println(e);
 			return e.toString();

@@ -1,6 +1,5 @@
 package server.services.DB;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -13,7 +12,6 @@ import server.domain.cinema.Ticket;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 import server.domain.exception.SearchException;
-import server.domain.exception.SeatException;
 import server.domain.payment.discount.TicketPricingStrategy;
 
 /**this class turns out to be the facade object that creates an indirect mapping*/
@@ -22,7 +20,7 @@ public class PersistenceFacade {
 	private static PersistenceFacade instance = null;
 	private Map<Class<?>, IMapper> mapper;
 
-	private PersistenceFacade() throws IOException, SeatException {
+	private PersistenceFacade(){
 		try {
 			this.mapper = MapperFactory.getInstance().getMappers();
 		}catch (SQLException e){
@@ -30,7 +28,7 @@ public class PersistenceFacade {
 		}
 	}
 
-	public static PersistenceFacade getInstance() throws IOException, SeatException{
+	public static PersistenceFacade getInstance(){
 		if(instance == null) {
 			instance = new PersistenceFacade();
 		}

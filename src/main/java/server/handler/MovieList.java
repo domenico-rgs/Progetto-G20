@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
-import server.domain.exception.SeatException;
 
 public class MovieList implements IHandler {
 	private static MovieList instance = null;
@@ -76,10 +75,6 @@ public class MovieList implements IHandler {
 	}
 
 	public void updateMovieList() {
-		try {
-			this.titleMovieList = Cinema.getCinema().getMovieList();
-		} catch (IOException | SeatException e) {
-			e.toString();
-		}
+		this.titleMovieList = Cinema.getCinema().getMovieList();
 	}
 }

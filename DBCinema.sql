@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS DISCOUNTS;
 CREATE TABLE MOVIES
         (title CHAR(50) PRIMARY KEY,
          duration SMALLINT NOT NULL,
-		plot VARCHAR(1000),
+		plot VARCHAR(6000),
 		pathCover VARCHAR(100),
 		category CHAR(20));
      

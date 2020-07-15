@@ -25,6 +25,8 @@ public class Theatre {
 	 * Create the seats in the room by associating them with an id consisting of a
 	 * letter that identifies the row and a number that identifies the column
 	 * @param file file used to create the positioning of the seats in a theatre
+	 * @throws IOException if there are problems with the file
+	 * @throws SeatException problems recognizing the seat (e.g. wrong identifier (x, d, p))
 	 */
 	public void createSeats(String file) throws IOException, SeatException {
 		BufferedReader seats = new BufferedReader(new FileReader(file));

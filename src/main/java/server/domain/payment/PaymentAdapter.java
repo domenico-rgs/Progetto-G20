@@ -11,7 +11,7 @@ public interface PaymentAdapter {
 	 * @param date card's pin
 	 * @param cvc card's cvc
 	 * @return true if the payment is successful
-	 * @throws PaymentException
+	 * @throws PaymentException if something goes wrong like data checking throws the exception
 	 */
 	boolean pay(double money, String code, String date, String cvc) throws PaymentException;
 }

@@ -9,7 +9,11 @@ public class PaymentFactory {
 		paymentSimulator=null;
 	}
 
-	public PaymentAdapter getPaymentAdapter() {
+	/**
+	 * Allows you to get a SimPaymentAdapter to make a payment
+	 * @return PaymenAdapter "SimPaymentAdapter"
+	 */
+	public PaymentAdapter getSimPaymentAdapter() {
 		if (paymentSimulator == null) {
 			paymentSimulator = new SimPaymentAdapter();
 		}

@@ -60,9 +60,9 @@ public class CinemaServlet extends HttpServlet {
 	}
 
 
-	/* 
-	 * Evaluate the required get and split it if other arguments are requested, 
-	 * after which the correct handler will be called in reference to the first argument, 
+	/*
+	 * Evaluate the required get and split it if other arguments are requested,
+	 * after which the correct handler will be called in reference to the first argument,
 	 * which calls the correct class
 	 */
 	private String parsePath(String path) {

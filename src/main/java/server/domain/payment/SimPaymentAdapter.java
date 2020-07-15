@@ -6,7 +6,6 @@ import java.util.Random;
 import server.domain.exception.PaymentException;
 
 /**This class creates a Payment simulator which can simulate a payment. */
-
 public class SimPaymentAdapter implements PaymentAdapter{
 	SimPaymentAdapter() {}
 
@@ -14,7 +13,7 @@ public class SimPaymentAdapter implements PaymentAdapter{
 	public boolean pay(double money, String code, String date, String cvc) throws PaymentException {
 		checkCard(code,date,cvc);
 		Random random = new Random();
-		if(random.nextInt(1000)==0)
+		if(random.nextInt(1000)==0) //randomly simulates the failure of the operation
 			return false;
 		return true;
 	}
@@ -25,7 +24,7 @@ public class SimPaymentAdapter implements PaymentAdapter{
 	private boolean checkCard(String code, String date, String cvc) throws PaymentException {
 		String[] value = date.split("/");
 		LocalDate cardDate = LocalDate.of(Integer.parseInt(value[1]), Integer.parseInt(value[0]), 01);
-		
+
 		//check that the code is only numeric and 16 digits
 		if ((code.length()==16)) {
 			if(!isNumberOnly(code))
