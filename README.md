@@ -5,19 +5,19 @@ Applicazione web per la prenotazione di biglietti in un cinema multisala
 
 ### Requisiti
 - [JAVA JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) 
-(testato sulle versioni 11)
+(testato sulla versione 11)
 
 - [JDBC](https://dev.mysql.com/downloads/connector/j/) - versione 8.0.20
 
 - [Jetty](https://www.eclipse.org/jetty/) - versione 9.4.30.v20200611
 
-- [Gradle](https://gradle.org) - versione 3.6.1
+- [Gradle](https://gradle.org) - versione 6.0
 
 - [JavaMail](https://javaee.github.io/javamail/) - versione 1.4.7
 
 - [iTextPDF](https://itextpdf.com/en) - versione 7.1.11
 
-- [SLF4J API](http://www.slf4j.org/) - versione 1.8.0-beta4
+- [SLF4J API](http://www.slf4j.org/) - versione 1.7.30
 
 - [JQuery Plugin For Gradle](https://mvnrepository.com/artifact/com.jgeppert.struts2.jquery/struts2-jquery-plugin) - versione 4.0.3
 
