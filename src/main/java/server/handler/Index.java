@@ -21,7 +21,7 @@ public class Index implements IHandler {
 
 	private Index() {}
 
-	
+
 	//*singleton*/
 	public static Index getInstance() {
 		if (instance == null) {

@@ -5,7 +5,8 @@ var timer = 1
 
 window.onload = function() {
   startPage()
-  startTimer()
+  $('.buttons button[name="back"]').css("opacity", "0.5").css("cursor", "no-drop");
+  //startTimer()
 }
 
 $('#total .sconto button').on('click', function() {
@@ -23,6 +24,7 @@ $('#total .card button').on('click', function() {
 
 
 function discoFunc() {
+  $('.loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/shopCart",
@@ -32,23 +34,24 @@ function discoFunc() {
       price: $('#total .card #totalPrice').text().split(" ")[1]
     },
     success: function(response) {
+      $('.loader').css("visibility", "hidden")
 
       //nel caso non funziona ritorno 0 dal server
-      if (response == '0.0') {
-        $('#total #buyMess').text("Code not avaliable")
-      }
-      if (response == '-1.0') {
+      if (response === "not") {
+        $('#total #buyMess').text("Please enter a valid code")
+      } else if (response === "already") {
         $('#total #buyMess').text("Code already used")
       } else {
         $('#total #buyMess').text("Code successfully applied")
         //cambio il prezzo visualizzato
-        $('#total .card #totalPrice').text("Euro " + response)
+        $('#total .card #totalPrice').text("€ " + response)
       }
     }
   })
 }
 
 function buyFunc() {
+  var data = $('.deadline input').val().split("-")
   $('.loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
@@ -56,7 +59,7 @@ function buyFunc() {
     data: {
       action: "buy",
       codeCard: $('.cardNumber input').val(),
-      date: $('.deadline input:nth-child(2)').val() + "/" + $('.deadline input:last-child').val(),
+      date: data[1] + "/" + data[0],
       cvv: $('.cvv input').val(),
       email: $('.insertEmail input').val()
     },
@@ -92,6 +95,11 @@ function startPage() {
 }
 
 $('.buttons button[name="back"]').on('click', function() {
+  $('.buttons button[name="continue"]').css("opacity", "1").css("cursor", "pointer");
+  if (page == 2) {
+    $(this).css("opacity", "0.5").css("cursor", "no-drop");
+  }
+
   if (page == 1) {
     return
   }
@@ -107,8 +115,14 @@ $('.buttons button[name="back"]').on('click', function() {
 })
 
 $('.buttons button[name="continue"]').on('click', function() {
+  $('.buttons button[name="back"]').css("opacity", "1").css("cursor", "pointer");
+
+  if (page == 3) {
+    $(this).css("opacity", "0.5").css("cursor", "no-drop");
+  }
+
   if (page == 4) {
-    return
+    return;
   }
 
   $(element).removeClass('active')

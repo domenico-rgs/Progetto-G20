@@ -21,7 +21,7 @@ public class Movie implements IHandler {
 
 	private Movie() {}
 
-	
+
 	//*singleton*/
 	public static Movie getInstance() {
 		if (instance == null) {
@@ -31,7 +31,7 @@ public class Movie implements IHandler {
 		return instance;
 	}
 
-	
+
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {

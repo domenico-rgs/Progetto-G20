@@ -62,12 +62,13 @@ public class Theatre implements IHandler {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String [] seats = req.getParameter("seat").split("-");
-		String id = req.getParameter("id");
 
 		try {
+
 			Cinema.getCinema().updateShopCartItems(req.getParameter("id"), seats);
-			//false = set to busy
-			Cinema.getCinema().setAvailability(id, seats, false);
+
+			String shopID = Cinema.getCinema().getShopCart().generateID();
+			resp.getWriter().write(shopID);
 		}catch (Exception e) {
 			e.printStackTrace();
 			resp.getWriter().write("Error");
@@ -88,7 +89,7 @@ public class Theatre implements IHandler {
 			String row;
 			String[] col;
 
-			
+
 			while ((row = file.readLine()) != null) {
 
 				//empty lines

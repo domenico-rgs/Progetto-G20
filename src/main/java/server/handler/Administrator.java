@@ -15,9 +15,12 @@ import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SeatException;
 
+
 /**this class is the controller that binds the administrator page to logic */
 public class Administrator implements IHandler {
 	private static Administrator instance = null;
+
+
 
 	private Administrator() {}
 
@@ -31,7 +34,7 @@ public class Administrator implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		List<String> categoryList = new ArrayList<>();
 
 		for (TypeCategory cat: TypeCategory.values()) {
@@ -50,6 +53,7 @@ public class Administrator implements IHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 
@@ -69,4 +73,6 @@ public class Administrator implements IHandler {
 		}
 		resp.getWriter().write(message);
 	}
+
+
 }

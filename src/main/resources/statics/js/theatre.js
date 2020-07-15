@@ -24,6 +24,11 @@ $('#buyTicket').on('click', function() {
     seats = seats + $(this).attr("pos") + "-"
   })
 
+  if (seats == "") {
+    $('#error').text("Please select valid seat")
+    return
+  }
+
 
   var ajax = $.ajax({
     type: "POST",
@@ -39,7 +44,7 @@ $('#buyTicket').on('click', function() {
         return
       }
 
-      window.location.href = "/shopCart?id=" + $('title').attr("idvalue")
+      window.location.href = "/shopCart?shopID=" + resp
     }
   })
 

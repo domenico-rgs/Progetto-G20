@@ -18,6 +18,8 @@ public class GetShowingInf {
 			String title = req.getParameter("title");
 			String message = "";
 
+			if(title == null || title.contentEquals("")) return "";
+
 			for (MovieShowing sh : Cinema.getCinema().getMovieShowingList(title) ) {
 				message += sh.getId() + "@";
 			}
@@ -26,7 +28,7 @@ public class GetShowingInf {
 
 		case "getINF":
 			String id = req.getParameter("id");
-			if (id == null) return "";
+			if (id == null || id.contentEquals("")) return "";
 			try {
 				MovieShowing m = Cinema.getCinema().getMovieShowing(id);
 				String inf =  m.getTheatreName() + "@" + m.getPrice() +

@@ -2,6 +2,7 @@ package server.domain.payment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ShopCart {
 	/**this class works as a shopping cart */
@@ -9,15 +10,17 @@ public class ShopCart {
 	private String idSh;
 	private List<String> bufferDiscountCode;
 	private double total;
+	private String tmpID;
 
 	public ShopCart () {
 		bufferDiscountCode = new ArrayList<>();
 		total = 0;
 		idSh = null;
+		tmpID = null;
 	}
 
 	/**
-	 * this method permits to add a new discount code
+	 * this method permits to add a new discount code to buffer to check if will be used again
 	 * @param code discount code
 	 */
 	public void addCode(String code) {
@@ -48,19 +51,23 @@ public class ShopCart {
 		total = 0;
 		idSh = null;
 		seats = null;
+		tmpID = null;
+	}
+
+	public String generateID() {
+		UUID id = UUID.randomUUID();
+		this.tmpID = id.toString();
+		return this.tmpID;
+	}
+
+	public String getID(){
+		return this.tmpID;
 	}
 
 
 	public double getTotal() {
 		//ritorna il prezzo con due cifre decimali
 		return (double) Math.round(this.total * 100) / 100;
-	}
-
-	/**
-	 * it sets to 0 the value of "total"
-	 */
-	public void setZeroTotal() {
-		total = 0;
 	}
 
 	/**
@@ -90,4 +97,5 @@ public class ShopCart {
 	public void setIdSh(String idSh) {
 		this.idSh = idSh;
 	}
+
 }

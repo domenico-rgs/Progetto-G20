@@ -88,15 +88,13 @@ double price
           <!-- Card div -->
           <div id="paycard">
             <div class="cardNumber">
-              <label for="">Card Number: </label>
-              <input maxlength="16">
+              <label for="number">Card Number: </label>
+              <input name="number" maxlength="16">
             </div>
 
             <div class="deadline">
-              <label for="">Deadline: </label>
-              <input maxlength="2">
-              <p> / </p>
-              <input maxlength="2">
+              <label for="date">Deadline: </label>
+              <input name="date" type="month">
             </div>
 
             <div class="cvv">
@@ -109,8 +107,7 @@ double price
           <div id="total">
             <div class="card">
               <h1>Total</h1>
-              <p id="totalPrice" price='@price'>Euro @price</p>
-              <p id="discount"></p>
+              <p id="totalPrice" price='@price'>&euro; @price</p>
 
               <button type="button">ACQUISTA</button>
             </div>
@@ -135,10 +132,10 @@ double price
           <button name="continue">Continue</button>
         </div>
 
-        <div class="timer">
+        <!-- <div class="timer">
           <p>Complete purchase before: </p>
           <p id="demo"></p>
-        </div>
+        </div> -->
 
 
       </div>

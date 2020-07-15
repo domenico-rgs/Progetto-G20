@@ -9,7 +9,7 @@ body {
   height: 100%;
   background-color: rgb(171, 171, 171, 0.5);
   z-index: 100000;
-  visibility: visible;
+  visibility: hidden;
   opacity: 1;
 }
 
@@ -64,8 +64,8 @@ body {
   min-height: 100%;
   max-height: 100%;
   background-color: #dedede;
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
 }
 
 #three::-webkit-scrollbar {
@@ -209,6 +209,10 @@ body {
   color: rgb(30, 63, 97);
 }
 
+.contentAdmin label {
+  color: black;
+}
+
 .contentAdmin p.message {
   text-align: center;
 }
@@ -224,6 +228,10 @@ body {
 #introduzione img {
   height: 256px;
   width: 256px;
+}
+
+#multiShowings #beetween input {
+  width: 30%;
 }
 
 /* menu di sotto gestione selezionati da bottone*/

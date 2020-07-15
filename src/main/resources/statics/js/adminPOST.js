@@ -24,7 +24,8 @@ $('#deleteTheatre #remove').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "RemoveTheatre",
+      requestPost: "DeleteItem",
+      object: "theatre",
       name: $('#deleteTheatre #theatre').val(),
     },
     success: function(response) {
@@ -52,6 +53,29 @@ $('#addShowing #add').on('click', function() {
     success: function(response) {
       $('#addShowing .loader').css("visibility", "hidden")
       $('#addShowing .message').text(response)
+      reloadGeneral()
+    }
+  })
+});
+
+//add multiple Showings
+$('#multiShowings #add').on('click', function() {
+  $('#multiShowings .loader').css("visibility", "visible")
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "AddMultiShowing",
+      movie: $('#multiShowings #movie').val(),
+      theatre: $('#multiShowings  #theatre').val(),
+      dateStart: $('#multiShowings  #dateStart').val(),
+      dateFinal: $('#multiShowings  #dateFinal').val(),
+      hour: $('#multiShowings  #hour').val(),
+      price: $('#multiShowings  #price').val()
+    },
+    success: function(response) {
+      $('#multiShowings .loader').css("visibility", "hidden")
+      $('#multiShowings .message').text(response)
       reloadGeneral()
     }
   })
@@ -135,8 +159,8 @@ $('#editShowing #remove').on('click', function() {
       id: $('#editShowing  #idS').val(),
     },
     success: function(response) {
-      $('#editMovie .loader').css("visibility", "hidden")
-      $('#editMovie .message').text(response)
+      $('#editShowing .loader').css("visibility", "hidden")
+      $('#editShowing .message').text(response)
       reloadGeneral()
     }
   })

@@ -32,8 +32,10 @@ List<String> categoryList
                   <li value="addMovie">Add Movie</li>
                   <li value="editMovie">Edit Movie</li>
                   <li value="addShowing">Add Showing</li>
+                  <li value="multiShowings">Add Multi Showings</li>
                   <li value="editShowing">Edit Showing</li>
                   <li value="discounts">Discounts</li>
+
 
                 </ul>
               </div>
@@ -87,15 +89,15 @@ List<String> categoryList
                 <div class="admin" id="addTheatre">
                   <p>Add a theatre:</p>
 
-                  <input id='name' placeholder="Name">
+                  <input id='name' placeholder="Name" autocomplete="off">
                   <button id='add'>Add</button>
 
 
                   <div class="searchDiv">
                     <textarea id="config" maxlength="640" rows="8" cols="80" placeholder="configuration
                     example:
-                    P C C C C C P
-                    D C C C C C D"></textarea>
+                    P X X X X X P
+                    D X X X X X D"></textarea>
                     <div class="leggenda">
                       <h5><strong>Legend: </strong></h5>
                       <h6>X: Normal seat</h6>
@@ -111,6 +113,8 @@ List<String> categoryList
 
                 <!-- delete theatre -->
                 <div class="admin" id="deleteTheatre">
+                  <p>Delete theatre:</p>
+
                   <input id="theatre" list="theatreList" placeholder="Select Theatre">
                   <datalist id="theatreList">
                     @for (String theatre: theatreList) {
@@ -225,13 +229,61 @@ List<String> categoryList
                     </datalist>
                   </div>
 
-                  <input id='date' placeholder="Date (ex: 12/06/2020)">
-                  <input id='hour' placeholder="Hour (ex: 18:00)">
+                  <input type="date" id='date'>
+                  <input type="time" id='hour'>
                   <input id='price' placeholder="Price (ex: 12.00)">
                   <button id='add'>Add</button>
 
                   <div class="loader"></div>
                   <p class='message'></p>
+                </div>
+
+                <div class="admin" id="multiShowings">
+                  <p>Add Multi Showings:</p>
+
+                  <div class="searchDiv">
+                    <input id="movie" list="filmList" placeholder="Select Movie">
+                    <datalist id="filmList">
+                      @for (String movie: titleMovieList) {
+                      <option value="@movie">@movie</option>
+                      }
+                    </datalist>
+
+                    <input id="theatre" list="theatreList" placeholder="Select Theatre">
+                    <datalist id="theatreList">
+                      @for (String theatre: theatreList) {
+                      <option value="@theatre">@theatre</option>
+                      }
+                    </datalist>
+                  </div>
+
+                  <p>Date and Hour:</p>
+                  <div class="searchDiv" id="beetween">
+                    <label for="">From:</label>
+                    <input type="date" id='dateStart' placeholder="start">
+                    <label for="">To:</label>
+                    <input type="date" id='dateFinal'>
+                  </div>
+
+                  <div class="searchDiv" id="beetween">
+                    <label for="">Hour:</label>
+                    <input type="time" id='hour'>
+                  </div>
+
+
+
+                  <input id='price' placeholder="Price (ex: 12.00)">
+                  <button id='add'>Add</button>
+
+                  <div class="loader"></div>
+                  <p class='message'></p>
+
+                  <details>
+                    <summary>What about?</summary>
+                    <p>If you want to add multi showings from the start date to final date, selected on above input,
+                      and from the start to final hour, it will be created many showings splitted for selected movie duration</p>
+                  </details>
+
                 </div>
 
 

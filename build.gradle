@@ -27,13 +27,13 @@ dependencies {
 	compile 'com.itextpdf:layout:7.1.11'
 	
 	// https://mvnrepository.com/artifact/org.slf4j/slf4j-nop
-	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
-	compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.8.0-beta4'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+	compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
 	
 	// https://mvnrepository.com/artifact/javax.mail/mail
 	compile group: 'javax.mail', name: 'mail', version: '1.4.7'	
 }
 
 application {
-    mainClassName = 'CinemaG20.server.Main'
+    mainClassName = 'server.Main'
 }

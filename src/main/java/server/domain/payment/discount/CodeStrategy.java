@@ -10,8 +10,8 @@ public class CodeStrategy implements TicketPricingStrategy{
 		this.percent=percent;
 	}
 
-	
-/** with these methods I extract the discount code and the discount percentage */
+
+	/** with these methods I extract the discount code and the discount percentage */
 	@Override
 	public String getCode() {
 		return code;
@@ -21,7 +21,7 @@ public class CodeStrategy implements TicketPricingStrategy{
 		return percent;
 	}
 
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

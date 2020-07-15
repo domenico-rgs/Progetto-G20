@@ -22,7 +22,7 @@ public class Catalog implements IHandler {
 
 	private Catalog() {}
 
-	
+
 	//*singleton*/
 	public static Catalog getInstance() {
 		if (instance == null) {
@@ -62,8 +62,8 @@ public class Catalog implements IHandler {
 		List<String> movieTitle;
 		try {
 			movieTitle = Cinema.getCinema().getMovieList();
-			
-		/**search if the titles contain that word*/	
+
+			/**search if the titles contain that word*/
 			for (String title: movieTitle)
 				if (title.toLowerCase().contains(search.toLowerCase())) {
 					movieList.add(Cinema.getCinema().getMovie(title));

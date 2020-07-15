@@ -31,6 +31,15 @@ body, input, select, textarea {
   margin: 0 auto;
 }
 
+summary {
+  font-size: 100%;
+  color: black;
+}
+
+details {
+  cursor: pointer;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;

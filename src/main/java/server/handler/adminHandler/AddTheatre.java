@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import server.domain.cinema.Cinema;
 import server.domain.exception.SeatException;
 
-/**this class together with others serve as a control on the admin page, precisely this 
+/**this class together with others serve as a control on the admin page, precisely this
  * deals with connecting the web interface to logic and transmitting information to create a theater*/
 
 public class AddTheatre {
@@ -15,9 +15,9 @@ public class AddTheatre {
 	public static String doAction(HttpServletRequest req) {
 		String theatreName = req.getParameter("name");
 		String config = req.getParameter("config");
-		
+
 		if(theatreName.equals(""))
-			theatreName = null;
+			return "please insert correct value for name";
 
 		try {
 			Cinema.getCinema().createTheatre(theatreName, config);

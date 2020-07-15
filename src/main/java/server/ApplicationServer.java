@@ -25,7 +25,9 @@ public class ApplicationServer {
 		handler.setStopTimeout(300000);
 		addStaticFileServing(handler);
 		server.setHandler(handler);
+
 		server.start();
+
 	}
 
 	public void stop() throws Exception {
