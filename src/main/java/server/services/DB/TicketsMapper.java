@@ -12,6 +12,10 @@ import server.domain.cinema.Ticket;
 import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 
+/**this class has the task of interacting with the database, 
+ * retrieving the requested object from the table and updating 
+ * the cache, precisely the tickets table*/
+
 public class TicketsMapper extends AbstractPersistenceMapper {
 	private Map<String, Ticket> tickets;
 	private ShowingsMapper sm;

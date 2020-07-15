@@ -11,6 +11,10 @@ import server.domain.cinema.Movie;
 import server.domain.cinema.TypeCategory;
 import server.domain.exception.SearchException;
 
+/**this class has the task of interacting with the database, 
+ * retrieving the requested object from the table and updating 
+ * the cache, precisely the movies table*/
+
 public class MoviesMapper extends AbstractPersistenceMapper {
 
 	private Map<String, Movie> movie;

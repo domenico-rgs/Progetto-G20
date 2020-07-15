@@ -16,6 +16,8 @@ import server.domain.exception.SearchException;
 import server.domain.exception.SeatException;
 import server.domain.payment.discount.TicketPricingStrategy;
 
+/**this class turns out to be the facade object that creates an indirect mapping*/
+
 public class PersistenceFacade {
 	private static PersistenceFacade instance = null;
 	private Map<Class<?>, IMapper> mapper;
