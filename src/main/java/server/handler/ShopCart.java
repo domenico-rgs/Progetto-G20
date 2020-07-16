@@ -101,7 +101,7 @@ public class ShopCart implements IHandler {
 					String id = Cinema.getCinema().getShopCart().getIdSh();
 					String[] seats = Cinema.getCinema().getShopCart().getSeats();
 					//false = set busy
-					Cinema.getCinema().setAvailability(id, seats, false);
+					Cinema.getCinema().setAvailability(id, false, seats);
 					Cinema.getCinema().getShopCart().refresh();
 				}
 

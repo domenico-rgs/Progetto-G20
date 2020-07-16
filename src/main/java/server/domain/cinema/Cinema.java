@@ -184,9 +184,10 @@ public class Cinema {
 	 * @param cardNumber card's number
 	 */
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException{
-		MailSender.sendRefundMail(code, cardNumber, ((Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class)).getTotalPrice());
+		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
+		MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
+		setAvailability(delTick.getShowing().getId(), true, delTick.getSeat());
 		PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
-		//aggiungere liberaione del posto
 	}
 
 	/**
@@ -312,7 +313,7 @@ public class Cinema {
 		return showList;
 	}
 
-	synchronized public void setAvailability(String idShowing, String[] seats, boolean availability) throws SQLException {
+	synchronized public void setAvailability(String idShowing, boolean availability, String... seats) throws SQLException {
 		for(String s : seats) {
 			PersistenceFacade.getInstance().changeAvailability(idShowing, s, availability);
 		}
