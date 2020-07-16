@@ -186,6 +186,7 @@ public class Cinema {
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException{
 		MailSender.sendRefundMail(code, cardNumber, ((Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class)).getTotalPrice());
 		PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
+		//aggiungere liberaione del posto
 	}
 
 	/**
