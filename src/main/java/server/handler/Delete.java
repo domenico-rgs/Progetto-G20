@@ -43,7 +43,7 @@ public class Delete implements IHandler {
 			Cinema.getCinema().deleteTicket(ticket, cardN);
 			resp.getWriter().write("Ticket delete with success");
 		}catch (Exception e) {
-			e.toString();
+			e.printStackTrace();
 			resp.getWriter().write("Ticket code or card number not correct");
 		}
 	}
