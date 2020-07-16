@@ -55,3 +55,4 @@ http://localhost:8080
 - #### Amministratore
 Supponendo che la connessione avvenga dalla stessa macchina su cui è attivo il server, connettersi al server alla pagina:
 http://localhost:8080/administrator
+<br> La password di default è *password*
