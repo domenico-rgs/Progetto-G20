@@ -134,7 +134,7 @@ List<String> categoryList
                   <p>Edit or remove Movie:</p>
 
                   <div class="searchDiv">
-                    <input id="movie" list="filmList" placeholder="Search Film">
+                    <input id="movie" list="filmList" placeholder="Search Film" readonly>
                     <datalist id="filmList">
                       @for (String movie: titleMovieList) {
                       <option value="@movie">@movie</option>
