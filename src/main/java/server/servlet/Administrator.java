@@ -60,7 +60,7 @@ public class Administrator implements IHandler {
 		 * from the class with same name of requestPost parameter
 		 */
 		try {
-			message = (String)Class.forName("server.servlet.adminHandler." + req.getParameter("requestPost")).
+			message = (String)Class.forName("server.servlet.admin." + req.getParameter("requestPost")).
 					getMethod("doAction", HttpServletRequest.class).invoke(null, req);
 		}catch (Exception e) {
 			e.printStackTrace();
