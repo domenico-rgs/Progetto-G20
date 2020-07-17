@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import server.domain.exception.SeatException;
+import server.exception.SeatException;
 
 /** This class represents a cinema's theatre. */
 public class Theatre {

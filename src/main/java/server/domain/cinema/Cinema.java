@@ -14,23 +14,23 @@ import java.util.Set;
 
 import javax.mail.MessagingException;
 
-import server.MailSender;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
-import server.domain.exception.OverlapException;
-import server.domain.exception.PaymentException;
-import server.domain.exception.SearchException;
-import server.domain.exception.SeatException;
-import server.domain.payment.PaymentFactory;
 import server.domain.payment.ShopCart;
 import server.domain.payment.discount.PricingStrategyFactory;
 import server.domain.payment.discount.TicketPricingStrategy;
-import server.services.DB.MoviesMapper;
-import server.services.DB.OIDCreator;
-import server.services.DB.PersistenceFacade;
-import server.services.DB.ShowingsMapper;
-import server.services.DB.TheatresMapper;
-import server.services.DB.TicketsMapper;
+import server.exception.OverlapException;
+import server.exception.PaymentException;
+import server.exception.SearchException;
+import server.exception.SeatException;
+import server.services.mail.MailSender;
+import server.services.payment.PaymentFactory;
+import server.services.persistence.MoviesMapper;
+import server.services.persistence.OIDCreator;
+import server.services.persistence.PersistenceFacade;
+import server.services.persistence.ShowingsMapper;
+import server.services.persistence.TheatresMapper;
+import server.services.persistence.TicketsMapper;
 
 /**
  * Facade controller for managing reservations in a cinema
@@ -369,8 +369,8 @@ public class Cinema {
 	 * @return true if ticket is bought
 	 */
 	synchronized public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, MessagingException, PaymentException, FileNotFoundException {
-		List<Ticket> ticketList = createTickets(this.shopCart.getIdSh(), this.shopCart.getSeats());
-		boolean result = PaymentFactory.getInstance().getSimPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
+		List<Ticket> ticketList = createTickets(shopCart.getIdSh(), shopCart.getSeats());
+		boolean result = PaymentFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, ticketList);
 			return true;

@@ -3,9 +3,9 @@ package server.domain.payment.discount;
 import java.sql.SQLException;
 import java.util.List;
 
-import server.domain.exception.SearchException;
-import server.services.DB.DiscountCodesMapper;
-import server.services.DB.PersistenceFacade;
+import server.exception.SearchException;
+import server.services.persistence.DiscountCodesMapper;
+import server.services.persistence.PersistenceFacade;
 
 /**This class is a factory with the aim to create discount code strategy */
 public class PricingStrategyFactory {
