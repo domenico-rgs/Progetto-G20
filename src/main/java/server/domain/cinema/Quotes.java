@@ -8,7 +8,8 @@ import java.util.List;
 
 /** This class collects many quotes used for the homepage of the app */
 public class Quotes {
-	private ArrayList<String> quote, author;
+	private static ArrayList<String> quote;
+	private static ArrayList<String> author;
 
 	public Quotes() throws IOException {
 		quote = new ArrayList<>();
@@ -33,7 +34,7 @@ public class Quotes {
 	 * Creates and return a list where the quote is saved in the first element and the film in the second
 	 * @return the list with the author and his quote
 	 */
-	protected List<String> getQuotes() {
+	public static List<String> getQuotes() {
 		int random = (int)(Math.random()*quote.size());
 		List<String> quoteList = new ArrayList<>();
 		quoteList.add(quote.get(random));
