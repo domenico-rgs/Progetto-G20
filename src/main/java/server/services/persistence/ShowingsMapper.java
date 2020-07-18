@@ -167,6 +167,12 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		return showings;
 	}
 
+	/**
+	 * Method that checks whether a showing has some seats occupied
+	 * @param OID identifier of the theatre
+	 * @return
+	 * @throws SQLException
+	 */
 	private boolean isUsed(String OID) throws SQLException {
 		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM AVAILABILITY WHERE SHOWINGID=? AND AVAILABLE=0");
 		pstm.setString(1,OID);
@@ -178,6 +184,11 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 			return true;
 	}
 
+	/**
+	 * Delete showings if its date has passed compared to that indicated
+	 * @param millis date in milliseconds before which to cancel all projections
+	 * @throws SQLException
+	 */
 	protected void deleteExpiredShowing(long millis) throws SQLException {
 		PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE id!='' and dateShow< ?");
 		stm.setObject(1, new java.sql.Timestamp(millis));

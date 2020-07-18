@@ -110,6 +110,12 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 		}
 	}
 
+	/**
+	 * Method that checks whether a movie is used in a showing
+	 * @param OID identifier of the theatre
+	 * @return
+	 * @throws SQLException
+	 */
 	private boolean isUsed(String OID) throws SQLException {
 		PreparedStatement pstm = conn.prepareStatement("SELECT COUNT(*) FROM MOVIESHOWINGS WHERE MOVIETITLE=?");
 		pstm.setString(1,OID);
