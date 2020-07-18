@@ -8,5 +8,9 @@ public interface TicketPricingStrategy {
 	 * @return discounted price of the percentage of the code
 	 */
 	double getTotalPrice(double price);
+
+	/**
+	 * @return the code of the discount
+	 */
 	String getCode();
 }

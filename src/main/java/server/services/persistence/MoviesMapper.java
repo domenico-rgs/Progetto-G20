@@ -11,14 +11,18 @@ import server.domain.cinema.Movie;
 import server.domain.cinema.TypeCategory;
 import server.exception.SearchException;
 
-/**this class has the task of interacting with the database,
- * retrieving the requested object from the table and updating
- * the cache, precisely the movies table*/
-
+/**
+ * It is the mapper of the table "Movies"
+ */
 public class MoviesMapper extends AbstractPersistenceMapper {
 
 	private Map<String, Movie> movie;
 
+	 /**
+     * Initialize movie with
+     * the movies which are registered  when the system is set up.
+     * @throws SQLException
+     */
 	public MoviesMapper() throws SQLException {
 		super("MOVIES");
 		this.movie = new HashMap<>();
@@ -26,8 +30,15 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	protected Object getObjectFromTable(String OID) {
-		return null;
+	protected Object getObjectFromTable(String OID) throws ObjectNotFoundException, SQLException {
+		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE title = ?");
+		pstm.setString(1,OID);
+		ResultSet rs = pstm.executeQuery();
+		if(!rs.next())
+			throw new ObjectNotFoundException();
+		
+		return new Movie(rs.getString(1),rs.getInt(2),
+				rs.getString(3),rs.getString(4), TypeCategory.valueOf(rs.getString(5).toUpperCase()));
 	}
 
 	@Override
@@ -90,7 +101,7 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 
 	protected void setUp() throws SQLException {
 		Statement stm = super.conn.createStatement();
-		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
+		ResultSet rs = stm.executeQuery("SELECT * FROM "+super.tableName);
 		while (rs.next()){
 			Movie tmp = new Movie(rs.getString(1),rs.getInt(2),
 					rs.getString(3),rs.getString(4), TypeCategory.valueOf(rs.getString(5).toUpperCase()));

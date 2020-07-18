@@ -15,9 +15,8 @@ public class Seat {
 		return position;
 	}
 
-	//no addition to the showing price
 	public double getAddition() {
-		return 1.0;
+		return 1.0; //no addition to the showing price
 	}
 
 	@Override

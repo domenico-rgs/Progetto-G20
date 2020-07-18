@@ -28,41 +28,47 @@ public class Theatre {
 	 */
 	public void createSeats(String config) throws IOException, SeatException {
 		String[] s = config.split("\\n");
-		int rowNum=0;
 		for(int i =0; i<s.length; i++) {
 			String[] tmp = s[i].split("\\s+");
-			addSeats(tmp, rowNum++); //adds seats for the current row to the seat list
+			addSeats(tmp, i); //adds seats for the current row to the seat list
 		}
 		createConfigFile(config);
 	}
 
 	/**
-	 * This is a private method which adds seats to the seat list
+	 * Create the seats in a room from a vector indicating the places in a row
+	 * X = normal seat
+	 * P = premium seat
+	 * D = disable seat
 	 * @param row seats lines
 	 * @param rowNum number of seats lines
 	 * @throws SeatException this exception occurs if there are no correct inputs in the lines
 	 */
 	private void addSeats(String[] row, int rowNum) throws SeatException {
-		for(int j = 0; j<row.length; j++)
+		for(int j = 0; j<row.length; j++) {
+			//the position is calculated so that the row is identified by a letter and the seats with increasing numbers from 0
+			String position = Character.toString(65 + rowNum) + j;
+
 			if(row[j].equalsIgnoreCase("X")) {
-				seatsList.put(Character.toString(65 + rowNum) + j, new Seat(Character.toString(65 + rowNum) + j));
+				seatsList.put(position, new Seat(position));
 			} else if (row[j].equalsIgnoreCase("P")) {
-				seatsList.put(Character.toString(65 + rowNum) + j, new PremiumSeat(Character.toString(65 + rowNum) + j));
+				seatsList.put(position, new PremiumSeat(position));
 			} else if (row[j].equalsIgnoreCase("D")) {
-				seatsList.put(Character.toString(65 + rowNum) + j, new DisabledSeat(Character.toString(65 + rowNum) + j));
+				seatsList.put(position, new DisableSeat(position));
 			} else
 				throw new SeatException("Unrecognized seat type, recheck the file");
+		}
 	}
 
 	/**
-	 * It creates a configuration file.
+	 * It creates and stores the configuration file of the theatre
 	 * @param config this is the string which represents the theatre's seats configuration
 	 * @return return path's configuration file
 	 * @throws FileNotFoundException it occurs if the received string is not correct
 	 */
 	private String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
-		config = config.replaceAll("[^\\S\\r\\n]+"," "); //the regex expression is used to remove "extra" spaces if they are added
+		config = config.replaceAll("[^\\S\\r\\n]+"," "); //regex expression is used to remove "extra" spaces if they are added
 
 		out.println(config);
 		out.close();

@@ -12,6 +12,7 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.MovieShowing;
+import server.services.persistence.ObjectNotFoundException;
 
 /**this class is a controller that manages the movie page*/
 
@@ -38,7 +39,7 @@ public class Movie implements IHandler {
 			List<MovieShowing> showingsForMovie = Cinema.getCinema().getMovieShowingList(movie.getTitle());
 			resp.getWriter().write(Rythm.render("movieInformation.html", movie, showingsForMovie));
 
-		} catch (SQLException | IOException e) {
+		} catch (SQLException | IOException | ObjectNotFoundException e) {
 			resp.getWriter().write(Rythm.render("404.html"));
 			e.toString();
 		}

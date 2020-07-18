@@ -12,15 +12,18 @@ import server.domain.cinema.theatre.Theatre;
 import server.exception.SearchException;
 import server.exception.SeatException;
 
-/**this class has the task of interacting with the database,
- * retrieving the requested object from the table and updating
- * the cache, precisely the theatres table*/
-
-
+/**
+ * It is the mapper of the table "Theatres"
+ */
 public class TheatresMapper extends AbstractPersistenceMapper {
 	private Map<String, Theatre> theatres;
 	private SeatsMapper sm ;
 
+	/**
+     * Initialize theatres with
+     * the theatres which are registered  when the system is set up.
+     * @throws SQLException
+     */
 	public TheatresMapper(SeatsMapper sm) throws SQLException {
 		super("THEATRES");
 		this.sm=sm;
@@ -29,7 +32,20 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	protected Object getObjectFromTable(String OID) {
+	protected Object getObjectFromTable(String OID) throws SQLException, ObjectNotFoundException {
+		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE theatreName = ?");
+		pstm.setString(1,OID);
+		ResultSet rs = pstm.executeQuery();
+		if(!rs.next())
+			throw new ObjectNotFoundException();
+
+		try {
+			Theatre tmp = new Theatre(rs.getString(1));
+			tmp.setSeatsList(sm.getSeatsList(tmp.getTheatreName()));
+			return tmp;
+		} catch (IOException | SeatException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

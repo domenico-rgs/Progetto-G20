@@ -1,6 +1,8 @@
 package server.services.payment;
 
-/**This singleton class creates different payment items. */
+/**
+ *  A class which is the Factory for the different type of payment
+ */
 public class PaymentFactory {
 	private static PaymentFactory istance = null;
 	private PaymentAdapter paymentSimulator;
@@ -10,7 +12,7 @@ public class PaymentFactory {
 	}
 
 	/**
-	 * Allows you to get a SimPaymentAdapter to make a payment
+	 * Allows you to get a SimPaymentAdapter to make a payment simulation
 	 * @return PaymenAdapter "SimPaymentAdapter"
 	 */
 	public PaymentAdapter getPaymentAdapter() {
@@ -20,6 +22,12 @@ public class PaymentFactory {
 		return paymentSimulator;
 	}
 
+	/**
+	 * 'Pattern Singleton Implementation'
+	 *
+	 * If the object has not already been instanced, it is instanced and it is returned.
+	 * @return instance(PaymentFactory)
+	 */
 	public static PaymentFactory getInstance() {
 		if (istance == null) {
 			istance = new PaymentFactory();

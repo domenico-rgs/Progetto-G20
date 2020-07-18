@@ -5,9 +5,13 @@ import java.util.List;
 
 import server.exception.SearchException;
 import server.services.persistence.DiscountCodesMapper;
+import server.services.persistence.ObjectNotFoundException;
 import server.services.persistence.PersistenceFacade;
 
-/**This class is a factory with the aim to create discount code strategy */
+/**
+ * A class which is the Factory of the discounts.
+ * It is implemented through Singleton pattern implementation.
+ */
 public class PricingStrategyFactory {
 	private static PricingStrategyFactory istance = null;
 
@@ -34,12 +38,13 @@ public class PricingStrategyFactory {
 	}
 
 	/**
-	 * It permits to obtain a code strategy
+	 * It permits to obtain a discount
 	 * @param discount discount code
 	 * @return the discount object
 	 * @throws SQLException errors with the database and / or with the constraints
+	 * @throws ObjectNotFoundException
 	 */
-	public TicketPricingStrategy getCodeStrategy(String discount) throws SQLException {
+	public TicketPricingStrategy getDiscount(String discount) throws SQLException, ObjectNotFoundException {
 		return (TicketPricingStrategy) PersistenceFacade.getInstance().get(discount, DiscountCodesMapper.class);
 	}
 
@@ -51,6 +56,11 @@ public class PricingStrategyFactory {
 		return PersistenceFacade.getInstance().getDiscountList();
 	}
 
+	/**
+	 * 'Pattern Singleton Implementation'
+	 * If the object has not already been instanced, it is instanced and it is returned.
+	 * @return instance(PricingStrategyFactory)
+	 */
 	public static PricingStrategyFactory getInstance() {
 		if (istance == null) {
 			istance = new PricingStrategyFactory();

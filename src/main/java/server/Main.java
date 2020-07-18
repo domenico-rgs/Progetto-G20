@@ -20,15 +20,16 @@ public class Main {
 		}
 
 		ApplicationServer server = new ApplicationServer(portNumber, new CinemaServlet());
-		
+
 		PersistenceFacade.getInstance();
 		autoShowDelete();
-		
+
 		server.start();
 	}
 
-	/*
-	 * Method that starts a thread for the automatic elimination of projections whose date is earlier than the current system date
+	/**
+	 * Method that starts a thread for the automatic elimination of showings whose date is earlier than the current system date
+	 * Repeated every hour
 	 */
 	private static void autoShowDelete() {
 		final Runnable runnab = new Runnable() {

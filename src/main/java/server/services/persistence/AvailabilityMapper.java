@@ -7,12 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import server.domain.cinema.MovieShowing;
-import server.domain.cinema.theatre.DisabledSeat;
+import server.domain.cinema.theatre.DisableSeat;
 import server.domain.cinema.theatre.PremiumSeat;
 import server.domain.cinema.theatre.Seat;
 
-/**this class has the task of returning the info concerning the database tables*/
-
+/**
+ * It is the mapper of the table "Availability"
+ */
 public class AvailabilityMapper extends AbstractPersistenceMapper {
 	public AvailabilityMapper() throws SQLException {
 		super("AVAILABILITY");
@@ -31,7 +32,6 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 	@Override
 	protected void updateCache(String OID, Object obj) {
 	}
-
 
 	@Override
 	public void delete(String OID) throws SQLException {
@@ -62,19 +62,11 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				+ " WHERE BINARY showingID = ?" );
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
+		
 		while (rs.next()) {
-			switch(rs.getString(3)) {
-			case "NORMAL":
-				availabilityList.put(new Seat(rs.getString(2)),rs.getBoolean(4));
-				break;
-			case "PREMIUM":
-				availabilityList.put(new PremiumSeat(rs.getString(2)), rs.getBoolean(4));
-				break;
-			case "DISABLED":
-				availabilityList.put(new DisabledSeat(rs.getString(2)), rs.getBoolean(4));
-				break;
-			}
+			availabilityList.put(chooseSeat(rs.getString(3), rs.getString(2)), rs.getBoolean(4));
 		}
+		
 		return availabilityList;
 	}
 
@@ -93,19 +85,23 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				" JOIN SEATS ON (SEATS.POS=AVAILABILITY.POS) AND (SEATS.THEATRE=AVAILABILITY.THEATRE) WHERE BINARY showingID =? and available=1" );
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
+		
 		while (rs.next()) {
-			switch(rs.getString(3)) {
-			case "NORMAL":
-				availabilityList.put(new Seat(rs.getString(2)),rs.getBoolean(4));
-				break;
-			case "PREMIUM":
-				availabilityList.put(new PremiumSeat(rs.getString(2)), rs.getBoolean(4));
-				break;
-			case "DISABLED":
-				availabilityList.put(new DisabledSeat(rs.getString(2)), rs.getBoolean(4));
-				break;
-			}
+			availabilityList.put(chooseSeat(rs.getString(3), rs.getString(2)), rs.getBoolean(4));
 		}
+		
 		return availabilityList;
+	}
+	
+	private Seat chooseSeat(String type, String position) {
+		switch(type) {
+		case "NORMAL":
+			return new Seat(position);
+		case "PREMIUM":
+			return new PremiumSeat(position);
+		case "DISABLED":
+			return new DisableSeat(position);
+		}
+		return null;
 	}
 }

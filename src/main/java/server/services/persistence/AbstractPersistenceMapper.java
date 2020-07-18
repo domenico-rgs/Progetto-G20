@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import server.exception.SearchException;
-
 /**
  * Abstract class which has to be extended by all the Mappers.
  * Each represents a table of the Database and it only can access that table.
@@ -28,9 +26,10 @@ public abstract class AbstractPersistenceMapper implements IMapper {
 	 * Method called when an objects is requested .
 	 * @param OID is the code (by whom the object is identified in the system)of the object which is requested.
 	 * @return the object
+	 * @throws ObjectNotFoundException
 	 */
 	@Override
-	public synchronized Object get(String OID) throws SQLException{
+	public synchronized Object get(String OID) throws SQLException, ObjectNotFoundException{
 		Object obj = getObjectFromCache(OID);
 		if(obj == null){
 			obj = getObjectFromTable(OID);
@@ -45,8 +44,9 @@ public abstract class AbstractPersistenceMapper implements IMapper {
 	 * @param OID is the key of the object
 	 * @return the object requested
 	 * @throws SQLException
+	 * @throws ObjectNotFoundException
 	 */
-	protected abstract Object getObjectFromTable (String OID) throws SQLException;
+	protected abstract Object getObjectFromTable (String OID) throws SQLException, ObjectNotFoundException;
 
 	/**
 	 * Method which get the object , represented by its key, from the cache of the mapper
@@ -62,13 +62,4 @@ public abstract class AbstractPersistenceMapper implements IMapper {
 	 * @param obj the object itself
 	 */
 	protected abstract void updateCache(String OID,Object obj);
-
-	/**
-	 * Method which delete the object linked to the mapper, represented by its key, from the table
-	 * @param OID is the key of the object
-	 * @return the object requested
-	 * @throws SQLException
-	 */
-	@Override
-	public abstract void delete(String OID) throws SQLException, SearchException;
 }

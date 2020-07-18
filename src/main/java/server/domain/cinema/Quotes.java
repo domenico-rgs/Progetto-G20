@@ -17,7 +17,7 @@ public class Quotes {
 	}
 
 	/**
-	 * This methods permits to use quotes contained in a file
+	 * Get quotes from a file where first row indicates the quote and the second the film from which is taken
 	 */
 	private void populateCitations() throws IOException {
 		BufferedReader inFile = new BufferedReader(new FileReader("src/main/resources/statics/quotes.txt"));
@@ -30,7 +30,7 @@ public class Quotes {
 	}
 
 	/**
-	 * Creates a list where the quote is saved in the first element and the author in the second
+	 * Creates and return a list where the quote is saved in the first element and the film in the second
 	 * @return the list with the author and his quote
 	 */
 	protected List<String> getQuotes() {

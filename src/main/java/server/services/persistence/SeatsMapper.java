@@ -6,16 +6,15 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import server.domain.cinema.theatre.DisabledSeat;
+import server.domain.cinema.theatre.DisableSeat;
 import server.domain.cinema.theatre.PremiumSeat;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 import server.exception.SearchException;
 
-/**this class has the task of interacting with the database,
- * retrieving the requested object from the table and updating
- * the cache, precisely the seats table*/
-
+/**
+ * It is the mapper of the table "Seats"
+ */
 public class SeatsMapper extends AbstractPersistenceMapper {
 	public SeatsMapper() throws SQLException {
 		super("SEATS");
@@ -62,6 +61,7 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE BINARY theatre = ?" );
 		pstm.setString(1, theatreName);
 		ResultSet rs = pstm.executeQuery();
+		
 		while (rs.next()) {
 			switch(rs.getString(3)) {
 			case "NORMAL":
@@ -70,8 +70,8 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 			case "PREMIUM":
 				seatsList.put(rs.getString(1), new PremiumSeat(rs.getString(1)));
 				break;
-			case "DISABLED":
-				seatsList.put(rs.getString(1), new DisabledSeat(rs.getString(1)));
+			case "DISABLE":
+				seatsList.put(rs.getString(1), new DisableSeat(rs.getString(1)));
 				break;
 			}
 		}

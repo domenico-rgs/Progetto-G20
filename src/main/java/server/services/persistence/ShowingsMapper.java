@@ -16,15 +16,19 @@ import java.util.Map;
 import server.domain.cinema.MovieShowing;
 import server.exception.SearchException;
 
-/**this class has the task of interacting with the database,
- * retrieving the requested object from the table and updating
- * the cache, precisely the showings table*/
-
+/**
+ * It is the mapper of the table "Showings"
+ */
 public class ShowingsMapper extends AbstractPersistenceMapper {
 	private TheatresMapper tm;
 	private AvailabilityMapper am;
 	private Map<String, MovieShowing> showing;
 
+	/**
+     * Initialize showing with
+     * the showings which are registered  when the system is set up.
+     * @throws SQLException
+     */
 	public ShowingsMapper(TheatresMapper tm, AvailabilityMapper am) throws SQLException {
 		super("MOVIESHOWINGS");
 		this.showing = new HashMap<>();
@@ -42,8 +46,14 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	protected Object getObjectFromTable(String OID) {
-		return null;
+	protected Object getObjectFromTable(String OID) throws SQLException, ObjectNotFoundException {
+		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE id = ?");
+		pstm.setString(1,OID);
+		ResultSet rs = pstm.executeQuery();
+		if(!rs.next())
+			throw new ObjectNotFoundException();
+		return new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
+				(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
 	}
 
 	@Override
@@ -104,10 +114,14 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		Statement stm = super.conn.createStatement();
 		ResultSet rs = stm.executeQuery("select * from "+super.tableName);
 		while (rs.next()){
-			MovieShowing tmp = new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
-					(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
-
-			this.showing.put(rs.getString(1),tmp);
+			MovieShowing tmp;
+			try {
+				tmp = new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
+						(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+				this.showing.put(rs.getString(1),tmp);
+			} catch (NumberFormatException | ObjectNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 
 		OIDCreator.getInstance().setShowingCode(this.getLastObjectCode("id"));
@@ -119,15 +133,20 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		stm.setString(1, OID_movie);
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
-			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
-					(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
-			updateCache(ms.getId(),ms);
-			showings.add(ms);
+			
+			try {
+				MovieShowing ms = new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
+						(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+				updateCache(ms.getId(),ms);
+				showings.add(ms);
+			} catch (NumberFormatException | ObjectNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		return showings;
 	}
 
-	protected List<MovieShowing> getMovieShowingList(String OID_theatre, LocalDateTime date) throws SQLException{
+	protected List<MovieShowing> getMovieShowingList(String OID_theatre, LocalDateTime date) throws SQLException {
 		List<MovieShowing> showings = new ArrayList<>();
 		PreparedStatement stm = conn.prepareStatement("select * from "+super.tableName + " where theatre=? and (dateShow<? and dateShow>=?)");
 		stm.setString(1, OID_theatre);
@@ -135,10 +154,15 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		stm.setObject(3, new java.sql.Timestamp(date.toLocalDate().atTime(LocalTime.MIDNIGHT).toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()));
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
-			MovieShowing ms =  new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
-					(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
-			updateCache(ms.getId(),ms);
-			showings.add(ms);
+			
+			try {
+				MovieShowing ms = new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
+						(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
+				updateCache(ms.getId(),ms);
+				showings.add(ms);
+			} catch (NumberFormatException | ObjectNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		return showings;
 	}

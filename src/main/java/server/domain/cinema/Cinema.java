@@ -27,6 +27,7 @@ import server.services.mail.MailSender;
 import server.services.payment.PaymentFactory;
 import server.services.persistence.MoviesMapper;
 import server.services.persistence.OIDCreator;
+import server.services.persistence.ObjectNotFoundException;
 import server.services.persistence.PersistenceFacade;
 import server.services.persistence.ShowingsMapper;
 import server.services.persistence.TheatresMapper;
@@ -83,8 +84,9 @@ public class Cinema {
 	 * @param theatre showing's theatre
 	 * @param price showing's price
 	 * @return showing's id
+	 * @throws ObjectNotFoundException
 	 */
-	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, OverlapException, IOException, SeatException {
+	synchronized public String createMovieShowing(String movie, LocalDateTime date, String theatre, double price) throws SQLException, SearchException, OverlapException, IOException, SeatException, ObjectNotFoundException {
 		controlOverlapping(date, theatre, movie);
 		MovieShowing sh = new MovieShowing(OIDCreator.getInstance().getShowingCode(), movie, date, getTheatre(theatre), price);
 		PersistenceFacade.getInstance().put(sh.getId(),ShowingsMapper.class,sh);
@@ -97,8 +99,9 @@ public class Cinema {
 	 * @param showingID showing's id
 	 * @param seats booked seats
 	 * @return a list of tickets
+	 * @throws ObjectNotFoundException
 	 */
-	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException {
+	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException, ObjectNotFoundException {
 		MovieShowing m = getMovieShowing(showingID);
 		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
 
@@ -128,9 +131,10 @@ public class Cinema {
 	 * @param code discount's code
 	 * @param price price without discount
 	 * @return discounted price
+	 * @throws ObjectNotFoundException
 	 */
-	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, PaymentException{
-		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getCodeStrategy(code.toUpperCase());
+	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, PaymentException, ObjectNotFoundException{
+		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getDiscount(code.toUpperCase());
 
 		if(discount != null)
 			return discount.getTotalPrice(price);
@@ -157,10 +161,11 @@ public class Cinema {
 	 * @param showing showing's id
 	 * @param theatre showing's theatre
 	 * @param price showing's price
+	 * @throws ObjectNotFoundException
 	 */
-	synchronized public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException {
+	synchronized public void editShowing(String showing, String theatre, double price) throws SearchException, SQLException, ObjectNotFoundException {
 		MovieShowing s = getMovieShowing(showing);
-		s.editShowing(this.getTheatre(theatre), price);
+		s.editShowing(getTheatre(theatre), price);
 		PersistenceFacade.getInstance().updateTable(ShowingsMapper.class, s, showing);
 	}
 
@@ -170,8 +175,9 @@ public class Cinema {
 	 * @param pathCover cover's path
 	 * @param plot movie's plot
 	 * @param category movie's category
+	 * @throws ObjectNotFoundException
 	 */
-	synchronized public void editMovie(String title, String pathCover, String plot, TypeCategory category) throws SearchException, SQLException{
+	synchronized public void editMovie(String title, String pathCover, String plot, TypeCategory category) throws SearchException, SQLException, ObjectNotFoundException{
 		Movie m = getMovie(title);
 		m.editMovie(pathCover, plot, category);
 		PersistenceFacade.getInstance().updateTable(MoviesMapper.class, m, title);
@@ -182,8 +188,9 @@ public class Cinema {
 	 * it permits to delete a tickets
 	 * @param code ticket's code
 	 * @param cardNumber card's number
+	 * @throws ObjectNotFoundException
 	 */
-	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException{
+	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException{
 		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
 		MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
 		setAvailability(delTick.getShowing().getId(), true, delTick.getSeat());
@@ -193,8 +200,9 @@ public class Cinema {
 	/**
 	 * this method permits to delete a theatre
 	 * @param name theatre's name
+	 * @throws ObjectNotFoundException
 	 */
-	synchronized public void deleteTheatre(String name) throws SearchException, SQLException{
+	synchronized public void deleteTheatre(String name) throws SearchException, SQLException, ObjectNotFoundException{
 		File f = new File(getTheatre(name).getFilePath());
 		f.delete();
 		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
@@ -230,8 +238,9 @@ public class Cinema {
 	 * @param date showing's date
 	 * @param theatre showing's theatre
 	 * @param movie showing's movie
+	 * @throws ObjectNotFoundException
 	 */
-	private void controlOverlapping(LocalDateTime date, String theatre, String movie) throws SQLException, OverlapException {
+	private void controlOverlapping(LocalDateTime date, String theatre, String movie) throws SQLException, OverlapException, ObjectNotFoundException {
 		ZonedDateTime zdt = date.atZone(ZoneId.systemDefault());
 		long dateShowingSec = zdt.toInstant().getEpochSecond();
 		long movieDurationSec = this.getMovie(movie).getDuration()*60;
@@ -265,11 +274,11 @@ public class Cinema {
 		return quotes.getQuotes();
 	}
 
-	synchronized public Movie getMovie(String title) throws SQLException{
+	synchronized public Movie getMovie(String title) throws SQLException, ObjectNotFoundException{
 		return (Movie) PersistenceFacade.getInstance().get(title, MoviesMapper.class);
 	}
 
-	synchronized public Theatre getTheatre(String name) throws SQLException{
+	synchronized public Theatre getTheatre(String name) throws SQLException, ObjectNotFoundException{
 		return (Theatre) PersistenceFacade.getInstance().get(name, TheatresMapper.class);
 	}
 
@@ -279,7 +288,7 @@ public class Cinema {
 		return titleList;
 	}
 
-	synchronized public MovieShowing getMovieShowing(String id) throws SQLException{
+	synchronized public MovieShowing getMovieShowing(String id) throws SQLException, ObjectNotFoundException{
 		return (MovieShowing) PersistenceFacade.getInstance().get(id, ShowingsMapper.class);
 	}
 
@@ -341,8 +350,9 @@ public class Cinema {
 	 * @param showingID showing's id
 	 * @param seats bought seats
 	 * @return final price
+	 * @throws ObjectNotFoundException
 	 */
-	synchronized public double[] ticketsPrice(String showingID, String[] seats) throws SQLException {
+	synchronized public double[] ticketsPrice(String showingID, String[] seats) throws SQLException, ObjectNotFoundException {
 		MovieShowing m = getMovieShowing(showingID);
 		Set<Seat> sList = getAllSeatsForShowing(showingID).keySet();
 		double[] doubleList = new double[seats.length];
@@ -367,8 +377,9 @@ public class Cinema {
 	 * @param cvc card's cvc
 	 * @param emailRecipient addressee of the email
 	 * @return true if ticket is bought
+	 * @throws ObjectNotFoundException
 	 */
-	synchronized public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, MessagingException, PaymentException, FileNotFoundException {
+	synchronized public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, MessagingException, PaymentException, FileNotFoundException, ObjectNotFoundException {
 		List<Ticket> ticketList = createTickets(shopCart.getIdSh(), shopCart.getSeats());
 		boolean result = PaymentFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
 		if(result) {

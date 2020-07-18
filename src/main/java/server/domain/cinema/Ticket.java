@@ -38,7 +38,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket id: " + code + "\nDate: " + showing.getDateToString() + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: € "
+		return "Code: " + code + "\nDate: " + showing.getDateToString() + "\nSeat: " + seat +"\nMovie: " + movie + "\nPrice: € "
 				+ totalPrice;
 	}
 

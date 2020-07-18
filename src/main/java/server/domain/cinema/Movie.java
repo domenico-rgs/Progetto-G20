@@ -18,7 +18,7 @@ public class Movie {
 	}
 
 	/**
-	 * This methods can modify a movie
+	 * This methods can modify a movie (except the title which identifies it)
 	 * @param pathCover this is the path of the movie's cover
 	 * @param plot movie's plot
 	 * @param category movie's category

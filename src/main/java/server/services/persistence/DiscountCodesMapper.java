@@ -12,10 +12,18 @@ import java.util.Map;
 import server.domain.payment.discount.CodeStrategy;
 import server.domain.payment.discount.TicketPricingStrategy;
 
+/**
+ * It is the mapper of the table "Discounts"
+ */
 public class DiscountCodesMapper extends AbstractPersistenceMapper {
 
 	private Map<String, CodeStrategy> discounts;
 
+	/**
+     * Initialize discounts with
+     * the discounts which are registered  when the system is set up.
+     * @throws SQLException
+     */
 	public DiscountCodesMapper() throws SQLException {
 		super("DISCOUNTS");
 		this.discounts = new HashMap<>();

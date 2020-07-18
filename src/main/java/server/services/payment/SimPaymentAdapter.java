@@ -7,7 +7,7 @@ import server.exception.PaymentException;
 
 /**This class creates a Payment simulator which can simulate a payment. */
 public class SimPaymentAdapter implements PaymentAdapter{
-	SimPaymentAdapter() {}
+	public SimPaymentAdapter() {}
 
 	@Override
 	public boolean pay(double money, String code, String date, String cvc) throws PaymentException {
@@ -25,17 +25,10 @@ public class SimPaymentAdapter implements PaymentAdapter{
 		String[] value = date.split("/");
 		LocalDate cardDate = LocalDate.of(Integer.parseInt(value[1]), Integer.parseInt(value[0]), 01);
 
-		//check that the code is only numeric and 16 digits
-		if ((code.length()==16)) {
-			if(!isNumberOnly(code))
-				throw new PaymentException("Card code must be numeric only");
-		}else
-			throw new PaymentException("The data entered is not valid");
-
-		//check that the cvc is only numeric and 3 digits
-		if((cvc.length()==3)) {
-			if(!isNumberOnly(code))
-				throw new PaymentException("CVC must be numeric only");
+		//check that the code and cvc are only numeric and 16 and 3 digits respectively
+		if (code.length()==16 && cvc.length()==3) {
+			if(!isNumberOnly(code) || !isNumberOnly(cvc))
+				throw new PaymentException("Card code or cvc must be numeric only");
 		}else
 			throw new PaymentException("The data entered is not valid");
 
@@ -45,7 +38,12 @@ public class SimPaymentAdapter implements PaymentAdapter{
 		return true;
 	}
 
-	private boolean isNumberOnly(String code) throws PaymentException {
+	/**
+	 * Check that there are only numbers in a string (code/cvc)
+	 * @param code card code or cvc
+	 * @return true if is number only
+	 */
+	private boolean isNumberOnly(String code) {
 		for (int i =0; i < code.length(); i++) {
 			char c = code.charAt(i);
 			if (c < '0' || c > '9')

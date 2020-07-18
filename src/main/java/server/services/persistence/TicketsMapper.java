@@ -10,14 +10,18 @@ import java.util.Map;
 import server.domain.cinema.Ticket;
 import server.exception.SearchException;
 
-/**this class has the task of interacting with the database,
- * retrieving the requested object from the table and updating
- * the cache, precisely the tickets table*/
-
+/**
+ * It is the mapper of the table "Tickets"
+ */
 public class TicketsMapper extends AbstractPersistenceMapper {
 	private Map<String, Ticket> tickets;
 	private ShowingsMapper sm;
 
+	/**
+     * Initialize tickets with
+     * the tickets which are registered  when the system is set up.
+     * @throws SQLException
+     */
 	public TicketsMapper(ShowingsMapper sm) throws SQLException {
 		super("TICKETS");
 		this.tickets = new HashMap<>();
@@ -26,8 +30,14 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	protected Object getObjectFromTable(String OID) {
-		return null;
+	protected Object getObjectFromTable(String OID) throws SQLException, ObjectNotFoundException {
+		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE ticketCode = ?");
+		pstm.setString(1,OID);
+		ResultSet rs = pstm.executeQuery();
+		if(!rs.next())
+			throw new ObjectNotFoundException();
+		return new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
+				(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
 	}
 
 
@@ -79,10 +89,13 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = stm.executeQuery("select ticketCode, movieTitle, occupiedSeat, showingID, totalPrice from TICKETS join MOVIESHOWINGS on TICKETS.showingID = MOVIESHOWINGS.id");
 
 		while (rs.next()){
-			Ticket tmp = new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
-					(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
-
-			this.tickets.put(rs.getString(1),tmp);
+			try {
+				Ticket tmp = new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
+						(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
+				this.tickets.put(rs.getString(1),tmp);
+			} catch (SQLException | ObjectNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

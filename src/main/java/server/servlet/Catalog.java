@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.services.persistence.ObjectNotFoundException;
 
 
 
@@ -32,22 +33,21 @@ public class Catalog implements IHandler {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
-		
+
 		MovieList.getInstance().refreshMovieList();
-		
+
 		if (req.getParameter("search").contentEquals("all") || req.getParameter("search").contentEquals("")) {
 			resp.getWriter().write(Rythm.render("catalog.html"));
 		} else {
-			List<server.domain.cinema.Movie> movieList = this.searchMovieForString(req.getParameter("search"));
-
-			if (movieList.size() == 0) {
+			List<server.domain.cinema.Movie> movieList = null;
+			try {
+				movieList = this.searchMovieForString(req.getParameter("search"));
+				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,""));
+			} catch (ObjectNotFoundException e) {
 				String messagge = req.getParameter("search") + " does not exist";
 				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,messagge));
-			} else {
-				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,""));
 			}
 		}
-
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class Catalog implements IHandler {
 	}
 
 
-	private List<server.domain.cinema.Movie> searchMovieForString(String search) {
+	private List<server.domain.cinema.Movie> searchMovieForString(String search) throws ObjectNotFoundException {
 		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
 		List<String> movieTitle;

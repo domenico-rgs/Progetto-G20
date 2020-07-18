@@ -8,7 +8,6 @@ import server.exception.SearchException;
  * Interface for Mapper Class
  */
 public interface IMapper {
-	//web-lnx243.ergonet.host
 	String DB_URL = "jdbc:mysql://185.205.41.113:3306/progG20?serverTimezone=UTC&autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
 	String USER = "cinemaG20";
 	String PASSWORD = "progettoG20";
@@ -18,8 +17,9 @@ public interface IMapper {
 	 * @param OID is the code of the object
 	 * @return the object requested
 	 * @throws SQLException
+	 * @throws ObjectNotFoundException
 	 */
-	Object  get(String OID) throws SQLException;
+	Object  get(String OID) throws SQLException, ObjectNotFoundException;
 
 	/**
 	 * Method which insert a new Object in the table belonging to he Mapper

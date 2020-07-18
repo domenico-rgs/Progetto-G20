@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.services.persistence.ObjectNotFoundException;
 
 
 /**the control class that links the index.html page to logic*/
@@ -58,7 +59,7 @@ public class Index implements IHandler {
 				movieList.add(Cinema.getCinema().getMovie(title.get(i)));
 			}
 			return movieList;
-		}catch (SQLException e) {
+		}catch (SQLException | ObjectNotFoundException e) {
 			e.printStackTrace();
 		}
 		return null;

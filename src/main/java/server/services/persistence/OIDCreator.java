@@ -2,6 +2,11 @@ package server.services.persistence;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+
+/**
+ * A class which contains all the OID ( Object Identifier ) for the objects of the system.
+ * It is implemented through Singleton pattern implementation.
+ */
 @SuppressWarnings("deprecation")
 public class OIDCreator {
 	private static OIDCreator instance = null;

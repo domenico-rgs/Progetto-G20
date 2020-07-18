@@ -22,6 +22,10 @@ public class PersistenceFacade {
 	private static PersistenceFacade instance = null;
 	private Map<Class<?>, IMapper> mapper;
 
+	/**
+	 * Instanced the PersistenceFacade.
+	 * The Map is instanced by its Factory.
+	 */
 	private PersistenceFacade() throws SQLException{
 		this.mapper = MapperFactory.getInstance().getMappers();
 	}
@@ -81,7 +85,7 @@ public class PersistenceFacade {
 		}
 	}
 
-	public Object get(String OID, Class<?> klass) throws SQLException{
+	public Object get(String OID, Class<?> klass) throws SQLException, ObjectNotFoundException{
 		return this.mapper.get(klass).get(OID);
 	}
 

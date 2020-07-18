@@ -29,6 +29,14 @@ import com.itextpdf.layout.element.Paragraph;
 import server.domain.cinema.Ticket;
 
 public class MailSender {
+	private static Properties props = new Properties();
+	private static int port = 465; //port 25 to not use SSL
+	private static String sender = "progettog20@gmail.com";
+	private static String passSender = "ViaAdolfoFerrata5";
+	private static String host = "smtp.gmail.com";
+	private static Session session;
+
+
 	/**
 	 * Send the email containing the ticket in pdf format to the user who purchased it.
 	 * @param recipient recipient email
@@ -63,6 +71,12 @@ public class MailSender {
 	}
 
 
+	/**
+	 * Generates the pdf through the iTextPDF library including the information of the tickets sold
+	 * @param ticketList
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	private static File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
 		PdfWriter writer = new PdfWriter("G20Ticket", new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
 		PdfDocument pdfDocument = new PdfDocument(writer);
@@ -77,12 +91,18 @@ public class MailSender {
 	}
 
 	private static void sendMail(String recipient, String header, String body, File attachments)  throws FileNotFoundException, MessagingException{
-		int port = 465; //port 25 to not use SSL
+		setProperties();
+		session = Session.getInstance(props, null);
 
-		Properties props = new Properties();
+		MimeMessage msg = buildMessage(recipient, header, body, attachments);
+
+		send(msg);
+	}
+
+	private static void setProperties() {
 		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.user", "progettog20@gmail.com");
-		props.put("mail.smtp.host", "smtp.gmail.com"); //host
+		props.put("mail.smtp.user", sender);
+		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", port);
 
 		// comment the following line to not use SSL
@@ -90,24 +110,29 @@ public class MailSender {
 		props.put("mail.smtp.socketFactory.port", port);
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.socketFactory.fallback", "false");
+	}
 
-		Session session = Session.getInstance(props, null);
+	private static void send(MimeMessage msg) throws MessagingException {
+		Transport transport = session.getTransport("smtps"); //("smtp") to not use SSL
+		transport.connect(host, sender, passSender);
+		transport.sendMessage(msg, msg.getAllRecipients());
+		transport.close();
+	}
 
+	private static MimeMessage buildMessage(String recipient, String header, String body, File attachments) throws MessagingException {
 		MimeBodyPart messageBodyPart1 = new MimeBodyPart();
 		MimeBodyPart messageBodyPart2 = new MimeBodyPart();
 
-		// CONSTRUCTION OF THE MESSAGE
 		Multipart multipart = new MimeMultipart();
 		MimeMessage msg = new MimeMessage(session);
 
 		// header
 		msg.setSubject(header);
 		msg.setSentDate(new Date());
-		msg.setFrom(new InternetAddress("progettog20@gmail.com"));
+		msg.setFrom(new InternetAddress(sender));
 
 		// recipient
-		msg.addRecipient(Message.RecipientType.TO,
-				new InternetAddress(recipient));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
 		// body
 		messageBodyPart1.setText(body);
@@ -123,10 +148,6 @@ public class MailSender {
 		}
 
 		msg.setContent(multipart);
-
-		Transport transport = session.getTransport("smtps"); //("smtp") to not use SSL
-		transport.connect("smtp.gmail.com", "progettog20@gmail.com", "ViaAdolfoFerrata5");
-		transport.sendMessage(msg, msg.getAllRecipients());
-		transport.close();
+		return msg;
 	}
 }

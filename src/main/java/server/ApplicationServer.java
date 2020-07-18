@@ -22,7 +22,7 @@ public class ApplicationServer {
 		server = new Server(port);
 		ServletContextHandler handler = new ServletContextHandler();
 		handler.addServlet(new ServletHolder(servlet), "/*");
-		handler.setStopTimeout(300000);
+		handler.setStopTimeout(300000); //the connection is closed after 5 minutes
 		addStaticFileServing(handler);
 		server.setHandler(handler);
 
