@@ -14,7 +14,7 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 
-public class MovieList implements IHandler {
+public class MovieList implements IHandlerState {
 	private static MovieList instance = null;
 
 	/** this class is used in the catalog to keep track of a list of films */

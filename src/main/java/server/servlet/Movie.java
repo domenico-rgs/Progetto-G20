@@ -16,7 +16,7 @@ import server.exception.ObjectNotFoundException;
 
 /**this class is a controller that manages the movie page*/
 
-public class Movie implements IHandler {
+public class Movie implements IHandlerState {
 	private static Movie instance = null;
 
 	private Movie() {}

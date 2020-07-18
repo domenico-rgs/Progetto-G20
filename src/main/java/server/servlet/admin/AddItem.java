@@ -14,10 +14,12 @@ import server.exception.SeatException;
 public class AddItem {
 
 	public static String doAction(HttpServletRequest req) {
+		
+		TypeItem type = TypeItem.valueOf(req.getParameter("object").toUpperCase());
 
-		switch (req.getParameter("object")) {
+		switch (type) {
 
-		case "movie":
+		case MOVIE:
 			String title = req.getParameter("title");
 			String plot = req.getParameter("plot");
 			String cover;
@@ -50,7 +52,7 @@ public class AddItem {
 			}
 			return title + " succefully added. Reload to see changes";
 
-		case "theatre":
+		case THEATRE:
 			String theatreName = req.getParameter("name");
 			String config = req.getParameter("config");
 
@@ -71,7 +73,7 @@ public class AddItem {
 			}
 			return theatreName + " succefully added. Reload to see changes";
 
-		case "showing":
+		case SHOWING:
 			String movie = req.getParameter("movie");
 			String theatre = req.getParameter("theatre");
 
@@ -113,7 +115,7 @@ public class AddItem {
 			}
 			return "Showing succefully added with id: " +id+ ". Reload to see changes";
 
-		case "multiShowing":
+		case MULTISHOWING:
 			movie = req.getParameter("movie");
 			theatre = req.getParameter("theatre");
 			String price = req.getParameter("price");

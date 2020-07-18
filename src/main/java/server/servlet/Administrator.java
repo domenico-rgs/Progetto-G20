@@ -13,10 +13,11 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
+import server.servlet.admin.TypeItem;
 
 
 /**this class is the controller that binds the administrator page to logic */
-public class Administrator implements IHandler {
+public class Administrator implements IHandlerState {
 	private static Administrator instance = null;
 
 	private Administrator() {}
@@ -55,10 +56,8 @@ public class Administrator implements IHandler {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String message = "";
-		/*
-		 * java reflection calls the doAction() method
-		 * from the class with same name of requestPost parameter
-		 */
+
+		
 		try {
 			message = (String)Class.forName("server.servlet.admin." + req.getParameter("requestPost")).
 					getMethod("doAction", HttpServletRequest.class).invoke(null, req);

@@ -17,7 +17,7 @@ import server.exception.ObjectNotFoundException;
 
 
 /**controller class that manages the catalog page*/
-public class Catalog implements IHandler {
+public class Catalog implements IHandlerState {
 	private static Catalog instance = null;
 
 	private Catalog() {}

@@ -11,10 +11,11 @@ import server.exception.SearchException;
 public class EditItem {
 
 	public static String doAction(HttpServletRequest req) {
+		
+		TypeItem type = TypeItem.valueOf(req.getParameter("object").toUpperCase());
 
-		switch (req.getParameter("object")) {
-
-		case "movie":
+		switch (type) {
+		case MOVIE:
 			String title = req.getParameter("title");
 			String plot = req.getParameter("plot");
 			TypeCategory category = TypeCategory.valueOf(req.getParameter("category"));

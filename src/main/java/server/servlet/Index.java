@@ -16,7 +16,7 @@ import server.exception.ObjectNotFoundException;
 
 
 /**the control class that links the index.html page to logic*/
-public class Index implements IHandler {
+public class Index implements IHandlerState {
 	private static Index instance = null;
 
 	private Index() {}

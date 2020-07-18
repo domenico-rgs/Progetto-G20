@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 /**the control class that returns the static faq page*/
-public class Faq implements IHandler {
+public class Faq implements IHandlerState {
 	private static Faq instance = null;
 
 	private Faq() {}

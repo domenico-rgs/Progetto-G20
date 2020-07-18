@@ -12,7 +12,7 @@ import server.domain.cinema.Cinema;
 
 
 
-public class ShopCart implements IHandler {
+public class ShopCart implements IHandlerState {
 	private static ShopCart instance = null;
 
 	private ShopCart() {}

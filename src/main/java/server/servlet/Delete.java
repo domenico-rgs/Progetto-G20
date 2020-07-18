@@ -13,7 +13,7 @@ import server.domain.cinema.Cinema;
 /** control class that connects the web interface to the logic of deleting
  * a ticket given the ticket code and the payment card number */
 
-public class Delete implements IHandler {
+public class Delete implements IHandlerState {
 	private static Delete instance = null;
 
 	private Delete() {}

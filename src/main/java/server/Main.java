@@ -8,7 +8,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
 import server.services.persistence.PersistenceFacade;
-import server.servlet.CinemaServlet;
+import server.servlet.ServletFacade;
 
 public class Main {
 	private final static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -19,7 +19,7 @@ public class Main {
 			portNumber = Integer.parseInt(argv[0]);
 		}
 
-		ApplicationServer server = new ApplicationServer(portNumber, new CinemaServlet());
+		ApplicationServer server = new ApplicationServer(portNumber, new ServletFacade());
 
 		PersistenceFacade.getInstance();
 		autoShowDelete();

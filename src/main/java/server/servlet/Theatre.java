@@ -16,7 +16,7 @@ import org.rythmengine.Rythm;
 import server.domain.cinema.Cinema;
 import server.domain.cinema.theatre.Seat;
 
-public class Theatre implements IHandler {
+public class Theatre implements IHandlerState {
 	private static Theatre instance = null;
 
 	private Theatre() {

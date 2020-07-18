@@ -13,9 +13,11 @@ import server.domain.cinema.Cinema;
 public class DeleteItem {
 
 	public static String doAction(HttpServletRequest req) {
+		
+		TypeItem type = TypeItem.valueOf(req.getParameter("object").toUpperCase());
 
-		switch (req.getParameter("object")) {
-		case "movie":
+		switch (type) {
+		case MOVIE:
 			String title = req.getParameter("title");
 			if (title == null || title.contentEquals(""))
 				return "Please enter a valid title";
@@ -30,7 +32,7 @@ public class DeleteItem {
 			}
 			return title + " successfully deleted";
 
-		case "showing":
+		case SHOWING:
 			String id = req.getParameter("id");
 			if (id == null || id.contentEquals(""))
 				return "Please enter valid id";
@@ -44,7 +46,7 @@ public class DeleteItem {
 			}
 			return id + " successfully deleted";
 
-		case "theatre":
+		case THEATRE:
 			String name = req.getParameter("name");
 			if (name == null || name.contentEquals(""))
 				return "Please enter valid name";
