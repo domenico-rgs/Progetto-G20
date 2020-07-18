@@ -1,5 +1,7 @@
 package server.domain.cinema;
 
+import java.time.LocalDateTime;
+
 /**
  * This class identifies a ticket to show a movie.
  */
@@ -24,8 +26,16 @@ public class Ticket {
 		return seat;
 	}
 
-	public MovieShowing getShowing() {
-		return showing;
+	public LocalDateTime getDate() {
+		return showing.getDate();
+	}
+	
+	public String getShowing() {
+		return showing.getId();
+	}
+	
+	public String getTheatre() {
+		return showing.getTheatreName();
 	}
 
 	public double getTotalPrice() {

@@ -16,7 +16,6 @@ import server.domain.cinema.TypeCategory;
 import server.domain.controller.DiscountHandler;
 import server.domain.controller.MovieHandler;
 import server.domain.controller.TheatreHandler;
-import server.servlet.admin.TypeItem;
 
 
 /**this class is the controller that binds the administrator page to logic */

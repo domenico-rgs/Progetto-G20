@@ -63,14 +63,12 @@ public class BuyTicketHandler {
 	 */
 	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException, ObjectNotFoundException {
 		MovieShowing m = MovieShowingHandler.getInstance().getMovieShowing(showingID);
-		Set<Seat> sList = TheatreHandler.getInstance().getAllSeatsForShowing(showingID).keySet();
-
+		
 		List<Ticket> ticketList = new ArrayList<>();
-		for(String s : seats) {
-			for(Seat sL : sList)
-				if(sL.getPosition().equalsIgnoreCase(s)) {
-					ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), s, MovieShowingHandler.getInstance().getMovieShowing(showingID), (m.getPrice()*sL.getAddition())));
-				}
+		for(int i = 0; i<seats.length; i++) {
+			Seat s = getShowingSeat(showingID, seats[i]);
+			ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), seats[i],
+					MovieShowingHandler.getInstance().getMovieShowing(showingID), (m.getPrice()*s.getAddition())));
 		}
 		PersistenceFacade.getInstance().addTickets(ticketList);
 		return ticketList;
@@ -101,20 +99,24 @@ public class BuyTicketHandler {
 	 */
 	public synchronized double[] ticketsPrice(String showingID, String[] seats) throws SQLException, ObjectNotFoundException {
 		MovieShowing m = MovieShowingHandler.getInstance().getMovieShowing(showingID);
-		Set<Seat> sList = TheatreHandler.getInstance().getAllSeatsForShowing(showingID).keySet();
 		double[] doubleList = new double[seats.length];
 
-		int count = 0;
-		for(String s : seats) {
-			for(Seat sL : sList)
-				if(sL.getPosition().equalsIgnoreCase(s)) {
-					double price = (double) Math.round((m.getPrice()*sL.getAddition()) * 100) / 100;
-					doubleList[count] = price;
-					this.shopCart.addTotal(price);
-				}
-			count++;
+		for(int i = 0; i<seats.length; i++) {
+			Seat s = getShowingSeat(showingID, seats[i]);
+			double price = (double) Math.round((m.getPrice()*s.getAddition()) * 100) / 100;
+			doubleList[i] = price;
+			shopCart.addTotal(price);
 		}
 		return doubleList;
+	}
+	
+	private Seat getShowingSeat(String showingID, String seat) throws SQLException {
+		Set<Seat> sList = TheatreHandler.getInstance().getAllSeatsForShowing(showingID).keySet();
+			for(Seat sL : sList) {
+				if(sL.getPosition().equalsIgnoreCase(seat))
+					return sL;
+			}
+			return null; //it should never get here
 	}
 
 	/**
@@ -127,11 +129,11 @@ public class BuyTicketHandler {
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException, DeleteTicketException{
 		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
 
-		if(delTick.getShowing().getDate().isBefore(LocalDateTime.now()))
+		if(delTick.getDate().isBefore(LocalDateTime.now()))
 			throw new DeleteTicketException();
 		else {
 			MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
-			TheatreHandler.getInstance().setAvailability(delTick.getShowing().getId(), true, delTick.getSeat());
+			TheatreHandler.getInstance().setAvailability(delTick.getShowing(), true, delTick.getSeat());
 			PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
 		}
 	}
@@ -147,7 +149,7 @@ public class BuyTicketHandler {
 	}
 
 	public ShopCart getShopCart () {
-		return this.shopCart;
+		return shopCart;
 	}
 
 	/**
@@ -156,9 +158,9 @@ public class BuyTicketHandler {
 	 * @param seats booked seats
 	 */
 	synchronized public void updateShopCartItems(String id, String[] seats) throws SQLException {
-		this.shopCart.refresh();
-		this.shopCart.setIdSh(id);
-		this.shopCart.setSeats(seats);
+		shopCart.refresh();
+		shopCart.setIdSh(id);
+		shopCart.setSeats(seats);
 	}
 
 	public static BuyTicketHandler getInstance() {

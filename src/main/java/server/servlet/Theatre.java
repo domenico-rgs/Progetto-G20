@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-
 import server.domain.cinema.theatre.Seat;
 import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.MovieShowingHandler;
