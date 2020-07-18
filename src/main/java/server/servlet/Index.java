@@ -20,8 +20,11 @@ import server.exception.ObjectNotFoundException;
 /**the control class that links the index.html page to logic*/
 public class Index implements IHandlerState {
 	private static Index instance = null;
+	private Quotes qu;
 
-	private Index() {}
+	private Index() {
+		qu = new Quotes();
+	}
 
 
 	//*singleton*/
@@ -34,12 +37,11 @@ public class Index implements IHandlerState {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<String> quote = Quotes.getQuotes();
 		int intexCatalog = 5;  		// how many items to display on the first page
 
 		/**I publish 5 films on the main page*/
 		resp.getWriter().write(Rythm.render("index.html", this.getIndexMovie(intexCatalog),
-				quote));
+				qu.getQuotes()));
 	}
 
 	@Override

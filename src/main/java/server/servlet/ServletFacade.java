@@ -37,7 +37,7 @@ public class ServletFacade extends HttpServlet {
 			classHandler = (IHandlerState)Class.forName("server.servlet." + reqHandler).getMethod("getInstance").invoke(null);
 			classHandler.doGet(req, resp);
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			resp.getWriter().write(Rythm.render("404.html"));
 		}
 	}
