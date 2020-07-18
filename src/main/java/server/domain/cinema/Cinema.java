@@ -19,6 +19,7 @@ import server.domain.cinema.theatre.Theatre;
 import server.domain.payment.ShopCart;
 import server.domain.payment.discount.PricingStrategyFactory;
 import server.domain.payment.discount.TicketPricingStrategy;
+import server.exception.DeleteTicketException;
 import server.exception.ObjectNotFoundException;
 import server.exception.OverlapException;
 import server.exception.PaymentException;
@@ -189,12 +190,19 @@ public class Cinema {
 	 * @param code ticket's code
 	 * @param cardNumber card's number
 	 * @throws ObjectNotFoundException
+	 * @throws DeleteTicketException 
 	 */
-	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException{
+	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException, DeleteTicketException{
 		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
-		MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
-		setAvailability(delTick.getShowing().getId(), true, delTick.getSeat());
-		PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
+		
+		if(delTick.getShowing().getDate().isBefore(LocalDateTime.now())){
+			throw new DeleteTicketException();
+		}else {
+			MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
+			setAvailability(delTick.getShowing().getId(), true, delTick.getSeat());
+			PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
+		}
+		
 	}
 
 	/**
