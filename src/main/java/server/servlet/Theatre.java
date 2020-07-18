@@ -1,6 +1,7 @@
 package server.servlet;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+
 import server.domain.cinema.theatre.Seat;
 import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.MovieShowingHandler;
@@ -72,7 +73,7 @@ public class Theatre implements IHandlerState {
 
 			BuyTicketHandler.getInstance().updateShopCartItems(req.getParameter("id"), seats);
 
-			String shopID = Cinema.getCinema().getShopCart().generateID();
+			String shopID = BuyTicketHandler.getInstance().getShopCart().generateID();
 			resp.getWriter().write(shopID);
 		}catch (Exception e) {
 			e.printStackTrace();
