@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
 import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.DiscountHandler;
 import server.domain.controller.MovieShowingHandler;
@@ -34,15 +33,15 @@ public class ShopCart implements IHandlerState {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String shopId = req.getParameter("shopID");
-		String realShopId = Cinema.getCinema().getShopCart().getID();
+		String realShopId = BuyTicketHandler.getInstance().getShopCart().getID();
 
 		if (shopId == null || !(shopId.contentEquals(realShopId))) {
 			resp.getWriter().write(Rythm.render("404.html"));
 			return;
 		}
 
-		String idsh = Cinema.getCinema().getShopCart().getIdSh();
-		String []seats = Cinema.getCinema().getShopCart().getSeats();
+		String idsh = BuyTicketHandler.getInstance().getShopCart().getIdSh();
+		String []seats = BuyTicketHandler.getInstance().getShopCart().getSeats();
 
 
 		try {
@@ -50,7 +49,7 @@ public class ShopCart implements IHandlerState {
 			resp.getWriter().write(Rythm.render("shop.html", MovieShowingHandler.getInstance().getMovieShowing(idsh),
 					seats,
 					BuyTicketHandler.getInstance().ticketsPrice(idsh, seats),
-					Cinema.getCinema().getShopCart().getTotal()));
+					BuyTicketHandler.getInstance().getShopCart().getTotal()));
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,7 +67,7 @@ public class ShopCart implements IHandlerState {
 
 
 			// if the ticket is already used in the same purchase
-			if (Cinema.getCinema().getShopCart().hasCode(code)) {
+			if (BuyTicketHandler.getInstance().getShopCart().hasCode(code)) {
 				resp.getWriter().write("already");
 				break;
 			}
@@ -81,8 +80,8 @@ public class ShopCart implements IHandlerState {
 
 			try {
 				finalPrice = BuyTicketHandler.getInstance().applyDiscountOnPrice(code, price);
-				Cinema.getCinema().getShopCart().addCode(code);
-				Cinema.getCinema().getShopCart().setTotal(finalPrice);
+				BuyTicketHandler.getInstance().getShopCart().addCode(code);
+				BuyTicketHandler.getInstance().getShopCart().setTotal(finalPrice);
 				finalPrice = (double) Math.round(finalPrice * 100) / 100;
 				resp.getWriter().write(String.valueOf(finalPrice));
 			} catch(Exception e) {
@@ -102,11 +101,11 @@ public class ShopCart implements IHandlerState {
 
 				//acquisto va a buon fine
 				if(value) {
-					String id = Cinema.getCinema().getShopCart().getIdSh();
-					String[] seats = Cinema.getCinema().getShopCart().getSeats();
+					String id = BuyTicketHandler.getInstance().getShopCart().getIdSh();
+					String[] seats = BuyTicketHandler.getInstance().getShopCart().getSeats();
 					//false = set busy
 					TheatreHandler.getInstance().setAvailability(id, false, seats);
-					Cinema.getCinema().getShopCart().refresh();
+					BuyTicketHandler.getInstance().getShopCart().refresh();
 				}
 
 			}catch (Exception e) {

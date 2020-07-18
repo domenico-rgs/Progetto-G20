@@ -77,8 +77,8 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?,?)");
 
 		pstm.setString(1,OID);
-		pstm.setString(2, t.getShowing().getTheatreName());
-		pstm.setObject(3, t.getShowing().getId());
+		pstm.setString(2, t.getShowing());
+		pstm.setObject(3, t.getShowing());
 		pstm.setString(4,t.getSeat());
 		pstm.setDouble(5,Math.round(t.getTotalPrice()*100)/100);
 
