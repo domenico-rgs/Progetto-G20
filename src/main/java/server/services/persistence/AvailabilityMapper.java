@@ -77,7 +77,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 	 * @param availability true if available, false if occupied
 	 * @throws SQLException
 	 */
-	protected synchronized void changeAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
+	protected synchronized void updateAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
 		PreparedStatement pstm = conn.prepareStatement("UPDATE " + tableName+ " SET available=? WHERE BINARY showingID=? AND pos=?");
 		pstm.setBoolean(1,availability);
 		pstm.setString(2,OID_showing);

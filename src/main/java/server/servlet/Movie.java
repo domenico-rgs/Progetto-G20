@@ -12,7 +12,7 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.MovieShowing;
-import server.services.persistence.ObjectNotFoundException;
+import server.exception.ObjectNotFoundException;
 
 /**this class is a controller that manages the movie page*/
 

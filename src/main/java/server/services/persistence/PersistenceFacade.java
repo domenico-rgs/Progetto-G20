@@ -12,6 +12,7 @@ import server.domain.cinema.Ticket;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
 import server.domain.payment.discount.TicketPricingStrategy;
+import server.exception.ObjectNotFoundException;
 import server.exception.SearchException;
 
 /**
@@ -76,7 +77,7 @@ public class PersistenceFacade {
 	}
 
 	public void changeAvailability(String OID_showing, String OID_seat, boolean availability) throws SQLException {
-		((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).changeAvailability(OID_showing, OID_seat, availability);
+		((AvailabilityMapper)mapper.get(AvailabilityMapper.class)).updateAvailability(OID_showing, OID_seat, availability);
 	}
 
 	public void addTickets(List<Ticket> ticketList) throws SQLException {

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
-import server.services.persistence.ObjectNotFoundException;
+import server.exception.ObjectNotFoundException;
 
 
 

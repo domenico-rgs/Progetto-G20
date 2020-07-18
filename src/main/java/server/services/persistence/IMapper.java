@@ -2,6 +2,7 @@ package server.services.persistence;
 
 import java.sql.SQLException;
 
+import server.exception.ObjectNotFoundException;
 import server.exception.SearchException;
 
 /**

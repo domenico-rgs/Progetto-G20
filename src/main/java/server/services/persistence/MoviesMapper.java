@@ -9,6 +9,7 @@ import java.util.Map;
 
 import server.domain.cinema.Movie;
 import server.domain.cinema.TypeCategory;
+import server.exception.ObjectNotFoundException;
 import server.exception.SearchException;
 
 /**
@@ -55,7 +56,7 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	public void delete(String OID) throws SQLException, SearchException {
+	public synchronized void delete(String OID) throws SQLException, SearchException {
 		if(!isUsed(OID)) {
 			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE title!='' and title= ?");
 			stm.setObject(1, OID);

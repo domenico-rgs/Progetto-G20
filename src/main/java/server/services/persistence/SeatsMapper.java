@@ -35,7 +35,7 @@ public class SeatsMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	public void delete(String OID) throws SQLException, SearchException {
+	public synchronized void delete(String OID) throws SQLException, SearchException {
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package server.services.persistence;
+package server.exception;
 
 @SuppressWarnings("serial")
 public class ObjectNotFoundException extends Exception{

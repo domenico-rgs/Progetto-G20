@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import server.exception.ObjectNotFoundException;
+
 /**
  * Abstract class which has to be extended by all the Mappers.
  * Each represents a table of the Database and it only can access that table.

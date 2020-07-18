@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import server.domain.cinema.theatre.Theatre;
+import server.exception.ObjectNotFoundException;
 import server.exception.SearchException;
 import server.exception.SeatException;
 
@@ -63,7 +64,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	public void delete(String OID) throws SQLException, SearchException {
+	public synchronized void delete(String OID) throws SQLException, SearchException {
 		if(!isUsed(OID)) {
 			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE theatreName!='' and theatreName= ?");
 			stm.setObject(1, OID);

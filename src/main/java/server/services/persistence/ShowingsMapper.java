@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import server.domain.cinema.MovieShowing;
+import server.exception.ObjectNotFoundException;
 import server.exception.SearchException;
 
 /**
@@ -70,7 +71,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	public void delete(String OID) throws SQLException, SearchException {
+	public synchronized void delete(String OID) throws SQLException, SearchException {
 		if(!isUsed(OID)) {
 			PreparedStatement stm = conn.prepareStatement("DELETE FROM " + super.tableName + " WHERE id!='' and id= ?");
 			stm.setObject(1, OID);
