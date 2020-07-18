@@ -19,6 +19,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfVersion;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -77,8 +79,10 @@ public class MailSender {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
+	@SuppressWarnings("deprecation")
 	private static File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
-		PdfWriter writer = new PdfWriter("G20Ticket", new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
+		String name ="soldTicket/"+RandomStringUtils.randomAlphanumeric(8)+".pdf";
+		PdfWriter writer = new PdfWriter(name, new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
 		PdfDocument pdfDocument = new PdfDocument(writer);
 		pdfDocument.setTagged();
 		Document document = new Document(pdfDocument);
@@ -87,7 +91,7 @@ public class MailSender {
 		}
 		document.close();
 
-		return new File("G20Ticket");
+		return new File(name);
 	}
 
 	private static void sendMail(String recipient, String header, String body, File attachments)  throws FileNotFoundException, MessagingException{

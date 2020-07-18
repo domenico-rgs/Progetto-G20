@@ -94,7 +94,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 				Ticket tmp = new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
 						(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
 				this.tickets.put(rs.getString(1),tmp);
-			} catch (SQLException | ObjectNotFoundException e) {
+			} catch (ObjectNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
