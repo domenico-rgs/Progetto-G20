@@ -2,9 +2,10 @@ package server.servlet.admin;
 
 import java.sql.SQLException;
 
+
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+import server.domain.controller.DiscountHandler;
 
 
 /**this class together with others serve as a check on the admin page, precisely this
@@ -23,7 +24,7 @@ public class Discount {
 
 			try {
 				double value = Double.valueOf(req.getParameter("value"));
-				Cinema.getCinema().createDiscountCode(code, value);
+				DiscountHandler.getInstance().createDiscountCode(code, value);
 			}catch (NumberFormatException e) {
 				System.out.println(e.toString());
 				return "Value not correct";
@@ -39,7 +40,7 @@ public class Discount {
 
 		case "remove":
 			try {
-				Cinema.getCinema().deleteDiscount(code);
+				DiscountHandler.getInstance().deleteDiscount(code);
 			}catch (SQLException e) {
 				System.out.println(e);
 				return "Ticket already deleted";

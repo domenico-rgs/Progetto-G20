@@ -15,6 +15,9 @@ import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
 import server.domain.cinema.theatre.Seat;
+import server.domain.controller.BuyTicketHandler;
+import server.domain.controller.MovieShowingHandler;
+import server.domain.controller.TheatreHandler;
 
 public class Theatre implements IHandlerState {
 	private static Theatre instance = null;
@@ -38,11 +41,11 @@ public class Theatre implements IHandlerState {
 		List<String> freeSeats = new ArrayList<>();
 
 		try {
-			for (Seat s: Cinema.getCinema().getFreeSeatsForShowing(req.getParameter("id"))) {
+			for (Seat s: TheatreHandler.getInstance().getFreeSeatsForShowing(req.getParameter("id"))) {
 				freeSeats.add(s.getPosition());
 			}
 
-			String thName = Cinema.getCinema().getMovieShowing(req.getParameter("id")).getTheatreName();
+			String thName = MovieShowingHandler.getInstance().getMovieShowing(req.getParameter("id")).getTheatreName();
 
 			config = this.readConfig(thName);
 		}catch (Exception e) {
@@ -67,7 +70,7 @@ public class Theatre implements IHandlerState {
 		try {
 
 
-			Cinema.getCinema().updateShopCartItems(req.getParameter("id"), seats);
+			BuyTicketHandler.getInstance().updateShopCartItems(req.getParameter("id"), seats);
 
 			String shopID = Cinema.getCinema().getShopCart().generateID();
 			resp.getWriter().write(shopID);

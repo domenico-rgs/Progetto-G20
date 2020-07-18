@@ -1,6 +1,7 @@
 package server.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.cinema.Quotes;
+import server.domain.controller.MovieHandler;
 import server.exception.ObjectNotFoundException;
 
 
@@ -32,7 +34,7 @@ public class Index implements IHandlerState {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<String> quote = Cinema.getCinema().getQuotes();
+		List<String> quote = Quotes.getQuotes();
 		int intexCatalog = 5;  		// how many items to display on the first page
 
 		/**I publish 5 films on the main page*/
@@ -47,7 +49,7 @@ public class Index implements IHandlerState {
 	private List<server.domain.cinema.Movie> getIndexMovie(int n) {
 		List<String> title;
 		try {
-			title = Cinema.getCinema().getMovieList();
+			title = MovieHandler.getInstance().getMovieList();
 			List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
 			/**to avoid overrun errors*/
@@ -56,7 +58,7 @@ public class Index implements IHandlerState {
 			}
 
 			for (int i = 0; i<n; i++) {
-				movieList.add(Cinema.getCinema().getMovie(title.get(i)));
+				movieList.add(MovieHandler.getInstance().getMovie(title.get(i)));
 			}
 			return movieList;
 		}catch (SQLException | ObjectNotFoundException e) {

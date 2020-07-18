@@ -1,6 +1,7 @@
 package server.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.controller.MovieHandler;
+
+
 
 public class MovieList implements IHandlerState {
 	private static MovieList instance = null;
@@ -62,7 +65,7 @@ public class MovieList implements IHandlerState {
 
 			title = titleMovieList.pop();
 			try {
-				tmpList.add(Cinema.getCinema().getMovie(title));
+				tmpList.add(MovieHandler.getInstance().getMovie(title));
 			}catch (Exception e) {
 				e.printStackTrace();
 				return tmpList;
@@ -73,7 +76,7 @@ public class MovieList implements IHandlerState {
 
 	public void refreshMovieList() throws SQLException {
 		this.titleMovieList.clear();
-		for (String movie: Cinema.getCinema().getMovieList()) {
+		for (String movie: MovieHandler.getInstance().getMovieList()) {
 			titleMovieList.push(movie);
 		}
 	}

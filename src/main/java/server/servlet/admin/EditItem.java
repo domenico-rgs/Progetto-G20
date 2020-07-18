@@ -2,10 +2,12 @@ package server.servlet.admin;
 
 import java.sql.SQLException;
 
+
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+
 import server.domain.cinema.TypeCategory;
+import server.domain.controller.MovieHandler;
 import server.exception.SearchException;
 
 public class EditItem {
@@ -28,7 +30,7 @@ public class EditItem {
 			}
 
 			try {
-				Cinema.getCinema().editMovie(title, cover, plot, category);
+				MovieHandler.getInstance().editMovie(title, cover, plot, category);
 
 			}catch (SQLException e) {
 				System.out.println(e);

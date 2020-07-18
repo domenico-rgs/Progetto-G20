@@ -2,9 +2,14 @@ package server.servlet.admin;
 
 import java.sql.SQLException;
 
+
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+import server.domain.controller.MovieHandler;
+import server.domain.controller.MovieShowingHandler;
+import server.domain.controller.TheatreHandler;
+
+
 
 /**This class together with others serve as a control on the
  * admin page, precisely this deals with connecting the web interface
@@ -22,7 +27,7 @@ public class DeleteItem {
 			if (title == null || title.contentEquals(""))
 				return "Please enter a valid title";
 			try {
-				Cinema.getCinema().deleteMovie(title);
+				MovieHandler.getInstance().deleteMovie(title);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return title + " not exists";
@@ -37,7 +42,7 @@ public class DeleteItem {
 			if (id == null || id.contentEquals(""))
 				return "Please enter valid id";
 			try {
-				Cinema.getCinema().deleteMovieShowing(id);
+				MovieShowingHandler.getInstance().deleteMovieShowing(id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return id + " not exists";
@@ -52,7 +57,7 @@ public class DeleteItem {
 				return "Please enter valid name";
 
 			try {
-				Cinema.getCinema().deleteTheatre(name);
+				TheatreHandler.getInstance().deleteTheatre(name);
 			}
 			catch (SQLException e) {
 				e.printStackTrace();

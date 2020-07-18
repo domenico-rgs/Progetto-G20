@@ -1,6 +1,7 @@
 package server.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+
+import server.domain.controller.MovieHandler;
 import server.exception.ObjectNotFoundException;
 
 
@@ -60,12 +62,12 @@ public class Catalog implements IHandlerState {
 
 		List<String> movieTitle;
 		try {
-			movieTitle = Cinema.getCinema().getMovieList();
+			movieTitle = MovieHandler.getInstance().getMovieList();
 
 			/**search if the titles contain that word*/
 			for (String title: movieTitle)
 				if (title.toLowerCase().contains(search.toLowerCase())) {
-					movieList.add(Cinema.getCinema().getMovie(title));
+					movieList.add(MovieHandler.getInstance().getMovie(title));
 				}
 		}catch (SQLException e) {
 			e.printStackTrace();

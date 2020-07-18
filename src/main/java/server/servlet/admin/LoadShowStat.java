@@ -2,9 +2,10 @@ package server.servlet.admin;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.controller.MovieShowingHandler;
 
 /**this class is specifically for the admin page to give information on showing*/
 
@@ -20,7 +21,7 @@ public class LoadShowStat {
 
 		try {
 			messagge = Rythm.render("imported/showTableAdmin.html",
-					Cinema.getCinema().getMovieShowingList(title), title);
+					MovieShowingHandler.getInstance().getMovieShowingList(title), title);
 		} catch (Exception e) {
 			System.out.println(e);
 			messagge = "Error with server";

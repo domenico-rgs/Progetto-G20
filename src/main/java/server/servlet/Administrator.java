@@ -1,6 +1,7 @@
 package server.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
 import server.domain.cinema.TypeCategory;
+import server.domain.controller.DiscountHandler;
+import server.domain.controller.MovieHandler;
+import server.domain.controller.TheatreHandler;
 import server.servlet.admin.TypeItem;
 
 
@@ -41,9 +44,9 @@ public class Administrator implements IHandlerState {
 
 		try {
 			resp.getWriter().write(Rythm.render("administrator.html",
-					categoryList, Cinema.getCinema().getMovieList(),
-					Cinema.getCinema().getTheatreList(),
-					Cinema.getCinema().getDiscountList()));
+					categoryList, MovieHandler.getInstance().getMovieList(),
+					TheatreHandler.getInstance().getTheatreList(),
+					DiscountHandler.getInstance().getDiscountList()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

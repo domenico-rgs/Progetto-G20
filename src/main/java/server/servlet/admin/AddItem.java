@@ -1,12 +1,16 @@
 package server.servlet.admin;
 
 import java.sql.SQLException;
+
 import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+
 import server.domain.cinema.TypeCategory;
+import server.domain.controller.MovieHandler;
+import server.domain.controller.MovieShowingHandler;
+import server.domain.controller.TheatreHandler;
 import server.exception.OverlapException;
 import server.exception.SearchException;
 import server.exception.SeatException;
@@ -36,7 +40,7 @@ public class AddItem {
 			try {
 				int duration = Integer.valueOf(req.getParameter("duration"));
 
-				Cinema.getCinema().createMovie(title, duration, plot, cover,
+				MovieHandler.getInstance().createMovie(title, duration, plot, cover,
 						TypeCategory.valueOf(req.getParameter("category")));
 			}catch (SearchException e) {
 				return "Error: " + title + " already exists";
@@ -60,7 +64,7 @@ public class AddItem {
 				return "Please insert correct value for name";
 
 			try {
-				Cinema.getCinema().createTheatre(theatreName, config);
+				TheatreHandler.getInstance().createTheatre(theatreName, config);
 			} catch (SQLException e) {
 				System.out.println(e);
 				return theatreName+ " already exists or problem with database";
@@ -102,7 +106,7 @@ public class AddItem {
 			try {
 				double price = Double.parseDouble(req.getParameter("price"));
 
-				id = Cinema.getCinema().createMovieShowing(movie, date, theatre, price);
+				id = MovieShowingHandler.getInstance().createMovieShowing(movie, date, theatre, price);
 			}catch (OverlapException e) {
 				e.printStackTrace();
 				return "The showing overlaps with another";
@@ -151,7 +155,7 @@ public class AddItem {
 			for (date = startD; date.isBefore(finalD.plusDays(1)); date = date.plusDays(1)) {
 
 				try {
-					Cinema.getCinema().createMovieShowing(movie, date, theatre, Double.valueOf(price));
+					MovieShowingHandler.getInstance().createMovieShowing(movie, date, theatre, Double.valueOf(price));
 				}catch (SearchException e) {
 					return "Some showings Overlaps with anothers";
 				}catch (NullPointerException e) {

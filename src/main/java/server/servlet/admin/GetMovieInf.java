@@ -2,7 +2,8 @@ package server.servlet.admin;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
+
+import server.domain.controller.MovieHandler;
 
 /**this class gives me the information of the films*/
 
@@ -16,7 +17,7 @@ public class GetMovieInf {
 
 		server.domain.cinema.Movie movie;
 		try {
-			movie = Cinema.getCinema().getMovie(title);
+			movie = MovieHandler.getInstance().getMovie(title);
 			String inf = movie.getTitle() + "@" + String.valueOf(movie.getDuration()) +
 					"@" + movie.getPlot() + "@" + movie.getPathCover() + "@" +
 					movie.getCategory().toString();

@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import server.domain.cinema.Cinema;
+import server.domain.controller.BuyTicketHandler;
+import server.domain.controller.DiscountHandler;
+import server.domain.controller.MovieShowingHandler;
+import server.domain.controller.TheatreHandler;
 
 
 
@@ -43,9 +47,9 @@ public class ShopCart implements IHandlerState {
 
 		try {
 
-			resp.getWriter().write(Rythm.render("shop.html", Cinema.getCinema().getMovieShowing(idsh),
+			resp.getWriter().write(Rythm.render("shop.html", MovieShowingHandler.getInstance().getMovieShowing(idsh),
 					seats,
-					Cinema.getCinema().ticketsPrice(idsh, seats),
+					BuyTicketHandler.getInstance().ticketsPrice(idsh, seats),
 					Cinema.getCinema().getShopCart().getTotal()));
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -76,7 +80,7 @@ public class ShopCart implements IHandlerState {
 
 
 			try {
-				finalPrice = Cinema.getCinema().applyDiscountOnPrice(code, price);
+				finalPrice = BuyTicketHandler.getInstance().applyDiscountOnPrice(code, price);
 				Cinema.getCinema().getShopCart().addCode(code);
 				Cinema.getCinema().getShopCart().setTotal(finalPrice);
 				finalPrice = (double) Math.round(finalPrice * 100) / 100;
@@ -93,7 +97,7 @@ public class ShopCart implements IHandlerState {
 			String email = req.getParameter("email");
 
 			try {
-				boolean value = Cinema.getCinema().buyTicket(codeCard, date, cvv, email);
+				boolean value = BuyTicketHandler.getInstance().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
 
 				//acquisto va a buon fine
@@ -101,7 +105,7 @@ public class ShopCart implements IHandlerState {
 					String id = Cinema.getCinema().getShopCart().getIdSh();
 					String[] seats = Cinema.getCinema().getShopCart().getSeats();
 					//false = set busy
-					Cinema.getCinema().setAvailability(id, false, seats);
+					TheatreHandler.getInstance().setAvailability(id, false, seats);
 					Cinema.getCinema().getShopCart().refresh();
 				}
 

@@ -2,13 +2,14 @@ package server.servlet;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import server.domain.cinema.Cinema;
+import server.domain.controller.BuyTicketHandler;
 
 /** control class that connects the web interface to the logic of deleting
  * a ticket given the ticket code and the payment card number */
@@ -40,7 +41,7 @@ public class Delete implements IHandlerState {
 		System.out.println(ticket);
 
 		try {
-			Cinema.getCinema().deleteTicket(ticket, cardN);
+			BuyTicketHandler.getInstance().deleteTicket(ticket, cardN);
 			resp.getWriter().write("Ticket delete with success");
 		}catch (Exception e) {
 			e.printStackTrace();

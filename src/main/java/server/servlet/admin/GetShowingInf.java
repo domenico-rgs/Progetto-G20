@@ -1,12 +1,13 @@
 package server.servlet.admin;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import server.domain.cinema.Cinema;
 import server.domain.cinema.MovieShowing;
+import server.domain.controller.MovieShowingHandler;
 import server.exception.SeatException;
 
 /**this class gives me the information of the showing*/
@@ -20,7 +21,7 @@ public class GetShowingInf {
 
 			if(title == null || title.contentEquals("")) return "";
 
-			for (MovieShowing sh : Cinema.getCinema().getMovieShowingList(title) ) {
+			for (MovieShowing sh : MovieShowingHandler.getInstance().getMovieShowingList(title) ) {
 				message += sh.getId() + "@";
 			}
 
@@ -30,7 +31,7 @@ public class GetShowingInf {
 			String id = req.getParameter("id");
 			if (id == null || id.contentEquals("")) return "";
 			try {
-				MovieShowing m = Cinema.getCinema().getMovieShowing(id);
+				MovieShowing m = MovieShowingHandler.getInstance().getMovieShowing(id);
 				String inf =  m.getTheatreName() + "@" + m.getPrice() +
 						"@" + m.getDateToString();
 				return inf;
