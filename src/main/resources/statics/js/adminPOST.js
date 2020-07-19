@@ -33,8 +33,7 @@ $('#deleteTheatre #remove').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "DeleteItem",
-      object: "theatre",
+      requestPost: "DeleteTheatre",
       name: $('#deleteTheatre #theatre').val(),
     },
     success: function(response) {
@@ -52,8 +51,7 @@ $('#addShowing #add').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "AddItem",
-      object: "showing",
+      requestPost: "AddShowing",
       movie: $('#addShowing #movie').val(),
       theatre: $('#addShowing #theatre').val(),
       date: $('#addShowing #date').val(),
@@ -75,8 +73,7 @@ $('#multiShowings #add').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "AddItem",
-      object: "multiShowing",
+      requestPost: "AddMultiShowings",
       movie: $('#multiShowings #movie').val(),
       theatre: $('#multiShowings  #theatre').val(),
       dateStart: $('#multiShowings  #dateStart').val(),
@@ -165,8 +162,7 @@ $('#editShowing #remove').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "DeleteItem",
-      object: "showing",
+      requestPost: "DeleteShowing",
       id: $('#editShowing  #idS').val(),
     },
     success: function(response) {
@@ -185,8 +181,7 @@ $('#addMovie #add').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "AddItem",
-      object: "movie",
+      requestPost: "AddMovie",
       title: $('#addMovie #movie').val(),
       duration: $('#addMovie #duration').val(),
       plot: $('#addMovie #plot').val(),
@@ -209,8 +204,7 @@ $('#editMovie #editM').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "EditItem",
-      object: "movie",
+      requestPost: "EditMovie",
       title: $('#editMovie #movie').val(),
       plot: $('#editMovie #plot').val(),
       cover: $('#editMovie #cover').val(),
@@ -262,8 +256,7 @@ $('#editMovie #remove').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "DeleteItem",
-      object: "movie",
+      requestPost: "DeleteMovie",
       title: $('#editMovie #movie').val(),
     },
     success: function(response) {

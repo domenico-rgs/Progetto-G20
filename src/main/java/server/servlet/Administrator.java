@@ -16,8 +16,10 @@ import server.domain.controller.DiscountHandler;
 import server.domain.controller.MovieHandler;
 import server.domain.controller.TheatreHandler;
 
-
-/**this class is the controller that binds the administrator page to logic */
+/**
+ * This class is the servlet that binds the administrator page to logic 
+ * Singleton class (State pattern)
+ */
 public class Administrator implements IHandlerState {
 	private static Administrator instance = null;
 

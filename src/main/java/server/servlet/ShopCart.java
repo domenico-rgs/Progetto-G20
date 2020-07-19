@@ -12,13 +12,16 @@ import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.MovieShowingHandler;
 
 
-
+/** 
+ * This servlet is used to manage a purchase
+ * 
+ * Singleton class (State pattern)
+ */
 public class ShopCart implements IHandlerState {
 	private static ShopCart instance = null;
 
 	private ShopCart() {}
 
-	//*singleton*/
 	public static ShopCart getInstance() {
 		if (instance == null) {
 			instance = new ShopCart();
@@ -43,7 +46,6 @@ public class ShopCart implements IHandlerState {
 
 
 		try {
-
 			resp.getWriter().write(Rythm.render("shop.html", MovieShowingHandler.getInstance().getMovieShowing(idsh),
 					seats,
 					BuyTicketHandler.getInstance().ticketsPrice(idsh, seats),
