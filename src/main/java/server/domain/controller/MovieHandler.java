@@ -62,6 +62,28 @@ public class MovieHandler {
 		return titleList;
 	}
 
+	/**
+	 * Given a string, it searches for movies that contain it in the title
+	 * @param search string that must be contained in the title
+	 * @return
+	 * @throws ObjectNotFoundException
+	 */
+	public List<Movie> searchMovieForString(String search) throws ObjectNotFoundException {
+		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
+
+		try {
+			List<String> movieTitle = MovieHandler.getInstance().getMovieList();
+
+			for (String title: movieTitle)
+				if (title.toLowerCase().contains(search.toLowerCase())) {
+					movieList.add(MovieHandler.getInstance().getMovie(title));
+				}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return movieList;
+	}
+
 	public static MovieHandler getInstance() {
 		if (instance == null) {
 			instance = new MovieHandler();

@@ -8,10 +8,8 @@ import server.domain.controller.TheatreHandler;
 import server.exception.SeatException;
 
 public class AddTheatre {
-	
+
 	public static String doAction(HttpServletRequest req) {
-	
-		
 		String theatreName = req.getParameter("name");
 		String config = req.getParameter("config");
 

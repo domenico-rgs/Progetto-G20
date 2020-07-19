@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import server.domain.controller.MovieShowingHandler;
 
 public class DeleteShowing {
-	
+
 	public static String doAction(HttpServletRequest req) {
-		
+
 		String id = req.getParameter("id");
 		if (id == null || id.contentEquals(""))
 			return "Please enter valid id";

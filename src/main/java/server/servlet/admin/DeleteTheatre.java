@@ -9,7 +9,7 @@ import server.domain.controller.TheatreHandler;
 public class DeleteTheatre {
 
 	public static String doAction(HttpServletRequest req) {
-		
+
 		String name = req.getParameter("name");
 		if (name == null || name.contentEquals(""))
 			return "Please enter valid name";

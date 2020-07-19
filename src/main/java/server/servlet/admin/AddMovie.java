@@ -9,9 +9,9 @@ import server.domain.controller.MovieHandler;
 import server.exception.SearchException;
 
 public class AddMovie {
-	
+
 	public static String doAction(HttpServletRequest req) {
-		
+
 		String title = req.getParameter("title");
 		String plot = req.getParameter("plot");
 		String cover;

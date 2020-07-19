@@ -9,8 +9,6 @@ import server.domain.cinema.MovieShowing;
 import server.domain.controller.MovieShowingHandler;
 import server.exception.SeatException;
 
-/**this class gives me the information of the showing*/
-
 public class GetShowingInf {
 	public static String doAction(HttpServletRequest req) throws IOException, SeatException, SQLException {
 		switch (req.getParameter("action")) {

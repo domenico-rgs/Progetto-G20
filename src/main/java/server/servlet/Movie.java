@@ -15,15 +15,16 @@ import server.domain.controller.MovieHandler;
 import server.domain.controller.MovieShowingHandler;
 import server.exception.ObjectNotFoundException;
 
-/**this class is a controller that manages the movie page*/
-
+/**
+ * This class is a controller that manages the movie page
+ *
+ * Singleton class (State pattern)
+ */
 public class Movie implements IHandlerState {
 	private static Movie instance = null;
 
 	private Movie() {}
 
-
-	//*singleton*/
 	public static Movie getInstance() {
 		if (instance == null) {
 			instance = new Movie();

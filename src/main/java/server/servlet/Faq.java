@@ -8,14 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-/**the control class that returns the static faq page*/
+/**
+ * The control class that returns the static faq page
+ *
+ * Singleton class (State pattern)
+ */
 public class Faq implements IHandlerState {
 	private static Faq instance = null;
 
 	private Faq() {}
 
 
-	//*singleton*/
 	public static Faq getInstance() {
 		if (instance == null) {
 			instance = new Faq();

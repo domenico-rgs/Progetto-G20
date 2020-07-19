@@ -140,12 +140,12 @@ public class BuyTicketHandler {
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException, DeleteTicketException{
 		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
 
-		if(delTick.getDate().isBefore(LocalDateTime.now()))
+		if(delTick.getDate().isBefore(LocalDateTime.now())) //controllare
 			throw new DeleteTicketException();
 		else {
 			MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
-			TheatreHandler.getInstance().setAvailability(delTick.getShowing(), true, delTick.getSeat());
-			PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
+			//TheatreHandler.getInstance().setAvailability(delTick.getShowing(), true, delTick.getSeat());
+			//PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
 		}
 	}
 
