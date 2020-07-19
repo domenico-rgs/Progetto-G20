@@ -47,14 +47,14 @@ public class Delete implements IHandlerState {
 		System.out.println(ticket);
 
 
-			try {
-				BuyTicketHandler.getInstance().deleteTicket(ticket, cardN);
-				resp.getWriter().write("Refund requested with success");
-			} catch (FileNotFoundException | SQLException | MessagingException | SearchException
-					| ObjectNotFoundException | DeleteTicketException e) {
-				e.printStackTrace();
-				resp.getWriter().write("It is not possible to request a refund for the inserted ticket, contact us!");
-			}
-		
+		try {
+			BuyTicketHandler.getInstance().deleteTicket(ticket, cardN);
+			resp.getWriter().write("Refund requested with success");
+		} catch (FileNotFoundException | SQLException | MessagingException | SearchException
+				| ObjectNotFoundException | DeleteTicketException e) {
+			e.printStackTrace();
+			resp.getWriter().write("It is not possible to request a refund for the inserted ticket, contact us!");
+		}
+
 	}
 }

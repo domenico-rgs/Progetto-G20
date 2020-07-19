@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import server.domain.cinema.Ticket;
@@ -37,7 +39,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = pstm.executeQuery();
 		if(!rs.next())
 			throw new ObjectNotFoundException();
-		
+
 		try {
 			return new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
 					(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
@@ -106,6 +108,26 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 				this.tickets.put(rs.getString(1),tmp);
 			}
 		}
+	}
+
+	protected List<Ticket> getTicketListForShowing(String OID_showing) throws SQLException {
+		List<Ticket> tickets = new ArrayList<>();
+		PreparedStatement stm = conn.prepareStatement("select * from "+super.tableName + " where showingID = ?");
+		stm.setString(1, OID_showing);
+		ResultSet rs = stm.executeQuery();
+		while (rs.next()){
+
+
+			try {
+				Ticket t = new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
+						(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
+				updateCache(t.getCode(),t);
+				tickets.add(t);
+			} catch (SQLException | ObjectNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		return tickets;
 	}
 
 	protected synchronized Map<String, Ticket> getTickets() {

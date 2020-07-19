@@ -1,8 +1,6 @@
 package server.servlet;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -13,7 +11,6 @@ import org.rythmengine.Rythm;
 
 import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.MovieShowingHandler;
-import server.exception.ObjectNotFoundException;
 import server.exception.PaymentException;
 
 

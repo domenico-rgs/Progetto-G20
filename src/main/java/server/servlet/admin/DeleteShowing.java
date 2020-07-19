@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.MovieShowingHandler;
-import server.exception.ObjectNotFoundException;
 
 public class DeleteShowing {
 

@@ -56,6 +56,10 @@ public class PersistenceFacade {
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_movie);
 	}
 
+	public List<Ticket> getTicketsForShowing(String OID_showing) throws SQLException{
+		return ((TicketsMapper)mapper.get(TicketsMapper.class)).getTicketListForShowing(OID_showing);
+	}
+
 	public List<MovieShowing> getMovieShowingList(String OID_theatre, LocalDateTime date) throws SQLException{
 		return ((ShowingsMapper)mapper.get(ShowingsMapper.class)).getMovieShowingList(OID_theatre, date);
 	}

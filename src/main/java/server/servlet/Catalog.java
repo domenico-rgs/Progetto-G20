@@ -43,7 +43,7 @@ public class Catalog implements IHandlerState {
 			try {
 				movieList = MovieHandler.getInstance().searchMovieForString(req.getParameter("search"));
 
-				
+
 				if (movieList.size() == 0) {
 					String messagge = req.getParameter("search") + " does not exist";
 					resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,messagge));

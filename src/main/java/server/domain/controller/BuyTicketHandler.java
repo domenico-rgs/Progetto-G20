@@ -12,7 +12,6 @@ import javax.mail.MessagingException;
 import server.domain.cinema.MovieShowing;
 import server.domain.cinema.Ticket;
 import server.domain.cinema.theatre.Seat;
-import server.domain.cinema.theatre.Theatre;
 import server.domain.payment.ShopCart;
 import server.domain.payment.discount.PricingStrategyFactory;
 import server.domain.payment.discount.TicketPricingStrategy;
@@ -24,7 +23,6 @@ import server.services.mail.MailSender;
 import server.services.payment.PaymentFactory;
 import server.services.persistence.OIDCreator;
 import server.services.persistence.PersistenceFacade;
-import server.services.persistence.TheatresMapper;
 import server.services.persistence.TicketsMapper;
 
 public class BuyTicketHandler {
@@ -132,6 +130,11 @@ public class BuyTicketHandler {
 		return null; //it should never get here
 	}
 
+	synchronized public List<Ticket> getTicketsForShowing(String showingID) throws SQLException {
+		List<Ticket> tickList = PersistenceFacade.getInstance().getTicketsForShowing(showingID);
+		return tickList;
+	}
+
 	/**
 	 * Allows you to request a refund if the projection still exists and the date is later than the current one
 	 * @param code ticket's code
@@ -141,11 +144,11 @@ public class BuyTicketHandler {
 	 */
 	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException, DeleteTicketException{
 		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
-		
+
 		System.out.println(delTick.getDate().toString());
 		if(delTick.getDate().isBefore(LocalDateTime.now()))
 			throw new DeleteTicketException();
-		
+
 		MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
 		TheatreHandler.getInstance().setAvailability(delTick.getShowingId(), true, delTick.getSeat());
 		PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
