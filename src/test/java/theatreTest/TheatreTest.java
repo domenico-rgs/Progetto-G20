@@ -46,8 +46,8 @@ public class TheatreTest {
 		
 		Theatre theatre2 = new Theatre("theatreTest2");    //instantiate a theater with the name "theaterTest"
 		 
-		//String fileString = "src/main/resources/theatreConf/theatreTest.txt";
 		
+		/**Random string similar to the one that will appear for the configuration of the seats*/
 		String config = "X X X P P P \nD D D X X X  \n X X X X X X \n X X X X X X"; 
 		
 		theatre2.createSeats(config);
