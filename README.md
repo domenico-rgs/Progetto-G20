@@ -45,13 +45,13 @@ the server port number can be configured via the command line (if not specified,
 where portNumber is the desired port number.
 
 ### Log in to the service
-In general, if addressOfMyServer is the address of the server and ServerPort is the port of the latter dedicated to the service, connect via the address http: // addressOfMyServer: ServerPort
+In general, if addressOfMyServer is the address of the server and ServerPort is the port of the latter dedicated to the service, connect via the address http://addressOfMyServer:ServerPort
 
 - #### User
 Assuming that the connection is made from the same machine on which the server is active, connect to the server on the page:
-http: // localhost: 8080
+http://localhost:8080
 
 - #### Administrator
 Assuming that the connection is made from the same machine on which the server is active, connect to the server on the page:
 http: // localhost: 8080 / administrator
-<br> The default password is * password *
+<br> The default password is *password*
