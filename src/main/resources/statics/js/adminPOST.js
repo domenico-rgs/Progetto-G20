@@ -310,16 +310,12 @@ $('#deleteTicket #remove').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "EditItem",
-      object: "movie",
-      title: $('#editMovie #movie').val(),
-      plot: $('#editMovie #plot').val(),
-      cover: $('#editMovie #cover').val(),
-      category: $('#editMovie #category').find(":selected").text()
+      requestPost: "DeleteTicket",
+      code: $('#deleteTicket #ticket').val(),
     },
     success: function(response) {
-      $('#editMovie .loader').css("visibility", "hidden")
-      $('#editMovie .message').text(response)
+      $('#deleteTicket .loader').css("visibility", "hidden")
+      $('#deleteTicket .message').text(response)
       reloadGeneral()
     }
   })
