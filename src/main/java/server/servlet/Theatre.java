@@ -68,11 +68,7 @@ public class Theatre implements IHandlerState {
 
 
 		try {
-
-
-			BuyTicketHandler.getInstance().updateShopCartItems(req.getParameter("id"), seats);
-
-			String shopID = BuyTicketHandler.getInstance().getShopCart().generateID();
+			String shopID = BuyTicketHandler.getInstance().updateShopCartItems(req.getParameter("id"), seats);
 			resp.getWriter().write(shopID);
 		}catch (Exception e) {
 			e.printStackTrace();

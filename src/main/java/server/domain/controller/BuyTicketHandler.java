@@ -1,6 +1,7 @@
 package server.domain.controller;
 
 import java.io.FileNotFoundException;
+
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -48,6 +49,8 @@ public class BuyTicketHandler {
 		//Demeter
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, ticketList);
+			shopCart.refresh();
+			TheatreHandler.getInstance().setAvailability(shopCart.getIdSh(), false, shopCart.getSeats());
 			return true;
 
 		} else
@@ -82,10 +85,17 @@ public class BuyTicketHandler {
 	 * @throws ObjectNotFoundException
 	 */
 	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, PaymentException, ObjectNotFoundException{
+		if (shopCart.hasCode(code)) 
+			return -1.0;
+		
 		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getDiscount(code.toUpperCase());
 
-		if(discount != null)
-			return discount.getTotalPrice(price);
+		if(discount != null) {
+			double finalPrice = discount.getTotalPrice(price);
+			shopCart.setTotal(finalPrice);
+			shopCart.addCode(code);
+			return finalPrice;
+		}
 
 		throw new PaymentException("Discount code not found");
 	}
@@ -148,19 +158,35 @@ public class BuyTicketHandler {
 		return total;
 	}
 
-	public ShopCart getShopCart () {
-		return shopCart;
-	}
-
 	/**
 	 * it updates the shop cart
 	 * @param id showing's id
 	 * @param seats booked seats
 	 */
-	synchronized public void updateShopCartItems(String id, String[] seats) throws SQLException {
+	synchronized public String updateShopCartItems(String id, String[] seats) throws SQLException {
 		shopCart.refresh();
 		shopCart.setIdSh(id);
 		shopCart.setSeats(seats);
+		
+		return shopCart.generateID();
+	}
+	
+	public String [] getSelectedSeats() {
+		return shopCart.getSeats();
+	}
+	
+	
+	public String getShopCardValue(String value) {
+		
+		switch (value) {
+		case "ID":
+			return shopCart.getID();
+		case "showing":
+			return shopCart.getIdSh();
+		case "total":
+			return String.valueOf(shopCart.getTotal());
+		}
+		return "none";
 	}
 
 	public static BuyTicketHandler getInstance() {

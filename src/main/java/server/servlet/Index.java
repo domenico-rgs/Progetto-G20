@@ -20,10 +20,10 @@ import server.exception.ObjectNotFoundException;
 /**the control class that links the index.html page to logic*/
 public class Index implements IHandlerState {
 	private static Index instance = null;
-	private Quotes qu;
+	private Quotes quote;
 
 	private Index() {
-		qu = new Quotes();
+		quote = new Quotes();
 	}
 
 
@@ -39,9 +39,9 @@ public class Index implements IHandlerState {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int intexCatalog = 5;  		// how many items to display on the first page
 
-		/**I publish 5 films on the main page*/
+		/*I publish 5 films on the main page*/
 		resp.getWriter().write(Rythm.render("index.html", this.getIndexMovie(intexCatalog),
-				qu.getQuotes()));
+				quote.getQuotes()));
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class Index implements IHandlerState {
 			title = MovieHandler.getInstance().getMovieList();
 			List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
-			/**to avoid overrun errors*/
+			/*to avoid overflow errors*/
 			if (n > title.size()) {
 				n = title.size();
 			}

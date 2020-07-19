@@ -4,16 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /** This class collects many quotes used for the homepage of the app */
 public class Quotes {
-	private static ArrayList<String> quote;
-	private static ArrayList<String> author;
+	private  Map<String, String> authorQuote;
 
 	public Quotes() {
-		quote = new ArrayList<>();
-		author = new ArrayList<>();
+		authorQuote = new HashMap<>();
 		populateCitations();
 	}
 
@@ -23,13 +23,14 @@ public class Quotes {
 	private void populateCitations() {
 		try {
 			BufferedReader inFile = new BufferedReader(new FileReader("src/main/resources/statics/quotes.txt"));
-			String riga;
-			while((riga=inFile.readLine())!=null) {
-				quote.add(riga);
-				author.add(inFile.readLine());
+			String quote;
+			String author;
+			while((quote=inFile.readLine())!=null) {  //file diviso in alternanza di citazioni -> autori
+				author = inFile.readLine();
+				authorQuote.put(author, quote);
 			}
 			inFile.close();
-		} catch (Exception e) {
+		} catch (Exception e) { // non dovrebbe capitare, nel caso avremo html vuoto
 			return;
 		}
 		
@@ -40,10 +41,12 @@ public class Quotes {
 	 * @return the list with the author and his quote
 	 */
 	public List<String> getQuotes() {
-		int random = (int)(Math.random()*quote.size());
+		int random = (int)(Math.random()*authorQuote.size());
 		List<String> quoteList = new ArrayList<>();
-		quoteList.add(quote.get(random));
-		quoteList.add(author.get(random));
+		List<String> tmp =  new ArrayList<>(authorQuote.keySet());
+		String randomAuthor = tmp.get(random);
+		quoteList.add(authorQuote.get(randomAuthor));
+		quoteList.add(randomAuthor);
 		return quoteList;
 	}
 }
