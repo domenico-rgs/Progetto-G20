@@ -13,34 +13,34 @@ public class EditMovie {
 	public static String doAction(HttpServletRequest req) {
 
 
-			String title = req.getParameter("title");
-			String plot = req.getParameter("plot");
-			TypeCategory category = TypeCategory.valueOf(req.getParameter("category"));
-			String cover;
+		String title = req.getParameter("title");
+		String plot = req.getParameter("plot");
+		TypeCategory category = TypeCategory.valueOf(req.getParameter("category"));
+		String cover;
 
-			if (req.getParameter("cover").contentEquals("")) {
-				cover = "../statics/images/cover/unavaliable.jpg";
-			} else {
-				cover = req.getParameter("cover");
-			}
+		if (req.getParameter("cover").contentEquals("")) {
+			cover = "../statics/images/cover/unavaliable.jpg";
+		} else {
+			cover = req.getParameter("cover");
+		}
 
-			try {
-				MovieHandler.getInstance().editMovie(title, cover, plot, category);
+		try {
+			MovieHandler.getInstance().editMovie(title, cover, plot, category);
 
-			}catch (SQLException e) {
-				System.out.println(e);
-				return "Impossible found the movie " + title;
-			}catch (NumberFormatException e) {
-				System.out.println(e);
-				return "Incorrect value for duration";
-			}catch (SearchException e) {
-				return title + " is used!";
-			}catch (Exception e) {
-				System.out.println(e);
-				return e.getMessage();
-			}
-			return title + " succefully changed. Reload to see changes";
-	
+		}catch (SQLException e) {
+			System.out.println(e);
+			return "Impossible found the movie " + title;
+		}catch (NumberFormatException e) {
+			System.out.println(e);
+			return "Incorrect value for duration";
+		}catch (SearchException e) {
+			return title + " is used!";
+		}catch (Exception e) {
+			System.out.println(e);
+			return e.getMessage();
+		}
+		return title + " succefully changed. Reload to see changes";
+
 	}
 }
 

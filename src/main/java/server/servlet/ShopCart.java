@@ -1,7 +1,10 @@
 package server.servlet;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,11 +13,13 @@ import org.rythmengine.Rythm;
 
 import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.MovieShowingHandler;
+import server.exception.ObjectNotFoundException;
+import server.exception.PaymentException;
 
 
-/** 
+/**
  * This servlet is used to manage a purchase
- * 
+ *
  * Singleton class (State pattern)
  */
 public class ShopCart implements IHandlerState {
@@ -95,11 +100,15 @@ public class ShopCart implements IHandlerState {
 			try {
 				boolean value = BuyTicketHandler.getInstance().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
-
-
+			}catch (MessagingException e) {
+				e.printStackTrace();
+				resp.getWriter().write("Email not valid");
+			}catch (PaymentException e) {
+				e.printStackTrace();
+				resp.getWriter().write("Something went wrong with payment, recheck your card data please");
 			}catch (Exception e) {
 				e.printStackTrace();
-				resp.getWriter().write("Impossible buy this ticket");
+				resp.getWriter().write("Impossible buy this ticket, something went wront. Contact us!");
 			}
 			break;
 		}

@@ -5,17 +5,18 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.MovieHandler;
+import server.exception.SearchException;
 
 public class DeleteMovie {
-	
+
 	public static String doAction(HttpServletRequest req) {
-		
+
 		String title = req.getParameter("title");
 		if (title == null || title.contentEquals(""))
 			return "Please enter a valid title";
 		try {
 			MovieHandler.getInstance().deleteMovie(title);
-		} catch (SQLException e) {
+		} catch (SQLException | SearchException e) {
 			e.printStackTrace();
 			return title + " not exists";
 		}catch (Exception e) {

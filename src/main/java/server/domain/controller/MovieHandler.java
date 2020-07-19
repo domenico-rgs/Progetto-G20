@@ -61,7 +61,7 @@ public class MovieHandler {
 		titleList.addAll(PersistenceFacade.getInstance().getAllMovies().keySet());
 		return titleList;
 	}
-	
+
 	/**
 	 * Given a string, it searches for movies that contain it in the title
 	 * @param search string that must be contained in the title

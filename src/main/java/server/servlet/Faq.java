@@ -10,7 +10,7 @@ import org.rythmengine.Rythm;
 
 /**
  * The control class that returns the static faq page
- * 
+ *
  * Singleton class (State pattern)
  */
 public class Faq implements IHandlerState {

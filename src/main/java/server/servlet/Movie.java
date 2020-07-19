@@ -17,7 +17,7 @@ import server.exception.ObjectNotFoundException;
 
 /**
  * This class is a controller that manages the movie page
- * 
+ *
  * Singleton class (State pattern)
  */
 public class Movie implements IHandlerState {

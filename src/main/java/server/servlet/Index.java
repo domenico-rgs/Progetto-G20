@@ -18,7 +18,7 @@ import server.exception.ObjectNotFoundException;
 
 /**
  * The servlet class that links the index.html page to logic
- * 
+ *
  * Singleton class (State pattern)
  */
 public class Index implements IHandlerState {
@@ -62,17 +62,17 @@ public class Index implements IHandlerState {
 	 * @throws ObjectNotFoundException
 	 */
 	private List<server.domain.cinema.Movie> getIndexMovie(int n) throws SQLException, ObjectNotFoundException {
-			List<String> title = MovieHandler.getInstance().getMovieList();
-			List<server.domain.cinema.Movie> movieList = new ArrayList<>();
+		List<String> title = MovieHandler.getInstance().getMovieList();
+		List<server.domain.cinema.Movie> movieList = new ArrayList<>();
 
-			/*to avoid overflow errors*/
-			if (n > title.size()) {
-				n = title.size();
-			}
+		/*to avoid overflow errors*/
+		if (n > title.size()) {
+			n = title.size();
+		}
 
-			for (int i = 0; i<n; i++) {
-				movieList.add(MovieHandler.getInstance().getMovie(title.get(i)));
-			}
-			return movieList;
+		for (int i = 0; i<n; i++) {
+			movieList.add(MovieHandler.getInstance().getMovie(title.get(i)));
+		}
+		return movieList;
 	}
 }

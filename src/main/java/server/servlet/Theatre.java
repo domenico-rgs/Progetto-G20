@@ -18,9 +18,9 @@ import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.MovieShowingHandler;
 import server.domain.controller.TheatreHandler;
 
-/** 
+/**
  * This servlet is used to manage the choise of a seats during a purchase
- * 
+ *
  * Singleton class (State pattern)
  */
 public class Theatre implements IHandlerState {
@@ -91,7 +91,9 @@ public class Theatre implements IHandlerState {
 
 
 			while ((row = file.readLine()) != null) {
-				if (row.contentEquals("")) continue;
+				if (row.contentEquals("")) {
+					continue;
+				}
 
 				List<String> rowList = new ArrayList<>();
 				col = row.split(" ");

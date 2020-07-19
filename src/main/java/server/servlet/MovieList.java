@@ -14,9 +14,9 @@ import org.rythmengine.Rythm;
 
 import server.domain.controller.MovieHandler;
 
-/** 
- * This servlet is used in the catalog to keep track of a list of films 
- * 
+/**
+ * This servlet is used in the catalog to keep track of a list of films
+ *
  * Singleton class (State pattern)
  */
 public class MovieList implements IHandlerState {

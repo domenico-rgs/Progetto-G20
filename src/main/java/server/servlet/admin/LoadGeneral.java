@@ -11,15 +11,10 @@ import server.domain.controller.MovieHandler;
 import server.domain.controller.MovieShowingHandler;
 import server.domain.controller.TheatreHandler;
 
-
-/**this class is specifically for the admin page to give general information*/
-
 public class LoadGeneral {
 
 	public static String doAction(HttpServletRequest req) {
-
 		switch (req.getParameter("object")) {
-
 		case "general":
 			Map<String,Integer> forMovie = new HashMap<>();
 			Map<String,Integer> forTheatre = new HashMap<>();
@@ -38,7 +33,6 @@ public class LoadGeneral {
 				messagge = Rythm.render("imported/adminGeneral.html",forMovie, forTheatre, MovieShowingHandler.getInstance().getAllShowingList().size());
 
 			} catch (Exception e) {
-
 				e.printStackTrace();
 				messagge = "General error occured. Please try later";
 			}
@@ -60,8 +54,6 @@ public class LoadGeneral {
 
 			return messagge;
 		}
-
 		return "Error with javascript server";
-
 	}
 }
