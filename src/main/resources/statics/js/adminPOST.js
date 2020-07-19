@@ -13,8 +13,7 @@ $('#addTheatre #add').on('click', function() {
     type: "POST",
     url: "/administrator",
     data: {
-      requestPost: "AddItem",
-      object: "theatre",
+      requestPost: "AddTheatre",
       name: $('#addTheatre #name').val(),
       config: $('#addTheatre #config').val(),
     },
