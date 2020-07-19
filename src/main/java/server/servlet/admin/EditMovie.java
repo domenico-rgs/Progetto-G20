@@ -8,14 +8,11 @@ import server.domain.cinema.TypeCategory;
 import server.domain.controller.MovieHandler;
 import server.exception.SearchException;
 
-public class EditItem {
+public class EditMovie {
 
 	public static String doAction(HttpServletRequest req) {
 
-		TypeItem type = TypeItem.valueOf(req.getParameter("object").toUpperCase());
 
-		switch (type) {
-		case MOVIE:
 			String title = req.getParameter("title");
 			String plot = req.getParameter("plot");
 			TypeCategory category = TypeCategory.valueOf(req.getParameter("category"));
@@ -43,10 +40,7 @@ public class EditItem {
 				return e.getMessage();
 			}
 			return title + " succefully changed. Reload to see changes";
-		}
-
-
-		return "Error with javascript scripts";
+	
 	}
 }
 
