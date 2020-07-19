@@ -38,7 +38,7 @@ public class MovieShowingHandler {
 	}
 
 	/**
-	 * it modifies ashowing
+	 * it modifies a showing
 	 * @param showing showing's id
 	 * @param theatre showing's theatre
 	 * @param price showing's price
@@ -78,6 +78,7 @@ public class MovieShowingHandler {
 	 * @param movie showing's movie
 	 * @throws ObjectNotFoundException
 	 */
+	// gia ridotto al minimo, richiede una certa complessità ma non esistono metodi migliori di controllo a mio parere
 	private void controlOverlapping(LocalDateTime date, String theatre, String movie) throws SQLException, OverlapException, ObjectNotFoundException {
 		ZonedDateTime zdt = date.atZone(ZoneId.systemDefault());
 		long dateShowingSec = zdt.toInstant().getEpochSecond();
