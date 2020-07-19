@@ -63,7 +63,7 @@ public class BuyTicketHandler {
 	 */
 	private List<Ticket> createTickets(String showingID, String[] seats) throws SQLException, ObjectNotFoundException {
 		MovieShowing m = MovieShowingHandler.getInstance().getMovieShowing(showingID);
-		
+
 		List<Ticket> ticketList = new ArrayList<>();
 		for(int i = 0; i<seats.length; i++) {
 			Seat s = getShowingSeat(showingID, seats[i]);
@@ -109,14 +109,14 @@ public class BuyTicketHandler {
 		}
 		return doubleList;
 	}
-	
+
 	private Seat getShowingSeat(String showingID, String seat) throws SQLException {
 		Set<Seat> sList = TheatreHandler.getInstance().getAllSeatsForShowing(showingID).keySet();
-			for(Seat sL : sList) {
-				if(sL.getPosition().equalsIgnoreCase(seat))
-					return sL;
-			}
-			return null; //it should never get here
+		for(Seat sL : sList) {
+			if(sL.getPosition().equalsIgnoreCase(seat))
+				return sL;
+		}
+		return null; //it should never get here
 	}
 
 	/**

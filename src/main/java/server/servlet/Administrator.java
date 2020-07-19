@@ -1,7 +1,6 @@
 package server.servlet;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +58,7 @@ public class Administrator implements IHandlerState {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String message = "";
 
-		
+
 		try {
 			message = (String)Class.forName("server.servlet.admin." + req.getParameter("requestPost")).
 					getMethod("doAction", HttpServletRequest.class).invoke(null, req);

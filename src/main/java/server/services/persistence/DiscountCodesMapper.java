@@ -20,10 +20,10 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 	private Map<String, CodeStrategy> discounts;
 
 	/**
-     * Initialize discounts with
-     * the discounts which are registered  when the system is set up.
-     * @throws SQLException
-     */
+	 * Initialize discounts with
+	 * the discounts which are registered  when the system is set up.
+	 * @throws SQLException
+	 */
 	public DiscountCodesMapper() throws SQLException {
 		super("DISCOUNTS");
 		this.discounts = new HashMap<>();

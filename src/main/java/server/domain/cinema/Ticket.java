@@ -29,11 +29,11 @@ public class Ticket {
 	public LocalDateTime getDate() {
 		return showing.getDate();
 	}
-	
+
 	public String getShowing() {
 		return showing.getId();
 	}
-	
+
 	public String getTheatre() {
 		return showing.getTheatreName();
 	}

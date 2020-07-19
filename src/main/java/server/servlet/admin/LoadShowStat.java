@@ -2,7 +2,6 @@ package server.servlet.admin;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import org.rythmengine.Rythm;
 
 import server.domain.controller.MovieShowingHandler;

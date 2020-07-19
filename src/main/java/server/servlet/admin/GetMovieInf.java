@@ -2,7 +2,6 @@ package server.servlet.admin;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import server.domain.controller.MovieHandler;
 
 /**this class gives me the information of the films*/

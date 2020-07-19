@@ -21,10 +21,10 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 	private SeatsMapper sm ;
 
 	/**
-     * Initialize theatres with
-     * the theatres which are registered  when the system is set up.
-     * @throws SQLException
-     */
+	 * Initialize theatres with
+	 * the theatres which are registered  when the system is set up.
+	 * @throws SQLException
+	 */
 	public TheatresMapper(SeatsMapper sm) throws SQLException {
 		super("THEATRES");
 		this.sm=sm;

@@ -2,7 +2,6 @@ package server.servlet.admin;
 
 import java.sql.SQLException;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.DiscountHandler;

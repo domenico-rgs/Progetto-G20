@@ -1,11 +1,9 @@
 package server.servlet.admin;
 
 import java.sql.SQLException;
-
 import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import server.domain.cinema.TypeCategory;
 import server.domain.controller.MovieHandler;
@@ -18,7 +16,7 @@ import server.exception.SeatException;
 public class AddItem {
 
 	public static String doAction(HttpServletRequest req) {
-		
+
 		TypeItem type = TypeItem.valueOf(req.getParameter("object").toUpperCase());
 
 		switch (type) {

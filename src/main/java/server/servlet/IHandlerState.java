@@ -19,7 +19,7 @@ public interface IHandlerState {
 	 * @throws SQLException
 	 */
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException;
-	
+
 	/**
 	 * Execute for POST request
 	 * @param req

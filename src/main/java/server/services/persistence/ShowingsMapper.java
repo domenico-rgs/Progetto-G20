@@ -26,10 +26,10 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 	private Map<String, MovieShowing> showing;
 
 	/**
-     * Initialize showing with
-     * the showings which are registered  when the system is set up.
-     * @throws SQLException
-     */
+	 * Initialize showing with
+	 * the showings which are registered  when the system is set up.
+	 * @throws SQLException
+	 */
 	public ShowingsMapper(TheatresMapper tm, AvailabilityMapper am) throws SQLException {
 		super("MOVIESHOWINGS");
 		this.showing = new HashMap<>();
@@ -134,7 +134,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		stm.setString(1, OID_movie);
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
-			
+
 			try {
 				MovieShowing ms = new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
 						(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));
@@ -155,7 +155,7 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		stm.setObject(3, new java.sql.Timestamp(date.toLocalDate().atTime(LocalTime.MIDNIGHT).toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli()));
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
-			
+
 			try {
 				MovieShowing ms = new MovieShowing(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toInstant().atZone(ZoneOffset.ofTotalSeconds(0)).toLocalDateTime(),
 						(server.domain.cinema.theatre.Theatre)tm.get(rs.getString(4)),Double.parseDouble(rs.getString(5)));

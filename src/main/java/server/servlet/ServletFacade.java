@@ -1,7 +1,6 @@
 package server.servlet;
 
 import java.io.IOException;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,10 +13,10 @@ import org.rythmengine.Rythm;
 
 @SuppressWarnings("serial")
 public class ServletFacade extends HttpServlet {
-	
-	Map<String, Object> conf; 
-	//Map<String, String> templates; 
-	//RythmEngine engine; 
+
+	Map<String, Object> conf;
+	//Map<String, String> templates;
+	//RythmEngine engine;
 	//String templateResp;
 
 	public ServletFacade() {

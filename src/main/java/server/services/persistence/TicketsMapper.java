@@ -19,10 +19,10 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	private ShowingsMapper sm;
 
 	/**
-     * Initialize tickets with
-     * the tickets which are registered  when the system is set up.
-     * @throws SQLException
-     */
+	 * Initialize tickets with
+	 * the tickets which are registered  when the system is set up.
+	 * @throws SQLException
+	 */
 	public TicketsMapper(ShowingsMapper sm) throws SQLException {
 		super("TICKETS");
 		this.tickets = new HashMap<>();

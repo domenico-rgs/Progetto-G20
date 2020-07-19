@@ -62,11 +62,11 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				+ " WHERE BINARY showingID = ?" );
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
-		
+
 		while (rs.next()) {
 			availabilityList.put(chooseSeat(rs.getString(3), rs.getString(2)), rs.getBoolean(4));
 		}
-		
+
 		return availabilityList;
 	}
 
@@ -92,14 +92,14 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 				" JOIN SEATS ON (SEATS.POS=AVAILABILITY.POS) AND (SEATS.THEATRE=AVAILABILITY.THEATRE) WHERE BINARY showingID =? and available=1" );
 		pstm.setString(1, OID_movieShowing);
 		ResultSet rs = pstm.executeQuery();
-		
+
 		while (rs.next()) {
 			availabilityList.put(chooseSeat(rs.getString(3), rs.getString(2)), rs.getBoolean(4));
 		}
-		
+
 		return availabilityList;
 	}
-	
+
 	private Seat chooseSeat(String type, String position) {
 		switch(type) {
 		case "NORMAL":

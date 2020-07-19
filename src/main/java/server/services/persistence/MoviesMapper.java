@@ -19,11 +19,11 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 
 	private Map<String, Movie> movie;
 
-	 /**
-     * Initialize movie with
-     * the movies which are registered  when the system is set up.
-     * @throws SQLException
-     */
+	/**
+	 * Initialize movie with
+	 * the movies which are registered  when the system is set up.
+	 * @throws SQLException
+	 */
 	public MoviesMapper() throws SQLException {
 		super("MOVIES");
 		this.movie = new HashMap<>();
@@ -37,7 +37,7 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 		ResultSet rs = pstm.executeQuery();
 		if(!rs.next())
 			throw new ObjectNotFoundException();
-		
+
 		return new Movie(rs.getString(1),rs.getInt(2),
 				rs.getString(3),rs.getString(4), TypeCategory.valueOf(rs.getString(5).toUpperCase()));
 	}

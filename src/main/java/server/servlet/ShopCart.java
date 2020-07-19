@@ -2,16 +2,13 @@ package server.servlet;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-
 import server.domain.controller.BuyTicketHandler;
-import server.domain.controller.DiscountHandler;
 import server.domain.controller.MovieShowingHandler;
 import server.domain.controller.TheatreHandler;
 
