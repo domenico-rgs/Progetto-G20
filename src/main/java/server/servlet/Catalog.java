@@ -42,10 +42,16 @@ public class Catalog implements IHandlerState {
 			List<server.domain.cinema.Movie> movieList = null;
 			try {
 				movieList = MovieHandler.getInstance().searchMovieForString(req.getParameter("search"));
+
+				
+				if (movieList.size() == 0) {
+					String messagge = req.getParameter("search") + " does not exist";
+					resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,messagge));
+					return;
+				}
 				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,""));
 			} catch (ObjectNotFoundException e) {
-				String messagge = req.getParameter("search") + " does not exist";
-				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,messagge));
+				resp.getWriter().write(Rythm.render("searchCatalog.html",movieList,"Problem with server"));
 			}
 		}
 	}
