@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.MovieHandler;
+import server.exception.ObjectNotFoundException;
 import server.exception.SearchException;
 
 public class DeleteMovie {
@@ -16,10 +17,10 @@ public class DeleteMovie {
 			return "Please enter a valid title";
 		try {
 			MovieHandler.getInstance().deleteMovie(title);
-		} catch (SQLException | SearchException e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
 			return title + " not exists";
-		}catch (Exception e) {
+		}
+		catch (Exception e) {
 			System.out.println(e);
 			return e.getMessage();
 		}

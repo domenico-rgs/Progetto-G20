@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.TheatreHandler;
+import server.exception.ObjectNotFoundException;
 
 public class DeleteTheatre {
 
@@ -18,9 +19,10 @@ public class DeleteTheatre {
 			TheatreHandler.getInstance().deleteTheatre(name);
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
 			return name + " not exists yet";
-		} catch (Exception e) {
+		} catch (ObjectNotFoundException e) {
+			return name + " not found or already deleted";
+		}catch (Exception e) {
 			e.printStackTrace();
 			return "impossible to remove " + name;
 		}
