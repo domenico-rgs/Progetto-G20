@@ -44,6 +44,6 @@ public class Main {
 			}
 		};
 		@SuppressWarnings("unused")
-		final ScheduledFuture<?> runnableHandle = scheduler.scheduleAtFixedRate(runnab, 1, 1, java.util.concurrent.TimeUnit.HOURS);
+		final ScheduledFuture<?> runnableHandle = scheduler.scheduleAtFixedRate(runnab, 400, 400, java.util.concurrent.TimeUnit.SECONDS);
 	}
 }

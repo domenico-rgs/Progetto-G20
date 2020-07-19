@@ -30,8 +30,12 @@ public class Ticket {
 		return showing.getDate();
 	}
 
-	public String getShowing() {
+	public String getShowingId() {
 		return showing.getId();
+	}
+
+	public MovieShowing getShowing() {
+		return showing;
 	}
 
 	public String getTheatre() {

@@ -131,22 +131,34 @@ public class BuyTicketHandler {
 	}
 
 	/**
-	 * it permits to delete a tickets
+	 * Allows you to request a refund if the projection still exists and the date is later than the current one
 	 * @param code ticket's code
 	 * @param cardNumber card's number
 	 * @throws ObjectNotFoundException
 	 * @throws DeleteTicketException
 	 */
-	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException, DeleteTicketException{
+	synchronized public void refundRequestTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException, DeleteTicketException{
+		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
+		
+		if(delTick.getShowing() == null || delTick.getDate().isBefore(LocalDateTime.now()))
+			throw new DeleteTicketException();
+		
+		MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
+	}
+	
+	/**
+	 * Delete a ticket from the system and if still present the projection changes the availability of the seat to which it refers
+	 * @param code
+	 * @throws SQLException
+	 * @throws ObjectNotFoundException
+	 * @throws SearchException
+	 */
+	synchronized public void deleteTicket(String code) throws SQLException, ObjectNotFoundException, SearchException {
 		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
 
-		if(delTick.getDate().isBefore(LocalDateTime.now())) //controllare
-			throw new DeleteTicketException();
-		else {
-			MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
-			//TheatreHandler.getInstance().setAvailability(delTick.getShowing(), true, delTick.getSeat());
-			//PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
-		}
+		if(delTick.getShowing() != null)
+			TheatreHandler.getInstance().setAvailability(delTick.getShowingId(), true, delTick.getSeat());
+		PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
 	}
 
 

@@ -42,6 +42,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 
 		try {
 			Theatre tmp = new Theatre(rs.getString(1));
+			tmp.setFilePath(rs.getString(2));
 			tmp.setSeatsList(sm.getSeatsList(tmp.getTheatreName()));
 			return tmp;
 		} catch (IOException | SeatException e) {
@@ -101,6 +102,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 			Theatre tmp;
 			try {
 				tmp = new Theatre(rs.getString(1));
+				tmp.setFilePath(rs.getString(2));
 				tmp.setSeatsList(sm.getSeatsList(tmp.getTheatreName()));
 
 				this.theatres.put(rs.getString(1),tmp);

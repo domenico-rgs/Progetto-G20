@@ -11,7 +11,7 @@ import server.exception.OverlapException;
 import server.exception.SearchException;
 
 
-public class AddMultiShowing {
+public class AddMultiShowings {
 
 	public static String doAction(HttpServletRequest req) {
 

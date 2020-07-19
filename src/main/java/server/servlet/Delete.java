@@ -41,7 +41,7 @@ public class Delete implements IHandlerState {
 		System.out.println(ticket);
 
 		try {
-			BuyTicketHandler.getInstance().deleteTicket(ticket, cardN);
+			BuyTicketHandler.getInstance().refundRequestTicket(ticket, cardN);
 			resp.getWriter().write("Refund requested with success");
 		}catch (Exception e) {
 			e.printStackTrace();

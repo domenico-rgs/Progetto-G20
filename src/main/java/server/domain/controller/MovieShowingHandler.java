@@ -8,6 +8,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 import server.domain.cinema.MovieShowing;
+import server.domain.cinema.theatre.Theatre;
 import server.exception.ObjectNotFoundException;
 import server.exception.OverlapException;
 import server.exception.SearchException;

@@ -37,8 +37,14 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		ResultSet rs = pstm.executeQuery();
 		if(!rs.next())
 			throw new ObjectNotFoundException();
-		return new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
-				(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
+		
+		try {
+			return new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
+					(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
+		} catch (ObjectNotFoundException e) {
+			return new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
+					null, rs.getDouble(5));
+		}
 	}
 
 
@@ -78,7 +84,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 
 		pstm.setString(1,OID);
 		pstm.setString(2, t.getTheatre());
-		pstm.setObject(3, t.getShowing());
+		pstm.setObject(3, t.getShowingId());
 		pstm.setString(4,t.getSeat());
 		pstm.setDouble(5,Math.round(t.getTotalPrice()*100)/100);
 
@@ -95,7 +101,9 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 						(server.domain.cinema.MovieShowing)sm.get(rs.getString(4)), rs.getDouble(5));
 				this.tickets.put(rs.getString(1),tmp);
 			} catch (ObjectNotFoundException e) {
-				e.printStackTrace();
+				Ticket tmp = new Ticket(rs.getString(1),rs.getString(2),rs.getString(3),
+						null, rs.getDouble(5));
+				this.tickets.put(rs.getString(1),tmp);
 			}
 		}
 	}

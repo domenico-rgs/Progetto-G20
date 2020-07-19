@@ -97,6 +97,10 @@ public class Theatre {
 		return theatreName;
 	}
 
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
