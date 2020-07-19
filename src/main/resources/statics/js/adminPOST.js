@@ -303,23 +303,6 @@ $('#discounts #remove').on('click', function() {
   })
 });
 
-//ticket delete
-$('#deleteTicket #remove').on('click', function() {
-  $('#deleteTicket .loader').css("visibility", "visible")
-  var ajax = $.ajax({
-    type: "POST",
-    url: "/administrator",
-    data: {
-      requestPost: "DeleteTicket",
-      code: $('#deleteTicket #ticket').val(),
-    },
-    success: function(response) {
-      $('#deleteTicket .loader').css("visibility", "hidden")
-      $('#deleteTicket .message').text(response)
-      reloadGeneral()
-    }
-  })
-});
 //password check
 $('.passDiv #home').on('click', function(e) {
   window.location.href = "/home"
