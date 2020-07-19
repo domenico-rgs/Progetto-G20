@@ -28,7 +28,7 @@ public class PaymentFactory {
 	 * If the object has not already been instanced, it is instanced and it is returned.
 	 * @return instance(PaymentFactory)
 	 */
-	public static PaymentFactory getInstance() {
+	public static synchronized PaymentFactory getInstance() {
 		if (istance == null) {
 			istance = new PaymentFactory();
 		}
