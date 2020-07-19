@@ -30,6 +30,7 @@ import com.itextpdf.layout.element.Paragraph;
 
 import server.domain.cinema.Ticket;
 
+@SuppressWarnings("deprecation")
 public class MailSender {
 	private static Properties props = new Properties();
 	private static int port = 465; //port 25 to not use SSL
@@ -79,7 +80,6 @@ public class MailSender {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	@SuppressWarnings("deprecation")
 	private static File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
 		String name ="soldTicket/"+RandomStringUtils.randomAlphanumeric(8)+".pdf";
 		PdfWriter writer = new PdfWriter(name, new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
