@@ -12,6 +12,7 @@ import javax.mail.MessagingException;
 import server.domain.cinema.MovieShowing;
 import server.domain.cinema.Ticket;
 import server.domain.cinema.theatre.Seat;
+import server.domain.cinema.theatre.Theatre;
 import server.domain.payment.ShopCart;
 import server.domain.payment.discount.PricingStrategyFactory;
 import server.domain.payment.discount.TicketPricingStrategy;
@@ -23,6 +24,7 @@ import server.services.mail.MailSender;
 import server.services.payment.PaymentFactory;
 import server.services.persistence.OIDCreator;
 import server.services.persistence.PersistenceFacade;
+import server.services.persistence.TheatresMapper;
 import server.services.persistence.TicketsMapper;
 
 public class BuyTicketHandler {
@@ -137,30 +139,17 @@ public class BuyTicketHandler {
 	 * @throws ObjectNotFoundException
 	 * @throws DeleteTicketException
 	 */
-	synchronized public void refundRequestTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException, DeleteTicketException{
+	synchronized public void deleteTicket(String code, String cardNumber) throws SQLException, MessagingException, SearchException, FileNotFoundException, ObjectNotFoundException, DeleteTicketException{
 		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
 		
-		if(delTick.getShowing() == null || delTick.getDate().isBefore(LocalDateTime.now()))
+		System.out.println(delTick.getDate().toString());
+		if(delTick.getDate().isBefore(LocalDateTime.now()))
 			throw new DeleteTicketException();
 		
 		MailSender.sendRefundMail(code, cardNumber, (delTick).getTotalPrice());
-	}
-	
-	/**
-	 * Delete a ticket from the system and if still present the projection changes the availability of the seat to which it refers
-	 * @param code
-	 * @throws SQLException
-	 * @throws ObjectNotFoundException
-	 * @throws SearchException
-	 */
-	synchronized public void deleteTicket(String code) throws SQLException, ObjectNotFoundException, SearchException {
-		Ticket delTick = (Ticket)PersistenceFacade.getInstance().get(code, TicketsMapper.class);
-
-		if(delTick.getShowing() != null)
-			TheatreHandler.getInstance().setAvailability(delTick.getShowingId(), true, delTick.getSeat());
+		TheatreHandler.getInstance().setAvailability(delTick.getShowingId(), true, delTick.getSeat());
 		PersistenceFacade.getInstance().delete(code, TicketsMapper.class);
 	}
-
 
 	private double getTotalPriceTickets(List<Ticket> ticketList) {
 		double total = 0.0;

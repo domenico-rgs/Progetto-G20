@@ -2,6 +2,8 @@ package server.services.mail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -81,7 +83,7 @@ public class MailSender {
 	 * @throws FileNotFoundException
 	 */
 	private static File genPDF(List<Ticket> ticketList) throws FileNotFoundException {
-		String name ="soldTicket/"+RandomStringUtils.randomAlphanumeric(8)+".pdf";
+		String name ="soldTicket/"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM uuuu - HH mm")).toString()+".pdf";
 		PdfWriter writer = new PdfWriter(name, new WriterProperties().setPdfVersion(PdfVersion.PDF_2_0));
 		PdfDocument pdfDocument = new PdfDocument(writer);
 		pdfDocument.setTagged();

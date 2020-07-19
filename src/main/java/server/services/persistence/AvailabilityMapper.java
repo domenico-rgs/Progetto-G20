@@ -107,7 +107,7 @@ public class AvailabilityMapper extends AbstractPersistenceMapper {
 			return new Seat(position);
 		case "PREMIUM":
 			return new PremiumSeat(position);
-		case "DISABLED":
+		case "DISABLE":
 			return new DisableSeat(position);
 		}
 		return null;
