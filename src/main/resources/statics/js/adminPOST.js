@@ -310,6 +310,27 @@ $('#discounts #remove').on('click', function() {
   })
 });
 
+//ticket delete
+$('#deleteTicket #remove').on('click', function() {
+  $('#deleteTicket .loader').css("visibility", "visible")
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "EditItem",
+      object: "movie",
+      title: $('#editMovie #movie').val(),
+      plot: $('#editMovie #plot').val(),
+      cover: $('#editMovie #cover').val(),
+      category: $('#editMovie #category').find(":selected").text()
+    },
+    success: function(response) {
+      $('#editMovie .loader').css("visibility", "hidden")
+      $('#editMovie .message').text(response)
+      reloadGeneral()
+    }
+  })
+});
 //password check
 $('.passDiv #home').on('click', function(e) {
   window.location.href = "/home"
