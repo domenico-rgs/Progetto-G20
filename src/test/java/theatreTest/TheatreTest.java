@@ -9,12 +9,11 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import server.domain.cinema.theatre.DisabledSeat;
+import server.domain.cinema.theatre.DisableSeat;
 import server.domain.cinema.theatre.PremiumSeat;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
-import server.domain.exception.SeatException;
-import server.handler.Administrator;
+import server.exception.SeatException;
 
 public class TheatreTest {
 
@@ -47,9 +46,11 @@ public class TheatreTest {
 		
 		Theatre theatre2 = new Theatre("theatreTest2");    //instantiate a theater with the name "theaterTest"
 		 
-		String fileString = "src/main/resources/theatreConf/theatreTest.txt";
+		//String fileString = "src/main/resources/theatreConf/theatreTest.txt";
 		
-		theatre2.createSeats(fileString);
+		String config = "X X X P P P \nD D D X X X  \n X X X X X X \n X X X X X X"; 
+		
+		theatre2.createSeats(config);
 		seatList = theatre2.getSeatsList();
 		
 		/**check if the hashmap is empty, if yes set testSeats to true*/
@@ -60,7 +61,7 @@ public class TheatreTest {
 		for (Map.Entry<String, Seat> entry : seatList.entrySet()) {
 			boolean testValue = false;
 			
-			testValue = entry.getValue().equals(Seat.class) || entry.getValue().equals(PremiumSeat.class) || entry.getValue().equals(DisabledSeat.class);
+			testValue = entry.getValue().equals(Seat.class) || entry.getValue().equals(PremiumSeat.class) || entry.getValue().equals(DisableSeat.class);
 			
 			if(testValue == true) {
 				testSeats = false;
@@ -73,6 +74,8 @@ public class TheatreTest {
 	
 	
 	/**test if it creates the path and creates the file*/
+	
+	
 	@Test
 	public final void testCreateConfigFile() throws IOException, SeatException {
 		boolean testSeats = false;   	//variable that I use to verify the result that in theory I should get
@@ -86,9 +89,11 @@ public class TheatreTest {
 		
 		/**check given the following path just created there is the file just created*/
 		testSeats = new File(filePath).isFile();
-		
+	
 		
 		assertEquals(true, testSeats);
 	}
+	
+	
 
 }
