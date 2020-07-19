@@ -10,7 +10,6 @@ import org.rythmengine.Rythm;
 
 import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.MovieShowingHandler;
-import server.domain.controller.TheatreHandler;
 
 
 
@@ -32,14 +31,14 @@ public class ShopCart implements IHandlerState {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String shopId = req.getParameter("shopID");
-		String realShopId = BuyTicketHandler.getInstance().getShopCardValue("ID");
+		String realShopId = BuyTicketHandler.getInstance().getShopCartID();
 
 		if (shopId == null || !(shopId.contentEquals(realShopId))) {
 			resp.getWriter().write(Rythm.render("404.html"));
 			return;
 		}
 
-		String idsh = BuyTicketHandler.getInstance().getShopCardValue("showing");
+		String idsh = BuyTicketHandler.getInstance().getShopCartIdSh();
 		String []seats = BuyTicketHandler.getInstance().getSelectedSeats();
 
 
@@ -48,7 +47,7 @@ public class ShopCart implements IHandlerState {
 			resp.getWriter().write(Rythm.render("shop.html", MovieShowingHandler.getInstance().getMovieShowing(idsh),
 					seats,
 					BuyTicketHandler.getInstance().ticketsPrice(idsh, seats),
-					BuyTicketHandler.getInstance().getShopCardValue("total")));
+					BuyTicketHandler.getInstance().getShopCartTotal()));
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -72,7 +71,7 @@ public class ShopCart implements IHandlerState {
 
 			try {
 				finalPrice = BuyTicketHandler.getInstance().applyDiscountOnPrice(code, price);
-				
+
 				//codice gia usato
 				if (finalPrice == -1.0) {
 					resp.getWriter().write("already");

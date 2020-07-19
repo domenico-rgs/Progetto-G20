@@ -128,7 +128,7 @@ public class AddItem {
 			LocalDateTime finalD;
 
 			if (movie == null || theatre == null || price == null)
-				return "please insert correct data";
+				return "Please insert correct data";
 
 
 			try {

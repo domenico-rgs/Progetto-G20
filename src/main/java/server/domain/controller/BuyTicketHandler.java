@@ -1,7 +1,6 @@
 package server.domain.controller;
 
 import java.io.FileNotFoundException;
-
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -44,15 +43,17 @@ public class BuyTicketHandler {
 	 * @throws ObjectNotFoundException
 	 */
 	synchronized public boolean buyTicket(String codeCard, String date, String cvc, String emailRecipient) throws SQLException, MessagingException, PaymentException, FileNotFoundException, ObjectNotFoundException {
+		if(MovieShowingHandler.getInstance().getMovieShowing(shopCart.getIdSh()).getDate().isBefore(LocalDateTime.now()))
+			throw new PaymentException("You are trying to buy a ticket for an old showing");
+
 		List<Ticket> ticketList = createTickets(shopCart.getIdSh(), shopCart.getSeats());
 		boolean result = PaymentFactory.getInstance().getPaymentAdapter().pay(getTotalPriceTickets(ticketList), codeCard, date, cvc);
-		//Demeter
+
 		if(result) {
 			MailSender.sendTicketMail(emailRecipient, ticketList);
-			shopCart.refresh();
 			TheatreHandler.getInstance().setAvailability(shopCart.getIdSh(), false, shopCart.getSeats());
+			shopCart.refresh();
 			return true;
-
 		} else
 			return false;
 	}
@@ -71,7 +72,7 @@ public class BuyTicketHandler {
 		for(int i = 0; i<seats.length; i++) {
 			Seat s = getShowingSeat(showingID, seats[i]);
 			ticketList.add(new Ticket(OIDCreator.getInstance().getTicketCode(),m.getMovie(), seats[i],
-					MovieShowingHandler.getInstance().getMovieShowing(showingID), (m.getPrice()*s.getAddition())));
+					MovieShowingHandler.getInstance().getMovieShowing(showingID), (double) Math.round((m.getPrice()*s.getAddition()) * 100) / 100));
 		}
 		PersistenceFacade.getInstance().addTickets(ticketList);
 		return ticketList;
@@ -85,9 +86,9 @@ public class BuyTicketHandler {
 	 * @throws ObjectNotFoundException
 	 */
 	synchronized public double applyDiscountOnPrice(String code, double price) throws SQLException, PaymentException, ObjectNotFoundException{
-		if (shopCart.hasCode(code)) 
+		if (shopCart.hasCode(code))
 			return -1.0;
-		
+
 		TicketPricingStrategy discount = PricingStrategyFactory.getInstance().getDiscount(code.toUpperCase());
 
 		if(discount != null) {
@@ -155,7 +156,7 @@ public class BuyTicketHandler {
 		for(Ticket t : ticketList) {
 			total += t.getTotalPrice();
 		}
-		return total;
+		return (double) Math.round(total * 100) / 100;
 	}
 
 	/**
@@ -167,26 +168,24 @@ public class BuyTicketHandler {
 		shopCart.refresh();
 		shopCart.setIdSh(id);
 		shopCart.setSeats(seats);
-		
+
 		return shopCart.generateID();
 	}
-	
+
 	public String [] getSelectedSeats() {
 		return shopCart.getSeats();
 	}
-	
-	
-	public String getShopCardValue(String value) {
-		
-		switch (value) {
-		case "ID":
-			return shopCart.getID();
-		case "showing":
-			return shopCart.getIdSh();
-		case "total":
-			return String.valueOf(shopCart.getTotal());
-		}
-		return "none";
+
+	public String getShopCartID() {
+		return shopCart.getID();
+	}
+
+	public String getShopCartIdSh() {
+		return shopCart.getIdSh();
+	}
+
+	public String getShopCartTotal() {
+		return String.valueOf(shopCart.getTotal());
 	}
 
 	public static BuyTicketHandler getInstance() {
