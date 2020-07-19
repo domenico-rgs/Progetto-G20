@@ -27,7 +27,7 @@ public class ShopCart implements IHandlerState {
 
 	}
 
-	@Override
+	@Override /**/
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String shopId = req.getParameter("shopID");
