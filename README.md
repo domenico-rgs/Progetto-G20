@@ -1,58 +1,57 @@
-# Progetto-G20 
-Applicazione web per la prenotazione di biglietti in un cinema multisala
+# Project-G20
+Web application for booking tickets in a multiplex cinema
 
-## Set up del sistema
-
-### Requisiti
-- [JAVA JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) 
-(testato sulla versione 11)
-
-- [JDBC](https://dev.mysql.com/downloads/connector/j/) - versione 8.0.20
-
-- [Jetty](https://www.eclipse.org/jetty/) - versione 9.4.30.v20200611
-
-- [Gradle](https://gradle.org) - versione 6.0
-
-- [JavaMail](https://javaee.github.io/javamail/) - versione 1.4.7
-
-- [iTextPDF](https://itextpdf.com/en) - versione 7.1.11
-
-- [SLF4J API](http://www.slf4j.org/) - versione 1.7.30
-
-- [JQuery Plugin For Gradle](https://mvnrepository.com/artifact/com.jgeppert.struts2.jquery/struts2-jquery-plugin) - versione 4.0.3
-
+## System set up
 ### Set up database
-Per avviare il programma è necessario prima di tutto avere il database a disposizione e funzionante.
- Per evitare di dover modificare parametri all'interno del codice creare il db tramite MySQL Workbench con gli stessi parametri
- presenti all'interno dell'interterfaccia "IMapper" del progetto. Creare quindi un nuovo schema e impostarlo come schema di default. 
- Per creare le tabelle e inserire i record necessari al programma eseguire lo script MySQL contenuto nel file "DBCinema.sql".
+To start the program you must first of all have the database available and functional.
+ To avoid having to modify parameters within the code, create the db via MySQL Workbench with the same parameters
+ present within the project's "IMapper" interface. Then create a new scheme and set it as the default scheme.
+ To create the tables run the MySQL script contained in the "DBCinema.sql" file.
  
-### Avvio del server
-Avvio del server tramite terminale :
-il numero della porta del server è configurabile tramite linea di comando(se non specificata il programma usa la porta 8080)
+### Requirements
+- [JAVA JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+(tested on version 11)
 
-- spostarsi sulla cartella principale del progetto e compilare il progetto scaricando tutte le dipendenze tramite il comando:
+- [JDBC](https://dev.mysql.com/downloads/connector/j/) - version 8.0.20
+
+- [Jetty](https://www.eclipse.org/jetty/) - version 9.4.30.v20200611
+
+- [Gradle](https://gradle.org) - version 6.0
+
+- [JavaMail](https://javaee.github.io/javamail/) - version 1.4.7
+
+- [iTextPDF](https://itextpdf.com/en) - version 7.1.11
+
+- [SLF4J API](http://www.slf4j.org/) - version 1.7.30
+
+- [JQuery Plugin For Gradle](https://mvnrepository.com/artifact/com.jgeppert.struts2.jquery/struts2-jquery-plugin) - version 4.0.3
+ 
+### Starting the server
+Starting the server via terminal:
+the server port number can be configured via the command line (if not specified, the program uses port 8080)
+
+- move to the main folder of the project and compile the project by downloading all the dependencies using the command:
 
 ``` $ ./gradlew clean build```
 
-- eseguire il progetto usando la porta di default :
+- run the project using the default port:
 
 ``` $  ./gradlew run```
 
-- eseguire il progetto,  volendo specificare una porta  :
+- to execute the project by specifying a different port:
 
 ``` $  ./gradlew run --args='portNumber' ```
 
-dove portNumber è il numero della porta desiderata. 
+where portNumber is the desired port number.
 
-### Accedere al servizio
-In generale, se addressOfMyServer è l'indirizzo del server e ServerPort è la porta di quest'ultimo dedicata al servizio, connettersi tramite l'indirizzo http://addressOfMyServer:ServerPort
+### Log in to the service
+In general, if addressOfMyServer is the address of the server and ServerPort is the port of the latter dedicated to the service, connect via the address http: // addressOfMyServer: ServerPort
 
-- #### Utente
-Supponendo che la connessione avvenga dalla stessa macchina su cui è attivo il server, connettersi al server alla pagina:
-http://localhost:8080
+- #### User
+Assuming that the connection is made from the same machine on which the server is active, connect to the server on the page:
+http: // localhost: 8080
 
-- #### Amministratore
-Supponendo che la connessione avvenga dalla stessa macchina su cui è attivo il server, connettersi al server alla pagina:
-http://localhost:8080/administrator
-<br> La password di default è *password*
+- #### Administrator
+Assuming that the connection is made from the same machine on which the server is active, connect to the server on the page:
+http: // localhost: 8080 / administrator
+<br> The default password is * password *
