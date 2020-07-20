@@ -51,7 +51,7 @@ public class Theatre {
 		for(int j = 0; j<row.length; j++) {
 			//the position is calculated so that the row is identified by a letter and the seats with increasing numbers from 0
 			String position = Character.toString(65 + rowNum) + j;
-			System.out.println(row[j]);
+			//System.out.println(row[j]);
 			if(row[j].equalsIgnoreCase("")) {
 				break;
 			}

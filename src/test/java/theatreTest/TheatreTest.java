@@ -49,8 +49,10 @@ public class TheatreTest {
 		
 		/**Random string similar to the one that will appear for the configuration of the seats*/
 		String config = "X X X P P P \nD D D X X X  \n X X X X X X \n X X X X X X"; 
+		String config2 = "G X X P P P \nD D D X X X  \n X X X X X X \n X X X X X X"; 
 		
 		theatre2.createSeats(config);
+		//theatre2.createSeats(config2);
 		seatList = theatre2.getSeatsList();
 		
 		/**check if the hashmap is empty, if yes set testSeats to true*/
