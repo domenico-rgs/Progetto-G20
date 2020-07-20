@@ -50,7 +50,7 @@ CREATE TABLE AVAILABILITY
 CREATE TABLE TICKETS
         (ticketCode CHAR(16) PRIMARY KEY,
 		theatre CHAR(20) NOT NULL,
-		showingID CHAR(10),
+		showingID CHAR(10) NOT NULL,
 		occupiedSeat CHAR(4) NOT NULL,
 		totalPrice DOUBLE NOT NULL,
          

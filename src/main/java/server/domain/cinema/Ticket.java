@@ -1,6 +1,7 @@
 package server.domain.cinema;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * This class identifies a ticket to show a movie.
@@ -28,6 +29,10 @@ public class Ticket {
 
 	public LocalDateTime getDate() {
 		return showing.getDate();
+	}
+	
+	public String getDateToString() {
+		return showing.getDate().format(DateTimeFormatter.ofPattern("dd MMM uuuu - HH:mm"));
 	}
 
 	public String getShowingId() {

@@ -34,7 +34,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 
 	@Override
 	protected Object getObjectFromTable(String OID) throws SQLException, ObjectNotFoundException {
-		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE ticketCode = ?");
+		PreparedStatement pstm = conn.prepareStatement("select ticketCode, movieTitle, occupiedSeat, showingID, totalPrice from TICKETS join MOVIESHOWINGS on TICKETS.showingID = MOVIESHOWINGS.id WHERE ticketCode = ?");
 		pstm.setString(1,OID);
 		ResultSet rs = pstm.executeQuery();
 		if(!rs.next())
@@ -112,7 +112,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 
 	protected List<Ticket> getTicketListForShowing(String OID_showing) throws SQLException {
 		List<Ticket> tickets = new ArrayList<>();
-		PreparedStatement stm = conn.prepareStatement("select * from "+super.tableName + " where showingID = ?");
+		PreparedStatement stm = conn.prepareStatement("select ticketCode, movieTitle, occupiedSeat, showingID, totalPrice from TICKETS join MOVIESHOWINGS on TICKETS.showingID = MOVIESHOWINGS.id where showingID = ?");
 		stm.setString(1, OID_showing);
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()){
