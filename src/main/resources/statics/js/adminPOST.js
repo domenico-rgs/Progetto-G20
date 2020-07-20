@@ -303,6 +303,58 @@ $('#discounts #remove').on('click', function() {
   })
 });
 
+//tickets table
+$('#ticket #idS').on('change', function() {
+  $('#ticket .loader').css("visibility", "visible")
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "GetTicketsInf",
+      id: $('#ticket #idS').val()
+    },
+    success: function(response) {
+      $('#ticket .loader').css("visibility", "hidden")
+      $('#ticket .table').empty()
+      $('#ticket .table').append(response)
+    }
+  })
+});
+
+$('#ticket #movie').on('change', function() {
+  $('#ticket .loader').css("visibility", "visible")
+  $('#ticket #idList').empty()
+  var ajax = $.ajax({
+    type: "POST",
+    url: "/administrator",
+    data: {
+      requestPost: "GetShowingInf",
+      action: "getID",
+      title: $('#ticket #movie').val(),
+    },
+    success: function(response) {
+      $('#ticket #idS').attr('placeholder', 'ID');
+
+      //lista di id disponibili, da splittare
+      var idList = response.split("@")
+      var element
+      $('#ticket .loader').css("visibility", "hidden")
+
+      if (idList.length == 0) {
+        $('#ticket #idS').attr('placeholder', 'Nothing ID');
+        return;
+      }
+
+      idList.forEach(function(item, index) {
+        //item è il mio elemento
+        element = '<option value=' + item + '>' + item + '</option>'
+        $('#ticket #idList').append(element)
+      })
+
+    }
+  })
+});
+
 //password check
 $('.passDiv #home').on('click', function(e) {
   window.location.href = "/home"

@@ -35,6 +35,7 @@ List<String> categoryList
                   <li value="multiShowings">Add Multi Showings</li>
                   <li value="editShowing">Edit Showing</li>
                   <li value="discounts">Discounts</li>
+                  <li value="ticket">Tickets</li>
 
                 </ul>
               </div>
@@ -306,6 +307,33 @@ List<String> categoryList
                       }
                     </datalist>
                     <button id="remove">Remove</button>
+                  </div>
+
+                  <div class="loader"></div>
+                  <p class="message"></p>
+                </div>
+
+
+                <!-- tickets  -->
+                <div class="admin" id="ticket">
+                  <p>Show Ticket information:</p>
+
+                  <div class="searchDiv">
+                    <input id="movie" list="filmList" placeholder="Search Film">
+                    <datalist id="filmList">
+                      @for (String movie: titleMovieList) {
+                      <option value="@movie">@movie</option>
+                      }
+                    </datalist>
+
+                    <input id="idS" list="idList" placeholder="ID showing">
+                    <datalist id="idList">
+                      <!-- le aggiunge ajax -->
+                    </datalist>
+                  </div>
+
+                  <div class="table">
+
                   </div>
 
                   <div class="loader"></div>
