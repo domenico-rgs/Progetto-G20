@@ -45,11 +45,11 @@ List<server.domain.cinema.Ticket> ticketList
 
     @for (server.domain.cinema.Ticket tk: ticketList) {
     <tr>
-      <td>tk.getCode()</td>
-      <td>tk.getDate().toString()</td>
-      <td>tk.getTheatreName()</td>
-      <td>tk.getSeat()</td>
-      <td>tk.getTotalPrice()</td>
+      <td>@tk.getCode()</td>
+      <td>@tk.getDateToString()</td>
+      <td>@tk.getTheatre()</td>
+      <td>@tk.getSeat()</td>
+      <td>@tk.getTotalPrice()</td>
     </tr>
     }
 
