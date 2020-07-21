@@ -321,7 +321,7 @@ $('#ticket #idS').on('change', function() {
   })
 });
 
-$('#ticket #movie').on('change', function() {
+$('#ticket #movie2').on('change', function() {
   $('#ticket .loader').css("visibility", "visible")
   $('#ticket #idList').empty()
   var ajax = $.ajax({
@@ -330,26 +330,27 @@ $('#ticket #movie').on('change', function() {
     data: {
       requestPost: "GetShowingInf",
       action: "getID",
-      title: $('#ticket #movie').val(),
+      title: $('#ticket #movie2').val(),
     },
-    success: async function(response) {
-      $('#ticket #idS').attr('placeholder', 'ID');
+    success: function(response) {
+      $('#ticket #idS2').attr('placeholder', 'ID');
 
       //lista di id disponibili, da splittare
-      var idList = response.split("@")
-      var element
+      var idList2 = response.split("@")
+      var element2
       $('#ticket .loader').css("visibility", "hidden")
 
       if (idList.length == 0) {
-        $('#ticket #idS').attr('placeholder', 'Nothing ID');
+        $('#ticket #idS2').attr('placeholder', 'Nothing ID');
         return;
       }
 
-      await idList.forEach(function(item, index) {
+      idList2.forEach(function(item, index) {
         //item è il mio elemento
-        await element = '<option value=' + item + '>' + item + '</option>'
-        await $('#ticket #idList').append(element)
+        element2 = '<option value=' + item + '>' + item + '</option>'
+        $('#ticket .searchDiv #idList2').append(element2)
       })
+
 
     }
   })
