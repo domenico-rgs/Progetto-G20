@@ -48,7 +48,7 @@ public class LoadGeneral {
 				messagge = Rythm.render("imported/showTableAdmin.html",
 						MovieShowingHandler.getInstance().getMovieShowingList(title), title);
 			} catch (Exception e) {
-				System.out.println(e);
+				e.printStackTrace();
 				messagge = "Error with server";
 			}
 

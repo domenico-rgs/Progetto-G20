@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import server.exception.SearchException;
 import server.exception.SeatException;
 
 /** This class represents a cinema's theatre. */
@@ -25,18 +26,18 @@ public class Theatre {
 	 * @param file file used to create the positioning of the seats in a theatre
 	 * @throws IOException if there are problems with the file
 	 * @throws SeatException problems recognizing the seat (e.g. wrong identifier (x, d, p))
+	 * @throws SearchException
 	 */
-	public void createSeats(String config) throws IOException, SeatException {
+	public void createSeats(String config) throws IOException, SeatException, SearchException {
 		String[] s = config.split("\\n");
 		for(int i =0; i<s.length; i++) {
 			String[] tmp = s[i].split("\\s+");
-			//System.out.println(s[i]);
 			addSeats(tmp, i); //adds seats for the current row to the seat list
 		}
 		createConfigFile(config);
 	}
-	
-	
+
+
 
 	/**
 	 * Create the seats in a room from a vector indicating the places in a row
@@ -49,22 +50,15 @@ public class Theatre {
 	 */
 	private void addSeats(String[] row, int rowNum) throws SeatException {
 		for(int j = 0; j<row.length; j++) {
-			//the position is calculated so that the row is identified by a letter and the seats with increasing numbers from 0
 			String position = Character.toString(65 + rowNum) + j;
-			//System.out.println(row[j]);
-			if(row[j].equalsIgnoreCase("")) {
-				break;
-			}
 			if(row[j].equalsIgnoreCase("X")) {
 				seatsList.put(position, new Seat(position));
 			} else if (row[j].equalsIgnoreCase("P")) {
 				seatsList.put(position, new PremiumSeat(position));
 			} else if (row[j].equalsIgnoreCase("D")) {
 				seatsList.put(position, new DisableSeat(position));
-			} else {
-				
+			} else
 				throw new SeatException("Unrecognized seat type, recheck the file!");
-			}
 		}
 	}
 
@@ -73,10 +67,13 @@ public class Theatre {
 	 * @param config this is the string which represents the theatre's seats configuration
 	 * @return return path's configuration file
 	 * @throws FileNotFoundException it occurs if the received string is not correct
+	 * @throws SearchException
 	 */
-	private String createConfigFile(String config) throws FileNotFoundException {
+	private String createConfigFile(String config) throws FileNotFoundException, SearchException {
+		if (new File("src/main/resources/theatreConf/" + theatreName+".txt").exists())
+			throw new SearchException("Theatre config already exists");
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
-		config = config.replaceAll("[^\\S\\r\\n]+",""); //regex expression is used to remove "extra" spaces if they are added
+		config = config.replaceAll("[^\\S\\r\\n]+"," "); //regex expression is used to remove "extra" spaces if they are added
 
 		out.println(config);
 		out.close();

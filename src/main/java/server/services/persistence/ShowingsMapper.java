@@ -84,7 +84,6 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 	@Override
 	public synchronized void put(String OID, Object obj) throws SQLException{
 		MovieShowing s = (MovieShowing)obj;
-		updateCache(OID,s);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?,?)");
 		pstm.setString(1,OID);
@@ -94,8 +93,9 @@ public class ShowingsMapper extends AbstractPersistenceMapper {
 		pstm.setDouble(5,s.getPrice());
 
 		pstm.execute();
-
 		am.put(null, s);
+		updateCache(OID,s);
+
 	}
 
 	@Override

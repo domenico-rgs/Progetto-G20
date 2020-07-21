@@ -30,7 +30,7 @@ public class Ticket {
 	public LocalDateTime getDate() {
 		return showing.getDate();
 	}
-	
+
 	public String getDateToString() {
 		return showing.getDate().format(DateTimeFormatter.ofPattern("dd MMM uuuu - HH:mm"));
 	}

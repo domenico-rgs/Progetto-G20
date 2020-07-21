@@ -30,6 +30,8 @@ public class AddMovie {
 
 			MovieHandler.getInstance().createMovie(title, duration, plot, cover,
 					TypeCategory.valueOf(req.getParameter("category")));
+			return title + " succefully added. Reload to see changes";
+
 		}catch (SearchException e) {
 			return "Error: " + title + " already exists";
 		}catch (SQLException e) {
@@ -39,10 +41,9 @@ public class AddMovie {
 		}catch (IllegalArgumentException e) {
 			return "The category was not chosen or something else went wrong";
 		}catch (Exception e) {
-			e.getStackTrace();
-			return e.getMessage();
+			e.printStackTrace();
+			return "Something went wrong";
 		}
-		return title + " succefully added. Reload to see changes";
 	}
 
 }

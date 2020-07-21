@@ -6,6 +6,7 @@ import java.util.List;
 
 import server.domain.payment.discount.PricingStrategyFactory;
 import server.domain.payment.discount.TicketPricingStrategy;
+import server.exception.DiscountException;
 import server.exception.SearchException;
 import server.services.persistence.PersistenceFacade;
 
@@ -18,8 +19,11 @@ public class DiscountHandler {
 	 * this method creates a discount code
 	 * @param code discount's code
 	 * @param percent discount's percent
+	 * @throws DiscountException 
 	 */
-	synchronized public void createDiscountCode(String code, double percent) throws SQLException  {
+	synchronized public void createDiscountCode(String code, double percent) throws SQLException, DiscountException  {
+		if(percent < 0 || percent > 100)
+			throw new DiscountException("Accepted values between 0 and 100");
 		PricingStrategyFactory.getInstance().createDiscountCode(code.toUpperCase(), percent);
 	}
 

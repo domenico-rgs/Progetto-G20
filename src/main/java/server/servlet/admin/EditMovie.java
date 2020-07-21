@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.cinema.TypeCategory;
 import server.domain.controller.MovieHandler;
+import server.exception.ObjectNotFoundException;
 import server.exception.SearchException;
 
 public class EditMovie {
@@ -26,21 +27,20 @@ public class EditMovie {
 
 		try {
 			MovieHandler.getInstance().editMovie(title, cover, plot, category);
+			return title + " succefully changed. Reload to see changes";
 
 		}catch (SQLException e) {
-			System.out.println(e);
 			return "Impossible found the movie " + title;
 		}catch (NumberFormatException e) {
-			System.out.println(e);
 			return "Incorrect value for duration";
 		}catch (SearchException e) {
 			return title + " is used!";
+		} catch (ObjectNotFoundException e) {
+			return "Movie not found";
 		}catch (Exception e) {
-			System.out.println(e);
-			return e.getMessage();
+			e.printStackTrace();
+			return "Something went wrong";
 		}
-		return title + " succefully changed. Reload to see changes";
-
 	}
 }
 

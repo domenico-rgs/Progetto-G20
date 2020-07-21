@@ -1,10 +1,12 @@
 package server.servlet.admin;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.MovieShowingHandler;
+import server.exception.ObjectNotFoundException;
 import server.exception.OverlapException;
 
 public class AddShowing {
@@ -33,21 +35,24 @@ public class AddShowing {
 		if (date.isBefore(LocalDateTime.now()))
 			return "Please insert data after now";
 
-		String id;
 		try {
 			double price = Double.parseDouble(req.getParameter("price"));
 
-			id = MovieShowingHandler.getInstance().createMovieShowing(movie, date, theatre, price);
+			String id = MovieShowingHandler.getInstance().createMovieShowing(movie, date, theatre, price);
+			return "Showing succefully added with id: " +id+ ". Reload to see changes";
+
 		}catch (OverlapException e) {
 			e.printStackTrace();
 			return "The showing overlaps with another";
 		}catch (NumberFormatException e){
-			e.printStackTrace();
 			return "Invalid data: double check the date, price and/or time";
+		} catch (SQLException e) {
+			return "Something went wrong with the database, we apologise for the inconvenience";
+		}catch (ObjectNotFoundException e) {
+			return "Movie or theatre not found";
 		}catch (Exception e) {
 			e.printStackTrace();
-			return e.getMessage();
+			return "Something went wrong";
 		}
-		return "Showing succefully added with id: " +id+ ". Reload to see changes";
 	}
 }

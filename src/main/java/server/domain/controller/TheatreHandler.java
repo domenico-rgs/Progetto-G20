@@ -25,8 +25,9 @@ public class TheatreHandler {
 	 * @param name this is the theatre's name
 	 * @param config this is the configuration of the theatre
 	 * @throws SeatException
+	 * @throws SearchException
 	 */
-	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException {
+	synchronized public void createTheatre(String name, String config) throws SQLException, IOException, SeatException, SearchException {
 		Theatre t = new Theatre(name);
 		t.createSeats(config);
 		PersistenceFacade.getInstance().put(name, TheatresMapper.class,t);
@@ -38,9 +39,9 @@ public class TheatreHandler {
 	 * @throws ObjectNotFoundException
 	 */
 	synchronized public void deleteTheatre(String name) throws SearchException, SQLException, ObjectNotFoundException{
+		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
 		File f = new File(getTheatre(name).getFilePath());
 		f.delete();
-		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
 	}
 
 	synchronized public Theatre getTheatre(String name) throws SQLException, ObjectNotFoundException{
