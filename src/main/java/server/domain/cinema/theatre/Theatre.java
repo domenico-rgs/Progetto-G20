@@ -30,7 +30,6 @@ public class Theatre {
 		String[] s = config.split("\\n");
 		for(int i =0; i<s.length; i++) {
 			String[] tmp = s[i].split("\\s+");
-			//System.out.println(s[i]);
 			addSeats(tmp, i); //adds seats for the current row to the seat list
 		}
 		createConfigFile(config);
@@ -49,12 +48,7 @@ public class Theatre {
 	 */
 	private void addSeats(String[] row, int rowNum) throws SeatException {
 		for(int j = 0; j<row.length; j++) {
-			//the position is calculated so that the row is identified by a letter and the seats with increasing numbers from 0
 			String position = Character.toString(65 + rowNum) + j;
-			//System.out.println(row[j]);
-			if(row[j].equalsIgnoreCase("")) {
-				break;
-			}
 			if(row[j].equalsIgnoreCase("X")) {
 				seatsList.put(position, new Seat(position));
 			} else if (row[j].equalsIgnoreCase("P")) {
@@ -76,7 +70,7 @@ public class Theatre {
 	 */
 	public String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
-		config = config.replaceAll("[^\\S\\r\\n]+",""); //regex expression is used to remove "extra" spaces if they are added
+		config = config.replaceAll("[^\\S\\r\\n]+"," "); //regex expression is used to remove "extra" spaces if they are added
 
 		out.println(config);
 		out.close();
