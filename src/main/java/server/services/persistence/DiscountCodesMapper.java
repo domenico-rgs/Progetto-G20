@@ -11,6 +11,7 @@ import java.util.Map;
 
 import server.domain.payment.discount.CodeStrategy;
 import server.domain.payment.discount.TicketPricingStrategy;
+import server.exception.ObjectNotFoundException;
 
 /**
  * It is the mapper of the table "Discounts"
@@ -31,8 +32,14 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 	}
 
 	@Override
-	protected Object getObjectFromTable(String OID) {
-		return null;
+	protected Object getObjectFromTable(String OID) throws SQLException, ObjectNotFoundException {
+		PreparedStatement pstm = conn.prepareStatement("SELECT * FROM "+tableName+" WHERE discountCode = ?");
+		pstm.setString(1,OID);
+		ResultSet rs = pstm.executeQuery();
+		if(!rs.next())
+			throw new ObjectNotFoundException();
+
+		return new CodeStrategy(rs.getString(1), Double.parseDouble(rs.getString(2)));
 	}
 
 	@Override
@@ -62,13 +69,13 @@ public class DiscountCodesMapper extends AbstractPersistenceMapper {
 	@Override
 	public synchronized void put(String OID, Object obj) throws SQLException{
 		CodeStrategy d = (CodeStrategy)obj;
-		updateCache(OID,d);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?)");
 		pstm.setString(1,OID);
 		pstm.setDouble(2,d.getPercent());
 
 		pstm.execute();
+		updateCache(OID,d);
 
 	}
 

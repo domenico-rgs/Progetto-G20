@@ -21,14 +21,11 @@ public class Discount {
 				double value = Double.valueOf(req.getParameter("value"));
 				DiscountHandler.getInstance().createDiscountCode(code, value);
 			}catch (NumberFormatException e) {
-				System.out.println(e.toString());
 				return "Value not correct";
 			}catch (SQLException e) {
-				System.out.println(e.toString());
 				return "Code already exist";
 			}catch (Exception e) {
-				System.out.println(e.toString());
-				return "There was a problem with the server";
+				return "Something went wrong";
 			}
 
 			return "Code successfully added. Recharge to see changes";
@@ -37,11 +34,10 @@ public class Discount {
 			try {
 				DiscountHandler.getInstance().deleteDiscount(code);
 			}catch (SQLException e) {
-				System.out.println(e);
 				return "Ticket already deleted";
 			}catch (Exception e) {
-				System.out.println(e);
-				return e.toString();
+				e.printStackTrace();
+				return "Something went wrong";
 			}
 			return "Code removed with success";
 		}

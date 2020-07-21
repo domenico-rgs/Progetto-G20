@@ -80,7 +80,6 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 	@Override
 	public synchronized void put(String OID, Object obj) throws SQLException{
 		Theatre t = (Theatre)obj;
-		updateCache(OID,t);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?)");
 		pstm.setString(1,OID);
@@ -88,7 +87,7 @@ public class TheatresMapper extends AbstractPersistenceMapper {
 		pstm.execute();
 
 		sm.put(t.getTheatreName(), t);
-
+		updateCache(OID,t);
 	}
 
 	@Override

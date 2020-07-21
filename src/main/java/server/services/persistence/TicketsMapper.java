@@ -80,7 +80,6 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 	@Override
 	public synchronized void put(String OID, Object obj) throws SQLException{
 		Ticket t = (Ticket)obj;
-		updateCache(OID,t);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?,?)");
 
@@ -91,6 +90,7 @@ public class TicketsMapper extends AbstractPersistenceMapper {
 		pstm.setDouble(5,Math.round(t.getTotalPrice()*100)/100);
 
 		pstm.execute();
+		updateCache(OID,t);
 	}
 
 	protected void setUp() throws SQLException {

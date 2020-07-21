@@ -71,7 +71,6 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 	@Override
 	public synchronized void put(String OID, Object obj) throws SQLException{
 		Movie m = (Movie)obj;
-		updateCache(OID,m);
 
 		PreparedStatement pstm = conn.prepareStatement("INSERT INTO "+tableName+" VALUES(?,?,?,?,?)");
 		pstm.setString(1,OID);
@@ -81,6 +80,7 @@ public class MoviesMapper extends AbstractPersistenceMapper {
 		pstm.setString(5,m.getCategory().toString().toLowerCase());
 
 		pstm.execute();
+		updateCache(OID,m);
 
 	}
 

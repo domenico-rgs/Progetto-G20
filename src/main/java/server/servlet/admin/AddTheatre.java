@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.TheatreHandler;
+import server.exception.SearchException;
 import server.exception.SeatException;
 
 public class AddTheatre {
@@ -18,17 +19,17 @@ public class AddTheatre {
 
 		try {
 			TheatreHandler.getInstance().createTheatre(theatreName, config);
+			return theatreName + " succefully added. Reload to see changes";
+
 		} catch (SQLException e) {
-			System.out.println(e);
 			return theatreName+ " already exists or problem with database";
 		}catch(SeatException e) {
-			System.out.println(e);
 			return "Configuration is errated";
+		} catch (SearchException e) {
+			return "You cannot edit the config of an existing theatre";
 		}catch (Exception e) {
-			System.out.println(e);
-			return e.getMessage();
+			e.printStackTrace();
+			return "Something went wrong";
 		}
-		return theatreName + " succefully added. Reload to see changes";
 	}
-
 }

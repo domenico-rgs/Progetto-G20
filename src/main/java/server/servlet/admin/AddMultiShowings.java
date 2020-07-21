@@ -2,13 +2,14 @@ package server.servlet.admin;
 
 
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.MovieShowingHandler;
+import server.exception.ObjectNotFoundException;
 import server.exception.OverlapException;
-import server.exception.SearchException;
 
 
 public class AddMultiShowings {
@@ -51,15 +52,17 @@ public class AddMultiShowings {
 
 			try {
 				MovieShowingHandler.getInstance().createMovieShowing(movie, date, theatre, Double.valueOf(price));
-			}catch (SearchException e) {
-				return "Some showings Overlaps with anothers";
 			}catch (NullPointerException e) {
 				return "Please enter correct data";
 			}catch (OverlapException e) {
-				return "Some showings Overlaps with anothers";
+				return "Some showings overlaps with anothers";
+			} catch (SQLException e) {
+				return "Something went wrong with the database, we apologise for the inconvenience";
+			}catch (ObjectNotFoundException e) {
+				return "Movie or theatre not found";
 			}catch (Exception e) {
-				e.toString();
-				return "General error occured. Please try again";
+				e.printStackTrace();
+				return "Something went wrong";
 			}
 		}
 		return "Showings created";

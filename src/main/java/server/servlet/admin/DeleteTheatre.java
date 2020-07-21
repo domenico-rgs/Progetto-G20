@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.TheatreHandler;
 import server.exception.ObjectNotFoundException;
+import server.exception.SearchException;
 
 public class DeleteTheatre {
 
@@ -17,15 +18,18 @@ public class DeleteTheatre {
 
 		try {
 			TheatreHandler.getInstance().deleteTheatre(name);
+			return name + " successfully removed. Recharge to see changes";
+
 		}
 		catch (SQLException e) {
 			return name + " not exists yet";
 		} catch (ObjectNotFoundException e) {
 			return name + " not found or already deleted";
+		} catch (SearchException e) {
+			return "Cannot remove "+name+" because it's used";
 		}catch (Exception e) {
 			e.printStackTrace();
-			return "impossible to remove " + name;
+			return "Something went wrong";
 		}
-		return name + " successfully removed. Recharge to see changes";
 	}
 }
