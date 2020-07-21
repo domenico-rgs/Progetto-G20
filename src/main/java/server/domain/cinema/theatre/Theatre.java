@@ -68,7 +68,7 @@ public class Theatre {
 	 * @return return path's configuration file
 	 * @throws FileNotFoundException it occurs if the received string is not correct
 	 */
-	public String createConfigFile(String config) throws FileNotFoundException {
+	private String createConfigFile(String config) throws FileNotFoundException {
 		PrintWriter out = new PrintWriter(new File("src/main/resources/theatreConf/" + theatreName+".txt"));
 		config = config.replaceAll("[^\\S\\r\\n]+"," "); //regex expression is used to remove "extra" spaces if they are added
 
