@@ -13,6 +13,7 @@ import server.domain.cinema.theatre.DisableSeat;
 import server.domain.cinema.theatre.PremiumSeat;
 import server.domain.cinema.theatre.Seat;
 import server.domain.cinema.theatre.Theatre;
+import server.exception.SearchException;
 import server.exception.SeatException;
 
 public class TheatreTest {
@@ -37,10 +38,11 @@ public class TheatreTest {
 	}
 
 	
-	/**test adding seats*/
+	/**test adding seats
+	 * @throws SearchException */
 	@SuppressWarnings("unlikely-arg-type")
 	@Test
-	public final void testCreateSeats() throws IOException, SeatException {
+	public final void testCreateSeats() throws IOException, SeatException, SearchException {
 		boolean testSeats = true;   	//variable that I use to verify the result that in theory I should get
 		Map<String, Seat> seatList = new HashMap<>();
 		
@@ -48,9 +50,11 @@ public class TheatreTest {
 		 
 		
 		/**Random string similar to the one that will appear for the configuration of the seats*/
-		String config = "X X X P P P \nD D D X X X  \n X X X X X X \n X X X X X X"; 
-		String config2 = "G X X P P P \nD D D X X X  \n X X X X X X \n X X X X X X"; 
+		String config = "X X X P P P \nD D D X X X \nX X X X X X \nX X X X X X"; 
+		String config2 = "G X X P P P \nD D D X X X  \nX X X X X X \nX X X X X X"; 
 		
+		
+		// !!!! if the file with the configuration already exists, launch the search exception
 		theatre2.createSeats(config);
 		//theatre2.createSeats(config2);
 		seatList = theatre2.getSeatsList();
