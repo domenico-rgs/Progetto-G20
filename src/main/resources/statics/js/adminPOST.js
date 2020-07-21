@@ -332,7 +332,7 @@ $('#ticket #movie').on('change', function() {
       action: "getID",
       title: $('#ticket #movie').val(),
     },
-    success: function(response) {
+    success: async function(response) {
       $('#ticket #idS').attr('placeholder', 'ID');
 
       //lista di id disponibili, da splittare
@@ -345,10 +345,10 @@ $('#ticket #movie').on('change', function() {
         return;
       }
 
-      idList.forEach(function(item, index) {
+      await idList.forEach(function(item, index) {
         //item è il mio elemento
-        element = '<option value=' + item + '>' + item + '</option>'
-        $('#ticket #idList').append(element)
+        await element = '<option value=' + item + '>' + item + '</option>'
+        await $('#ticket #idList').append(element)
       })
 
     }
