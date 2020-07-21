@@ -1,6 +1,7 @@
 package server.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import org.rythmengine.Rythm;
 
 import server.domain.controller.BuyTicketHandler;
 import server.domain.controller.MovieShowingHandler;
+import server.exception.ObjectNotFoundException;
 import server.exception.PaymentException;
 
 
@@ -98,13 +100,10 @@ public class ShopCart implements IHandlerState {
 				boolean value = BuyTicketHandler.getInstance().buyTicket(codeCard, date, cvv, email);
 				resp.getWriter().write(String.valueOf(value));
 			}catch (MessagingException e) {
-				e.printStackTrace();
 				resp.getWriter().write("Email not valid");
 			}catch (PaymentException e) {
-				e.printStackTrace();
 				resp.getWriter().write("Something went wrong with payment, recheck your card data please");
-			}catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception e) {
 				resp.getWriter().write("Impossible buy this ticket, something went wront. Contact us!");
 			}
 			break;

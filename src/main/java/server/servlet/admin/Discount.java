@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import server.domain.controller.DiscountHandler;
+import server.exception.DiscountException;
 
 public class Discount {
 
@@ -24,6 +25,8 @@ public class Discount {
 				return "Value not correct";
 			}catch (SQLException e) {
 				return "Code already exist";
+			} catch (DiscountException e) {
+				return e.getMessage();
 			}catch (Exception e) {
 				return "Something went wrong";
 			}
