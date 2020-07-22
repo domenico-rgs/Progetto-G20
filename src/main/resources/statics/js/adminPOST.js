@@ -304,14 +304,14 @@ $('#discounts #remove').on('click', function() {
 });
 
 //tickets table
-$('#ticket #idS').on('change', function() {
+$('#ticket #idS2').on('change', function() {
   $('#ticket .loader').css("visibility", "visible")
   var ajax = $.ajax({
     type: "POST",
     url: "/administrator",
     data: {
       requestPost: "GetTicketsInf",
-      id: $('#ticket #idS').val()
+      id: $('#ticket #idS2').val()
     },
     success: function(response) {
       $('#ticket .loader').css("visibility", "hidden")
