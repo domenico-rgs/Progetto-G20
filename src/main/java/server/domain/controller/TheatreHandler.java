@@ -39,8 +39,8 @@ public class TheatreHandler {
 	 * @throws ObjectNotFoundException
 	 */
 	synchronized public void deleteTheatre(String name) throws SearchException, SQLException, ObjectNotFoundException{
-		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
 		File f = new File(getTheatre(name).getFilePath());
+		PersistenceFacade.getInstance().delete(name, TheatresMapper.class);
 		f.delete();
 	}
 
